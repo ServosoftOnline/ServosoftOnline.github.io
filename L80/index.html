@@ -1,0 +1,384 @@
+<!--
+    SITIO WEB DEL GRUPO MUSICAL LIMITE 80  
+    Usaremos: 
+        - HTML, CSS,
+        - FONTAWESOME para obtener iconos. https://fontawesome.com/
+        - GOOGLE FONTS para las fuentes. https://fonts.google.com
+        - FOTOGRAFIAS obtenidas desde https://www.pexels.com/es-es/
+        - PATRONES DE FONDO desde https://heropatterns.com
+        - css grid para distribuir mejor las imagenes. (Codigo escrito a partir de display:grid)
+        - flexbox para organizar los elementos. (Codigo escrito a partir de display:flex)
+        - Uso un codigo responsive para adaptarse a diferentes tamaños de pantalla. 700px y 500px.
+            - Haciendo que aparezca un boton de tres rallas que cuando lo pulso muestra una navegacion vertical
+            - Apareceran cinco miembros del grupo y a medida que disminuye el ancho de la pantalla pasaran a dos y a uno
+            - Igual con los links del footer
+            - Ajusto los banners y el showcase para que queden centrados
+        - EFECTO QUE HACE QUE LOS TEXTOS APAREZCAN A MEDIDA QUE BAJAMOS POR LA WEB. https://scrollrevealjs.org/
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L80 Rock Band</title>
+  
+  <!-- Fuente para texto y banners obtenidas desde google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Aleo:wght@500&family=Alfa+Slab+One&display=swap" rel="stylesheet">
+  
+  <!-- Adjunto FONT AWESOME para el botón con las tres rallas -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  
+  <!-- Adjunto conexion con archivo css -->
+  <link rel="stylesheet" href="lightbox.css">
+  <link rel="stylesheet" href="estilos.css">
+
+  <!-- JAVASCRIPT. Transiciones obtenidas desde https://scrollrevealjs.org/ y llamada al bundle -->
+  <script defer src="lightbox-plus-jquery.min.js" ></script>
+  <script defer src="https://unpkg.com/scrollreveal"></script>
+  <script defer src = "./public/bundle.js"> </script>
+
+</head>
+
+<body>
+
+  <!-- Botón de tres rallas que muestra la barra vertical responsive -->      
+  <div class="menu-btn">
+    <!-- Doblamos el tamaño del icono con fa-2x -->
+    <i class="fas fa-bars fa-2x"></i>
+  </div>
+
+  <!-- CONTENEDOR -->
+  <div class="container">
+    
+    <!-- BARRA DE NAVEGACION -->
+    <nav class="nav-main">
+      
+      <!-- Imagen del logo -->
+      <img src="images/brand.png" alt="Logo" class="nav-brand">
+     
+      <!-- Nombre del grupo -->
+      <ul class="nav-menu-left">
+        <li>
+          <h1>L80 Rock Band</h1>
+        </li>
+      </ul>
+      
+      <!-- Navegacion de la derecha -->
+      <ul class="nav-menu">
+        <li>
+          <a href="#">Nosotros</a>
+        </li>
+        <li>
+          <a href="#">Actuaciones</a>
+        </li>
+        <li>
+          <a href="#">Repertorio</a>
+        </li>
+        <li>
+          <a href="#">Contáctanos</a>
+        </li>
+      </ul>      
+    </nav>
+    <hr>
+
+    <!-- IMAGEN PPAL O SHOWCASE -->
+    <header class="showcase">
+      <!-- tiene de fondo la imagen showcase mediante css -->
+    </header>
+
+    <!-- GALERIA DE EVENTOS Y NUEvAS ACTUACIONES -->
+    <div class = "galeria">
+      <a href="images/1.jpg" data-lightbox="models" data-title="imagen1">
+          <img src="images/1.jpg" alt = "imagen1">
+      </a>
+      <a href="images/2.jpg" data-lightbox="models" data-title="imagen2">
+          <img src="images/2.jpg" alt = "imagen2">
+      </a>
+      <a href="images/3.jpg" data-lightbox="models" data-title="imagen3">
+          <img src="images/3.jpg" alt = "imagen3">
+      </a>
+      <a href="images/4.jpg" data-lightbox="models" data-title="imagen4">
+          <img src="images/4.jpg" alt = "imagen4">
+      </a>
+      <a href="images/5.jpg" data-lightbox="models" data-title="imagen5">
+          <img src="images/5.jpg" alt = "imagen5">
+      </a>
+      <a href="images/6.jpg" data-lightbox="models" data-title="imagen6">
+          <img src="images/6.jpg" alt = "imagen6">
+      </a>
+      <a href="images/7.jpg" data-lightbox="models" data-title="imagen7">
+          <img src="images/7.jpg" alt = "imagen7">
+      </a>
+      <a href="images/8.jpg" data-lightbox="models" data-title="imagen8">
+          <img src="images/8.jpg" alt = "imagen8">
+      </a>
+  </div>
+
+  <!-- REPERTORIO -->
+  <div class = "repertorio">
+    <div class = "repertorio_español">
+      <h3>En español</h3>
+      <div class = repertorio_contenido">
+          <ul>
+            <li>ACABO DE LLEGAR - Fito y fitipaldis</li>
+            <li>BLACK IS BLACK - Los bravos</li>
+            <li>CALLE SIN LUZ - Mclan</li>
+            <li>CUANDO BRILLE EL SOL - La guardia</li>
+            <li>CUÉNTAME - Formula V</li>
+            <li>DÉJAME - Los secretos </li>
+            <li>ÉCHAME A MI LA CULPA - Albert hammond </li>
+            <li>EL LÍMITE - La frontera </li>
+            <li>EL RITMO DEL GARAJE - Loquillo </li>
+            <li>EL ROMPEOLAS - Loquillo </li>
+            <li>ENTRE LA ESPADA Y LA PARED - Fito y fitipaldis </li>
+            <li>FLAMENCO - Los brincos </li>
+            <li>INSURRECIÓN - Manolo garcía y Miguel rios </li>
+            <li>LA CHICA DE AYER - Nacha pop </li>
+            <li>LOBO HOMBRE EN PARIS - La unión </li>
+            <li>MAGGIE DESPIERTA - Mclan </li>
+            <li>MEJOR - Los brincos </li>
+            <li>MI GRAN NOCHE - Raphael </li>
+            <li>MUCHO MEJOR (HACE CALOR) - Los rodriguez </li>
+            <li>MUEVE TUS CADERAS - Burning </li>
+            <li>NO PUEDO VIVIR SIN TÍ - Coque malla </li>
+            <li>OJOS DE PERDIDA - Los secretos </li>
+            <li>PRINCESA - Sabina </li>
+            <li>SABADO POR LA NOCHE - Los rodriguez </li>
+            <li>SOLA - Los brincos </li>
+            <li>SOLO TÚ - Los módulos </li>
+            <li>SOUVENIR - Mclan </li>
+            <li>VOY A PASARMELO BIEN - Hombres G </li>
+          </ul>
+      </div>    
+    </div>
+    <div class = "repertorio_ingles">
+      <h3>Extranjeros</h3>
+      <div class = repertorio_contenido">
+        <ul>
+          <li>ALINE - Christophe</li>
+          <li>AMERICAN DREAM PLAN B - Tom petty</li>
+          <li>BAILA MORENA - Zucchero</li>
+          <li>CRAZY LITTLE THING CALLED LOVE - Queen</li>
+          <li>EVERYBREATH YOU TAKE - Police</li>
+          <li>HAPPY TOGETHER - The turtles </li>
+          <li>HAVE YOU EVER SEEN THE RAIN - Smokie </li>
+          <li>HER STRUT - Bob seger </li>
+          <li>HOW LONG - Paul carrack </li>
+          <li>I'M A BELIEVER - The monkies </li>
+          <li>IT NEVER RAINS IN SOUTHERN CALIFORNIA - Albert hammond </li>
+          <li>IT'S ALL OVER NOW - Robben ford </li>
+          <li>JOHNNY B. GOODE - Chuck berry </li>
+          <li>LONG TRAIN RUNNING - Doobie brothers </li>
+          <li>LYIN'EYES - Eagles </li>
+          <li>MARY JANE'S LAST DANCE - Tom petty </li>
+          <li>NEVER BEEN TO SPAIN - Three dog night </li>
+          <li>NIGHTS IN WHITE SATIN - Moody blues </li>
+          <li>PROUD MARY - Creedence Clearwater Revival </li>
+          <li>REACH OUT I`LL BE THERE - Four tops </li>
+          <li>ROCKIN'IN THE FREE WORLD - Neil young </li>
+          <li>RUN TO YOU - Bryan Adams </li>
+          <li>SATISFACTION - The rolling stones </li>
+          <li>SISTER GOLDEN HAIR - America </li>
+          <li>STAND BY ME - John lennon </li>
+          <li>STILLNES OF HEART - Lenny kravitz </li>
+          <li>SUGAR BABY LOVE - The rubettes </li>
+          <li>SUZIE Q - Creedence Clearwater Revival </li>
+          <li>SWINGIN' - Tom petty </li>
+          <li>TAKE IT EASY - Eagles </li>
+          <li>TELL HIM - Vonda shepard </li>
+          <li>THE ROAD TO HELL - Chris rea </li>
+          <li>THESE BOOTS ARE MADE FOR WALKING - Nancy sinatra </li>
+          <li>VENUS - Shocking blue </li>
+          <li>WALK OF LIFE - Dire straits </li>
+          <li>WHO'LL STOP THE RAIN - Creedence Clearwater Revival </li>
+          <li>YELLOW RIVER - Christie </li>
+          <li>YOU GOT IT - Roy orbison </li>
+          <li>YOU NEVER CAN TALL - Chuck berry </li>
+          <li>YOU WRECK ME - Tom petty </li>
+        </ul>
+      </div>    
+    </div>
+  </div>
+
+  <!-- CONTACTANOS -->
+  <div class = "contactanos">
+    <div class = "whatsapp">
+      <a href = "https://api.whatsapp.com/send?phone=34651511476"> <img src ="./images/logoWhatsapp.png"> </a>
+    </div>
+    <div class = "telefono">
+      <h2>Puedes ponerte en contacto con nosotros llamando al 651511476 o haciendo click en el icono de Whatsapp</h2>
+    </div>      
+  </div>  
+
+  <!-- MIEMBROS -->
+  <div class="miembros">
+    <hr>
+    <div>
+      <img src="images/fermin.jpg" alt="" />
+      <h3>Fermín</h3>
+      <p>¡Cómo se pueden tener tantos bajos!. Lo mismo se arranca y toca la batería.
+      </p>
+      <hr>
+    </div>
+    <div>
+      <img src="images/javito.jpg" alt="" />
+      <h3>Javito</h3>
+      <p>Como toca el joio. Un día toca la bateria y otro se hace un maratón.
+      </p>
+      <hr>
+    </div>
+    <div>
+      <img src="images/moli.jpg" alt="" />
+      <h3>El gran Moli</h3>
+      <p>Maestro del teclado. La cantidad de efectos que le puede sacar!
+      </p>
+      <hr>
+    </div>
+    <div>
+      <img src="images/ildefonso.jpg" alt="" />
+      <h3>Ildefonso</h3>
+      <p>Es el guitarra principal y técnico de sonido del grupo. La última adquisición.
+      </p>
+    </div>
+  </div>
+
+    <!-- BANNER BOLOS -->
+    <section class="cards-banner-one">
+      <div class="content">
+        <h2>Siguientes bolos</h2>
+        <h2>Os venis?</h2>
+      </div>
+    </section>
+
+    <!-- PROXIMOS BOLOS -->   
+    <div class="bolos">
+      <div class="bolo_imagen">
+        <img src="images/bolo1.jpg" alt="" />
+      </div>
+      <div class ="bolo_texto">
+        <h3>Feria de fuengirola.</h3>
+        <p>Tocaremos en la caseta de juventud todos los días desde las 10 de la noche</p>
+        <a href="#">Leer más <i class="fas fa-angle-double-right"></i></a>
+      </div>
+    </div>
+    <!-- <hr> los iré poniendo si hay mas de un bolo para que queden separados -->
+
+    <!-- BANNER NOTICIAS -->
+    <hr>
+    <section class="cards-banner-two">
+      <div class="content">
+        <h2>Noticias</h2>
+        <p>Aquí os iremos informando de las diferentes noticias relacionadas con música que consideremos importantes. Para compartir con vosotros nuestra pasión</p>
+      </div>
+    </section>
+
+    <!-- NOTICIAS -->
+    <div class="noticias">
+      
+      <div class = "noticia1">
+        <img src="images/news1.jpg" alt="" />
+        <h3>Queen escribió la canción más alegre de la historia</h3>
+        <p>Don't Stop Me Now lidera un listado de 10 canciones hecho por un doctor de la Universidad de Groningen </p>
+        <a href="https://www.rockfm.fm/al-dia/noticias/ciencia-determina-que-queen-escribio-cancion-mas-alegre-historia-sabes-cual-20230811_2851136">Leer más <i class="fas fa-angle-double-right"></i></a>
+        <hr>
+      </div>
+
+      <div class = "noticia2">
+        <img src="images/news2.jpg" alt="" />
+        <h3>'Fito y por supuesto la luna'</h3>
+        <p>Así será la novela gráfica para celebrar el 25 aniversario de la banda. Este cuidado trabajo gráfico relata la vida y obra del legendario artista bilbaíno Fito Cabrales. </p>
+        <a href="https://www.rockfm.fm/al-dia/noticias/fito-por-supuesto-luna-asi-sera-novela-grafica-para-celebrar-aniversario-banda-20230811_2850971">Leer más <i class="fas fa-angle-double-right"></i></a>
+        <hr>
+      </div>
+
+      <div class = "noticia3">
+        <img src="images/news3.jpg" alt="" />
+        <h3>Muere Robbie Robertson, líder de The Band</h3>
+        <p>El mundo de la música y el cine está de luto por la partida de Robbie Robertson, icónico guitarrista, compositor y cantante. </p>
+        <a href="https://theobjective.com/cultura/2023-08-09/muere-leyenda-rock-lider-robbie-robertson/">Leer más <i class="fas fa-angle-double-right"></i></a>
+        <hr>
+      </div>
+
+      <div class = "noticia4">
+        <img src="images/news4.jpg" alt="" />
+        <h3>Ringo Starr y la canción que marcó su carrera</h3>
+        <p>Ringo Starr dio hace poco una entrevista donde comentó un dato curioso acerca de su carrera como Beatle y solista. “No hay nada como la primera”. </p>
+        <a href="https://garajedelrock.com/noticias/ringo-starr-y-la-cancion-que-marco-su-carrera-no-hay-nada-como-la-primera/">Leer más <i class="fas fa-angle-double-right"></i></a>
+      </div>
+    </div>
+
+    <!-- REDES SOCIALES -->
+    <section class="social">
+      
+      <!-- Enlaces e iconos de redes sociales obtenidas desde fontawesome-->
+      <div class="links">
+        <p>También en facebook</p>
+        <a href="https://www.facebook.com/search/top?q=limite%2080%20rock%20band">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER LINKS -->
+  <div class="footer-links">
+    <div class="footer-container">
+      <!-- primera columna -->
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Mapa del sitio</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#">Nosotros</a>
+        </li>
+        <li>
+          <a href="#">Actuaciones</a>
+        </li>
+        <li>
+          <a href="#">Repertorio</a>
+        </li>
+        <li>
+          <a href="#">Contáctanos</a>
+        </li>
+      </ul>
+
+      <!-- segunda columna -->
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Amigos y colaboradores</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#">Amigo o colaborador</a>
+        </li>
+        <li>
+          <a href="#">Amigo o colaborador</a>
+        </li>
+        <li>
+          <a href="#">Amigo o colaborador</a>
+        </li>
+        <li>
+          <a href="#">Amigo o colaborador</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER - COPYRIGHT -->
+  <footer class="footer">
+    <h3>Sitio web realizado por Oscar Fernández Santiago - 620890221</h3>
+    <p>Este sitio no usa cookies</p>
+  </footer>
+
+</body>
+
+</html>
