@@ -1,0 +1,47 @@
+PASOS A SEGUIR PARA INSTALAR Y CONFIGURAR GITHUB
+    
+    - Instalar y configurar GIT. 
+        - Explique como hacerlo en instalacion.txt de la carpeta git
+    
+    - Configurar email de confirmación. Hay que poner la misma que hay en git
+        - instrucciones en : https://docs.github.com/es/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address#configurar-tu-direcci%C3%B3n-de-correo-electr%C3%B3nico-de-confirmaci%C3%B3n-en-github
+        - Entrar en github en el enlace: https://github.com/
+        - Ir a settings / emails / Agregar
+        - Establece el correo ppal
+    
+    - Agregar la clave ssh.
+        - Explique como crearla en instalacion.txt de la carpeta git
+        - Copiar en el portapapeles el contenido de la clave.pub
+        - Ir a settings/ SSH and GPG keys / Agregarla pegando el portatapeles
+
+    - Crear un repositorio en github
+        - Entrar en https://github.com/
+        - Añadir un nuevo respositorio 
+            - Ponerle el mismo nombre que el perfil de git hub y añadir .github.io. Mi caso Servosoft2016.github.io
+            - Indicar public
+
+    - Clonar el respositorio publico en el repositorio local
+        - Entrar en git bash
+        - Ir a la carpeta que lo contendrá y escribir: git clone https://github.com/servosoft2016/servosoft2016.github.io
+        - Creará la carpeta repositorio local llamada servosoft2016.github.io
+        - Añadimos el proyecto.
+        - Si accedemos al sitio de internet servosoft2016.github.io Veremos el proyecto anterior
+        - Si creamos una subcarpeta en el respositorio local y pegamos otro proyecto
+        - Al acceder al sitio de internet servosoft2016.github.io/nuevoProyecto veremos el nuevo proyecto
+
+    - Empujar los cambios al repositorio remoto
+        - Realizar los cambios deseados en el repositorio local
+        - Entrar en git bash
+        - Asegurarnos que estamos dentro del repositorio local
+        - Si escribimos git status nos informará si quedan cosas pendientes de Actualizar
+        - Escribir: git add --all. Publicar todo lo git status indico que estaba pendiente
+        - Escribir: git commit -m "mensaje". Hace el commit y añade el mensaje personalizado que suele indicar el cambio
+        - Escribir: git push -u origin main
+
+
+
+
+
+
+
+

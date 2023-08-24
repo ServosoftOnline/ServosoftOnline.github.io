@@ -1,0 +1,342 @@
+<!--
+    EJEMPLO MUY COMPLETO DE COMO REALIZAR UNA WEB DESDE CERO
+    link del video manual: https://www.youtube.com/watch?v=Q2imkhmhOFo
+    Usaremos: 
+        - HTML, CSS,
+        - FONTAWESOME para obtener iconos. https://fontawesome.com/
+        - GOOGLE FONTS para las fuentes. https://fonts.google.com
+        - FOTOGRAFIAS obtenidas desde https://www.pexels.com/es-es/
+        - PATRONES DE FONDO desde https://heropatterns.com
+        - css grid para distribuir mejor las imagenes. (Codigo escrito a partir de display:grid)
+        - flexbox para organizar los elementos. (Codigo escrito a partir de display:flex)
+        - Uso un codigo responsive para adaptarse a diferentes tamaños de pantalla. 700px y 500px.
+            - Haciendo que aparezca un boton de tres rallas que cuando lo pulso muestra una navegacion vertical
+            - Los bloques de noticias pasaran de 4 a 2 y a 1
+            - Igual con los links del footer
+            - Ajusto los banners y el showcase para que queden centrados
+        - EFECTO QUE HACE QUE LOS TEXTOS APAREZCAN A MEDIDA QUE BAJAMOS POR LA WEB. https://scrollrevealjs.org/
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechNews</title>
+  <!-- Adjunto la fuente que usaremos desde google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Adjunto FONT AWESOME para el icono de la lupa -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <!-- Adjunto conexion con archivo css -->
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Botón de tres rallas que muestra la barra vertical responsive -->      
+  <div class="menu-btn">
+    <!-- Doblamos el tamaño del icono con fa-2x -->
+    <i class="fas fa-bars fa-2x"></i>
+  </div>
+
+  <!-- CONTENEDOR -->
+  <div class="container">
+    <!-- BARRA DE NAVEGACION -->
+    <nav class="nav-main">
+      <!-- Imagen del logo -->
+      <img src="img/brand.png" alt="TechNews Logo" class="nav-brand">
+      <!-- Navegacion de la izquierda, a la derecha del logo -->
+      <ul class="nav-menu">
+        <li>
+          <a href="#">Web Development</a>
+        </li>
+        <li>
+          <a href="#">Blockchain</a>
+        </li>
+        <li>
+          <a href="#">Machine Learning</a>
+        </li>
+        <li>
+          <a href="#">Artificial Intelligence</a>
+        </li>
+        <li>
+          <a href="#">Quantum Computing</a>
+        </li>
+        <li>
+          <a href="#">Startup</a>
+        </li>
+        <li>
+          <a href="#">Cryptocurrencies</a>
+        </li>
+        <li>
+          <a href="#">More</a>
+        </li>
+      </ul>
+
+      <!-- Navegacion de la derecha. La lupa la obtuve de fontawesome -->
+      <ul class="nav-menu-right">
+        <li>
+          <a href="#">
+            <i class="fas fa-search"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Añade una barra debajo de la navegacion -->
+    <hr>
+
+    <!-- IMAGEN PPAL O SHOWCASE -->
+    <header class="showcase">
+      <h2>Big News Today!</h2>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id dolor laudantium rerum, excepturi est praesentium
+        natus qui? Tempora rerum, numquam inventore eligendi in, nostrum reprehenderit, eum cumque fugit eaque
+        similique!</p>
+      <a href="#" class="btn">
+        SignUp <i class="fas fa-chevron-right"></i>
+      </a>
+    </header>
+
+    <!-- PRIMER BLOQUE DE NOTICIAS -->
+    <div class="news-cards">
+      <div>
+        <img src="img/news1.jpg" alt="" />
+        <h3>Lorem, ipsum dolor.</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+          doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+        </p>
+        <!-- Enlace que no apuntará a nada y un icono de fontawesone. Las dos rallitas estas >>  -->
+        <a href="#">Learn More <i class="fas fa-angle-double-right"></i></a>
+      </div>
+      <div>
+        <img src="img/news2.jpg" alt="" />
+        <h3>Lorem, ipsum dolor.</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+          doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+        </p>
+        <a href="#">Learn More <i class="fas fa-angle-double-right"></i></a>
+      </div>
+      <div>
+        <img src="img/news3.jpg" alt="" />
+        <h3>Lorem, ipsum dolor.</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+          doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+        </p>
+        <a href="#">Learn More <i class="fas fa-angle-double-right"></i></a>
+      </div>
+      <div>
+        <img src="img/news4.jpg" alt="" />
+        <h3>Lorem, ipsum dolor.</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+          doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+        </p>
+        <a href="#">Learn More <i class="fas fa-angle-double-right"></i></a>
+      </div>
+    </div>
+
+    <!-- PRIMER BANNER -->
+    <section class="cards-banner-one">
+      <div class="content">
+        <h2>Lorem, ipsum dolor.</h2>
+        <!-- lorem 20 -->
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat maxime facilis quasi alias illo, fugiat
+          cupiditate porro dolores tenetur delectus!</p>
+        <a href="#" class="btn">Learn More<i class="fas fa-chevron-right"></i></a>
+      </div>
+    </section>
+
+    <!-- SEGUNDO BLOQUE DE NOTICIAS -->
+    <div class="news-cards">
+      <div>
+        <img src="img/news1.jpg" alt="" />
+        <h3>Lorem, ipsum dolor.</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+          doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+        </p>
+        <a href="#">Learn More <i class="fas fa-angle-double-right"></i></a>
+      </div>
+      <div>
+        <img src="img/news2.jpg" alt="" />
+        <h3>Lorem, ipsum dolor.</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+          doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+        </p>
+        <a href="#">Learn More <i class="fas fa-angle-double-right"></i></a>
+      </div>
+      <div>
+        <img src="img/news3.jpg" alt="" />
+        <h3>Lorem, ipsum dolor.</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+          doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+        </p>
+        <a href="#">Learn More <i class="fas fa-angle-double-right"></i></a>
+      </div>
+      <div>
+        <img src="img/news4.jpg" alt="" />
+        <h3>Lorem, ipsum dolor.</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+          doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+        </p>
+        <a href="#">Learn More <i class="fas fa-angle-double-right"></i></a>
+      </div>
+    </div>
+
+    <!-- SEGUNDO BANNER -->
+    <section class="cards-banner-two">
+      <div class="content">
+        <h2>Lorem, ipsum dolor.</h2>
+        <!-- lorem 30 -->
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut qui laudantium id quam magni accusantium,
+          veritatis, ipsam labore, reprehenderit dolore repudiandae nemo sint deserunt! Suscipit facilis qui inventore
+          consequatur fugit.</p>
+        <a href="#" class="btn">Learn More <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </section>
+
+    <!-- REDES SOCIALES -->
+    <section class="social">
+      <p>Follow TechNews</p>
+      <!-- Enlaces e iconos de redes sociales obtenidas desde fontawesome-->
+      <div class="links">
+        <a href="https://facebook.com">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://linkdin.com">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER LINKS -->
+  <!-- Van fuera del contenedor para que ocupe todo el  ancho de la pagina. Cuatro columnas con seis enlaces  -->
+  <div class="footer-links">
+    <div class="footer-container">
+      <!-- primera columna -->
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Title One</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#">Blockchain</a>
+        </li>
+        <li>
+          <a href="#">Machine Learning</a>
+        </li>
+        <li>
+          <a href="#">Artificial Intelligence</a>
+        </li>
+        <li>
+          <a href="#">Quantum Computing</a>
+        </li>
+        <li>
+          <a href="#">Startup</a>
+        </li>
+        <li>
+          <a href="#">Cryptocurrencies</a>
+        </li>
+      </ul>
+      <!-- segunda columna -->
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Title Two</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#">Blockchain</a>
+        </li>
+        <li>
+          <a href="#">Machine Learning</a>
+        </li>
+        <li>
+          <a href="#">Artificial Intelligence</a>
+        </li>
+        <li>
+          <a href="#">Quantum Computing</a>
+        </li>
+        <li>
+          <a href="#">Startup</a>
+        </li>
+        <li>
+          <a href="#">Cryptocurrencies</a>
+        </li>
+      </ul>
+      <!-- tercera columna -->
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Title Three</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#">Blockchain</a>
+        </li>
+        <li>
+          <a href="#">Machine Learning</a>
+        </li>
+        <li>
+          <a href="#">Artificial Intelligence</a>
+        </li>
+        <li>
+          <a href="#">Quantum Computing</a>
+        </li>
+        <li>
+          <a href="#">Startup</a>
+        </li>
+        <li>
+          <a href="#">Cryptocurrencies</a>
+        </li>
+      </ul>
+      <!-- cuarta columna -->
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Title Four</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#">Blockchain</a>
+        </li>
+        <li>
+          <a href="#">Machine Learning</a>
+        </li>
+        <li>
+          <a href="#">Artificial Intelligence</a>
+        </li>
+        <li>
+          <a href="#">Quantum Computing</a>
+        </li>
+        <li>
+          <a href="#">Startup</a>
+        </li>
+        <li>
+          <a href="#">Cryptocurrencies</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER - COPYRIGHT -->
+  <footer class="footer">
+    <h3>Tech News Copyright</h3>
+  </footer>
+
+<!-- Adjunto las transiciones desde scrollreveal -->
+<script src="https://unpkg.com/scrollreveal"></script>
+
+
+
+
+  <!-- Linea de codigo obtenida desde https://scrollrevealjs.org/ para el efecto de las transiciones -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <!-- Javascript que hará se abra y cierre la navegacion vertical con un click y ejecutará las transiciones -->
+  <script src="main.js"></script>
+</body>
+
+</html>

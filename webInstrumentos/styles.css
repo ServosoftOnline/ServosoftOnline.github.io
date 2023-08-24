@@ -1,0 +1,187 @@
+  /*
+    Usaré css grid para crear la maquetación y flex box para centrar los elementos
+    U
+    */
+  
+  /* Estilos globales para la pagina */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    /* Fuente para banners */
+    /* font-family: 'Bebas Neue', sans-serif; */
+    /* Fuente para texto usual*/
+    font-family: 'Lobster', cursive;
+    background-color: #ffffff;
+    /* Patrón de fondo de pantalla obtenido desde https://www.heropatterns.com/ */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%238d5524' fill-opacity='0.14' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    color: #323232;
+    font-size: 20px;
+  }
+
+  /* Elimino el punto de las listas en todas las listas */
+  ul {
+    list-style: none;
+  }
+
+  /* Todos los enlaces de color negro y sin subrayado */
+  a{
+    color: black;
+    text-decoration: none;
+  }
+
+  /* Todos los enlaces mostrarán un subrayado cuando pase por encima */
+  a:hover{
+    border-bottom: 1px solid black;
+  }
+
+  /* CONTENEDOR */
+  .container{
+    width: auto;
+    /* Margen del contenedor por arriva */
+    /* margin: 20px; */
+    display: grid;
+    /* Distancio 20px los divisores del contenedor */
+    grid-gap: 0px;
+    grid-template-rows: auto auto auto auto auto auto auto auto;
+
+  }
+
+  /* EMPRESA */
+  .empresa{
+    background: #ffffff;
+  }
+
+  /* Columnas de zona de empresa. El logo ocupará el 35% */
+  .empresa ul{
+    display: grid;
+    grid-template-columns: auto auto auto 35% auto;
+  }
+
+  .empresa ul li{
+    padding: 8px 60px;
+    text-align: center;
+  }
+
+  /* FAVORITOS */
+  .favoritos{
+    background: #ffdbac;
+  }
+
+  /* Columnas de favoritos. El btn ocupa un 5% y la barra de busqueda un 35% */
+  .favoritos ul{
+    display:grid;
+    grid-template-columns: 5% auto auto 35% auto;
+  }
+
+  /* centrado y en negrita */
+  .favoritos li{
+    text-align: center;
+    font-weight: bold;
+    padding: 8px 0px;
+  }
+
+  /* NAVEGACION */
+  .navegacion{
+    background:black;
+  }
+
+  .navegacion ul{
+    display:grid;
+    grid-template-columns: auto auto auto auto auto auto;
+  }
+
+  .navegacion li{
+    color: #ffffff;
+    padding: 8px 0px;
+    text-align: center;
+  }
+
+  /* PUBLICIDAD */
+  .publicidad{
+    /* background: lightcoral; */
+    margin: 40px 0;
+  }
+  
+  .publicidad h1{
+    height: 200px;
+    text-align: center;
+    margin-bottom: 100px;
+  }
+
+  .publicidad ul{
+    display: flex;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    grid-gap: 80px;
+    margin-bottom: 40px;
+  }
+
+  .publicidad li{
+    margin: 0 auto;
+  }
+
+
+  /* CATEGORIAS  */
+  .categorias{
+    background: lightgoldenrodyellow;
+    margin-bottom: 40px;
+  }
+
+  .categorias h1{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .categorias ul{
+    display:grid;
+    grid-template-columns: 33% 33% 34%;
+    grid-template-rows: auto auto;
+    grid-gap: 20px;
+    padding-bottom: 20px;
+  }
+
+  .categorias hr{
+    margin-bottom: 15px;
+  }
+
+  /* DESTACADOS */
+  .destacados{
+    background: lightskyblue;
+    margin-bottom: 40px;
+  }
+
+  .destacados h1{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .destacados ul{
+    display:grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 20px;
+    padding-bottom: 20px;
+  }
+
+  /* NOTICIAS */
+
+  .noticias{
+    background: lightpink;
+  }
+
+  .noticias h1{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .noticias ul{
+    display:grid;
+    grid-template-columns: 33% 33% 34%;
+    grid-template-rows: auto auto;
+    grid-gap: 20px;
+    padding-bottom: 20px;
+  }
+
+
+  .social{
+    background:lightgray;
+  }
