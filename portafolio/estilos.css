@@ -30,16 +30,6 @@ ul {
     padding: 10px;
 }
 
-/* Linea separatoria de apartados de la columna de la derecha */
-.separador {    
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-}
-
-.separador hr {
-    width: 400px;
-}
 
 /* contiene las dos columnas */
 .contenedor {
@@ -191,37 +181,76 @@ ul {
 }
 
 /* cursos */
-.cursos .contenido,
-.trabajos .contenido {
+.cursos .contenido {
     display: flex;
     gap: 40px;
     margin-top: 10px;
     padding: 20px;    
 }
 
-/* centro la fotografia */
-.fotografia {
+/* trabajos */
+.trabajos .contenido {
+    width: 98%;
+    height: 200px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    border: 1px solid #8a2be2;
+    border-radius: 10px; 
+    margin-top: 25px;    
+}
+
+.trabajos .sitio h3 {
+    padding-top: 15px;
+    text-align: center;
+}
+
+.trabajos .sitio p {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;    
+}
+
+.trabajos .sitio a {
+    padding-left: 20px;
+    padding-bottom: 15px;
+}
+
+.trabajos .showcase {
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
+        
 }
 
-/* aplico a la fotografía un borde sombreado elíptico  y un hover */
-.fotografia img {
-    object-fit: cover;    
+.trabajos .showcase img {
+    border: 3px solid #8a2be2;
+    border-radius: 10px; 
 }
 
-.fotografia .sombreada {
-    border-radius: 50%;
-    border: none;
-    border: 4px solid #ccc;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
-}
 
-.fotografia .sombreada:hover {
-    transform: scale(1.05); 
-    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.4);
-}
+/* 
+<div class = "trabajos">
+                
+                <div class = "cabecera">
+                    <i class="fa-brands fa-github fa-beat-fade fa-2xl" style="color: #400080;"></i>
+                    <h2>Mis trabajos</h2>
+                </div>
+
+                <div class = "contenido">
+                    <div class = "sitio">
+                        <h3>L80</h3>
+                        <p>Sitio WEB responsive de un grupo musical realizado mediante HTML, CSS y JAVASCRIPT.</p>
+                        <a href = "https://servosoftonline.github.io/L80/" target = "_blank"> Ir al sitio </a>
+                    </div>
+                    <div class = "showcase">
+                        <a href="https://servosoftonline.github.io/L80/" target = "_blank"> <img src ="./img/showcase.jpg"> </a>
+                    </div> 
+                </div>
+                
+            </div
+*/
 
 
 

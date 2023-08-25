@@ -1,4 +1,4 @@
-GIT - configuracion para usar en github
+- GIT - configuracion para usar en github
 
 	- Información obtenida desde: https://www.youtube.com/watch?v=wHh3IgJvXcE
 	- Configuramos desde la consola de git bash el nombre de usuario, el correo y la clave ssh
