@@ -22,7 +22,8 @@ h2 {
 
 h3 {
     font-size: 30px;
-    font-weight: bold;
+    font-weight: lighter;
+    font-family: 'Lobster Two', cursive;
 }
 
 /* Elimina los marcadores */
@@ -39,7 +40,8 @@ ul {
     display: grid;
     grid-template-columns: 3fr 5fr;
     border: solid 1px #8a2be2;
-    border-radius: 10px; 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 /* COLUMNA DE LA IZQUIERDA */
@@ -49,7 +51,6 @@ ul {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='32' viewBox='0 0 16 32'%3E%3Cg fill='%23af9bd0' fill-opacity='0.48'%3E%3Cpath fill-rule='evenodd' d='M0 24h4v2H0v-2zm0 4h6v2H0v-2zm0-8h2v2H0v-2zM0 0h4v2H0V0zm0 4h2v2H0V4zm16 20h-6v2h6v-2zm0 4H8v2h8v-2zm0-8h-4v2h4v-2zm0-20h-6v2h6V0zm0 4h-4v2h4V4zm-2 12h2v2h-2v-2zm0-8h2v2h-2V8zM2 8h10v2H2V8zm0 8h10v2H2v-2zm-2-4h14v2H0v-2zm4-8h6v2H4V4zm0 16h6v2H4v-2zM6 0h2v2H6V0zm0 24h2v2H6v-2z'/%3E%3C/g%3E%3C/svg%3E");
     border-right: 1px solid #8a2be2;
     border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
 }
 
 /* aplico un borde mas claro en diversos apartados */
@@ -138,7 +139,6 @@ ul {
     color: gold;
 }
 
-
 /* COLUMNA DE LA DERECHA */
 .columnaDerecha {    
     background-color: #fcf9ff;
@@ -193,8 +193,7 @@ ul {
 }
 
 /* cursos */
-.cursos .contenido,
-.trabajos .contenido {
+.cursos .contenido {
     display: flex;
     gap: 40px;
     margin-top: 10px;
@@ -202,66 +201,161 @@ ul {
 }
 
 /* trabajos */
+.trabajos .contenido {
+    display: flex;
+    gap: 40px;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.trabajos .contenido .izquierda,
+.trabajos .contenido .centro {
+    display: flex;
+    align-items: center;
+}
+
 .trabajos .contenido h3 {
     font-weight: lighter;
 }
 
-.trabajos .contenido .centro p {
-    margin-bottom: 15px;
-}
-
-.trabajos .contenido .centro a {
-    font-style: oblique;
-    color: #555;
-
-}
-
-.trabajos .contenido .derecha img {
-    border: 4px solid silver;
+.trabajos .contenido .centro img {
+    border: 4px solid #708090;
     border-radius: 10px;
 }
 
-/* <div class = "contenido">
-                    <div class = "izquierda">
-                        <h3>L80</h3>
-                    </div>
-                    <div class = "centro">
-                        <p>Sitio web de un grupo musical desarrollado en HTML, CSS y JAVASCRIPT. Es responsive, está creado en una sola página y contiene una galería de imágenes.</p> 
-                        <a href = "https://servosoftonline.github.io/L80/" target = "_blank"> IR AL SITIO <i class="fas fa-angle-double-right"> </i> </a>
-                    </div>
-                    <div class = "derecha">
-                        <a href="https://servosoftonline.github.io/L80/" target = "_blank"> <img src ="./img/showcase.jpg"> </a>
-                    </div>                  
-                </div> */
-
-/* .trabajos .sitio h3 {
-    padding-top: 15px;
-    text-align: center;
-    font-weight: lighter;
-} */
-
-/* .trabajos .sitio p {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 20px;
-    padding-right: 20px;    
-} */
-
-/* .trabajos .sitio a {
-    padding-left: 20px;
-    padding-bottom: 15px;
-} */
-
-
-
-.trabajos .showcase img {
+.trabajos .contenido .centro .showcase img {
     border: 4px solid silver;
     border-radius: 10px; 
 }
 
+.trabajos .contenido .derecha p {
+    margin-bottom: 15px;
+}
+
+.trabajos .contenido .derecha a {
+    font-style: oblique;
+    font-weight: bold;
+    text-decoration: none;
+    color: #708090;
+    
+}
+
+.trabajos .contenido .derecha a:hover {
+    transform: scale(1.1);
+}
+
+
+
 
 /* copyright */
 .copyright {
+    width: 98%;
+    margin: auto;
+    margin-bottom: 10px;
     padding-top: 20px;
+    padding-bottom: 20px;    
     text-align: center;
+    color: whitesmoke;
+    font-weight: bold;
+    background-color: slategrey;
+    border: 1px solid #8a2be2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;    
+}
+
+/* RESPONSIVE */
+@media (max-width: 500px) {
+    /* body {
+        background-color: red;        
+    } */
+
+    /* Paso todo a una sola columna */
+    .contenedor {        
+        grid-template-columns: 1fr;        
+    }
+
+    /* Oculto el nombre de la columna de la derecha */
+    .nombre {
+        display: none;
+    }
+
+    /* Ajusto los bordes de ambas columnas */
+    .columnaIzquierda {
+        border-top-right-radius: 10px;
+    }
+
+    .columnaDerecha {    
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    /* Hago mas pequeñas las fuentes de los datos de contacto y titulaciones */
+    .columnaIzquierda .contacto ul,
+    .columnaIzquierda .titulacion ul {
+        font-size: 1.3rem;
+    }
+
+    /* TRABAJOS RESPONSIVE */
+    
+    /* Elimino el display flex para que ya no estén en línea */
+    .trabajos .contenido {
+        display: block;
+        margin-top: 20px;
+        padding: 0px;        
+    }
+
+    /* Creo la cabecera que contiene el nombre del proyecto */
+    .trabajos .contenido .izquierda {
+        background-color: #9370DB;
+        color: white;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    /* Creo los bordes de la descripcion del proyecto y su enlace */
+    .trabajos .contenido .centro,
+    .trabajos .contenido .derecha {
+        background-color: #E6E6FA;
+        border-right: 1px solid #8a2be2;
+        border-left: 1px solid #8a2be2;
+        
+    }
+
+    .trabajos .contenido .derecha {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom: 1px solid #8a2be2;    
+        padding-bottom: 30px;
+    }
+
+    /* Separo el nombre del trabajo y su imagen y pongo la imagen en el centro */
+    .trabajos .contenido .centro {
+        padding-top: 25px;
+        justify-content: center;
+    }
+
+    /* Ajusto posicion y tamaños de la descripción del trabajo */
+    .trabajos .contenido .derecha p {
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 1.1rem;    
+    }
+
+    /* Ajusto el enlace con el mismo margen izquierdo que la descripción del trabajo */
+    .trabajos .contenido .derecha a {
+        padding-left: 20px;        
+    }
+
+    .trabajos .contenido .derecha a:hover {
+        padding-left: 20px;        
+    }
+
+    /* COPYRIGHT RESPONSIVE */
+    .copyright {
+        font-size: 1rem;
+    }
 }
