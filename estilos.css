@@ -34,7 +34,7 @@ ul {
 
 /* contiene las dos columnas */
 .contenedor {
-    width: 98%;
+    width: 90%;
     margin: auto;
     margin-top: 10px;
     display: grid;
@@ -54,6 +54,10 @@ ul {
 }
 
 /* perfil profesional */
+.perfil {
+    display: flex;
+    flex-direction: column;
+}
 .perfil h1,
 .perfil h2 {
     text-align: center;
@@ -255,7 +259,7 @@ ul {
 
 /* copyright */
 .copyright {
-    width: 98%;
+    width: 90%;
     margin: auto;
     margin-bottom: 10px;
     padding-top: 20px;
@@ -280,11 +284,6 @@ ul {
         grid-template-columns: 1fr;        
     }
 
-    /* Oculto el nombre de la columna de la derecha */
-    .nombre {
-        display: none;
-    }
-
     /* Ajusto los bordes de ambas columnas */
     .columnaIzquierda {
         border-top-right-radius: 10px;
@@ -296,9 +295,12 @@ ul {
     }
 
     /* Hago mas pequeñas las fuentes de los datos de contacto y titulaciones */
-    .columnaIzquierda .contacto ul,
-    .columnaIzquierda .titulacion ul {
-        font-size: 1.3rem;
+    .columnaIzquierda .contacto .contenido li {
+        font-size: 18px;
+    }
+
+    .columnaIzquierda .titulacion .contenido li {
+        font-size: 18px;
     }
 
     /* TRABAJOS RESPONSIVE */
@@ -362,6 +364,7 @@ ul {
 
     /* COPYRIGHT RESPONSIVE */
     .copyright {
+        
         font-size: 1rem;
     }
 }
