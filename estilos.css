@@ -11,7 +11,7 @@ body {
 
 /* diferentes cabeceras en todo el documento */
 h1 {
-    font-size: 50px;
+    font-size: 45px;
     font-family: 'Lobster Two', cursive;
 }
 
@@ -52,6 +52,21 @@ ul {
     border-right: 1px solid #8a2be2;
     border-top-left-radius: 10px;
 }
+
+/* perfil profesional */
+.perfil h1,
+.perfil h2 {
+    text-align: center;
+}
+
+.perfil h2 {
+    margin-bottom: 40px;
+}
+
+.perfil h3 {
+    margin-top: 90px;
+}
+
 
 /* aplico un borde mas claro en diversos apartados */
 .columnaIzquierda .contenido {
@@ -108,7 +123,8 @@ ul {
 
 /* separo los elementos de la lista de los datos de contacto */
 .contacto li {
-    padding: 15px;
+    padding: 10px;
+    font-size: 20px;
 }
 
 /* en datos de contacto separo el icono de los datos */
@@ -147,12 +163,6 @@ ul {
     border-bottom-right-radius: 10px;
 }
 
-.nombre {
-    text-align: center;
-    margin-top: 110px;
-    margin-bottom: 110px;
-}
-
 .experiencia,
 .cursos,
 .trabajos {
@@ -172,16 +182,12 @@ ul {
     justify-content: center;
     gap: 40px;
     padding: 20px; 
-    margin-top: 70px;
+    
 }
 
 /* experiencia laboral */
 .experiencia .contenido {
     padding: 30px;
-}
-
-.experiencia li {
-    padding-right: 200px;
 }
 
 .experiencia h3 {
