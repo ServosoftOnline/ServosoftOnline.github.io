@@ -32,9 +32,20 @@ ul {
     padding: 10px;
 }
 
-/* contiene las dos columnas */
-.contenedor {
+.supercontenedor {
+    
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor {    
     width: 90%;
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+/* contiene las dos columnas */
+.columnas {    
     margin: auto;
     margin-top: 10px;
     display: grid;
@@ -89,6 +100,7 @@ ul {
 }
 
 .perfil h2 {
+    margin-top: 20px;
     margin-bottom: 40px;
 }
 
@@ -138,7 +150,7 @@ ul {
 /* en titulación separo las listas entre ellas */
 .titulacion  ul {
     padding-top: 20px;
-    /* padding-right: 100px; */
+    
 }
 
 /* capacidades */
@@ -247,8 +259,7 @@ ul {
     font-style: oblique;
     font-weight: bold;
     text-decoration: none;
-    color: #708090;
-    
+    color: #708090;    
 }
 
 .trabajos .contenido .derecha a:hover {
@@ -258,14 +269,13 @@ ul {
 
 /* copyright */
 .copyright {
-    width: 90%;
-    margin: auto;
-    margin-bottom: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;    
+    height: 40px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
     color: whitesmoke;
-    font-weight: bold;
     background-color: slategrey;
     border: 1px solid #8a2be2;
     border-bottom-left-radius: 10px;
@@ -278,9 +288,14 @@ ul {
         background-color: red;        
     } */
 
-    /* Reduzco el contenedor para que ajuste mejor a los moviles y paso todo a una sola columna */
-    .contenedor {   
-        width: 80%;     
+    .columnaDerecha h2 {
+       font-size: 1.7rem;
+    }
+    h3{
+        font-size: 1.9rem;
+    }
+    /* Las dos columnas pasan a ser una */
+    .columnas {   
         grid-template-columns: 1fr;        
     }
 
@@ -376,7 +391,7 @@ ul {
 
     /* COPYRIGHT RESPONSIVE */
     .copyright { 
-        width: 80%;       
+            
         font-size: 0.9rem;
     }
 }
