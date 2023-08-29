@@ -53,6 +53,31 @@ ul {
     border-top-left-radius: 10px;
 }
 
+/* centro la fotografia */
+.fotografia {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+/* aplico a la fotografía un borde sombreado elíptico  y un hover */
+.fotografia img {
+    object-fit: cover; 
+    max-width: 100%;   
+}
+
+.fotografia .sombreada {
+    border-radius: 50%;
+    border: none;
+    border: 4px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+}
+
+.fotografia .sombreada:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.4);
+}
+
 /* perfil profesional */
 .perfil {
     display: flex;
@@ -71,10 +96,8 @@ ul {
     margin-top: 90px;
 }
 
-
 /* aplico un borde mas claro en diversos apartados */
 .columnaIzquierda .contenido {
-    /* width: 98%; */
     background-color: whitesmoke;
     border: 5px solid white;
     border-radius: 10px;   
@@ -101,34 +124,10 @@ ul {
     padding-bottom: 20px;
 }
 
-/* centro la fotografia */
-.fotografia {
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-}
-
-/* aplico a la fotografía un borde sombreado elíptico  y un hover */
-.fotografia img {
-    object-fit: cover;    
-}
-
-.fotografia .sombreada {
-    border-radius: 50%;
-    border: none;
-    border: 4px solid #ccc;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
-}
-
-.fotografia .sombreada:hover {
-    transform: scale(1.05); 
-    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.4);
-}
-
 /* separo los elementos de la lista de los datos de contacto */
 .contacto li {
     padding: 10px;
-    font-size: 20px;
+    font-size: 1.3rem;
 }
 
 /* en datos de contacto separo el icono de los datos */
@@ -138,7 +137,8 @@ ul {
 
 /* en titulación separo las listas entre ellas */
 .titulacion  ul {
-    padding-top: 20px;;
+    padding-top: 20px;
+    /* padding-right: 100px; */
 }
 
 /* capacidades */
@@ -155,7 +155,7 @@ ul {
 }
 
 .capacidades .estrellas {
-    font-size: 19px;
+    font-size: 1.2rem;
     color: gold;
 }
 
@@ -185,8 +185,7 @@ ul {
     align-items: center;
     justify-content: center;
     gap: 40px;
-    padding: 20px; 
-    
+    padding: 20px;    
 }
 
 /* experiencia laboral */
@@ -231,11 +230,13 @@ ul {
 .trabajos .contenido .centro img {
     border: 4px solid #708090;
     border-radius: 10px;
+    max-width: 100%;
 }
 
 .trabajos .contenido .centro .showcase img {
     border: 4px solid silver;
     border-radius: 10px; 
+    max-width: 100%;
 }
 
 .trabajos .contenido .derecha p {
@@ -253,8 +254,6 @@ ul {
 .trabajos .contenido .derecha a:hover {
     transform: scale(1.1);
 }
-
-
 
 
 /* copyright */
@@ -279,28 +278,41 @@ ul {
         background-color: red;        
     } */
 
-    /* Paso todo a una sola columna */
-    .contenedor {        
+    /* Reduzco el contenedor para que ajuste mejor a los moviles y paso todo a una sola columna */
+    .contenedor {   
+        width: 80%;     
         grid-template-columns: 1fr;        
     }
 
-    /* Ajusto los bordes de ambas columnas */
+    /* Ajusto los bordes elipticos y rectos de ambas columnas */
     .columnaIzquierda {
         border-top-right-radius: 10px;
+        border-right: 0px solid #8a2be2;
     }
 
     .columnaDerecha {    
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
+        border-right: 0px solid #8a2be2;
+    }
+
+    /* Elimino el hover de mi fotografía */
+    .fotografia .sombreada:hover {
+        transform: none;
+        box-shadow: none;     
     }
 
     /* Hago mas pequeñas las fuentes de los datos de contacto y titulaciones */
     .columnaIzquierda .contacto .contenido li {
-        font-size: 18px;
+        font-size: 1rem;
     }
 
     .columnaIzquierda .titulacion .contenido li {
-        font-size: 18px;
+        font-size: 1rem;
+    }
+
+    .columnaIzquierda .capacidad {
+        padding-left: 30px;
     }
 
     /* TRABAJOS RESPONSIVE */
@@ -363,8 +375,8 @@ ul {
     }
 
     /* COPYRIGHT RESPONSIVE */
-    .copyright {
-        
-        font-size: 1rem;
+    .copyright { 
+        width: 80%;       
+        font-size: 0.9rem;
     }
 }
