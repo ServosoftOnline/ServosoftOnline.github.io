@@ -286,7 +286,7 @@ ul {
 @media (max-width: 1366px) {
 
     body {
-        background-color: blue;
+        background-color: orange;
     }
 
     .contenedor {
@@ -310,7 +310,7 @@ ul {
 
     .contacto li {
         padding: 10px;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     .trabajos .contenido {
