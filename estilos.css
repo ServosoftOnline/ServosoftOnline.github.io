@@ -149,14 +149,14 @@ ul {
 
 /* en titulación separo las listas entre ellas */
 .titulacion  ul {
-    padding-top: 20px;
-    
+    padding-top: 20px;    
 }
 
 /* capacidades */
 .capacidades .contenido {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+    display: flex;
+    align-items: center;
+    gap: 30px;
     padding-left: 20px;
     padding-bottom: 10px;
     padding-top: 10px;    
@@ -223,32 +223,33 @@ ul {
 
 /* trabajos */
 .trabajos .contenido {
-    display: flex;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 30px;
     margin-top: 10px;
     padding: 20px;
-}
-
-.trabajos .contenido .izquierda,
-.trabajos .contenido .centro {
-    display: flex;
-    align-items: center;
 }
 
 .trabajos .contenido h3 {
     font-weight: lighter;
 }
 
-.trabajos .contenido .centro img {
-    border: 4px solid #708090;
+.trabajos .contenido .izquierda {
+    text-align: center;
+}
+
+.trabajos .contenido .izquierda h3 {
+    padding-bottom: 15px;
+}
+
+.trabajos .contenido .izquierda img {
     border-radius: 10px;
     max-width: 100%;
 }
 
-.trabajos .contenido .centro .showcase img {
-    border: 4px solid silver;
-    border-radius: 10px; 
-    max-width: 100%;
+.trabajos .contenido .derecha {
+    margin-top: 30px;
 }
 
 .trabajos .contenido .derecha p {
@@ -266,7 +267,6 @@ ul {
     transform: scale(1.1);
 }
 
-
 /* copyright */
 .copyright {
     height: 40px;
@@ -282,17 +282,23 @@ ul {
     border-bottom-right-radius: 10px;    
 }
 
+
+
+
+
+
 /* RESPONSIVE */
 @media (max-width: 500px) {
     /* body {
         background-color: red;        
     } */
-
-    .columnaDerecha h2 {
-       font-size: 1.7rem;
-    }
-    h3{
+    
+    h3 {
         font-size: 1.9rem;
+    }
+
+    .contenedor {
+        width: 70%
     }
     /* Las dos columnas pasan a ser una */
     .columnas {   
@@ -305,10 +311,8 @@ ul {
         border-right: 0px solid #8a2be2;
     }
 
-    .columnaDerecha {    
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
-        border-right: 0px solid #8a2be2;
+    .fotografia, .perfil, .contacto, .titulacion, .capacidades, .idiomas {
+        padding: 15px;
     }
 
     /* Elimino el hover de mi fotografía */
@@ -317,81 +321,97 @@ ul {
         box-shadow: none;     
     }
 
+    .contacto li {
+        padding: 5px;       
+    }
     /* Hago mas pequeñas las fuentes de los datos de contacto y titulaciones */
-    .columnaIzquierda .contacto .contenido li {
-        font-size: 1rem;
+    .contacto .contenido li {
+        font-size: 0.7rem;
     }
-
-    .columnaIzquierda .titulacion .contenido li {
-        font-size: 1rem;
-    }
-
-    .columnaIzquierda .capacidad {
-        padding-left: 30px;
-    }
-
-    /* TRABAJOS RESPONSIVE */
     
-    /* Elimino el display flex para que ya no estén en línea */
-    .trabajos .contenido {
-        display: block;
-        margin-top: 20px;
-        padding: 0px;        
+    .titulacion .contenido li {
+        font-size: 1rem;
     }
 
-    /* Creo la cabecera que contiene el nombre del proyecto */
-    .trabajos .contenido .izquierda {
+    .capacidad {
+        padding-left: 0px;
+    }
+
+    .capacidades .estrellas {
+        font-size: 1.2rem;
+    }
+
+    .capacidades .capacidad p {
+        font-size: 1.4rem;
+    }
+
+    .columnaDerecha {    
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-right: 0px solid #8a2be2;
+    }
+
+    .columnaDerecha h2 {
+        font-size: 1.7rem;
+     }
+
+    .experiencia,
+    .cursos,
+    .trabajos {
+        margin: 4%;
+    }
+
+    .experiencia .cabecera,
+    .cursos .cabecera,
+    .trabajos .cabecera {
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+
+    .experiencia .contenido {
+        padding: 20px;
+    }
+
+    .cursos .contenido {
+        gap: 15px;
+        padding: 10px;
+    }
+        
+    .trabajos .contenido {
+        grid-template-columns: auto;
+        padding: 0px;
+        background-color: #E6E6FA;
+        border: 1px solid #8a2be2;
+        border-radius: 10px;
+    }
+
+    .trabajos .contenido .izquierda h3{
         background-color: #9370DB;
         color: white;
-        padding-left: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-top-left-radius: 10px;
+        font-size: 1.1rem;
+        height: 10px;
+        text-align: left;
+        padding-left: 15px;
         border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
     }
 
-    /* Creo los bordes de la descripcion del proyecto y su enlace */
-    .trabajos .contenido .centro,
-    .trabajos .contenido .derecha {
-        background-color: #E6E6FA;
-        border-right: 1px solid #8a2be2;
-        border-left: 1px solid #8a2be2;
+    .trabajos .contenido .izquierda img {
+        max-width: 75%;
+        margin-top: 20px;
+        border: 1px solid #8a2be2;
+        border-radius: 10px;
         
     }
 
     .trabajos .contenido .derecha {
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        border-bottom: 1px solid #8a2be2;    
-        padding-bottom: 30px;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-bottom: 15px;
+        margin-top: 5px;        
     }
 
-    /* Separo el nombre del trabajo y su imagen y pongo la imagen en el centro */
-    .trabajos .contenido .centro {
-        padding-top: 25px;
-        justify-content: center;
-    }
-
-    /* Ajusto posicion y tamaños de la descripción del trabajo */
-    .trabajos .contenido .derecha p {
-        padding-top: 20px;
-        padding-left: 20px;
-        padding-right: 20px;
-        font-size: 1.1rem;    
-    }
-
-    /* Ajusto el enlace con el mismo margen izquierdo que la descripción del trabajo */
-    .trabajos .contenido .derecha a {
-        padding-left: 20px;        
-    }
-
-    .trabajos .contenido .derecha a:hover {
-        padding-left: 20px;        
-    }
-
-    /* COPYRIGHT RESPONSIVE */
-    .copyright { 
-            
-        font-size: 0.9rem;
+   .copyright {            
+        font-size: 0.8rem;
     }
 }
