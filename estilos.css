@@ -282,12 +282,12 @@ ul {
     border-bottom-right-radius: 10px;    
 }
 
-/* RESPONSIVE 1920px */
+/* RESPONSIVE 1360Px. HORIZONTAL TABLETS */
 @media (max-width: 1366px) {
 
-    /* body {
+    body {
         background-color: orange;
-    } */
+    }
 
     .contenedor {
         width: 85%
@@ -306,6 +306,11 @@ ul {
     .fotografia .sombreada:hover {
         transform: none;
         box-shadow: none;     
+    }
+
+    .contacto li {
+        padding: 10px;
+        font-size: 1.2rem;
     }
 
     .trabajos .contenido {
@@ -343,13 +348,22 @@ ul {
     }
 }
 
+/* RESPONSIVE 812PX. HORIZONTAL TABLETS */
+@media (max-width: 812px) {
 
-/* RESPONSIVE 700PX */
+    body {
+        background-color: blueviolet;
+    }    
+
+}
+
+
+/* RESPONSIVE 700PX. HORIZONTAL MOVILES */
 @media (max-width: 700px) {
     
-    /* body {
+    body {
         background-color: greenyellow;
-    }     */
+    }    
 
     .columnas {   
         grid-template-columns: 1fr;        
@@ -426,11 +440,11 @@ ul {
 
 
 
-/* RESPONSIVE  500 px*/
+/* RESPONSIVE  500 px. VERTICAL MOVILES*/
 @media (max-width: 500px) {
-    /* body {
+    body {
         background-color: red;        
-    } */
+    }
 
     /* Hago mas pequeñas las fuentes de los datos de contacto */
     .contacto .contenido li {
