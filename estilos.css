@@ -289,9 +289,9 @@ ul {
         background-color: blue;
     }
 
-    .contenedor {
+    /* .contenedor {
         width: 85%
-    }
+    } */
 
     h3 {
         font-size: 1.9rem;
@@ -310,7 +310,7 @@ ul {
 
     .contacto li {
         padding: 10px;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 
     .trabajos .contenido {
