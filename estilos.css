@@ -41,7 +41,7 @@ ul {
 .contenedor {    
     width: 90%;
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto;    
 }
 
 /* contiene las dos columnas */
@@ -282,26 +282,22 @@ ul {
     border-bottom-right-radius: 10px;    
 }
 
-
-
-
-
-/* RESPONSIVE */
-@media (max-width: 500px) {
-    /* body {
-        background-color: red;        
-    } */
-    
-    h3 {
-        font-size: 1.9rem;
+/* RESPONSIVE 700PX */
+@media (max-width: 700px) {
+    body {
+        background-color: greenyellow;
     }
 
     .contenedor {
         width: 85%
     }
-    /* Las dos columnas pasan a ser una */
+
     .columnas {   
         grid-template-columns: 1fr;        
+    }
+
+    h3 {
+        font-size: 1.9rem;
     }
 
     /* Ajusto los bordes elipticos y rectos de ambas columnas */
@@ -323,9 +319,10 @@ ul {
     .contacto li {
         padding: 5px;       
     }
-    /* Hago mas pequeñas las fuentes de los datos de contacto y titulaciones */
+
+    /* Hago mas pequeñas las fuentes de los datos de contacto */
     .contacto .contenido li {
-        font-size: 0.7rem;
+        font-size: 1.1rem;
     }
     
     .titulacion .contenido li {
@@ -413,4 +410,27 @@ ul {
    .copyright {            
         font-size: 0.8rem;
     }
+
+}
+
+
+
+/* RESPONSIVE  500 px*/
+@media (max-width: 500px) {
+    body {
+        background-color: red;        
+    }
+
+    /* Hago mas pequeñas las fuentes de los datos de contacto */
+    .contacto .contenido li {
+        font-size: 0.7rem;
+    }
+    
+    
+
+    
+
+    
+
+    
 }
