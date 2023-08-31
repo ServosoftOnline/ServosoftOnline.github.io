@@ -16,7 +16,7 @@ h1 {
 }
 
 h2 {
-    font-size: 35px;    
+    font-size: 35px;
     font-weight: lighter;
 }
 
@@ -33,19 +33,18 @@ ul {
 }
 
 .supercontenedor {
-    
     display: flex;
     justify-content: center;
 }
 
-.contenedor {    
+.contenedor {
     width: 90%;
     display: grid;
-    grid-template-rows: auto auto;    
+    grid-template-rows: auto auto;
 }
 
 /* contiene las dos columnas */
-.columnas {    
+.columnas {
     margin: auto;
     margin-top: 10px;
     display: grid;
@@ -68,24 +67,24 @@ ul {
 .fotografia {
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 }
 
 /* aplico a la fotografía un borde sombreado elíptico  y un hover */
 .fotografia img {
-    object-fit: cover; 
-    max-width: 100%;   
+    object-fit: cover;
+    max-width: 100%;
 }
 
 .fotografia .sombreada {
     border-radius: 50%;
     border: none;
     border: 4px solid #ccc;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .fotografia .sombreada:hover {
-    transform: scale(1.05); 
+    transform: scale(1.05);
     box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -112,7 +111,7 @@ ul {
 .columnaIzquierda .contenido {
     background-color: whitesmoke;
     border: 5px solid white;
-    border-radius: 10px;   
+    border-radius: 10px;
 }
 
 /* separo entre ellos los apartados de la columna de la izquierda */
@@ -152,7 +151,7 @@ ul {
 
 /* en titulación separo las listas entre ellas */
 .titulacion  ul {
-    padding-top: 20px;    
+    padding-top: 20px;
 }
 
 /* capacidades */
@@ -162,7 +161,7 @@ ul {
     gap: 30px;
     padding-left: 20px;
     padding-bottom: 10px;
-    padding-top: 10px;    
+    padding-top: 10px;
 }
 
 .capacidades .contenido .capacidad p{
@@ -175,7 +174,7 @@ ul {
 }
 
 /* COLUMNA DE LA DERECHA */
-.columnaDerecha {    
+.columnaDerecha {
     background-color: #fcf9ff;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.35' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
     border-top-right-radius: 10px;
@@ -200,7 +199,7 @@ ul {
     align-items: center;
     justify-content: center;
     gap: 40px;
-    padding: 20px;    
+    padding: 20px;
 }
 
 /* experiencia laboral */
@@ -221,7 +220,7 @@ ul {
     display: flex;
     gap: 40px;
     margin-top: 10px;
-    padding: 20px;    
+    padding: 20px;
 }
 
 /* trabajos */
@@ -263,7 +262,7 @@ ul {
     font-style: oblique;
     font-weight: bold;
     text-decoration: none;
-    color: #708090;    
+    color: #708090;
 }
 
 .trabajos .contenido .derecha a:hover {
@@ -282,7 +281,7 @@ ul {
     background-color: slategrey;
     border: 1px solid #8a2be2;
     border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;    
+    border-bottom-right-radius: 10px;
 }
 
 /* RESPONSIVE 1360Px. HORIZONTAL TABLETS */
@@ -291,7 +290,7 @@ ul {
     body {
         background-color: blue;
     }
-    
+
     h3 {
         font-size: 1.9rem;
     }
@@ -316,19 +315,19 @@ ul {
     /* Elimino el hover de mi fotografía */
     .fotografia .sombreada:hover {
         transform: none;
-        box-shadow: none;     
+        box-shadow: none;
     }
 
     .contacto li {
         font-size: 0.9rem;
     }
-    
-    .columnaDerecha {    
+
+    .columnaDerecha {
         border-bottom-right-radius: 0px;
     }
 
-    .experiencia .cabecera, .cursos .cabecera, .trabajos .cabecera {       
-        gap: 20px;       
+    .experiencia .cabecera, .cursos .cabecera, .trabajos .cabecera {
+        gap: 20px;
     }
 
     .trabajos .contenido {
@@ -354,14 +353,14 @@ ul {
         max-width: 75%;
         margin-top: 20px;
         border: 1px solid #8a2be2;
-        border-radius: 10px;        
+        border-radius: 10px;
     }
 
     .trabajos .contenido .derecha {
         padding-right: 15px;
         padding-left: 15px;
         padding-bottom: 15px;
-        margin-top: 5px;        
+        margin-top: 5px;
     }
 }
 
@@ -382,17 +381,17 @@ ul {
 
     .experiencia .cabecera h2,
     .cursos .cabecera h2,
-    .trabajos .cabecera h2 {       
+    .trabajos .cabecera h2 {
         font-size: 1.8rem;
     }
 
     .experiencia .cabecera i,
     .cursos .cabecera i,
-    .trabajos .cabecera i {       
+    .trabajos .cabecera i {
         font-size: 1.9rem;
     }
-    
-    .copyright {            
+
+    .copyright {
         font-size: 1.1rem;
     }
 }
@@ -400,28 +399,28 @@ ul {
 
 /* RESPONSIVE 715PX. HORIZONTAL MOVILES */
 @media (max-width: 715px) {
-    
+
     body {
         background-color: greenyellow;
-    }    
-
-    .columnas {   
-        grid-template-columns: 1fr;        
     }
-   
+
+    .columnas {
+        grid-template-columns: 1fr;
+    }
+
     /* Ajusto los bordes elipticos y rectos de ambas columnas */
     .columnaIzquierda {
         border-top-right-radius: 10px;
         border-right: 0px solid #8a2be2;
     }
 
-    
+
 
     /* Hago mas pequeñas las fuentes de los datos de contacto */
     .contacto .contenido li {
         font-size: 1.4rem;
     }
-    
+
     .titulacion .contenido li {
         font-size: 1.3rem;
     }
@@ -438,7 +437,7 @@ ul {
         font-size: 1.4rem;
     }
 
-    .columnaDerecha {    
+    .columnaDerecha {
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
         border-right: 0px solid #8a2be2;
@@ -469,8 +468,8 @@ ul {
         gap: 15px;
         padding: 10px;
     }
-        
-   .copyright {            
+
+   .copyright {
         font-size: 1.2rem;
     }
 
@@ -480,12 +479,16 @@ ul {
 /* RESPONSIVE  500 px. VERTICAL MOVILES*/
 @media (max-width: 500px) {
     body {
-        background-color: red;        
+        background-color: red;
     }
 
-    .contenedor {
-        width: 80%;
+    .supercontenedor{
+        width: 90%;
     }
+
+    /* .contenedor {
+        width: 90%;
+    } */
 
     /* Hago mas pequeñas las fuentes de los datos de contacto */
     .contacto .contenido li {
@@ -493,8 +496,8 @@ ul {
         gap: 5px;
     }
 
-    .copyright {            
+    .copyright {
         font-size: 0.9rem;
     }
-   
+
 }
