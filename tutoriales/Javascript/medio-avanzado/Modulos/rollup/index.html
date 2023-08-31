@@ -1,0 +1,47 @@
+<!-- 
+    ROLLUP
+        - Informacion obtenida desde el tutorial de https://rollupjs.org/
+        - Instalar, configurar y compilar de forma automatica rollup:
+            1.- Crear las carpetas public y src
+            2.- Generar el archivo package.json escribiendo el comando npm init -y
+            3.- Añadir al archivo package.json lo siguiente:
+                - La linea: "build": "rollup --config --watch" en los scripts
+                - La linea: "type": "module" al principio
+            4.- Instalar rollup en modo local: npm install rollup --save-dev o en modo global: npm install --global rollup
+            5.- Probarlo: rollup en modo global o npx rollup en modo local.
+            6.- Crear el archivo rollup.config.js en la carpeta raiz del proyecto
+            7.- Añadirle el código:
+                    export default {
+                        input: 'src/index.js', 
+                        output: {
+                            file: 'public/bundle.js',
+                            format: 'cjs' 
+                        } 
+                    };
+            8.- Crear el archivo public/index.js y escribir un codigo de pruebas
+            9.- Ejecutamos npm run build y debe crearse el archivo bundle dentro de la carpeta public
+            10.- Modificamos el codigo de pruebas y compruebo si actualiza el archivo bundle.js
+            11.- Usar las sentencias import en index.js y las sentencias export en vlbes y funciones a exportar en los archivos javascrip de src
+
+        - Compilar de forma manual 
+            7.1.- Compilar y ver el resultado en consola escribiendo rollup src/index.js -f cjs
+            7.2.- Generar el archivo bundle escribiendo rollup src/index.js -o public/bundle.js -f cjs
+            
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./estilos.css">
+    <!-- JAVASCRIPT. LLamada al bundle -->
+    <script defer src = "./public/bundle.js")> </script>
+    <title>Curso medio-avanzado de Javascript</title>
+</head>
+<body>
+    <h1>Curso de Javascript</h1>
+    <h2>Completo, práctico y desde cero</h2>
+</body>
+</html>

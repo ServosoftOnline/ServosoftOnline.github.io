@@ -1,0 +1,53 @@
+<!-- 
+
+    - BOM
+    - Siglas de Browser Object Model. Javascript trata las partes que componen el navegador como un objetos. Por lo que tendrán propiedades y métodos
+    - Este documento me pertirá poder acceder a cada uno de los archivos de javascript donde hay ejemplos de uso de cada uno de ellos. 
+    - Será necesario cambiar el archivo referenciado de javascript y sólo funcionarán sus respectivos botones
+
+        Ejemplos de objetos BOM:
+        - window. Trabaja con ventanas
+            - Botones: abrirVentana(), cerrarVentana() y pixeles()
+        - location. Administra la barra de navegacion
+            - Botones: redirecciona(), paginaAnterior() y paginaSiguiente() 
+        - navigator. Devuelve información sobre el navegador
+            Botones: Ninguno
+        - alert. Nos informa, nos pregunta u nos deja introducir información
+            - Botones: ingresar() y saludar()
+        - timer. Permite ejecutar funciones a partir de un cierto tiempo o cada cierto tiempo
+            - Botones: saludar(), iniciarSaludo(), pararSaludo(), iniciarCuenta() y pararCuenta()
+        - cookies. Permite almacenar y acceder a valores aunque reinicie una pagina o me valla a otra
+            - Botones: iniciarSesion(), cerrarSesion() y mostrarCookies()
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./estilos.css">
+    <script defer src = "./cookies.js")> </script>
+    <title>Curso medio-avanzado de Javascript</title>
+</head>
+<body>
+    <h1>Curso de Javascript</h1>
+    <h2>Completo, práctico y desde cero</h2>
+    <button onclick = "abrirVentana()">Abrir Msn </button>
+    <button onclick = "cerrarVentana()">Cerrar ventana Msn</button>
+    <button onclick = "pixeles()">Mostrar resolución</button>
+    <button onclick = "redirecciona()">Redirecciona a google</button>
+    <button onclick = "paginaAnterior()">Página anterior</button>
+    <button onclick = "paginaSiguiente()">Página siguiente</button>
+    <button onclick = "ingresar()">Ingresar</button>
+    <button onclick = "saludar()">Saludar</button>
+    <button onclick = "iniciarSaludo()">Iniciar saludo</button>
+    <button onclick = "pararSaludo()">Parar saludo</button>
+    <button onclick = "iniciarCuenta()">Iniciar cuenta</button>
+    <button onclick = "pararCuenta()">Parar cuenta</button>
+    <button onclick = "iniciarSesion()">Iniciar sesión</button>
+    <button onclick = "cerrarSesion()">Cerrar sesión</button>
+    <button onclick = "mostrarCookies()">Muestra cookies</button>
+</body>
+</html>

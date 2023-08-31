@@ -1,0 +1,90 @@
+<!-- 
+
+- DOM. Document Object Model.
+
+	- Es un objeto llamado document por lo que tiene métodos y propiedades.
+	- Lo crea el navegador y contiene la estructura, estilos y atributos de toda la pagina HTML
+	
+	- Podemos:
+		- Reaccionar ante pulsar botones creando nuevos elementos, editarlos o borrarlos.
+		- Cambiar los estilos css mientras estamos en la pagina
+		- Reaccionar a eventos que ocurran en la pagina, por ejemplo:
+			- Dar un click y que muestre otra ventana dentro de la propia pagina
+			- Dar click fuera del formulario valida el contenido de lo de dentro
+	
+	- Operar con DOM:
+		1.- Obtener el elemento html con el que trabajar
+		2.- Una vez obtenido podemos:
+			- crear o modificar el contenido de los atributos de los elementos ya existentes en el html
+			- crear atributos personalizados
+			- modificar estilos css mediante clases
+		3.- Crear o eliminar nuevos elementos html
+		4.- Trabajar con eventos
+	
+	- Ubicacion de las funciones que contienen los botones:
+		- Para probarlos será necesario cambiar el archivo refenrencia en la etiqueta script
+		- En creandoElementos.js
+			- agregarCajaAlFinal()
+			- agregarCajaAlPrincipio()
+			- cambiarCaja()
+		- En eliminandoElementos.js
+			- eliminarCaja()
+		- En modificandoEstilosMedianteClases.js
+			- agregarActiva()
+			- eliminarActiva()
+			- toggleActiva()
+			- comprobarActiva()
+		- En modificandoEstilosMedianteJs.js
+			- aumentarFuente()
+			- disminuirFuente()
+	
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- CSS -->
+	<link rel="stylesheet" href="estilos.css" />
+	<!-- JAVASCRIPT -->
+	<script defer src="./creandoElementos.js"></script>
+	<script defer src="./eliminandoElementos.js"></script>
+	<script defer src="./modificandoEstilosMedianteClases.js"></script>
+	<script defer src="./modificandoEstilosMedianteJs.js"></script>
+	<script defer src="./eventos.js"></script>
+	<title>Document Object Model</title>
+</head>
+<body>
+	<div class="contenedor-principal">
+		<!-- cajas -->
+		<div class="contenedor" id="contenedor1">
+			<div class="caja">Caja 1</div>
+			<div class="caja">Caja 2</div>
+			<div class="caja">Caja 3</div>
+		</div>
+		<div class="contenedor" id="contenedor2">
+			<div class="caja">Caja 4</div>
+			<div class="caja">Caja 5</div>
+			<div class="caja">Caja 6</div>
+		</div>
+
+		<!-- Eventos mediante botones -->
+		<button onclick = "agregarCajaAlFinal()">Agregar caja al final</button>
+		<button onclick = "agregarCajaAlPrincipio()">Agregar caja al principio</button>
+		<button onclick = "cambiarCaja()">Cambiar el texto de una caja</button>	
+		<button onclick = "eliminarCaja()">Eliminar caja</button>
+		<button onclick = "agregarActiva()">Asisgnar clase activa</button>
+		<button onclick = "eliminarActiva()">Eliminar clase activa</button>
+		<button onclick = "toggleActiva()">Toogle clase</button>
+		<button onclick = "comprobarActiva()">Comprueba actividad</button>
+		<button onclick = "aumentarFuente()">Aumentar fuente</button>
+		<button onclick = "disminuirFuente()">Disminuir fuente</button>
+		<hr>
+		<!-- Eventos mediante event listener -->
+		<button id = "boton1" >Toogle event listener</button>
+		<button id = "añadirEvento" >Añadir evento a la caja1</button>
+		<button id = "eliminarEvento" >Eliminar evento de la caja1</button>
+	</div>	
+</body>
+</html>

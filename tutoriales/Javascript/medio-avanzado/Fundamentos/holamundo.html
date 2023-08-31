@@ -1,0 +1,40 @@
+<!--
+    TRES FORMAS DE INSERTAR JAVASCRIPT EN UN DOCUMENTO HTML :
+        - Desde body
+        - Desde head añadiendo el atributo defer
+        - Desde un archivo externo añadiendo defer
+    Javascript:
+        - Es sensible a mayúsculas y minúsculas
+        - punto y coma al final
+        - Respetar sintaxis camelCase
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./estilos.css">
+    <title>Curso medio Javascript</title>
+    <!-- SEGUNDA FORMA: Sentencias desde head y añadimos el atributo defer para que se cargue despues de la pagina -->
+    <script defer>
+        alert('Alerta desde head que debe mostrarse despues de cargar la pagina y no lo hace');
+    </script>
+    <!-- TERCERA FORMA: Desde un archivo externo. Forma más usual -->
+    <script defer src="./holaMundo.js"></script>
+</head>
+<body>
+    <h1>Hola mundo!</h1>
+    <!-- PRIMERA FORMA: Insertar sentencias Javascript antes del final del body -->
+    <script>
+        // puede contener etiquetas
+        document.write('<h2>Bienvenido!</h2>');
+        document.write('A esta página WEB');
+        // Ventana con este mensaje de alerta
+        alert('Alerta desde el body');
+        // Mostrar mensajes en consola para controlar errores
+        console.log('Consola accesible');
+    </script>
+</body>
+</html>

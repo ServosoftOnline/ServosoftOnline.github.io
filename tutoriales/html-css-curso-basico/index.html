@@ -1,0 +1,162 @@
+<!-- 
+    Creé este documento HTML5 a partir de dos cursos basicos de html y css. Los enlaces de estos videos son:
+    https://www.youtube.com/watch?v=rbuYtrNUxg4
+    https://www.youtube.com/watch?v=W6GTDfrWjXs
+    Primero hize la web indicando solo lenguaje html y posteriormente añadi el contenido css
+    Esta web no es responsive. Hemos usado dos webs para obtener colores. son:
+    https://www.color-hex.com/
+    https://flatuicolors.com/
+
+-->
+
+<!-- Documento de HTML5 -->
+<!DOCTYPE html>
+<!-- Indicar el lenguaje español nos posicionará mejor entre las webs españolas -->
+<html lang="es">
+<head>
+    <!-- title es la unica etiqueta visible en el navegador. El resto da informacion al buscador -->
+    <title>Curso HTML5</title>
+    <!--Las etiquetas meta nos permite dar informacion sobre nuestra web que nos ayudará a posicionarnos mejor--> 
+    <!-- describimos el contenido de mi pagina web, su creador, palabras clave, codificacion de caracteres  -->
+    <meta name="description" content="Esta es mi primera pagina web" />
+    <meta name="author" content="Oscar Fernandez Santiago" />
+    <meta name="keywords" content="Mi primer titulo, mi primera pagina, pagina web, blog" />
+    <meta charset="UTF-8">
+    
+    <!-- DESCRIBO LAS SIGUIENTES FORMAS DE APLICAR CSS. ALGUNAS SOLO SE DECLARAN EN <HEAD>, OTRAS EN <HEAD> Y
+    <BODY> Y OTRAS SOLO EN <BODY>
+    -->
+    
+    <!-- 
+    <style>
+        SEGUNDA FORMA: Se aplica sobre etiquetas
+        header{
+            background: black;
+            color: white;
+        }
+        footer{
+            background: green
+        }
+        
+        TERCERA FORMA: Definir un id dentro de la etiqueta style y llamarla desde body una vez.
+        Se puede usar en JAVASCRIPT 
+        #cabecera{
+            background: red;
+            color: white;
+        }
+        
+        CUARTA FORMA: Definir una clase dentro de la etiqueta style y llamarla de forma multiple desde varias
+        etiquetas desde body
+        .green{
+            background: green
+        }
+        
+        QUINTA FORMA: Un selector universal. Se aplicará en toda la pagina. No se llamara desde body
+        * {
+            background: green
+        }
+        
+        SEXTA FORMA: Todos los elementos que tenga tal atributo se le aplicará una regla 
+        blockquote[cite]{
+            background: red
+        }
+    </style>
+    -->
+    
+    <!-- SEPTIMA FORMA: Desde un archivo .css aparte. Quedará así. sin comentar -->
+    <link href="estilos.css" rel="stylesheet" type="text/css">
+    
+</head>
+
+<body>
+    <!-- division para poder hacer una caja donde englobaremos toda la pagina y le asignaremos un color desde css -->
+    <div class="agrupar">
+        <!--
+        AGREGAR CSS DE LA PRIMERA FORMA: En el interior de una etiqueta. Solo desde body
+        <header style="background: black;">
+        -->
+        <!--
+        AGREGAR CSS DE LA TERCERA FORMA . Un id
+        <header id=cabecera>
+            <h1>Mi blog</h1>
+        </header>
+        -->
+        <!-- AGREGAR CSS DE LA CUARTA FORMA. Una clase
+        <header class=green>
+            <h1>Mi blog</h1>
+        </header>
+        -->
+    
+        <header class="cabecera"> 
+            <h1>Mi blog</h1>
+        </header>
+        
+        <!-- BARRA DE NAVEGACION -->
+        <nav class="menu">
+            <!-- Lista desordenada -->
+            <ul>
+                <!-- elementos de la lista -->
+                <li>Principal</li>
+                <li>Ayuda</li>
+                <li>Contacto</li>
+            </ul>
+        </nav>
+
+        <!-- SECCION PPAL -->
+        <section class="seccion">
+            <!-- Contenidos que se repiten en la seccion ppal -->
+            <article class="articulo">
+                <!-- Permite diferenciarlo de H1 de la cabecera. Y engloba a h1 y h2 -->
+                <hgroup>
+                    <h1>Titulo para el primer articulo</h1>
+                    <h2>Subtitulo del primer articulo</h2>
+                </hgroup>
+                <time datetime="12-10-2018">Publicado 12-10-2018</time>
+                <!-- Insertamos una imagen local -->
+                <img src="images/logo.jpg"/>
+                <!-- Articulo de prueba. Escribí lorem30 y me salio el resto. Lo proporciona visual studio code -->
+                <!-- Disminuí el tamaño de la fuente del parrafo-->
+                <p> <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est aliquam itaque, veniam officia harum suscipit modi quam alias excepturi aut, aspernatur praesentium expedita eligendi tempora architecto delectus, libero repudiandae. Sint. </small> </p>
+                <!-- Pie del primer articulo -->
+                <footer>
+                    <p>Comentarios (0)</p>
+                </footer>
+                <!-- Contiene enlace a direccion web -->
+                <address>
+                    <a href="http://faztweb.com">Visita mi sitio WEB</a>
+                </address>
+                
+            </article>
+            <article class="articulo">
+                <h1>Titulo para el segundo articulo</h1>
+                <h2>Subtitulo del segundo articulo</h2>
+                <time datetime="12-10-2018">Publicado 12-10-2018</time>
+                <!-- La etiqueta span nos permitirá modificarla posteriormente en css -->
+                <p><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, molestiae est dolore ipsum illum suscipit perspiciatis mollitia ex sunt sed minus, rem ullam odit excepturi modi eius totam facilis obcaecati. </span> </p>
+                <!-- Pie del segundo articulo -->
+                <footer>
+                    <p>Comentarios (10)</p>
+                </footer>
+            </article>
+            
+        </section>
+
+        <!-- BARRA LATERAL. MUESTRA CONTENIDO RELACIONADO CON LA PPAL -->
+        <aside class="columna">
+            <!-- Citas relacionadas con los articulos 1 y 2 respectivamente -->
+            <blockquote cite="http://faztweb.com">
+                Mensaje1
+            </blockquote>
+            <blockquote cite="http://facebook/faztweb.com">
+                Mensaje2
+            </blockquote>
+        
+            Acerca de
+        </aside>
+        <!-- Pie de la pagina  -->
+        <footer class="pie">
+            Derechos reservados 2010-2018
+        </footer>
+    </div>
+</body>
+</html>

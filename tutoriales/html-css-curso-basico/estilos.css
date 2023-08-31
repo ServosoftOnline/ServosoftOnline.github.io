@@ -1,0 +1,143 @@
+/* Aplicamos a todos los elemenos de la pagina */
+*{
+    /* Resetamos margenes y espaciados que el navegador pone por defecto */
+    margin: 0px;
+    padding: 0px;
+}
+
+h1{
+    /* Tamaño de fuente */
+    font-size: 20px;
+    /* Fuente. Se recomienda usar una común en los navegadores */
+    font-family: sans-serif;
+    /* negrita */
+    font-weight: bold;
+}
+
+h2{
+    /*  
+    font-size: 14px;
+    font-weight: bold;
+    font-family: sans-serif;
+    O puedo usar la siguente linea */
+    font:bold 14px sans-serif;
+}
+
+header,section,footer,aside,nav,article, hgroup{
+    /* Aplica un borde a cada sección que nos ayudaría a ubicarlas. Las comentaré una vez acabada su funcion */
+    /* border: 1px solid black; */
+
+    /* Indicamos que todos los elementos sean en bloque y no en linea
+    En bloque significa uno debajo de otro y en linea significa seguidos
+     */
+    display:block;
+}
+
+body{
+    /* Alineo todos los textos de toda la pagina al centro */
+    text-align: center;
+}
+
+/* Definir la caja divisora que contendrá toda la pagina */
+.agrupar{
+    /* Ancho */
+    width: 960px;
+    border: 1px solid black;
+    /* Margen vertical de 15px y horizontal automatico */
+    margin: 15px auto;
+    /* Formas de modificar los margenes y rellenos
+    margin determina desde el borde de la caja hacia afuera y el padding desde el borde hacia adentro
+    y entre elementos de la pagina.
+    margin-top: 100px;
+    margin-bottom: 200px;
+    margin-left: 50px;
+    margin-right: 90px;
+    margen automatico a izquierda y derecha y le asignaremos 15px arriba y abajo
+    
+    padding: 40px;
+    */
+}
+
+.cabecera{
+    background: #7289da;
+    border: 1px solid #999999;
+    padding: 20px;
+}
+.cabecera h1{
+    text-align: left;
+    color: #ffffff;
+}
+
+.menu{
+    background: #ccc;
+    /* padding 5px arriba y abajo y 15px izquierda y derecha */
+    padding: 5px 15px;
+    text-align: left;
+}
+
+/* Todos los elemenos li que se encuentran dentro de la clase menu */
+.menu li {
+    /* Elimina los puntos a la izquierda de la lista */
+    list-style:none;
+    padding: 5px;
+    font: bold 14px verdana;
+    /* cambiar de elemento en bloque a elemento en linea */
+    /* Coloca en linea la barra del menu */
+    display: inline-block;
+}
+
+.seccion{
+    /* Al aplicarle un margin nos ayudara en nuestro diseño, mejor que un padding */
+    margin: 20px;
+    /* Se podria usar porcentajes de ancho y el tamaño se adaptaria */
+    width: 600px;
+    /* Eliminamos temporalmente el que los bloques sean en linea para poder hacer que floten */
+    /* Quedará desordenada nuestra parte ppal de la pagina */
+    float: left;
+    text-align: left;  
+}
+
+.articulo{
+    background: #fffbcc;
+    border: 1px solid #999;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+time{
+    /* Damos un color gris tenue a la fecha */
+    color:#999;
+}
+
+.articulo footer{
+    text-align: right;
+    margin-top: 20px;
+}
+
+.columna{
+    width: 300px;
+    margin: 20px 0px;
+    float: left;
+}
+
+.columna blockquote{
+    border: 1px solid black;
+    padding: 40px;
+    background: #FFFBB9;
+    margin-bottom: 20px;
+}
+
+.pie{
+    /* A partir de ahora ya no flotaran los elementos y hará que los elementos seccion
+     y aside queden uno al lado del otro. Volviendo a estar ordenado la parte ppal  */
+    clear: both;
+    padding: 20px;
+    background: #34495e;
+    color: #ecf0f1;
+}
+
+img{
+    width: 80px;
+    display:block;
+    margin: 20px auto;
+}

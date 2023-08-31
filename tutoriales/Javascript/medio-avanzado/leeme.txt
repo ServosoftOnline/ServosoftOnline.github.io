@@ -1,0 +1,17 @@
+Esta carpeta contiene:
+
+1.- El archivo contenido del curso contiene un resumen del mismo y anotaciones que no he podido añadir en los comentarios de los archivos js
+
+2.- Otras carpetas:
+
+a) Fundamentos. Contiene ejemplos de uso del lenguaje. Para probar cada uno de los ejemplos debemos modificar el script que apunta al archivo javascript que corresponda
+
+b) Modulos contiene a las carpetas;
+
+b) Rollup. Contiene un ejemplo sobre la creación de un bundle usando el paquete rollup. He seguido las indicaciones de https://rollupjs.org/ y elaborado un resumen en un archivo wps. Para probarlo debemos cargar el proyecto en visual studio code, modificar el archivo carrito.js y ver como se modifica automáticamente el bundle
+
+c) Importar datos. Contiene un ejemplo sobre como exportar e importar variable sy funciones usando tres formas: Named imports, namespace imports y default imports.
+
+d) bom. ejemplos
+
+e) dom. ejemplos

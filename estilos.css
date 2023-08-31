@@ -138,7 +138,7 @@ ul {
 
 /* separo los elementos de la lista de los datos de contacto */
 .contacto li {
-    padding: 10px;
+    padding-bottom: 10px;
     font-size: 1.3rem;
 }
 
@@ -288,20 +288,28 @@ ul {
     body {
         background-color: blue;
     }
-
-    /* .contenedor {
-        width: 85%
-    } */
-
+    
     h3 {
         font-size: 1.9rem;
     }
 
-    .fotografia, .perfil, .contacto, .titulacion, .capacidades, .idiomas {
+    .contenedor {
+        width: 85%
+    }
+
+    .columnas {
+        grid-template-columns: 5fr 5fr;
+    }
+
+    .fotografia,
+    .perfil,
+    .contacto,
+    .titulacion,
+    .capacidades,
+    .idiomas {
         padding: 15px;
     }
 
-    
     /* Elimino el hover de mi fotografía */
     .fotografia .sombreada:hover {
         transform: none;
@@ -309,8 +317,15 @@ ul {
     }
 
     .contacto li {
-        padding: 10px;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .columnaDerecha {    
+        border-bottom-right-radius: 0px;
+    }
+
+    .experiencia .cabecera, .cursos .cabecera, .trabajos .cabecera {       
+        gap: 20px;       
     }
 
     .trabajos .contenido {
@@ -336,8 +351,7 @@ ul {
         max-width: 75%;
         margin-top: 20px;
         border: 1px solid #8a2be2;
-        border-radius: 10px;
-        
+        border-radius: 10px;        
     }
 
     .trabajos .contenido .derecha {
@@ -353,13 +367,13 @@ ul {
 
     body {
         background-color: blueviolet;
-    }    
+    }
 
 }
 
 
-/* RESPONSIVE 700PX. HORIZONTAL MOVILES */
-@media (max-width: 700px) {
+/* RESPONSIVE 715PX. HORIZONTAL MOVILES */
+@media (max-width: 715px) {
     
     body {
         background-color: greenyellow;
@@ -375,17 +389,15 @@ ul {
         border-right: 0px solid #8a2be2;
     }
 
-    .contacto li {
-        padding: 5px;       
-    }
+    
 
     /* Hago mas pequeñas las fuentes de los datos de contacto */
     .contacto .contenido li {
-        font-size: 1.1rem;
+        font-size: 1.4rem;
     }
     
     .titulacion .contenido li {
-        font-size: 1rem;
+        font-size: 1.3rem;
     }
 
     .capacidad {
@@ -433,11 +445,10 @@ ul {
     }
         
    .copyright {            
-        font-size: 0.8rem;
+        font-size: 1.2rem;
     }
 
 }
-
 
 
 /* RESPONSIVE  500 px. VERTICAL MOVILES*/
@@ -448,7 +459,7 @@ ul {
 
     /* Hago mas pequeñas las fuentes de los datos de contacto */
     .contacto .contenido li {
-        font-size: 0.7rem;
+        font-size: 1.1rem;
     }
    
 }
