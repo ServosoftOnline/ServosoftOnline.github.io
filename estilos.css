@@ -369,6 +369,29 @@ ul {
         background-color: blueviolet;
     }
 
+    .contacto li {
+        font-size: 0.8rem;
+    }
+
+    .contacto i {
+        padding-right: 5px;
+    }
+
+    .experiencia .cabecera h2,
+    .cursos .cabecera h2,
+    .trabajos .cabecera h2 {       
+        font-size: 1.8rem;
+    }
+
+    .experiencia .cabecera i,
+    .cursos .cabecera i,
+    .trabajos .cabecera i {       
+        font-size: 1.9rem;
+    }
+    
+    .copyright {            
+        font-size: 1.1rem;
+    }
 }
 
 
@@ -457,9 +480,17 @@ ul {
         background-color: red;        
     }
 
+    .contenedor {
+        width: 80%
+    }
+
     /* Hago mas pequeñas las fuentes de los datos de contacto */
     .contacto .contenido li {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+
+    .copyright {            
+        font-size: 0.9rem;
     }
    
 }
