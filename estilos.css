@@ -483,11 +483,13 @@ ul {
     }
 
     .supercontenedor{
-        width: 80%;
+        justify-content: left;
     }
 
     .contenedor {
-        padding-left: -10px;
+        width: 80%;
+        margin-left: 5px;
+       
     }
 
     /* Hago mas pequeñas las fuentes de los datos de contacto */
