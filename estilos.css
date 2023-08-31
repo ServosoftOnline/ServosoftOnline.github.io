@@ -287,9 +287,9 @@ ul {
 /* RESPONSIVE 1360Px. HORIZONTAL TABLETS */
 @media (max-width: 1366px) {
 
-    body {
+    /* body {
         background-color: blue;
-    }
+    } */
 
     h3 {
         font-size: 1.9rem;
@@ -367,9 +367,9 @@ ul {
 /* RESPONSIVE 812PX. HORIZONTAL TABLETS */
 @media (max-width: 812px) {
 
-    body {
+    /* body {
         background-color: blueviolet;
-    }
+    } */
 
     .contacto li {
         font-size: 0.8rem;
@@ -400,9 +400,9 @@ ul {
 /* RESPONSIVE 715PX. HORIZONTAL MOVILES */
 @media (max-width: 715px) {
 
-    body {
+    /* body {
         background-color: greenyellow;
-    }
+    } */
 
     .columnas {
         grid-template-columns: 1fr;
@@ -478,17 +478,18 @@ ul {
 
 /* RESPONSIVE  500 px. VERTICAL MOVILES*/
 @media (max-width: 500px) {
-    body {
+    /* body {
         background-color: red;
-    }
+    } */
 
-    .supercontenedor{
+    .supercontenedor {
+        
         justify-content: left;
     }
 
     .contenedor {
         width: 80%;
-        margin-left: 5px;
+        margin-left: 2px;
        
     }
 
