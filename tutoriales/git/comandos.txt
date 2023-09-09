@@ -10,7 +10,7 @@
         - git config  user.name "usuario". Establece el usuario local en el respositorio local en gitbush
         - git config  user.email "correo@correo.com". Establece el correo local en el respositorio local en gitbash
 
-    - COMANDOS PARA SU USO DIARIO
+    - COMANDOS PARA ACTUALIZAR EL RESPOSITORIO REMOTO
         - git clone https://github.com/username/username.github.io. Clona un repositorio en local
         - git add --all. Prepara todas las modificaciones para subirlas
         - git commit -m "Initial commit". Termina de preparar las modificaciones y añade un comentario que quedará reflejado en github
@@ -26,7 +26,7 @@
 
     - COMANDOS PARA CREATE REACT APP
         - npx create-react-app nombre_de_la_aplicacion_sin_espacios_o_caracteres espaciales. 
-
+        - npm start. Inicia el servidor local para ejecutar react
     - PARA RESOLVER LOS PROBLEMAS QUE ME HE IDO ENCONTRANDO HE USADO LOS SIGUIENTES COMANDOS:
         - git config --global --unset user.mail. Borra la configuracion global user.mail. Me confundí y la llame mail en lugar de email
         - git remote rename origin repo1. Renombra repositorios remotos. Renombra origin como repo1
