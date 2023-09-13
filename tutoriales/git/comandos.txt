@@ -1,6 +1,6 @@
 - Comandos de git
     
-    - COMANDOS PARA LA CONFIGURACIÓN
+    - PARA LA CONFIGURACIÓN
         - git config --list --show-origin . Muestra la configuracion local y global
         - ls -al ~/.shh . Comprueba si existen claves shh en la carpeta C:/Users/usuario/.shh
         - git status. Muestra en que estado se encuentran los archivos, si estan modificados, pendientes de subir, ...
@@ -10,23 +10,24 @@
         - git config  user.name "usuario". Establece el usuario local en el respositorio local en gitbush
         - git config  user.email "correo@correo.com". Establece el correo local en el respositorio local en gitbash
 
-    - COMANDOS PARA ACTUALIZAR EL RESPOSITORIO REMOTO
+    - PARA ACTUALIZAR EL RESPOSITORIO REMOTO
         - git clone https://github.com/username/username.github.io. Clona un repositorio en local
         - git add --all. Prepara todas las modificaciones para subirlas
         - git commit -m "Initial commit". Termina de preparar las modificaciones y añade un comentario que quedará reflejado en github
         - git push -u origin main. Empuja todas las modificaciones al repositorio remoto
     
-    - COMANDOS PARA MOVERTE
+    - PARA MOVERTE
         - q. Cuando muestra alguna configuracion y quieres salir. 
         - cd. Entra en directorios
         - exit. Sale de git bash
 
-    - COMANDOS PARA NODEJS
+    - PARA NODEJS
         - node -v. Muestra si esta nodejs instalado indicando su versión
 
-    - COMANDOS PARA CREATE REACT APP
+    - PARA CREATE REACT APP
         - npx create-react-app nombre_de_la_aplicacion_sin_espacios_o_caracteres espaciales. 
         - npm start. Inicia el servidor local para ejecutar react
+
     - PARA RESOLVER LOS PROBLEMAS QUE ME HE IDO ENCONTRANDO HE USADO LOS SIGUIENTES COMANDOS:
         - git config --global --unset user.mail. Borra la configuracion global user.mail. Me confundí y la llame mail en lugar de email
         - git remote rename origin repo1. Renombra repositorios remotos. Renombra origin como repo1
