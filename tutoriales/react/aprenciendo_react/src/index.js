@@ -1,57 +1,63 @@
 /*
 APRENDIENDO React
   
-  - Iniciar una aplicacion react
+- Iniciar una aplicacion react
 
-    - Hay que tener instalado node.js y gitbash
-      - node.js se instala desde: https://nodejs.org/en/download
-        - En git bash escribimos node -v y nos mostrará la version de node.js si está instalada
-      - gitbash se instala desde: https://git-scm.com/downloads
+  - Hay que tener instalado node.js y gitbash
+    - node.js se instala desde: https://nodejs.org/en/download
+      - En git bash escribimos node -v y nos mostrará la version de node.js si está instalada
+    - gitbash se instala desde: https://git-scm.com/downloads
 
-    - Hay que descargar la estructura de la aplicacion e iniciar el servidor 
-      - npx create-react-app nombre_de_la_aplicacion_sin_espacios_o_caracteres espaciales. 
-      - npm run start. Inicia el servidor local para ejecutar react y actualizará automaticamente el navegador
-      - Creará un archivo public/index.html que tendrá un div con un id llamado root y un src/index.js
-      - Modificaremos el archivo index.js mediante instruciones JSX situadas entre las etiquetas <React.StrictMode>
-      - Mediante el método root.render mostrará el contenido en el navegador    
+  - Hay que descargar la estructura de la aplicacion e iniciar el servidor 
+    - npx create-react-app nombre_de_la_aplicacion_sin_espacios_o_caracteres espaciales. 
+    - npm run start. Inicia el servidor local para ejecutar react y actualizará automaticamente el navegador
+    - Creará un archivo public/index.html que tendrá un div con un id llamado root y un src/index.js
+    - Modificaremos el archivo index.js mediante instruciones JSX situadas entre las etiquetas <React.StrictMode>
+    - Mediante el método root.render mostrará el contenido en el navegador    
+
+- Instrucciones JSX. 
+  - Son instrucciones de javascript y html juntas que serán renderizadas y mostradas en el navegador.
+  - Es recomendable trabajar siempre con la consola abierta para mostrar posibles errores.
+  - Existe un div con el id llamado root que lo engloba todas las instrucciones JSX
+    - Puedo añadir más div dentro del root
+  - Las instrucciones javascript deben ir entre llaves
+  - Para definir clases debemos usar className en lugar de class
+  - Podemos añadir estilos de forma dinámica usando variables
+
+  - Condicionales:
+    - Forma 1: Usando sentencias if de javascript en funciones fuera de JSX. Menos usual. Lo inserté en Usuario.js
+    - Forma 2: Insertando condicionales en el interior de las instrucciones JSX de la siguiente manera:
+      - {condicion ? Instrucciones si se cumple la condicion : Instrucciones si no se cumple} 
+        - Si quiero poner mas de una instruccion debo separarlos por una etiqueta div o similar
+        - Añadir condiciones anidadas. {condicion && instrucciones}
+    - Muestro ejemplos de ambas formas en Usuario.js. Comento la forma 1 que es menos usual
+    
+  - Arreglos
+    - Podemos mostrar el contenido de un arreglo y mostrarlos en una lista mediante el método map
+      - Añado cada elemento de forma dinámica
+      - Cada hijo de una lista debe tener una única clave. Para ello usaremos el parámetro index 
+
+- Componentes
+  - Permite crear un código que podemos encapsular y reutilizar. Los usamos como etiquetas html
+  - Tipos:
   
-  - Instrucciones JSX. 
-    - Son instrucciones de javascript y html juntas que serán renderizadas y mostradas en el navegador.
-    - Es recomendable trabajar siempre con la consola abierta para mostrar posibles errores.
-    - Existe un div con el id llamado root que lo engloba todas las instrucciones JSX
-      - Puedo añadir más div dentro del root
-    - Las instrucciones javascript deben ir entre llaves
-    - Para definir clases debemos usar className en lugar de class
-    - Podemos añadir estilos de forma dinámica usando variables
+    - Componentes basados en clases. 
+      - Menos usual. Antes se hacía asi. No había hooks, ni trabajar con estados-
+      - Puede ser que encontremos código antiguo que se basen en estos componentes
+      - Lo explico en el archivo contadorClass.js
 
-    - Condicionales:
-      - Forma 1: Usando sentencias if de javascript en funciones fuera de JSX. Menos usual. Lo inserté en Usuario.js
-      - Forma 2: Insertando condicionales en el interior de las instrucciones JSX de la siguiente manera:
-        - {condicion ? Instrucciones si se cumple la condicion : Instrucciones si no se cumple} 
-          - Si quiero poner mas de una instruccion debo separarlos por una etiqueta div o similar
-          - Añadir condiciones anidadas. {condicion && instrucciones}
-      - Muestro ejemplos de ambas formas en Usuario.js. Comento la forma 1 que es menos usual
-      
-    - Arreglos
-      - Podemos mostrar el contenido de un arreglo y mostrarlos en una lista mediante el método map
-        - Añado cada elemento de forma dinámica
-        - Cada hijo de una lista debe tener una única clave. Para ello usaremos el parámetro index 
-
-    - Componentes
-      - Son funciones que encapsulamos y podemos reutilizar
-
+    - Componente funcionales. 
       - Reglas:
         - Los nombres de los componentes sigue la estructura camelcase pero con el primer caracter en mayusculas
         - Siempre debe devolver código JSX
-        - Los llamamos como si fueran etiquetas html. Ej: <Componente />
-     
-      - Se suele crear un componente llamado App que es el único que renderizamos
-        - Desde App vamos llamando al resto de componentes
-      - Debemos crear un archivo javascript por cada componente
-        - Si necesitamos importar la libreria de react podemos escribir imr + tab y la autocompleta
-      - Pueden anidarse unos dentro de otros
-      - Si escribes sfc + tab se genera automaticamente la estructura de un componente exportado
-      
+        - Los llamamos como si fueran etiquetas html. Ej: <Componente />      
+        - Debemos crear un archivo javascript por cada componente
+          - Si necesitamos importar la libreria de react podemos escribir imr + tab y la autocompleta
+          - Si escribes sfc + tab se genera automaticamente la estructura de un componente exportado
+        - Pueden anidarse unos dentro de otros
+        - Se suele crear un componente llamado App que es el único que renderizamos
+          - Desde App vamos llamando al resto de componentes
+
       - Para exportarlos e importarlos:
         - Si solo queremos exportar e importar un solo componente:
           - Usamos export default Componente y import Componente from "./Archivo.js";
@@ -119,7 +125,8 @@ APRENDIENDO React
         - En el archivo FormularioInicioSesion.js aplico lo anterior. Es un formulario no seguro
 
 
-      
+
+
              
 
 
