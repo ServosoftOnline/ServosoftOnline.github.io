@@ -1,5 +1,6 @@
 import {Titulo} from "./Titulo.js";
 
+// FORMA2: CONDICIONALES EN INSTRUCCIONES JSX
 const Usuario = () => {
   const pais = "España";
   const amigos = ['David', 'Pedro', 'Ariel'];

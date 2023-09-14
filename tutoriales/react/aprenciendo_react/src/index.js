@@ -124,14 +124,6 @@ APRENDIENDO React
             - Validamos los datos mediantes condicionales
         - En el archivo FormularioInicioSesion.js aplico lo anterior. Es un formulario no seguro
 
-
-
-
-             
-
-
-
-
 */
 
 
@@ -140,7 +132,7 @@ import ReactDOM from 'react-dom/client';
 import App from './componentes/App';
 
 
-// FORMA2: CONDICIONALES EN INSTRUCCIONES JSX
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
