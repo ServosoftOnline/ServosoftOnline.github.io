@@ -23,9 +23,23 @@
             - Para establecer un nuevo estado usamos el metodo this.setState
                 - Indicamos el estado anterior
                 - Devolvemos un objeto con el nuevo estado
+        
+        - Métodos de ciclo de vida:
+            - componentDidMount
+                - Se ejecutará cuando se monte el código
+                - LLamará alguna API si fuera necesario
+            - componentDidUpdate
             
             
-            */      
+
+
+            
+            
+
+
+
+
+*/      
 
 
 import React, { Component } from 'react';
@@ -37,6 +51,15 @@ class ContadorClass extends Component {
         this.state = { contador: 0 };
     }
 
+    componentDidMount () {
+        console.log('El componente se cargó en el DOM');
+        // Llamo a una API ...
+    }
+
+    componentDidUpdate () {
+        console.log('El componente se actualizó');    
+    }
+    
     incrementar(cantidad) {
         this.setState((estadoAnterior) => {
             return {

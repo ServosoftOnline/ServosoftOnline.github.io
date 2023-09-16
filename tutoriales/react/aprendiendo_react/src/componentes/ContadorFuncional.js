@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 
-const ContadorApp = (props) => {
+const ContadorFuncional = (props) => {
 
     const [contador, cambiarContador] = useState(0);            
     return (
@@ -13,4 +13,4 @@ const ContadorApp = (props) => {
       );
 }
  
-export default ContadorApp;
+export default ContadorFuncional;

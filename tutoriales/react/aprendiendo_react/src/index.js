@@ -124,6 +124,21 @@ APRENDIENDO React
             - Validamos los datos mediantes condicionales
         - En el archivo FormularioInicioSesion.js aplico lo anterior. Es un formulario no seguro
 
+- Métodos de ciclo de la vida
+  - Cada vez que cambia un estado se vuelve a renderizar, montando nuevo código y desmontando viejo código
+  - Los métodos de ciclo de la vida actuarían en ese momento
+  - Eran muy importantes para componentes basados en clases
+    - En el componente ContadorClass uso algunos de esos métodos
+  - En componentes funcionales se trabaja de forma diferente usando hooks
+
+
+
+
+
+
+
+
+
 */
 
 

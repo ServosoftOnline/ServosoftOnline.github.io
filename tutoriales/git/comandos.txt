@@ -1,6 +1,7 @@
 - Comandos de git
     
     - PARA LA CONFIGURACIÓN
+        - npm -v . Muestra si npm esta instalado indicando su versión.
         - git config --list --show-origin . Muestra la configuracion local y global
         - ls -al ~/.shh . Comprueba si existen claves shh en la carpeta C:/Users/usuario/.shh
         - git status. Muestra en que estado se encuentran los archivos, si estan modificados, pendientes de subir, ...
@@ -20,7 +21,7 @@
         - q. Cuando muestra alguna configuracion y quieres salir. 
         - cd. Entra en directorios
         - exit. Sale de git bash
-
+   
     - PARA NODEJS
         - node -v. Muestra si esta nodejs instalado indicando su versión
 
@@ -28,13 +29,22 @@
         - npx create-react-app nombre_de_la_aplicacion_sin_espacios_o_caracteres espaciales. 
         - npm start. Inicia el servidor local para ejecutar react
 
-    - PARA RESOLVER LOS PROBLEMAS QUE ME HE IDO ENCONTRANDO HE USADO LOS SIGUIENTES COMANDOS:
+    
+    - PROBLEMAS ENCONTRADOS Y SOLUCIONADOS:
         - git config --global --unset user.mail. Borra la configuracion global user.mail. Me confundí y la llame mail en lugar de email
         - git remote rename origin repo1. Renombra repositorios remotos. Renombra origin como repo1
         - git remote -v. Muestra los respositorios locales
-    
-    - PARA RESOLVER UN PROBLEMA CON LAS CREDECIALES.
-        - Al hacer push desde el respositorio de ServosoftOnline, la credencial llamada Servosoft2016 me impedia hacerlo. Para solucionarlo:
-            - Eliminé las credenciales desde el "Administrador de Credenciales" de Windows.
-            - Puedes encontrarlo escribiendo "Administrador de Credenciales" en la barra de búsqueda de Windows.
-            - Luego, busca las credenciales relacionadas con GitHub y elimínalas.
+        
+        - PARA RESOLVER UN PROBLEMA CON LAS CREDECIALES.
+            - Al hacer push desde el respositorio de ServosoftOnline, la credencial llamada Servosoft2016 me impedia hacerlo. Para solucionarlo:
+                - Eliminé las credenciales desde el "Administrador de Credenciales" de Windows.
+                - Puedes encontrarlo escribiendo "Administrador de Credenciales" en la barra de búsqueda de Windows.
+                - Luego, busca las credenciales relacionadas con GitHub y elimínalas.
+        
+        - PARA RESOLVER UN PROBLEMA AL CREAR UNA APLICACIÓN DE REACT
+            - npx create-react-app me dio error
+            - Lo resolvi limpiando la caché de npm y actualizando npm a la última versión escribiendo:
+                - npm cache clean -f
+                  npm install -g npm
+
+                
