@@ -13,7 +13,14 @@ APRENDIENDO React
     - npm run start. Inicia el servidor local para ejecutar react y actualizará automaticamente el navegador
     - Creará un archivo public/index.html que tendrá un div con un id llamado root y un src/index.js
     - Modificaremos el archivo index.js mediante instruciones JSX situadas entre las etiquetas <React.StrictMode>
-    - Mediante el método root.render mostrará el contenido en el navegador    
+    - Mediante el método root.render mostrará el contenido en el navegador
+    
+  - Integrar la terminal de gitbash en Visual studio code
+    - Evitará tener que abrir git bash en otra ventana externa 
+    - Ctrl + ñ muestra la consola
+    - Ejecutar npm run start
+
+
 
 - Instrucciones JSX. 
   - Son instrucciones de javascript y html juntas que serán renderizadas y mostradas en el navegador.
@@ -123,21 +130,6 @@ APRENDIENDO React
               - En este caso no enviará los datos del formulario y podremos validarlo antes
             - Validamos los datos mediantes condicionales
         - En el archivo FormularioInicioSesion.js aplico lo anterior. Es un formulario no seguro
-
-- Métodos de ciclo de la vida
-  - Cada vez que cambia un estado se vuelve a renderizar, montando nuevo código y desmontando viejo código
-  - Los métodos de ciclo de la vida actuarían en ese momento
-  - Eran muy importantes para componentes basados en clases
-    - En el componente ContadorClass uso algunos de esos métodos
-  - En componentes funcionales se trabaja de forma diferente usando hooks
-
-
-
-
-
-
-
-
 
 */
 

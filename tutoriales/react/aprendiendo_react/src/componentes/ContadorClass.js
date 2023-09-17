@@ -26,9 +26,16 @@
         
         - Métodos de ciclo de vida:
             - componentDidMount
-                - Se ejecutará cuando se monte el código
+                - Se ejecutará cuando se monta el componente
                 - LLamará alguna API si fuera necesario
             - componentDidUpdate
+                - Se ejecuta cuando se actualiza el estado
+                - Podemos ver que propiedades y estado tenía antes de actualizar
+            - componentWillUnmount
+                - Se ejecuta antes de desmontar el componente
+                - Acabamos la llamada a la api si la llamamos al entrar
+                - U cualquier otro proceso necesario
+            
             
             
 
@@ -56,8 +63,15 @@ class ContadorClass extends Component {
         // Llamo a una API ...
     }
 
-    componentDidUpdate () {
-        console.log('El componente se actualizó');    
+    componentDidUpdate (propiedadesAnteriores, estadoAnterior) {
+        console.log('El componente se actualizó');
+        console.log ('Propiedades anteriores', propiedadesAnteriores);
+        console.log ('Estado anterior', estadoAnterior);
+    }
+
+    componentWillUnmount () {
+        console.log('Desmonto componente');
+        // Acabo la llamada a la API
     }
     
     incrementar(cantidad) {

@@ -26,7 +26,8 @@ const App = () => {
         */}
 
         <FormularioInicioSesion cambiarEstadoSesion = {cambiarEstadoSesion} />
-        <p>No ha iniciado sesión</p>
+        <p>No ha iniciado sesión.</p>
+        <p> Para entrar: usuario: oscar  y contraseña: 1234</p>
         {/* <button onClick = {() => cambiarEstadoSesion(true)}>Iniciar sesión</button> */}
       </div>
         
