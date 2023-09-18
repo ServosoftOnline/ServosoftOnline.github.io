@@ -124,6 +124,22 @@ APRENDIENDO React
             - Validamos los datos mediantes condicionales
         - En el archivo FormularioInicioSesion.js aplico lo anterior. Es un formulario no seguro
 
+- Añadiendo estilos a los componentes
+  - Hay varias formas
+    - Crear un archivo css por cada componente con el mismo nombre que el .js y en la misma carpeta
+      - Viene integrado en create-react-app
+      
+
+
+
+
+
+
+
+
+
+
+
 */
 
 

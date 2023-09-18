@@ -6,6 +6,9 @@
             - Cuando introduzcamos el usuario por cualquier input cambiará el estado y mostrará lo introducido
 */
 import React, {useState} from 'react';
+// CSS
+import './FormularioInicioSesion.css';
+
 
 // Contiene como propiedad la funcion cambiarEstadoSesion
 const FormularioInicioSesion = (props) => {

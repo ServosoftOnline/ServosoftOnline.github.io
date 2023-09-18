@@ -4,13 +4,17 @@ import FormularioInicioSesion from './FormularioInicioSesion';
 import ContadorClass from './ContadorClass';
 import ContadorApp from './ContadorApp';
 
+// CSS
+import './App.css';
+
 const App = () => {
   // useState crea un estado llamado sesion, cambiarEstadoSesion es la funcion que hara en cambio de estado 
   // y el valor por defecto es true 
-  const [sesion, cambiarEstadoSesion] = useState(true);
+  const [sesion, cambiarEstadoSesion] = useState(false);
  
     return (
-      sesion === true ?
+      <div  className="contenedor">
+      {sesion === true ?
       <div>
         <Usuario />
         <button onClick = {() => cambiarEstadoSesion(false)}>Cerrar sesión</button>        
@@ -26,10 +30,13 @@ const App = () => {
         */}
 
         <FormularioInicioSesion cambiarEstadoSesion = {cambiarEstadoSesion} />
-        <p>No ha iniciado sesión</p>
+        <p>No ha iniciado sesión.</p>
+        <p> Usuario: Oscar</p>
+        <p>Contraseña: 1234</p>
         {/* <button onClick = {() => cambiarEstadoSesion(true)}>Iniciar sesión</button> */}
       </div>
-        
+      }
+    </div>  
     );
   }
 
