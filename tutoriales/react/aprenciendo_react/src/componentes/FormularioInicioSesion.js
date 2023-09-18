@@ -30,7 +30,7 @@ const FormularioInicioSesion = (props) => {
         // Altero el funcionamiento del formulario para que no envie datos
         e.preventDefault();
         // valido
-        if (usuario === 'oscar' && password === '1234') {
+        if (usuario === 'Oscar' && password === '1234') {
             // cambio el estado de la sesion a correcto
             props.cambiarEstadoSesion(true);
         } else {
@@ -43,12 +43,14 @@ const FormularioInicioSesion = (props) => {
 
     
     return (
-        
-        <form action='' onSubmit={onSubmit}>
+                
+        <form className='formulario' action = '' onSubmit={onSubmit}>
             
             <div>
-                <label htmlFor='usuario'>Usuario</label>
+                <h2>No ha iniciado sesión.</h2>
+                <label className = 'label' htmlFor='usuario'>Usuario</label>
                 <input
+                    className='input'
                     type = "text"
                     name = "usuario"
                     id = "usuario"
@@ -57,8 +59,9 @@ const FormularioInicioSesion = (props) => {
                 />
             </div>
             <div>
-                <label htmlFor='password'>Contraseña</label>
+                <label className = 'label' htmlFor='password'>Contraseña</label>
                 <input
+                    className='input'
                     type = "password"
                     name = "password"
                     id = "password"
@@ -66,7 +69,7 @@ const FormularioInicioSesion = (props) => {
                     onChange={(e) => {onChange(e)}}
                 />
             </div>
-
+            
             {/* 
             Así trabajaríamos con otros tipos de elementos del formulario
             <div>
@@ -74,9 +77,13 @@ const FormularioInicioSesion = (props) => {
             </div> 
             */}
 
-            <button type = "submit">Iniciar sesión</button>
+            <button className = 'boton' type = "submit">Iniciar sesión</button>
+            <div>
+                <p>Usuario: Oscar</p>
+                <p>Contraseña: 1234</p>
+            </div>
         </form>
-
+        
     );
 }
  

@@ -28,11 +28,7 @@ const App = () => {
           El formulario cambiará el estado de la sesión. Se lo paso añadido como propiedad
           La propiedad cambiarEstadoSesion tendrá como valor la funcion cambiarEstadoSesion
         */}
-
-        <FormularioInicioSesion cambiarEstadoSesion = {cambiarEstadoSesion} />
-        <p>No ha iniciado sesión.</p>
-        <p> Usuario: Oscar</p>
-        <p>Contraseña: 1234</p>
+        <FormularioInicioSesion cambiarEstadoSesion = {cambiarEstadoSesion} />        
         {/* <button onClick = {() => cambiarEstadoSesion(true)}>Iniciar sesión</button> */}
       </div>
       }
