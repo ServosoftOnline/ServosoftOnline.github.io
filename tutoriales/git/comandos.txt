@@ -51,6 +51,11 @@
         - git add --all. Prepara todas las modificaciones para subirlas
         - git commit -m "Initial commit". Termina de preparar las modificaciones y añade un comentario que quedará reflejado en github
         - git push -u origin main. Empuja todas las modificaciones al repositorio remoto
+        - git pull origin main. Trae los cambios más recientes de la rama remota a tu rama local. 
+            - Después de realizar git pull, es posible que Git intente realizar una fusión automática
+            - si hay conflictos entre tus cambios locales y los cambios remotos. 
+            - Si se producen conflictos, Git te mostrará un mensaje para resolverlos manualmente.
+            - Deberás abrir y editar los archivos en conflicto, resolver los conflictos y luego realizar un commit para confirmar los cambios de fusión.
     
     - PARA MOVERTE
         - q. Cuando muestra alguna configuracion y quieres salir. 
