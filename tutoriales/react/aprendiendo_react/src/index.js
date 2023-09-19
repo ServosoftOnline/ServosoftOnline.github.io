@@ -132,9 +132,28 @@ APRENDIENDO React
         - En el archivo FormularioInicioSesion.js aplico lo anterior. Es un formulario no seguro
 
 - Añadiendo estilos a los componentes
-  - Hay varias formas
-    - Crear un archivo css por cada componente con el mismo nombre que el .js y en la misma carpeta
+  - Hay varias formas que pueden combinarse entre ellas
+    
+    - Primera forma:  Crear un archivo css por cada componente
       - Viene integrado en create-react-app
+      - Ponerle el mismo nombre que el componente, añadirle la extensión .css y ponerlo en la misma carpeta
+      - Importarlo desde el componente como un archivo
+        - Cuidado!!. Al importarlos se pueden aplicar sin tener control sobre ellos
+        - Hay que poner nombres mas especificos y asegurarnos de llamarlos bien
+      - El componente ContadorClass usa esta primera forma
+      
+    - Segunda forma: Modulos CSS
+      - Viene integrado en create-react-app
+      - Soluciona el problema de la primera forma
+      - Seguimos usando archivos separados
+      - Podremos llamar de igual forma a los estilos y no se sobrescribirán
+      - Se aplicarán donde sean importados
+      - Para aplicarlos:
+        - Los archivos css deben tener al final de su nombre .module.css
+        - Al importarlos debemos hacerlo asi: import styles from './archivo.module.css'
+        - Debemos llamarlos así dentro de la etiqueta: className = {styles.clase}
+      - De forma automática Create React App añade un identificador único al componente
+        - Lo llamam <etiqueta class="componente_clase_identificadorUnico"       
       
 
 

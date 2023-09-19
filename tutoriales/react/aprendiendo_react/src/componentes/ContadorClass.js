@@ -35,21 +35,12 @@
                 - Se ejecuta antes de desmontar el componente
                 - Acabamos la llamada a la api si la llamamos al entrar
                 - U cualquier otro proceso necesario
-            
-            
-            
-
-
-            
-            
-
-
-
 
 */      
 
 
 import React, { Component } from 'react';
+import './ContadorClass.css';
 
 class ContadorClass extends Component {
 
@@ -93,9 +84,13 @@ class ContadorClass extends Component {
     render(){
         return (
             <div>
-                <h3>Contador mediante componente basado en clases: {this.state.contador}</h3>
-                <button onClick={() => this.incrementar(this.props.aumenta)}>Incrementar</button>
-                <button onClick={() => this.disminuir(this.props.disminuye)}>Disminuir</button>
+                <h3>Contador: {this.state.contador}</h3>
+                <ul>
+                    <li>Componente basado en clases</li>
+                    <li>Estilos aplicados sin usar módulos CSS</li>
+                </ul>
+                <button className = "boton" onClick={() => this.incrementar(this.props.aumenta)}>Incrementa</button>
+                <button className = "boton" onClick={() => this.disminuir(this.props.disminuye)}>Disminuye</button>
             </div>
         );
     }

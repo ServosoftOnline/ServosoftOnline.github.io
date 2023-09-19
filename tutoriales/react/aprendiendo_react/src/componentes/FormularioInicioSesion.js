@@ -5,9 +5,11 @@
             - Estado password. igual valor por defecto que el anterior
             - Cuando introduzcamos el usuario por cualquier input cambiará el estado y mostrará lo introducido
 */
+
+
 import React, {useState} from 'react';
 // CSS
-import './FormularioInicioSesion.css';
+import styles from './FormularioInicioSesion.module.css';
 
 
 // Contiene como propiedad la funcion cambiarEstadoSesion
@@ -48,9 +50,9 @@ const FormularioInicioSesion = (props) => {
             
             <div>
                 <h2>No ha iniciado sesión.</h2>
-                <label className = 'label' htmlFor='usuario'>Usuario</label>
+                <label className = {styles.label} htmlFor='usuario'>Usuario</label>
                 <input
-                    className='input'
+                    className={styles.input}
                     type = "text"
                     name = "usuario"
                     id = "usuario"
@@ -59,9 +61,9 @@ const FormularioInicioSesion = (props) => {
                 />
             </div>
             <div>
-                <label className = 'label' htmlFor='password'>Contraseña</label>
+                <label className = {styles.label} htmlFor='password'>Contraseña</label>
                 <input
-                    className='input'
+                    className={styles.input}
                     type = "password"
                     name = "password"
                     id = "password"
@@ -77,7 +79,7 @@ const FormularioInicioSesion = (props) => {
             </div> 
             */}
 
-            <button className = 'boton' type = "submit">Iniciar sesión</button>
+            <button className = {styles.boton} type = "submit">Iniciar sesión</button>
             <div>
                 <p>Usuario: Oscar</p>
                 <p>Contraseña: 1234</p>

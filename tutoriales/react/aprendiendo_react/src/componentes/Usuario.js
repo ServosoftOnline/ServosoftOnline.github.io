@@ -2,13 +2,14 @@ import {Titulo} from "./Titulo.js";
 
 // FORMA2: CONDICIONALES EN INSTRUCCIONES JSX
 const Usuario = () => {
-  const pais = "España";
+  const pais = undefined;
   const amigos = ['David', 'Pedro', 'Ariel'];
     return (
         <div>
             <Titulo usuario = "Óscar" color = "red"/>
             <Titulo usuario = "César" color = "green" />
-            <Titulo />         
+            <Titulo />
+            {/* Si no hubiera pais no se ejecutaba esto*/}
             {pais && <p>Tu pais es {pais}</p>}
             <p>Tus amigos son:</p>
             <ul>

@@ -13,7 +13,8 @@ h2 {
     font-weight: bold;
     font-size: 14px;
     display: block;
-    /* margin-bottom: 5px; */
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
  
 .input {
@@ -25,8 +26,10 @@ h2 {
  
 .boton {
     background: #83d394;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 20px;
     display: inline-block;
-    /* padding: 20px; */
     border: none;
     border-radius: 3px;
     font-weight: bold;
