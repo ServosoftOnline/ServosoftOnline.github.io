@@ -1,0 +1,3 @@
+    - PARA CREATE REACT APP
+        - npx create-react-app nombre_de_la_aplicacion_sin_espacios_o_caracteres espaciales. 
+        - npm start. Inicia el servidor local para ejecutar reac

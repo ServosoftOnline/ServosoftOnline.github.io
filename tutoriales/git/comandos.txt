@@ -36,6 +36,7 @@
             - Escribir: git push -u origin main
     
     - PARA LA CONFIGURACIÓN
+        - npm -v . Muestra si npm esta instalado indicando su versión.
         - git config --list --show-origin . Muestra la configuracion local y global
         - ls -al ~/.shh . Comprueba si existen claves shh en la carpeta C:/Users/usuario/.shh
         - ssh-keygen -t ed25519 -C "your_email@example.com" . Genera una clave ssh
@@ -52,16 +53,16 @@
         - git commit -m "Initial commit". Termina de preparar las modificaciones y añade un comentario que quedará reflejado en github
         - git push -u origin main. Empuja todas las modificaciones al repositorio remoto
         - git pull origin main. Trae los cambios más recientes de la rama remota a tu rama local. 
-            - Después de realizar git pull, es posible que Git intente realizar una fusión automática
-            - si hay conflictos entre tus cambios locales y los cambios remotos. 
+            - Después de realizar git pull, se realiza una fusión automática con el repositorio local
             - Si se producen conflictos, Git te mostrará un mensaje para resolverlos manualmente.
-            - Deberás abrir y editar los archivos en conflicto, resolver los conflictos y luego realizar un commit para confirmar los cambios de fusión.
+            - Deberás abrir y editar los archivos en conflicto, resolver los conflictos
+            - y luego realizar un commit para confirmar los cambios de fusión.
     
     - PARA MOVERTE
         - q. Cuando muestra alguna configuracion y quieres salir. 
         - cd. Entra en directorios
         - exit. Sale de git bash
-
+   
     - PARA NODEJS
         - node -v. Muestra si esta nodejs instalado indicando su versión
 
@@ -69,7 +70,8 @@
         - npx create-react-app nombre_de_la_aplicacion_sin_espacios_o_caracteres espaciales. 
         - npm start. Inicia el servidor local para ejecutar react
 
-    - PARA RESOLVER LOS PROBLEMAS QUE ME HE IDO ENCONTRANDO HE USADO LOS SIGUIENTES COMANDOS:
+    
+    - PROBLEMAS ENCONTRADOS Y SOLUCIONADOS:
         - git config --global --unset user.mail. Borra la configuracion global user.mail. Me confundí y la llame mail en lugar de email
         - git remote rename origin repo1. Renombra repositorios remotos. Renombra origin como repo1
         - git remote -v. Muestra los respositorios locales

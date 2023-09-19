@@ -13,7 +13,14 @@ APRENDIENDO React
     - npm run start. Inicia el servidor local para ejecutar react y actualizará automaticamente el navegador
     - Creará un archivo public/index.html que tendrá un div con un id llamado root y un src/index.js
     - Modificaremos el archivo index.js mediante instruciones JSX situadas entre las etiquetas <React.StrictMode>
-    - Mediante el método root.render mostrará el contenido en el navegador    
+    - Mediante el método root.render mostrará el contenido en el navegador
+    
+  - Integrar la terminal de gitbash en Visual studio code
+    - Evitará tener que abrir git bash en otra ventana externa 
+    - Ctrl + ñ muestra la consola
+    - Ejecutar npm run start
+
+
 
 - Instrucciones JSX. 
   - Son instrucciones de javascript y html juntas que serán renderizadas y mostradas en el navegador.
