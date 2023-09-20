@@ -20,8 +20,6 @@ APRENDIENDO React
     - Ctrl + ñ muestra la consola
     - Ejecutar npm run start
 
-
-
 - Instrucciones JSX. 
   - Son instrucciones de javascript y html juntas que serán renderizadas y mostradas en el navegador.
   - Es recomendable trabajar siempre con la consola abierta para mostrar posibles errores.
@@ -158,8 +156,30 @@ APRENDIENDO React
         - Lo llamam <etiqueta class="componente_clase_identificadorUnico"
 
       - El componente ContadorFuncional usa esta segunda forma
+    
+    - Tercera forma: styled components
+      - La que se usará en el curso
+      - En la segunda forma podiamos tener clases de css con el mismo nombre con un identificador único
+        - Repetíamos codigo que no se pisaban unos con otros
+        - Ahora podremos usar un solo código sin tener que repetirlo
+      - Podemos reutilizarlo
 
-      
+      - Instalación:
+        - Ejecutar npm install styled-components en la consola git bash
+          - En la carpeta que creamos al inicar el comando de Create React App
+                  
+      - Como aplicarlos
+        - Los llamaremos elementos en lugar de componentes
+        - Creamos una carpeta llamada elementos que contendrá un elemento por cada componente
+        - Lo importamos asi: import styled from 'styled-components'
+          - Tambien podemos escribir imsc + Tab
+        - Creamos constantes de esta forma
+          - const constante = styled.etiquetaHtml`estilos_css`;
+        - Exportamos las constantes
+        - Importamos donde vallamos a usarlos.
+        - Reemplazamos la etiqueta html con la constante creando el componente
+        - Lo aplicaré como ejemplo en el componente Usuario.js
+          - Añadiré el elemento boton.js que cerrará la sesion
 
 
 
@@ -177,7 +197,8 @@ APRENDIENDO React
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './componentes/App';
-import './index.css';
+// Creo que index.css fue creado por Create react app. Si acaba el curso y no lo necesito, lo borro
+// import './index.css';
 
 
 
