@@ -10,6 +10,7 @@
 import React, {useState} from 'react';
 // CSS
 import styles from './FormularioInicioSesion.module.css';
+import Boton from '../elementos/boton';
 
 
 // Contiene como propiedad la funcion cambiarEstadoSesion
@@ -79,7 +80,8 @@ const FormularioInicioSesion = (props) => {
             </div> 
             */}
 
-            <button className = {styles.boton} type = "submit">Iniciar sesión</button>
+            {/* <button className = {styles.boton} type = "submit">Iniciar sesión</button> */}
+            <Boton negro type = "submit">Iniciar sesión</Boton>
             <div>
                 <p>Usuario: Oscar</p>
                 <p>Contraseña: 1234</p>

@@ -6,6 +6,7 @@ import ContadorFuncional from './ContadorFuncional';
 
 // CSS
 import './App.css';
+import Boton from '../elementos/boton';
 
 const App = () => {
   // useState crea un estado llamado sesion, cambiarEstadoSesion es la funcion que hara en cambio de estado 
@@ -17,10 +18,9 @@ const App = () => {
       {sesion === true ?
       <div>
         <Usuario />
-        <button onClick = {() => cambiarEstadoSesion(false)}>Cerrar sesión</button>        
+        <Boton onClick = {() => cambiarEstadoSesion(false)}>Cerrar Sesion</Boton>
         <ContadorClass aumenta = {5}  disminuye = {3} />
         <ContadorFuncional aumenta = {4} disminuye = {2} />
-
       </div>      
       :
       <div>
@@ -30,7 +30,6 @@ const App = () => {
         */}
 
         <FormularioInicioSesion cambiarEstadoSesion = {cambiarEstadoSesion} />
-        <p>No ha iniciado sesión.</p>
         {/* <button onClick = {() => cambiarEstadoSesion(true)}>Iniciar sesión</button> */}
       </div>
       }

@@ -11,7 +11,7 @@ const ContadorFuncional = (props) => {
             <h3>Contador: {contador} </h3>
             <ul>
                 <li>componente funcional</li>
-                <li>Estilos creados mediante modulos CSS de Create React App</li>
+                <li>Estilos creados mediante modulos CSS</li>
             </ul>
             <button className = {styles.boton} onClick = {() => cambiarContador(contador + props.aumenta)}>Incrementa</button>
             <button className = {styles.boton} onClick = {() => cambiarContador(contador - props.disminuye)}>Disminuye</button>            

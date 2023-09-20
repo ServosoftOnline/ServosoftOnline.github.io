@@ -173,21 +173,25 @@ APRENDIENDO React
         - Creamos una carpeta llamada elementos que contendrá un elemento por cada componente
         - Lo importamos asi: import styled from 'styled-components'
           - Tambien podemos escribir imsc + Tab
-        - Creamos constantes de esta forma
-          - const constante = styled.etiquetaHtml`estilos_css`;
+        - Creamos el elemento de esta forma
+          - const elemento = styled.etiquetaHtml`codigo_css`;
+          - Si queremos añadir pseudo elementos como por ejemplo hover lo añadimos con un &:pseudoElemento {Instrucciones css}
         - Exportamos las constantes
         - Importamos donde vallamos a usarlos.
         - Reemplazamos la etiqueta html con la constante creando el componente
-        - Lo aplicaré como ejemplo en el componente Usuario.js
-          - Añadiré el elemento boton.js que cerrará la sesion
+        
+        
+      
+      - Aplicarles propiedades
+        - Las añadimos al llamar al elemento
+          - <Elemento propiedad > </Elemento>
+        - Añadimos ${props => props.propiedad && css `codigo_css`}; en la declaración del elemento
 
 
 
-
-
-
-
-
+        - Usan esta tercera forma aplicacndo diferentes propiedades:
+          - El botón de cerrar sesion situado en el componente App.js usa esta tercera forma
+          - El botón de iniciar sesión de FormularioInicioSesion.js
 
 
 

@@ -1,8 +1,4 @@
 import {Titulo} from "./Titulo.js";
-import {Parrafo} from './Elementos';
-
-
-
 
 // FORMA2: CONDICIONALES EN INSTRUCCIONES JSX
 const Usuario = () => {
@@ -15,11 +11,11 @@ const Usuario = () => {
             <Titulo />
             {/* Si no hubiera pais no se ejecutaba esto*/}
             {pais && <p>Tu pais es {pais}</p>}
-            <Parrafo>Tus amigos son:</Parrafo>
+            <p>Tus amigos son:</p>
             <ul>
             {amigos.map((amigo, index) => <li key={index}>{amigo}</li>)}
             </ul>
-            <Parrafo>Que tengas un buen día!</Parrafo>
+            <p>Que tengas un buen día!</p>
         </div>
     );
 }
