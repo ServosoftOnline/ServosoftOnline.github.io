@@ -148,12 +148,17 @@ APRENDIENDO React
       - Seguimos usando archivos separados
       - Podremos llamar de igual forma a los estilos y no se sobrescribirán
       - Se aplicarán donde sean importados
+      
       - Para aplicarlos:
         - Los archivos css deben tener al final de su nombre .module.css
         - Al importarlos debemos hacerlo asi: import styles from './archivo.module.css'
         - Debemos llamarlos así dentro de la etiqueta: className = {styles.clase}
-      - De forma automática Create React App añade un identificador único al componente
-        - Lo llamam <etiqueta class="componente_clase_identificadorUnico"       
+      
+        - De forma automática Create React App añade un identificador único al componente
+        - Lo llamam <etiqueta class="componente_clase_identificadorUnico"
+
+      - El componente ContadorFuncional usa esta segunda forma
+
       
 
 
@@ -172,6 +177,7 @@ APRENDIENDO React
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './componentes/App';
+import './index.css';
 
 
 
