@@ -18,7 +18,7 @@ const App = () => {
       {sesion === true ?
       <div>
         <Usuario />
-        <Boton onClick = {() => cambiarEstadoSesion(false)}>Cerrar Sesion</Boton>
+        <Boton marginTop onClick = {() => cambiarEstadoSesion(false)}>Cerrar Sesion</Boton>
         <ContadorClass aumenta = {5}  disminuye = {3} />
         <ContadorFuncional aumenta = {4} disminuye = {2} />
       </div>      

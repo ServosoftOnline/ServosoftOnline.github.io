@@ -46,7 +46,7 @@ const FormularioInicioSesion = (props) => {
 
     
     return (
-                
+        <div>        
         <form className='formulario' action = '' onSubmit={onSubmit}>
             
             <div>
@@ -80,14 +80,18 @@ const FormularioInicioSesion = (props) => {
             </div> 
             */}
 
-            {/* <button className = {styles.boton} type = "submit">Iniciar sesión</button> */}
-            <Boton negro type = "submit">Iniciar sesión</Boton>
-            <div>
-                <p>Usuario: Oscar</p>
-                <p>Contraseña: 1234</p>
-            </div>
+            <Boton negro marginTop largo type = "submit">Iniciar sesión</Boton>
+            
         </form>
-        
+
+        <div>
+            <p>Icono hecho mediante styled components </p>
+            <p>Añado las propiedades negro y largo</p>
+            <p>Usuario: Oscar</p>
+            <p>Contraseña: 1234</p>
+        </div>
+
+        </div>
     );
 }
  

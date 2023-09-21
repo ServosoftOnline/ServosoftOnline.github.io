@@ -9,12 +9,10 @@ const ContadorFuncional = (props) => {
     return (
         <div>
             <h3>Contador: {contador} </h3>
-            <ul>
-                <li>componente funcional</li>
-                <li>Estilos creados mediante modulos CSS</li>
-            </ul>
             <button className = {styles.boton} onClick = {() => cambiarContador(contador + props.aumenta)}>Incrementa</button>
-            <button className = {styles.boton} onClick = {() => cambiarContador(contador - props.disminuye)}>Disminuye</button>            
+            <button className = {styles.boton} onClick = {() => cambiarContador(contador - props.disminuye)}>Disminuye</button>
+            <p>Componente funcional</p>
+            <p>Estilos creados mediante modulos CSS</p>
         </div>        
       );
 }

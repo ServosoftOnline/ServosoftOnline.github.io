@@ -12,7 +12,7 @@ h3 {
     font-family: Arial, sans-serif;
     cursor: pointer;
     transition: .3s ease all;
-    margin-right: 10px;
+    margin: 10px 10px 10px 0px;
 }
 
 .boton:hover {

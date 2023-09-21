@@ -32,7 +32,7 @@
                 - Se ejecuta cuando se actualiza el estado
                 - Podemos ver que propiedades y estado tenía antes de actualizar
             - componentWillUnmount
-                - Se ejecuta antes de desmontar el componente
+                - Se ejecuta justo antes de desmontar el componente
                 - Acabamos la llamada a la api si la llamamos al entrar
                 - U cualquier otro proceso necesario
 
@@ -85,12 +85,10 @@ class ContadorClass extends Component {
         return (
             <div>
                 <h3>Contador: {this.state.contador}</h3>
-                <ul>
-                    <li>Componente basado en clases</li>
-                    <li>Estilos aplicados sin usar módulos CSS</li>
-                </ul>
                 <button className = "boton" onClick={() => this.incrementar(this.props.aumenta)}>Incrementa</button>
                 <button className = "boton" onClick={() => this.disminuir(this.props.disminuye)}>Disminuye</button>
+                <p>Componente basado en clases</p>
+                <p>Estilos aplicados sin usar módulos CSS</p>
             </div>
         );
     }

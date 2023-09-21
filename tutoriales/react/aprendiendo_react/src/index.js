@@ -47,9 +47,9 @@ APRENDIENDO React
   - Tipos:
   
     - Componentes basados en clases. 
-      - Menos usual. Antes se hacía asi. No había hooks, ni trabajar con estados-
+      - Menos usual. Antes se hacía asi. No había hooks, ni trabajar con estados.
       - Puede ser que encontremos código antiguo que se basen en estos componentes
-      - Lo explico en el archivo contadorClass.js
+      - Lo explico detalladamente en el archivo contadorClass.js
 
     - Componente funcionales. 
       - Reglas:
@@ -159,39 +159,41 @@ APRENDIENDO React
     
     - Tercera forma: styled components
       - La que se usará en el curso
-      - En la segunda forma podiamos tener clases de css con el mismo nombre con un identificador único
-        - Repetíamos codigo que no se pisaban unos con otros
-        - Ahora podremos usar un solo código sin tener que repetirlo
-      - Podemos reutilizarlo
-
+      - Repetimos menos código que en la segunda forma.
+        
       - Instalación:
         - Ejecutar npm install styled-components en la consola git bash
           - En la carpeta que creamos al inicar el comando de Create React App
-                  
-      - Como aplicarlos
-        - Los llamaremos elementos en lugar de componentes
-        - Creamos una carpeta llamada elementos que contendrá un elemento por cada componente
-        - Lo importamos asi: import styled from 'styled-components'
-          - Tambien podemos escribir imsc + Tab
-        - Creamos el elemento de esta forma
-          - const elemento = styled.etiquetaHtml`codigo_css`;
-          - Si queremos añadir pseudo elementos como por ejemplo hover lo añadimos con un &:pseudoElemento {Instrucciones css}
-        - Exportamos las constantes
-        - Importamos donde vallamos a usarlos.
-        - Reemplazamos la etiqueta html con la constante creando el componente
-        
-        
       
-      - Aplicarles propiedades
-        - Las añadimos al llamar al elemento
-          - <Elemento propiedad > </Elemento>
-        - Añadimos ${props => props.propiedad && css `codigo_css`}; en la declaración del elemento
+      - Usaremos elementos
+        - Los guardaremos todos dentro de la misma carpeta
+        - Se recomienda que tengan muchos archivos
+          - Uno por cada elemento html que tenga estilos propios. Ej: títulos, párrafos, inputs, select ...
+        - Los exportamos e importamos para poder reutilizarlos
+        
+        - Reemplazamos la etiqueta html con los elementos y podemos aplicarle propiedades asi:
+          - <Elemento propiedad1 propiedad2 .... > </Elemento> 
+        
+        - Creamos el elemento de esta forma:
+          - Debemos importar styled-componets asi: 
+            - import styled, {css} from 'styled-components';
+            - O imsc + Tab
 
+          - Creamos los elementos así:
+            - const elemento = styled.etiquetaHtml`codigo_css`;
+          
+          - Añadimos pseudo elementos asi:
+            - &:pseudoElemento {Instrucciones css}
+            - Ejemplo de pseudo elemento o subclase: hover
+            
+          - Añadimos propiedades asi:
+            - ${props => props.propiedad && css `codigo_css`}; en la declaración del elemento
+            - Podemos añadir pseudo elementos situandolos entre las llaves de las propiedades
 
-
-        - Usan esta tercera forma aplicacndo diferentes propiedades:
-          - El botón de cerrar sesion situado en el componente App.js usa esta tercera forma
-          - El botón de iniciar sesión de FormularioInicioSesion.js
+      - Usan esta tercera forma de styled components:
+        - El botón de iniciar sesión de FormularioInicioSesion.js le añado la propiedades negro y largo.
+        - El botón de cerrar sesion situado en el componente App.js usa esta tercera forma y le añado la propiedad marginTop
+        
 
 
 
@@ -201,9 +203,6 @@ APRENDIENDO React
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './componentes/App';
-// Creo que index.css fue creado por Create react app. Si acaba el curso y no lo necesito, lo borro
-// import './index.css';
-
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
