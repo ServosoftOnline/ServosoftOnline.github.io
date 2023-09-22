@@ -11,7 +11,7 @@
             - Propiedad marginTop que añade un margen de 15px hacia arriba
         
 */
-import styled, { css } from 'styled-components'; // O 'emotion/styled' si estás usando Emotion
+import styled, { css } from 'styled-components';
 
 const Boton = styled.button`
     background: #83d394;
@@ -31,7 +31,6 @@ const Boton = styled.button`
         background: #44a559;
         color: #fff;
     }
-
 
     ${props => props.negro && css `
         background: black;

@@ -103,15 +103,60 @@ APRENDIENDO React
           const [vble, cualSeraLaFuncionQueCambieSuEstado] = hook(valorInicial)
       - Cada vez que cambiemos un estado el componente vuelve a cargarse
 
-    - Hook
+    - Hooks
       - Permite añadirle mas funcionalidad a nuestro código
-      - Debemos importarlos asi: import { hook } from 'react';
-          - Ejemplo import {useState} from 'react';  
-      - Se usan en lugar de las vbles para detectar los cambios de estado        
+      - Debemos importarlos asi: import { hook1, hook2, ... } from 'react';
+          - Ejemplo import {useState} from 'react'; 
+      - Empiezan por use.
+      - Podemos crear nuestros hooks personalizados
+      - Se usan en lugar de las vbles para detectar los cambios de estado
+      
+      - Reglas:
+        - Hay que crearlo y usarlo dentro del componente funcional o dentro de otro hook
+        - No se pueden usar dentro de ciclos o condicionales
+        - Pueden llamarse varias veces
+
+      - Ejemplos de hooks mas usuales:
+        - useState. 
+          - Añade la posibilidad de trabajar con estados
+            - const [vble,funcionQueCambiaraSuEstado] = useState(valor_inicial)
+        
+        - useEffect. 
+          
+          - Equivale a los métodos de ciclo de vida de los componentes basados en clases
+            - componentDidMount. Que se ejecutaba al montarse el estado
+            - componentDidUpdate. Que se ejecutaba cada vez que se actualizaba el estado
+            - componentWillUnmount. Que se ejecutaba justo antes de desmontar el estado.
+          
+          - Es una función que recibe siempre como parámetro a otra función que se ejecutara en estos casos:
+            - Se ejecutará en cada renderazión:
+              - useEffect(()=>{código})
+            
+            - Se ejecutará solo cuando se monte el componente.
+              - useEffect(()=>{código, []})
+              - Añado argumento una dependencia vacia
+              - Lo podría usar para conectarme a APIs o bases de datos
+            
+            - Se ejecutará cuando se monte o actualize uno o mas eventos concretos
+              - useEffect(()=>{código, [evento]})
+              - añado una dependencia con el o los eventos
+              - Es muy usual
+
+            - Se ejecutará justo antes de desmontar el componente
+              - useEffect(() => {
+                  return ({
+                    codigo
+                  });
+                }, []);
+
+              - Se usarían para desconectarse de APIs o bases de datos
+              
+
+          - Lo aplico en ContadorFuncional.js
 
     - Relacion Estados y hook
-      - Dependiendo del estado en que se encuentre una aplicacion y el hook que usemos podremos usar un código u otro y mostrar en pantalla una información u otra
-        - Si no se ha registrado un usuario mostramos una pantalla y si no mostramos otra
+      - Dependiendo del estado y el hook que usemos podremos usar un código u otro
+        - Se mostrará en pantalla una información u otra
       - Un ejemplo de esto se encuentra en App.js
 
     - Formularios

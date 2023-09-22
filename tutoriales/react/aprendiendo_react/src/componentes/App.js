@@ -9,8 +9,7 @@ import './App.css';
 import Boton from '../elementos/boton';
 
 const App = () => {
-  // useState crea un estado llamado sesion, cambiarEstadoSesion es la funcion que hara en cambio de estado 
-  // y el valor por defecto es true 
+  
   const [sesion, cambiarEstadoSesion] = useState(false);
  
     return (

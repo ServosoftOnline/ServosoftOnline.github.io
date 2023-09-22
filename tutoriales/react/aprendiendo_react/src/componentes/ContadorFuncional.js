@@ -1,11 +1,30 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 // css
 import styles from './ContadorFuncional.module.css';
 
 const ContadorFuncional = (props) => {
+    const [contador, cambiarContador] = useState(0);
+    
+    useEffect(() => {
+         console.log('El componente funcional se montó');
+    }, []);
 
-    const [contador, cambiarContador] = useState(0);            
+    useEffect(() => {
+        console.log('El componente funcional se montó y/o actualizó');
+    });
+
+    useEffect(() => {
+        console.log('El evento contador funcional se montó o actualizó');
+    }, [contador]);
+
+    useEffect(() => {
+        return(() => {
+            console.log('Se desmontó el componente funcional');
+        });
+
+    }, []);
+
     return (
         <div>
             <h3>Contador: {contador} </h3>

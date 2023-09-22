@@ -49,21 +49,21 @@ class ContadorClass extends Component {
         this.state = { contador: 0 };
     }
 
-    componentDidMount () {
-        console.log('El componente se cargó en el DOM');
-        // Llamo a una API ...
-    }
+    // componentDidMount () {
+    //     console.log('El componente basado en clases se montó');
+    //     // Llamo a una API ...
+    // }
 
-    componentDidUpdate (propiedadesAnteriores, estadoAnterior) {
-        console.log('El componente se actualizó');
-        console.log ('Propiedades anteriores', propiedadesAnteriores);
-        console.log ('Estado anterior', estadoAnterior);
-    }
+    // componentDidUpdate (propiedadesAnteriores, estadoAnterior) {
+    //     console.log ('Se actualizó el componente basado en clases');
+    //     console.log ('Propiedades anteriores', propiedadesAnteriores);
+    //     console.log ('Estado anterior del componente basado en clases', estadoAnterior);
+    // }
 
-    componentWillUnmount () {
-        console.log('Desmonto componente');
-        // Acabo la llamada a la API
-    }
+    // componentWillUnmount () {
+    //     console.log('Se desmontó componente basado en clases');
+    //     // Acabo la llamada a la API
+    // }
     
     incrementar(cantidad) {
         this.setState((estadoAnterior) => {
