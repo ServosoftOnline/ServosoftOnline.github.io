@@ -50,7 +50,7 @@ class ContadorClass extends Component {
     }
 
     componentDidMount () {
-        console.log('El componente basado en clases se montó');
+        console.log('El componente basado en clases se montó por primera vez');
         // Llamo a una API ...
     }
 

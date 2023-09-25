@@ -117,42 +117,65 @@ APRENDIENDO React
         - Pueden llamarse varias veces
 
       - Ejemplos de hooks mas usuales:
-        - useState. 
+        
+      - useState. 
           - Añade la posibilidad de trabajar con estados
             - const [vble,funcionQueCambiaraSuEstado] = useState(valor_inicial)
         
-        - useEffect. 
+      - useEffect. 
+        
+        - Equivale a los métodos de ciclo de vida de los componentes basados en clases
+          - componentDidMount. Que se ejecutaba al montarse el estado
+          - componentDidUpdate. Que se ejecutaba cada vez que se actualizaba el estado
+          - componentWillUnmount. Que se ejecutaba justo antes de desmontar el estado.
+        
+        - Es una función que recibe siempre como parámetro a otra función que se ejecutara en estos casos:
+          - Se ejecutará en cada renderazión:
+            - useEffect(()=>{código})
           
-          - Equivale a los métodos de ciclo de vida de los componentes basados en clases
-            - componentDidMount. Que se ejecutaba al montarse el estado
-            - componentDidUpdate. Que se ejecutaba cada vez que se actualizaba el estado
-            - componentWillUnmount. Que se ejecutaba justo antes de desmontar el estado.
+          - Se ejecutará solo cuando se monte el componente.
+            - useEffect(()=>{código, []})
+            - Añado argumento una dependencia vacia
+            - Lo podría usar para conectarme a APIs o bases de datos
           
-          - Es una función que recibe siempre como parámetro a otra función que se ejecutara en estos casos:
-            - Se ejecutará en cada renderazión:
-              - useEffect(()=>{código})
-            
-            - Se ejecutará solo cuando se monte el componente.
-              - useEffect(()=>{código, []})
-              - Añado argumento una dependencia vacia
-              - Lo podría usar para conectarme a APIs o bases de datos
-            
-            - Se ejecutará cuando se monte o actualize uno o mas eventos concretos
-              - useEffect(()=>{código, [evento]})
-              - añado una dependencia con el o los eventos
-              - Es muy usual
+          - Se ejecutará cuando se monte o actualize uno o mas eventos concretos
+            - useEffect(()=>{código, [evento]})
+            - añado una dependencia con el o los eventos
+            - Es muy usual
 
-            - Se ejecutará justo antes de desmontar el componente
-              - useEffect(() => {
-                  return ({
-                    codigo
-                  });
-                }, []);
+          - Se ejecutará justo antes de desmontar el componente
+            - useEffect(() => {
+                return ({
+                  codigo
+                });
+              }, []);
 
               - Se usarían para desconectarse de APIs o bases de datos
-              
+      
+        - Lo aplico en ContadorFuncional.js
 
-          - Lo aplico en ContadorFuncional.js
+      - useReducer
+
+        - Suele usarse en aplicaciones grandes
+        - Ahorra tener que crear una función por cada acción
+        - Un estado puede tener diferentes acciones
+          - En nuestros contadores las acciones serían aumentar y disminuir el contador
+        
+        - Sintaxis:
+          - const [estado, dispatch] = useReducer(reducer, estado_inicial);
+            - estado_inicial es un objeto
+            - reducer es una función que escucha que tipo de acción vamos a ejecutar
+              - Función que tiene dos parametros, el estado a modificar y la accion
+              - En su interior usaremos sentencias switch - case para establecer los diferentes nuevos estados
+
+
+            - Devuelve un arreglo con el estado y una función llamada dispatch
+            - Usaremos la funcion de dispatch dentro de la función onclick y le pasamos una acción
+                - Las acciones son objetos que describen como cambiar el estado
+                - El valor se indica en mayusculas
+
+
+
 
     - Relacion Estados y hook
       - Dependiendo del estado y el hook que usemos podremos usar un código u otro

@@ -7,7 +7,8 @@ const ContadorFuncional = (props) => {
     const [contador, cambiarContador] = useState(0);
     
     useEffect(() => {
-         console.log('El componente funcional se montó');
+         console.log('El componente funcional se montó por primera vez');
+        //  Llamo a la API
     }, []);
 
     useEffect(() => {
@@ -21,6 +22,7 @@ const ContadorFuncional = (props) => {
     useEffect(() => {
         return(() => {
             console.log('Se desmontó el componente funcional');
+            // Cierro la llamada a la API
         });
 
     }, []);
@@ -31,7 +33,7 @@ const ContadorFuncional = (props) => {
             <button className = {styles.boton} onClick = {() => cambiarContador(contador + props.aumenta)}>Incrementa</button>
             <button className = {styles.boton} onClick = {() => cambiarContador(contador - props.disminuye)}>Disminuye</button>
             <p>Componente funcional</p>
-            <p>Estilos creados mediante modulos CSS</p>
+            <p>Estilos creados mediante modulos CSS</p>                     
         </div>        
       );
 }

@@ -43,6 +43,8 @@ const Boton = styled.button`
     `}
 
     ${props => props.marginTop && css ` margin-top: 15px;`}
+    ${props => props.marginRight && css ` margin-right: 15px;`}
+    
 
     
 `;
