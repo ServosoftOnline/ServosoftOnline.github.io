@@ -80,7 +80,7 @@ const FormularioInicioSesion = (props) => {
             </div> 
             */}
 
-            <Boton $negro $marginTop $largo type = "submit">Iniciar sesión</Boton>
+            <Boton negro marginTop largo type = "submit">Iniciar sesión</Boton>
             
         </form>
 

@@ -11,6 +11,10 @@ const reducer = (estado, accion) => {
             return {contador: estado.contador + 1}
         case 'DISMINUIR':
             return {contador: estado.contador - 1}
+        case 'REINICIAR':
+            return {contador: 0}
+        default:
+            return {estado};
     }
 }
 
@@ -21,18 +25,26 @@ const ContadorFuncionalUseReducer = () => {
         <div>
             <h3>Contador: {estado.contador} </h3>
             <Boton
-                $negro
-                $marginRight
+                negro
+                marginRight
                 onClick = {() => dispatch({tipo: 'INCREMENTAR'})}
             >
                 Aumentar            
             </Boton>
 
             <Boton
-                $negro
+                negro
+                marginRight
                 onClick = {() => dispatch({tipo: 'DISMINUIR'})}
             >
                 Disminuir
+            </Boton>
+
+            <Boton
+                negro
+                onClick = {() => dispatch({tipo: 'REINICIAR'})}
+            >
+                Reiniciar
             </Boton>
 
             <p>Componente funcional</p>

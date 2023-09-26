@@ -156,10 +156,10 @@ APRENDIENDO React
 
       - useReducer
 
-        - Suele usarse en aplicaciones grandes
-        - Ahorra tener que crear una función por cada acción
-        - Un estado puede tener diferentes acciones
-          - En nuestros contadores las acciones serían aumentar y disminuir el contador
+        - Es útil si tenemos muchos botones
+        - Tambien lo usaremos en redux.
+        - Ahorra tener que crear una función por cada botón
+        - En su lugar usaremos una instruccion switch-case, pondremos un case por cada acción y cambiaremos su estado
         
         - Sintaxis:
           - const [estado, dispatch] = useReducer(reducer, estado_inicial);
@@ -167,15 +167,12 @@ APRENDIENDO React
             - reducer es una función que escucha que tipo de acción vamos a ejecutar
               - Función que tiene dos parametros, el estado a modificar y la accion
               - En su interior usaremos sentencias switch - case para establecer los diferentes nuevos estados
-
+                - Hay que añadir un default
 
             - Devuelve un arreglo con el estado y una función llamada dispatch
             - Usaremos la funcion de dispatch dentro de la función onclick y le pasamos una acción
                 - Las acciones son objetos que describen como cambiar el estado
                 - El valor se indica en mayusculas
-
-
-
 
     - Relacion Estados y hook
       - Dependiendo del estado y el hook que usemos podremos usar un código u otro
