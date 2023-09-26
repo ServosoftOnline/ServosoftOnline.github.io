@@ -14,32 +14,33 @@ const reducer = (estado, accion) => {
     }
 }
 
-const EjemploUseReducer = () => {
+const ContadorFuncionalUseReducer = () => {
     const [estado, dispatch] = useReducer(reducer, contadorInicial);
 
     return (
         <div>
             <h3>Contador: {estado.contador} </h3>
             <Boton
-                negro
-                marginRight
+                $negro
+                $marginRight
                 onClick = {() => dispatch({tipo: 'INCREMENTAR'})}
             >
                 Aumentar            
             </Boton>
 
             <Boton
-                negro
+                $negro
                 onClick = {() => dispatch({tipo: 'DISMINUIR'})}
             >
                 Disminuir
             </Boton>
 
-            <p>Componente funcional que usa el hook useReduced</p>
-            <p>Botones creados mediante styled components</p>                     
+            <p>Componente funcional</p>
+            <p>Usa el hook useReduced</p>
+            <p>Estilos creados mediante styled components</p>                     
         </div> 
     )
 
 }
 
-export default EjemploUseReducer;
+export default ContadorFuncionalUseReducer;
