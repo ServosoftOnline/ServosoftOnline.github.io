@@ -198,11 +198,13 @@ APRENDIENDO React
             - Lo aplico en ContadorFuncionalUseReducer.js
       
       - Hooks personalizados
-        - Sacamos la lógica de un componente en un archivo independiente
-          - Que usaremos en diferentes componentes
-        - Nos permitirá usar funciones, ya que no se podian usar con los estados
+        - Sacamos la lógica de un componente en un archivo independiente que usaremos en diferentes paginas
+        - Las funciones no puede usar estados. Con los hooks personalizados, sí.
         - Los crearemos todos en una carpeta
         - Los llamaremos empezando por use
+        - Es igual que un componente pero no devolvemos instrucciones JSX
+          - Devolvemos un array con los valores
+          - Que los usamos donde lo necesitamos previamente imporanto y sabiendo que la función devolverá un array
         - Lo aplico en blog.js
 
     - Relacion Estados y hook
