@@ -133,6 +133,7 @@ APRENDIENDO React
       - Reglas:
         - Hay que crearlo y usarlo dentro del componente funcional o dentro de otro hook
         - No se pueden usar dentro de ciclos o condicionales
+        - No se pueden usar en funciones a no ser que usemos hooks personalizados
         - Pueden llamarse varias veces
 
       - Ejemplos de hooks basicos que vienen con react:
@@ -199,6 +200,9 @@ APRENDIENDO React
       - Hooks personalizados
         - Sacamos la lógica de un componente en un archivo independiente
           - Que usaremos en diferentes componentes
+        - Nos permitirá usar funciones, ya que no se podian usar con los estados
+        - Los crearemos todos en una carpeta
+        - Los llamaremos empezando por use
         - Lo aplico en blog.js
 
     - Relacion Estados y hook
@@ -271,7 +275,7 @@ APRENDIENDO React
             - import styled, {css} from 'styled-components'; (imsc+tab)       
 
           - Creamos los elementos así:
-            - const elemento = styled.etiquetaHtml`codigo_css`;
+            - const elemento = styled.etiquetaHtmlOriginal`codigo_css`;
           
           - Añadimos pseudo elementos asi:
             - &:pseudoElemento {Instrucciones css}
@@ -284,6 +288,9 @@ APRENDIENDO React
       - Aplico esta tercera forma de styled components:
         - El botón de iniciar sesión de FormularioInicioSesion.js le añado la propiedades negro y largo.
         - El botón de cerrar sesion situado en el componente App.js usa esta tercera forma y le añado la propiedad marginTop
+      
+      
+      
         
 
 

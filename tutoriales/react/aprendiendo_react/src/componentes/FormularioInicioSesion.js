@@ -15,9 +15,10 @@ import Boton from '../elementos/boton';
 
 // Contiene como propiedad la funcion cambiarEstadoSesion
 const FormularioInicioSesion = (props) => {
-    
+       
     const [usuario, cambiarUsuario] = useState('');
     const [password, cambiarPassword] = useState('');
+    
     
     // Cambiará el estado dependiendo del nombre del formulario
     const onChange = (e) => {
