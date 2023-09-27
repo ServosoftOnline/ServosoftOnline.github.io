@@ -28,6 +28,25 @@ APRENDIENDO React
   - Las instrucciones javascript deben ir entre llaves
   - Para definir clases debemos usar className en lugar de class
   - Podemos añadir estilos de forma dinámica usando variables
+  
+  - Atajos:
+    - Para imr y sfc tuve que añadir la extension Simple React Snippers
+    - Para imsc lo tuve que añadir a mano de la siguiente forma:
+      - Ir a Archivo/Preferencias/Configurar fragmentos de usuario
+      - Indicar el lenguaje Javascript
+      - Copiar este codigo en json y guardar:
+        "Import Styled Components": {
+          "prefix": "imsc",
+          "body": [
+            "import styled from 'styled-components';",
+            "$0"
+          ],
+          "description": "Import Styled Components"
+        }
+
+    - imr + tab importa react
+    - sfc + tab forma la estructura de un componente
+    - imsc + Tab importa styled components
 
   - Condicionales:
     - Forma 1: Usando sentencias if de javascript en funciones fuera de JSX. Menos usual. Lo inserté en Usuario.js
@@ -57,8 +76,8 @@ APRENDIENDO React
         - Siempre debe devolver código JSX
         - Los llamamos como si fueran etiquetas html. Ej: <Componente />      
         - Debemos crear un archivo javascript por cada componente
-          - Si necesitamos importar la libreria de react podemos escribir imr + tab y la autocompleta
-          - Si escribes sfc + tab se genera automaticamente la estructura de un componente exportado
+        - Importar la libreria de react (imr+tab)
+        - Genera la estructura de un componente exportado (sfc+tab)
         - Pueden anidarse unos dentro de otros
         - Se suele crear un componente llamado App que es el único que renderizamos
           - Desde App vamos llamando al resto de componentes
@@ -116,68 +135,76 @@ APRENDIENDO React
         - No se pueden usar dentro de ciclos o condicionales
         - Pueden llamarse varias veces
 
-      - Ejemplos de hooks mas usuales:
+      - Ejemplos de hooks basicos que vienen con react:
         
-      - useState. 
-          - Añade la posibilidad de trabajar con estados
-            - const [vble,funcionQueCambiaraSuEstado] = useState(valor_inicial)
-        
-      - useEffect. 
-        
-        - Equivale a los métodos de ciclo de vida de los componentes basados en clases
-          - componentDidMount. Que se ejecutaba al montarse el estado
-          - componentDidUpdate. Que se ejecutaba cada vez que se actualizaba el estado
-          - componentWillUnmount. Que se ejecutaba justo antes de desmontar el estado.
-        
-        - Es una función que recibe siempre como parámetro a otra función que se ejecutara en estos casos:
-          - Se ejecutará en cada renderazión:
-            - useEffect(()=>{código})
+        - useState. 
+            - Añade la posibilidad de trabajar con estados
+              - const [vble,funcionQueCambiaraSuEstado] = useState(valor_inicial)
+            - Lo uso en FormularioInicioSesion.js
           
-          - Se ejecutará solo cuando se monte el componente.
-            - useEffect(()=>{código, []})
-            - Añado argumento una dependencia vacia
-            - Lo podría usar para conectarme a APIs o bases de datos
+        - useEffect. 
           
-          - Se ejecutará cuando se monte o actualize uno o mas eventos concretos
-            - useEffect(()=>{código, [evento]})
-            - añado una dependencia con el o los eventos
-            - Es muy usual
+          - Equivale a los métodos de ciclo de vida de los componentes basados en clases
+            - componentDidMount. Que se ejecutaba al montarse el estado
+            - componentDidUpdate. Que se ejecutaba cada vez que se actualizaba el estado
+            - componentWillUnmount. Que se ejecutaba justo antes de desmontar el estado.
+          
+          - Es una función que recibe siempre como parámetro a otra función que se ejecutara en estos casos:
+            - Se ejecutará en cada renderazión:
+              - useEffect(()=>{código})
+            
+            - Se ejecutará solo cuando se monte el componente.
+              - useEffect(()=>{código, []})
+              - Añado argumento una dependencia vacia
+              - Lo podría usar para conectarme a APIs o bases de datos
+            
+            - Se ejecutará cuando se monte o actualize uno o mas eventos concretos
+              - useEffect(()=>{código, [evento]})
+              - añado una dependencia con el o los eventos
+              - Es muy usual
 
-          - Se ejecutará justo antes de desmontar el componente
-            - useEffect(() => {
-                return ({
-                  codigo
-                });
-              }, []);
+            - Se ejecutará justo antes de desmontar el componente
+              - useEffect(() => {
+                  return ({
+                    codigo
+                  });
+                }, []);
 
-              - Se usarían para desconectarse de APIs o bases de datos
+                - Se usarían para desconectarse de APIs o bases de datos
+        
+          - Lo aplico en ContadorFuncional.js
+
+        - useReducer
+
+          - Es útil si tenemos muchos botones
+          - Tambien lo usaremos en redux.
+          - Ahorra tener que crear una función por cada botón
+          - En su lugar usaremos una instruccion switch-case, pondremos un case por cada acción y cambiaremos su estado
+          
+          - Sintaxis:
+            - const [estado, dispatch] = useReducer(reducer, estado_inicial);
+              - estado_inicial es un objeto
+              - reducer es una función que escucha que tipo de acción vamos a ejecutar
+                - Función que tiene dos parametros, el estado a modificar y la accion
+                - En su interior usaremos sentencias switch - case para establecer los diferentes nuevos estados
+                  - Hay que añadir un default
+
+              - Devuelve un arreglo con el estado y una función llamada dispatch
+              - Usaremos la funcion de dispatch dentro de la función onclick y le pasamos una acción
+                  - Las acciones son objetos que describen como cambiar el estado
+                  - El valor se indica en mayusculas
+
+            - Lo aplico en ContadorFuncionalUseReducer.js
       
-        - Lo aplico en ContadorFuncional.js
-
-      - useReducer
-
-        - Es útil si tenemos muchos botones
-        - Tambien lo usaremos en redux.
-        - Ahorra tener que crear una función por cada botón
-        - En su lugar usaremos una instruccion switch-case, pondremos un case por cada acción y cambiaremos su estado
-        
-        - Sintaxis:
-          - const [estado, dispatch] = useReducer(reducer, estado_inicial);
-            - estado_inicial es un objeto
-            - reducer es una función que escucha que tipo de acción vamos a ejecutar
-              - Función que tiene dos parametros, el estado a modificar y la accion
-              - En su interior usaremos sentencias switch - case para establecer los diferentes nuevos estados
-                - Hay que añadir un default
-
-            - Devuelve un arreglo con el estado y una función llamada dispatch
-            - Usaremos la funcion de dispatch dentro de la función onclick y le pasamos una acción
-                - Las acciones son objetos que describen como cambiar el estado
-                - El valor se indica en mayusculas
+      - Hooks personalizados
+        - Sacamos la lógica de un componente en un archivo independiente
+          - Que usaremos en diferentes componentes
+        - Lo aplico en blog.js
 
     - Relacion Estados y hook
       - Dependiendo del estado y el hook que usemos podremos usar un código u otro
         - Se mostrará en pantalla una información u otra
-      - Un ejemplo de esto se encuentra en App.js
+      - Lo aplico en App.js
 
     - Formularios
       - Eventos de formulario
@@ -241,8 +268,7 @@ APRENDIENDO React
         
         - Creamos el elemento de esta forma:
           - Debemos importar styled-componets asi: 
-            - import styled, {css} from 'styled-components';
-            - O imsc + Tab
+            - import styled, {css} from 'styled-components'; (imsc+tab)       
 
           - Creamos los elementos así:
             - const elemento = styled.etiquetaHtml`codigo_css`;
@@ -255,7 +281,7 @@ APRENDIENDO React
             - ${props => props.propiedad && css `codigo_css`}; en la declaración del elemento
             - Podemos añadir pseudo elementos situandolos entre las llaves de las propiedades
 
-      - Usan esta tercera forma de styled components:
+      - Aplico esta tercera forma de styled components:
         - El botón de iniciar sesión de FormularioInicioSesion.js le añado la propiedades negro y largo.
         - El botón de cerrar sesion situado en el componente App.js usa esta tercera forma y le añado la propiedad marginTop
         

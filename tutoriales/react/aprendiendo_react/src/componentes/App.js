@@ -1,13 +1,21 @@
-import Usuario from './Usuario';
+// Librerias
+import React from 'react';
 import {useState} from 'react';
+
+// Componentes
+import Usuario from './Usuario';
 import FormularioInicioSesion from './FormularioInicioSesion';
 import ContadorClass from './ContadorClass';
 import ContadorFuncional from './ContadorFuncional';
 import ContadorFuncionalUseReducer from './ContadorFuncionalUseReducer';
+import Blog from './Blog';
+
+// Elementos
+import Boton from '../elementos/boton';
 
 // CSS
 import './App.css';
-import Boton from '../elementos/boton';
+
 
 const App = () => {
   
@@ -18,7 +26,8 @@ const App = () => {
       {sesion === true ?
       <div>
         <Usuario />
-        <Boton $marginTop onClick = {() => cambiarEstadoSesion(false)}>Cerrar Sesion</Boton>
+        <Blog />
+        <Boton marginTop onClick = {() => cambiarEstadoSesion(false)}>Cerrar Sesion</Boton>
         <ContadorClass aumenta = {5}  disminuye = {3} />
         <ContadorFuncional aumenta = {4} disminuye = {2} />
         <ContadorFuncionalUseReducer />
