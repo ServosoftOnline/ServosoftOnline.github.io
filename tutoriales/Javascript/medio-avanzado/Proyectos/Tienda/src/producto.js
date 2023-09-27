@@ -43,7 +43,7 @@ propiedadColor.addEventListener('click', (e) => {
     
 });
 
-// Funcionalidad de añadir/disminuir cantidad
+// Funcionalidad de añadir/disminuir cantidad. No puede bajar de 1
 botonMenos.addEventListener('click', (e) => {
     if (cantidad.value > 1) cantidad.value--;     
 });

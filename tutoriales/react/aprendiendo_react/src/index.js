@@ -200,6 +200,8 @@ APRENDIENDO React
       - Hooks personalizados
         - Sacamos la lógica de un componente en un archivo independiente que usaremos en diferentes paginas
         - Las funciones no puede usar estados. Con los hooks personalizados, sí.
+            - Esas funciones son las que podremos reutilizar en toda nuestra app.
+            - Podrán tener argumentos
         - Los crearemos todos en una carpeta
         - Los llamaremos empezando por use
         - Es igual que un componente pero no devolvemos instrucciones JSX
