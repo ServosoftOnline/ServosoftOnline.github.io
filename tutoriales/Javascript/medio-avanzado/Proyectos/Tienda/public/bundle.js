@@ -6,17 +6,17 @@
 */
 
 // Obtengo todo lo que necesito para la funcionalidad e los thumbs
-const producto = document.getElementById('producto');
-const imagenGrande = producto.querySelector('.producto__imagen');
-const thumbs = producto.querySelector('.producto__thumbs');
+const producto$1 = document.getElementById('producto');
+const imagenGrande = producto$1.querySelector('.producto__imagen');
+const thumbs = producto$1.querySelector('.producto__thumbs');
 
 // Obtengo lo necesario para la funcionalidad e los colores
-const propiedadColor = producto.querySelector('#propiedad-color');
+const propiedadColor = producto$1.querySelector('#propiedad-color');
 
 // obtengo lo necesario para la funcionalidad de añadir cantidad
-const botonMenos = producto.querySelector('#disminuir-cantidad');
-const botonMas = producto.querySelector('#incrementar-cantidad');
-const cantidad = producto.querySelector('#cantidad');
+const botonMenos = producto$1.querySelector('#disminuir-cantidad');
+const botonMas = producto$1.querySelector('#incrementar-cantidad');
+const cantidad = producto$1.querySelector('#cantidad');
 
 
 // Funcionalidad de los thumbs
@@ -57,7 +57,7 @@ botonMas.addEventListener('click', (e) => {
 /*
     FUNCIONALIDAD DE ABRIR EL CARRITO
     - Abriremos y cerraremos el carrito desde aquí
-    - Abrirá de dos formas
+    - Se abrirá de dos formas
         - Al pulsar en "Mi carrito" arriba a la derecha
             - Mostrará el contenido del carrito actual
         - Al pulsar "Agregar al carrito" en notificaciones
@@ -65,24 +65,49 @@ botonMas.addEventListener('click', (e) => {
             - El precio lo cogerá de una simulada base de datos
         - Usaremos el atributo personalizado llamado data-accion = "abrir-carrito" de index.html
     
+    - Para agregar productos al carrito:
+        - En la vble producto guardaré el contenedor entero del producto y localizo la información que necesito
+        - Obtengo el id a traves del atributo personalizado data-producto-id
+            - Los atributos personalizados Javascript le quita el guión y pondría la i en mayuscula
+            - En el botonAgregarAlCarrito debo obtenerlo asi productoId
+        - Obtengo el nombre a traves del texto que contiene el elemento cuya clase es producto_nombre
+            - Al ser clase hay que añadirle el .
+
+        - Obtengo la cantidad a traves del valor del input de la cantidad
+            - Al ser un id hay que añadirle el #
+            - Quizas sea necesario pasarlo a entero
+        - Obtengo el color a partir del id propiedad-color que tenga el valor seleccionado
+        - Obtengo el tamaño igual que el color con el id propiedad-tamaño
+
+
+
+
+
+
+        - En un objeto guardaremos nombre del producto, color, tamaño y cantidad
+        - El precio lo obtendremos desde una base de datos simulada
+        
+
+    
     
 
 
 
 */
 
-//Obtengo dos botones que abren el carrito, la ventana del carrito
+// Obtengo botones, ventana y todo el producto
 const botonesAbrirCarrito = document.querySelectorAll('[data-accion="abrir-carrito"]');
 const botonesCerrarCarrito = document.querySelectorAll('[data-accion="cerrar-carrito"]');
 const ventanaCarrito = document.getElementById('carrito');
-
+const botonAgregarAlCarrito = document.getElementById('agregar-al-carrito');
+const producto = document.getElementById('producto');
 
 // Función que abrirá la ventana del carrito y revisa los productos agregados actualmente
 const renderCarrito = () => {
     ventanaCarrito.classList.add('carrito--active');
 }; 
 
-// Recorro los dos botones que abren y cierran el carrito, les añado un event listener y las muestro o oculto
+// Recorro los dos botones que abren y cierran el carrito, les añado un event listener y muestro o oculto la ventana
 botonesAbrirCarrito.forEach((boton) => {
     boton.addEventListener('click', (e) => {
         renderCarrito();
@@ -94,3 +119,39 @@ botonesCerrarCarrito.forEach((boton) => {
         ventanaCarrito.classList.remove('carrito--active');
     });
 });
+
+// Función que agrega al carrito
+botonAgregarAlCarrito.addEventListener('click', () => {
+    producto.dataset.productoId;
+    producto.querySelector('.producto__nombre').innerText;
+    parseInt(producto.querySelector('#cantidad').value);
+    producto.querySelector('#propiedad-color input:checked').value;
+    producto.querySelector('#propiedad-tamaño input:checked').value;
+
+    // console.log(`id:` + id);
+    // console.log(`nombre: ` + nombre);
+    // console.log(`cantidad: ` + cantidad);
+    // console.log(`color:` + color);
+    // console.log('tamaño: ' + tamaño);
+    
+
+
+    
+    
+});
+
+
+/*
+    - Para agregar productos al carrito:
+        - En la vble producto guardaré el contenedor entero del producto y localizo la información que necesito
+        - Obtengo el id a traves del atributo personalizado data-producto-id
+            - Los atributos personalizados Javascript le quita el guión y pondría la i en mayuscula
+            - En el botonAgregarAlCarrito debo obtenerlo asi productoId
+        - Obtengo el nombre a traves de la clase producto_nombre
+            - Al ser clase hay que añadirle el .
+        - Obtengo la cantidad a traves del valor del input de la cantidad
+            - Al ser un id hay que añadirle el #
+            - Quizas sea necesario pasarlo a entero
+        - Obtengo el color a partir del id propiedad-color que tenga el valor seleccionado
+        - Obtengo el tamaño igual que el color con el id propiedad-tamaño
+*/
