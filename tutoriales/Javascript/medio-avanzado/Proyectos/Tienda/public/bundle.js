@@ -78,6 +78,8 @@ botonMas.addEventListener('click', (e) => {
             - Quizas sea necesario pasarlo a entero
         - Obtengo el color a partir del id propiedad-color que tenga el valor seleccionado
         - Obtengo el tamaño igual que el color con el id propiedad-tamaño
+        - Esta información la agregaré al arreglo llamado carrito que contendrá un objeto con lo obtenido anteriormente
+
 
 
 
@@ -101,10 +103,13 @@ const botonesCerrarCarrito = document.querySelectorAll('[data-accion="cerrar-car
 const ventanaCarrito = document.getElementById('carrito');
 const botonAgregarAlCarrito = document.getElementById('agregar-al-carrito');
 const producto = document.getElementById('producto');
+const carrito = [];
+
 
 // Función que abrirá la ventana del carrito y revisa los productos agregados actualmente
 const renderCarrito = () => {
     ventanaCarrito.classList.add('carrito--active');
+    console.log(carrito);
 }; 
 
 // Recorro los dos botones que abren y cierran el carrito, les añado un event listener y muestro o oculto la ventana
@@ -122,18 +127,27 @@ botonesCerrarCarrito.forEach((boton) => {
 
 // Función que agrega al carrito
 botonAgregarAlCarrito.addEventListener('click', () => {
-    producto.dataset.productoId;
-    producto.querySelector('.producto__nombre').innerText;
-    parseInt(producto.querySelector('#cantidad').value);
-    producto.querySelector('#propiedad-color input:checked').value;
-    producto.querySelector('#propiedad-tamaño input:checked').value;
+    const id = producto.dataset.productoId;
+    const nombre = producto.querySelector('.producto__nombre').innerText;
+    const cantidad = parseInt(producto.querySelector('#cantidad').value);
+    const color = producto.querySelector('#propiedad-color input:checked').value;
+    const tamaño = producto.querySelector('#propiedad-tamaño input:checked').value;
 
-    // console.log(`id:` + id);
+    // console.log(`id: ` + id);
     // console.log(`nombre: ` + nombre);
     // console.log(`cantidad: ` + cantidad);
-    // console.log(`color:` + color);
+    // console.log(`color: ` + color);
     // console.log('tamaño: ' + tamaño);
-    
+
+    // Añado el contenido del carrito
+    carrito.push ({
+        id: id,
+        nombre: nombre,
+        cantidad: cantidad,
+        color: color,
+        tamaño: tamaño
+    });
+
 
 
     
