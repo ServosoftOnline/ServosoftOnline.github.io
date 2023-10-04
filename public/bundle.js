@@ -4,7 +4,7 @@
  
 
 // Obtengo la columna de la izquierda
-const columnaIzquierda$3 = document.querySelector('.columnaIzquierda');
+const columnaIzquierda$5 = document.querySelector('.columnaIzquierda');
 
 // Creo un div y le añado la clase fotografía
 const fotografia = document.createElement('div');
@@ -17,11 +17,11 @@ imagen.classList.add('sombreada');
 
 // La imagen es hijo de la fotografia y la fotografia es hijo de la columna de la izquierda
 fotografia.appendChild(imagen);
-columnaIzquierda$3.appendChild(fotografia);
+columnaIzquierda$5.appendChild(fotografia);
 
 // Muestra el perfil profesional de forma dinámica
 
-const columnaIzquierda$2 = document.querySelector('.columnaIzquierda');
+const columnaIzquierda$4 = document.querySelector('.columnaIzquierda');
 const perfil = document.createElement('div');
 perfil.classList.add('perfil');
 perfil.innerHTML = `
@@ -35,12 +35,12 @@ perfil.innerHTML = `
     </p>
 `;
 
-columnaIzquierda$2.appendChild(perfil);
+columnaIzquierda$4.appendChild(perfil);
 
 // AÑADE CONTACTO DE FORMA DINÁMICA - Debo hacerlo más dinámico insertando una data y recorriendo el contenido
 
 
-const columnaIzquierda$1 = document.querySelector('.columnaIzquierda');
+const columnaIzquierda$3 = document.querySelector('.columnaIzquierda');
 const contacto = document.createElement('div');
 contacto.classList.add('contacto');
 
@@ -71,7 +71,7 @@ contacto.innerHTML = `
 `;
 
 // Añado al DOM
-columnaIzquierda$1.appendChild(contacto);
+columnaIzquierda$3.appendChild(contacto);
 
 
 /*
@@ -138,12 +138,12 @@ const {titulaciones} = dataTitulacion;
 // console.log(titulaciones);
 
 // Obtengo la columna donde las añado
-const columnaIzquierda = document.querySelector('.columnaIzquierda');
+const columnaIzquierda$2 = document.querySelector('.columnaIzquierda');
 
 // Creo el div con la clase titulacion
 const titulacion = document.createElement('div');
 titulacion.setAttribute('class', 'titulacion');
-columnaIzquierda.appendChild(titulacion);
+columnaIzquierda$2.appendChild(titulacion);
 
 // Creo la cabecera titulacion
 const cabeceraTitulacion = document.createElement('h3');
@@ -181,3 +181,130 @@ titulaciones.forEach((titulo) => {
     lista.appendChild(centro);
 
 });
+
+/*
+    OBJETO CAPACIDADES
+    - Contiene toda la información de mis capacidades que agregaré de forma dinamica
+*/
+
+var dataCapacidades = {
+    capacidades: [
+        {
+            id: '1',
+            estrellas: "&#9733;&#9733;&#9733;&#9733;",
+            capacidad: 'Html',          
+        },
+
+        {
+            id: '2',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Css',          
+        },
+
+        {
+            id: '3',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Javascript',
+        },
+
+        {
+            id: '4',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'B. Prácticas',
+        },
+
+        {
+            id: '5',
+            estrellas: '&#9733;&#9733;&#9733;',
+            capacidad: 'React',    
+        },
+
+        {
+            id: '6',
+            estrellas: '&#9733;&#9733;&#9733;',
+            capacidad: 'Github',            
+        },
+
+        {
+            id: '7',
+            estrellas: '&#9733;&#9733;',
+            capacidad: 'PHP',        
+        },
+    ]
+};
+
+// AÑADE LAS CAPACIDADES DE FORMA DINÁMICA
+
+const {capacidades} = dataCapacidades;
+
+// Obtengo la columna izquierda
+const columnaIzquierda$1 = document.querySelector('.columnaIzquierda');
+
+// Creo el div con la clase capacidades
+const divCapacidades = document.createElement('div');
+divCapacidades.setAttribute('class', 'capacidades');
+columnaIzquierda$1.appendChild(divCapacidades);
+
+// Creo la cabecera contenidos
+const cabeceraContenidos = document.createElement('h3');
+cabeceraContenidos.textContent = 'Capacidades';
+divCapacidades.appendChild(cabeceraContenidos);
+
+// Creo el div con la clase contenido
+const divContenido = document.createElement('div');
+divContenido. setAttribute('class', 'contenido');
+divCapacidades.appendChild(divContenido);
+
+// Creo el div con la clase contieneEstrellas
+const divContieneEstrellas = document.createElement('div');
+divContieneEstrellas.setAttribute('class', 'contieneEstrellas');
+divContenido.appendChild(divContieneEstrellas);
+
+// Añado las estrellas
+const spanEstrellas = document.createElement('span');
+spanEstrellas.setAttribute('class', 'estrellas');
+spanEstrellas.innerHTML = `
+    <p>&#9733;&#9733;&#9733;&#9733;</p>
+    <p>&#9733;&#9733;&#9733;&#9733;</p>
+    <p>&#9733;&#9733;&#9733;&#9733;</p> 
+    <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p> 
+    <p>&#9733;&#9733;&#9733;</p> 
+    <p>&#9733;&#9733;&#9733;</p> 
+    <p>&#9733;&#9733;&#9733;&#9733;</p> 
+`;
+divContieneEstrellas.appendChild(spanEstrellas);
+
+// Creo el div con la clase capacidad
+const divCapacidad = document.createElement('div');
+divCapacidad.setAttribute('class', 'capacidad');
+divContenido.appendChild(divCapacidad);
+
+// Recorro de nuevo el arreglo con las capacidades y voy añadiendo cada una de las capacidades
+capacidades.forEach((itemCapacidad) => {
+    const parrafo = document.createElement('p');
+    parrafo.textContent = itemCapacidad.capacidad;
+    divCapacidad.appendChild(parrafo);
+});
+
+// MUESTRO DE FORMA DINÁMICA EL APARTADO DE IDIOMAS
+
+// Obtengo la columna de la iquierda
+const columnaIzquierda = document.querySelector('.columnaIzquierda');
+
+// Creo el div con la clase idiomas
+const divIdiomas = document.createElement('div');
+divIdiomas.setAttribute('class', 'idiomas');
+columnaIzquierda.appendChild(divIdiomas);
+
+// Creo la cabecera idiomas
+const cabeceraIdiomas = document.createElement('h3');
+cabeceraIdiomas.textContent = 'Idiomas';
+divIdiomas.appendChild(cabeceraIdiomas);
+
+// Creo el parrafo. "domino el idioma inglés" va en negrita y al principio
+const parrafoIdiomas = document.createElement('p');
+const textoEnNegrita = document.createElement('b');
+textoEnNegrita.textContent = 'Domino el idioma inglés ';
+parrafoIdiomas.textContent = 'gracias a mis años de estudio y a mi experiencia al practicar con personas de habla inglesa durante mis años de trabajo.';
+divIdiomas.appendChild(parrafoIdiomas);
+parrafoIdiomas.insertAdjacentElement('afterbegin', textoEnNegrita);

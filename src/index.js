@@ -3,3 +3,5 @@ import './fotografia';
 import './perfil';
 import './contacto';
 import './titulacion';
+import './capacidades';
+import './idiomas';

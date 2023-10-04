@@ -7,44 +7,44 @@ export default {
     capacidades: [
         {
             id: '1',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Html'            
+            estrellas: "&#9733;&#9733;&#9733;&#9733;",
+            capacidad: 'Html',          
         },
 
         {
             id: '2',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Css'            
+            capacidad: 'Css',          
         },
 
         {
             id: '3',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Javascript'            
+            capacidad: 'Javascript',
         },
 
         {
             id: '4',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'B. Prácticas'            
+            capacidad: 'B. Prácticas',
         },
 
         {
             id: '5',
             estrellas: '&#9733;&#9733;&#9733;',
-            capacidad: 'React'            
+            capacidad: 'React',    
         },
 
         {
             id: '6',
             estrellas: '&#9733;&#9733;&#9733;',
-            capacidad: 'Github'            
+            capacidad: 'Github',            
         },
 
         {
             id: '7',
             estrellas: '&#9733;&#9733;',
-            capacidad: 'PHP'            
+            capacidad: 'PHP',        
         },
     ]
 };
