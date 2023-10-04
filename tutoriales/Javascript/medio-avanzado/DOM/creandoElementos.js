@@ -16,6 +16,7 @@ DOM: CREANDO Y REEMPLAZAR ELEMENTOS DEL DOCUMENTO HTML
                         - .beforebegin. Agrega antes del elemento padre. En el elemento anterior
                         - .beforeend. Agrega el elemento al final. Igual que appendChild
                         - .afterend. Agrega después del elemento padre. En el elemento siguiente
+    
     - Reemplazar un elemento por otro
         - Obtento el elemento a reemplazar
         - Forma

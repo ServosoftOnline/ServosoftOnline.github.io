@@ -135,17 +135,27 @@ ul {
     padding-bottom: 20px;
 }
 
+/* Contacto */
+
+
+
 /* separo los elementos de la lista de los datos de contacto */
 .contacto li {
     display: flex;
     gap: 10px;
-    padding-bottom: 10px;
+    align-items: center;
+    margin-bottom: 10px;
     font-size: 1.3rem;
 }
 
 /* en datos de contacto separo el icono de los datos */
-.contacto i {
-    padding-right: 15px;
+.contacto .contenido i {
+    margin-right: 15px;
+}
+
+.contacto .contenido p {
+    text-align: center;
+    margin: 0px;
 }
 
 

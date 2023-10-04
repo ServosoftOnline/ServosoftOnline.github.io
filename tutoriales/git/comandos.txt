@@ -82,6 +82,12 @@
             - Puedes encontrarlo escribiendo "Administrador de Credenciales" en la barra de búsqueda de Windows.
             - Luego, busca las credenciales relacionadas con GitHub y elimínalas.
 
+    - PARA RESOLVER UN PROBLEMA SOBRE ARCHIVOS ELIMINADOS
+        - git rm ruta_del_archivo que indica git status
+        - Un commit y un push
+        
+
+
 
 
 
