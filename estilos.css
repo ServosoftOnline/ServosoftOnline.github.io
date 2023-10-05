@@ -68,6 +68,7 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
 }
 
 /* aplico a la fotografía un borde sombreado elíptico  y un hover */
@@ -122,6 +123,7 @@ ul {
 .capacidades,
 .idiomas {
     padding: 30px;
+    margin-bottom: 60px;
 }
 
 /* separo las cabeceras h3 y las alineo al centro */

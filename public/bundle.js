@@ -29,7 +29,7 @@ perfil.innerHTML = `
     <h2>Desarrollador de aplicaciones Fullstack</h2>
     <h3>Perfil profesional</h3>
     <p>
-        Soy técnico superior en Administracion de Sistemas Informáticos Monousuario y Multiusuario.
+        <b>Soy técnico superior en Administracion de Sistemas Informáticos Monousuario y Multiusuario.</b>
         Desde que me titulé en 1998 he trabajado siempre en el sector de la informática, telecomunicaciones
         y desarrollo de aplicaciones.
     </p>
@@ -37,70 +37,90 @@ perfil.innerHTML = `
 
 columnaIzquierda$4.appendChild(perfil);
 
-// AÑADE CONTACTO DE FORMA DINÁMICA - Debo hacerlo más dinámico insertando una data y recorriendo el contenido
-
-
-const columnaIzquierda$3 = document.querySelector('.columnaIzquierda');
-const contacto = document.createElement('div');
-contacto.classList.add('contacto');
-
-
-// Plantilla
-contacto.innerHTML = `    
-    <div class = "contenido">
-        <h3>Contacto</h3>
-        <ul>
-            <li>
-                <i class="fa-solid fa-phone fa-beat" style = "color: #06395c;"> </i>
-                <p>620890221</p>
-            </li>
-            <li>
-                <i class="fa-solid fa-envelope fa-beat" style = "color: #06395c;"> </i>
-                <p>oscarfernandezsantiago@gmail.com</p>
-            </li>
-            <li>
-                <i class="fa-solid fa-house fa-beat" style = "color: #06395c;"> </i>
-                <p>Calle biznaga, 10. Mijas (Málaga)</p>
-            </li>
-            <li>
-                <i class="fa-solid fa-user-group fa-beat" style = "color: #06395c;"> </i>
-                <p>Casado y con dos niños preciosos</p>
-            </li>
-        </ul>
-    </div>
-`;
-
-// Añado al DOM
-columnaIzquierda$3.appendChild(contacto);
-
-
 /*
-// Plantilla
-<!-- 
-            <div class = "titulacion">
-                <h3>Titulación</h3>
-                <div class = "contenido">
-                    <ul>
-                        <li> <b>Técnico Superior en Administración de Sistemas Informáticos Monousuario y
-                            Multiusuario.</b></li>
-                        <li>SEPTIEMBRE 1996 - JUNIO 1998</li>
-                        <li>Instituto Bezmiliana en el Rincón de la Victoria</li>
-                    </ul>
-                    <ul>
-                        <li><b>Bachillerato superior</b></li>
-                        <li>SEPTIEMBRE 1989 - JUNIO 1994</li>
-                        <li>Instituto educación secundaria Fuengirola Nº 1</li>
-                    </ul>
-                    <ul>
-                        <li><b>Educación Basica</b></li>
-                        <li>SEPTIEMBRE 1980 - JUNIO 1989</li>
-                        <li>Colegio público Andalucía</li>
-                    </ul>
-                </div>
-            </div>
-             -->
+    OBJETO DATOS DE CONTACTO
+    - Contiene toda la información de mis datos de contacto que agregaré de forma dinamica
 
 */
+
+var dataContacto = {
+    datosDeContacto: [
+        {
+            id: '1',
+            clase: 'fa-solid fa-phone fa-beat',
+            estilo: 'color: #06395c;',
+            dato: '620890221'            
+        },
+
+        {
+            id: '2',
+            clase: 'fa-solid fa-envelope fa-beat',
+            estilo: 'color: #06395c;',
+            dato: 'oscarfernandezsantiago@gmail.com'            
+        },
+
+        {
+            id: '3',
+            clase: 'fa-solid fa-house fa-beat',
+            estilo: 'color: #06395c;',
+            dato: 'Calle biznaga, 10. Mijas (Málaga)'            
+        },
+
+        {
+            id: '4',
+            clase: 'fa-solid fa-user-group fa-beat',
+            estilo: 'color: #06395c;',
+            dato: 'Casado y con dos niños preciosos'            
+        }
+    ]
+};
+
+// AÑADE CONTACTO DE FORMA DINÁMICA - Debo hacerlo más dinámico insertando una data y recorriendo el contenido
+
+const {datosDeContacto} = dataContacto;
+console.log(datosDeContacto);
+
+// Obtengo la columna de la izquierda
+const columnaIzquierda$3 = document.querySelector('.columnaIzquierda');
+
+// Creo el div con la clase contacto
+const divContacto = document.createElement('div');
+divContacto.classList.add('contacto');
+columnaIzquierda$3.appendChild(divContacto);
+
+// creo la cabecera contacto
+const cabContacto = document.createElement('h3');
+cabContacto.textContent = 'Contacto';
+divContacto.appendChild(cabContacto);
+
+// Creo el div con la clase contenido
+const divContenido$1 = document.createElement('div');
+divContenido$1.setAttribute('class', 'contenido');
+divContacto.appendChild(divContenido$1);
+
+// Creo la lista que contendrá los datos de contacto
+const ulDatosDeContacto = document.createElement('ul');
+divContenido$1.appendChild(ulDatosDeContacto);
+
+// Recorro el array, creo los elementos de la lista, los iconos y los parrafos con los datos
+datosDeContacto.forEach((itemDato) => {
+    
+    // Elemento
+    const liDatosDeContacto = document.createElement('li');
+    ulDatosDeContacto.appendChild(liDatosDeContacto);
+
+    // Icono
+    const iDatosDeContacto = document.createElement('i');
+    iDatosDeContacto.setAttribute('class', `${itemDato.clase}`);
+    iDatosDeContacto.setAttribute('style', `${itemDato.estilo}`);
+    liDatosDeContacto.appendChild(iDatosDeContacto);
+
+    // Párrafo
+    const pDatosDeContacto = document.createElement('p');
+    pDatosDeContacto.textContent = itemDato.dato;
+    liDatosDeContacto.appendChild(pDatosDeContacto);
+
+});
 
 /*
     OBJETO TITULACIONES

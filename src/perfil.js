@@ -8,7 +8,7 @@ perfil.innerHTML = `
     <h2>Desarrollador de aplicaciones Fullstack</h2>
     <h3>Perfil profesional</h3>
     <p>
-        Soy técnico superior en Administracion de Sistemas Informáticos Monousuario y Multiusuario.
+        <b>Soy técnico superior en Administracion de Sistemas Informáticos Monousuario y Multiusuario.</b>
         Desde que me titulé en 1998 he trabajado siempre en el sector de la informática, telecomunicaciones
         y desarrollo de aplicaciones.
     </p>

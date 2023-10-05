@@ -1,64 +1,49 @@
 // AÑADE CONTACTO DE FORMA DINÁMICA - Debo hacerlo más dinámico insertando una data y recorriendo el contenido
 
 
+// importo el objeto datos de contacto y creo un array con el contenido
+import dataContacto from "./data/dataContacto";
+const {datosDeContacto} = dataContacto;
+console.log(datosDeContacto);
+
+// Obtengo la columna de la izquierda
 const columnaIzquierda = document.querySelector('.columnaIzquierda');
-const contacto = document.createElement('div');
-contacto.classList.add('contacto');
 
+// Creo el div con la clase contacto
+const divContacto = document.createElement('div');
+divContacto.classList.add('contacto');
+columnaIzquierda.appendChild(divContacto);
 
-// Plantilla
-contacto.innerHTML = `    
-    <div class = "contenido">
-        <h3>Contacto</h3>
-        <ul>
-            <li>
-                <i class="fa-solid fa-phone fa-beat" style = "color: #06395c;"> </i>
-                <p>620890221</p>
-            </li>
-            <li>
-                <i class="fa-solid fa-envelope fa-beat" style = "color: #06395c;"> </i>
-                <p>oscarfernandezsantiago@gmail.com</p>
-            </li>
-            <li>
-                <i class="fa-solid fa-house fa-beat" style = "color: #06395c;"> </i>
-                <p>Calle biznaga, 10. Mijas (Málaga)</p>
-            </li>
-            <li>
-                <i class="fa-solid fa-user-group fa-beat" style = "color: #06395c;"> </i>
-                <p>Casado y con dos niños preciosos</p>
-            </li>
-        </ul>
-    </div>
-`;
+// creo la cabecera contacto
+const cabContacto = document.createElement('h3');
+cabContacto.textContent = 'Contacto';
+divContacto.appendChild(cabContacto);
 
-// Añado al DOM
-columnaIzquierda.appendChild(contacto);
+// Creo el div con la clase contenido
+const divContenido = document.createElement('div');
+divContenido.setAttribute('class', 'contenido');
+divContacto.appendChild(divContenido);
 
+// Creo la lista que contendrá los datos de contacto
+const ulDatosDeContacto = document.createElement('ul');
+divContenido.appendChild(ulDatosDeContacto);
 
-/*
-// Plantilla
-<!-- 
-            <div class = "titulacion">
-                <h3>Titulación</h3>
-                <div class = "contenido">
-                    <ul>
-                        <li> <b>Técnico Superior en Administración de Sistemas Informáticos Monousuario y
-                            Multiusuario.</b></li>
-                        <li>SEPTIEMBRE 1996 - JUNIO 1998</li>
-                        <li>Instituto Bezmiliana en el Rincón de la Victoria</li>
-                    </ul>
-                    <ul>
-                        <li><b>Bachillerato superior</b></li>
-                        <li>SEPTIEMBRE 1989 - JUNIO 1994</li>
-                        <li>Instituto educación secundaria Fuengirola Nº 1</li>
-                    </ul>
-                    <ul>
-                        <li><b>Educación Basica</b></li>
-                        <li>SEPTIEMBRE 1980 - JUNIO 1989</li>
-                        <li>Colegio público Andalucía</li>
-                    </ul>
-                </div>
-            </div>
-             -->
+// Recorro el array, creo los elementos de la lista, los iconos y los parrafos con los datos
+datosDeContacto.forEach((itemDato) => {
+    
+    // Elemento
+    const liDatosDeContacto = document.createElement('li');
+    ulDatosDeContacto.appendChild(liDatosDeContacto);
 
-*/
+    // Icono
+    const iDatosDeContacto = document.createElement('i');
+    iDatosDeContacto.setAttribute('class', `${itemDato.clase}`);
+    iDatosDeContacto.setAttribute('style', `${itemDato.estilo}`);
+    liDatosDeContacto.appendChild(iDatosDeContacto);
+
+    // Párrafo
+    const pDatosDeContacto = document.createElement('p');
+    pDatosDeContacto.textContent = itemDato.dato;
+    liDatosDeContacto.appendChild(pDatosDeContacto);
+
+});
