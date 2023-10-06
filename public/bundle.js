@@ -78,7 +78,7 @@ var dataContacto = {
 // AÑADE CONTACTO DE FORMA DINÁMICA - Debo hacerlo más dinámico insertando una data y recorriendo el contenido
 
 const {datosDeContacto} = dataContacto;
-console.log(datosDeContacto);
+// console.log(datosDeContacto);
 
 // Obtengo la columna de la izquierda
 const columnaIzquierda$3 = document.querySelector('.columnaIzquierda');
@@ -328,3 +328,195 @@ textoEnNegrita.textContent = 'Domino el idioma inglés ';
 parrafoIdiomas.textContent = 'gracias a mis años de estudio y a mi experiencia al practicar con personas de habla inglesa durante mis años de trabajo.';
 divIdiomas.appendChild(parrafoIdiomas);
 parrafoIdiomas.insertAdjacentElement('afterbegin', textoEnNegrita);
+
+/*
+    OBJETO Experiencia
+    - Contiene toda la información de mi experiencia laboral que agregaré de forma dinamica
+*/
+
+var dataExperiencia = {
+    experiencia: [
+        {
+            id: '1',
+            profesion: 'Desarrollador de aplicaciones',
+            fecha: 'ENERO 2017 - JULIO 2021',
+            descripcion: 'Me establecí como trabajador autonomo para ofrecer mis conocimientos y experiencia. Realizaba de forma simultánea el desarrollo de sitios y aplicaciones WEBs y servicios de telecomunicaciones.'
+        },
+
+        {
+            id: '2',
+            profesion: 'Técnico en telecomunicaciones',
+            fecha: 'SEPTIEMBRE 2009 - ACTUALIDAD',
+            descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA son algunos de nuestros clientes. Instalo y resuelvo averías en diferentes tecnologías como XDSL, FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ...'          
+        },
+
+        {
+            id: '3',
+            profesion: 'Proyecto familiar',
+            fecha: 'NOVIEMBRE 2007 - ENERO 2009',
+            descripcion: 'Responsable en un proyecto familiar relacionado con la hostelería. Tuve a mi cargo a 12 personas.'
+        },
+
+        {
+            id: '4',
+            profesion: 'Técnico infórmatico',
+            fecha: 'JULIO 1999 - SEPTIEMBRE 2006',
+            descripcion: 'Diversos trabajos relacionados con la reparación de ordenadores, montaje de redes locales e instalación y reparacion de sistemas de seguridad. En mi último trabajo fuí responsable del mantenimiento de 12 oficinas repartidas por todo el territorio español.'
+        }
+    ]
+};
+
+// AÑADE LA EXPERIENCIA LABORAL DE FORMA DINÁMICA
+
+const {experiencia} = dataExperiencia;
+// console.log(experiencia);
+
+// Obtengo la columna donde las añado
+const columnaDerecha$1 = document.querySelector('.columnaDerecha');
+// console.log(columnaDerecha);
+
+// Creo el div con la clase experiencia
+const divExperiencia = document.createElement('div');
+divExperiencia.setAttribute('class', 'experiencia');
+columnaDerecha$1.appendChild(divExperiencia);
+
+// Creo la cabecera que contiene el icono y el texto Experiencia
+const cabExperiencia = document.createElement('div');
+cabExperiencia.setAttribute('class', 'cabecera');
+divExperiencia.appendChild(cabExperiencia);
+
+const iconoExperiencia = document.createElement('i');
+iconoExperiencia.setAttribute('class', 'fa-solid fa-hands fa-beat-fade fa-2xl');
+iconoExperiencia.setAttribute('style', 'color: #400080;');
+cabExperiencia.appendChild(iconoExperiencia);
+
+const h2Experiencia = document.createElement('h2');
+h2Experiencia.textContent = 'Experiencia';
+cabExperiencia.appendChild(h2Experiencia);
+
+// Recorro el array y voy creando cada una de las experiencias
+experiencia.forEach((itemExperiencia) => {
+
+    // div contenido
+    const divContenido = document.createElement('div');
+    divContenido.setAttribute('class', 'contenido');
+    divExperiencia.appendChild(divContenido);
+
+    // profesion
+    const profesion = document.createElement('h3');
+    profesion.textContent = itemExperiencia.profesion;
+    divContenido.appendChild(profesion);
+    
+    // Fecha
+    const fecha = document.createElement('h4');
+    fecha.textContent = itemExperiencia.fecha;
+    divContenido.appendChild(fecha);
+
+    // Descripcion
+    const descripcion = document.createElement('p');
+    descripcion.textContent = itemExperiencia.descripcion;
+    divContenido.appendChild(descripcion);  
+
+});
+
+/*
+    OBJETO CURSOS
+    - Contiene toda la información de mis cursos que agregaré de forma dinamica
+*/
+
+var dataCursos = {
+    cursos: [
+        {
+            id: '1',
+            año: '2023',
+            curso: 'Javascript: El Curso Completo, Práctico y desde Cero',
+            descripcion: 'Curso realizado en la plataforma online Udemy proporcionado por Carlos Arturo Esparza'
+        },
+
+        {
+            id: '2',
+            año: '2016',
+            curso: 'HTML, CSS Y JAVASCRIPT',
+            descripcion: 'Curso presencial proporcionado por FOREM-A. Formación y Empleo de Andalucía'
+        },
+
+        {
+            id: '3',
+            año: '2011',
+            curso: 'Analista programador',
+            descripcion: 'Curso de Java SE y PostgreSQL realizado de forma presencial en INGENIA situado en el Parque Tecnológico de Andalucía'
+        },
+
+        {
+            id: '4',
+            año: '1994',
+            curso: 'Programador de ordenadores',
+            descripcion: 'Curso de programación en varios lenguajes de la época (BASIC, DBASE, COBOL, CLIPPER Y C) proporcionado por FILEKOM. Era muy jóven, no tenia mas de 20 años, y aprendí lenguajes de programación que aunque varios no se usan actualmente, me ayudó a entender la programación actual'
+        }
+    ]
+};
+
+// AÑADE LOS CURSOS DE FORMA DINÁMICA
+
+const {cursos} = dataCursos;
+// console.log(cursos);
+
+// Obtengo la columna donde las añado
+const columnaDerecha = document.querySelector('.columnaDerecha');
+// console.log(columnaDerecha);
+
+// Creo el div con la clase cursos
+const divCursos = document.createElement('div');
+divCursos.setAttribute('class', 'cursos');
+columnaDerecha.appendChild(divCursos);
+
+// Creo el div de la cabecera que contiene un icono y el texto Cursos
+const cabCursos = document.createElement('div');
+cabCursos.setAttribute('class', 'cabecera');
+divCursos.appendChild(cabCursos);
+
+// icono
+const iCursos = document.createElement('i');
+iCursos.setAttribute('class', 'fa-solid fa-graduation-cap fa-beat-fade fa-2xl');
+iCursos.setAttribute('style', 'color: #400080;');
+cabCursos.appendChild(iCursos);
+
+// Texto Cursos
+const h2Cursos = document.createElement('h2');
+h2Cursos.textContent = 'Cursos';
+cabCursos.appendChild(h2Cursos);
+
+// Recorro el array y voy añadiendo los cursos
+cursos.forEach((itemCurso) => {
+
+    // Div contenido
+    const divContenido = document.createElement('div');
+    divContenido.setAttribute('class', 'contenido');
+    divCursos.appendChild(divContenido);
+
+    // Div izquierda que contiene el año
+    const divIzda = document.createElement('div');
+    divIzda.setAttribute('class', 'izquierda');
+    divContenido.appendChild(divIzda);
+
+    // Año
+    const pAno = document.createElement('p');
+    pAno.textContent = itemCurso.año;
+    divIzda.appendChild(pAno);
+
+    // Div derecha que contiene el nombre del curso y la descripción
+    const divDcha = document.createElement('div');
+    divDcha.setAttribute('class', 'derecha');
+    divContenido.appendChild(divDcha);
+
+    // Curso
+    const h4Curso = document.createElement('h4');
+    h4Curso.textContent = itemCurso.curso;
+    divDcha.appendChild(h4Curso);
+
+    // Descripcion
+    const pDescripcion = document.createElement('p');
+    pDescripcion.textContent = itemCurso.descripcion;
+    divDcha.appendChild(pDescripcion);
+
+});

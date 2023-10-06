@@ -4,7 +4,7 @@
 // importo el objeto datos de contacto y creo un array con el contenido
 import dataContacto from "./data/dataContacto";
 const {datosDeContacto} = dataContacto;
-console.log(datosDeContacto);
+// console.log(datosDeContacto);
 
 // Obtengo la columna de la izquierda
 const columnaIzquierda = document.querySelector('.columnaIzquierda');

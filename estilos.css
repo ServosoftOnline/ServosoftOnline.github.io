@@ -237,49 +237,34 @@ ul {
 
 /* trabajos */
 .trabajos .contenido {
-    display: grid;
-    grid-template-columns: auto auto;
+    margin-top: 20px;
+}
+
+.trabajos .contenido-centrado {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 30px;
-    margin-top: 10px;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.trabajos .contenido-centrado img {
+    border: 10px solid #c0c0c0;   
+}
+
+.trabajos .contenido-alineado_izda {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
     padding: 20px;
+    gap: 20px;
 }
 
-.trabajos .contenido h3 {
-    font-weight: lighter;
-}
 
-.trabajos .contenido .izquierda {
-    text-align: center;
-}
 
-.trabajos .contenido .izquierda h3 {
-    padding-bottom: 15px;
-}
 
-.trabajos .contenido .izquierda img {
-    border-radius: 10px;
-    max-width: 100%;
-}
 
-.trabajos .contenido .derecha {
-    margin-top: 30px;
-}
 
-.trabajos .contenido .derecha p {
-    margin-bottom: 15px;
-}
-
-.trabajos .contenido .derecha a {
-    font-style: oblique;
-    font-weight: bold;
-    text-decoration: none;
-    color: #708090;
-}
-
-.trabajos .contenido .derecha a:hover {
-    transform: scale(1.1);
-}
 
 /* copyright */
 .copyright {
