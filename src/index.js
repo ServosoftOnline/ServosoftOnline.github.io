@@ -9,6 +9,6 @@ import './idiomas';
 // Columna de la derecha
 import './experiencia';
 import './cursos';
-// import './trabajos';
+import './trabajos';
 
 

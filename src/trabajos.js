@@ -14,93 +14,64 @@ const divTrabajos = document.createElement('div');
 divTrabajos.setAttribute('class', 'trabajos');
 columnaDerecha.appendChild(divTrabajos);
 
-// Creo la cabecera Mis trabajos que contiene un icono y el texto Mis trabajos
-const cabMisTrabajos = document.createElement('div');
-cabMisTrabajos.setAttribute('class', 'cabecera');
-divTrabajos.appendChild(cabMisTrabajos);
+// Creo la cabecera con el icono y el texto Mis trabajos
+const cabTrabajos = document.createElement('div');
+cabTrabajos.setAttribute('class', 'cabecera');
+divTrabajos.appendChild(cabTrabajos);
 
 // Icono
 const iTrabajos = document.createElement('i');
 iTrabajos.setAttribute('class', 'fa-brands fa-github fa-beat-fade fa-2xl');
 iTrabajos.setAttribute('style', 'color: #400080;');
-cabMisTrabajos.appendChild(iTrabajos);
+cabTrabajos.appendChild(iTrabajos);
 
 // Texto Mis trabajos
 const h2MisTrabajos = document.createElement('h2');
 h2MisTrabajos.textContent = 'Mis trabajos';
-cabMisTrabajos.appendChild(h2MisTrabajos);
+cabTrabajos.appendChild(h2MisTrabajos);
+
 
 // Recorro el array y voy añadiendo los trabajos
-trabajos.forEach((itemTrabajo) => {
+trabajos.forEach((trabajo) => {
 
     // Creo el div con la clase contenido
     const divContenido = document.createElement('div');
     divContenido.setAttribute('class', 'contenido');
     divTrabajos.appendChild(divContenido);
 
-    // Creo el div con la clase izquierda que contendrá el nombre del proyecto y un enlace con una imagen
-    const divIzda = document.createElement('div');
-    divIzda.setAttribute('class', 'izquierda');
-    divContenido.appendChild(divIzda);
+     
+    // El div con la clase contenido-centrado contiene un enlace al sitio con una imagen descriptiva
+    const divContenidoCentrado = document.createElement('div');
+    divContenidoCentrado.setAttribute('class', 'contenido-centrado');
+    divContenido.appendChild(divContenidoCentrado);
 
-    // Proyecto
-    const h3Proyecto = document.createElement('h3');
-    h3Proyecto.textContent = itemTrabajo.proyecto;
-    divIzda.appendChild(h3Proyecto);
+    // Enlace con la imagen descriptiva
+    const aSitio = document.createElement('a');
+    const imagen = document.createElement('img');
+    aSitio.setAttribute('href' , trabajo.enlace);
+    aSitio.setAttribute('target' , '_blank');
+    imagen.setAttribute('src', trabajo.imagenSrc);
+    aSitio.appendChild(imagen);
+    divContenidoCentrado.appendChild(aSitio);
 
-    // Enlace1
-    const a1Proyecto = document.createElement('a');
-    a1Proyecto.setAttribute('href', `${itemTrabajo.enlace}`);
-    a1Proyecto.setAttribute('target', '_blank');
-    divIzda.appendChild(a1Proyecto);
+    // El div con la clase contenido-alineado_izda contiene la descripcion del sitio y el enlace Ir al sitio >>
+    const divAlineadoIzda = document.createElement('div');
+    divAlineadoIzda.setAttribute('class', 'contenido-alineado_izda');
+    divContenido.appendChild(divAlineadoIzda);
 
-    // Imagen
-    const imgProyecto = document.createElement('img');
-    imgProyecto.setAttribute('src', `${itemTrabajo.imagenSrc}`);
-    a1Proyecto.appendChild(imgProyecto);
-
-    // Creo el div con la clase derecha que contendrá la descripción, el mismo enlace, y un icono >>
-    const divDcha = document.createElement('div');
-    divDcha.setAttribute('class', 'derecha');
-    divContenido.appendChild(divDcha);
-
-    // Descripcion
+    // Descripción
     const pDescripcion = document.createElement('p');
-    pDescripcion.textContent = itemTrabajo.imagenSrc
-    divDcha.appendChild(pDescripcion);
+    pDescripcion.textContent = trabajo.descripcion;
+    divAlineadoIzda.appendChild(pDescripcion);
 
-    // Enlace2
-    const a2Proyecto = document.createElement('a');
-    a2Proyecto.setAttribute('href', `${itemTrabajo.enlace}`);
-    a2Proyecto.setAttribute('target', '_blank');
-    a2Proyecto.textContent = 'IR AL SITIO';
-    divDcha.appendChild(a2Proyecto);
-
-    // Icono >>
-    const iconoIrAlSitio = document.createElement('i');
-    iconoIrAlSitio.setAttribute('class', 'fas fa-angle-double-right');
-    a2Proyecto.appendChild(iconoIrAlSitio);
-
+    // Enlace Ir al sitio con el icono >>
+    const aIrAlSitio = document.createElement('a');
+    const iIrAlsitio = document.createElement('i');
+    aIrAlSitio.setAttribute('href', trabajo.enlace);
+    aIrAlSitio.setAttribute('target', '_blank');
+    aIrAlSitio.textContent = 'IR AL SITIO';
+    iIrAlsitio.setAttribute('class', 'fas fa-angle-double-right');
+    aIrAlSitio.appendChild(iIrAlsitio);
+    divAlineadoIzda.appendChild(aIrAlSitio); 
 
 });
-/*
-<div class = "trabajos">
-    <div class = "cabecera">
-        <i class="fa-brands fa-github fa-beat-fade fa-2xl" style="color: #400080;"></i>
-        <h2>Mis trabajos</h2>
-    </div>
-    
-    <div class = "contenido">
-        <div class = "izquierda">
-            <h3>L80</h3>
-            <a href="https://servosoftonline.github.io/L80/" target = "_blank"> <img src ="./img/trabajo1.jpg"> </a>
-        </div>
-        
-        <div class = "derecha">
-            <p>Sitio web de un grupo musical desarrollado en HTML, CSS y JAVASCRIPT. Es responsive, está creado en una sola página, sin usar ningun CMS y contiene una galería de imágenes.</p> 
-            <a href = "https://servosoftonline.github.io/L80/" target = "_blank"> IR AL SITIO <i class="fas fa-angle-double-right"> </i> </a>
-        </div>                  
-    </div>                
-</div>
-*/
-

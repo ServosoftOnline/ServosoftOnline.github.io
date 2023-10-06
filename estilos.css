@@ -138,9 +138,6 @@ ul {
 }
 
 /* Contacto */
-
-
-
 /* separo los elementos de la lista de los datos de contacto */
 .contacto li {
     display: flex;
@@ -236,6 +233,11 @@ ul {
 }
 
 /* trabajos */
+
+.trabajos {
+    background: lightblue;
+}
+
 .trabajos .contenido {
     margin-top: 20px;
 }
@@ -244,12 +246,14 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 0;
-    margin-top: 20px;
+    
+    /* margin-top: 20px; */
 }
 
 .trabajos .contenido-centrado img {
-    border: 10px solid #c0c0c0;   
+    border: 10px solid #c0c0c0;
+    max-width: 85%;
+    height: auto;
 }
 
 .trabajos .contenido-alineado_izda {
@@ -259,11 +263,6 @@ ul {
     padding: 20px;
     gap: 20px;
 }
-
-
-
-
-
 
 
 /* copyright */
@@ -284,9 +283,9 @@ ul {
 /* RESPONSIVE 1360Px. HORIZONTAL TABLETS */
 @media (max-width: 1366px) {
 
-    /* body {
+    body {
         background-color: blue;
-    } */
+    }
 
     h3 {
         font-size: 1.9rem;
@@ -327,46 +326,17 @@ ul {
         gap: 20px;
     }
 
-    .trabajos .contenido {
-        grid-template-columns: auto;
-        padding: 0px;
-        background-color: #E6E6FA;
-        border: 1px solid #8a2be2;
-        border-radius: 10px;
-    }
-
-    .trabajos .contenido .izquierda h3{
-        background-color: #9370DB;
-        color: white;
-        font-size: 1.2rem;
-        height: 15px;
-        text-align: left;
-        padding-left: 15px;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-    }
-
-    .trabajos .contenido .izquierda img {
-        max-width: 75%;
-        margin-top: 20px;
-        border: 1px solid #8a2be2;
-        border-radius: 10px;
-    }
-
-    .trabajos .contenido .derecha {
-        padding-right: 15px;
-        padding-left: 15px;
-        padding-bottom: 15px;
-        margin-top: 5px;
+    .trabajos .contenido-centrado img {
+        max-width: 75%;     
     }
 }
 
 /* RESPONSIVE 812PX. HORIZONTAL TABLETS */
 @media (max-width: 812px) {
 
-    /* body {
+    body {
         background-color: blueviolet;
-    } */
+    }
 
     .contacto li {
         font-size: 0.8rem;
@@ -388,6 +358,7 @@ ul {
         font-size: 1.9rem;
     }
 
+    
     .copyright {
         font-size: 1.1rem;
     }
@@ -397,9 +368,9 @@ ul {
 /* RESPONSIVE 715PX. HORIZONTAL MOVILES */
 @media (max-width: 715px) {
 
-    /* body {
+    body {
         background-color: greenyellow;
-    } */
+    }
 
     .columnas {
         grid-template-columns: 1fr;
@@ -410,8 +381,6 @@ ul {
         border-top-right-radius: 10px;
         border-right: 0px solid #8a2be2;
     }
-
-
 
     /* Hago mas pequeñas las fuentes de los datos de contacto */
     .contacto .contenido li {
@@ -466,28 +435,30 @@ ul {
         padding: 10px;
     }
 
+    .trabajos .contenido-centrado img {
+        max-width: 90%;     
+    }
+
    .copyright {
         font-size: 1.2rem;
     }
 
 }
 
-
+  
 /* RESPONSIVE  500 px. VERTICAL MOVILES*/
 @media (max-width: 500px) {
-    /* body {
+    body {
         background-color: red;
-    } */
+    }
 
-    .supercontenedor {
-        
+    .supercontenedor {        
         justify-content: left;
     }
 
     .contenedor {
         width: 80%;
-        margin-left: 2px;
-       
+        margin-left: 2px;       
     }
 
     /* Hago mas pequeñas las fuentes de los datos de contacto */

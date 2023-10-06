@@ -372,13 +372,13 @@ const {experiencia} = dataExperiencia;
 // console.log(experiencia);
 
 // Obtengo la columna donde las añado
-const columnaDerecha$1 = document.querySelector('.columnaDerecha');
+const columnaDerecha$2 = document.querySelector('.columnaDerecha');
 // console.log(columnaDerecha);
 
 // Creo el div con la clase experiencia
 const divExperiencia = document.createElement('div');
 divExperiencia.setAttribute('class', 'experiencia');
-columnaDerecha$1.appendChild(divExperiencia);
+columnaDerecha$2.appendChild(divExperiencia);
 
 // Creo la cabecera que contiene el icono y el texto Experiencia
 const cabExperiencia = document.createElement('div');
@@ -462,13 +462,13 @@ const {cursos} = dataCursos;
 // console.log(cursos);
 
 // Obtengo la columna donde las añado
-const columnaDerecha = document.querySelector('.columnaDerecha');
+const columnaDerecha$1 = document.querySelector('.columnaDerecha');
 // console.log(columnaDerecha);
 
 // Creo el div con la clase cursos
 const divCursos = document.createElement('div');
 divCursos.setAttribute('class', 'cursos');
-columnaDerecha.appendChild(divCursos);
+columnaDerecha$1.appendChild(divCursos);
 
 // Creo el div de la cabecera que contiene un icono y el texto Cursos
 const cabCursos = document.createElement('div');
@@ -518,5 +518,100 @@ cursos.forEach((itemCurso) => {
     const pDescripcion = document.createElement('p');
     pDescripcion.textContent = itemCurso.descripcion;
     divDcha.appendChild(pDescripcion);
+
+});
+
+/*
+    OBJETO TRABAJOS
+    - Contiene toda la información de mis proyectos que agregaré de forma dinamica
+    - La clase del icono que son dos >> siempre es el mismo por lo que lo insertaré de forma estática
+        - No lo añado como propiedad    
+*/
+
+var dataTrabajos = {
+    trabajos: [
+        {
+            id: '1',
+            proyecto: 'L80',
+            enlace: 'https://servosoftonline.github.io/L80/',
+            imagenSrc: './img/trabajo1.jpg',
+            descripcion: 'Sitio web de un grupo musical desarrollado en HTML, CSS y JAVASCRIPT. Es responsive, está creado en una sola página, sin usar ningun CMS y contiene una galería de imágenes',
+        }
+    ]
+};
+
+// AÑADE MIS TRABAJOS DE FORMA DINÁMICA
+
+const {trabajos} = dataTrabajos;
+console.log(trabajos);
+
+// Obtengo la columna donde las añado
+const columnaDerecha = document.querySelector('.columnaDerecha');
+console.log(columnaDerecha);
+
+// Creo el div con la clase trabajos
+const divTrabajos = document.createElement('div');
+divTrabajos.setAttribute('class', 'trabajos');
+columnaDerecha.appendChild(divTrabajos);
+
+// Creo la cabecera con el icono y el texto Mis trabajos
+const cabTrabajos = document.createElement('div');
+cabTrabajos.setAttribute('class', 'cabecera');
+divTrabajos.appendChild(cabTrabajos);
+
+// Icono
+const iTrabajos = document.createElement('i');
+iTrabajos.setAttribute('class', 'fa-brands fa-github fa-beat-fade fa-2xl');
+iTrabajos.setAttribute('style', 'color: #400080;');
+cabTrabajos.appendChild(iTrabajos);
+
+// Texto Mis trabajos
+const h2MisTrabajos = document.createElement('h2');
+h2MisTrabajos.textContent = 'Mis trabajos';
+cabTrabajos.appendChild(h2MisTrabajos);
+
+
+// Recorro el array y voy añadiendo los trabajos
+trabajos.forEach((trabajo) => {
+
+    // Creo el div con la clase contenido
+    const divContenido = document.createElement('div');
+    divContenido.setAttribute('class', 'contenido');
+    divTrabajos.appendChild(divContenido);
+
+     
+    // El div con la clase contenido-centrado contiene un enlace al sitio con una imagen descriptiva
+    const divContenidoCentrado = document.createElement('div');
+    divContenidoCentrado.setAttribute('class', 'contenido-centrado');
+    divContenido.appendChild(divContenidoCentrado);
+
+    // Enlace con la imagen descriptiva
+    const aSitio = document.createElement('a');
+    const imagen = document.createElement('img');
+    aSitio.setAttribute('href' , trabajo.enlace);
+    aSitio.setAttribute('target' , '_blank');
+    imagen.setAttribute('src', trabajo.imagenSrc);
+    aSitio.appendChild(imagen);
+    divContenidoCentrado.appendChild(aSitio);
+
+    // El div con la clase contenido-alineado_izda contiene la descripcion del sitio y el enlace Ir al sitio >>
+    const divAlineadoIzda = document.createElement('div');
+    divAlineadoIzda.setAttribute('class', 'contenido-alineado_izda');
+    divContenido.appendChild(divAlineadoIzda);
+
+    // Descripción
+    const pDescripcion = document.createElement('p');
+    pDescripcion.textContent = trabajo.descripcion;
+    divAlineadoIzda.appendChild(pDescripcion);
+
+    // Enlace Ir al sitio con el icono >>
+    const aIrAlSitio = document.createElement('a');
+    const iIrAlsitio = document.createElement('i');
+    aIrAlSitio.setAttribute('href', trabajo.enlace);
+    aIrAlSitio.setAttribute('target', '_blank');
+    aIrAlSitio.textContent = 'IR AL SITIO';
+    iIrAlsitio.setAttribute('class', 'fas fa-angle-double-right');
+    aIrAlSitio.appendChild(iIrAlsitio);
+    divAlineadoIzda.appendChild(aIrAlSitio); 
 
 });
