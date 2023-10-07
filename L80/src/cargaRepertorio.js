@@ -1,7 +1,10 @@
-// MUESTRA EL REPERTORIO Y OCULTA EL RESTO
+/*
+    MOSTRARÁ LA SECCION DEL REPERTORIO, OCULTA EL RESTO
+*/
 
 export const cargaRepertorio = () => {
-  
+    
+    // Muestro solo el contenido de la pestaña repertorio
     const showcase = document.querySelector('.showcase');
     const galeria = document.querySelector('.galeria');
     const contacto = document.querySelector('.contactanos');
@@ -19,4 +22,5 @@ export const cargaRepertorio = () => {
     miembros.classList.remove('activa');    
     bannerBolos.classList.remove('activa');
     bolos.classList.remove('activa');
+
 }

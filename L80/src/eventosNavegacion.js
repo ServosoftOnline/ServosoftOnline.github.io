@@ -3,6 +3,7 @@ import { cargaGaleria } from "./cargaGaleria";
 import { cargaContactanos } from "./cargaContactanos";
 import { cargaRepertorio } from "./cargaRepertorio";
 
+
 // click en la barra de navegacion
 const navegacion = document.querySelector ('.nav-menu');
 navegacion.addEventListener('click', (e) => {
