@@ -1,9 +1,50 @@
 'use strict';
 
 /*
-    FUNCIONALIDAD DE TODOS LOS EVENTOS QUE SE PRODUZCAN DENTRO DEL CONTENEDOR PRODUCTO
-        - Evento de los thumbs. Al pinchar en ellos se cambia la imagen grande
+    OBJETO:
+    - Contiene toda la información de los productos
+    - La exportaremos donde vallamos a usarla
+    - Contiene un array con los productos
+
 */
+
+var data = {
+    productos: [
+        {
+            id: '1',
+            nombre: 'Tennis Converse Standard',
+            descripcion: 'Lorem ipsum dolor sit amet',
+            precio: 495,
+            colores: ['negro', 'rojo', 'amarillo'],
+            tamaños: ['1,5', '2', '2,5', '3', '3,5', '4'],
+        },
+
+        {
+            id: '2',
+            nombre: 'Tennis Nike Air',
+            descripcion: 'Lorem ipsum dolor sit amet',
+            precio: 450.5,
+            colores: ['negro', 'rojo'],
+            tamaños: ['1,5', '2', '2,5', '3'],
+        },
+    ]
+};
+
+/*
+    FUNCIONALIDAD DE TODOS LOS EVENTOS QUE SE PRODUZCAN DENTRO DEL CONTENEDOR PRODUCTO
+        - Añado el precio de forma dinámica a partir del objeto de la data
+            - Importo el objeto productos.
+            - Formateo el precio a moneda europea
+            - Obtengo el párrafo que contiene el precio cuya clase es .producto__precio
+            - Modifico el párrafo con el precio formateado del primer índice del arreglo productos
+
+        - Evento de los thumbs. Al pinchar en ellos se cambia la imagen grande
+        
+*/
+const formatearPrecio = new Intl.NumberFormat('es-ES', {style: 'currency' , currency: 'EUR'});
+const pPrecio = document.querySelector('.producto__precio');
+pPrecio.textContent = formatearPrecio.format(data.productos[0].precio);
+
 
 // Obtengo todo lo que necesito para la funcionalidad e los thumbs
 const producto$1 = document.getElementById('producto');
@@ -70,63 +111,88 @@ botonMas.addEventListener('click', (e) => {
         - Obtengo el id a traves del atributo personalizado data-producto-id
             - Los atributos personalizados Javascript le quita el guión y pondría la i en mayuscula
             - En el botonAgregarAlCarrito debo obtenerlo asi productoId
+        
         - Obtengo el nombre a traves del texto que contiene el elemento cuya clase es producto_nombre
             - Al ser clase hay que añadirle el .
 
         - Obtengo la cantidad a traves del valor del input de la cantidad
             - Al ser un id hay que añadirle el #
             - Quizas sea necesario pasarlo a entero
+
         - Obtengo el color a partir del id propiedad-color que tenga el valor seleccionado
         - Obtengo el tamaño igual que el color con el id propiedad-tamaño
+        - Para evitar productos iguales duplicados en el carrito antes de agregarlos debo hacer lo siguiente:
+            - Localizo entre los productos existentes en el carrito si hubiera otros productos:
+                - con el mismo id, color y tamaño
+                - Si lo hubiera debo sumar las cantidades
+
         - Agrego esta información mediante push
-
-        - Renderizar el carrito:
-            - Activo la ventana.
-            - Recorro el carrito y en cada pasada
-                - Por cada uno de los elementos llamado productoCarrito
-                - Creo la plantilla.
-                    - Añado de forma dinámica lo obtenido en el paso anterior mediante backticks
-                - El precio lo cogeré de la base de datos simulada en productos.js
-
-
-
-            
-
-
-
-
-
-
-
-
-        - En un objeto guardaremos nombre del producto, color, tamaño y cantidad
-        - El precio lo obtendremos desde una base de datos simulada
         
 
-    
-    
+    - Renderizar el carrito:
+        - Activo la ventana del carrito.
+        - Debo borrar si hubiera productos anteriores porque se añadarían duplicados.
+            - Estos tiene la case carrito_producto
+        - Recorro el carrito y en cada pasada ...
+            - Por cada uno de los elementos llamado productoCarrito
+            - Dependiendo del color mostraré una imagen u otra en el carrito
+            - Creo la plantilla.
+                - Añado de forma dinámica lo obtenido en el paso anterior mediante backticks
+            - Lo añado al DOM
+            - El precio lo cogeré de la base de datos simulada en productos.js
+            - Voy a añadir un formato de moneda para europa
+                - Usaré una API de Javascript para transformar números en monedas
+                - Creo el objeto formatearMoneda
+                - Elaborando la plantilla uso su método format(numeroATransformar)
+                    - ese número es el resultado de multiplicar el producto de precio por la cantidad
+                    
 
 
 
 */
 
-// Obtengo botones, ventana y todo el producto
+// Obtengo boton y botones, ventana carrito, todo el producto y creo el array carrito vacio
 const botonesAbrirCarrito = document.querySelectorAll('[data-accion="abrir-carrito"]');
 const botonesCerrarCarrito = document.querySelectorAll('[data-accion="cerrar-carrito"]');
-const ventanaCarrito = document.getElementById('carrito');
 const botonAgregarAlCarrito = document.getElementById('agregar-al-carrito');
+const ventanaCarrito = document.getElementById('carrito');
 const producto = document.getElementById('producto');
 const carrito = [];
 
+// API obtener monedas. Nueva instancia Internacionalización, argumentos: idioma Y estilo de formato de moneda
+const formatearMoneda = new Intl.NumberFormat('es-ES', {style: 'currency' , currency: 'EUR'});
 
 // Función que abrirá la ventana del carrito y revisa los productos agregados actualmente
 const renderCarrito = () => {
+    // Muestro el carrito
     ventanaCarrito.classList.add('carrito--active');
 
+    // Sin añadir productos nuevos, si cierro y abro el carrito se añaden productos duplicados
+    // Para solucionar esto borro del DOM esos productos para despues crear de nuevo el carrito
+    const limpioCarrito = ventanaCarrito.querySelectorAll('.carrito__producto');
+    limpioCarrito.forEach((producto) => { producto.remove(); });
+
+    // Recorro el carrito
     carrito.forEach((productoCarrito) => {
+        
+        // Recorro el array productos y localizo el precio comparando id del producto del carrito con el id del array
+        data.productos.forEach((producto) => {
+            if (productoCarrito.id === producto.id){ productoCarrito.precio = producto.precio; }
+        });
+
+        // Asigno el thumb correcto dependiendo del color y asigno la ruta correcta
+        let thumbSrc = '';
+        if (productoCarrito.color === 'rojo') {
+            thumbSrc = './img/thumbs/rojo.jpg';
+        } else if (productoCarrito.color === 'amarillo') {
+            thumbSrc = './img/thumbs/amarillo.jpg';
+        } else if (productoCarrito.color === 'negro') {
+            thumbSrc = './img/thumbs/negro.jpg';
+        }            
+        // Creo la plantilla modificando los valores a partir del contenido del carrito
         const plantillaProducto = `
             <div class="carrito__producto-info">
-                <img src="./img/tennis/1.jpg" alt="" class="carrito__thumb" />
+                <img src= "${thumbSrc}" alt="" class="carrito__thumb" />
                 <div>
                     <p class="carrito__producto-nombre">
                         <span class="carrito__producto-cantidad">${productoCarrito.cantidad} x </span>${productoCarrito.nombre}
@@ -150,10 +216,13 @@ const renderCarrito = () => {
                         />
                     </svg>
                 </button>
-                <p class="carrito__producto-precio">$500.00</p>
+                <p class="carrito__producto-precio">                    
+                    ${formatearMoneda.format(productoCarrito.precio * productoCarrito.cantidad)}
+                </p>
             </div>
         `;
 
+        // Creo la estructura y la añado al DOM
         const itemCarrito = document.createElement('div');
         itemCarrito.classList.add('carrito__producto');
         itemCarrito.innerHTML = plantillaProducto;
@@ -161,7 +230,7 @@ const renderCarrito = () => {
     });
 }; 
 
-// Recorro los dos botones que abren y cierran el carrito, les añado un event listener y muestro o oculto la ventana
+// Añado un evento a los botones que abren y cierran el carrito
 botonesAbrirCarrito.forEach((boton) => {
     boton.addEventListener('click', (e) => {
         renderCarrito();
@@ -174,47 +243,41 @@ botonesCerrarCarrito.forEach((boton) => {
     });
 });
 
-// Función que agrega al carrito
+// Función que agrega productos al carrito
 botonAgregarAlCarrito.addEventListener('click', () => {
+    
+    // Obtengo lo que quiero añadir
     const id = producto.dataset.productoId;
     const nombre = producto.querySelector('.producto__nombre').innerText;
     const cantidad = parseInt(producto.querySelector('#cantidad').value);
     const color = producto.querySelector('#propiedad-color input:checked').value;
     const tamaño = producto.querySelector('#propiedad-tamaño input:checked').value;
 
+    // Muestro los resultados para asegurarme que son correctos
     // console.log(`id: ` + id);
     // console.log(`nombre: ` + nombre);
     // console.log(`cantidad: ` + cantidad);
     // console.log(`color: ` + color);
     // console.log('tamaño: ' + tamaño);
 
-    // Añado el contenido del carrito
-    carrito.push ({
-        id: id,
-        nombre: nombre,
-        cantidad: cantidad,
-        color: color,
-        tamaño: tamaño
-    });
-
-
-
     
+    // busco duplicados en el carrito. Si lo encuentro aumento el item.cantidad y no lo añado
+    let productoEnCarrito = false;
+    carrito.forEach((item) => {
+        if(item.id === id && item.color === color && item.tamaño === tamaño) {
+            item.cantidad = item.cantidad + cantidad;
+            productoEnCarrito = true;
+        }
+    });
+    
+    if(productoEnCarrito === false) {
+        carrito.push ({
+            id: id,
+            nombre: nombre,
+            cantidad: cantidad,
+            color: color,
+            tamaño: tamaño
+        });
+    }    
     
 });
-
-
-/*
-    - Para agregar productos al carrito:
-        - En la vble producto guardaré el contenedor entero del producto y localizo la información que necesito
-        - Obtengo el id a traves del atributo personalizado data-producto-id
-            - Los atributos personalizados Javascript le quita el guión y pondría la i en mayuscula
-            - En el botonAgregarAlCarrito debo obtenerlo asi productoId
-        - Obtengo el nombre a traves de la clase producto_nombre
-            - Al ser clase hay que añadirle el .
-        - Obtengo la cantidad a traves del valor del input de la cantidad
-            - Al ser un id hay que añadirle el #
-            - Quizas sea necesario pasarlo a entero
-        - Obtengo el color a partir del id propiedad-color que tenga el valor seleccionado
-        - Obtengo el tamaño igual que el color con el id propiedad-tamaño
-*/

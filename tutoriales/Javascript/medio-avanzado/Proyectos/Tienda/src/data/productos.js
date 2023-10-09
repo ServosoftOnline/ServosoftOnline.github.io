@@ -4,8 +4,6 @@
     - La exportaremos donde vallamos a usarla
     - Contiene un array con los productos
 
-
-
 */
 
 export default {
@@ -14,7 +12,7 @@ export default {
             id: '1',
             nombre: 'Tennis Converse Standard',
             descripcion: 'Lorem ipsum dolor sit amet',
-            precio: 500.0,
+            precio: 495,
             colores: ['negro', 'rojo', 'amarillo'],
             tamaños: ['1,5', '2', '2,5', '3', '3,5', '4'],
         },

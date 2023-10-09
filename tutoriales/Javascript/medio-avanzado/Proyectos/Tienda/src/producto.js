@@ -1,7 +1,21 @@
 /*
     FUNCIONALIDAD DE TODOS LOS EVENTOS QUE SE PRODUZCAN DENTRO DEL CONTENEDOR PRODUCTO
+        - Añado el precio de forma dinámica a partir del objeto de la data
+            - Importo el objeto productos.
+            - Formateo el precio a moneda europea
+            - Obtengo el párrafo que contiene el precio cuya clase es .producto__precio
+            - Modifico el párrafo con el precio formateado del primer índice del arreglo productos
+
         - Evento de los thumbs. Al pinchar en ellos se cambia la imagen grande
+        
 */
+
+// Precio de forma dinámica
+import data from './data/productos';
+const formatearPrecio = new Intl.NumberFormat('es-ES', {style: 'currency' , currency: 'EUR'});
+const pPrecio = document.querySelector('.producto__precio');
+pPrecio.textContent = formatearPrecio.format(data.productos[0].precio);
+
 
 // Obtengo todo lo que necesito para la funcionalidad e los thumbs
 const producto = document.getElementById('producto');
