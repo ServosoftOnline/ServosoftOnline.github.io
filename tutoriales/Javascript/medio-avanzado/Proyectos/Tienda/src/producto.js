@@ -1,37 +1,37 @@
 /*
-    FUNCIONALIDAD DE TODOS LOS EVENTOS QUE SE PRODUZCAN DENTRO DEL CONTENEDOR PRODUCTO
-        - Añado el precio de forma dinámica a partir del objeto de la data
-            - Importo el objeto productos.
-            - Formateo el precio a moneda europea
-            - Obtengo el párrafo que contiene el precio cuya clase es .producto__precio
-            - Modifico el párrafo con el precio formateado del primer índice del arreglo productos
+    FUNCIONALIDAD DEL PRODUCTO
 
-        - Evento de los thumbs. Al pinchar en ellos se cambia la imagen grande
+        - El interfaz del producto lo muestra index.html
+
+        - Añado el nombre,descripción y precio de forma dinámica a partir del objeto productos
+            - Formateo el precio a moneda europea
+
+        - Añadiremos aquí las siguientes funcionalidades:
+            - Al hacer click en los thumbs se mostrará su imagen en grande
+            - Al hacer click en los colores y tamaños me quedo con el valor seleccionado
+            - Al hacer click en -/+ disminuyo o aumento la cantidad. No puede ser menor de 1
         
 */
 
-// Precio de forma dinámica
+// Importo el objeto productos
 import data from './data/productos';
+
+// Nombre y descripción del producto
+document.querySelector('.producto__nombre').textContent = data.productos[0].nombre;
+document.querySelector('.producto__descripcion').textContent = data.productos[0].descripcion;
+
+// Precio
 const formatearPrecio = new Intl.NumberFormat('es-ES', {style: 'currency' , currency: 'EUR'});
-const pPrecio = document.querySelector('.producto__precio');
-pPrecio.textContent = formatearPrecio.format(data.productos[0].precio);
+document.querySelector('.producto__precio').textContent = formatearPrecio.format(data.productos[0].precio);
 
-
-// Obtengo todo lo que necesito para la funcionalidad e los thumbs
+// Producto
 const producto = document.getElementById('producto');
-const imagenGrande = producto.querySelector('.producto__imagen');
-const thumbs = producto.querySelector('.producto__thumbs');
-
-// Obtengo lo necesario para la funcionalidad e los colores
-const propiedadColor = producto.querySelector('#propiedad-color')
-
-// obtengo lo necesario para la funcionalidad de añadir cantidad
-const botonMenos = producto.querySelector('#disminuir-cantidad');
-const botonMas = producto.querySelector('#incrementar-cantidad');
-const cantidad = producto.querySelector('#cantidad');
 
 
 // Funcionalidad de los thumbs
+const imagenGrande = producto.querySelector('.producto__imagen');
+const thumbs = producto.querySelector('.producto__thumbs');
+
 thumbs.addEventListener('click', (e) => {
     // Si hago click en cualquier imagen de thumbs
     if (e.target.tagName === 'IMG'){
@@ -47,7 +47,9 @@ thumbs.addEventListener('click', (e) => {
     }
 });
 
+
 // Funcionalidad de los colores
+const propiedadColor = producto.querySelector('#propiedad-color')
 propiedadColor.addEventListener('click', (e) => {
     // Si hago click en el input
     if (e.target.tagName === 'INPUT') {
@@ -57,7 +59,11 @@ propiedadColor.addEventListener('click', (e) => {
     
 });
 
-// Funcionalidad de añadir/disminuir cantidad. No puede bajar de 1
+
+// Funcionalidad de cantidad
+const botonMenos = producto.querySelector('#disminuir-cantidad');
+const botonMas = producto.querySelector('#incrementar-cantidad');
+const cantidad = producto.querySelector('#cantidad');
 botonMenos.addEventListener('click', (e) => {
     if (cantidad.value > 1) cantidad.value--;     
 });
