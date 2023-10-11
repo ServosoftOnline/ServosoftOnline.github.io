@@ -7,27 +7,33 @@ DOM: OBTENER LOS ELEMENTOS DEL DOCUMENTO HTML
             - children. 
                 - Devuelve una colección HTML de elementos con sus elementos hijo. Tiene métodos propios
             - parentElement. 
-                - Devuelve un objeto con el elemento padre         
+                - Devuelve un objeto con el elemento padre
+
     - getElementsByTagName(etiqueta).
         - Devuelve una colección HTML, no un array, de elementos en base a su etiqueta. 
         - Tiene métodos propios
             - lenght
+
     - getElementsByClassName(clase)
         - Devuelve una colección HTML, no un array, de elementos en base a su clase CSS.
+
     - querySelector(selector_CSS)
         - Devuelve el primer elemento que coincida con el selector css indicado. 
         - Podemos acceder más al interior del selector indicado inicialmente 
         - Mediante el pseudo elemtento last-child puedo acceder al útimo hijo
+
     - querySelectorAll(selector_CSS)
         - Devuelve una lista de nodos con todos los elementos que coincidan con el selector css
         - Esta lista de nodos tiene sus propios métodos como por ejemplo forEach()
         - Al contrario que en las colecciones de HTML donde no podemos usar forEach()
+
     - closest.
         - Busca un elemento desde dentro hacia afuera   
         - Si tengo referencia a un elemento hijo, me permite poder obtener elementos padres o abuelos
 
     - Se usan mas querySelector o querySelectorAll que getElementsByTagName o getElementsByClassName
-      porque se trabaja mejor con listas de nodos que colecciones html
+        - porque se trabaja mejor con listas de nodos que colecciones html
+
     - Si se usa getElementById por comodidad
     - Se pueden encadenar el uso de todos los métodos anteriores
 

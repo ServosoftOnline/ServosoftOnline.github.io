@@ -13,7 +13,9 @@
         - Reaccionar ante animaciones, copiar o pegar desde el portapapeles, ante transiciones
 
     - Formas de trabajar con eventos
-        1.- Mediante botones usando <button onclick></button>. Es menos recomendable porque ensuciamos el código no usando html (onclick)
+        1.- Mediante botones usando <button onclick></button>. 
+            -Es menos recomendable porque ensuciamos el código no usando html (onclick)
+            
         2.- Mediante el metodo event listener. Opción recomendada:
             Pasos:
                 - Ejemplos en este archivo

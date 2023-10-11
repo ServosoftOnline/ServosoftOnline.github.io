@@ -35,23 +35,68 @@
         - Agrego toda la información obtenida mediante push,
             
     - MOSTRAR EL CARRITO (RENDERIZAR)
-        - Activo la ventana del carrito.
+        - Compruebo si existen productos en el carrito
+            - Si no existieran muestro una ventana de carrito vacio.
+            - Si existieran productos continuo el proceso
 
+        - Activo la ventana del carrito.
         - Debo borrar si hubiera productos anteriores porque se añadarían duplicados.
-            - Estos tiene la case carrito_producto
+            - Estos tiene la clase carrito_producto
+
         - Recorro el carrito y en cada pasada ...
             - Por cada uno de los elementos llamado productoCarrito
             - Dependiendo del color mostraré una imagen u otra en el carrito
             - Creo la plantilla.
                 - Añado de forma dinámica lo obtenido en el paso anterior mediante backticks
-            - Lo añado al DOM
+            
             - El precio lo cogeré de la base de datos simulada en productos.js
+                - Voy añadiendo los precios multiplicados por las cantidades al total
+
             - Voy a añadir un formato de moneda para europa
                 - Usaré una API de Javascript para transformar números en monedas
                 - Creo el objeto formatearMoneda
                 - Elaborando la plantilla uso su método format(numeroATransformar)
                     - ese número es el resultado de multiplicar el producto de precio por la cantidad
-        
+            
+            - Añado al DOM la plantilla y el total
+
+    - ELIMINAR PRODUCTOS DEL CARRITO
+        - Localizo cuando hago click en cualquiera de los botones para borrar productos
+            - Hago un event listener a toda la ventana
+            - Estos botones tienen el atributo personalizado eliminar-item-carrito
+
+        - Localizo el index del producto a eliminar
+            - El carrito esta compuesto por productos, y estos son objetos.
+            - Estos objetos estarán divididos en contenedores (div) dentro del documento html
+                - Estos div tendrán la clase carrito__producto
+            
+            - Agrupo todos los divs en un array para despues ver la posicion que ocupa
+                - Esta posición coincide con el index a eliminar del carrito
+                - Guardo todos los divs, al principio en una lista de nodos.
+                - Los paso a array dejandolos encerrados en brackets [] y el operador spread ...
+                - Ya puedo usar el método indexOf() para localizar el div seleccionado
+                    - Se lo paso como argumento y me devuelve la posición que ocupa
+            
+        - Creo de nuevo el carrito omitiendo el producto que ocupa la posición obtenida anteriormente
+            - Uso el método filter para crear el nuevo carrito
+                - Sobrescribo el propio carrito con todos los elementos menos el que ocupa la posicion
+                - En cada pasada puedo acceder al objeto del carrito y a su posicion(item e index);
+                - Si las posiciones del div localizado y la del objeto del carrito son diferentes 
+                    - Devuelvo el objeto y lo vuelvo a introducir en el carrito
+
+        - Vuelvo a renderizar el carrito
+                
+                
+                
+
+
+
+            
+
+            
+
+            
+
         
 
         
@@ -62,40 +107,95 @@
 // Importo el objeto productos
 import data from "./data/productos";
 
-// Obtengo boton y botones, ventana carrito, todo el producto y creo el array carrito vacio
-const botonesAbrirCarrito = document.querySelectorAll('[data-accion="abrir-carrito"]');
-const botonesCerrarCarrito = document.querySelectorAll('[data-accion="cerrar-carrito"]');
-const botonAgregarAlCarrito = document.getElementById('agregar-al-carrito');
+// Obtengo la ventana del carrito, el producto entero e inicio la vble carrito como un array
 const ventanaCarrito = document.getElementById('carrito');
 const producto = document.getElementById('producto');
-const carrito = [];
+let carrito = [];
+
+// ABRIR EL CARRITO
+const botonesAbrirCarrito = document.querySelectorAll('[data-accion = "abrir-carrito"]');
+botonesAbrirCarrito.forEach((boton) => {
+    boton.addEventListener('click', (e) => {
+        renderCarrito();
+    })
+});
+
+// CERRAR EL CARRITO
+const botonesCerrarCarrito = document.querySelectorAll('[data-accion = "cerrar-carrito"]');
+botonesCerrarCarrito.forEach((boton) => {
+    boton.addEventListener('click', (e) => {
+        ventanaCarrito.classList.remove('carrito--active');
+    })
+});
+
+// AGREGAR PRODUCTOS
+const botonAgregarAlCarrito = document.getElementById('agregar-al-carrito');
+botonAgregarAlCarrito.addEventListener('click', () => {
+    
+    // Obtengo lo que quiero añadir
+    const id = producto.dataset.productoId;
+    const nombre = producto.querySelector('.producto__nombre').innerText;
+    const cantidad = parseInt(producto.querySelector('#cantidad').value);
+    const color = producto.querySelector('#propiedad-color input:checked').value;
+    const tamaño = producto.querySelector('#propiedad-tamaño input:checked').value;
+
+    // Muestro los resultados para asegurarme que son correctos
+    // console.log(`id: ` + id);
+    // console.log(`nombre: ` + nombre);
+    // console.log(`cantidad: ` + cantidad);
+    // console.log(`color: ` + color);
+    // console.log('tamaño: ' + tamaño);
+
+    
+    // busco duplicados en el carrito. Si lo encuentro aumento el item.cantidad y no lo añado
+    let productoEnCarrito = false;
+    carrito.forEach((item) => {
+        if(item.id === id && item.color === color && item.tamaño === tamaño) {
+            item.cantidad = item.cantidad + cantidad;
+            productoEnCarrito = true;
+        }
+    });
+    
+    if(productoEnCarrito === false) {
+        carrito.push ({
+            id: id,
+            nombre: nombre,
+            cantidad: cantidad,
+            color: color,
+            tamaño: tamaño
+        });
+    }    
+    
+});
+
+
+// RENDERIZAR
 
 // API obtener monedas. Nueva instancia Internacionalización, argumentos: idioma Y estilo de formato de moneda
 const formatearMoneda = new Intl.NumberFormat('es-ES', {style: 'currency' , currency: 'EUR'});
 
-// Si no hay productos muestro carrito vacio, si los hay renderizo el carrito
 const renderCarrito = () => {
-    if (carrito.length < 1) {
-
-        // Muestro el carrito vacio
-        ventanaCarrito.classList.add('carrito--vacio');
+    // Si no hay productos muestro carrito vacio, si no hay renderizo el carrito
+    if(carrito.length < 1) {
+        ventanaCarrito.setAttribute('class', 'carrito--vacio');
 
     } else {
-
-        // RENDERIZO
         ventanaCarrito.classList.add('carrito--active');
 
-        // Sin añadir productos nuevos, si cierro y abro el carrito se añaden productos duplicados
+        // Bug: Sin añadir productos nuevos, si cierro y abro el carrito se añaden productos duplicados
         // Para solucionar esto borro del DOM esos productos para despues crear de nuevo el carrito
-        const limpioCarrito = ventanaCarrito.querySelectorAll('.carrito__producto');
-        limpioCarrito.forEach((producto) => { producto.remove(); });
+        ventanaCarrito.querySelectorAll('.carrito__producto').forEach((producto) => { producto.remove(); });
 
         // Recorro el carrito
+        let total = 0;
         carrito.forEach((productoCarrito) => {
             
-            // Recorro el array productos y localizo el precio comparando id del producto del carrito con el id del array
-            data.productos.forEach((producto) => {
-                if (productoCarrito.id === producto.id){ productoCarrito.precio = producto.precio }
+            // Localizo el precio comparando id del producto del carrito con el id del array. Actualizo total
+            data.productos.forEach((objetoProducto) => {
+                if (productoCarrito.id === objetoProducto.id){ 
+                    productoCarrito.precio = objetoProducto.precio;                    
+                    total += objetoProducto.precio * productoCarrito.cantidad;                    
+                }
             });
 
             // Asigno el thumb correcto dependiendo del color y asigno la ruta correcta
@@ -146,61 +246,48 @@ const renderCarrito = () => {
             itemCarrito.classList.add('carrito__producto');
             itemCarrito.innerHTML = plantillaProducto;
             ventanaCarrito.querySelector('.carrito__body').appendChild(itemCarrito);
+
+            // Modifico el total en el DOM
+            ventanaCarrito.querySelector('.carrito__total').textContent = formatearMoneda.format(total);            
         });
-            
-    
-    }
-    
+    };
 } 
 
-// Añado un evento a los botones que abren y cierran el carrito
-botonesAbrirCarrito.forEach((boton) => {
-    boton.addEventListener('click', (e) => {
-        renderCarrito();
-    })
-});
-
-botonesCerrarCarrito.forEach((boton) => {
-    boton.addEventListener('click', (e) => {
-        ventanaCarrito.classList.remove('carrito--active');
-    })
-});
-
-// Función que agrega productos al carrito
-botonAgregarAlCarrito.addEventListener('click', () => {
-    
-    // Obtengo lo que quiero añadir
-    const id = producto.dataset.productoId;
-    const nombre = producto.querySelector('.producto__nombre').innerText;
-    const cantidad = parseInt(producto.querySelector('#cantidad').value);
-    const color = producto.querySelector('#propiedad-color input:checked').value;
-    const tamaño = producto.querySelector('#propiedad-tamaño input:checked').value;
-
-    // Muestro los resultados para asegurarme que son correctos
-    // console.log(`id: ` + id);
-    // console.log(`nombre: ` + nombre);
-    // console.log(`cantidad: ` + cantidad);
-    // console.log(`color: ` + color);
-    // console.log('tamaño: ' + tamaño);
-
-    
-    // busco duplicados en el carrito. Si lo encuentro aumento el item.cantidad y no lo añado
-    let productoEnCarrito = false;
-    carrito.forEach((item) => {
-        if(item.id === id && item.color === color && item.tamaño === tamaño) {
-            item.cantidad = item.cantidad + cantidad;
-            productoEnCarrito = true;
-        }
-    });
-    
-    if(productoEnCarrito === false) {
-        carrito.push ({
-            id: id,
-            nombre: nombre,
-            cantidad: cantidad,
-            color: color,
-            tamaño: tamaño
+// ELIMINAR PRODUCTOS DEL CARRITO
+ventanaCarrito.addEventListener('click', (e) => {
+    if (e.target.closest('button')?.dataset.accion === 'eliminar-item-carrito') {
+        const divProducto = e.target.closest('.carrito__producto');
+        const posicionDivProducto = [...ventanaCarrito.querySelectorAll('.carrito__producto')].indexOf(divProducto);
+        
+        carrito = carrito.filter((item, index) => {
+            if(posicionDivProducto != index) return item;
         });
-    }    
+
+        
+        if (carrito.length > 0) {
+            renderCarrito();
+        } else {
+           
+            const divCarritoBody = ventanaCarrito.querySelector('.carrito__body');           
+            const elementoAEliminar = ventanaCarrito.querySelector('.carrito__producto');
+            divCarritoBody.removeChild(elementoAEliminar);
+            ventanaCarrito.setAttribute('class', 'carrito--vacio');
+            
+            
+
+        }
+            
+
+        
+        
+    };
+
+    
+    
+        // console.log('borro el producto');
+        // 
+
+    
+    
     
 });
