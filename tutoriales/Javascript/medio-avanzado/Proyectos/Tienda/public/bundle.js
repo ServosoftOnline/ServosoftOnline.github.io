@@ -187,7 +187,8 @@ botonMas.addEventListener('click', (e) => {
                 - Si las posiciones del div localizado y la del objeto del carrito son diferentes 
                     - Devuelvo el objeto y lo vuelvo a introducir en el carrito
 
-        - Vuelvo a renderizar el carrito
+        - Si hay elementos en el carrito lo renderizo
+        - Si no resuelvo un BUG que mostraba el último elemento del carrito y activo la ventana carrito vacio
                 
                 
                 
@@ -354,37 +355,23 @@ const renderCarrito = () => {
 // ELIMINAR PRODUCTOS DEL CARRITO
 ventanaCarrito.addEventListener('click', (e) => {
     if (e.target.closest('button')?.dataset.accion === 'eliminar-item-carrito') {
+        
+        // Obtengo el indice a eliminar
         const divProducto = e.target.closest('.carrito__producto');
         const posicionDivProducto = [...ventanaCarrito.querySelectorAll('.carrito__producto')].indexOf(divProducto);
         
+        // Creo el nuevo carrito
         carrito = carrito.filter((item, index) => {
             if(posicionDivProducto != index) return item;
         });
 
-        
+        // renderizo o resuelvo bug
         if (carrito.length > 0) {
             renderCarrito();
-        } else {
-           
+        } else {           
             const divCarritoBody = ventanaCarrito.querySelector('.carrito__body');           
             const elementoAEliminar = ventanaCarrito.querySelector('.carrito__producto');
             divCarritoBody.removeChild(elementoAEliminar);
             ventanaCarrito.setAttribute('class', 'carrito--vacio');
-            
-            
-
         }
-            
-
-        
-        
-    }
-    
-    
-        // console.log('borro el producto');
-        // 
-
-    
-    
-    
-});
+    }});
