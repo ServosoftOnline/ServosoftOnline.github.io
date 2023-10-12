@@ -27,7 +27,6 @@ document.querySelector('.producto__precio').textContent = formatearPrecio.format
 // Producto
 const producto = document.getElementById('producto');
 
-
 // Funcionalidad de los thumbs
 const imagenGrande = producto.querySelector('.producto__imagen');
 const thumbs = producto.querySelector('.producto__thumbs');

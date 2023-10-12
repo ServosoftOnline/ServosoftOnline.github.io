@@ -56,7 +56,6 @@ document.querySelector('.producto__precio').textContent = formatearPrecio.format
 // Producto
 const producto$1 = document.getElementById('producto');
 
-
 // Funcionalidad de los thumbs
 const imagenGrande = producto$1.querySelector('.producto__imagen');
 const thumbs = producto$1.querySelector('.producto__thumbs');
@@ -136,6 +135,12 @@ botonMas.addEventListener('click', (e) => {
             - Si hay productos en el carrito que tengan el mismo id, color y tamaño no duplico y sumo su cantidades
 
         - Agrego toda la información obtenida mediante push,
+
+    - MOSTRAR ALERTA QUE SE AÑADIERON PRODUCTOS AL CARRITO
+        - Obtengo el div cuyo id es notificacion
+        - Le añado la clase notificacion--active para mostrar la alerta
+        - Obtengo la imagen del div y le cambio su src de forma dinámica a partir del color
+        - Cuando pasen cinco segundos le quito la clase notificacion--active y desaparece
             
     - MOSTRAR EL CARRITO (RENDERIZAR)
         - Compruebo si existen productos en el carrito
@@ -189,22 +194,8 @@ botonMas.addEventListener('click', (e) => {
 
         - Si hay elementos en el carrito lo renderizo
         - Si no resuelvo un BUG que mostraba el último elemento del carrito y activo la ventana carrito vacio
-                
-                
-                
 
-
-
-            
-
-            
-
-            
-
-        
-
-        
-        
+    
 
 */
 
@@ -229,7 +220,7 @@ botonesCerrarCarrito.forEach((boton) => {
     });
 });
 
-// AGREGAR PRODUCTOS
+// AGREGAR PRODUCTOS Y MOSTRAR ALERTA CUANDO SE INTRODUCE ALGUNO
 const botonAgregarAlCarrito = document.getElementById('agregar-al-carrito');
 botonAgregarAlCarrito.addEventListener('click', () => {
     
@@ -265,7 +256,13 @@ botonAgregarAlCarrito.addEventListener('click', () => {
             color: color,
             tamaño: tamaño
         });
-    }    
+    }
+
+    // ALERTA DE AÑADIR UN PRODUCTO AL CARRITO
+    const divNotificacion = document.getElementById('notificacion');
+    divNotificacion.classList.add('notificacion--active');    
+    divNotificacion.querySelector('img').src = `./img/thumbs/${color}.jpg`;
+    setTimeout(() => {divNotificacion.classList.remove('notificacion--active');}, 5000);
     
 });
 
