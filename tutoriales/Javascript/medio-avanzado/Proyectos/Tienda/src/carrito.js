@@ -42,10 +42,13 @@
             
     - MOSTRAR EL CARRITO (RENDERIZAR)
         - Compruebo si existen productos en el carrito
-            - Si no existieran muestro una ventana de carrito vacio.
+            - Si no existieran muestro la ventana de carrito vacio.
+                - Le añado la clase carrito--vacio
+                - Cuando haga click en el boton de cerrar la ventana o de volver a la tienda
+                    - Le vuelvo a añadir la clase carrito
             - Si existieran productos continuo el proceso
 
-        - Activo la ventana del carrito.
+        - Activo la ventana del carrito con productos
         - Debo borrar si hubiera productos anteriores porque se añadarían duplicados.
             - Estos tiene la clase carrito_producto
 
@@ -93,7 +96,10 @@
         - Si hay elementos en el carrito lo renderizo
         - Si no resuelvo un BUG que mostraba el último elemento del carrito y activo la ventana carrito vacio
 
-    
+    - SIMULAR LA CONEXION CON LA BASE DE DATOS Y AÑADIR EL O LOS PRODUCTOS DEL CARRITO
+        - Lo haría al pulsar el botón de comprar
+
+
 
 */
 
@@ -169,17 +175,25 @@ botonAgregarAlCarrito.addEventListener('click', () => {
 
 
 // RENDERIZAR
-
 // API obtener monedas. Nueva instancia Internacionalización, argumentos: idioma Y estilo de formato de moneda
 const formatearMoneda = new Intl.NumberFormat('es-ES', {style: 'currency' , currency: 'EUR'});
 
 const renderCarrito = () => {
-    // Si no hay productos muestro carrito vacio, si no hay renderizo el carrito
+    
     if(carrito.length < 1) {
+        // Carrito vacio
         ventanaCarrito.setAttribute('class', 'carrito--vacio');
+        
+        ventanaCarrito.addEventListener('click' , (e) => {
+            if (e.target.closest('button')?.dataset.accion === 'cerrar-carrito' ||
+                e.target.classList[0] === 'carrito__btn-regresar'            
+            ) ventanaCarrito.setAttribute('class', 'carrito');
+        });
 
     } else {
+        // Carrito con productos
         ventanaCarrito.classList.add('carrito--active');
+        
 
         // Bug: Sin añadir productos nuevos, si cierro y abro el carrito se añaden productos duplicados
         // Para solucionar esto borro del DOM esos productos para despues crear de nuevo el carrito
@@ -275,4 +289,10 @@ ventanaCarrito.addEventListener('click', (e) => {
             ventanaCarrito.setAttribute('class', 'carrito--vacio');
         }
     };
+});
+
+// CONEXION CON BASE DE DATOS SIMULADA
+document.getElementById('carrito__btn-comprar').addEventListener('click', (e) => {
+    console.log('Enviando la compra ....');
+    console.log(carrito);
 });

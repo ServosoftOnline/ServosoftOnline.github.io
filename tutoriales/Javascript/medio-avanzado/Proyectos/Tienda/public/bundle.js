@@ -144,10 +144,13 @@ botonMas.addEventListener('click', (e) => {
             
     - MOSTRAR EL CARRITO (RENDERIZAR)
         - Compruebo si existen productos en el carrito
-            - Si no existieran muestro una ventana de carrito vacio.
+            - Si no existieran muestro la ventana de carrito vacio.
+                - Le añado la clase carrito--vacio
+                - Cuando haga click en el boton de cerrar la ventana o de volver a la tienda
+                    - Le vuelvo a añadir la clase carrito
             - Si existieran productos continuo el proceso
 
-        - Activo la ventana del carrito.
+        - Activo la ventana del carrito con productos
         - Debo borrar si hubiera productos anteriores porque se añadarían duplicados.
             - Estos tiene la clase carrito_producto
 
@@ -195,7 +198,10 @@ botonMas.addEventListener('click', (e) => {
         - Si hay elementos en el carrito lo renderizo
         - Si no resuelvo un BUG que mostraba el último elemento del carrito y activo la ventana carrito vacio
 
-    
+    - SIMULAR LA CONEXION CON LA BASE DE DATOS Y AÑADIR EL O LOS PRODUCTOS DEL CARRITO
+        - Lo haría al pulsar el botón de comprar
+
+
 
 */
 
@@ -268,17 +274,25 @@ botonAgregarAlCarrito.addEventListener('click', () => {
 
 
 // RENDERIZAR
-
 // API obtener monedas. Nueva instancia Internacionalización, argumentos: idioma Y estilo de formato de moneda
 const formatearMoneda = new Intl.NumberFormat('es-ES', {style: 'currency' , currency: 'EUR'});
 
 const renderCarrito = () => {
-    // Si no hay productos muestro carrito vacio, si no hay renderizo el carrito
+    
     if(carrito.length < 1) {
+        // Carrito vacio
         ventanaCarrito.setAttribute('class', 'carrito--vacio');
+        
+        ventanaCarrito.addEventListener('click' , (e) => {
+            if (e.target.closest('button')?.dataset.accion === 'cerrar-carrito' ||
+                e.target.classList[0] === 'carrito__btn-regresar'            
+            ) ventanaCarrito.setAttribute('class', 'carrito');
+        });
 
     } else {
+        // Carrito con productos
         ventanaCarrito.classList.add('carrito--active');
+        
 
         // Bug: Sin añadir productos nuevos, si cierro y abro el carrito se añaden productos duplicados
         // Para solucionar esto borro del DOM esos productos para despues crear de nuevo el carrito
@@ -372,3 +386,114 @@ ventanaCarrito.addEventListener('click', (e) => {
             ventanaCarrito.setAttribute('class', 'carrito--vacio');
         }
     }});
+
+// CONEXION CON BASE DE DATOS SIMULADA
+document.getElementById('carrito__btn-comprar').addEventListener('click', (e) => {
+    console.log('Enviando la compra ....');
+    console.log(carrito);
+});
+
+/*
+
+FUNCIONALIDAD DE LAS PESTAÑAS (TABS)
+
+    - Están todas englobadas en el div cuya clase o id es "mas-informacion"
+    - Contiene:
+        - El div con la clase "tabs".
+            - Corresponde con la barra de navegación. 
+            - Son los botones que contiene el nombre de las pestañas.
+                - Tienen la clase  tabs__button donde se le aplican estilos
+                - Añadirá la clase tabs__button--active cuando sea activada identificando el boton seleccionado
+                - Su atributo personalizado data-tab permitirá mostrar su contenido asociado activando la tab
+
+        - tres divs con la clase "tab".
+            - Tienen un id con el nombre de la pestaña.
+            - Contiene la información asociada a las pestañas
+            - Añadimos la clase "tab--active" a la clase activa cuando hagamos click sobre ella
+            
+        - Cuando hagamos click en la barra:
+            - Activamos la pestaña. clase "tab--active".    
+            - Activamos el botón. clase "tabs__button--active"
+            - Mostrará la información correspondiente
+            - Ocultará la informacion que no corresponde
+            
+            
+    
+    - Será reutilizable para ello trabajare con clases:
+    
+        - La exportaremos desde este archivo y la importaré en index.js
+        - En este archivo tabjs.js:
+            - Creo la clase y la exporto
+            - Creo el método constructor que contendrá sus propiedades y métodos. Recibe el id
+                - Almaceno todo el elemento asociado a ese id y lo almaceno en la propiedad this.tabs
+                - Almaceno la barra de navegación que contiene el elemento cuya clase es tabs
+                    - Le agrego un event listener a toda la barra
+                    - Obtengo su lista de clases
+                        - Puedo obtener, dependiendo de donde haga click 
+                            - Las clases "tabs__button" y "tabs__button--active" si pincho en la pestaña activa
+                            - La clase "tabs__button" si pincho en cualquiera de las dos pestañas no activas
+                            - La case "tabs" si pincho en medio de las pestañas
+                        
+                    - Las paso a array mediante [] y el operador spread ...
+                    - Usamos la funcion includes para ver si algun elemento del array contiene "tabs__button"
+                        - Si la encuentra devuelve true. Significa que pinche en una pestaña
+                            - Accedo a su atributo personalizado. Coincide con el nombre de la pestaña a mostrar
+                            - Guardo la pestaña en la cte tab
+                            - Obtengo de todo el elemento que div tiene la clase con el nombre de la pestaña
+                                - Uso backtrips, el caracter # que indica id.
+                            - Le añado la clase "tab--active" y mostraré el contenido de la pestaña
+                            - Le añado la clase "button--active"
+
+
+                        - Si no la encuentra devuelve false.
+                            - Significa que pinche en medio de las pestañas y no hago nada.
+
+
+        - En index.js
+            - Importo la clase
+            - Creo una instancia.
+            - Adjunto como argumento el id "mas informacion" del documento html
+            - Si quiero reutilizar la clase creo otra instancia y le pongo otro argumento
+
+*/
+
+class Tabs {
+
+    constructor(idElemento) {
+        this.tabs = document.getElementById(idElemento);
+        this.nav = this.tabs.querySelector('.tabs');
+
+        this.nav.addEventListener('click', (e) => {
+            if([...e.target.classList].includes('tabs__button')) {
+                // Contiene la pestaña a mostrar.  
+                const tab = e.target.dataset.tab;
+
+                // Si hubiera algun botón activo lo desactivo. Quitandole el css de boton activo
+                if (this.tabs.querySelector('.tabs__button--active')) {
+                    this.tabs.querySelector('.tabs__button--active').classList.remove('tabs__button--active');
+                }
+
+                // Activo el botón seleccionado
+                e.target.classList.add('tabs__button--active');
+
+                // Si hubiera una pestaña activada la desactivo ocultando su información asociada
+                if (this.tabs.querySelector('.tab--active')) {
+                    this.tabs.querySelector('.tab--active').classList.remove('tab--active');
+                }
+
+                // Activo la información de la pestaña a mostrar
+                this.tabs.querySelector(`#${tab}`).classList.add('tab--active');
+
+                
+
+                
+                
+                
+            
+            }            
+        });
+    }
+}
+
+// Importo el producto y el carrito
+new Tabs('mas-informacion');
