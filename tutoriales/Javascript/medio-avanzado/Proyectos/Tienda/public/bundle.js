@@ -422,7 +422,8 @@ FUNCIONALIDAD DE LAS PESTAÑAS (TABS)
     - Será reutilizable para ello trabajare con clases:
     
         - La exportaremos desde este archivo y la importaré en index.js
-        - En este archivo tabjs.js:
+
+        - En este archivo tabs.js:
             - Creo la clase y la exporto
             - Creo el método constructor que contendrá sus propiedades y métodos. Recibe el id
                 - Almaceno todo el elemento asociado a ese id y lo almaceno en la propiedad this.tabs
@@ -441,19 +442,23 @@ FUNCIONALIDAD DE LAS PESTAÑAS (TABS)
                             - Guardo la pestaña en la cte tab
                             - Obtengo de todo el elemento que div tiene la clase con el nombre de la pestaña
                                 - Uso backtrips, el caracter # que indica id.
-                            - Le añado la clase "tab--active" y mostraré el contenido de la pestaña
+                            - Le añado la clase "tab--active"
+                                - Si hay alguna tab activa la debo desactivar antes
                             - Le añado la clase "button--active"
-
-
-                        - Si no la encuentra devuelve false.
-                            - Significa que pinche en medio de las pestañas y no hago nada.
-
+                                - Si hay un botón activo debo desactivarlo antes
 
         - En index.js
             - Importo la clase
             - Creo una instancia.
-            - Adjunto como argumento el id "mas informacion" del documento html
-            - Si quiero reutilizar la clase creo otra instancia y le pongo otro argumento
+            - Adjunto como argumento el id "mas-informacion" del documento html
+            - Si quiero reutilizar la clase
+                - Creo otra estructura en el documento html
+                    - Puedo añadir mas pestañas
+                - En lugar de "mas-información", le pongo otro nombre. Ej: "mas-información2"
+                - Modifico las pestañas y el contenido
+                - Debo respetar el resto de nombres de clases
+                - creo otra instancia y le pongo otro argumento el nuevo id "mas-informacion2"
+            
 
 */
 
@@ -483,16 +488,9 @@ class Tabs {
 
                 // Activo la información de la pestaña a mostrar
                 this.tabs.querySelector(`#${tab}`).classList.add('tab--active');
-
-                
-
-                
-                
-                
             
-            }            
-        });
-    }
+            }        });
+    };
 }
 
 // Importo el producto y el carrito
