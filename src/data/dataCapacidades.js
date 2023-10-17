@@ -38,11 +38,17 @@ export default {
         {
             id: '6',
             estrellas: '&#9733;&#9733;&#9733;',
-            capacidad: 'Github',            
+            capacidad: 'Git',            
         },
 
         {
             id: '7',
+            estrellas: '&#9733;&#9733;&#9733;',
+            capacidad: 'Github',            
+        },
+
+        {
+            id: '8',
             estrellas: '&#9733;&#9733;',
             capacidad: 'PHP',        
         },
