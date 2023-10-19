@@ -207,7 +207,7 @@ titulaciones.forEach((titulo) => {
     - Contiene toda la información de mis capacidades que agregaré de forma dinamica
 */
 
-var dataCapacidades = {
+var data = {
     capacidades: [
         {
             id: '1',
@@ -242,11 +242,17 @@ var dataCapacidades = {
         {
             id: '6',
             estrellas: '&#9733;&#9733;&#9733;',
-            capacidad: 'Github',            
+            capacidad: 'Git',            
         },
 
         {
             id: '7',
+            estrellas: '&#9733;&#9733;&#9733;',
+            capacidad: 'Github',            
+        },
+
+        {
+            id: '8',
             estrellas: '&#9733;&#9733;',
             capacidad: 'PHP',        
         },
@@ -255,7 +261,8 @@ var dataCapacidades = {
 
 // AÑADE LAS CAPACIDADES DE FORMA DINÁMICA
 
-const {capacidades} = dataCapacidades;
+// const {capacidades, estrellas} = data;
+
 
 // Obtengo la columna izquierda
 const columnaIzquierda$1 = document.querySelector('.columnaIzquierda');
@@ -280,18 +287,16 @@ const divContieneEstrellas = document.createElement('div');
 divContieneEstrellas.setAttribute('class', 'contieneEstrellas');
 divContenido.appendChild(divContieneEstrellas);
 
-// Añado las estrellas
+// Añado la columna con las estrellas
 const spanEstrellas = document.createElement('span');
 spanEstrellas.setAttribute('class', 'estrellas');
-spanEstrellas.innerHTML = `
-    <p>&#9733;&#9733;&#9733;&#9733;</p>
-    <p>&#9733;&#9733;&#9733;&#9733;</p>
-    <p>&#9733;&#9733;&#9733;&#9733;</p> 
-    <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p> 
-    <p>&#9733;&#9733;&#9733;</p> 
-    <p>&#9733;&#9733;&#9733;</p> 
-    <p>&#9733;&#9733;&#9733;&#9733;</p> 
-`;
+
+data.capacidades.forEach((itemEstrella) => {
+    const estrellasDeUnaCapacidad = document.createElement('p');
+    estrellasDeUnaCapacidad.innerHTML = itemEstrella.estrellas;
+    spanEstrellas.appendChild(estrellasDeUnaCapacidad);    
+});
+
 divContieneEstrellas.appendChild(spanEstrellas);
 
 // Creo el div con la clase capacidad
@@ -299,8 +304,8 @@ const divCapacidad = document.createElement('div');
 divCapacidad.setAttribute('class', 'capacidad');
 divContenido.appendChild(divCapacidad);
 
-// Recorro de nuevo el arreglo con las capacidades y voy añadiendo cada una de las capacidades
-capacidades.forEach((itemCapacidad) => {
+// Añado la columna de las capacidades
+data.capacidades.forEach((itemCapacidad) => {
     const parrafo = document.createElement('p');
     parrafo.textContent = itemCapacidad.capacidad;
     divCapacidad.appendChild(parrafo);
@@ -543,11 +548,9 @@ var dataTrabajos = {
 // AÑADE MIS TRABAJOS DE FORMA DINÁMICA
 
 const {trabajos} = dataTrabajos;
-console.log(trabajos);
 
 // Obtengo la columna donde las añado
 const columnaDerecha = document.querySelector('.columnaDerecha');
-console.log(columnaDerecha);
 
 // Creo el div con la clase trabajos
 const divTrabajos = document.createElement('div');
