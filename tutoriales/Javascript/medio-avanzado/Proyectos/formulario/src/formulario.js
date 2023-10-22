@@ -14,13 +14,16 @@
                 - Localizo el input en el que estoy
                 - Dependiendo en que input sabré que tengo que validar
                 - Haré funciones para validar porque despues validaré de nuevo
-                    - Les paso el formulario y el valor a validar
                     - La función devolverá true o false dependiendo si es válido o no con respecto a una expresion regular
     
             - Al darle al botón de siguiente
                 - Localizaré el paso por el que voy
-                    - tendrá la clase linea-pasos__paso-check--active
-                    - Su div padre tiene un atributo personalizado llamado paso con el paso por el que voy
+                    - Tendrá la clase linea-pasos__paso-check--active
+                    - Su div padre tiene un atributo personalizado llamado "paso" con el paso por el que voy
+                
+                - Marcaré ese paso como correcto
+                    - Sólo si es válido
+
 
 
 
@@ -30,6 +33,7 @@
 */
 
 import validarCantidad from "./validarCantidad";
+import marcarPasoComoCompletado from "./marcarPasoComoCompletado";
 const formulario = document.getElementById('formulario');
 
 
@@ -41,7 +45,7 @@ formulario.addEventListener('keyup', (e) => {
 
         // Si ese input tiene el id cantidad. Valido cantidad. Le paso el formulario y las teclas pulsadas y levantadas
         if(e.target.id === 'cantidad'){
-            validarCantidad(formulario , e.target.value);
+            validarCantidad();
         }
 
         // Si ese input tiene el id nombre-receptor. Valido el nombre del receptor
@@ -55,6 +59,8 @@ formulario.addEventListener('keyup', (e) => {
         }        
     }
 
+    
+
 });
 
 // Segunda validación: Cuando pulse el boton de siguiente
@@ -63,7 +69,12 @@ btnSiguiente.addEventListener('click', (e) => {
     e.preventDefault();
     const pasoActual = document.querySelector('.linea-pasos__paso-check--active').closest('div').dataset.paso;
     if (pasoActual === 'cantidad') {
-        validarCantidad(formulario,  e.target.value);
+        if (validarCantidad()){
+            marcarPasoComoCompletado();
+        };
+
+        
+        
     };
 });
 
