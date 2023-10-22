@@ -25,8 +25,8 @@ export default {
 
         {
             id: '4',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'B. Prácticas',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Visual studio code',
         },
 
         {
@@ -51,6 +51,12 @@ export default {
             id: '8',
             estrellas: '&#9733;&#9733;',
             capacidad: 'PHP',        
+        },
+
+        {
+            id: '9',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'B. Prácticas',
         },
     ]
 };

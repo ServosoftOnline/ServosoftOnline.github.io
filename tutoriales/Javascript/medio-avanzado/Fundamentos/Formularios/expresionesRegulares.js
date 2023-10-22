@@ -175,7 +175,7 @@ formulario.addEventListener('submit', (e) => {
     }
 
     // VALIDACIONES
-    // console.log(expresionRegular.test(datos.correo));
+  
     // Aplicamos la expresión regular
     if(!expresionRegular.test(datos.correo)) {
         console.log('Correo no valido');

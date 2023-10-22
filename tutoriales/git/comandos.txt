@@ -34,6 +34,10 @@
             - Escribir: git add --all. Publicar todo lo git status indico que estaba pendiente
             - Escribir: git commit -m "mensaje". Hace el commit y añade el mensaje personalizado que suele indicar el cambio
             - Escribir: git push -u origin main
+        
+        - Instalar las dependencias
+            - Están descritas en package.json
+            - Escribir: npm install
     
     - PARA LA CONFIGURACIÓN
         - npm -v . Muestra si npm esta instalado indicando su versión.
