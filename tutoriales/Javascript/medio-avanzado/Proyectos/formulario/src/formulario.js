@@ -20,20 +20,22 @@
                 - Localizaré el paso por el que voy
                     - Tendrá la clase linea-pasos__paso-check--active
                     - Su div padre tiene un atributo personalizado llamado "paso" con el paso por el que voy
+
+                - Mediante condicionales y dependiendo del paso haré lo siguiente:
+                    - Si se cumple la segunda validación
+                        - Marco ese paso como completado
+                        - Paso al siguiente
+                            - Implica cambiar el icono circular que indica el paso actual al siguiente paso
+                            - Marcar el paso validado con la marca de chequeado
+
                 
-                - Marcaré ese paso como correcto
-                    - Sólo si es válido
-
-
-
-
-        
-
 
 */
 
 import validarCantidad from "./validarCantidad";
 import marcarPasoComoCompletado from "./marcarPasoComoCompletado";
+import siguientePaso from "./siguientePaso";
+
 const formulario = document.getElementById('formulario');
 
 
@@ -45,7 +47,7 @@ formulario.addEventListener('keyup', (e) => {
 
         // Si ese input tiene el id cantidad. Valido cantidad. Le paso el formulario y las teclas pulsadas y levantadas
         if(e.target.id === 'cantidad'){
-            validarCantidad();
+            validarCantidad('cantidad');
         }
 
         // Si ese input tiene el id nombre-receptor. Valido el nombre del receptor
@@ -66,11 +68,14 @@ formulario.addEventListener('keyup', (e) => {
 // Segunda validación: Cuando pulse el boton de siguiente
 const btnSiguiente = document.getElementById('formulario__btn');
 btnSiguiente.addEventListener('click', (e) => {
+
     e.preventDefault();
     const pasoActual = document.querySelector('.linea-pasos__paso-check--active').closest('div').dataset.paso;
+
     if (pasoActual === 'cantidad') {
         if (validarCantidad()){
-            marcarPasoComoCompletado();
+            marcarPasoComoCompletado('cantidad');
+            siguientePaso();
         };
 
         
