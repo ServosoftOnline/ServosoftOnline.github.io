@@ -12,8 +12,8 @@
 
 */
 
-const formulario$1 = document.getElementById('formulario');
-const inputCantidad = formulario$1.cantidad;
+const formulario$3 = document.getElementById('formulario');
+const inputCantidad = formulario$3.cantidad;
 
 const validarCantidad = () => {
     const enteroConDecimalesOpcionales = /^\d+(\.\d+)?$/;
@@ -24,6 +24,69 @@ const validarCantidad = () => {
 
     } else {
         inputCantidad.classList.remove('formulario__input--error');
+        return true;    
+    }
+    
+};
+
+/*
+    VALIDAR NOMBRE
+    
+        - Obtengo el formulario y su input con el id cantidad
+        - Defino la expresion regular
+            - Valida un nombre con minúsculas, mayúsculas y tildes. Maximo de 40 caracteres
+
+        - Si no cumple la expresion regular.
+            - Le añado la clase para que muestre el mensaje de error y aplique las css correspondientes
+
+        - Si la cumple
+            - Le quito la clase para que deje de mostrar el error
+
+*/
+
+const formulario$2 = document.getElementById('formulario');
+const inputNombre = formulario$2['nombre-receptor'];
+
+const validarNombre = () => {
+    const expresionNombre = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
+
+    if(!expresionNombre.test(inputNombre.value)){
+        inputNombre.classList.add('formulario__input--error');
+        return false;
+
+    } else {
+        inputNombre.classList.remove('formulario__input--error');
+        return true;    
+    }
+    
+};
+
+/*
+    VALIDAR CORREO ELECTRONICO
+    
+        - Obtengo el formulario y su input con el id correo-receptor
+        - Defino la expresion regular para un correo electrónico                
+
+        - Si no cumple la expresion regular.
+            - Le añado la clase para que muestre el mensaje de error y aplique las css correspondientes
+
+        - Si la cumple
+            - Le quito la clase para que deje de mostrar el error
+
+*/
+
+const formulario$1 = document.getElementById('formulario');
+const inputCorreo = formulario$1['correo-receptor'];
+
+const validarCorreo = () => {
+    const expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+
+    if(!expresionCorreo.test(inputCorreo.value)){
+        inputCorreo.classList.add('formulario__input--error');
+        return false;
+
+    } else {
+        inputCorreo.classList.remove('formulario__input--error');
         return true;    
     }
     
@@ -77,33 +140,37 @@ const marcarPasoComoCompletado = (paso) => {
                 - Añadiendole la clase linea-pasos__paso-check--active
 
             - Debo mostrar el siguiente formulario
-                - 
+                - Los formularios se encuentran ocultos y a la derecha del formulario de cantidad
+                - Obtengo el nombre del formulario siguiente a traves de su atributo personalizado
+                
+                - Lo muevo hacia la izquierda y lo muestro mediante scrollIntoView
+                    - Objeto donde hay que pasarle:
+                        - Como quiero la transición. En este caso al inicio (start)
+                        - Y su comportamiento. En este caso que tenga una animación(smooth)
+
+                    - 
+                - BUG: Despues de aplicar scrollIntroView y actualizo el formulario debe tambien desplazarse
+                    - En formulario.js debo desplazarlo al principio
+
         
-        - Si no se cumple estaré en el paso de confirmación y debo mostrar los valores
-
-
-        
-
+            - Si no se cumple estaré en el paso de confirmación y debo mostrar los valores
 
 */
 
 const siguientePaso = () => {
     const todosLosPasos = [...document.querySelectorAll('.linea-pasos__paso')];
-    console.log(todosLosPasos);
     const pasoActual = document.querySelector('.linea-pasos__paso-check--active').closest('.linea-pasos__paso');
-    console.log(pasoActual);
     const indexPasoActual = todosLosPasos.indexOf(pasoActual);
-    console.log(indexPasoActual);
 
     if(indexPasoActual < todosLosPasos.length -1){
         pasoActual.querySelector('span').classList.remove('linea-pasos__paso-check--active');
         todosLosPasos[indexPasoActual+1].querySelector('span').classList.add('linea-pasos__paso-check--active');    
-    }
-    
-
-    
-
-};
+        const idFormularioSiguiente = todosLosPasos[indexPasoActual+1].dataset.paso;
+        document.querySelector(`.formulario__body [data-paso="${idFormularioSiguiente}"]`).scrollIntoView({
+            inline: 'start',
+            behavior: 'smooth'
+        });
+    }};
 
 /*
 
@@ -111,6 +178,7 @@ const siguientePaso = () => {
         
         - Formularios:
             - Cantidad
+                - Para corregir un BUG de siguientePaso.js debo mostrar este formulario cada vez que inicie
             - Nombre y correo electronico del receptor
 
         - Valido dos veces
@@ -134,6 +202,9 @@ const siguientePaso = () => {
                         - Paso al siguiente
                             - Implica cambiar el icono circular que indica el paso actual al siguiente paso
                             - Marcar el paso validado con la marca de chequeado
+                    
+                    - El paso de metodo de pago no tiene validación
+                        - Son dos radio bottoms y por defecto en index.html ya marco el primero 
 
                 
 
@@ -141,6 +212,12 @@ const siguientePaso = () => {
 
 const formulario = document.getElementById('formulario');
 
+// BUG: Desplazo el scroll hasta el primer formulario. El mas situado a la izquierda. El de cantidad
+//document.querySelector('.formulario__body').scrollLeft = 0;
+document.querySelector('.formulario__body [data-paso="cantidad"]').scrollIntoView({
+    inline: 'start',
+    behavior: 'smooth'
+});
 
 // Primera validación: Mientras el usuario escribe
 formulario.addEventListener('keyup', (e) => {
@@ -155,16 +232,14 @@ formulario.addEventListener('keyup', (e) => {
 
         // Si ese input tiene el id nombre-receptor. Valido el nombre del receptor
         if(e.target.id === 'nombre-receptor'){
-            console.log('valido el nombre del receptor');
+            validarNombre();
         }
 
         // Si ese input tiene el id correo-receptor. Valido el email del receptor
         if(e.target.id === 'correo-receptor'){
-            console.log('valido el correo del receptor');
+            validarCorreo();
         }        
     }
-
-    
 
 });
 
@@ -179,8 +254,15 @@ btnSiguiente.addEventListener('click', (e) => {
         if (validarCantidad()){
             marcarPasoComoCompletado('cantidad');
             siguientePaso();
-        }
-        
-        
-    }});
+        }    }
+    if (pasoActual === 'datos') {
+        if (validarNombre() && validarCorreo()){
+            marcarPasoComoCompletado('datos');
+            siguientePaso();
+        }    }
+    if (pasoActual === 'metodo') {
+        marcarPasoComoCompletado('metodo');
+        siguientePaso();        
+    }
+});
 //# sourceMappingURL=bundle.js.map
