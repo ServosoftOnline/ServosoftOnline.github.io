@@ -243,7 +243,8 @@ VALIDA TODOS LOS FORMULARIOS POR LO QUE IRÁ PASANDO EL PROYECTO
                         - Oculto el formulario
                         - Muestro la alerta de transferencia completada
 
-    - Regresar por la línea de tiempo por si desea modificar algo
+    - Desplazarme por los pasos antes de confirmar la transferencia
+    
     
             
 */
@@ -323,7 +324,25 @@ btnFormulario.addEventListener('click', (e) => {
             .classList.add('formulario__btn-contenedor-icono--active');
 
         // Paso al paso de confirmación
-        siguientePaso(); 
+        siguientePaso();
+
+        // Poder desplazarse por los pasos antes de confirmar la transferencia
+        // formulario.addEventListener('click', (e) => {
+            
+        //     if(e.target.closest('div').dataset.paso === 'cantidad' ){
+        //         console.log(formulario.cantidad.value);
+        //         irAlPaso('cantidad');
+        //     } else if(e.target.closest('div').dataset.paso === 'datos' ){
+        //         console.log(formulario['nombre-receptor'].value);
+        //         console.log(formulario['correo-receptor'].value);
+        //         irAlPaso('datos');
+        //     } else if(e.target.closest('div').dataset.paso === 'metodo'){
+        //         irAlPaso('metodo');
+        //     } else if(e.target.closest('div').dataset.paso === 'confirmacion'){
+        //         irAlPaso('confirmacion');
+        //     }    
+
+        // });
 
         // Despues de cuatro segundos le quito la clase formulario__btn--disabled
         setTimeout(() => {
@@ -334,6 +353,8 @@ btnFormulario.addEventListener('click', (e) => {
         btnFormulario.querySelector('span').textContent = "Transfiriendo...";
         btnFormulario.classList.add('formulario__btn--disabled');
 
+        
+
         // Conexion al servidor
 
         setTimeout(() => {
@@ -342,5 +363,37 @@ btnFormulario.addEventListener('click', (e) => {
        }, 4000);
 
     }
+});
+
+/*
+    MODIFICAR LOS INPUTS DE LA TRANSFERENCIA ANTES DE REALIZARLA
+        - Obtengo la linea de pasos entera
+        - Añado un evento de click a toda la linea
+            - Si hago click en la linea y no en un paso, salgo directamente y no hago nada
+            - Si no he salido, continuo haciendo lo siguiente:
+                - Obtengo el paso actual
+                - Valido en cada caso. Si hay algo no valido salgo directamente
+                - Si valido todo y no he salido, hago efectivo el paso
+        
+
+
+*/
+
+const lineaPasos = document.getElementById('linea-pasos');
+lineaPasos.addEventListener('click', (e) => {
+
+    if(!e.target.closest('.linea-pasos__paso')) return false;
+    const pasoActual = document.querySelector('.linea-pasos__paso-check--active')
+        .closest('.linea-pasos__paso').dataset.paso;
+    
+    if (pasoActual === 'cantidad') {
+        if (!validarCantidad()) return false;
+    }
+    if (pasoActual === 'datos') {
+        if (!validarNombre() || !validarCorreo()) return false;
+    }
+    
+    console.log('Cambiando de paso ...');
+
 });
 //# sourceMappingURL=bundle.js.map

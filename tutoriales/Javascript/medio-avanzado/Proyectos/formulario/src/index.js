@@ -1,2 +1,3 @@
 import './formulario';
+import './lineaPasos'
 

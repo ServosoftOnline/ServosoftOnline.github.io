@@ -69,7 +69,8 @@ VALIDA TODOS LOS FORMULARIOS POR LO QUE IRÁ PASANDO EL PROYECTO
                         - Oculto el formulario
                         - Muestro la alerta de transferencia completada
 
-    - Regresar por la línea de tiempo por si desea modificar algo
+    - Desplazarme por los pasos antes de confirmar la transferencia
+    
     
             
 */
@@ -78,6 +79,7 @@ import validarCantidad from "./validaciones/validarCantidad";
 import validarNombre from "./validaciones/validarNombre";
 import validarCorreo from "./validaciones/validarCorreo";
 import marcarPasoComoCompletado from "./marcarPasoComoCompletado";
+// import irAlPaso from "./irAlPaso";
 import siguientePaso from "./siguientePaso";
 
 // API obtener monedas. Nueva instancia Internacionalización, argumentos: idioma Y estilo de formato de moneda
@@ -159,7 +161,25 @@ btnFormulario.addEventListener('click', (e) => {
             .classList.add('formulario__btn-contenedor-icono--active');
 
         // Paso al paso de confirmación
-        siguientePaso(); 
+        siguientePaso();
+
+        // Poder desplazarse por los pasos antes de confirmar la transferencia
+        // formulario.addEventListener('click', (e) => {
+            
+        //     if(e.target.closest('div').dataset.paso === 'cantidad' ){
+        //         console.log(formulario.cantidad.value);
+        //         irAlPaso('cantidad');
+        //     } else if(e.target.closest('div').dataset.paso === 'datos' ){
+        //         console.log(formulario['nombre-receptor'].value);
+        //         console.log(formulario['correo-receptor'].value);
+        //         irAlPaso('datos');
+        //     } else if(e.target.closest('div').dataset.paso === 'metodo'){
+        //         irAlPaso('metodo');
+        //     } else if(e.target.closest('div').dataset.paso === 'confirmacion'){
+        //         irAlPaso('confirmacion');
+        //     }    
+
+        // });
 
         // Despues de cuatro segundos le quito la clase formulario__btn--disabled
         setTimeout(() => {
@@ -171,6 +191,8 @@ btnFormulario.addEventListener('click', (e) => {
         btnFormulario.querySelector('span').textContent = "Transfiriendo...";
         btnFormulario.classList.add('formulario__btn--disabled');
 
+        
+
         // Conexion al servidor
 
         setTimeout(() => {
@@ -180,3 +202,6 @@ btnFormulario.addEventListener('click', (e) => {
 
     }
 });
+
+
+
