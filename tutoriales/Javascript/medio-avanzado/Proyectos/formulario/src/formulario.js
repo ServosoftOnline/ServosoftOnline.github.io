@@ -163,24 +163,6 @@ btnFormulario.addEventListener('click', (e) => {
         // Paso al paso de confirmación
         siguientePaso();
 
-        // Poder desplazarse por los pasos antes de confirmar la transferencia
-        // formulario.addEventListener('click', (e) => {
-            
-        //     if(e.target.closest('div').dataset.paso === 'cantidad' ){
-        //         console.log(formulario.cantidad.value);
-        //         irAlPaso('cantidad');
-        //     } else if(e.target.closest('div').dataset.paso === 'datos' ){
-        //         console.log(formulario['nombre-receptor'].value);
-        //         console.log(formulario['correo-receptor'].value);
-        //         irAlPaso('datos');
-        //     } else if(e.target.closest('div').dataset.paso === 'metodo'){
-        //         irAlPaso('metodo');
-        //     } else if(e.target.closest('div').dataset.paso === 'confirmacion'){
-        //         irAlPaso('confirmacion');
-        //     }    
-
-        // });
-
         // Despues de cuatro segundos le quito la clase formulario__btn--disabled
         setTimeout(() => {
              btnFormulario.classList.remove('formulario__btn--disabled');
