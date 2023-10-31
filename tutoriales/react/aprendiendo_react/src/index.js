@@ -1,25 +1,6 @@
 /*
 APRENDIENDO React
   
-- Iniciar una aplicacion react
-
-  - Hay que tener instalado node.js y gitbash
-    - node.js se instala desde: https://nodejs.org/en/download
-      - En git bash escribimos node -v y nos mostrará la version de node.js si está instalada
-    - gitbash se instala desde: https://git-scm.com/downloads
-
-  - Hay que descargar la estructura de la aplicacion e iniciar el servidor 
-    - npx create-react-app nombre_de_la_aplicacion_sin_espacios_o_caracteres espaciales. 
-    - npm run start. Inicia el servidor local para ejecutar react y actualizará automaticamente el navegador
-    - Creará un archivo public/index.html que tendrá un div con un id llamado root y un src/index.js
-    - Modificaremos el archivo index.js mediante instruciones JSX situadas entre las etiquetas <React.StrictMode>
-    - Mediante el método root.render mostrará el contenido en el navegador
-    
-  - Integrar la terminal de gitbash en Visual studio code
-    - Evitará tener que abrir git bash en otra ventana externa 
-    - Ctrl + ñ muestra la consola
-    - Ejecutar npm run start
-
 - Instrucciones JSX. 
   - Son instrucciones de javascript y html juntas que serán renderizadas y mostradas en el navegador.
   - Es recomendable trabajar siempre con la consola abierta para mostrar posibles errores.
@@ -292,13 +273,7 @@ APRENDIENDO React
       - Aplico esta tercera forma de styled components:
         - El botón de iniciar sesión de FormularioInicioSesion.js le añado la propiedades negro y largo.
         - El botón de cerrar sesion situado en el componente App.js usa esta tercera forma y le añado la propiedad marginTop
-      
-      
-      
-        
-
-
-
+ 
 */
 
 
