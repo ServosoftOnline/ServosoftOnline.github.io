@@ -1,5 +1,7 @@
 /*
   APP: LISTA DE TAREAS
+    - css usado de la primera forma:  Creando un archivo css por cada componente
+      - Usare la metodologia BEM
     - Usa local storage
     
 */

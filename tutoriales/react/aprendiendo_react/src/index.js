@@ -11,6 +11,10 @@ APRENDIENDO React
   - Podemos añadir estilos de forma dinámica usando variables
   
   - Atajos:
+    - imr + tab importa react
+    - sfc + tab forma la estructura de un componente
+    - imsc + Tab importa styled components
+
     - Para imr y sfc tuve que añadir la extension Simple React Snippers
     - Para imsc lo tuve que añadir a mano de la siguiente forma:
       - Ir a Archivo/Preferencias/Configurar fragmentos de usuario
@@ -24,11 +28,7 @@ APRENDIENDO React
           ],
           "description": "Import Styled Components"
         }
-
-    - imr + tab importa react
-    - sfc + tab forma la estructura de un componente
-    - imsc + Tab importa styled components
-
+        
   - Condicionales:
     - Forma 1: Usando sentencias if de javascript en funciones fuera de JSX. Menos usual. Lo inserté en Usuario.js
     - Forma 2: Insertando condicionales en el interior de las instrucciones JSX de la siguiente manera:
