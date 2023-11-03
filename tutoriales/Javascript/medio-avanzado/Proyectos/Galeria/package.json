@@ -13,6 +13,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "rollup": "^3.26.2"
+    "rollup": "^3.29.4"
   }
 }

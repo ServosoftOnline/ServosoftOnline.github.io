@@ -1,3 +1,3 @@
 export default () => {
-    console.log('Carrito accesible probando .... 5');
+    console.log('Carrito accesible probando .... 1');
 }

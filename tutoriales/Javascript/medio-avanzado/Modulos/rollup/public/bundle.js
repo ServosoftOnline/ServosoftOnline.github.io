@@ -1,7 +1,7 @@
 'use strict';
 
 var carrito = () => {
-    console.log('Carrito accesible probando .... 5');
+    console.log('Carrito accesible probando .... 1');
 };
 
 // importo una función desde carrito.js y la llamo carrito

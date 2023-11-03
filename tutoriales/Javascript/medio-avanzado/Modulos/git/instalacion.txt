@@ -42,7 +42,7 @@ GIT - configuracion para usar en github
 		- git remote rename origin repo1. Renombra repositorios remotos. Renombra origin como repo1
 		- git remote -v. Muestra los respositorios locales
 		
-		- PARA RESOLVER UN PROBLEMA CON LAS CREDECIALES.
+	- PARA RESOLVER UN PROBLEMA CON LAS CREDECIALES.
 		- Al hacer push desde el respositorio de ServosoftOnline, la credencial llamada Servosoft2016 me impedia hacerlo. Para solucionarlo:
 			- Eliminé las credenciales desde el "Administrador de Credenciales" de Windows.
 			- Puedes encontrarlo escribiendo "Administrador de Credenciales" en la barra de búsqueda de Windows.

@@ -1,5 +1,5 @@
 {
-  "name": "app_lista_tareas",
+  "name": "lista_de_tareas",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -13,11 +13,12 @@ PARA REALIZAR UNA APP CON REACT ES NECESARIO INSTALAR LO SIGUIENTE:
   - CREATE REACT APP
     - En la carpeta donde deseo crear la app ejecuto:
         - npx create-react-app nombre_de_la_aplicacion_sin_espacios_o_caracteres especiales.
-    - Mediante consola entro en la carpeta de la app creada y ejecuto:
-        - npm start
-    - Creará un archivo public/index.html que tendrá un div con un id llamado root y un src/index.js
+        - Creará un archivo public/index.html que tendrá un div con un id llamado root y un src/index.js
+    
     - Modificaremos el archivo index.js mediante instruciones JSX situadas entre las etiquetas <React.StrictMode>
     - Mediante el método root.render mostrará el contenido en el navegador
+    - Para ejecutar la app mediante consola entro en la carpeta de la app creada y ejecuto:
+        - npm start    
 
   - REACT ROUTER
     - La documentación se encuentra en la web https://reactrouter.com
