@@ -1,68 +1,87 @@
-PARA REALIZAR UNA APP CON REACT ES NECESARIO INSTALAR LO SIGUIENTE:
+INSTALAR UNA APP CON REACT
 
-    - NODE.JS Y GITBASH
-    - node.js se instala desde: https://nodejs.org/en/download
-      - En git bash escribimos node -v y nos mostrará la version de node.js si está instalada
+  - INSTALACIONES OBLIGATORIAS
+
+    - NODE.JS
+      - node.js se instala desde: https://nodejs.org/en/download
+        - En git bash escribimos node -v y nos mostrará la version de node.js si está instalada
     
-    - gitbash se instala desde: https://git-scm.com/downloads
+    - GIT BASH
+      - Se instala desde: https://git-scm.com/downloads
       - Integrar la terminal de gitbash en Visual studio code
       - Evitará tener que abrir git bash en otra ventana externa 
       - Ctrl + ñ muestra la consola
       - Ejecutar npm run start
 
-  - CREATE REACT APP
-    - En la carpeta donde deseo crear la app ejecuto:
-        - npx create-react-app nombre_de_la_aplicacion_sin_espacios_o_caracteres especiales.
-        - Creará un archivo public/index.html que tendrá un div con un id llamado root y un src/index.js
+    - CREATE REACT APP
+
+      - En la carpeta donde deseo crear la app ejecuto:
+          - npx create-react-app nombre_de_la_aplicacion_sin_espacios_o_caracteres especiales.
+          - Creará un archivo public/index.html que tendrá un div con un id llamado root y un src/index.js
+
+        - Debo eliminar los archivos qe no valen
+          - En la carperta src quedarán solo:
+            - index.js
+                - En el interior del archivo borro lo siguiente:
+                    - los comentarios
+                    - reportWebVitals()
+                    - import reportWebVitals from './reportWebVitals';
+
+            - app.css
+              - Lo sustituyo por los mios
+
+            - index.css
+              - Los sustituyo por los mios
+            
+            - App.js
+                - Borro su contenido y creo el mio
+                - Importo lo que valla a ir necesitando:
+                  - librerías necesarias
+                    - import React from 'react';
+                    - import styled from 'styled-components';
+                    - import {useState} from 'react';
+                  - Componentes
+                  - Elementos
+                  - css
+                    - import './App.css';
+                        
+                  - Creo la estructura de la funcion ppal:
+                      const App = () => {
+                        return (
+                          <div>
+                            <h1>Hola mundo!!</h1>
+                          </div>    
+                        );
+                      }
+                      export default App;
+                    
+      - Modificaremos el archivo index.js mediante instruciones JSX situadas entre las etiquetas <React.StrictMode>
+      - Mediante el método root.render mostrará el contenido en el navegador
+      - Para ejecutar la app mediante consola entro en la carpeta de la app creada y ejecuto:
+          - npm start    
+
+  
+  - INSTALACIONES OPCIONALES
+
+    - REACT ROUTER
+      - La documentación se encuentra en la web https://reactrouter.com
+          - Copiar en la consola: npm install react-router-dom
+
+    - STYLED COMPONENTS
+      - La documentación se encuentra en la web https://styled-components.com/
+          - Ir a documentacion/basics/instalacion
+          - Copiar en consola: npm install styled-components
     
-    - Modificaremos el archivo index.js mediante instruciones JSX situadas entre las etiquetas <React.StrictMode>
-    - Mediante el método root.render mostrará el contenido en el navegador
-    - Para ejecutar la app mediante consola entro en la carpeta de la app creada y ejecuto:
-        - npm start    
+    - FONTAWESOME
+      - Fontawesome tiene un plan específico para react
+      - Lo obtuve desde https://fontawesome.com/v5/docs/web/use-with/react#get-started
 
-  - REACT ROUTER
-    - La documentación se encuentra en la web https://reactrouter.com
-        - Copiar en la consola: npm install react-router-dom
+      - Copiar en consola:
+          npm i --save @fortawesome/fontawesome-svg-core
+          npm install --save @fortawesome/free-solid-svg-icons
+          npm install --save @fortawesome/react-fontawesome
 
-  - STYLED COMPONENTS
-    - La documentación se encuentra en la web https://styled-components.com/
-        - Ir a documentacion/basics/instalacion
-        - Copiar en consola: npm install styled-components
 
-  - ELIMINO LOS ARCHIVOS QUE NO VALEN DE LOS QUE SE HAN CREADO
-    - En la carperta src quedarán solo:
-      - index.js
-          - En el interior del archivo borro lo siguiente:
-              - los comentarios
-              - reportWebVitals()
-              - import reportWebVitals from './reportWebVitals';
 
-      - app.css
-        - Lo sustituyo por los mios
-
-      - index.css
-        - Los sustituyo por los mios
-      
-      - App.js
-          - Borro su contenido y creo el mio
-          - Importo lo que valla a ir necesitando:
-            - librerías necesarias
-              - import React from 'react';
-              - import styled from 'styled-components';
-              - import {useState} from 'react';
-            - Componentes
-            - Elementos
-            - css
-              - import './App.css';
-                  
-            - Creo la estructura de la funcion ppal:
-                const App = () => {
-                  return (
-                    <div>
-                      <h1>Hola mundo!!</h1>
-                    </div>    
-                  );
-                }
-                export default App;
-        
-  - EL TUTORIAL DE APRENDIENDO_REACT DESCRIBE LOS FUNDAMENTOS DE REACT
+  
+  - EN LA APP APRENDIENDO REACTO DESCRIBO LOS FUNDAMENTOS DE REACT

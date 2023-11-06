@@ -219,6 +219,15 @@ APRENDIENDO React
       - Importarlo desde el componente como un archivo
         - Cuidado!!. Al importarlos se pueden aplicar sin tener control sobre ellos
         - Hay que poner nombres mas especificos y asegurarnos de llamarlos bien
+        - Podría usarse la metodología BEM
+                - Al contenedor ppal le pongo un nombre. Ejemplo: contenedor
+                - A las etiquetas que contiene le pongo el nombre del contenedor seguido de __ y el nombre de la etiqueta
+                - Ej:
+                  <div classname = "contenedor">
+                    <h1 classname = "contenedor__etiqueta">
+                    </h1>
+                  </div>
+
       - El componente ContadorClass usa esta primera forma
       
     - Segunda forma: Modulos CSS
