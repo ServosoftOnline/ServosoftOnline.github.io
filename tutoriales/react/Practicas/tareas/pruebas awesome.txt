@@ -1,0 +1,16 @@
+1. Add SVG Core
+npm i --save @fortawesome/fontawesome-svg-core
+
+2. Add Icon Packages
+# Free icons styles
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/free-regular-svg-icons
+npm i --save @fortawesome/free-brands-svg-icons
+
+
+
+Font Awesome Sharp requires Pro and specific versions!
+Make sure you have an active Pro-level plan or a Pro license with access to the specific versions that include Sharp's styles. 
+
+3. Add the React Component
+npm i --save @fortawesome/react-fontawesome@latest
