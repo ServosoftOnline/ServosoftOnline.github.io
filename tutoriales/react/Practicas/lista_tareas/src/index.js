@@ -1,18 +1,18 @@
 /*
   APP: LISTA DE TAREAS
 
-    - Aplicaré estilos de la primera forma:  Creando un archivo css por cada componente
-      - LLamare a las clases siguiente la metodología BEM
-
-    - Agrego iconos mediante fontawesome (NO PUDE. REVISAR MAS ADELANTE)
-      - Usaré un plan para react
-      
+    - Usaré local storage para almacenar las tareas
+    - El archivo App.css contendrá los estilos
+    - Usaré la metodologia BEM para nombrar las clases
+    
 
 */
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './componentes/App';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,4 +20,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-

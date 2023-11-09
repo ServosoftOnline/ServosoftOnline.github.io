@@ -197,7 +197,7 @@ APRENDIENDO React
 
     - Formularios
       - Eventos de formulario
-        - onchange permitirá ejecutar una función cada vez que el input cambie. 
+        - onChange permitirá ejecutar una función cada vez que el input cambie. 
           - Si no lo uso la consola advertira que un componente está cambiando de forma incontrolada
           - En su interior ejecutaremos una función
             - La función la llamamos y declaramos fuera
