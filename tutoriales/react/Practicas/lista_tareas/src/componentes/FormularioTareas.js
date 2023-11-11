@@ -1,36 +1,49 @@
 /*
-    FORMULARIO PARA AÑADIR TAREAS
+    FORMULARIO PARA AÑADIR TAREAS:
+
         - Recibe como parámetro el estado tarea y la funcion que cambia su estado.
             - Los destructuro para poder usarlos y modificarlos
 
         - El formulario cuando se envie ejecutará una funcion llamada handleSubmit
-        - La funcion handleSubmit recibe el evento
-            - El evento contiene los parámetros que recibi en FormularioTareas y puedo trabajar con ellos
+
+        - La funcion handleSubmit:
+            - Recibe el evento que contiene los parámetros que recibi en FormularioTareas y puedo trabajar con ellos
             - Evito que se refresque el formulario
-            - Ejecuto la funcion cambiarTareas cambiando el estado y renderizando de nuevo
+            
+            - Ejecuto la funcion cambiarTareas
+                - De forma automática se cambiará el estado tareas y se ejecutará de nuevo la funcion
                 - Se pueden ver los cambios de estado en el navegador en componentes del inspector
-                - La funcion añadirá al arreglo un nuevo objeto con la nueva tarea
+                - Se añadirán a las tareas ya existentes la nueva tarea
+                - El texto será el estado inputTarea
+                - El id lo obtendré de forma automatica y sin duplicados usando el paquete uuid
+                    - Enlace a su web: https://www.npmjs.com/package/uuid
+                    - Instalar el paquete: npm install uuid
+                    - Importar el paquete: import { v4 as uuidv4 } from 'uuid';
+                    - LLamar a la funcion: uuidv4()
 
-        - Lo que escribio el usuario en el input se almacena en value
-            - El value lo obtengo del estado inputTarea
+        
+        - Debemos añadir el value y el onChange al input del formulario
+        
+            - El value será el texto de la nueva tarea
+                - Usaré el estado inputTarea y la funcion que cambiará su estado será cambiarInputTarea
 
-        - El onChange ejecutara la funcion handleInput cada vez que se modifique el formulario
+            - El onChange hará que se ejecute la funcion handleInput cada vez que modifique el input del formulario
+                - Obtiene el evento y se lo pasa como parámetro a handleInput
 
-
-
-
-
+            - La funcion handleInput
+                - Ejecutará la función asociada al estado inputTarea que es cambiarInputTarea
+                - Añadirá el valor del input del formulario a inputTarea
 
 */
 
-import React, {useState} from 'react';
+import {useState} from 'react';
+import { v4 as uuidv4 } from 'uuid';
 const FormularioTareas = ({tareas, cambiarTareas}) => {
 
-    const [inputTarea, cambiarinputTarea] = useState('');
-    
-    const handleInput = (e)=>{
-        cambiarinputTarea(e.tarjet.value);
+    const [inputTarea, cambiarInputTarea] = useState('');
 
+    const handleInput = (e)=>{
+        cambiarInputTarea(e.target.value);
     }
 
     const handleSubmit = (e) => {
@@ -39,17 +52,14 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
             [
                 ...tareas,
                 {
-                    id: 3,
-                    texto: "Nueva tarea",
+                    id: uuidv4(),
+                    texto: inputTarea,
                     completada: false
                 }
             ]
 
         );
     };
-
-    
-    
     
     return ( 
         <form action ="" className="formulario-tareas" onSubmit={handleSubmit}>
@@ -58,9 +68,7 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
                 className="formulario-tareas__input"
                 placeholder="Escribe una tarea"
                 value={inputTarea}
-                onChange={() =>{ 
-                    handleInput(e);
-                }}
+                onChange={(e)=> handleInput(e)}
             />
             <button 
                 type = "submit"

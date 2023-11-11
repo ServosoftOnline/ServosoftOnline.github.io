@@ -1,9 +1,11 @@
 /*
 
 METODOS Y PROPIEDADES PARA ARRAYS. PARTE 2/2
+
 - Son los metodos son funciones ya declaradas por javascript que podemos aplicar para tratar con arrays
-- Javascript los considera objetos con métodos (funciones) y propiedades (vbles).
-- Las propiedades no llevan corchetes y los métodos sí.
+- Javascript los considera objetos con métodos y propiedades.
+    - Los métodos equivaldrían a las funciones y las propiedades a las vbles.
+    - Las propiedades no llevan corchetes y los métodos sí.
 
     - indexOf(). Obtengo el primer index de un elemento. Si no lo encuentra devuelve -1.
     - lastIndexOf(). Igual que indexOf() pero devuelve el último.

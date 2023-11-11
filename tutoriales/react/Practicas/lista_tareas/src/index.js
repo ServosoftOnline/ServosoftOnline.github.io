@@ -4,6 +4,7 @@
     - Usaré local storage para almacenar las tareas
     - El archivo App.css contendrá los estilos
     - Usaré la metodologia BEM para nombrar las clases
+    - El componente App contiene la aplicacion
     
 
 */

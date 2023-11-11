@@ -1,20 +1,35 @@
 /*
-  COMPONENTE PRINCIPAL
-    - Creo el estado tareas con valor inicial un arreglo con un objeto por cada tarea
-      - Los paso como argumento en el componente FormularioTareas
+  COMPONENTE PRINCIPAL: APP.JS
+
+    - Creo el estado tareas con valor inicial un arreglo vacio
+      - FormularioTareas.js añadirá las tareas. Le debo pasar como argumento el estado y la funcion asociada
+
+    - Devolverá:
+    
+      - El componente Header
+        - Contiene la cabecera formada por Lista de tareas y el icono de no mostrar tareas completadas
+
+      - El componente FormularioTareas
+        - Contiene un formulario que nos permitirá añadir las tareas
+        
+      - El componente ListaTareas
+        - Contiene las tareas añadidas
+
+
 
 
 */
 
-
-import { useState } from 'react';
 import './App.css';
+import { useState } from 'react';
 import Header from './Header';
 import FormularioTareas from './FormularioTareas';
+import ListaTareas from './ListaTareas';
 
 const App = () => {
   const [tareas,cambiarTareas] = useState(
     [
+      /*
       {
         id:1,
         texto: 'Lavar la ropa',
@@ -26,15 +41,16 @@ const App = () => {
         texto: 'Grabar tutorial',
         completada: false
       }
+      */
     ]
   );
 
- console.log(tareas);
  
   return (
     <div className="contenedor">
       <Header/>
       <FormularioTareas tareas={tareas} cambiarTareas={cambiarTareas}/>
+      <ListaTareas tareas={tareas}/>
     </div>
   );
 }
