@@ -75,7 +75,7 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
                 className="formulario-tareas__btn"
             >
                 {/* Boton de fontawesome. Plan de Javascript. El de react me dio problemas al instalarlo */}
-                <i className="fa-regular fa-square-plus fa-xl formulario-tareas__icono-btn"></i>
+                <i className="fa-regular fa-square-plus fa-xl formulario-tareas__icono-btn"/>
             </button>                
         </form>        
      );
