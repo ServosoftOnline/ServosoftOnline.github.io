@@ -2,18 +2,22 @@
   COMPONENTE PRINCIPAL: APP.JS
 
     - Creo el estado tareas con valor inicial un arreglo vacio
-      - FormularioTareas.js añadirá las tareas. Le debo pasar como argumento el estado y la funcion asociada
-
+    
     - Devolverá:
     
       - El componente Header
         - Contiene la cabecera formada por Lista de tareas y el icono de no mostrar tareas completadas
 
       - El componente FormularioTareas
-        - Contiene un formulario que nos permitirá añadir las tareas
+        - Contiene un formulario que permite añadir tareas
+        - Le paso como argumento las tareas y su función asociada para ir añadiendolas
         
       - El componente ListaTareas
         - Contiene las tareas añadidas
+
+        - Le paso como argumento las tareas y su funcion asociada.
+          - Las tareas para que las muestre
+          - Su funcion asociada para cambiarlas cuando queden completadas
 
 
 
@@ -33,7 +37,7 @@ const App = () => {
       {
         id:1,
         texto: 'Lavar la ropa',
-        completada: false
+        completada: true
       },
       
       {
@@ -42,6 +46,7 @@ const App = () => {
         completada: false
       }
       */
+      
     ]
   );
 
@@ -50,7 +55,7 @@ const App = () => {
     <div className="contenedor">
       <Header/>
       <FormularioTareas tareas={tareas} cambiarTareas={cambiarTareas}/>
-      <ListaTareas tareas={tareas}/>
+      <ListaTareas tareas={tareas} cambiarTareas={cambiarTareas}/>
     </div>
   );
 }

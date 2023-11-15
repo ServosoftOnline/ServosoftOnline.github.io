@@ -1,49 +1,87 @@
 /*
     MUESTRA LAS TAREAS ALMACENADAS EN EL ESTADO TAREAS
 
-        - Obtengo las tareas como parámetro
-        - La desextructuro para poder usarla
-        - Creo la lista
+        - Obtengo las tareas y su funcion asociada a su estado como parámetro
+        - Las desextructuro para poder usarlas
 
-        - Si hay alguna tarea:
+        - La funcion toogleCompletada:
+            - Para seguir buenas prácticas el componente padre debe tener las funciones
+            - Debo pasarsela cuando llame al componente hijo
+            - El hijo la obtiene como propiedad y la llama cuando la necesita  
 
-            - Recorro las tareas con map y por cada una de ella devuelvo un componente Tarea
+            - Hará lo siguiente:
+                - Cuando se pulse el boton de tarea completada en tareas.js:
+                - Recorremos todas las tareas
+                    - Si los ids coinciden:
+                        - A las tareas ya existentes le añado la tarea actual modificando solo el valor de completada a su contrario                        
+                    - Si no coinciden devuelvo la tarea sin modificar
 
-            - El componente Tarea contendrá un elemento de la lista con la tarea en su interior
-                - Debo crear un key único
-                    - Para corregir el error de consola: Each child in a list should have a unique "key" prop.
-                    - El id de la tarea es único gracias a que lo añadí usando el paquete uuid en FormularioTareas
-                - Debo pasarle la tarea que estoy recorriendo mediante map
-            
+        - Devuelvo lo siguiente:
+            - La lista
+            - Si hay alguna tarea:
+                - Las recorro con map y por cada una llamo al componente Tarea que creará los elementos de la lista
+                - Debe tener un key único que será el id único que genera el paquete uuid en FormularioTareas.js
+                - Le paso la tarea y la función toogleCompletada definida anteriormente.
 
-        - Si no hay:
-            - Muestro un mensaje que lo indique
-
-tareas.texto
+            - Si no hay tareas:
+                - Muestro un mensaje que lo indique
 
 */
 import React from "react";
 import Tarea from "./Tarea";
 
-const ListaTareas = ({tareas}) => {
+const ListaTareas = ({tareas, cambiarTareas}) => {
+    
+    const mostrarTareas = () => {
+        tareas.forEach((tarea) => {
+            console.log(tarea);
+        })
+                
+    }
+    mostrarTareas();
+
+    const toogleCompletada = (id) => {
+        cambiarTareas(            
+            tareas.map((tarea)=>{
+                if(tarea.id === id){
+                    return({...tareas, id: tarea.id, texto: tarea.texto, completada: !tarea.completada});
+                }
+                return tarea;
+            })
+        );
+        
+        mostrarTareas();
+    };
+
+    const cambiarTextoTarea = (id, nuevoTexto) => {
+        cambiarTareas(            
+            tareas.map((tarea)=>{
+                if(tarea.id === id){
+                    return({...tareas, id: tarea.id, texto: nuevoTexto, completada: tarea.completada});
+                }
+                return tarea;
+            })
+        );
+
+        mostrarTareas();
+    };
     
     return (
 
         <ul className="lista-tareas">
-            {
-                
+            {   
                 tareas.length > 0
                 ?
                     tareas.map((tarea)=>{
                     return <Tarea
                                 key={tarea.id}
                                 tarea={tarea}
+                                toogleCompletada={toogleCompletada}
+                                cambiarTextoTarea={cambiarTextoTarea}
                             />
                     })
-
                 :
                     <div className="lista-tareas__mensaje ">~ No hay tareas agregadas ~</div>                   
-
             }
         </ul>
     );

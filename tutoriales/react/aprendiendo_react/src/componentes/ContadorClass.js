@@ -4,12 +4,14 @@
         - Es antiguo. No se suele usar. Lo explico por si lo veo.
         - Importamos react y Component
         - Crear una clase con el nombre del componente extiendo la funcionalidad de componente
+        
         - Usabamos un método llamado render
             - Aquí introducimos lo que queremos que se vea en pantalla
             - Dentro introducimos el return
             - En onClick ya no podemos solicitar usar una funcion. en su lugar usaremos un método
                 - Este método se declara antes de render
                 - Para llamar al método usaremos la palabra reservada this.metodo que indica el metodo de esta clase
+
         - Crear estados
             - Usar el metodo constructor
                 - Se ejecuta siempre que carga la aplicacion
@@ -17,6 +19,7 @@
                 - Usamos el metodo super y añadimos las propiedades
                 - this.state permite añadir un estado
                     - Le pasamos un objeto compuesto por una propiedad y un valor
+                    
         - Modificar un estado
             - En nuestro ejemplo lo hacemos en las funciones de incrementar y disminuir
             - En el interior del return ya puedo usar el estado y lo muestro entre llaves

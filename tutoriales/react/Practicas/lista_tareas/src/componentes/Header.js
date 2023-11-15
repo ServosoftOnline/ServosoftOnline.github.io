@@ -1,4 +1,9 @@
-// CABECERA DE LA APP
+/*
+    CABECERA DE LA APP
+        - Contiene la cabecera de color azul
+            - A la izda el titulo 
+            - A la derecha un boton que hará que no se muestren las tareas completadas
+*/
 
 import React from "react";
 const Header = () => {
