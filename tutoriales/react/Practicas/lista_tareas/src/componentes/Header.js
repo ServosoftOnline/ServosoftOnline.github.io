@@ -6,7 +6,8 @@
 */
 
 import React from "react";
-const Header = () => {
+const Header = ({mostrarCompletadas}) => {
+    
     return (
         <header className="header">
             <h1 className="header__titulo">Lista de tareas</h1>

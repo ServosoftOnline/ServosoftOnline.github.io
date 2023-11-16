@@ -29,11 +29,11 @@
           - Ocultará el formulario de editar tarea
 
 
-
 */
 import { useState } from "react";
 
 const EditaTarea = ({tarea, cambiarQuiereEditarTarea, cambiarTextoTarea}) => {
+  
   const [tareaAModificar, cambiarTareaAModificar] = useState(tarea.texto);
     
   const handleSubmit = (e) => {

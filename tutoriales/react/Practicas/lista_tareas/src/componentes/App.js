@@ -1,7 +1,8 @@
 /*
   COMPONENTE PRINCIPAL: APP.JS
-
-    - Creo el estado tareas con valor inicial un arreglo vacio
+    - Defino los siguiente estados
+      - El estado tareas que almacenará un arreglo compuesto por un objeto por cada tarea. Su valor inicial es un arreglo vacio
+      - El estado mostrarCompletadas si contiene true mostrará las tareas completadas y lo contrario si contiene false
     
     - Devolverá:
     
@@ -50,12 +51,24 @@ const App = () => {
     ]
   );
 
+  const [mostrarCompletadas, cambiarMostrarCompletadas]= useState(false);
+
  
   return (
     <div className="contenedor">
+      
       <Header/>
-      <FormularioTareas tareas={tareas} cambiarTareas={cambiarTareas}/>
-      <ListaTareas tareas={tareas} cambiarTareas={cambiarTareas}/>
+      <FormularioTareas
+        tareas = {tareas}
+        cambiarTareas = {cambiarTareas}
+      />
+
+      <ListaTareas
+        tareas = {tareas}
+        cambiarTareas = {cambiarTareas}
+        mostrarCompletadas = {mostrarCompletadas}
+      />
+
     </div>
   );
 }

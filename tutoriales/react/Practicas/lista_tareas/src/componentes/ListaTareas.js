@@ -4,17 +4,30 @@
         - Obtengo las tareas y su funcion asociada a su estado como parámetro
         - Las desextructuro para poder usarlas
 
-        - La funcion toogleCompletada:
-            - Para seguir buenas prácticas el componente padre debe tener las funciones
-            - Debo pasarsela cuando llame al componente hijo
-            - El hijo la obtiene como propiedad y la llama cuando la necesita  
+        - Defino las funciones que usaré en los componentes hijos:
+            - Para seguir buenas prácticas debo definirlas aquí en el componente padre
+            - Y pasarlas como propiedades a sus componentes hijos
 
-            - Hará lo siguiente:
+            - La funcion toogleCompletada ejecuta la funcion cambiarTareas que hará lo siguiente:
+
                 - Cuando se pulse el boton de tarea completada en tareas.js:
                 - Recorremos todas las tareas
-                    - Si los ids coinciden:
-                        - A las tareas ya existentes le añado la tarea actual modificando solo el valor de completada a su contrario                        
+                    - Si los ids coinciden devuelve la tarea cambiando el valor de completada a lo contrario que tuviera
+                        - De true a false o de false a true                        
                     - Si no coinciden devuelvo la tarea sin modificar
+            
+            - La función cambiarTextoTarea ejecuta la funcion cambiarTareas que hará lo siguiente:
+
+                - Cuando se pulse el boton de editar tarea en tareas.js
+                - Recorre todas las tareas.
+                    - Si los id coinciden devuelve la tarea modificando el texto existente con el nuevo
+                    - Si los id no coinciden devuelve la tarea sin modificar
+
+            - La función eliminarTarea ejecuta la funcion cambiarTareas que hará lo siguiente:
+                - Cuando pulse el boton de eliminar tareas en tareas.js
+                - Filtra todas las tareas
+                - Si los ids son diferentes devuelve la tarea y si no devuelva nada.
+
 
         - Devuelvo lo siguiente:
             - La lista
@@ -30,41 +43,34 @@
 import React from "react";
 import Tarea from "./Tarea";
 
-const ListaTareas = ({tareas, cambiarTareas}) => {
+const ListaTareas = ({tareas, cambiarTareas, mostrarCompletadas}) => {
     
-    const mostrarTareas = () => {
-        tareas.forEach((tarea) => {
-            console.log(tarea);
-        })
-                
-    }
-    mostrarTareas();
-
     const toogleCompletada = (id) => {
-        cambiarTareas(            
-            tareas.map((tarea)=>{
-                if(tarea.id === id){
-                    return({...tareas, id: tarea.id, texto: tarea.texto, completada: !tarea.completada});
-                }
+        cambiarTareas(
+            tareas.map((tarea)=>{                
+                if(tarea.id === id) return({...tarea, completada: !tarea.completada});                
                 return tarea;
             })
         );
-        
-        mostrarTareas();
     };
 
     const cambiarTextoTarea = (id, nuevoTexto) => {
         cambiarTareas(            
             tareas.map((tarea)=>{
-                if(tarea.id === id){
-                    return({...tareas, id: tarea.id, texto: nuevoTexto, completada: tarea.completada});
-                }
+                if(tarea.id === id) return({...tarea, texto: nuevoTexto});
                 return tarea;
             })
         );
-
-        mostrarTareas();
     };
+
+    const eliminarTarea = (id) =>{
+        cambiarTareas(
+            tareas.filter((tarea) => {
+                if(tarea.id !== id) return tarea;
+                return false;
+            })            
+        );
+    }
     
     return (
 
@@ -74,10 +80,11 @@ const ListaTareas = ({tareas, cambiarTareas}) => {
                 ?
                     tareas.map((tarea)=>{
                     return <Tarea
-                                key={tarea.id}
-                                tarea={tarea}
-                                toogleCompletada={toogleCompletada}
-                                cambiarTextoTarea={cambiarTextoTarea}
+                                key = {tarea.id}
+                                tarea = {tarea}
+                                toogleCompletada = {toogleCompletada}
+                                cambiarTextoTarea = {cambiarTextoTarea}
+                                eliminarTarea = {eliminarTarea}
                             />
                     })
                 :

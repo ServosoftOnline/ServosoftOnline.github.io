@@ -34,9 +34,7 @@
                             - Afectando al condicional anterior y mostrará o no el componente EditaTarea
 
                     - El que permite eliminar la tarea
-                
-
-
+                        - Cuando se haga click sobre el llamará a la funcion eliminarTarea de su componente padre
 
 
 */
@@ -44,7 +42,7 @@
 import {useState}  from "react";
 import EditaTarea from "./EditaTarea";
 
-const Tarea = ({tarea , toogleCompletada, cambiarTextoTarea}) => {
+const Tarea = ({tarea , toogleCompletada, cambiarTextoTarea, eliminarTarea}) => {
 
     const [quiereEditarTarea, cambiarQuiereEditarTarea] = useState(false);
     let tareaRealizada = '';
@@ -65,13 +63,14 @@ const Tarea = ({tarea , toogleCompletada, cambiarTextoTarea}) => {
             </i>
 
             <div className="lista-tareas__texto">
+
                 {quiereEditarTarea ?
                     <EditaTarea
                         tarea={tarea}
                         cambiarQuiereEditarTarea = {cambiarQuiereEditarTarea}
-                        cambiarTextoTarea = {cambiarTextoTarea} /> 
-                        
-                    : tarea.texto}                
+                        cambiarTextoTarea = {cambiarTextoTarea} />                        
+                    : tarea.texto}
+
             </div>
 
             <div className="lista-tareas__contenedor-botones">
@@ -81,7 +80,7 @@ const Tarea = ({tarea , toogleCompletada, cambiarTextoTarea}) => {
                         lista-tareas__icono
                         lista-tareas__icono-accion
                     "
-                    onClick = {()=>{cambiarQuiereEditarTarea(!quiereEditarTarea)}}>                
+                    onClick = {()=>{cambiarQuiereEditarTarea(!quiereEditarTarea)}}>
                 </i>
 
                 <i 
@@ -89,7 +88,9 @@ const Tarea = ({tarea , toogleCompletada, cambiarTextoTarea}) => {
                         fa-solid fa-trash fa-lg
                         lista-tareas__icono
                         lista-tareas__icono-accion
-                    ">                
+                    "
+                    onClick = {()=>{eliminarTarea(tarea.id)}}>
+
                 </i>
             </div>
         </li>
