@@ -1,9 +1,15 @@
 /*
   COMPONENTE PRINCIPAL: APP.JS
+
+
     - Defino los siguiente estados:
 
       - El estado tareas que almacenará un arreglo compuesto por un objeto por cada tarea.
         - Su valor inicial es un arreglo vacio
+        - A medida que añadimos tareas se añadirán objetos
+        - Este arreglo sería el que se almacenase en una base de datos, la nube o guardarlos en el navegador
+          - Para esto último Javascript usa local storage y será lo que haremos en esta app
+            - cada vez que cambie el estado tareas
 
       - El estado mostrarCompletadas contendrá true o false
         - si contiene true mostrará solo las tareas completadas
@@ -25,13 +31,14 @@
           - Las tareas para que las muestre
           - Su funcion asociada para cambiarlas cuando queden completadas
 
-
+    - Uso de local storage
+      - Importar useEffect
 
 
 */
 
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './Header';
 import FormularioTareas from './FormularioTareas';
 import ListaTareas from './ListaTareas';
@@ -56,7 +63,7 @@ const App = () => {
     ]
   );
 
-  const [mostrarCompletadas, cambiarMostrarCompletadas]= useState(true);
+  const [mostrarCompletadas, cambiarMostrarCompletadas]= useState(false);
 
  
   return (

@@ -20,6 +20,10 @@
                     - Instalar el paquete: npm install uuid
                     - Importar el paquete: import { v4 as uuidv4 } from 'uuid';
                     - LLamar a la funcion: uuidv4()
+                
+                - Vuelvo a iniciar el valor de inputTarea a un espacio vacio
+                    - Esto hará que cuando actue de nuevo el placeholder escriba en el formulario "Escribe una tarea"
+
 
         
         - Debemos añadir el value y el onChange al input del formulario
@@ -59,6 +63,7 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
             ]
 
         );
+        cambiarInputTarea('');
     };
     
     return ( 
@@ -74,7 +79,7 @@ const FormularioTareas = ({tareas, cambiarTareas}) => {
                 type = "submit"
                 className="formulario-tareas__btn"
             >
-                {/* Boton de fontawesome. Plan de Javascript. El de react me dio problemas al instalarlo */}
+                {/* Boton de fontawesome. Plan de Javascript gratuito. El de react me dio problemas al instalarlo */}
                 <i className="fa-regular fa-square-plus fa-xl formulario-tareas__icono-btn"/>
             </button>                
         </form>        
