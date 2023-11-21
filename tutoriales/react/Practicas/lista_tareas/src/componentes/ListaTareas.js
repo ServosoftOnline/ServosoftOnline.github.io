@@ -44,7 +44,7 @@ import React from "react";
 import Tarea from "./Tarea";
 
 const ListaTareas = ({tareas, cambiarTareas, mostrarCompletadas}) => {
-    
+        
     const toogleCompletada = (id) => {
         cambiarTareas(
             tareas.map((tarea)=>{                
@@ -79,13 +79,30 @@ const ListaTareas = ({tareas, cambiarTareas, mostrarCompletadas}) => {
                 tareas.length > 0
                 ?
                     tareas.map((tarea)=>{
-                    return <Tarea
+
+                        if(mostrarCompletadas) {
+                            return <Tarea
                                 key = {tarea.id}
                                 tarea = {tarea}
                                 toogleCompletada = {toogleCompletada}
                                 cambiarTextoTarea = {cambiarTextoTarea}
                                 eliminarTarea = {eliminarTarea}
                             />
+
+                        // Si la tarea no está completada la devolvemos
+                        } else if(!tarea.completada) {
+                            return <Tarea
+                                key = {tarea.id}
+                                tarea = {tarea}
+                                toogleCompletada = {toogleCompletada}
+                                cambiarTextoTarea = {cambiarTextoTarea}
+                                eliminarTarea = {eliminarTarea}
+                            />
+                        }
+
+                        // Si ya está completada no la devolvemos
+                        return false;                  
+                    
                     })
                 :
                     <div className="lista-tareas__mensaje ">~ No hay tareas agregadas ~</div>                   

@@ -1,9 +1,14 @@
 /*
   COMPONENTE PRINCIPAL: APP.JS
-    - Defino los siguiente estados
-      - El estado tareas que almacenará un arreglo compuesto por un objeto por cada tarea. Su valor inicial es un arreglo vacio
-      - El estado mostrarCompletadas si contiene true mostrará las tareas completadas y lo contrario si contiene false
-    
+    - Defino los siguiente estados:
+
+      - El estado tareas que almacenará un arreglo compuesto por un objeto por cada tarea.
+        - Su valor inicial es un arreglo vacio
+
+      - El estado mostrarCompletadas contendrá true o false
+        - si contiene true mostrará solo las tareas completadas
+        - Si contiene false las mostrará todas
+            
     - Devolverá:
     
       - El componente Header
@@ -51,13 +56,17 @@ const App = () => {
     ]
   );
 
-  const [mostrarCompletadas, cambiarMostrarCompletadas]= useState(false);
+  const [mostrarCompletadas, cambiarMostrarCompletadas]= useState(true);
 
  
   return (
     <div className="contenedor">
       
-      <Header/>
+      <Header
+        mostrarCompletadas={mostrarCompletadas}
+        cambiarMostrarCompletadas={cambiarMostrarCompletadas}
+      />
+
       <FormularioTareas
         tareas = {tareas}
         cambiarTareas = {cambiarTareas}

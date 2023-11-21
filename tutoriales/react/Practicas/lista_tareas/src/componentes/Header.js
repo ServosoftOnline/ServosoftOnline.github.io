@@ -6,15 +6,41 @@
 */
 
 import React from "react";
-const Header = ({mostrarCompletadas}) => {
-    
+const Header = ({mostrarCompletadas, cambiarMostrarCompletadas}) => {
+    {console.log('al entrar mostrar completadas: ' + mostrarCompletadas)}
+
+            
     return (
         <header className="header">
             <h1 className="header__titulo">Lista de tareas</h1>
-            <button className="header__boton">
-                No mostrar tareas completadas
-                {/* Aqui insertaría el icono */}
-            </button>
+            {mostrarCompletadas ?
+                <button className="header__boton">
+                    No mostrar completadas
+                    <i
+                        className="
+                            fa-regular fa-eye-slash
+                            header__icono-boton
+                        "
+                        
+                    >
+                    </i>
+                </button>
+            :
+                <button className="header__boton">
+                    Mostrar completadas
+                    <i
+                        className="
+                            fa-solid fa-eye
+                            header__icono-boton
+                        "
+                        
+                    >
+                    </i>
+                </button>
+                
+            
+            } 
+            
         </header>
       );
 }
