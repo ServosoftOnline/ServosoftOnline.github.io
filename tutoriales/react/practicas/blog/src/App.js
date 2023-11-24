@@ -26,11 +26,16 @@
 
       - El componente Routers. Es un contendor de todas las rutas
 
+    - Seria recomendable tener la app con un mayor orden de los componentes
+      - BrowserRouter en index.js
+      - NavLink en un componente Header, donde poner toda la barra de navegación
+      - Route y Routes en un componente Routes, donde almacenar todas las rutas y las páginas
+      - He querido dejar todos los componentes importados en App.js para que se vea y entienda mejor.
+
+
 */
 
 import React from 'react';
-// import styled from 'styled-components';
-// import {useState} from 'react';
 import {BrowserRouter, NavLink, Route, Routes} from 'react-router-dom';
 import PaginaInicio from './componentes/PaginaInicio';
 import PaginaBlog from './componentes/PaginaBlog';
@@ -41,12 +46,9 @@ const App = () => {
   return (
 
     <BrowserRouter>
-
       <div>
 
         <h1>Blog: Práctica para usar react router</h1>
-
-        {/* Encabezado */}
         <header>
 
           {/* Barra de navegacion */}
@@ -58,26 +60,18 @@ const App = () => {
 
         </header>
 
-        {/* Parte ppal */}
         <main>
-
+          
+          {/* Rutas hacia las paginas */}
           <Routes>
-
-            {/* Ruta pagina de inicio */}
             <Route path='/' element={<PaginaInicio/>} />
-          
-            {/* Ruta pagina de Blog */}
             <Route path='/blog' element={<PaginaBlog />} />
-          
-            {/* Ruta página de Acerca de */}
-            <Route path='/acerca-de' element={<PaginaAcercaDe />} />          
-
+            <Route path='/acerca-de' element={<PaginaAcercaDe />} />
           </Routes>
           
-        </main>      
+        </main>
 
       </div>
-
     </BrowserRouter>  
 
   );
