@@ -265,11 +265,15 @@ APRENDIENDO React
           - <Elemento propiedad1 propiedad2 .... > </Elemento> 
         
         - Creamos el elemento de esta forma:
-          - Debemos importar styled-componets asi: 
+          - Creo el archivo con el nombre del elemento.js
+          - Importo styled-components: 
             - import styled, {css} from 'styled-components'; (imsc+tab)       
 
-          - Creamos los elementos así:
+          - Creo los elementos:
             - const elemento = styled.etiquetaHtmlOriginal`codigo_css`;
+                
+          - Los exporto:
+            - export default elemento;
           
           - Añadimos pseudo elementos asi:
             - &:pseudoElemento {Instrucciones css}
@@ -278,6 +282,10 @@ APRENDIENDO React
           - Añadimos propiedades asi:
             - ${props => props.propiedad && css `codigo_css`}; en la declaración del elemento
             - Podemos añadir pseudo elementos situandolos entre las llaves de las propiedades
+
+        - Lo importo y uso en el destino de esta forma:
+          - import Elemento from './elementos/elemento';
+          - <Elemento> </Elemento>
 
       - Aplico esta tercera forma de styled components:
         - El botón de iniciar sesión de FormularioInicioSesion.js le añado la propiedades negro y largo.

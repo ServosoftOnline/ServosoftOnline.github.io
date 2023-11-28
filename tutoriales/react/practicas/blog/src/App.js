@@ -32,10 +32,21 @@
       - Route y Routes en un componente Routes, donde almacenar todas las rutas y las páginas
       - He querido dejar todos los componentes importados en App.js para que se vea y entienda mejor.
 
+    - Aplico styled components para asignar estilos css
 
 */
 
 import React from 'react';
+
+// Styled components
+import ContenedorPrincipal from './elementos/ContenedorPrincipal';
+import Titulo from './elementos/Titulo';
+import ContenedorHeader from './elementos/ContenedorHeader';
+import Menu from './elementos/Menu';
+import Main from './elementos/Main';
+
+
+// React router
 import {BrowserRouter, NavLink, Route, Routes} from 'react-router-dom';
 import PaginaInicio from './componentes/PaginaInicio';
 import PaginaBlog from './componentes/PaginaBlog';
@@ -46,21 +57,21 @@ const App = () => {
   return (
 
     <BrowserRouter>
-      <div>
+      <ContenedorPrincipal>
 
-        <h1>Blog: Práctica para usar react router</h1>
-        <header>
+        <Titulo>Blog: Práctica para usar react router</Titulo>
+        <ContenedorHeader>
 
           {/* Barra de navegacion */}
-          <nav>
+          <Menu>
             <NavLink to ='/'>Inicio</NavLink>
             <NavLink to ='/blog'>Blog</NavLink>
             <NavLink to ='/acerca-de'>Acerca de ...</NavLink>
-          </nav>
+          </Menu>
 
-        </header>
+        </ContenedorHeader>
 
-        <main>
+        <Main>
           
           {/* Rutas hacia las paginas */}
           <Routes>
@@ -69,9 +80,9 @@ const App = () => {
             <Route path='/acerca-de' element={<PaginaAcercaDe />} />
           </Routes>
           
-        </main>
+        </Main>
 
-      </div>
+        </ContenedorPrincipal>
     </BrowserRouter>  
 
   );
