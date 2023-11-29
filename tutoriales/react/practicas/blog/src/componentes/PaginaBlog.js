@@ -12,7 +12,7 @@
 
 // import posts from './../data/post';
 import { NavLink } from 'react-router-dom';
-import posts from './../data/post';
+import posts from '../data/posts';
 
 
 const PaginaBlog = () => {

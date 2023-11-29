@@ -24,7 +24,11 @@
             - En este caso contendrá componentes que contendrán el código JSX con las etiquetas div que delimitan una pagina
           - path. Le añado la ruta que indiqué en to
 
-      - El componente Routers. Es un contendor de todas las rutas
+      - El componente Routers. Es un contendor de todas las rutas:
+          - Las páginas principales
+          - Los post desde PaginaPost. Esta tendrá una parte dinámica
+          - Error 404. Por si el usuario cambia la barra de direcciones con una pagina que no existe
+
 
     - Seria recomendable tener la app con un mayor orden de los componentes
       - BrowserRouter en index.js
@@ -51,6 +55,8 @@ import {BrowserRouter, NavLink, Route, Routes} from 'react-router-dom';
 import PaginaInicio from './componentes/PaginaInicio';
 import PaginaBlog from './componentes/PaginaBlog';
 import PaginaAcercaDe from './componentes/PaginaAcercaDe';
+import Post from './componentes/Post';
+import PaginaError404 from './componentes/PaginaError404';
 
 
 const App = () => {
@@ -73,11 +79,20 @@ const App = () => {
 
         <Main>
           
-          {/* Rutas hacia las paginas */}
           <Routes>
+            {/* Rutas hacia las paginas principales */}
             <Route path='/' element={<PaginaInicio/>} />
             <Route path='/blog' element={<PaginaBlog />} />
             <Route path='/acerca-de' element={<PaginaAcercaDe />} />
+
+            {/* Rutas hacia los post. ruta dinámica a partir de :id */}
+            <Route path='/post/:id' element={<Post />} />
+
+            {/* Ruta hacia la pagina error 404 */}
+            <Route path='*' element={<PaginaError404 />} />
+
+
+
           </Routes>
           
         </Main>
