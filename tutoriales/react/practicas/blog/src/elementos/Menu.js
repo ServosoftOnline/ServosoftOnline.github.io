@@ -21,7 +21,7 @@ import styled from "styled-components";
 
 const Menu = styled.nav `
     a {
-        text-decoration:none;
+        text-decoration: none;
         color: #165168;
         margin: 0 10px;        
     }

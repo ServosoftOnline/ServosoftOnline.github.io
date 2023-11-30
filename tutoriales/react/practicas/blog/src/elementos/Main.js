@@ -1,6 +1,10 @@
+/*
+  ESTILOS APLICADOS A LA PARTE PRINCIPAL DE LA APP
+    - Bordes redondeados con un radio de 10px y una sombra
+*/
+
 import styled from "styled-components";
 
-// Bordes redondeados con un radio de 10px y una sombra
 const Main = styled.main`
   background: white;
   padding: 40px;

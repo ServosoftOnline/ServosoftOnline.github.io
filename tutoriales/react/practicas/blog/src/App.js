@@ -40,18 +40,20 @@
 
 */
 
+// React router
 import React from 'react';
+import {BrowserRouter, NavLink, Route, Routes} from 'react-router-dom';
+
 
 // Styled components
+
 import ContenedorPrincipal from './elementos/ContenedorPrincipal';
 import Titulo from './elementos/Titulo';
 import ContenedorHeader from './elementos/ContenedorHeader';
 import Menu from './elementos/Menu';
 import Main from './elementos/Main';
 
-
-// React router
-import {BrowserRouter, NavLink, Route, Routes} from 'react-router-dom';
+// Páginas
 import PaginaInicio from './componentes/PaginaInicio';
 import PaginaBlog from './componentes/PaginaBlog';
 import PaginaAcercaDe from './componentes/PaginaAcercaDe';
@@ -80,6 +82,7 @@ const App = () => {
         <Main>
           
           <Routes>
+            
             {/* Rutas hacia las paginas principales */}
             <Route path='/' element={<PaginaInicio/>} />
             <Route path='/blog' element={<PaginaBlog />} />
@@ -90,8 +93,6 @@ const App = () => {
 
             {/* Ruta hacia la pagina error 404 */}
             <Route path='*' element={<PaginaError404 />} />
-
-
 
           </Routes>
           

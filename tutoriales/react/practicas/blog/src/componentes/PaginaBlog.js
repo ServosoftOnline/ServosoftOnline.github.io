@@ -1,8 +1,10 @@
 /*
     PAGINA BLOG:
+
         - Importo el array que contiene los posts en la carpeta data
         - Importo el componente Navlink para crear los enlaces
-        - PaginaBlog devuelve:
+
+        - DevuelvO:
             - La cabecera con el texto Blog
             - Una lista que contiene una expresión de javascript que hace lo siguiente:
                 - Recorre todos los post y devuelve un elemento de la lista en cada pasada
