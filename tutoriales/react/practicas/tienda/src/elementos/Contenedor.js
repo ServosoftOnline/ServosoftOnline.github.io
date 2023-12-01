@@ -1,5 +1,7 @@
 // ESTILOS PARA EL CONTENEDOR PPAL
 
+import styled from "styled-components";
+
 const Contenedor = styled.div`
     max-width: 1000px;
     padding: 40px;
@@ -12,3 +14,7 @@ const Contenedor = styled.div`
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgba(129, 129, 129, 0.1);
 `;
+
+export default Contenedor;
+
+

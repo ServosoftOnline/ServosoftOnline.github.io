@@ -46,7 +46,6 @@ import {BrowserRouter, NavLink, Route, Routes} from 'react-router-dom';
 
 
 // Styled components
-
 import ContenedorPrincipal from './elementos/ContenedorPrincipal';
 import Titulo from './elementos/Titulo';
 import ContenedorHeader from './elementos/ContenedorHeader';
@@ -84,15 +83,15 @@ const App = () => {
           <Routes>
             
             {/* Rutas hacia las paginas principales */}
-            <Route path='/' element={<PaginaInicio/>} />
-            <Route path='/blog' element={<PaginaBlog />} />
-            <Route path='/acerca-de' element={<PaginaAcercaDe />} />
+            <Route path='/' component={<PaginaInicio/>} />
+            <Route path='/blog' component={<PaginaBlog />} />
+            <Route path='/acerca-de' component={<PaginaAcercaDe />} />
 
             {/* Rutas hacia los post. ruta dinámica a partir de :id */}
-            <Route path='/post/:id' element={<Post />} />
+            <Route path='/post/:id' component={<Post />} />
 
             {/* Ruta hacia la pagina error 404 */}
-            <Route path='*' element={<PaginaError404 />} />
+            <Route path='*' component={<PaginaError404 />} />
 
           </Routes>
           
