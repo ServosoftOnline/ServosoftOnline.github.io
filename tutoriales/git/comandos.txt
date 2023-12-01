@@ -89,6 +89,10 @@
     - PARA RESOLVER UN PROBLEMA SOBRE ARCHIVOS ELIMINADOS
         - git rm ruta_del_archivo que indica git status
         - Un commit y un push
+
+    - RESOLUCION DE UN PROBLEMA DE PERMISOS PARA USAR ROLLUP:
+        - Lo resolví con este comando restaurando los permisos: chmod +x ./node_modules/.bin/rollup
+
         
 
 
