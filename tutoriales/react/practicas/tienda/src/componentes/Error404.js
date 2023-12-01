@@ -1,3 +1,5 @@
+// PAGINA ERROR 404
+
 const Error404 = () => {
     return (
         <div>

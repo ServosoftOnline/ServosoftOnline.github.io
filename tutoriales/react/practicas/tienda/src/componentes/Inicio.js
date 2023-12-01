@@ -1,4 +1,6 @@
-const PaginaInicio = () => {
+// PAGINA DE INICIO
+
+const Inicio = () => {
     return (
         <div>
             <h2>Inicio</h2>
@@ -7,4 +9,4 @@ const PaginaInicio = () => {
     );
 }
  
-export default PaginaInicio;
+export default Inicio;

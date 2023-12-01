@@ -1,37 +1,35 @@
 /*
-    CONTIENE Y MUESTRA LOS PRODUCTOS AL ENTRAR EN LA PAGINA DE LA TIENDA:
+    PAGINA DE PRODUCTOS:
 
+        - La llama la pagina de la tienda
         - Importo los elementos que usaré que contienen los estilos definidos mediante styled components
-        - Creo los productos como un array de objetos, con un objeto por cada producto
+        - Obtengo los productos que pasé desde App.js
+        
         - Devuelvo:
-            - La cabecera con el titulo prode
-
+            - El elemento contenedor productos con los estilos aplicados mediante styled components
+            - Recorro el array productos y en cada pasa muestro su nombre y su botón para añadirlo al carrito
 
 */
 
 // Elementos
-import ContenedorProductos from "./../elementos/productos/ContenedorProductos";
-import Producto from "./../elementos/productos/Producto";
-import Boton from "./../elementos/productos/Boton";
+import ContenedorProductos from './../elementos/ContenedorProductos';
+import Producto from './../elementos/Producto';
+import Boton from './../elementos/Boton';
 
 
-
-const Productos = () => {
-
-    const productos = [
-        {id: 1, nombre: 'Producto1'},
-        {id: 2, nombre: 'Producto2'},
-        {id: 3, nombre: 'Producto3'},
-        {id: 4, nombre: 'Producto4'}
-    ];
+const Productos = ({productos}) => {   
 
     return (
         <div>
-            <h3>Productos</h3>            
+                     
             <ContenedorProductos>
                 {productos.map((producto, index) => {
-                    console.log(producto);
-
+                    return(
+                        <Producto key= {index} >
+                            <p>{producto.nombre}</p>
+                            <Boton>Agregar al carrito</Boton>
+                        </Producto>
+                    );
                 })}
             </ContenedorProductos>
         </div>
@@ -39,8 +37,3 @@ const Productos = () => {
 }
  
 export default Productos;
-
-
- 
-
- 
