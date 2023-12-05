@@ -1,5 +1,6 @@
 /*
-    CARRITO:
+    COMPONENTE CARRITO:
+
         - Lo mostraré en la columna de la derecha y siempre estará ahi aunque cambie de pagina
         - Importo los elementos con los estilos creados mediante styled component:
             - Producto contiene los estilos correspondientes a su contenedor
@@ -29,13 +30,12 @@ const Carrito = ({carrito}) => {
             <h2>Carrito</h2>
             {carrito.length > 0 ?
                 carrito.map((producto, index) => {
-                return(
-                    <Producto key = {index}>
-                        <NombreProducto>{producto.nombre}</NombreProducto>
-                        <p>{producto.cantidad}</p>              
-                    </Producto>
-                );
-                            
+                    return(
+                        <Producto key = {index}>
+                            <NombreProducto>{producto.nombre}</NombreProducto>
+                            <p>{producto.cantidad}</p>              
+                        </Producto>
+                    );                            
                 })                  
             :
                 <p>No se añadieron productos</p>

@@ -19,7 +19,7 @@ import Producto from './../elementos/Producto';
 import Boton from './../elementos/Boton';
 
 
-const Productos = ({productos}) => {   
+const Productos = ({productos, agregarProductoAlCarrito}) => {
 
     return (
         <ContenedorProductos>
@@ -27,12 +27,18 @@ const Productos = ({productos}) => {
                 return(
                     <Producto key= {index} >
                         <p>{producto.nombre}</p>
-                        <Boton>Agregar al carrito</Boton>
+                        <Boton onClick={()=>agregarProductoAlCarrito(producto.id, producto.nombre)}
+                            >Agregar al carrito
+                        </Boton>
                     </Producto>
                 );
             })}
         </ContenedorProductos>
-    );
+    );        
+    
 }
+
+    
+
  
 export default Productos;

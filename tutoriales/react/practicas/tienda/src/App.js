@@ -1,24 +1,16 @@
 /*
-  APLICACION TIENDA REACT
-    - Uso react, react router y styled components. Esto último añadido en cada uno de loselementos
-    - Importo los elementos y componentes que valla a usar
+  APLICACION TIENDA REACT:
 
-    - Creo el componente ppal App.js
-      - Simulando una base de datos, creo el array productos que contiene un objeto por cada producto
-      - Este array o llamada a base de datos se crea en el componente ppal
-      - Y despues se lo pasaría en las rutas como si fuera una propiedad al componente que lo necesitara
-      - En nuestro caso se lo paso al componente Tienda. Tienda lo obtiene y se lo pasa al componente Productos
-      - Esto se llama prop driling y es engorroso
-        - Para evitar esto podríamos usar la libreria Redux
-        - O usar context API
+    - Cree esta aplicación para aprender a usar prop driling. Consiste en:
+      - Tener los datos o funciones principales en el componente ppal y pasarlos a los componentes como propiedades
+      - Los componentes los usarían o se los pasarían a otros componentes en su interior
+      - En este caso lo paso esta información al componente tienda que a su vez se lo pasa al componente productos
+        - Le paso el array con los productos y la función para agregar productos al carrito
 
-      - La tercera columna mostrará el carrito
-        - Muestra las diferentes cantidades compradas de los diferentes productos
-
-
-
+    - Para evitar prop drilink se usaría la libreria REDUX, para crear un estado global, o CONTEXT API
+    - La tercera columna con la etiqueta aside contendrá el carrito y se mantendrá siempre en pantalla      
+    - Uso react, react router y styled components. Esto último añadido en cada uno de los elementos
     
-
 */
 
 // React y react router
@@ -46,16 +38,50 @@ const App = () => {
     {id: 4, nombre: 'Producto4'}
   ];
 
-  const [carrito, cambiarCarrito] = useState([
-    {id:1, cantidad:2, nombre:'Producto1'},
-    {id:2, cantidad:4, nombre:'Producto2'},
-    {id:3, cantidad:1, nombre:'Producto3'},
-    {id:4, cantidad:3, nombre:'Producto4'}
-]);
+  //Estado carrito
+  const [carrito, cambiarCarrito] = useState([]);
+
+  // Función que agrega un producto al carrito
+  const agregarProductoAlCarrito = ((idProductoAAgregar, nombre)=> {
+
+    // Si no hay productos en el carrito lo inicio con los parámetros obtenidos
+    if(carrito.length === 0) {
+      cambiarCarrito([{id:idProductoAAgregar, nombre: nombre, cantidad:1}]);
+
+    } else {
+
+      // Compruebo si el producto que queremos añadir ya estuviera en el carrito y en que posición
+      let estaEnCarrito = false;
+      let enLaPosicion = 0;
+      carrito.forEach((productoEnCarrito, index) => {
+        if (productoEnCarrito.id === idProductoAAgregar){
+          estaEnCarrito = true;
+          enLaPosicion = index;
+        } 
+      });
+
+      // Clono el carrito para poder modificarlo
+      const nuevoCarrito = [...carrito];
+      
+      //Si está en carrito modifico su cantidad en la posición obtenida. Si no lo empujo al final del array
+      if(estaEnCarrito) {
+        nuevoCarrito[enLaPosicion] = {
+          id:idProductoAAgregar,
+          nombre: nombre,
+          cantidad: nuevoCarrito[enLaPosicion].cantidad +1}        
+      } else {
+        nuevoCarrito.push({id:idProductoAAgregar, nombre:nombre, cantidad: 1});
+      }
+
+      //Cambio el estado del carrito con el nuevo carrito obtenido
+      cambiarCarrito(nuevoCarrito);
+    }
+
+  });
 
   return (
     <Contenedor>
-        <h1>Tienda: Práctica para </h1>
+        <h3>Tienda: Práctica para aprender prop driling</h3>
 
       {/* Menú de navegacion */}
       <Menu>
@@ -72,20 +98,24 @@ const App = () => {
           <Route path='*' element={<Error404 />} />      
           <Route path='/' element={<Inicio/>} />
           <Route path='/blog' element={<Blog />} />
-          <Route path='/tienda' element={<Tienda productos={productos} />} />          
+          <Route path='/tienda' element={
+              <Tienda 
+                productos={productos}
+                agregarProductoAlCarrito={agregarProductoAlCarrito}                
+              />
+            } />          
         </Routes>
 
       </main>
 
       {/* La tercera columna la ocupara el aside */}
       <aside>
-        
         <Carrito carrito={carrito}/>
       </aside>
 
     </Contenedor>
 
-
   );
 }
+
 export default App;

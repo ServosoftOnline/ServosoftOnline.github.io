@@ -81,6 +81,13 @@ INSTALAR UNA APP CON REACT
           npm install --save @fortawesome/free-solid-svg-icons
           npm install --save @fortawesome/react-fontawesome
 
+    - UUID.
+      - Paquete que permite generar ids únicos sind duplicados
+          - Enlace a su web: https://www.npmjs.com/package/uuid
+          - Instalar el paquete: npm install uuid
+          - Importar el paquete: import { v4 as uuidv4 } from 'uuid';
+          - LLamar a la funcion: uuidv4()
+
 
 
   

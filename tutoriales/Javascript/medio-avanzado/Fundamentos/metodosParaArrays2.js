@@ -3,6 +3,7 @@
 METODOS Y PROPIEDADES PARA ARRAYS. PARTE 2/2
 
 - Son los metodos son funciones ya declaradas por javascript que podemos aplicar para tratar con arrays
+
 - Javascript los considera objetos con métodos y propiedades.
     - Los métodos equivaldrían a las funciones y las propiedades a las vbles.
     - Las propiedades no llevan corchetes y los métodos sí.
@@ -80,10 +81,7 @@ console.log(`Nuevo array con los nombres de 5 letras: ${nombres4Letras}`);
 // includes(). Ejemplo: Saber si Silvia esta en el array de nombres
 if(nombres.includes('Silvia')) console.log('Silvia se encuentra en el array nombres');
 else console.log('Silvia no esta');
-
-
 console.log(nombres);
-
 
 // every(). Ejemplo: Validar si todos los elementos del array nombres contienen texto.
 // introduzco número por error el número 50

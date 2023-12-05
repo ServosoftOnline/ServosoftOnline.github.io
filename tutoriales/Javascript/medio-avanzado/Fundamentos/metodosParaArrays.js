@@ -1,5 +1,7 @@
 /*
-METODOS Y PROPIEDADES PARA ARRAYS. PARTE 1 / 2
+
+METODOS Y PROPIEDADES PARA ARRAYS. PARTE 1 / 2:
+
 - Son los metodos son funciones ya declaradas por javascript que podemos aplicar para tratar con arrays
 - Javascript los considera objetos con métodos (funciones) y propiedades (vbles).
 - Las propiedades no llevan corchetes y los métodos sí.
