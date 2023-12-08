@@ -61,16 +61,21 @@ INSTALAR UNA APP CON REACT
           - npm start    
 
   
-  - INSTALACIONES OPCIONALES
+  - INSTALACIONES OPCIONALES (LIBRERIAS)
 
     - REACT ROUTER
-      - La documentación se encuentra en la web https://reactrouter.com
+      - La documentación: https://reactrouter.com
           - Copiar en la consola: npm install react-router-dom
 
     - STYLED COMPONENTS
-      - La documentación se encuentra en la web https://styled-components.com/
+      - La documentación: https://styled-components.com/
           - Ir a documentacion/basics/instalacion
           - Copiar en consola: npm install styled-components
+
+    - REDUX
+      - La documentacion: https://redux.js.org/introduction/installation
+      - Copiar en consola: npm install redux (Instalacion para JAVASCRIPT)
+      - Copiar tambien: npm install react-redux (Instalacion para react)
     
     - FONTAWESOME
       - Fontawesome tiene un plan específico para react
