@@ -34,10 +34,6 @@ import { createStore } from 'redux';
 import reducer from './reducers/tiendaReducer';
 const store = createStore(reducer);
 
-// Mostraría en consola el estado
-// console.log(store.getState());
-
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -9,14 +9,11 @@
 
 import Productos from "./Productos";
 
-const Tienda = ({agregarProductoAlCarrito}) => {
+const Tienda = () => {
     return (
         <div>
             <h2>Tienda</h2>
-            <Productos
-                
-                agregarProductoAlCarrito={agregarProductoAlCarrito}
-            />            
+            <Productos />            
         </div>
         
     );

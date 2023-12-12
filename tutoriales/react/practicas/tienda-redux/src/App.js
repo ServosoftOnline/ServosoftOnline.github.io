@@ -3,6 +3,7 @@
     
     - Usaré un estado global y evitaré realizar propdriling como hice en la app tienda
       - Cualquier pagina de la app puede acceder a ese estado global.
+      - Elimino estados locales y su envio como propiedades al llamar al componente
 
     - El codigo se basa en app tienda y lo modifico para aplicar la libreria REDUX
     - REDUX está en deshuso. Cabe la posibilidad que lo encuentre en codigos antíguos.
@@ -12,7 +13,7 @@
 */
 
 // React y react router
-import {React, useState} from 'react';
+import {React} from 'react';
 import {NavLink,Route, Routes} from 'react-router-dom';
 
 // Elementos
@@ -29,47 +30,6 @@ import Error404 from './componentes/Error404';
 
 const App = () => {
   
-  //Estado carrito
-  const [carrito, cambiarCarrito] = useState([]);
-
-  // Función que agrega un producto al carrito
-  const agregarProductoAlCarrito = ((idProductoAAgregar, nombre)=> {
-
-    // Si no hay productos en el carrito lo inicio con los parámetros obtenidos
-    if(carrito.length === 0) {
-      cambiarCarrito([{id:idProductoAAgregar, nombre: nombre, cantidad:1}]);
-
-    } else {
-
-      // Compruebo si el producto que queremos añadir ya estuviera en el carrito y en que posición
-      let estaEnCarrito = false;
-      let enLaPosicion = 0;
-      carrito.forEach((productoEnCarrito, index) => {
-        if (productoEnCarrito.id === idProductoAAgregar){
-          estaEnCarrito = true;
-          enLaPosicion = index;
-        } 
-      });
-
-      // Clono el carrito para poder modificarlo
-      const nuevoCarrito = [...carrito];
-      
-      //Si está en carrito modifico su cantidad en la posición obtenida. Si no lo empujo al final del array
-      if(estaEnCarrito) {
-        nuevoCarrito[enLaPosicion] = {
-          id:idProductoAAgregar,
-          nombre: nombre,
-          cantidad: nuevoCarrito[enLaPosicion].cantidad +1}        
-      } else {
-        nuevoCarrito.push({id:idProductoAAgregar, nombre:nombre, cantidad: 1});
-      }
-
-      //Cambio el estado del carrito con el nuevo carrito obtenido
-      cambiarCarrito(nuevoCarrito);
-    }
-
-  });
-
   return (
     <Contenedor>
         <h3>Tienda: Práctica para aprender REDUX. Evito prop driling. Uso boilerplate</h3>
@@ -89,18 +49,15 @@ const App = () => {
           <Route path='*' element={<Error404 />} />      
           <Route path='/' element={<Inicio/>} />
           <Route path='/blog' element={<Blog />} />
-          <Route path='/tienda' element={
-              <Tienda 
-                agregarProductoAlCarrito={agregarProductoAlCarrito}                
-              />
-            } />          
+          <Route path='/tienda' element={<Tienda />} />          
         </Routes>
 
       </main>
 
       {/* La tercera columna la ocupara el aside */}
       <aside>
-        <Carrito carrito={carrito}/>
+        {/* <Carrito carrito={carrito}/> */}
+        <Carrito />
       </aside>
 
     </Contenedor>

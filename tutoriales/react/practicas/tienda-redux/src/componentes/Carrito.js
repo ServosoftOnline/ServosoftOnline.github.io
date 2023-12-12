@@ -1,20 +1,21 @@
 /*
-    COMPONENTE CARRITO:
+    MEDIANTE REDUX OBTENGO DESDE EL ESTADO GLOBAL LA PROPIEDAD CARRITO
 
-        - Lo mostraré en la columna de la derecha y siempre estará ahi aunque cambie de pagina
-        - Importo los elementos con los estilos creados mediante styled component:
-            - Producto contiene los estilos correspondientes a su contenedor
-            - Nombre producto contiene los estilos correspondientes a su párrafo
+        - Para usar redux y obtener el estado global
+            - importo connect desde react-redux
 
-        - Creo el componente Carrito obtenido como propiedad al array carrito proveniente de App.js
-            - Devuelvo lo siguiente:
-                - Los productos si los hubiese
-                    - Los recorro, muestro los productos, los nombres y cantidades.
-                        - Productos y nombres con estilos, cantidades no.
-                    - Su key será su indice
+            - Defino la función mapStateToProps
+                - recibe como parámetro un objeto con el estado global.
+                - devuelve un objeto que contiene:
+                    - Las propiedades que queremos inyectar al componente Productos
+                    - cuyo contenido lo obtengo del parámetro recibido con el objeto estado global
 
-                - Un mensaje que indica que no hay productos en el carrito
+            - antes de exportar el componente Productos:
+                - Lo Mapeo al estado global a propiedades. (función mapStateToProps)
+                - Y lo conectamos con el estado global (connect)
 
+            - Ahora la propiedad productos ya está accesible desde el estado global
+                - Puedo usar la propiedad productos dentro del componente Productos
 
 */
 
@@ -23,6 +24,10 @@
 import Producto from "../elementos/carrito/Producto";
 import NombreProducto from "../elementos/carrito/NombreProducto";
 
+// Redux
+import { connect } from 'react-redux';
+
+//La propiedad carrito ya está accesible sin haberla pasado mediante prop driling
 const Carrito = ({carrito}) => {  
 
     return (
@@ -43,5 +48,14 @@ const Carrito = ({carrito}) => {
         </div>
      );
 }
- 
-export default Carrito;
+
+// Devuelvo la propiedad carrito con el contenido proveniente del carrito del estado global
+const mapStateToProps = (estado) => {
+    return {
+        carrito: estado.carrito
+    }
+}
+
+
+// La propiedad carrito la conecto al estado global  
+export default connect(mapStateToProps)(Carrito);
