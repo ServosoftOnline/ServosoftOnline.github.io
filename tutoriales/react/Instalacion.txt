@@ -4,7 +4,7 @@ INSTALAR UNA APP CON REACT
 
     - NODE.JS
       - node.js se instala desde: https://nodejs.org/en/download
-        - En git bash escribimos node -v y nos mostrará la version de node.js si está instalada
+        - Ver si tengo instalado node.js y que version: node -v
     
     - GIT BASH
       - Se instala desde: https://git-scm.com/downloads
@@ -60,26 +60,49 @@ INSTALAR UNA APP CON REACT
       - Para ejecutar la app mediante consola entro en la carpeta de la app creada y ejecuto:
           - npm start    
 
+    - VITE
+
+      - Instalacion de la app:
+        - Comando: npm create vite@latest
+          - Escribo el nombre del proyecto
+          - Le indico que voy a usar react y despues JAVASCRIPT
+          
+        - Instalacion de las dependencias: npm install
+        - Ejecutar la app: npm run dev y hacer click en la web local
+
+      - Instalacion del plugin vite-plugin-svgr
+          - Comando: npm i vite-plugin-svgr
+        
+      - Pasar una aplicacion de create react app a vite
+        - 1.- Instalar la nueva app con VITE
+        - 2.- Sobrescribo la carpeta src de la nueva app con la carpeta src de la vieja app
+        - 3.- Copiar todas las dependencias de la vieja app al archivo package.json de la nueva app (dependences)
+        - 4.- Instalamos las dependencias mediante npm install
+        - 5.- Cambio las extensiones de los archivos JAVASCRIPT de js a jsx
+        - 6.- En el archivo index.html en la etiqueta script debe apuntar al archivo correcto
+         
+
+      
   
   - INSTALACIONES OPCIONALES (LIBRERIAS)
 
     - REACT ROUTER
-      - La documentación: https://reactrouter.com
+      - Su web: https://reactrouter.com
           - Copiar en la consola: npm install react-router-dom
 
     - STYLED COMPONENTS
-      - La documentación: https://styled-components.com/
+      - Su web: https://styled-components.com/
           - Ir a documentacion/basics/instalacion
           - Copiar en consola: npm install styled-components
 
     - REDUX
-      - La documentacion: https://redux.js.org/introduction/installation
+      - Su web: https://redux.js.org/introduction/installation
       - Copiar en consola: npm install redux (Instalacion para JAVASCRIPT)
       - Copiar tambien: npm install react-redux (Instalacion para react)
     
     - FONTAWESOME
       - Fontawesome tiene un plan específico para react
-      - Lo obtuve desde https://fontawesome.com/v5/docs/web/use-with/react#get-started
+      - Su web: https://fontawesome.com/v5/docs/web/use-with/react#get-started
 
       - Copiar en consola:
           npm i --save @fortawesome/fontawesome-svg-core
@@ -88,7 +111,7 @@ INSTALAR UNA APP CON REACT
 
     - UUID.
       - Paquete que permite generar ids únicos sind duplicados
-          - Enlace a su web: https://www.npmjs.com/package/uuid
+          - Su web: https://www.npmjs.com/package/uuid
           - Instalar el paquete: npm install uuid
           - Importar el paquete: import { v4 as uuidv4 } from 'uuid';
           - LLamar a la funcion: uuidv4()
