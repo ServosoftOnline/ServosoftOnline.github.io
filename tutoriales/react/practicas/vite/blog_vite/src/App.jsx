@@ -18,6 +18,8 @@
       - El componente Route
         - Lo uso para crear rutas
         - Se cierra por sí mismo
+        - Las rutas dinámicas no servirían en el caso que los artículos fueran obtenidos de una base de datos
+          - En este caso simulamos la base de datos con el archivo post.jsx que se encuentra dentro de la carpeta data
 
         - Tendrá los atributos:
           - element que contendrá código JSX o componentes
@@ -66,7 +68,7 @@ const App = () => {
     <BrowserRouter>
       <ContenedorPrincipal>
 
-        <Titulo>Blog: Práctica para usar react router</Titulo>
+        <Titulo>Blog: Práctica para usar react router. Creada mediante vite</Titulo>
         <ContenedorHeader>
 
           {/* Barra de navegacion */}
@@ -83,15 +85,15 @@ const App = () => {
           <Routes>
             
             {/* Rutas hacia las paginas principales */}
-            <Route path='/' component={<PaginaInicio/>} />
-            <Route path='/blog' component={<PaginaBlog />} />
-            <Route path='/acerca-de' component={<PaginaAcercaDe />} />
+            <Route path='/' element={<PaginaInicio/>} />
+            <Route path='/blog' element={<PaginaBlog />} />
+            <Route path='/acerca-de' element={<PaginaAcercaDe />} />
 
             {/* Rutas hacia los post. ruta dinámica a partir de :id */}
-            <Route path='/post/:id' component={<Post />} />
+            <Route path='/post/:id' element={<Post />} />
 
             {/* Ruta hacia la pagina error 404 */}
-            <Route path='*' component={<PaginaError404 />} />
+            <Route path='*' element={<PaginaError404 />} />
 
           </Routes>
           

@@ -98,6 +98,10 @@ const App = () => {
  
   return (
     <div className="contenedor">
+
+      <h1>Practica: Uso de formularios, crear, editar y borrar tareas.</h1>
+      <h2>Creada mediante vite</h2>
+      <h2>Almacena la informacion de forma local en el navegador</h2>
       
       <Header
         mostrarCompletadas={mostrarCompletadas}

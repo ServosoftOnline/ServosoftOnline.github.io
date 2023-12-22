@@ -58,32 +58,30 @@ INSTALAR UNA APP CON REACT
       - Modificaremos el archivo index.js mediante instruciones JSX situadas entre las etiquetas <React.StrictMode>
       - Mediante el método root.render mostrará el contenido en el navegador
       - Para ejecutar la app mediante consola entro en la carpeta de la app creada y ejecuto:
-          - npm start    
+          - npm start   
+
+      - Ver version actual: npx create-react-app --version
+      - Actualizar a la última version: npx create-react-app@latest my-temprary-app
 
     - VITE
 
-      - Instalacion de la app:
-        - Comando: npm create vite@latest
-          - Escribo el nombre del proyecto
-          - Le indico que voy a usar react y despues JAVASCRIPT
-          
-        - Instalacion de las dependencias: npm install
-        - Ejecutar la app: npm run dev y hacer click en la web local
+      - Instalo vitealar la app inical de VITE
+          - 1.- npm create vite@latest
+          - 2.- Instalo las depedencias iniciales mediante npm install
+          - 3.- Ejecuto npm run dev y compruebo que la instalacion inicial de vite funciona
+       
+      - Pasar una aplicacion de create react app a vite:
+          - 1.- Sobrescribo la carpeta src de la nueva app con la carpeta src de la vieja app
+          - 2.- Copiar todas las dependencias de la vieja app al archivo package.json de la nueva app (dependences)
+          - 3.- Cambio las extensiones de los archivos JAVASCRIPT de js a jsx
+          - 4.- Vuelvo a ejecutar npm install para instalar las depedencias añadidas
+          - 5.- En el archivo index.html en la etiqueta script debe apuntar al archivo correcto
+          - 6.- Puede ser necesario instalar de nuevo algun paquete. Ej: uuid
 
       - Instalacion del plugin vite-plugin-svgr
+          - Transforma imagenes svg en componentes
           - Comando: npm i vite-plugin-svgr
         
-      - Pasar una aplicacion de create react app a vite
-        - 1.- Instalar la nueva app con VITE
-        - 2.- Sobrescribo la carpeta src de la nueva app con la carpeta src de la vieja app
-        - 3.- Copiar todas las dependencias de la vieja app al archivo package.json de la nueva app (dependences)
-        - 4.- Instalamos las dependencias mediante npm install
-        - 5.- Cambio las extensiones de los archivos JAVASCRIPT de js a jsx
-        - 6.- En el archivo index.html en la etiqueta script debe apuntar al archivo correcto
-         
-
-      
-  
   - INSTALACIONES OPCIONALES (LIBRERIAS)
 
     - REACT ROUTER
@@ -101,13 +99,19 @@ INSTALAR UNA APP CON REACT
       - Copiar tambien: npm install react-redux (Instalacion para react)
     
     - FONTAWESOME
-      - Fontawesome tiene un plan específico para react
       - Su web: https://fontawesome.com/v5/docs/web/use-with/react#get-started
+      
+      - Hay varias formas de hacerlo:
+        - Mediante un plan de react.
+          - A mi no me ha funcionado por ahora.
+          - Pasos:
+            - Copiar en consola:
+              - npm i --save @fortawesome/fontawesome-svg-core.
+                - Aquí me da el error CODE E401. Incorrect or missing password.
+              - npm install --save @fortawesome/free-solid-svg-icons.
+                -  Instala iconos solidos.
+              - npm install --save @fortawesome/react-fontawesome
 
-      - Copiar en consola:
-          npm i --save @fortawesome/fontawesome-svg-core
-          npm install --save @fortawesome/free-solid-svg-icons
-          npm install --save @fortawesome/react-fontawesome
 
     - UUID.
       - Paquete que permite generar ids únicos sind duplicados

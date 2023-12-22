@@ -7,9 +7,12 @@
       - En este caso lo paso esta información al componente tienda que a su vez se lo pasa al componente productos
         - Le paso el array con los productos y la función para agregar productos al carrito
 
-    - Para evitar prop drilink se usaría la libreria REDUX, para crear un estado global, o CONTEXT API
+    - Para evitar prop drilink se empezó a usar la libreria REDUX, para crear un estado global, y después CONTEXT API
     - La tercera columna con la etiqueta aside contendrá el carrito y se mantendrá siempre en pantalla      
     - Uso react, react router y styled components. Esto último añadido en cada uno de los elementos
+    - La creé mediante create react app
+    - Uso react router, styled components
+    - Simulo una base de datos mediante el array de objetos productos
     
 */
 
@@ -81,7 +84,7 @@ const App = () => {
 
   return (
     <Contenedor>
-        <h3>Tienda: Práctica para aprender prop driling</h3>
+        <h3>Tienda: Práctica para aprender prop driling. Creada mediante create react app</h3>
 
       {/* Menú de navegacion */}
       <Menu>
