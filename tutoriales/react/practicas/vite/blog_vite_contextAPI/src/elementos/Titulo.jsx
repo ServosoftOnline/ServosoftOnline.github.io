@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Titulo = styled.h1 `
     margin-bottom: 10px;
     font-size: 26px;
+    text-align: center;
     text-transform: uppercase;
 
 `;

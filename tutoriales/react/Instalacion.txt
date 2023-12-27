@@ -97,6 +97,9 @@ INSTALAR UNA APP CON REACT
       - Su web: https://redux.js.org/introduction/installation
       - Copiar en consola: npm install redux (Instalacion para JAVASCRIPT)
       - Copiar tambien: npm install react-redux (Instalacion para react)
+
+    - ROLLUP  
+      - Copiar en consola: npm install --save-dev rollup
     
     - FONTAWESOME
       - Su web: https://fontawesome.com/v5/docs/web/use-with/react#get-started

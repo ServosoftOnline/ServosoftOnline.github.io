@@ -1,5 +1,6 @@
 //PAGINA DE INICIO
 
+
 const PaginaInicio = () => {
     return (
         <div>
