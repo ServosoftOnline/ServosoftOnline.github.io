@@ -4,13 +4,18 @@ PRACTICA REACT: BLOG
 
   - Aplicacion muy sencilla para aprender como usar react router. No será un blog real.
   
-  - Usaremos:
+  - Usaré:
     - React. Libreria de Javascript. Que estoy usando durante el curso
     - React router. Libreria de Javascript que permite crear app de mas de una página
     - Styled components. Para aplicar estilos css
-    - Describo como instalarlos en instalacion.txt
+    - Context API para crear contextos
     
-  - Describo como usar Styled components mas detalladamente en la app aprendiendo_react
+  - Con respecto al uso de context API
+    - importo el proveedor del contexto encerrado entre llaves
+    - Encierro al componente ppal App en el interior del proveedor
+
+    
+  
   
 
 */
@@ -20,11 +25,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
+// Importo proveedor del contexto
+import {ProveedorTema} from './contextos/contextoTema';
 
+
+// Encierro al componente App en el componente proveedor del contexto
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ProveedorTema>
+      <App />
+    </ProveedorTema>    
   </React.StrictMode>
 );
 

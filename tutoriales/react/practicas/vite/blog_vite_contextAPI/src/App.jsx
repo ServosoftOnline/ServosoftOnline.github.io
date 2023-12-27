@@ -5,14 +5,15 @@
     - Permite crear un estado global en nuestra aplicacion.
     - No necesitaríamos la libreria REDUX
     - Ya viene integrada en react. No es necesario instalar ninguna libreria
-    - Guardare los estados globales en una carpeta llamada contextos
+    - Permite generar contextos, que serán globales para toda la app
+    - Guardare los contextos en una carpeta llamada contextos
 
 
-    - Esta aplicacion:
+    - En esta aplicacion:
       - Modificaré la practica del blog
-      - Usa vite, react router, styled componentes y CONTEXT API para establecer estados globales
+      - Usa vite, react router, styled componentes y CONTEXT API para gestionar los contextos
       - Modificará el tamaño de la fuentes y centrará o alineará la pagina a izq o derecha
-        - Se aplica a todas las páginas usando un estado global
+        - Se aplica a todas las páginas gracias al contexto
         
  
 
