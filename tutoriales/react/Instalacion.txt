@@ -93,6 +93,9 @@ INSTALAR UNA APP CON REACT
           - Ir a documentacion/basics/instalacion
           - Copiar en consola: npm install styled-components
 
+    - FIREBASE
+      - Su web: https://firebase.google.com
+
     - REDUX
       - Su web: https://redux.js.org/introduction/installation
       - Copiar en consola: npm install redux (Instalacion para JAVASCRIPT)
