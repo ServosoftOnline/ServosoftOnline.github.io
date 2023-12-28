@@ -2,6 +2,10 @@ INSTALAR UNA APP CON REACT
 
   - INSTALACIONES OBLIGATORIAS
 
+    - NPM
+      - npm install. Instala todas las dependencias
+      - npm audit fix. Intenta reparar vulnerabilidades
+
     - NODE.JS
       - node.js se instala desde: https://nodejs.org/en/download
         - Ver si tengo instalado node.js y que version: node -v
@@ -11,7 +15,8 @@ INSTALAR UNA APP CON REACT
       - Integrar la terminal de gitbash en Visual studio code
       - Evitará tener que abrir git bash en otra ventana externa 
       - Ctrl + ñ muestra la consola
-      - Ejecutar npm run start
+      - Ejecutar npm run start para ejecutar proyectos creados con create react app
+      - Si el proyecto ha sido creado mediante vite ejecuto npm run dev
 
     - CREATE REACT APP
 
@@ -95,7 +100,32 @@ INSTALAR UNA APP CON REACT
 
     - FIREBASE
       - Su web: https://firebase.google.com
+      - Usaré la cuenta de oscarfernandezsantiago@gmail.com
+      - Desde la web pinchar en "Comenzar" y seguir sus instrucciones
+      - Podría añadir un servicio gratuito de google llamado google analytics
+      - Podemos acceder a una consola de firebase con servicios que podemos agregar a  nuestro proyecto
 
+      - Despues de hacer lo anterior podemos agregar el nucleo de firebase:
+        - En la web selecciono </> y sigo las instrucciones:
+          - Registro la app y añado el nombre. Escribo el mismo nombre con el que lo cree en visualStudio
+          - Podría seleccionar si quiero configurar firebase hosting
+          - Ejecuto npm install firebase en el proyecto
+          - Creo la carpeta firebase dentro de src donde iría almacenando los archivos relacionados con firebase
+          - Creo en su interior el archivo firebaseConfig.jsx y pego el codigo que me pide añadir firebase
+
+      - Después de agregar el núcleo podremos añadir que servicios vamos a utilizar
+        - Añado el servicio de Firestore Database
+        
+      - PARA COPIAR A CONTACTOSFIREBASE:      
+      - Cree el proyecto en firebase llamado contactosFirebase
+        - Me asigno un identificador único contactosfirebase-eca4b
+
+      - Deshabilité google analytics para este proyecto
+      - No configuré Firebase Hosting
+      
+      
+
+    
     - REDUX
       - Su web: https://redux.js.org/introduction/installation
       - Copiar en consola: npm install redux (Instalacion para JAVASCRIPT)
