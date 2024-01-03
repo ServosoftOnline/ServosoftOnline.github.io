@@ -97,8 +97,10 @@ INSTALAR UNA APP CON REACT
       - Su web: https://styled-components.com/
           - Ir a documentacion/basics/instalacion
           - Copiar en consola: npm install styled-components
+      - Lo importo escribiendo: import styled from 'styled-components';
 
     - FIREBASE
+
       - Su web: https://firebase.google.com
       - Usaré la cuenta de oscarfernandezsantiago@gmail.com
       - Desde la web pinchar en "Comenzar" y seguir sus instrucciones
@@ -113,18 +115,20 @@ INSTALAR UNA APP CON REACT
           - Creo la carpeta firebase dentro de src donde iría almacenando los archivos relacionados con firebase
           - Creo en su interior el archivo firebaseConfig.jsx y pego el codigo que me pide añadir firebase
 
-      - Después de agregar el núcleo podremos añadir que servicios vamos a utilizar
+      - Después de agregar el núcleo podremos añadir que servicios vamos a utilizar:      
         - Añado el servicio de Firestore Database
-        
-      - PARA COPIAR A CONTACTOSFIREBASE:      
-      - Cree el proyecto en firebase llamado contactosFirebase
-        - Me asigno un identificador único contactosfirebase-eca4b
 
-      - Deshabilité google analytics para este proyecto
-      - No configuré Firebase Hosting
-      
-      
+        - Creo la base de datos en la consola de firebase/Cloud Firestore
+          - Me permite inicarla en modo de producción.
+            - Implica modificar las reglas de seguridad asignando permisos de lectura y escritura
 
+          - O crearla en modo de prueba de 30 días pudíendose modificar los días en las reglas
+          - Indico que la ubicación es europa
+
+          - Dentro de las colecciones contenemos un documento por cada dato insertado
+            - Las colecciones equivalen a las tablas y los documentos a los registros.
+            - Añadiré colecciones desde la consola de fireStorage y los documentos ya desde mi código.
+            - Si añadiera documentos a una coleccion que no existe fireStore crea la colección
     
     - REDUX
       - Su web: https://redux.js.org/introduction/installation

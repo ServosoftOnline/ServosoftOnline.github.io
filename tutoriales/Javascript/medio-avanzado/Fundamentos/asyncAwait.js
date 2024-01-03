@@ -1,5 +1,6 @@
 /*
     ASYNC / AWAIT y TRY / CATCH
+    
     - Con await indicamos que no realize ninguna acción hasta recibir la respuesta de la promesa
     - con async incamos que se realize de forma asincrona.
     - Casi siempre los veremos juntos

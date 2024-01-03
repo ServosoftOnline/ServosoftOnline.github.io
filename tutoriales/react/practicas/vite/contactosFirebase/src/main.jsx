@@ -13,6 +13,10 @@
     
     - Tiene un plan gratuito y otro de pago por uso
 
+  EN ESTA APLICACION:
+    - Usaré vite, styled components, firebase
+    
+
 
 */
 import React from 'react'
