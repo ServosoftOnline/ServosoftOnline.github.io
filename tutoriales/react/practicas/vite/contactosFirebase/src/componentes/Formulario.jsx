@@ -19,7 +19,6 @@
             - Creo los estados.
                 - Los estados serán los valores del input
                 - Las funciones que cambian dichos estados estarán en el onChange
-                - El estado mensaje servirá para mostrar si se guardó bien el documento en firestore
                 
             - La función addDoc de cloud firestore es asincrona. Por lo que devuelve una promesa
                 - Esta nos permitirá comprobar cuando acaba la petición a firebase y cual ha sido su resultado.
@@ -52,20 +51,17 @@ import { useState } from "react";
 // Elementos
 import Input from "../elementos/Input";
 import Boton from "../elementos/Boton";
-import ResultadoOperacion from "../elementos/ResultadoOperacion";
 
 // FireStore
 import db from "../firebase/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
+
 
 const Formulario = () => {
 
     // Estados
     const [nombre, cambiarNombre] = useState('');
     const [correo, cambiarCorreo] = useState('');
-    const [mensaje, cambiarMensaje] = useState('');
-
-    let Mensaje = '';
 
     // Añado los datos a firestore cuando se pulse el botón de enviar.
     const onSubmit = async (e) => {
@@ -80,11 +76,11 @@ const Formulario = () => {
                 nombre: nombre,
                 correo: correo
             });
-            cambiarMensaje('Datos añadidos de forma correcta');
+            console.log('Añadido el documento en firestore de forma correcta');
         }
 
         catch(error) {
-            cambiarMensaje('Hubo un error al guardar el documento');
+            console.log('Hubo un problema al añadir el documento en firestore');            
             console.log(error);            
         }
 
@@ -111,8 +107,7 @@ const Formulario = () => {
                 placeholder="Correo"                
             />
 
-            <Boton type ="submit">Añadir</Boton>
-            <ResultadoOperacion>{mensaje}</ResultadoOperacion>
+            <Boton type ="submit">Añadir</Boton>            
 
         </form>   
     );

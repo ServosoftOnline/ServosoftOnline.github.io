@@ -1,42 +1,128 @@
 /*
-    MUESTRA UN CONTACTO
+    MUESTRA UN CONTACTO DE LA BASE DE DATOS DE FIRESTORE
 
-		- Hay un estado para saber cuando estamos editando el contacto
-			- Por defecto no estamos editando la tarea
-			- Si estamos editando tarea muestro un formulario que edita el contacto y el botón de actualizar
-			- Si no estoy editando muestro el nombre y correo del contacto y los botones de editar y borrar
-				- Si hago click en el boton de editar cambio el valor de true a false o de false a true (su contrario)
+		- Importo:
+			- Lo relacinado con react
 
+			- Lo relacionado con Firestore
+				- La base de datos
+				- doc.
+					- Permite acceder a un documento mediate su id
+					- Uso: doc(base de datos,'coleccion', id del documento)
+
+				- deleteDoc
+					- Permite eliminar un documento mediante su id
+					- Uso: deleteDoc(doc(base de datos,'coleccion', id del documento)
+
+				- updateDoc
+					- Permite actualizar un documento mediante su id
+					- Uso: updateDoc(doc(base de datos, 'coleccion', id del documento),{
+							// Objeto con los cambios
+						}
+					);
+
+				- deleteDoc y updateDoc son funciones asincronas. Implica tener que usar asinc/await y try/catch
+		
+		- Creo el componente
+
+			- Tiene como parámetros el id, el nombre y el correo que le pasé desde listaContactos.jsx
+			- Creo los estados donde guardaré los nuevos campos y si estoy editando el contacto o no.
+
+			- Creo la función que actualiza los nuevos datos en firestore
+				- Paro la actualización del navegador
+				- Actualizo el documento gestionando la promesa y usando updateDoc
+				- Cambio el estado de editando contacto
+			
+			- Creo la funcion que elimina un documento de la coleccion de firestore
+				- Elimino el documento gestionando la promesa y usando deleteDoc
+
+
+			- Devuelvo:
+
+				- Un contenedor con sus respectivos estilos.
+				- Si no estoy editando el contacto
+					- Ejecuto un fragmento que muestra los contactos de la coleccion de firestore y los botones editar y borrar
+						- El boton editar cambia el estado de editando contacto y muestro el formulario
+						- El boton de borrar llama directamente a la funcion que borra el contacto
+
+				- Sí estoy editando el contacto:
+					- Muestro el formulario. Sus inputs son el nombre y el correo
+						- Sus value serán sus respestivos estados
+							- Contienen inicialmente el valor inicial del estado que es el nombre o correo que pasé como parametros
+
+						- Sus onChange llama a las funciones que cambian sus estados y los modificaré con lo que añada por teclado
+						- Los placeholder creo que sobrán porque no llego a utilizarlos. Los dejo por si acaso
 
 
 */
+
+// React
 import React, {useState} from "react";
 import styled from "styled-components";
+
+// Firestore
 import db from "../firebase/firebaseConfig";
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 
 const Contacto = ({id, nombre, correo}) => {
 
-	const [editandoTarea, cambiarEditandoTarea] = useState(false);
+	// Estados
+	const [nuevoNombre, cambiarNuevoNombre] = useState(nombre);
+	const [nuevoCorreo, cambiarNuevoCorreo] = useState(correo);
+	const [editandoContacto, cambiarEditandoContacto] = useState(false);
+	
+	// Funcion para actualizar un contacto. Contiene promesa
+	const actualizarContacto = async(e) => {
 
+		e.preventDefault();	
+		try {
+			await updateDoc(doc(db,'usuarios',id), {
+				nombre: nuevoNombre,
+				correo: nuevoCorreo
+			});
+			console.log('Contacto actualizado correctamente');
+
+		} catch (error) {
+			console.log('Error al actualizar el contacto');
+			console.log(error);
+		}
+		
+		cambiarEditandoContacto(false);
+	}
+
+	// Funcion para eliminar un contacto. Contiene promesa
+	const eliminarContacto = async() => {
+
+		try {
+			await deleteDoc(doc(db,'usuarios',id));
+			console.log('Contacto eliminado correctamente');
+
+		} catch (error) {
+			console.log('Error al eliminar el contacto');
+			console.log(error);
+		}		
+		
+	}
+	
     return (
         <ContenedorContacto>
 			{
-				editandoTarea ?
-					<form action="">
+				editandoContacto ?
+					<form action="" onSubmit={actualizarContacto}>
 						<Input
 							type="text"
 							name="nombre"
-							// value={nombre}
-							// onChange={}
-							placeholder={nombre}
+							value={nuevoNombre}
+							onChange= {(e) => cambiarNuevoNombre(e.target.value)}							 
+							placeholder="Nombre"
 						/>
 
 						<Input
 							type="mail"
 							name="correo"
-							// value={correo}
-							// onChange={}
-							placeholder={correo}
+							value={nuevoCorreo}
+							onChange= {(e) => cambiarNuevoCorreo(e.target.value)}
+							placeholder="Correo"
 						/>
 
 						<Boton type ="submit">Actualizar</Boton>
@@ -47,8 +133,8 @@ const Contacto = ({id, nombre, correo}) => {
 					<>
 						<Nombre>{nombre}</Nombre>
 						<Correo key ={id}>{correo}</Correo>
-						<Boton onClick={() => cambiarEditandoTarea(!editandoTarea)}>Editar</Boton>
-						<Boton>Borrar</Boton>
+						<Boton onClick={() => cambiarEditandoContacto(!editandoContacto)}>Editar</Boton>
+						<Boton onClick={() => eliminarContacto()}>Borrar</Boton>
 					</>
 
 			}
