@@ -14,7 +14,7 @@
     - Tiene un plan gratuito y otro de pago por uso
 
   EN ESTA APLICACION:
-    - Usaré vite, styled components, firebase
+    - Usaré vite, styled components, firebase, context api para los resultados de las operaciones
     
 
 
@@ -24,8 +24,13 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 
+// Contexto
+import { ProveedorMensaje } from './contextos/contextoMensaje.jsx'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <ProveedorMensaje>
+      <App />
+    </ProveedorMensaje>
   </React.StrictMode>,
 )

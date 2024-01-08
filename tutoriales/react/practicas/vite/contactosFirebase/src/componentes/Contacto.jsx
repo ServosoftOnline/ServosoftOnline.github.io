@@ -57,12 +57,20 @@
 */
 
 // React
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import styled from "styled-components";
+
 
 // Firestore
 import db from "../firebase/firebaseConfig";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
+
+// Elementos
+import Mensaje from "../elementos/Mensaje";
+
+// Contextos
+import { ContextoMensaje } from "../contextos/contextoMensaje";
+
 
 const Contacto = ({id, nombre, correo}) => {
 
@@ -70,6 +78,9 @@ const Contacto = ({id, nombre, correo}) => {
 	const [nuevoNombre, cambiarNuevoNombre] = useState(nombre);
 	const [nuevoCorreo, cambiarNuevoCorreo] = useState(correo);
 	const [editandoContacto, cambiarEditandoContacto] = useState(false);
+
+	// Contexto
+	const {mensaje, mensajeOk, mensajeKo, reiniciarMensaje} = useContext(ContextoMensaje);  
 	
 	// Funcion para actualizar un contacto. Contiene promesa
 	const actualizarContacto = async(e) => {
@@ -80,9 +91,11 @@ const Contacto = ({id, nombre, correo}) => {
 				nombre: nuevoNombre,
 				correo: nuevoCorreo
 			});
+			mensajeOk();
 			console.log('Contacto actualizado correctamente');
 
 		} catch (error) {
+			mensajeKo();
 			console.log('Error al actualizar el contacto');
 			console.log(error);
 		}
@@ -126,6 +139,7 @@ const Contacto = ({id, nombre, correo}) => {
 						/>
 
 						<Boton type ="submit">Actualizar</Boton>
+						<Mensaje color = {mensaje.color}> {mensaje.contenido} </Mensaje>
 
 					</form>
 					

@@ -46,11 +46,15 @@
 
 // React
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 // Elementos
 import Input from "../elementos/Input";
 import Boton from "../elementos/Boton";
+import Mensaje from "../elementos/Mensaje";
+
+// Contextos
+import { ContextoMensaje } from "../contextos/contextoMensaje";
 
 // FireStore
 import db from "../firebase/firebaseConfig";
@@ -59,10 +63,14 @@ import { collection, addDoc } from "firebase/firestore";
 
 const Formulario = () => {
 
+    
     // Estados
     const [nombre, cambiarNombre] = useState('');
     const [correo, cambiarCorreo] = useState('');
 
+    // Contextos
+    const {mensaje, mensajeOk, mensajeKo, reiniciarMensaje} = useContext(ContextoMensaje);   
+        
     // Añado los datos a firestore cuando se pulse el botón de enviar.
     const onSubmit = async (e) => {
         
@@ -76,17 +84,18 @@ const Formulario = () => {
                 nombre: nombre,
                 correo: correo
             });
-            console.log('Añadido el documento en firestore de forma correcta');
+            mensajeOk();
         }
 
         catch(error) {
-            console.log('Hubo un problema al añadir el documento en firestore');            
+            mensajeKo();
             console.log(error);            
         }
 
         // Reinicio los estados nombre y correo para que se muestren los valores de los placeholder
         cambiarNombre('');
         cambiarCorreo('');
+        setTimeout(() => {reiniciarMensaje()}, 5000);       
     };
    
 
@@ -107,8 +116,9 @@ const Formulario = () => {
                 placeholder="Correo"                
             />
 
-            <Boton type ="submit">Añadir</Boton>            
-
+            <Boton type ="submit">Añadir</Boton>
+            <Mensaje color = {mensaje.color}> {mensaje.contenido} </Mensaje>
+            
         </form>   
     );
 }

@@ -17,7 +17,7 @@
 */
 
 // Contexto
-import { useContext} from "react";
+import { useContext } from "react";
 import { ContextoTema } from "../contextos/contextoTema";
 
 // Elementos
