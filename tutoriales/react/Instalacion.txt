@@ -154,11 +154,23 @@ INSTALAR UNA APP CON REACT
 
 
     - UUID.
-      - Paquete que permite generar ids únicos sind duplicados
+      - Paquete que permite generar ids únicos sin duplicados
           - Su web: https://www.npmjs.com/package/uuid
           - Instalar el paquete: npm install uuid
           - Importar el paquete: import { v4 as uuidv4 } from 'uuid';
           - LLamar a la funcion: uuidv4()
+
+    - WEBFONTLOADER
+      - Permite descargar y usar una fuente de google fonts
+      - Instalar el paquete: npm i webfontloader
+      
+      - Copiar la siguiente estructura en main.jsx o index.jsx antes de llamar al componente ppal:
+        - import WebFont from 'webfontloader';
+        - WebFont.load({
+              google: {
+              families: ['nombre de la fuente a cargar:tamaño1, tamaño2, ...', 'nombre de la fuente a cargar si falla el primero']
+            }
+          });
 
 
 
