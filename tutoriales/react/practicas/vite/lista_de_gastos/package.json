@@ -12,8 +12,10 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
     "react-router-dom": "^6.21.1",
     "styled-components": "^6.1.7",
+    "vite-plugin-svgr": "^4.2.0",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {

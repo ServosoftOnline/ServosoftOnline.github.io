@@ -172,7 +172,20 @@ INSTALAR UNA APP CON REACT
             }
           });
 
+    - REACT-HELMET
+      - Permite cambiar el favicon
+      - Su web: https://www.npmjs.com/package/react-helmet
 
+      - Crea un componente donde podemos añadir etiquetas que generalmente añadimos en un documento html en el interior de head
+        - <meta charSet>, <title>, <link>. Este ultimo lo uso para cambiar el favicon.
 
-  
+      - Instalar el paquete: npm i react-helmet
+      - Importar el paquete: import {Helmet} from "react-helmet";
+      - Importo la imagen: import favicon from './assets/imagen.png'
+
+      - Lo uso antes de BrowserRouter asi:
+        - <Helmet>
+            <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
+          <Helmet />
+
   - EN LA APP APRENDIENDO REACT DESCRIBO LOS FUNDAMENTOS DE REACT
