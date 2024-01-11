@@ -100,7 +100,6 @@ INSTALAR UNA APP CON REACT
       - Lo importo escribiendo: import styled from 'styled-components';
 
     - FIREBASE
-
       - Su web: https://firebase.google.com
       - Usaré la cuenta de oscarfernandezsantiago@gmail.com
       - Desde la web pinchar en "Comenzar" y seguir sus instrucciones
@@ -187,5 +186,21 @@ INSTALAR UNA APP CON REACT
         - <Helmet>
             <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
           <Helmet />
+
+    - PLUGIN VITE-PLUGIN-SVGR
+      - Crea componentes a partir de imagenes SVG
+      - Su web: https://www.npmjs.com/package/vite-plugin-svgr
+      - Instalar el paquete: npm i vite-plugin-svgr
+
+      - Importo el plugin en vite.config.js
+        - import svgr from "vite-plugin-svgr";
+        - Lo añado en plugins importados: plugins: [react(), svgr()],
+
+      - Importo en el archivo jsx donde valla a usarlo:
+        - import {ReactComponent as Componente} from './assets/imagen.svg?react'
+        - Lo llamo así:
+          - <Componente/>
+
+ 
 
   - EN LA APP APRENDIENDO REACT DESCRIBO LOS FUNDAMENTOS DE REACT

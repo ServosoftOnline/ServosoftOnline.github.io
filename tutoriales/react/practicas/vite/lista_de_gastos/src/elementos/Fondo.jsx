@@ -16,12 +16,10 @@ import React from "react";
 import styled from "styled-components";
 
 // Importo la imagen puntos.svg como un componente
-import {ReactComponent as Puntos} from './../assets/puntos.svg';
-
-// Estilos
+import Puntos from './../assets/puntos.svg?react';
 
 // Estilos para las ondas
-const Svg = styled.svg`
+const Ondas = styled.svg`
 
     // Ancho y alto de la onda
     height: 50vh;
