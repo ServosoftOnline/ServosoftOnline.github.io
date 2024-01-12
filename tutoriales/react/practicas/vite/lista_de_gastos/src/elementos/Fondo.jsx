@@ -51,6 +51,8 @@ const PuntosAbajo = styled(Puntos)`
     z-index: 1;
     bottom: 2.5rem; /* 40px */
     right: 2.5rem; /* 40px */
+
+    
 `;
 
 // Creo el componente

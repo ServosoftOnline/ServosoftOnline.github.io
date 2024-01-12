@@ -30,6 +30,14 @@
       2.- Creo el favicon y el titulo
       3.- Añado el fondo
 
+      4.- Creo las cabeceras
+        4.1.- Creo todos los estilos en un solo elemento llamado header
+        4.2.- Creo el elemento Boton.jsx.
+          - Le aplicaré el componente Link de react router.
+            - Los botones a los que le asigne este elemento podrán desplazarse por las paginas indicadas en los path de las rutas
+        4.3.- Al crear todas las cabeceras de las paginas iré añadiendo los estilos de header y de los botones
+
+
       
         
 
