@@ -24,7 +24,7 @@
 
 // React
 import React from "react";
-import { Helmet } from "react-helmet";
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
 import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
@@ -35,51 +35,52 @@ import Boton from "../elementos/Boton";
 const RegistroUsuarios = () => {
     return (
         <>
-          
-          {/* Helmet */}
-          <Helmet>
-            <title>Crear cuenta</title>
-          </Helmet>
+          <HelmetProvider>
+            {/* Helmet */}
+            <Helmet>
+              <title>Crear cuenta</title>
+            </Helmet>
 
-          {/* Cabecera */}
-          <Header>
-            <ContenedorHeader>
-              <Titulo>Crear cuenta</Titulo>
-              <div>
-                <Boton to = '/iniciar-sesion'>Iniciar sesión</Boton>
-              </div>
-            </ContenedorHeader>
-          </Header>
+            {/* Cabecera */}
+            <Header>
+              <ContenedorHeader>
+                <Titulo>Crear cuenta</Titulo>
+                <div>
+                  <Boton to = '/iniciar-sesion'>Iniciar sesión</Boton>
+                </div>
+              </ContenedorHeader>
+            </Header>
 
-          
-          {/* Formulario */}
-          <Formulario>
-
-            <SvgIniciarSesion/>
-
-            <Input 
-              type="email"
-              name="email"
-              placeholder="Correo electrónico"
-            />
-
-            <Input 
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-            />
-
-            <Input 
-              type="password"
-              name="password2"
-              placeholder="Repetir contraseña"              
-            />
-
-            <ContenedorBoton>
-              <Boton primario as="button" type="submit">Crear cuenta</Boton>
-            </ContenedorBoton>
             
-          </Formulario>
+            {/* Formulario */}
+            <Formulario>
+
+              <SvgIniciarSesion/>
+
+              <Input 
+                type="email"
+                name="email"
+                placeholder="Correo electrónico"
+              />
+
+              <Input 
+                type="password"
+                name="password"
+                placeholder="Contraseña"
+              />
+
+              <Input 
+                type="password"
+                name="password2"
+                placeholder="Repetir contraseña"              
+              />
+
+              <ContenedorBoton>
+                <Boton primario as="button" type="submit">Crear cuenta</Boton>
+              </ContenedorBoton>
+              
+            </Formulario>
+          </HelmetProvider>
         </>
       );
 }

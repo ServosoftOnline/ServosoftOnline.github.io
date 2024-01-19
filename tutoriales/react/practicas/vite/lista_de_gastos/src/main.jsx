@@ -102,7 +102,7 @@ import './index.css'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 // Helmet
-import {Helmet} from "react-helmet"
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 import favicon from './assets/logo.png'
 
 // Elementos
@@ -127,41 +127,42 @@ WebFont.load({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <HelmetProvider>
+      {/* Helmet */}
+      <Helmet>
+        <title>Gastos</title>
+        <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
+      </Helmet>
 
-    {/* Helmet */}
-    <Helmet>
-      <title>Gastos</title>
-      <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
-    </Helmet>
+      {/* Fondo */}
+      <Fondo/>
+      
+      {/* react router */}
+      <BrowserRouter>
+        <Contenedor>
 
-    {/* Fondo */}
-    <Fondo/>
-    
-    {/* react router */}
-    <BrowserRouter>
-      <Contenedor>
+          <Routes>
 
-        <Routes>
+            {/* Rutas hacia las paginas principales */}
+            <Route path='/iniciar-sesion' element={<InicioSesion />} />
+            <Route path='/crear-cuenta' element={<RegistroUsuarios />} />
+            <Route path='/categorias' element={<GastosPorCategoria />} />
+            <Route path='/lista' element={<ListaDeGastos />} />
 
-          {/* Rutas hacia las paginas principales */}
-          <Route path='/iniciar-sesion' element={<InicioSesion />} />
-          <Route path='/crear-cuenta' element={<RegistroUsuarios />} />
-          <Route path='/categorias' element={<GastosPorCategoria />} />
-          <Route path='/lista' element={<ListaDeGastos />} />
+            {/* En el path de editar le pasaré un id */}
+            <Route path='/editar/id:' element={<EditarGastos />} />
 
-          {/* En el path de editar le pasaré un id */}
-          <Route path='/editar/id:' element={<EditarGastos />} />
+            {/* Error 404 */}
+            <Route path='*' element={<Error404/>} />
 
-          {/* Error 404 */}
-          <Route path='*' element={<Error404/>} />
+            {/* La ruta cuyo path sea la raiz cargaré el componente ppal */}
+            <Route path='/' element={<App />} />
 
-          {/* La ruta cuyo path sea la raiz cargaré el componente ppal */}
-          <Route path='/' element={<App />} />
-
-        </Routes>
-        
-      </Contenedor>      
-    </BrowserRouter>
+          </Routes>
+          
+        </Contenedor>      
+      </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>,
 );
 

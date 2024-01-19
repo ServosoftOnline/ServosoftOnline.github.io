@@ -4,7 +4,7 @@
 
 // React
 import React from "react";
-import { Helmet } from "react-helmet";
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
 import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
@@ -15,49 +15,51 @@ import Boton from "../elementos/Boton";
 const InicioSesion = () => {
     return (
       <>
+        <HelmetProvider>
           
-        {/* Helmet */}
-        <Helmet>
-          <title>Iniciar sesión</title>
-        </Helmet>
+          {/* Helmet */}
+          <Helmet>
+            <title>Iniciar sesión</title>
+          </Helmet>
 
-        {/* Cabecera */}
-        <Header>
-          <ContenedorHeader>
-            <Titulo>Iniciar sesión</Titulo>
-            <div>
-              <Boton to = '/crear-cuenta'>Crear una cuenta</Boton>
-            </div>
-          </ContenedorHeader>
-        </Header>
+          {/* Cabecera */}
+          <Header>
+            <ContenedorHeader>
+              <Titulo>Iniciar sesión</Titulo>
+              <div>
+                <Boton to = '/crear-cuenta'>Crear una cuenta</Boton>
+              </div>
+            </ContenedorHeader>
+          </Header>
 
-        
-        {/* Formulario */}
-        <Formulario>
+          
+          {/* Formulario */}
+          <Formulario>
 
-          <SvgCrearCuenta/>
+            <SvgCrearCuenta/>
 
-          <Input 
-            type="email"
-            name="email"
-            placeholder="Correo electrónico"
-          />
+            <Input 
+              type="email"
+              name="email"
+              placeholder="Correo electrónico"
+            />
 
-          <Input 
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-          />
+            <Input 
+              type="password"
+              name="password"
+              placeholder="Contraseña"
+            />
 
-          <ContenedorBoton>
-            {/* <Boton $primario={true} as="button" type="submit">Iniciar sesión</Boton>
-              FALLA: NO MUESTRA EL ERROR EN CONSOLA Y NO ASIGNA LA PROPIEDAD DE PRIMARIO AL BOTON*/}
+            <ContenedorBoton>
+              {/* <Boton $primario={true} as="button" type="submit">Iniciar sesión</Boton>
+                FALLA: NO MUESTRA EL ERROR EN CONSOLA Y NO ASIGNA LA PROPIEDAD DE PRIMARIO AL BOTON*/}
 
-            <Boton primario as="button" type="submit">Iniciar sesión</Boton>
-            {/* ASIGNA EL BOTON DE PRIMARIO Y MUESTRA ADVERTENCIA EN CONSOLA */}
-          </ContenedorBoton>
-         
-        </Formulario>
+              <Boton primario as="button" type="submit">Iniciar sesión</Boton>
+              {/* ASIGNA EL BOTON DE PRIMARIO Y MUESTRA ADVERTENCIA EN CONSOLA */}
+            </ContenedorBoton>
+          
+          </Formulario>
+        </HelmetProvider>
       </>
     );
 }

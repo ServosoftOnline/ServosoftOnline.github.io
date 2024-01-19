@@ -18,7 +18,7 @@
 
 // React
 import React from "react";
-import {Helmet} from 'react-helmet';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
 import {Header, Titulo} from "../elementos/ElementosDeHeader";
@@ -29,15 +29,16 @@ const GastosPorCategoria = () => {
 
     return (
       <>
-        <Helmet>
-          <title>Gastos por categoria</title>
-        </Helmet>
+        <HelmetProvider>
+          <Helmet>
+            <title>Gastos por categoria</title>
+          </Helmet>
 
-        <Header>
-          <BtnRegresar/> 
-          <Titulo>Gastos por categoría</Titulo>                     
-        </Header>
-       
+          <Header>
+            <BtnRegresar/> 
+            <Titulo>Gastos por categoría</Titulo>                     
+          </Header>
+        </HelmetProvider>       
       </>
         
       );

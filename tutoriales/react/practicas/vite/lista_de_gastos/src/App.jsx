@@ -19,28 +19,29 @@
 */
 
 import React from "react";
-import {Helmet} from 'react-helmet';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 import {Header, Titulo, ContenedorBotones, ContenedorHeader} from "./elementos/ElementosDeHeader";
 import Boton from "./elementos/Boton";
 
 const App = () => {
   return (        
       <>
-         <Helmet>
-            <title>Agregar gastos</title>
-         </Helmet>
+         <HelmetProvider>
+            <Helmet>
+               <title>Agregar gastos</title>
+            </Helmet>
 
-         <Header>
-            <ContenedorHeader>
-               <Titulo>Agregar gasto</Titulo>
-               <ContenedorBotones>
-                  <Boton to = '/categorias'>Categorías</Boton>
-                  <Boton to = '/lista'>Lista de gastos</Boton>
-                  <Boton>X</Boton>
-               </ContenedorBotones>
-            </ContenedorHeader>
-         </Header>
-
+            <Header>
+               <ContenedorHeader>
+                  <Titulo>Agregar gasto</Titulo>
+                  <ContenedorBotones>
+                     <Boton to = '/categorias'>Categorías</Boton>
+                     <Boton to = '/lista'>Lista de gastos</Boton>
+                     <Boton>X</Boton>
+                  </ContenedorBotones>
+               </ContenedorHeader>
+            </Header>
+         </HelmetProvider>
       </>  
    );
 }

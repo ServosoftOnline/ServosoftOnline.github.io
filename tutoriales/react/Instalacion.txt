@@ -220,21 +220,24 @@ INSTALAR UNA APP CON REACT
             }
           });
 
-    - REACT-HELMET
+    - REACT-HELMET-ASYNC
       - Permite cambiar el favicon
-      - Su web: https://www.npmjs.com/package/react-helmet
+      - Su web: https://www.npmjs.com/package/react-helmet-async
 
       - Crea un componente donde podemos añadir etiquetas que generalmente añadimos en un documento html en el interior de head
         - <meta charSet>, <title>, <link>. Este ultimo lo uso para cambiar el favicon.
 
-      - Instalar el paquete: npm i react-helmet
-      - Importar el paquete: import {Helmet} from "react-helmet";
+      - Instalar el paquete: npm i react-helmet-async
+      - Importar el paquete: import {Helmet, HelmetProvider} from 'react-helmet-async';
       - Importo la imagen: import favicon from './assets/imagen.png'
 
       - Lo uso antes de BrowserRouter asi:
-        - <Helmet>
-            <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
-          <Helmet />
+        - <HelmetProvider>
+            <Helmet>
+              <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
+            <Helmet />
+          </HelmetProvider>
+
 
     - PLUGIN VITE-PLUGIN-SVGR
       - Crea componentes a partir de imagenes SVG
