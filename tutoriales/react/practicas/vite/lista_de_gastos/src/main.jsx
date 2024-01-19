@@ -4,11 +4,23 @@
     - Aplicación mas completa del curso.
     - Empiezo su desarrollo el dia 8 de enero de 2024
     - Ha sido creada en vite
+    
+    - El backend lo hare mediante firebase
+      - Nombre del proyecto_ lista-de-gastos
+
+      - Sigo las instrucciones indicadas en instalacion.txt en el apartado de firebase para crear el proyecto
+        - No habilito google analytics
+        - Habilitaré firebase hosting mas adelante. Quizas no lo haga y lo deje subido en git y lo enlazaré desde mi cv
+
+      - Sigo las instrucciones indicadas en .env.local en el la practica contactosFirebase
+        - Que permite ocultar el acceso a firebase mediante vbles de ambiente
+
     - Uso las siguientes librerias:
       - react router
       - styled components
       - webfontloader, que permite instalar fuentes de google fonts
       - react helmet, que permite entre otras cosas definir el favicon
+      
 
     - Pasos a seguir para crear una app:
 
@@ -29,17 +41,56 @@
 
       2.- Creo el favicon y el titulo
       3.- Añado el fondo
+      4.- Creo el archivo llamado theme.jsx. Contiene un objeto con las vbles con todos los colores.
 
-      4.- Creo las cabeceras
-        4.1.- Creo todos los estilos en un solo elemento llamado header
-        4.2.- Creo el elemento Boton.jsx.
-          - Le aplicaré el componente Link de react router.
-            - Los botones a los que le asigne este elemento podrán desplazarse por las paginas indicadas en los path de las rutas
-        4.3.- Al crear todas las cabeceras de las paginas iré añadiendo los estilos de header y de los botones
+      5.- Creo las cabeceras y crear los desplazamientos entre ellas
+
+        5.1.- Creo un archivo llamado ElementosDeHeader
+          - Contendrá todos los elementos que usaré en las cabeceras.
+          - Los exportaré por separado
+          - Importaré solo lo que necesite
+
+        5.2.- Creo el elemento Boton.jsx.
+          - Lo usaré para crear los diferentes botones de la aplicacion
+          - Le aplicaré el componente Link de react router. lo que permitirá desplazarse hacia la ruta que le indique al llamarlo
+
+          - Tendrá las siguientes propiedades:
+            - primario. Tendrá el color primario asignado en theme.jsx. Si no le indico primario lo pintará en negro
+            - conIcono. El icono será mas ancho
+            - iconoGrande. Contendrá un svg
 
 
+        5.3.- Creo el elemento BrnRegresar.jsx. Permite regresar a la ruta raiz
+        5.4.- Al crear todas las cabeceras de las paginas iré añadiendo los estilos de header, los botones y el boton para regresar
       
-        
+      6.- Crear las secciones para iniciar sesion y registrarse         
+        6.1.- Creo el elemento llamado ElementosDeFormulario.jsx. Contendrá todos los elementos que usaré en los formularios
+
+        6.2.- Creo la pagina para crear una cuenta en firebase
+          - Su elemento asociado al que apunta su ruta se llama RegistroUsuarios.jsx
+          - La cabecera contendrá el titulo y un enlace hacia la pagina /iniciar-sesion
+            - Usaré elementosDeHeader para crearla
+            - Para el botón Iniciar Sesión usaré el elemento Boton.jsx como link. le pasaré la propiedad de primario
+
+          - Usaré una imagen svg que crearé como componente.
+          - El formulario que permitirá crear la cuenta en firebase
+            - Usaré elementosDeFormulario.jsx para crear los inputos
+            - Usaré Boton.jsx como button de submit
+
+          - Creo la logica para crear un usuario en firebase
+
+        6.3- Creo la pagina para iniciar sesion
+          - Su elemento asociado al que apunta su ruta se llama InicioSesion.jsx
+          - La cabecera contendrá el titulo y un enlace hacia la pagina /crear-cuenta
+          - Tendrá prácticamente la misma estructura que RegistroUsuarios.jsx
+
+      7.- Crear el proyecto en firebase
+      
+        - Sigo las indicaciones de:
+          - instalacion.txt
+          - contactosFirebase/.env.local
+          - contactosFirebase/src/firebase/firebaseConfig
+
 
 */
 

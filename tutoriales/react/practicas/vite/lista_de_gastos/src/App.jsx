@@ -20,7 +20,7 @@
 
 import React from "react";
 import {Helmet} from 'react-helmet';
-import {Header, Titulo, ContenedorBotones, ContenedorHeader} from "./elementos/Header";
+import {Header, Titulo, ContenedorBotones, ContenedorHeader} from "./elementos/ElementosDeHeader";
 import Boton from "./elementos/Boton";
 
 const App = () => {

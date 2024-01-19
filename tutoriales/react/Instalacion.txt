@@ -70,7 +70,8 @@ INSTALAR UNA APP CON REACT
 
     - VITE
 
-      - Instalo vitealar la app inical de VITE
+      - Sustituye a create react app
+      - Instalar vite
           - 1.- npm create vite@latest
           - 2.- Instalo las depedencias iniciales mediante npm install
           - 3.- Ejecuto npm run dev y compruebo que la instalacion inicial de vite funciona
@@ -83,9 +84,36 @@ INSTALAR UNA APP CON REACT
           - 5.- En el archivo index.html en la etiqueta script debe apuntar al archivo correcto
           - 6.- Puede ser necesario instalar de nuevo algun paquete. Ej: uuid
 
-      - Instalacion del plugin vite-plugin-svgr
-          - Transforma imagenes svg en componentes
-          - Comando: npm i vite-plugin-svgr
+      - Formas de usar css mediante vite:      
+        - Las uso todas en primeraAPP_vite_pluginSVG
+
+        - Primera forma: importando directamente el archivo.
+          - import './index.css'
+          - <img scr={viteLogo} className ="Logo" alt="React logo"
+          - Siendo Logo una clase definida en index.css
+
+        - Segunda forma: Mediante modulos de css
+          - Ver ejemplo en primeraAPP_vite_pluginSVG sobre como añadir el color rojo en el titulo
+          - Creo un archivo llamado App.module.css que contendrá las reglas que aplicaré al componente App.jsx
+
+          - Importo en App.jsx el archivo App.module.css así: import styles from './App.module.css';
+            - styles contendrá todas las reglas. Puedo llamarlo styles, estilos o lo que quiera.
+            - Para aplicar la regla rojo en App.jsx escribo classname={styles.regla}
+
+          - Tercera forma: Mediante un preprocesador            
+            - scss, sass, less, styl y stylus son ejemplos de preprocesador
+            - Documentacion en la web: https://vitejs.dev/guide/features.html 
+
+            - Usaré sass
+              - Ver ejemplo en primeraAPP_vite_pluginSVG sobre como añadir el color azul
+              - instalacion: npm add -D sass
+              - Creo un archivo llamado App.scss donde añado la regla css azul 
+              - Importo directamente el archivo igual que en la primera forma
+              - Aplico la regla escribiendo classname="regla"
+              
+          - Cuarta forma: Usando styled components como hasta ahora con create react app
+
+      
         
   - INSTALACIONES OPCIONALES (LIBRERIAS)
 
@@ -102,6 +130,7 @@ INSTALAR UNA APP CON REACT
     - FIREBASE
       - Su web: https://firebase.google.com
       - Usaré la cuenta de oscarfernandezsantiago@gmail.com
+      - Indico como usarlo en su version 10.7.1
       - Desde la web pinchar en "Comenzar" y seguir sus instrucciones
       - Podría añadir un servicio gratuito de google llamado google analytics
       - Podemos acceder a una consola de firebase con servicios que podemos agregar a  nuestro proyecto
@@ -113,6 +142,26 @@ INSTALAR UNA APP CON REACT
           - Ejecuto npm install firebase en el proyecto
           - Creo la carpeta firebase dentro de src donde iría almacenando los archivos relacionados con firebase
           - Creo en su interior el archivo firebaseConfig.jsx y pego el codigo que me pide añadir firebase
+
+          - Debo modificar el codigo insertado para integrar los SDK o servicios de firebase de esta forma:
+            - El servicio de firebase ya se encuentra importado
+            - Importo el resto de servicios que valla usar
+              - Siguiendo las indicaciones de https://firebase.google.com/docs/web/setup#available-libraries
+             
+            - Protejo mi acceso mediante el uso de vbles de ambiente modificando la cte firebaseConfig
+              - Sigo las instrucciones dejadas en .env.local en la carpeta contactosFirebase
+
+            - Inicio firebase con la configuración y almaceno el resultado en app
+              - const app = initializeApp(firebaseConfig);
+    
+            - Me conecto a firestore, devuelve la base de datos y la almaceno en el objeto db
+              - const db = getFirestore();
+
+            - Me conecto al getauth y almaceno lo devuelto en la cte auth
+              - const auth = getAuth();
+
+            - Exporto el objeto db con la base de datos y la cte auth
+              - export default {db, auth};
 
       - Después de agregar el núcleo podremos añadir que servicios vamos a utilizar:      
         - Añado el servicio de Firestore Database
@@ -197,7 +246,7 @@ INSTALAR UNA APP CON REACT
         - Lo añado en plugins importados: plugins: [react(), svgr()],
 
       - Importo en el archivo jsx donde valla a usarlo:
-        - import {ReactComponent as Componente} from './assets/imagen.svg?react'
+        - import Componente from './assets/imagen.svg?react'
         - Lo llamo así:
           - <Componente/>
 

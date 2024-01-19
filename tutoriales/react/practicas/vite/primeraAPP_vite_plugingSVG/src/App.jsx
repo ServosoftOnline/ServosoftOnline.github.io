@@ -52,7 +52,15 @@
 */
 
 import { useState } from 'react';
+// Primera forma de aplicar estilos css en vite. Importanto el archivo que contiene las reglas
 import './App.css';
+
+// Segunda forma de aplicar estilos css en vite. Importo estilos mediante modulos css
+import styles from './App.module.css';
+
+// Tercera forma de aplicar estilos css en vite. Importo estilos para aplicarr SASS
+import './App.scss';
+
 
 // importo los componentes asociados a las imagenes svg
 import ReactLogo from './assets/react.svg?react';
@@ -73,7 +81,14 @@ function App() {
           <ReactLogo  />
         </a>
       </div>
-      <h1>Primera app con vite</h1>
+
+      {/* Aplico la regla rojo mediante modulos css (segunda forma de aplicar estilos css en vite) */}
+      <h1 className={styles.rojo}>Primera app</h1>
+
+      {/* Aplico la regla azul mediante sass (tercera forma de aplicar estilos css en vite) */}
+      <h1 className="azul">con vite</h1>
+
+      {/* Aplico la regla card existente en el archivo App.css (Primera forma de aplicar estilos css en vite) */}
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

@@ -1,5 +1,6 @@
 /*
     MONTAMOS EL FONDO DE LA APP
+
         - Archivo que contiene todos los componentes que tendrá el fondo
         - Añado los estilos en este mismo archivo
         - Los componentes serán
@@ -7,7 +8,7 @@
             - PuntosArriba. Que contiene los puntos que van arriba a la
             - PuntosAbajo
         - Les añado los estilos en este mismo archivo
-        - 
+    
 
 */
 
@@ -43,6 +44,11 @@ const PuntosArriba = styled(Puntos)`
     z-index: 1;
     top: 2.5rem; /* 40px */
     left: 2.5rem; /* 40px */
+
+    // Cuando se reduzca el tamaño de la ventana a 950px, desaparecen los puntos
+    @media(max-width: 60rem){ /* 950px */
+        display: none;
+    }
 `;
 
 // Estilos para los puntos de PuntosAbajo. Se aplican al componente Puntos mediante la funcion styled
@@ -51,6 +57,11 @@ const PuntosAbajo = styled(Puntos)`
     z-index: 1;
     bottom: 2.5rem; /* 40px */
     right: 2.5rem; /* 40px */
+
+    // Cuando se reduzca el tamaño de la ventana a 950px, desaparecen los puntos
+    @media(max-width: 60rem){ /* 950px */
+        display: none;
+    }
 
     
 `;

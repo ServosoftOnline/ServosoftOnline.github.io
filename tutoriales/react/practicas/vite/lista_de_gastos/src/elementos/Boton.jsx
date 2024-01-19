@@ -4,19 +4,31 @@
             - styled components
             - El componente Link permitirá que el botón al que le asigne este elemento pueda cambiar a otras paginas
 
+        - Defino los estilos del elemento boton
+            - LLamo a la funcion styled y le paso el componente Link importado desde react router
+            - Los estilos son muchos. Los describo en el interior de la definicion del componente
+            - Le cambiaré su color a partir de la propiedad primario que opcionalmente podré pasarle como propiedad
+            - Le cambiaré su anchura si le paso la propiedad conIcono
+            - Le cambiare su altura si le paso la propiedad iconoGrande, conteniendo una imagen svg
+
+        - Lo exporto
+
 */
 import styled from "styled-components";
 import {Link} from 'react-router-dom';
+import theme from './../theme';
+
 
 // Defino los estilos. Al elemnto lo llamo Boton. Le aplico la funcion styled y le paso el componente Link creado por react router
 const Boton = styled(Link)`
 
-    // Fondo que si tiene el la propiedad primmario su fondo será de color #5B69E2 y si no será de color negro
-    background: ${(props) => props.primario ? '#5B69E2' : '#000'};
+    // Si el Boton tiene como propiedad colorPrimario el fondo tendrá el color primario del objeto theme. Si no será de color negro
+    background: ${(props) => props.primario ? theme.colorPrimario : '#000'};
 
     // Si tiene la propiedad conIcono, el icono será mas ancho
     width: ${(props) => props.conIcono ? '15.62rem' : 'auto'}; /* 250px */
 
+    // Descripción y ubicación del boton
     margin-left: 1.25rem; /* 20px */
     border: none;
     border-radius: 0.625rem; /* 10px */
