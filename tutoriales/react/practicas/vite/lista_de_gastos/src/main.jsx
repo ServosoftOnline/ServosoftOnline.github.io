@@ -1,5 +1,5 @@
 /*
-  APLICACION DE GASTOS;
+  APLICACION DE GASTOS.
 
     - Aplicación mas completa del curso.
     - Empiezo su desarrollo el dia 8 de enero de 2024
@@ -90,6 +90,37 @@
           - instalacion.txt
           - contactosFirebase/.env.local
           - contactosFirebase/src/firebase/firebaseConfig
+
+      8.- Creo la funcionalidad para crear una cuenta en firebase
+        8.1.- Configuro el servicio de authentificación desde la consola de firebase
+
+        8.2.- Agrego la funcionalidad al componente RegistroUsuarios.jsx
+          - Agrego los values y onChange al formulario
+          - Para definir los values añado un estado para cada input y le asigno su valor.
+          - las funciones que se ejecutarán cuando se ejecute el onChange la llamaré handleChange
+          - Defino la funcion handleChange. Dependiendo del nombre del input cambiará el estado correspondiente
+          - Indico en la etiqueta del formulario que cuando se haga un onSubmit se ejecute la funcion handleSubmit
+
+          - Defino la funcion handleSubmit
+            - valido los campos. Sería recomendable validarlos tambien en el lado del servidor
+            - Si pasa la validación agrego el usuario en firestore
+            - firestore realiza validaciones en el lado del servidor
+              - Debo obtener esos errores, los traduzco a mensajes en español que por ahora mostraré en consola
+            - Cuando acaben las validaciones del servidor y añada el usuario correctamente redirijo hacia App.jsx y añado gastos
+            
+          - Defino el componente de alertas
+            - Componente que evitará tener que mostrar los mensajes en consola y siendo mostrados en pantalla.
+            
+
+
+            
+
+
+
+          
+
+
+
 
 
 */

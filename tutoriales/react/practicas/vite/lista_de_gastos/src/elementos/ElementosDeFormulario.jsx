@@ -61,7 +61,7 @@ const Formulario = styled.form`
     }
  
     @media(max-width: 60rem){ /* 950px */
-        justify-content: start;
+        // justify-content: start;
     }
 `;
  
@@ -91,7 +91,7 @@ const ContenedorBoton = styled.div`
 
 const SvgIniciarSesion = styled(imagenIniciarSesion)`
     width: 100%;
-    max.height: 6.25rem; /* 100px */
+    max.height: 12.5rem; /* 200px */
     margin-bottom : 1.25rem; /* 20px */
 `;
 

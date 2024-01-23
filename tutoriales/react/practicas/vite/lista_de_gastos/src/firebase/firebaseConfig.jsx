@@ -31,4 +31,4 @@ const db = getFirestore();
 const auth = getAuth();
 
 // Exporto el objeto con la base de datos y la cte auth devuelta por el servicio de autentificación
-export default {db, auth};
+export {db, auth};

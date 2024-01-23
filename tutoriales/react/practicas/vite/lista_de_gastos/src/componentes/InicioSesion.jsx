@@ -8,7 +8,7 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
 import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
-import {Formulario, Input, ContenedorBoton, SvgCrearCuenta} from './../elementos/ElementosDeFormulario';
+import {Formulario, Input, ContenedorBoton, SvgIniciarSesion} from './../elementos/ElementosDeFormulario';
 import Boton from "../elementos/Boton";
 
 // Componente
@@ -36,8 +36,9 @@ const InicioSesion = () => {
           {/* Formulario */}
           <Formulario>
 
-            <SvgCrearCuenta/>
-
+            {/* <SvgCrearCuenta/> */}
+            <SvgIniciarSesion/>
+            
             <Input 
               type="email"
               name="email"
@@ -54,7 +55,7 @@ const InicioSesion = () => {
               {/* <Boton $primario={true} as="button" type="submit">Iniciar sesión</Boton>
                 FALLA: NO MUESTRA EL ERROR EN CONSOLA Y NO ASIGNA LA PROPIEDAD DE PRIMARIO AL BOTON*/}
 
-              <Boton primario as="button" type="submit">Iniciar sesión</Boton>
+              <Boton $primario as="button" type="submit">Iniciar sesión</Boton>
               {/* ASIGNA EL BOTON DE PRIMARIO Y MUESTRA ADVERTENCIA EN CONSOLA */}
             </ContenedorBoton>
           

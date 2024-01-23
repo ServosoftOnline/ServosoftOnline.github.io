@@ -19,14 +19,14 @@ import {Link} from 'react-router-dom';
 import theme from './../theme';
 
 
-// Defino los estilos. Al elemnto lo llamo Boton. Le aplico la funcion styled y le paso el componente Link creado por react router
+// Defino los estilos. Al elemento lo llamo Boton. Le aplico la funcion styled y le paso el componente Link creado por react router
 const Boton = styled(Link)`
 
     // Si el Boton tiene como propiedad colorPrimario el fondo tendrá el color primario del objeto theme. Si no será de color negro
-    background: ${(props) => props.primario ? theme.colorPrimario : '#000'};
+    background: ${(props) => props.$primario ? theme.colorPrimario : '#000'};
 
     // Si tiene la propiedad conIcono, el icono será mas ancho
-    width: ${(props) => props.conIcono ? '15.62rem' : 'auto'}; /* 250px */
+    width: ${(props) => props.$conIcono ? '15.62rem' : 'auto'}; /* 250px */
 
     // Descripción y ubicación del boton
     margin-left: 1.25rem; /* 20px */
@@ -49,7 +49,7 @@ const Boton = styled(Link)`
  
     // El icono será de tipo SVG. Si tiene la propiedad iconoGrande tendrá un alto del 100% y si no de 0.75 rem
     svg {
-        height: ${(props) => props.iconoGrande ? '100%' : '0.75rem;'};  /* 12px */
+        height: ${(props) => props.$iconoGrande ? '100%' : '0.75rem;'};  /* 12px */
         fill: white;
     }
 `;

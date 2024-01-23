@@ -112,8 +112,7 @@ INSTALAR UNA APP CON REACT
               - Aplico la regla escribiendo classname="regla"
               
           - Cuarta forma: Usando styled components como hasta ahora con create react app
-
-      
+            
         
   - INSTALACIONES OPCIONALES (LIBRERIAS)
 
@@ -177,7 +176,18 @@ INSTALAR UNA APP CON REACT
             - Las colecciones equivalen a las tablas y los documentos a los registros.
             - Añadiré colecciones desde la consola de fireStorage y los documentos ya desde mi código.
             - Si añadiera documentos a una coleccion que no existe fireStore crea la colección
-    
+
+      - Diferentes servicios o SDK que ofrece FIREBASE:      
+        1.- Firestore para crear bases de datos. Proceso descrito anteriormente
+
+        2.- Authentification para auntentificar usuarios
+          - Ir a consola de firebase/authentificacion/Comenzar
+          - Indico el medio por el cual se puede identificar el usuario. Ej: correo electronico
+          
+        3.- cloud funtions proporciona funciones que podemos ejecutar en el lado del servidor
+        4.- hosting para publicar nuestro sitio en internet
+        5.- cloud storage para subir archivos
+          
     - REDUX
       - Su web: https://redux.js.org/introduction/installation
       - Copiar en consola: npm install redux (Instalacion para JAVASCRIPT)
@@ -236,6 +246,7 @@ INSTALAR UNA APP CON REACT
             <Helmet>
               <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
             <Helmet />
+            // resto de la aplicacion
           </HelmetProvider>
 
 
