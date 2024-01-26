@@ -91,7 +91,7 @@
           - contactosFirebase/.env.local
           - contactosFirebase/src/firebase/firebaseConfig
 
-      8.- Creo la funcionalidad para crear una cuenta en firebase
+      8.- Creo la funcionalidad para crear una cuenta en authentification de firebase
         8.1.- Configuro el servicio de authentificación desde la consola de firebase
 
         8.2.- Agrego la funcionalidad al componente RegistroUsuarios.jsx
@@ -109,8 +109,37 @@
             - Cuando acaben las validaciones del servidor y añada el usuario correctamente redirijo hacia App.jsx y añado gastos
             
           - Defino el componente de alertas
+            - Las alertas del curso las ví muy complicadas y no me gustaba su resultado
+            - En su lugar definí otro componente llamado Mensaje.jsx donde muestro mensajes de error o correctos, rojos o verdes
             - Componente que evitará tener que mostrar los mensajes en consola y siendo mostrados en pantalla.
-            
+
+      9.- Creo la funcionalidad para iniciar sesion en authentification de firebase
+        - Es muy parecido a la funcionalidad de crear una cuenta
+        - Seguiré las mismas instrucciones
+        - En lugar de crear un usuario debo iniciar la sesión y la validacion del servidor cambia. 
+        
+      10.- Creo la funcionalidad para que sea obligatorio crear un usuario o iniciar sesión para añadir gastos
+        - Si alguien modificara la barra de navegacion y accediera a la raiz o a cualquier otra ruta podría usar la aplicacion
+        - Lo soluciono creando un estado global o contexto llamado AuthContext.jsx
+          - Este tendrá la información sobre si se ha iniciado sesion o no.
+          - Importo el proveedor del estado en main.jsx y englobo a la aplicación dentro de él
+          - LLamaré al contexto en cada componente donde comprobaré si se inicio o no sesión antes de realizar operaciones sensibles
+        REPASARLO: NO ESTOY SEGURO SI ESTA BIEN. 
+
+      11.- Abrego botón para cerrar la sesión y creo su funcionalidad
+        - Lo mostraré en App.jsx
+        - El elemento que lo define será BotonCerrarSesion.jsx
+        - Su funcionalidad será la de cerrar la sesión en firebase y regresar al componente de inicioSesion.jsx
+
+      12.- Creo la lógica para que si no se inició sesion solo se pueda entrar a inicar sesion o crear cuenta
+        - Crearé el componente RutaPrivada.jsx
+        - Modifico el archivo donde tengo las rutas que hasta ahora eran todas publicas
+          - Es el archivo donde me encuentro ahora mismo main.jsx 
+          - Añado rutas privadas, cambiando la estructura y usando el componente creado anteriormente.
+          - Las rutas públicas se quedan como estaban.
+        - Pruebo las rutas. Solo podré acceder a las rutas privadas si inicié la sesion
+
+
 
 
             
@@ -147,6 +176,11 @@ import InicioSesion from './componentes/InicioSesion.jsx'
 import ListaDeGastos from './componentes/ListaDeGastos.jsx'
 import RegistroUsuarios from './componentes/RegistroUsuarios.jsx'
 import Error404 from './componentes/Error404.jsx'
+import RutaPrivada from './componentes/RutaPrivada.jsx'
+
+// Contextos
+import { AuthProvider } from './contextos/AuthContext.jsx'
+
 
 // WebFontLoader. Descarga fuente de google fonts
 import WebFont from 'webfontloader';
@@ -159,6 +193,7 @@ WebFont.load({
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
+
       {/* Helmet */}
       <Helmet>
         <title>Gastos</title>
@@ -168,32 +203,51 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       {/* Fondo */}
       <Fondo/>
       
-      {/* react router */}
-      <BrowserRouter>
-        <Contenedor>
+      {/* Contexto */}
+      <AuthProvider>
 
-          <Routes>
+        {/* React router */}
+        <BrowserRouter>
+          <Contenedor>
+            <Routes>
 
-            {/* Rutas hacia las paginas principales */}
-            <Route path='/iniciar-sesion' element={<InicioSesion />} />
-            <Route path='/crear-cuenta' element={<RegistroUsuarios />} />
-            <Route path='/categorias' element={<GastosPorCategoria />} />
-            <Route path='/lista' element={<ListaDeGastos />} />
+              {/* Rutas públicas */}
+                <Route path='/iniciar-sesion' element={<InicioSesion />} />
+                <Route path='/crear-cuenta' element={<RegistroUsuarios />} />
+                <Route path='*' element={<Error404 />} />
 
-            {/* En el path de editar le pasaré un id */}
-            <Route path='/editar/id:' element={<EditarGastos />} />
+              {/* Rutas privadas */}
+                <Route path='/categorias' element={
+                  <RutaPrivada path='/categorias'>
+                      <GastosPorCategoria />
+                  </RutaPrivada>                  
+                }/>
 
-            {/* Error 404 */}
-            <Route path='*' element={<Error404/>} />
+                <Route path='/lista' element={
+                  <RutaPrivada path='/lista'>
+                      <ListaDeGastos />
+                  </RutaPrivada>                  
+                }/>
 
-            {/* La ruta cuyo path sea la raiz cargaré el componente ppal */}
-            <Route path='/' element={<App />} />
+                {/* En el path de editar le pasaré un id */}
+                <Route path='/editar/id:' element={
+                  <RutaPrivada path='/editar/id:'>
+                      <EditarGastos />
+                  </RutaPrivada>                  
+                }/>
+                
+                {/* La ruta cuyo path sea la raiz cargaré el componente ppal */}
+                <Route path='/' element={
+                  <RutaPrivada path='/'>
+                      <App />
+                  </RutaPrivada>                  
+                }/>
 
-          </Routes>
-          
-        </Contenedor>      
-      </BrowserRouter>
+            </Routes>            
+          </Contenedor>      
+        </BrowserRouter>
+        
+      </AuthProvider>
     </HelmetProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
-

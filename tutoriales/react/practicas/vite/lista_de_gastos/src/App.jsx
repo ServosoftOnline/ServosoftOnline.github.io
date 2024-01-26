@@ -18,10 +18,14 @@
 
 */
 
+// React router
 import React from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
+
+// Elementos
 import {Header, Titulo, ContenedorBotones, ContenedorHeader} from "./elementos/ElementosDeHeader";
 import Boton from "./elementos/Boton";
+import BotonCerrarSesion from "./elementos/BotonCerrarSesion";
 
 const App = () => {
   return (        
@@ -37,7 +41,7 @@ const App = () => {
                   <ContenedorBotones>
                      <Boton to = '/categorias'>Categorías</Boton>
                      <Boton to = '/lista'>Lista de gastos</Boton>
-                     <Boton>X</Boton>
+                     <BotonCerrarSesion/>
                   </ContenedorBotones>
                </ContenedorHeader>
             </Header>

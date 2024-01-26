@@ -46,18 +46,18 @@ import {auth} from './../firebase/firebaseConfig';
 import {createUserWithEmailAndPassword} from "firebase/auth";
 
 // Componentes
-import Alerta from "./Alerta";
 import Mensaje from './Mensaje';
-
 
 // Componente
 const RegistroUsuarios = () => {
 
   // Estados
-  const [email, establecerEmail] = useState('');
+  const [email,   establecerEmail] = useState('');
   const [password, establecerPassword] = useState('');
   const [password2, establecerPassword2] = useState('');
-  const [mensaje, cambiarMensaje] = useState('Probando');
+  const [mensaje, cambiarMensaje] = useState('');
+
+  // React router
   const navigate = useNavigate();
 
   // Funciones
@@ -88,7 +88,6 @@ const RegistroUsuarios = () => {
     // Validación en el cliente
     // 1.- Que no tengo ningún campo vacío
     if(email==='' || password==='' || password2==='') {
-      console.log('Debe rellenar todos los datos');
       cambiarMensaje('Debe rellenar todos los datos');
       return;
     }
@@ -96,15 +95,13 @@ const RegistroUsuarios = () => {
     // 2.- Que sea un correo electronico segun esta expresión regular
     const expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if ((!expresionCorreo.test(email))) {
-      console.log('Introduzca un correo electrónico válido');
       cambiarMensaje('Introduzca un correo electrónico válido');
       return;
     };
 
     // 3.- Que ambos passwords sean iguales
     if(password!==password2){
-      console.log('Las constraseñas introducidas en contraseña y repetir contraeña deben ser iguales');
-      cambiarMensaje('Las constraseñas introducidas en contraseña y repetir contraeña deben ser iguales');
+      cambiarMensaje('Contraseña y repetir contraseña deben ser iguales');
       return;
     }
 
@@ -113,33 +110,27 @@ const RegistroUsuarios = () => {
         // Si se añade bien el usuario redirijo hacia la raiz donde se pueden ya añadir gastos
         await createUserWithEmailAndPassword(auth, email, password);
         console.log('Usuario creado correctamente');
-        cambiarMensaje('Usuario creado correctamente');
         navigate('/');
 
     } catch (error) {
 
       // Validación en el servidor. Codigos en: https://firebase.google.com/docs/auth/admin/errors?hl=es
-      let mensajeDeError;
-      console.log('error devuelto: ' + error.code);
+      console.log('error devuelto de firestore: ' + error.code);
       switch(error.code){
 
         case 'auth/weak-password':
-          mensajeDeError = 'La contraseña tiene que ser de al menos 6 caracteres.';
-          cambiarMensaje('La contraseña tiene que ser de al menos 6 caracteres.');
+          cambiarMensaje('La contraseña tiene que tener al menos 6 caracteres.');
           break;
 
         case 'auth/email-already-in-use':
-          mensajeDeError = 'Ya existe una cuenta con el correo electrónico proporcionado.';
           cambiarMensaje('Ya existe una cuenta con el correo electrónico proporcionado.');
           break;
 
         case 'auth/invalid-email':
-          mensajeDeError = 'El correo electrónico no es válido.';
           cambiarMensaje('El correo electrónico no es válido.');
           break;
 
         default:
-          mensajeDeError = 'Hubo un error al intentar crear la cuenta.';
           cambiarMensaje('Hubo un error al intentar crear la cuenta.');
           break;
 
@@ -169,6 +160,7 @@ const RegistroUsuarios = () => {
                     
         {/* Formulario */}
         <Formulario onSubmit={handleSubmit}>
+
           <SvgCrearCuenta/>
 
           <Input 
@@ -201,9 +193,8 @@ const RegistroUsuarios = () => {
           </ContenedorBoton>
           
         </Formulario>
-        {/* <Alerta $tipo="error" mensaje="Hola Oscar"/> */}
-        <Mensaje $tipo="error" mensaje={mensaje}/>
-        
+
+        <Mensaje $tipo="error" mensaje={mensaje}/>        
 
       </HelmetProvider>
     </>

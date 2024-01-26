@@ -24,24 +24,27 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 import {Header, Titulo} from "../elementos/ElementosDeHeader";
 import BtnRegresar from "../elementos/BtnRegresar";
 
+// Hooks
+import {useAuth} from '../contextos/AuthContext';
+
 // Componente
 const ListaDeGastos = () => {
 
-    return (
-      <>
-        <HelmetProvider>
-          <Helmet>
-            <title>Lista de gastos</title>
-          </Helmet>
 
-          <Header>
-            <BtnRegresar/> 
-            <Titulo>Lista de gastos</Titulo>                     
-          </Header>
-        </HelmetProvider>       
-      </>
-        
-      );
+  return (
+    <>
+      <HelmetProvider>
+        <Helmet>
+          <title>Lista de gastos</title>
+        </Helmet>
+
+        <Header>
+          <BtnRegresar/> 
+          <Titulo>Lista de gastos</Titulo>                     
+        </Header>
+      </HelmetProvider>       
+    </>      
+  );
 }
  
 export default ListaDeGastos ;

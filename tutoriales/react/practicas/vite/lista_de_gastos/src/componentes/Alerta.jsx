@@ -1,17 +1,15 @@
 /*
-    COMPONENTE QUE PERMITE MOSTRAR MENSAJES EN PANTALLA.
-        - Sustituirá a los mensajes mostrados en consola
+  COMPONENTE ALERTAS
+    - Mostrará mensajes desde arriba
         
 
 */
 
 // React
-import React, {useState} from "react";
-import styled from "styled-components";
-
+import React from "react";
 
 // Elementos
-import {SlideDown, ContenedorAlerta} from '../elementos/ElementosDeAlerta';
+import {ContenedorAlerta} from '../elementos/ElementosDeAlerta';
 
 const Alerta = ({$tipo, mensaje}) => {
     return (
