@@ -16,7 +16,7 @@
 */
 import styled from "styled-components";
 import {Link} from 'react-router-dom';
-import theme from './../theme';
+import theme from "../objetos/theme";
 
 
 // Defino los estilos. Al elemento lo llamo Boton. Le aplico la funcion styled y le paso el componente Link creado por react router

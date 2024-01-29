@@ -10,7 +10,7 @@
 */
 
 import styled from "styled-components";
-import theme from '../theme';
+import theme from "../objetos/theme";
  
 const ContenedorMensajes = styled.div`
 

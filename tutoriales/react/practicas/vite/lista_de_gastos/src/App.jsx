@@ -27,14 +27,21 @@ import {Header, Titulo, ContenedorBotones, ContenedorHeader} from "./elementos/E
 import Boton from "./elementos/Boton";
 import BotonCerrarSesion from "./elementos/BotonCerrarSesion";
 
+
+// Componentes
+import FormularioGasto from "./componentes/FormularioGasto";
+
 const App = () => {
   return (        
       <>
          <HelmetProvider>
+
+            {/* Configuración de la pagina */}
             <Helmet>
                <title>Agregar gastos</title>
             </Helmet>
 
+            {/* Cabecera */}
             <Header>
                <ContenedorHeader>
                   <Titulo>Agregar gasto</Titulo>
@@ -45,6 +52,11 @@ const App = () => {
                   </ContenedorBotones>
                </ContenedorHeader>
             </Header>
+
+            {/* Resto del interfaz */}
+            <FormularioGasto/>
+
+
          </HelmetProvider>
       </>  
    );

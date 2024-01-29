@@ -21,11 +21,8 @@
 
 import React from "react";
 import styled from "styled-components";
-import IconoFlecha from './../assets/flecha.svg?react';
 import { useNavigate } from "react-router-dom";
-
-
-// Hook UseNavigate
+import IconoFlecha from './../assets/flecha.svg?react';
 
 // Estilos
 const Btn = styled.button`

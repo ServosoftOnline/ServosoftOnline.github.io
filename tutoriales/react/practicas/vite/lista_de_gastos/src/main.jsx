@@ -139,6 +139,18 @@
           - Las rutas públicas se quedan como estaban.
         - Pruebo las rutas. Solo podré acceder a las rutas privadas si inicié la sesion
 
+      13.- Añado al componente ppal el interfaz para añadir gastos
+        - Creo el formulario que viene abajo y dejo espacio para el select y el datepicker (FormularioGasto.jsx)
+        13.1.- Creo el select con las diferentes categorias de gastos
+              - Creo los diferentes elementos que contendrán los estilos del select (ElementosDeSelect.jsx)
+              - Creo un elemento para los iconos que estarán juntos a las categorias. (iconoCategorias.jsx)
+              - Creo el componente donde importo los estilos (SelectCategorias.jsx)
+              - Inserto el componente en FormularioGasto.jsx
+                - 
+          
+        13.2.- 
+
+
 
 
 

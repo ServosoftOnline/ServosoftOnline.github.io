@@ -21,7 +21,7 @@
 
 
 import styled from "styled-components";
-import theme from "../theme";
+import theme from "../objetos/theme";
 import imagenIniciarSesion from './../assets/registro.svg?react';
 import imagenCrearCuenta from './../assets/login.svg?react';
 

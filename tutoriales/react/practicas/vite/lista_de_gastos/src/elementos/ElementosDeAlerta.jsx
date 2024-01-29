@@ -9,7 +9,7 @@
 */
 
 import styled, {keyframes} from "styled-components";
-import theme from '../theme';
+import theme from "../objetos/theme";
 
 const SlideDown = keyframes`
     0% {
