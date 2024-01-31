@@ -8,6 +8,8 @@
                 - Un estado para almacenar los mensajes de error en las validaciones
                 - Un estado donde almacenaremos la categoria seleccionada en el select
                     - La pasaré como propiedad al componente SelectCategorias
+                - Un estado con el momento actual por defecto
+                    - La pasaré como propiedad al componente DatePicker
 
             - las funciones:
                 - handleSubmit para validar lo que envio el formulario
@@ -46,6 +48,7 @@ import Boton from "../elementos/Boton";
 
 // Componentes
 import SelectCategorias from "./SelectCategorias";
+import DatePicker from "./DatePicker";
 
 // Svg como componente
 import IconoPlus from './../assets/plus.svg?react';
@@ -59,7 +62,7 @@ const FormularioGasto = () => {
     const [importe, cambiarImporte] = useState();
     const [mensaje, cambiarMensaje] = useState();
     const [categoria, cambiarCategoria] = useState('comida');
-    
+    const [fecha, cambiarFecha] = useState(new Date());
 
     // Funciones
     const handleSubmit = (e) => {
@@ -91,7 +94,10 @@ const FormularioGasto = () => {
                         categoria={categoria}
                         cambiarCategoria={cambiarCategoria}
                     />
-                    <p>Date picker</p>
+                    <DatePicker
+                        fecha={fecha}
+                        cambiarFecha={cambiarFecha}
+                    />
                 </ContenedorFiltros>
 
                 {/* Inputs */}                   

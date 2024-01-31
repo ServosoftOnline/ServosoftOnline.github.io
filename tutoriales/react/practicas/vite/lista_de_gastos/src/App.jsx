@@ -53,9 +53,8 @@ const App = () => {
                </ContenedorHeader>
             </Header>
 
-            {/* Resto del interfaz */}
+            {/* Formulario*/}
             <FormularioGasto/>
-
 
          </HelmetProvider>
       </>  

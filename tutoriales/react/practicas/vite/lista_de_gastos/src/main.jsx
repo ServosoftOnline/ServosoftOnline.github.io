@@ -140,7 +140,7 @@
         - Pruebo las rutas. Solo podré acceder a las rutas privadas si inicié la sesion
 
       13.- Añado al componente ppal el interfaz para añadir gastos
-        - Creo el formulario que viene abajo y dejo espacio para el select y el datepicker (FormularioGasto.jsx)
+        - Creo el formulario que viene abajo y dejo espacio para el select y el daypicker (FormularioGasto.jsx)
         13.1.- Creo el select con las diferentes categorias de gastos
               - Creo los diferentes elementos que contendrán los estilos del select (ElementosDeSelect.jsx)
               - Creo un elemento para los iconos que estarán juntos a las categorias. (iconoCategorias.jsx)
@@ -148,21 +148,10 @@
               - Inserto el componente en FormularioGasto.jsx
                 - 
           
-        13.2.- 
-
-
-
-
-
-            
-
-
-
-          
-
-
-
-
+        13.2.- Creo el daypicker
+          - Es un calendario el cual me permite seleccionar el dia que se produce el gasto
+          - Usare un componente externo de react llamado DayPicker para crear el calendario
+          - 
 
 */
 

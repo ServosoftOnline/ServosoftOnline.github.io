@@ -30,7 +30,7 @@ export default {
             id: '4',
             profesion: 'Técnico infórmatico',
             fecha: 'JULIO 1999 - SEPTIEMBRE 2006',
-            descripcion: 'Diversos trabajos relacionados con la reparación de ordenadores, montaje de redes locales e instalación y reparacion de sistemas de seguridad. En mi último trabajo fuí responsable del mantenimiento de 12 oficinas repartidas por todo el territorio español.'
+            descripcion: 'Diversos trabajos relacionados con la reparación de ordenadores, montaje de redes locales e instalación y reparacion de sistemas de seguridad. En mi último trabajo, como informático, fuí responsable del mantenimiento de 12 oficinas repartidas por todo el territorio español.'
         }
     ]
 };

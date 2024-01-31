@@ -177,9 +177,9 @@ INSTALAR UNA APP CON REACT
             - Añadiré colecciones desde la consola de fireStorage y los documentos ya desde mi código.
             - Si añadiera documentos a una coleccion que no existe fireStore crea la colección
 
-      - Diferentes servicios o SDK que ofrece FIREBASE:      
-        1.- Firestore para crear bases de datos. Proceso descrito anteriormente
+      - Diferentes servicios o SDK que ofrece FIREBASE:   
 
+        1.- Firestore para crear bases de datos. Proceso descrito anteriormente
         2.- Authentification para auntentificar usuarios
           - Ir a consola de firebase/authentificacion/Comenzar
           - Indico el medio por el cual se puede identificar el usuario. Ej: correo electronico
@@ -192,6 +192,7 @@ INSTALAR UNA APP CON REACT
       - Su web: https://redux.js.org/introduction/installation
       - Copiar en consola: npm install redux (Instalacion para JAVASCRIPT)
       - Copiar tambien: npm install react-redux (Instalacion para react)
+      - No suele usarse. Es recomendable usar CONTEXT API
 
     - ROLLUP  
       - Copiar en consola: npm install --save-dev rollup
@@ -263,6 +264,39 @@ INSTALAR UNA APP CON REACT
         - import Componente from './assets/imagen.svg?react'
         - Lo llamo así:
           - <Componente/>
+
+    - REACT DAYPICKER Y DATE-FNS
+      - DayPicker
+        - Permite crear calendarios
+        - web: https://react-day-picker.js.org/
+
+      - date-fns 
+        - Libería que permite transformar una fecha en texto
+        - web: https://date-fns.org/
+      
+      - instalacion: npm install react-day-picker date-fns
+        - Instala los dos paquetes a la vez.
+
+      - Importacion:
+        - import { DayPicker } from 'react-day-picker';
+        - import 'react-day-picker/dist/style.css';
+        - import { format } from 'date-fns';
+        - import { es } from "date-fns/locale";
+          - Formato en español
+
+        - Al llamar al componente DayPicker debo asignarle propiedades:
+          - mode="single" permite seleccionar un día
+          - onSelect={funcion} permite ejecutar una función cuando seleccione un dia
+          - selected={estado_con_la_fecha_seleccionada} permite almacenar la fecha seleccionada
+          - footer={footer} permite añadir un pié
+
+        - Al llamar a la funcion format asigno el formato a partir de una serie de caracteres:
+          - dd mostraría el dia de la fecha
+          - MMMM mostraría el mes completo en letra
+          - yyyy mostraría el año
+
+    
+        
 
  
 
