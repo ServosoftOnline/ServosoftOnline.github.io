@@ -181,6 +181,7 @@ import RutaPrivada from './componentes/RutaPrivada.jsx'
 
 // Contextos
 import { AuthProvider } from './contextos/AuthContext.jsx'
+import { FechaContextProvider } from './contextos/FechaContext.jsx'
 
 
 // WebFontLoader. Descarga fuente de google fonts
@@ -206,6 +207,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       
       {/* Contexto */}
       <AuthProvider>
+      <FechaContextProvider>
 
         {/* React router */}
         <BrowserRouter>
@@ -247,8 +249,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             </Routes>            
           </Contenedor>      
         </BrowserRouter>
-        
+
+      </FechaContextProvider>
       </AuthProvider>
+      
     </HelmetProvider>
   </React.StrictMode>
 );

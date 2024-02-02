@@ -53,7 +53,7 @@ import Input from "../elementos/Input";
 import Boton from "../elementos/Boton";
 import Mensaje from "../elementos/Mensaje";
 
-// Contextos
+// Contexto
 import { ContextoMensaje } from "../contextos/contextoMensaje";
 
 // FireStore
@@ -62,13 +62,12 @@ import { collection, addDoc } from "firebase/firestore";
 
 
 const Formulario = () => {
-
     
     // Estados
     const [nombre, cambiarNombre] = useState('');
     const [correo, cambiarCorreo] = useState('');
 
-    // Contextos
+    // Obtengo desde el contexto
     const {mensaje, mensajeOk, mensajeKo, reiniciarMensaje} = useContext(ContextoMensaje);   
         
     // Añado los datos a firestore cuando se pulse el botón de enviar.
