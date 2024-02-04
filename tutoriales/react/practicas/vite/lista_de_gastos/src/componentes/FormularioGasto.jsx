@@ -54,26 +54,51 @@ import DatePicker from "./DatePicker";
 import IconoPlus from './../assets/plus.svg?react';
 import Mensaje from "./Mensaje";
 
+// Firebase
+import {db} from './../firebase/firebaseConfig';
+import { collection, addDoc } from "firebase/firestore";
+
 // Componente
 const FormularioGasto = () => {
 
     // Estados
+    const [categoria, cambiarCategoria] = useState('comida');
+    const [fecha, cambiarFecha] = useState(new Date());
     const [descripcion, cambiarDescripcion] = useState();
     const [importe, cambiarImporte] = useState();
     const [mensaje, cambiarMensaje] = useState();
-    const [categoria, cambiarCategoria] = useState('comida');
-    const [fecha, cambiarFecha] = useState(new Date());
+    const [validacion, cambiarValidacion] = useState(true);
 
     // Funciones
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(descripcion);
+        console.log(importe);     
 
         // VALIDACION EN CLIENTE
         // 1.- Que no tengo ningún campo vacío
         if(descripcion==='' || importe==='') {
             cambiarMensaje('Debe rellenar todos los datos');
+            cambiarValidacion(false);
             return;
         }
+
+        // Si no se produjo ningun return de la validacion agrego el gasto
+        try {            
+            await addDoc(collection(db, 'gastos'), {
+            categoria: categoria,
+            fecha: fecha,
+            descripcion: descripcion,
+            importe: importe
+            });
+
+            cambiarMensaje('Gasto añadido con éxito');
+            cambiarValidacion(true);         
+        }
+        catch(error) {
+            console.log(error);            
+        }
+        
     }
 
     const handleChange = (e) => {
@@ -127,7 +152,8 @@ const FormularioGasto = () => {
                 </ContenedorBoton>
 
                 {/* Mensaje con el error de la validacion si se produjese */}
-                <Mensaje $tipo="error" mensaje={mensaje}/>
+                <Mensaje validacion={validacion} mensaje={mensaje}/>
+                
             
             </Formulario>
 

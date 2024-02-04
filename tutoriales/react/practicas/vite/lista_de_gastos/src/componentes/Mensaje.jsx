@@ -22,7 +22,9 @@ import React from "react";
 // Elementos
 import {ContenedorMensajes} from  './../elementos/ElementosDeMensajes';
 
-const Mensaje = ({$tipo, mensaje}) => {
+const Mensaje = ({validacion, mensaje}) => {
+    let $tipo;
+    validacion ? $tipo='exito': $tipo='error';
     return (
         <ContenedorMensajes $tipo={$tipo}>
             <p>{mensaje}</p>

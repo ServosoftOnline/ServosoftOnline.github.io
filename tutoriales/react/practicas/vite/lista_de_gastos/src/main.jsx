@@ -151,7 +151,15 @@
         13.2.- Creo el daypicker
           - Es un calendario el cual me permite seleccionar el dia que se produce el gasto
           - Usare un componente externo de react llamado DayPicker para crear el calendario
-          - 
+          
+      14.- Creo la funcionalidad del boton de añadir gastos
+        - Creo una base de datos mediante firestore en el proyecto de firebase
+        - Hasta ahora solo había usado el servicio de authentification
+        - Creo el archivo agregarGasto.jsx en la carpeta de firebase
+          - Agregará la categoría del gasto, la fecha, la descripción y el importe
+          
+
+
 
 */
 
