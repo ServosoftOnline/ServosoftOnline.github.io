@@ -1,59 +1,51 @@
 /*
     COMPONENTE CALENDARIO
-        - Mi componente se llama DatePicker
-        - LLamará a un componente externo llamado daypicker
-            - Permite crear un elemento que contiene un calendario
 
-        - BUG
-            - Si pinchaba dos veces en la misma fecha devolvía undefined y se rompía el programa
-            - Lo solucióné con un contexto global que almacenara la fecha seleccionada
-            - Si obtenía undefined le almacenaba la fecha del contexto
+        - Permite crear un calendario del cual obtendre la fecha seleccionada
+
+        - Importo:
+            - El calendario llamado Daypicker
+            - Sus estilos
+            - La libreria date-fns me permitirá cambiar el momento obtenido en días, fechas, meses, año, ...
+            - El paquete en español
+
+        - Creo mi componente
+            - Tiene como parámetros el estado fecha, que por defecto es la fecha actual, y su función correspondiente
+            - Creo un estado que indicará si el Daypicker estará visible o no.
+
+            - Devuelvo:
+
+                - Un contenedor que cuando haga click en el cambiará el valor de visible a su contrario y contiene:
+                    - Un input de lectura que mostrará la fecha ya formateada
+                    - El Daypicker que será mostrado solo cuando cuando el estado sea true
+
+                    - Propiedades del DayPicker:
+                        - mode="single". Solo puedo hacer click en una fecha
+                        - selected={fecha}. Contiene el estado fecha que obtuve como parámetro
+                        - onSelect={cambiarFecha}. Contiene la función asociada al estado fecha
+                        - locale={es}. El idioma español        
 
 
 */
 
-// React
-import React, { useContext, useState } from "react";
+// React y Elementos
+import React, {useState } from "react";
+import {ContenedorInput} from './../elementos/ElementosDeDatePicker';
 
 // Day picker
-import {DayPicker } from 'react-day-picker';
+import {DayPicker} from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
 // date-fns
 import { format } from 'date-fns';
 import { es } from "date-fns/locale";
 
-// Contexto
-import { FechaContext } from "../contextos/FechaContext";
-
-// Elementos
-import {ContenedorInput} from './../elementos/ElementosDeDatePicker';
 
 // Componente
 const DatePicker = ({fecha, cambiarFecha}) => {
 
     // Estado que almacena si el calendario está visible o no
     const [visible, cambiarVisible] = useState(false);
-
-    // Obtengo desde el contexto
-    const {fechaDelContexto, cambiarFechaDelContexto} = useContext(FechaContext);
-
-    // Creo la función que asigna formato a la fecha
-    const formatoFecha = (fecha) => {
-        // cambiarVisible(!visible);
-        // Si fecha no contiene undefined es que pinché solo una vez en la fecha del calendario        
-        if (fecha != undefined) {
-            // Inserto la fecha en el contexto
-            cambiarFechaDelContexto(fecha);
-            // cambiarVisible(!visible);
-            // Devuelvo la fecha con su formato y en español
-            return format(fecha, `dd 'de' MMMM 'de' yyyy`, {locale: es});
-        }
-        else {
-            // En lugar de devolver undefined y romper la App, devuelvo la fecha del contexto
-            return format(fechaDelContexto, `dd 'de' MMMM 'de' yyyy`, {locale: es});                   
-        }
-    }   
     
     return (
 
@@ -64,7 +56,7 @@ const DatePicker = ({fecha, cambiarFecha}) => {
             <input 
                 type ="text"
                 readOnly
-                value={formatoFecha(fecha)}                
+                value={format(fecha, `dd 'de' MMMM 'de' yyyy`, {locale: es})}                
             />
 
             {/* Calendario visible solo si el estado visible contiene true */}
@@ -82,6 +74,3 @@ const DatePicker = ({fecha, cambiarFecha}) => {
 }
  
 export default DatePicker;
-
-
-

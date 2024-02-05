@@ -141,13 +141,13 @@
 
       13.- Añado al componente ppal el interfaz para añadir gastos
         - Creo el formulario que viene abajo y dejo espacio para el select y el daypicker (FormularioGasto.jsx)
+        
         13.1.- Creo el select con las diferentes categorias de gastos
               - Creo los diferentes elementos que contendrán los estilos del select (ElementosDeSelect.jsx)
               - Creo un elemento para los iconos que estarán juntos a las categorias. (iconoCategorias.jsx)
               - Creo el componente donde importo los estilos (SelectCategorias.jsx)
               - Inserto el componente en FormularioGasto.jsx
-                - 
-          
+
         13.2.- Creo el daypicker
           - Es un calendario el cual me permite seleccionar el dia que se produce el gasto
           - Usare un componente externo de react llamado DayPicker para crear el calendario
@@ -157,9 +157,6 @@
         - Hasta ahora solo había usado el servicio de authentification
         - Creo el archivo agregarGasto.jsx en la carpeta de firebase
           - Agregará la categoría del gasto, la fecha, la descripción y el importe
-          
-
-
 
 */
 
@@ -189,8 +186,6 @@ import RutaPrivada from './componentes/RutaPrivada.jsx'
 
 // Contextos
 import { AuthProvider } from './contextos/AuthContext.jsx'
-import { FechaContextProvider } from './contextos/FechaContext.jsx'
-
 
 // WebFontLoader. Descarga fuente de google fonts
 import WebFont from 'webfontloader';
@@ -215,7 +210,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       
       {/* Contexto */}
       <AuthProvider>
-      <FechaContextProvider>
 
         {/* React router */}
         <BrowserRouter>
@@ -258,7 +252,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </Contenedor>      
         </BrowserRouter>
 
-      </FechaContextProvider>
       </AuthProvider>
       
     </HelmetProvider>

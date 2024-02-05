@@ -49,14 +49,21 @@ import Boton from "../elementos/Boton";
 // Componentes
 import SelectCategorias from "./SelectCategorias";
 import DatePicker from "./DatePicker";
+import Mensaje from "./Mensaje";
 
 // Svg como componente
 import IconoPlus from './../assets/plus.svg?react';
-import Mensaje from "./Mensaje";
 
 // Firebase
-import {db} from './../firebase/firebaseConfig';
+import { db } from './../firebase/firebaseConfig';
 import { collection, addDoc } from "firebase/firestore";
+
+// date-fns
+import { getUnixTime } from "date-fns";
+import { fromUnixTime } from "date-fns";
+
+// Contexto
+import { useAuth } from "../contextos/AuthContext";
 
 // Componente
 const FormularioGasto = () => {
@@ -64,49 +71,52 @@ const FormularioGasto = () => {
     // Estados
     const [categoria, cambiarCategoria] = useState('comida');
     const [fecha, cambiarFecha] = useState(new Date());
-    const [descripcion, cambiarDescripcion] = useState();
-    const [importe, cambiarImporte] = useState();
+    const [inputDescripcion, cambiarInputDescripcion] = useState();
+    const [inputCantidad, cambiarInputCantidad] = useState();
     const [mensaje, cambiarMensaje] = useState();
     const [validacion, cambiarValidacion] = useState(true);
+
+    // Usuario que inicio sesión POR AQUI VOY--------------------------------------------
+    const {usuarioInicioSesion} = useAuth();
+    console.log(usuarioInicioSesion);
 
     // Funciones
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(descripcion);
-        console.log(importe);     
-
+        
         // VALIDACION EN CLIENTE
         // 1.- Que no tengo ningún campo vacío
-        if(descripcion==='' || importe==='') {
+        if(inputDescripcion==='' || inputCantidad==='') {
             cambiarMensaje('Debe rellenar todos los datos');
             cambiarValidacion(false);
             return;
         }
 
         // Si no se produjo ningun return de la validacion agrego el gasto
+        // La fecha la paso en segundos y la cantidad con decimales con dos dígitos
         try {            
             await addDoc(collection(db, 'gastos'), {
             categoria: categoria,
-            fecha: fecha,
-            descripcion: descripcion,
-            importe: importe
+            fecha: getUnixTime(fecha),
+            descripcion: inputDescripcion,
+            cantidad: parseFloat(inputCantidad).toFixed(2)
             });
 
             cambiarMensaje('Gasto añadido con éxito');
-            cambiarValidacion(true);         
-        }
-        catch(error) {
+            cambiarValidacion(true);
+
+        } catch(error) {
             console.log(error);            
         }
         
     }
 
     const handleChange = (e) => {
-        if(e.target.name === 'descripcion')
-            cambiarDescripcion(e.target.value);
-        else if (e.target.name === 'importe')
+        if(e.target.name === 'inputDescripcion')
+            cambiarInputDescripcion(e.target.value);
+        else if (e.target.name === 'inputCantidad')
             // Mientras se escribe en el input remplazará todo lo que no sea un numero y un punto por un espacio blanco
-            cambiarImporte(e.target.value.replace(/[^0-9.]/g, ''));
+            cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, ''));
     }
     
     return ( 
@@ -128,18 +138,18 @@ const FormularioGasto = () => {
                 {/* Inputs */}                   
                 <Input 
                 type="text"
-                name="descripcion"
+                name="inputDescripcion"
                 placeholder="descripcion del gasto"
-                value={descripcion}
+                value={inputDescripcion}
                 onChange={handleChange}
                 
                 />
 
                 <InputGrande
                 type="text"
-                name="importe"
+                name="inputCantidad"
                 placeholder="0.00€"
-                value={importe}
+                value={inputCantidad}
                 onChange={handleChange}
                 
                 />

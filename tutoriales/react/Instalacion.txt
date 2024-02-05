@@ -271,7 +271,7 @@ INSTALAR UNA APP CON REACT
         - web: https://react-day-picker.js.org/
 
       - date-fns 
-        - Libería que permite transformar una fecha en texto
+        - Librería que permite transformar una fecha en texto
         - web: https://date-fns.org/
       
       - instalacion: npm install react-day-picker date-fns
@@ -283,6 +283,12 @@ INSTALAR UNA APP CON REACT
         - import { format } from 'date-fns';
         - import { es } from "date-fns/locale";
           - Formato en español
+        - import { getUnixTime } from "date-fns";
+          - Transorma una fecha en segundos
+        - import { fromUnixTime } from "date-fns";
+          - Transforma segundos en fecha
+          
+        
 
         - Al llamar al componente DayPicker debo asignarle propiedades:
           - mode="single" permite seleccionar un día

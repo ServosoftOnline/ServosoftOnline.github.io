@@ -30,7 +30,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 // Firebase
-import {auth} from '../firebase/firebaseConfig';
+import { auth } from '../firebase/firebaseConfig';
 import { onAuthStateChanged } from "firebase/auth";
 
 // Creo el contexto = Estado global

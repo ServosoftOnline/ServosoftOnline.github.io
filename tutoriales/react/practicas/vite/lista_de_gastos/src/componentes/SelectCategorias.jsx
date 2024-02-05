@@ -21,7 +21,7 @@ import React, {useState} from "react";
 import {ContenedorSelect, OpcionSeleccionada, Opciones, Opcion} from './../elementos/ElementosDeSelect';
 import IconoDown from './../assets/down.svg?react';
 import categorias from './../objetos/categorias';
-import IconosCategorias from "../elementos/iconosCategorias";
+import IconosCategorias from './../elementos/IconosCategorias';
 
 
 const SelectCategorias = ({categoria, cambiarCategoria}) => {
