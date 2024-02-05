@@ -65,58 +65,46 @@ import { fromUnixTime } from "date-fns";
 // Contexto
 import { useAuth } from "../contextos/AuthContext";
 
+// Funciones
+import agregarGasto from "../firebase/agregarGasto";
+
 // Componente
 const FormularioGasto = () => {
 
     // Estados
     const [categoria, cambiarCategoria] = useState('comida');
     const [fecha, cambiarFecha] = useState(new Date());
-    const [inputDescripcion, cambiarInputDescripcion] = useState();
-    const [inputCantidad, cambiarInputCantidad] = useState();
+    const [inputDescripcion, cambiarInputDescripcion] = useState('');
+    const [inputCantidad, cambiarInputCantidad] = useState('');
     const [mensaje, cambiarMensaje] = useState();
-    const [validacion, cambiarValidacion] = useState(true);
+    const [validacion, cambiarValidacion] = useState('incorrecta');
 
-    // Usuario que inicio sesión POR AQUI VOY--------------------------------------------
-    const {usuarioInicioSesion} = useAuth();
-    console.log(usuarioInicioSesion);
+    // Usuario que inicio sesión
+    const {sesion} = useAuth();
+    // console.log(sesion.uid);    
 
     // Funciones
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        
+        console.log('Entro en handlesubmit');
+                
         // VALIDACION EN CLIENTE
         // 1.- Que no tengo ningún campo vacío
         if(inputDescripcion==='' || inputCantidad==='') {
+            console.log('No introducí inputs');
             cambiarMensaje('Debe rellenar todos los datos');
-            cambiarValidacion(false);
+            cambiarValidacion('incorrecta');
             return;
         }
 
-        // Si no se produjo ningun return de la validacion agrego el gasto
-        // La fecha la paso en segundos y la cantidad con decimales con dos dígitos
-        try {            
-            await addDoc(collection(db, 'gastos'), {
-            categoria: categoria,
-            fecha: getUnixTime(fecha),
-            descripcion: inputDescripcion,
-            cantidad: parseFloat(inputCantidad).toFixed(2)
-            });
-
-            cambiarMensaje('Gasto añadido con éxito');
-            cambiarValidacion(true);
-
-        } catch(error) {
-            console.log(error);            
-        }
-        
+        // Si no se produjo ningun return de la validacion en cliente agrego el gasto
+        agregarGasto(categoria, fecha, inputDescripcion, inputCantidad, cambiarMensaje, cambiarValidacion);
     }
 
     const handleChange = (e) => {
-        if(e.target.name === 'inputDescripcion')
-            cambiarInputDescripcion(e.target.value);
-        else if (e.target.name === 'inputCantidad')
-            // Mientras se escribe en el input remplazará todo lo que no sea un numero y un punto por un espacio blanco
-            cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, ''));
+        if(e.target.name === 'inputDescripcion') cambiarInputDescripcion(e.target.value);
+        // Mientras se escribe remplazará todo lo que no sea un numero y un punto por un espacio blanco
+        else if (e.target.name === 'inputCantidad') cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, ''));
     }
     
     return ( 
@@ -162,7 +150,7 @@ const FormularioGasto = () => {
                 </ContenedorBoton>
 
                 {/* Mensaje con el error de la validacion si se produjese */}
-                <Mensaje validacion={validacion} mensaje={mensaje}/>
+                <Mensaje $validacion={validacion} mensaje={mensaje}/>
                 
             
             </Formulario>

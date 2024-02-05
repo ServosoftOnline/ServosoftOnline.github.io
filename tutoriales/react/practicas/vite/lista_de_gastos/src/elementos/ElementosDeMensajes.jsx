@@ -24,9 +24,9 @@ const ContenedorMensajes = styled.div`
     p {
  
         color: ${(props) => {
-            if(props.$tipo === 'error'){
+            if(props.$validacion === 'incorrecta'){
                 return theme.rojo;
-            } else if (props.$tipo === 'exito') {
+            } else if (props.$validacion === 'correcta') {
                 return theme.verde;
             } else {
                 return '#000';
