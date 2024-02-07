@@ -54,14 +54,6 @@ import Mensaje from "./Mensaje";
 // Svg como componente
 import IconoPlus from './../assets/plus.svg?react';
 
-// Firebase
-import { db } from './../firebase/firebaseConfig';
-import { collection, addDoc } from "firebase/firestore";
-
-// date-fns
-import { getUnixTime } from "date-fns";
-import { fromUnixTime } from "date-fns";
-
 // Contexto
 import { useAuth } from "../contextos/AuthContext";
 
@@ -79,32 +71,59 @@ const FormularioGasto = () => {
     const [mensaje, cambiarMensaje] = useState();
     const [validacion, cambiarValidacion] = useState('incorrecta');
 
-    // Usuario que inicio sesión
+    // Universal id del usuario que inicio sesión
     const {sesion} = useAuth();
-    // console.log(sesion.uid);    
+    const usuario = sesion.uid;       
 
     // Funciones
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Entro en handlesubmit');
-                
+                       
         // VALIDACION EN CLIENTE
         // 1.- Que no tengo ningún campo vacío
         if(inputDescripcion==='' || inputCantidad==='') {
-            console.log('No introducí inputs');
             cambiarMensaje('Debe rellenar todos los datos');
             cambiarValidacion('incorrecta');
             return;
         }
 
         // Si no se produjo ningun return de la validacion en cliente agrego el gasto
-        agregarGasto(categoria, fecha, inputDescripcion, inputCantidad, cambiarMensaje, cambiarValidacion);
+        agregarGasto(
+            categoria,
+            fecha,
+            inputDescripcion,
+            inputCantidad,
+            usuario
+        ) 
+        // Si se añadio correctamente el gasto
+        .then (() => {
+
+            // Valido ok
+            cambiarMensaje('Gasto añadido con éxito');
+            cambiarValidacion('correcta');
+
+            // Restauro los valores por defecto
+            cambiarCategoria('comida');
+            cambiarFecha(new Date());
+            cambiarInputDescripcion('');
+            cambiarInputCantidad('');
+
+        })
+        // Si no se añadio el gasto
+        .catch((error)=>{
+            console.log(error);
+            cambiarMensaje('No se pudo añadir el gasto en la base de datos');
+            cambiarValidacion('incorrecta');
+        })
     }
 
     const handleChange = (e) => {
         if(e.target.name === 'inputDescripcion') cambiarInputDescripcion(e.target.value);
-        // Mientras se escribe remplazará todo lo que no sea un numero y un punto por un espacio blanco
-        else if (e.target.name === 'inputCantidad') cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, ''));
+        // Remplazará todo lo que no sea un numero y un punto por un espacio blanco
+        // Y añadirá al final el simbolo del euro
+        else if (e.target.name === 'inputCantidad') {
+            cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, '') + ' €');
+          }
     }
     
     return ( 
@@ -150,15 +169,12 @@ const FormularioGasto = () => {
                 </ContenedorBoton>
 
                 {/* Mensaje con el error de la validacion si se produjese */}
-                <Mensaje $validacion={validacion} mensaje={mensaje}/>
-                
+                <Mensaje $validacion={validacion} mensaje={mensaje}/>               
             
             </Formulario>
-
             
         </>
      );
 }
  
 export default FormularioGasto;
-

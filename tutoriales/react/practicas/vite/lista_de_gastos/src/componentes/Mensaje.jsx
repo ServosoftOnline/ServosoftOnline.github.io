@@ -23,7 +23,7 @@ import React from "react";
 import {ContenedorMensajes} from  './../elementos/ElementosDeMensajes';
 
 const Mensaje = ({$validacion, mensaje}) => {
-    console.log('validacion: ' + $validacion);
+    
     return (
         <ContenedorMensajes $validacion={$validacion}>
             <p>{mensaje}</p>

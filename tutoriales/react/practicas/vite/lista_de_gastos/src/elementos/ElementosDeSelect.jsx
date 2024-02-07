@@ -10,7 +10,7 @@ const ContenedorSelect = styled.div`
     // Hará que los elementos que muestre el select esten alineados
     position: relative;
 
-    height: 5rem; /* 80px */
+    height: 4rem; /* 64px */
     width: 40%;
     padding: 0px 1.25rem; /* 20px */
     font-size: 1.5rem; /* 24px */

@@ -158,6 +158,20 @@
         - Creo el archivo agregarGasto.jsx en la carpeta de firebase
           - Agregará la categoría del gasto, la fecha, la descripción y el importe
 
+      15.- Creo la barra verde de abajo donde se indica el total gastado en el mes
+        - La contendrá el componente BarraTotalGastado.jsx
+        - Lo llamaré desde los componentes FormularioGastos.jsx, ListaDeGastos.jsx y GastosPorCategoria.jsx
+        - Creo la funcion convertirAMoneda.jsx para mostrar el total en euros
+        - Por ahora dejaré el total a 0
+
+      16.- Finalizo el componente ListaDeGastos.jsx
+        - Realizo un hook para poder conectarse a firestore y obtener los valores que mostraré
+        - Es una consulta a la base de datos
+        
+
+
+
+
 */
 
 // React y react router

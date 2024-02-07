@@ -29,7 +29,7 @@ import imagenCrearCuenta from './../assets/login.svg?react';
 const ContenedorFiltros = styled.div`
     display: flex;
     justify-content: space-between;
-    // align-items: center;
+    align-items: center;
     margin-bottom: 1.87rem; /* 30px */
  
     // Cuando llegue la ventana a 950px los elementos se colocan en forma de columna y no uno al lado de otro
@@ -54,7 +54,7 @@ const Formulario = styled.form`
     input {
         width: 100%;
         text-align: center;
-        padding: 2.5rem 0;
+        padding: 1.5rem 0; /* 24px */
         font-family: 'Work Sans', sans-serif;
         &::placeholder {
             color: rgba(0,0,0,.2);
@@ -62,43 +62,43 @@ const Formulario = styled.form`
     }
  
     @media(max-width: 60rem){ /* 950px */
-        // justify-content: start;
+        justify-content: start;        
     }
 `;
  
 const Input = styled.input`
-    font-size: 2.5rem; /* 40px */
+    font-size: 2rem; /* 32px */
     text-transform: uppercase;
     border: none;
     border-bottom: 2px solid ${theme.grisClaro};
     outline: none;
  
     @media(max-width: 60rem){ /* 950px */
-        font-size: 2.2rem; /* 24px */
+        font-size: 1.8rem; /* 28.8px */
     }
 `;
  
 const InputGrande = styled(Input)`
-    font-size: 4.37rem; /* 70px */
+    font-size: 3rem; /* 48px */
     font-weight: bold;
 `;
  
 const ContenedorBoton = styled.div`
     display: flex;
     justify-content: center;
-    margin: 2.5rem 0;  /* 40px */
+    margin: 2rem 0;  /* 32px */
     
 `;
 
 const SvgIniciarSesion = styled(imagenIniciarSesion)`
     width: 100%;
-    max.height: 12.5rem; /* 200px */
+    max.height: 6.25rem; /* 100px */
     margin-bottom : 1.25rem; /* 20px */
 `;
 
 const SvgCrearCuenta = styled(imagenCrearCuenta)`
     width: 100%;
-    max.height: 12.5rem; /* 200px */
+    max.height: 6.25rem; /* 100px */
     margin-bottom : 1.25rem; /* 20px */
 `;
 

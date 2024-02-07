@@ -24,6 +24,9 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 import {Header, Titulo} from "../elementos/ElementosDeHeader";
 import BtnRegresar from "../elementos/BtnRegresar";
 
+// Componentes
+import BarraTotalGastado from "./barraTotalGastado";
+
 
 const GastosPorCategoria = () => {
 
@@ -35,9 +38,11 @@ const GastosPorCategoria = () => {
           </Helmet>
 
           <Header>
-            <BtnRegresar/> 
-            <Titulo>Gastos por categoría</Titulo>                     
+            <Titulo>Gastos por categoría</Titulo>
+            <BtnRegresar/>                    
           </Header>
+
+          <BarraTotalGastado />
         </HelmetProvider>       
       </>
         

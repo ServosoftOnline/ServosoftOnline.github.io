@@ -24,11 +24,16 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 import {Header, Titulo} from "../elementos/ElementosDeHeader";
 import BtnRegresar from "../elementos/BtnRegresar";
 
+// Componentes
+import BarraTotalGastado from "./barraTotalGastado";
+
 // Hooks
-import {useAuth} from '../contextos/AuthContext';
+import useObtenerGastos from "../hooks/useObtenerGastos";
 
 // Componente
 const ListaDeGastos = () => {
+  const [gastos] = useObtenerGastos();
+  console.log(gastos);
 
 
   return (
@@ -39,9 +44,11 @@ const ListaDeGastos = () => {
         </Helmet>
 
         <Header>
-          <BtnRegresar/> 
-          <Titulo>Lista de gastos</Titulo>                     
+          <Titulo>Lista de gastos</Titulo> 
+          <BtnRegresar/>      
         </Header>
+
+        <BarraTotalGastado />
       </HelmetProvider>       
     </>      
   );

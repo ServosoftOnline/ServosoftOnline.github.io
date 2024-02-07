@@ -1,6 +1,5 @@
 /*
     MUESTRA LOS CONTACTOS QUE EXISTEN EN LA BASE DE DATOS DE FIRESTORE:
-
         - Me permite conectarme a la base de datos de firebase, obtener los contactos y mostrarlos
 
         - Importo:

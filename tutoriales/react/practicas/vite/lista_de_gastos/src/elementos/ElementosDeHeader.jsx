@@ -7,7 +7,7 @@ const Header = styled.div`
     width: 100%;
     padding: 2.5rem; /* 40px */
     
-    // Separo los componentes de forma horizontal y los alineao de forma vertical
+    // Separo los componentes de forma horizontal y los alineo de forma vertical
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,7 +21,7 @@ const Header = styled.div`
 const Titulo = styled.h1`
     font-weight: normal;
     text-transform: uppercase;
-    font-size: 2.5rem; /* 40px */
+    font-size: 2.0rem; /* 32px */
     
     // Cuando se reduzca el tamaño de la ventana a 950px, disminuyo el tamaño de la fuente del titulo
     @media(max-width: 60rem){ /* 950px */

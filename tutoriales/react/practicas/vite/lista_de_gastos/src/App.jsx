@@ -30,6 +30,7 @@ import BotonCerrarSesion from "./elementos/BotonCerrarSesion";
 
 // Componentes
 import FormularioGasto from "./componentes/FormularioGasto";
+import BarraTotalGastado from "./componentes/barraTotalGastado";
 
 const App = () => {
   return (        
@@ -55,6 +56,10 @@ const App = () => {
 
             {/* Formulario*/}
             <FormularioGasto/>
+
+            {/* Barra del total gastado */}
+            <BarraTotalGastado />
+
 
          </HelmetProvider>
       </>  
