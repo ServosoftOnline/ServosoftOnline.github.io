@@ -26,7 +26,7 @@ const agregarGasto = async (categoria, fecha, inputDescripcion, inputCantidad, u
         fecha: getUnixTime(fecha),
         descripcion: inputDescripcion,
         importe: parseFloat(inputCantidad).toFixed(2),
-        usuario: usuario
+        uidUsuario: usuario
     });        
 }
 

@@ -30,7 +30,7 @@ import BotonCerrarSesion from "./elementos/BotonCerrarSesion";
 
 // Componentes
 import FormularioGasto from "./componentes/FormularioGasto";
-import BarraTotalGastado from "./componentes/barraTotalGastado";
+import BarraTotalGastado from './componentes/BarraTotalGastado';
 
 const App = () => {
   return (        

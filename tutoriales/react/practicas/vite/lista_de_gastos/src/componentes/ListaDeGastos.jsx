@@ -25,7 +25,7 @@ import {Header, Titulo} from "../elementos/ElementosDeHeader";
 import BtnRegresar from "../elementos/BtnRegresar";
 
 // Componentes
-import BarraTotalGastado from "./barraTotalGastado";
+import BarraTotalGastado from './BarraTotalGastado';
 
 // Hooks
 import useObtenerGastos from "../hooks/useObtenerGastos";
