@@ -27,6 +27,7 @@ import imagenCrearCuenta from './../assets/login.svg?react';
 
 
 const ContenedorFiltros = styled.div`
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,6 +45,7 @@ const ContenedorFiltros = styled.div`
 `;
  
 const Formulario = styled.form`
+
     padding: 0 2.5rem; /* 40px */
     height: 100%;
     display: flex;
