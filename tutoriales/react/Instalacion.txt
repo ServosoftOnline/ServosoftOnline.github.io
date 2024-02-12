@@ -278,26 +278,33 @@ INSTALAR UNA APP CON REACT
         - Instala los dos paquetes a la vez.
 
       - Importacion:
-        - import { DayPicker } from 'react-day-picker';
-        - import 'react-day-picker/dist/style.css';
-        - import { format } from 'date-fns';
-        - import { es } from "date-fns/locale";
-          - Formato en español
-        - import { getUnixTime } from "date-fns";
-          - Transorma una fecha en segundos
-        - import { fromUnixTime } from "date-fns";
-          - Transforma segundos en fecha
-          
-        - Al llamar al componente DayPicker debo asignarle propiedades:
-          - mode="single" permite seleccionar un día
-          - onSelect={funcion} permite ejecutar una función cuando seleccione un dia
-          - selected={estado_con_la_fecha_seleccionada} permite almacenar la fecha seleccionada
-          - footer={footer} permite añadir un pié
+        - DayPicker
 
-        - Al llamar a la funcion format asigno el formato a partir de una serie de caracteres:
-          - dd mostraría el dia de la fecha
-          - MMMM mostraría el mes completo en letra
-          - yyyy mostraría el año
+          - import { DayPicker } from 'react-day-picker';
+          - import 'react-day-picker/dist/style.css';
+
+          - Al llamar al componente DayPicker debo asignarle propiedades:
+            - mode="single" permite seleccionar un día
+            - onSelect={funcion} permite ejecutar una función cuando seleccione un dia
+            - selected={estado_con_la_fecha_seleccionada} permite almacenar la fecha seleccionada
+            - footer={footer} permite añadir un pié
+
+        - date-fns
+          - import { format } from 'date-fns';
+          - import { es } from "date-fns/locale";   Español
+          - import { getUnixTime } from "date-fns"; Transforma una fecha en segundos
+          - import { fromUnixTime } from "date-fns";  Transforma segundos en fecha
+
+          - Al llamar a la funcion format asigno el formato a partir de una serie de caracteres:
+            - dd mostraría el dia de la fecha
+            - MMMM mostraría el mes completo en letra
+            - yyyy mostraría el año
+
+          Ejemplos:
+            - format(fromUnixTime(fechaEnSegundos), "dd 'de' MMMM 'de' yyyy", {locale: es})
+              - Formatea una fecha en segundos en día de mes de año en español
+            - format(fecha, "dd 'de' MMMM 'de' yyyy", {locale: es})
+              - Formatea una fecha en día de mes de año en español
 
     
         

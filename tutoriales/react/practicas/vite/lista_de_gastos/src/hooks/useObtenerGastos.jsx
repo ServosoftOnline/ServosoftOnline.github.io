@@ -7,8 +7,17 @@
 			- La base de datos y las funciones que preciso para realizar la consulta
 
         - Creo la funcion hook:
+
 			- Extraigo la sesión del contexto con la información del usuario
-			- El estado que contendrá los gastos obtenidos de la consulta
+			- Creo el estado que contendrá los gastos obtenidos del hook o consulta
+			- Creo un estado donde almacenaré el último gasto cargado
+
+			- Creo la función para obtener más gastos.
+				- Los resultados están limitados a 10.
+				- Cuando se pulse el botón de cargar mas gastos, se ejecutará esta función
+				- La consulta mostrará los resultados a partir del último gasto mostrado anteriormente
+
+
 
 			- Creo el efecto que se ejecutará al principio y cada vez que cambie el usuario
 
@@ -48,39 +57,89 @@ import {useAuth} from './../contextos/AuthContext';
 
 // Firebase
 import {db} from './../firebase/firebaseConfig';
-import { collection, onSnapshot, query, orderBy, where, limit} from 'firebase/firestore';
+import { collection, onSnapshot, query, orderBy, where, limit, startAfter} from 'firebase/firestore';
 
 // Hook
 const useObtenerGastos = () => {
 
+	// Estados
 	const {sesion} = useAuth();	
-	const [gastos, cambiarGastos] = useState([]);	
+	const [gastos, cambiarGastos] = useState([]);
+	const [ultimoGasto, cambiarUltimoGasto] = useState(null);
+	const [hayMasPorCargar, cambiarHayMasPorCargar] = useState(false);
+	
+	// Funcion que muestra mas gastos a partir del último gasto obtenido
+	const obtenerMasGastos = () => {
 
-	// Efecto
-	useEffect(() => {
-
-		// Consulta
-		const consulta = query(
+		// Consulta que obtiene los siguientes 10 gastos a partir del ultimo gasto mostrado
+		const consultaObtener10GastosMas = query(
 			collection(db, 'gastos'),
 			where('uidUsuario', '==', sesion.uid),
-			orderBy('fecha', 'desc'),
+			orderBy('fecha', 'asc'),
+			limit(10),
+			startAfter(ultimoGasto)
+		);
+
+		// Ejecuta la consulta de más gastos
+		const unsuscribe = onSnapshot(consultaObtener10GastosMas, (snapshot) => {
+			// si sigo teniendo mas gastos
+			if(snapshot.docs.length > 0 ) {
+
+				// Actualizo mi último gasto
+				cambiarUltimoGasto(snapshot.docs[snapshot.docs.length -1]);
+
+				// Concateno los gastos que ya tenía a los nuevos y añado un id con el id del gasto
+				cambiarGastos(gastos.concat(snapshot.docs.map((gasto) => {
+					return {...gasto.data(), id: gasto.id}
+				})));
+
+			} else {
+				// Actualizo el estado
+				cambiarHayMasPorCargar(false);
+			}
+			
+		});
+
+		// Cierra la consulta de más gastos   
+		return unsuscribe;
+	}
+
+	// Efecto que se produce al principio y si cambia la sesion
+	useEffect(() => {
+
+		// Consulta que obtiene los 10 primeros gastos
+		const consultaObtenerPrimeros10Gastos = query(
+			collection(db, 'gastos'),
+			where('uidUsuario', '==', sesion.uid),
+			orderBy('fecha', 'asc'),
 			limit(10)
 		);
 		
-		// Ejecuta la consulta
-		const unsuscribe = onSnapshot(consulta, (snapshot) => {
+		// Ejecuta la consulta de los 10 primeros gastos
+		const unsuscribe = onSnapshot(consultaObtenerPrimeros10Gastos, (snapshot) => {
+			// Si quedan más gastos por mostrar
+			if(snapshot.docs.length > 0){
+			 	// Guardo como último gasto, su índice será la longitud -1 porque los arrays empiezan en 0
+				cambiarUltimoGasto(snapshot.docs[snapshot.docs.length -1]);
+				// Actualizo el estado
+				cambiarHayMasPorCargar(true);
+				} else {
+					cambiarHayMasPorCargar(false);
+				}
+
+			// Añado los primeros gastos y el id del gasto
 			cambiarGastos(snapshot.docs.map((gasto) => {
 			    return {...gasto.data(), id: gasto.id}
 			}));
 		});		
 
-		// Cierra la consulta        
+		// Cierra la consulta de los 10 primeros gastos    
 		return unsuscribe;
 
 	}, [sesion]);
     
-	// Devuelvo el estado gastos con los resultados de la consulta
-	return [gastos];
+	// Devuelvo el estado gastos, la función obtenerMasGastos y el estado hayMasPorCargar
+	return [gastos, obtenerMasGastos, hayMasPorCargar];
 }
  
 export default useObtenerGastos;

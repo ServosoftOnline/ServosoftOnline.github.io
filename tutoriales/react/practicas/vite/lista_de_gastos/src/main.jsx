@@ -167,7 +167,10 @@
       16.- Finalizo el componente ListaDeGastos.jsx
         - Creo el hook useObtenerGastos.jsx para realizar una consulta con los gastos del usuario actual
         - Creo el archivo elementosDelista.jsx que contendrá todos los elementos que usaré en el componente listaDeGastos.jsx
-
+        - Creo la lógica del botón que carga más gastos. Los hará de 10 en 10
+          - Para ello modifico el hook useObtenerGastos.jsx y el componente listaDeGastos.jsx
+          
+        
         
 
 
