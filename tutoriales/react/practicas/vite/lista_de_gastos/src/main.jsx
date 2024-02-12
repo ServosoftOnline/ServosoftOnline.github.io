@@ -165,8 +165,9 @@
         - Por ahora dejaré el total a 0
 
       16.- Finalizo el componente ListaDeGastos.jsx
-        - Realizo un hook para poder conectarse a firestore y obtener los valores que mostraré
-        - Es una consulta a la base de datos
+        - Creo el hook useObtenerGastos.jsx para realizar una consulta con los gastos del usuario actual
+        - Creo el archivo elementosDelista.jsx que contendrá todos los elementos que usaré en el componente listaDeGastos.jsx
+
         
 
 
@@ -186,8 +187,8 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 import favicon from './assets/logo.png'
 
 // Elementos
-import Contenedor from "./elementos/Contenedor";
 import Fondo from './elementos/Fondo.jsx';
+import Contenedor from "./elementos/Contenedor";
 
 // Componentes
 import EditarGastos from './componentes/EditarGastos.jsx'
@@ -249,12 +250,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 }/>
 
                 {/* En el path de editar le pasaré un id */}
-                <Route path='/editar/id:' element={
+                <Route path='/editar/:id' element={
                   <RutaPrivada path='/editar/id:'>
                       <EditarGastos />
                   </RutaPrivada>                  
                 }/>
-                
+                              
                 {/* La ruta cuyo path sea la raiz cargaré el componente ppal */}
                 <Route path='/' element={
                   <RutaPrivada path='/'>

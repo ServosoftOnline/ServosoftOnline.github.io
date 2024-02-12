@@ -288,8 +288,6 @@ INSTALAR UNA APP CON REACT
         - import { fromUnixTime } from "date-fns";
           - Transforma segundos en fecha
           
-        
-
         - Al llamar al componente DayPicker debo asignarle propiedades:
           - mode="single" permite seleccionar un día
           - onSelect={funcion} permite ejecutar una función cuando seleccione un dia
