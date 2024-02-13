@@ -11,6 +11,7 @@
 			- Extraigo la sesión del contexto con la información del usuario
 			- Creo el estado que contendrá los gastos obtenidos del hook o consulta
 			- Creo un estado donde almacenaré el último gasto cargado
+			- El estado booleano hayMasPorCargar que guardará si hay mas elementos por mostrar
 
 			- Creo la función para obtener más gastos.
 				- Los resultados están limitados a 10.
@@ -21,7 +22,7 @@
 
 			- Creo el efecto que se ejecutará al principio y cada vez que cambie el usuario
 
-				- Creo la consulta:
+				- Creo la consulta para los primeros 10 gastos:
 					- Obtiene de colección gastos de la base de datos
 					- todos los registros cuyo campo uidUsuario coincida con el uid de la sesión actual,
 					- ordenalas por fecha en orden descendente
@@ -30,7 +31,7 @@
 						- La consola mostrará un enlace donde solucionaremos esto
 						- Solo hay que estar seguro de tener abierto el navegador con la misma cuenta donde agregamos firebase
 
-				- Ejecuta la consulta:
+				- Ejecuto la consulta:
 					- Ejecuto la función onSnapshot de firestore
 					- Le paso la consulta y se ejecutara una funcion cada vez que se actualize la base de datos
 					- El parámetro snapshot de esa función contendrá una visión de la base de datos actualmente
@@ -97,8 +98,8 @@ const useObtenerGastos = () => {
 				// Actualizo el estado
 				cambiarHayMasPorCargar(false);
 			}
-			
-		});
+			// Si falla la ejecucion de la consulta muestro el error en consola	
+		}, error => {console.log(error)});
 
 		// Cierra la consulta de más gastos   
 		return unsuscribe;

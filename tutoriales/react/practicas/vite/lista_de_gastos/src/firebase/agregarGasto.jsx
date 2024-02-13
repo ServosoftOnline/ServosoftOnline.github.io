@@ -1,13 +1,15 @@
 /*
-    FUNCION QUE AGREGA UN GASTO A LA BASE DE DATOS
-        - los datos ya se encuentran validados antes de llamar a esta función
-        - Importo lo necesario para usar firebase y date-fns
+FUNCION QUE AGREGA UN GASTO A LA BASE DE DATOS
+    - los datos ya se encuentran validados antes de llamar a esta función
+    - Importo lo necesario para usar firebase y date-fns
 
-        - Creo la función:
-            - Antes de introducir los gastos en la base de datos:
-                - La fecha la paso a segundos mediante la funcion getUnixTime
-                - El inputCantidad lo paso a decimales con dos digitos quitando así el caracter €
-            - Devuelvo el resultado de añadir la coleccion a formularioGasto.jsx que gestiona la promesa
+    - Creo la función:
+        - Antes de introducir los gastos en la base de datos:
+            - La fecha la paso a segundos mediante la funcion getUnixTime
+            - El inputCantidad lo paso a numero con decimales con dos digitos
+                - Quitando así el caracter €
+                
+        - Devuelvo el resultado de añadir la coleccion a formularioGasto.jsx que gestiona la promesa
 
 */
 
@@ -25,7 +27,7 @@ const agregarGasto = async (categoria, fecha, inputDescripcion, inputCantidad, u
         categoria: categoria,
         fecha: getUnixTime(fecha),
         descripcion: inputDescripcion,
-        importe: parseFloat(inputCantidad).toFixed(2),
+        importe: Number(parseFloat(inputCantidad).toFixed(2)),
         uidUsuario: usuario
     });        
 }

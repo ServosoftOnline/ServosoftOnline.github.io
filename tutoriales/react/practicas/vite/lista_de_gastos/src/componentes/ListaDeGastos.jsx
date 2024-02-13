@@ -7,26 +7,35 @@
       - Componentes, hooks, funciones, ...    
       
     - Creo el componente:
-      - Obtengo todos los gastos del usuario actual mediante el hook
+      - Obtengo del hook lo siguiente del usuario actual:
+        - Sus gastos
+        - La función para obtener 10 gastos mas
+        - El estado que almacena si hay mas gastos que cargar
+
       - Creo una función que usaré únicamente en este componente
-        - Me permitirá comprobar si un gasto y su siguiente tienen la misma fecha para ocultarla en la lista
+        - Me permitirá comprobar si un gasto y su siguiente tienen la misma fecha
+        - Si es así no mostraré la fecha en la lista
 
       - Devuelvo un fragmento que contiene:
         - El titulo de la pestaña indicado entre las etiquetas Helmet
         - La cabecera que contendrá el título y el boton para regresar a la pagina raiz
+
         - Creo la lista:
-          - Recorro todos los gastos y voy mostrando elementos de esa lista
-          - Contendrá:
-            - Las fechas no repetidas
-            - El icono de la categoria y la categoria correspondiente
-            - Descripción e importe del gasto
-            - Un contenedor con los botones editar y borrar gasto
-            - Un botón de cargar mas, esos se limitarán a 10 articulos por pagina
-            - Un mensaje que no hay gastos si no los hubiera
+            - Recorro todos los gastos y voy devolviendo los elementos de esa lista
+            - Estarán englobados en un div que me permite añadirle un solo key a ambos elementos
 
-        - La barra que muestre los gastos del mes actual  
+            - Contendrá:
+              - Las fechas no repetidas. Si la fecha no es la misma que la anterior no la muestro
+              - El icono de la categoria y la categoria correspondiente
+              - Descripción e importe del gasto. Este ultimo le aplico la funcion de convertirAMoneda
+              - Un contenedor con los botones editar y borrar gasto. El de editar se comporta como link
+              - Un botón de cargar mas, esos se limitarán a 10 articulos por pagina
+                - Cuando haga click en el llamará a la funcion obtenerMasGastos del hook
+              - Un boton BotonCargarMas que se mostrará o no dependiendo del estado hayMasPorCargar
+              - Un mensaje que no hay gastos si no los hubiera
+                - Contendrá un botón que actua como link a la raiz para añadir gastos       
 
-
+        - La barra que muestre los gastos del mes actual 
 */
 
 // React
@@ -54,15 +63,18 @@ import useObtenerGastos from "../hooks/useObtenerGastos";
 // Funciones
 import convertirAMoneda from "../funciones/convertirAMoneda";
 import formatearFecha from "../funciones/formatearFecha";
+import eliminarGasto from './../firebase/eliminarGasto';
 
 // SVG como elemento
 import IconoEditar from './../assets/editar.svg?react';
 import IconoBorrar from './../assets/borrar.svg?react';
 
+
+
 // Componente
 const ListaDeGastos = () => {
 
-  // Obtengo los gastos realizados por el usuario actual con este hook
+  // Obtengo del hook lo siguiente
   const [gastos, obtenerMasGastos, hayMasPorCargar] = useObtenerGastos();
 
   // Funcion que comprueba si la fecha del index anterior es igual a la fecha del index actual
@@ -129,7 +141,7 @@ const ListaDeGastos = () => {
                           <IconoEditar /> 
                         </BotonAccion>
 
-                        <BotonAccion>
+                        <BotonAccion onClick={() => eliminarGasto(gasto.id)}>
                           <IconoBorrar />
                         </BotonAccion>
 
