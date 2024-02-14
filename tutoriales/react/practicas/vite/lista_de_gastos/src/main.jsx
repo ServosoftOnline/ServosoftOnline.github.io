@@ -172,6 +172,11 @@
 
         - Creo la funcionalidad para eliminar gastos de la lista
           - Se encarga de esa funcion el archivo eliminarGasto de la carpeta firebase
+
+        - Creo la funcionalidad para editar un gasto
+          - Añado el componente FormularioGasto en EditarGastos.jsx
+          - Creo un nuevo hook useObtenerUnGasto.jsx y lo llamo desde EditarGastos.jsx
+          
           
         
         
@@ -258,7 +263,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
                 {/* En el path de editar le pasaré un id */}
                 <Route path='/editar/:id' element={
-                  <RutaPrivada path='/editar/id:'>
+                  <RutaPrivada path='/editar/:id'>
                       <EditarGastos />
                   </RutaPrivada>                  
                 }/>
