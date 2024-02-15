@@ -15,7 +15,7 @@ import React from "react";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
 // Elementos
-import {Header, Titulo, ContenedorBotones, ContenedorHeader} from './../elementos/ElementosDeHeader';
+import {Header, Titulo} from './../elementos/ElementosDeHeader';
 import BtnRegresar from "../elementos/BtnRegresar";
 
 // Componentes
@@ -32,8 +32,8 @@ const EditarGastos = () => {
   // Extraigo el id que pasé como ruta dinamica asociada al componente EditarGastos en main.jsx
   const {id} = useParams();
   const [gasto] = useObtenerUnGasto(id);
-  console.log('Muestro el gasto obtenido');
-  console.log(gasto.categoria);
+  // console.log('Muestro el gasto obtenido');
+  // console.log(gasto.categoria);
   
  
   
@@ -44,13 +44,13 @@ const EditarGastos = () => {
         <Helmet>
           <title>Editar gasto</title>
         </Helmet>
-
+        
         <Header>
           <Titulo>Editar Gasto</Titulo>
-          <BtnRegresar/>                    
+          <BtnRegresar ruta='/lista' />                     
         </Header>
-
-        <FormularioGasto/>
+        
+        <FormularioGasto gasto={gasto} />
 
         <BarraTotalGastado />
       </HelmetProvider>       

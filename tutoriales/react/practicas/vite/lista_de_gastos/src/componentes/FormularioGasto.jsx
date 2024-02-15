@@ -3,6 +3,8 @@
         - Importo lo necesario
 
         - Creo el componente
+            - Obtengo un gasto por parámetro
+
             - los estados:
                 - un estado por cada input
                 - Un estado para almacenar los mensajes de error en las validaciones
@@ -10,6 +12,11 @@
                     - La pasaré como propiedad al componente SelectCategorias
                 - Un estado con el momento actual por defecto
                     - La pasaré como propiedad al componente DatePicker
+            
+            - Efecto
+                - Se ejecutará al principio y cada vez que halla un cambio de usuario o de gasto
+                - Comprobará si existe un gasto y si es del usuario actual
+                - Si se cumple cambio todos los estados de los inputs con el gasto obtenido
 
             - las funciones:
                 - handleSubmit para validar lo que envio el formulario
@@ -40,7 +47,8 @@
 */
 
 // React 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 
 // Elementos
 import{ContenedorFiltros, Formulario, Input, InputGrande, ContenedorBoton} from './../elementos/ElementosDeFormulario';
@@ -59,10 +67,14 @@ import { useAuth } from "../contextos/AuthContext";
 
 // Funciones
 import agregarGasto from "../firebase/agregarGasto";
+import convertirAMoneda from "../funciones/convertirAMoneda";
+
+// date-fns
+import { fromUnixTime } from "date-fns";
 
 // Componente
-const FormularioGasto = () => {
-
+const FormularioGasto = ({gasto}) => {
+  
     // Estados
     const [categoria, cambiarCategoria] = useState('comida');
     const [fecha, cambiarFecha] = useState(new Date());
@@ -73,9 +85,38 @@ const FormularioGasto = () => {
 
     // Universal id del usuario que inicio sesión
     const {sesion} = useAuth();
-    const usuario = sesion.uid;       
+    const usuario = sesion.uid;
 
-    // Funciones
+    const navigate = useNavigate();
+
+
+    // Solo la primera vez que cargue el componente, compruebo si pasé un gasto como argumento
+    useEffect(()=> {
+        
+        // Si hay gasto
+        if(gasto) {
+            // Si es del usuario actual
+            if(usuario === gasto.uidUsuario){
+
+                // Cambio todos los estados de los inputs y se actualizarán los inputs con el gasto
+                cambiarCategoria(gasto.categoria);
+                cambiarFecha(fromUnixTime(gasto.fecha));
+                cambiarInputDescripcion(gasto.descripcion);
+                cambiarInputCantidad(gasto.importe);
+
+            // Si no lo es lo redirijo hacia lista de gastos
+            } else {
+                navigate('/lista');
+
+            }
+            
+
+
+        }
+
+    }, [gasto, usuario]);
+
+    // Funciones    
     const handleSubmit = (e) => {
         e.preventDefault();
                        
@@ -156,7 +197,7 @@ const FormularioGasto = () => {
                 type="text"
                 name="inputCantidad"
                 placeholder="0.00€"
-                value={inputCantidad}
+                value={convertirAMoneda(inputCantidad)}
                 onChange={handleChange}
                 
                 />
