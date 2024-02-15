@@ -5,6 +5,10 @@
       - Lo que precise de react, elementos, componentes que precise
       - Espacial atención a importar el hook useParams.
         - Permite obtener el id del gasto de la barra de direcciones
+
+    - Creo el componente
+      - Obtengo el id de la bara de direcciones y lo guardo en id
+      
 */
 // React
 import React from "react";
@@ -22,12 +26,16 @@ import BarraTotalGastado from "./BarraTotalGastado";
 import { useParams } from "react-router-dom";
 import useObtenerUnGasto from "./../hooks/useObtenerUnGasto";
 
-
+// Componente
 const EditarGastos = () => {
   
   // Extraigo el id que pasé como ruta dinamica asociada al componente EditarGastos en main.jsx
   const {id} = useParams();
   const [gasto] = useObtenerUnGasto(id);
+  console.log('Muestro el gasto obtenido');
+  console.log(gasto.categoria);
+  
+ 
   
 
   return (

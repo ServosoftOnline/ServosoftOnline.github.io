@@ -4,41 +4,38 @@
 */
 
 // React
-import {useState, useEffect} from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Firebase
-import {db} from '../firebase/firebaseConfig';
+import { db } from '../firebase/firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 
 // Hook
 const useObtenerUnGasto = (idGasto) => {
-	// console.log('Gasto que le llega al hook: ' + idGasto);
+
 	const navigate = useNavigate();
-	const [gasto, establecerGasto] = useState('inicial');
+	const [gasto, establecerGasto] = useState('');	
 	
 	// Conecto una sola vez y al principio a la base de datos y obtengo el gasto.
 	useEffect(() => {
 
+		// Declaro la función obtener Gasto
 		const obtenerGasto = async () => {
-			// Obtengo el documento de forma asincrona
-			try {
-				const documento = await getDoc(doc(db, 'gastos', idGasto));
-				console.log(documento.data());
-				// Si lo obtuve cambio el estado gasto y lo añado
-				if(documento.exists) establecerGasto(documento);
-				else navigate('/lista');
-
-			} catch (error) {
-				console.log(error);
-			}
+			// Obtengo el documento de forma asincrona			
+			const documento = await getDoc(doc(db, 'gastos', idGasto));
+			
+			// Si lo obtuve lo añado en el estado gasto. si no lo redirigo a lista de gastos
+			if(documento.exists) establecerGasto(documento.data());
+			else navigate('/lista');
 		}
-		obtenerGasto();
 
+		// la llamo
+		obtenerGasto();
 
 	}, [navigate, idGasto]);    
 
-	// Devuelvo el gasto
+	// Devuelvo el estado con el gasto que contiene un objeto con el gasto
 	return [gasto];	
 }
  
