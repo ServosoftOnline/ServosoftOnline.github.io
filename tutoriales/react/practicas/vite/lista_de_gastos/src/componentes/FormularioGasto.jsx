@@ -1,9 +1,13 @@
 /*
     FORMULARIO DEL COMPONENTE PPAL PARA AÑADIR GASTOS
+
+        - Con este mismo formulario podré añadir, modificar o eliminar gastos
+        - Dependerá si se le paso como propiedad un gasto a añadir, modificar o eliminar
+
         - Importo lo necesario
 
         - Creo el componente
-            - Obtengo un gasto por parámetro
+            - Si obtengo un gasto a modificar o a eliminar actuaré en consecuencia. Si no le paso ninguno es que añadiré el gasto
 
             - los estados:
                 - un estado por cada input
@@ -67,13 +71,14 @@ import { useAuth } from "../contextos/AuthContext";
 
 // Funciones
 import agregarGasto from "../firebase/agregarGasto";
+import editarGasto from "../firebase/editarGasto";
 import convertirAMoneda from "../funciones/convertirAMoneda";
 
 // date-fns
 import { fromUnixTime } from "date-fns";
 
 // Componente
-const FormularioGasto = ({gasto}) => {
+const FormularioGasto = ({gastoAModificar}) => {
   
     // Estados
     const [categoria, cambiarCategoria] = useState('comida');
@@ -94,68 +99,82 @@ const FormularioGasto = ({gasto}) => {
     useEffect(()=> {
         
         // Si hay gasto
-        if(gasto) {
+        if(gastoAModificar) {
             // Si es del usuario actual
-            if(usuario === gasto.uidUsuario){
+            if(usuario === gastoAModificar.uidUsuario){
 
                 // Cambio todos los estados de los inputs y se actualizarán los inputs con el gasto
-                cambiarCategoria(gasto.categoria);
-                cambiarFecha(fromUnixTime(gasto.fecha));
-                cambiarInputDescripcion(gasto.descripcion);
-                cambiarInputCantidad(gasto.importe);
+                cambiarCategoria(gastoAModificar.categoria);
+                cambiarFecha(fromUnixTime(gastoAModificar.fecha));
+                cambiarInputDescripcion(gastoAModificar.descripcion);
+                cambiarInputCantidad(gastoAModificar.importe);
 
             // Si no lo es lo redirijo hacia lista de gastos
-            } else {
-                navigate('/lista');
-
-            }
-            
-
+            } else navigate('/lista');
 
         }
 
-    }, [gasto, usuario]);
+    }, [gastoAModificar, usuario]);
 
     // Funciones    
     const handleSubmit = (e) => {
         e.preventDefault();
                        
-        // VALIDACION EN CLIENTE
-        // 1.- Que no tengo ningún campo vacío
+        // Valido en cliente:
+
+        // Que no halla ningun campo vacio
         if(inputDescripcion==='' || inputCantidad==='') {
             cambiarMensaje('Debe rellenar todos los datos');
             cambiarValidacion('incorrecta');
             return;
         }
 
-        // Si no se produjo ningun return de la validacion en cliente agrego el gasto
-        agregarGasto(
-            categoria,
-            fecha,
-            inputDescripcion,
-            inputCantidad,
-            usuario
-        ) 
-        // Si se añadio correctamente el gasto
-        .then (() => {
-
-            // Valido ok
-            cambiarMensaje('Gasto añadido con éxito');
-            cambiarValidacion('correcta');
-
-            // Restauro los valores por defecto
-            cambiarCategoria('comida');
-            cambiarFecha(new Date());
-            cambiarInputDescripcion('');
-            cambiarInputCantidad('');
-
-        })
-        // Si no se añadio el gasto
-        .catch((error)=>{
-            console.log(error);
-            cambiarMensaje('No se pudo añadir el gasto en la base de datos');
+        // Que la cantidad tenga un numero entero seguido de un punto y como máximo dos decimales
+        const enteroConDecimalesOpcionales = /^\d+(\.\d{1,2})?$/;
+        if(!enteroConDecimalesOpcionales.test(inputCantidad)) {
+            cambiarMensaje('El importe debe tener un número entero con un máximo de dos decimales opcionales');
             cambiarValidacion('incorrecta');
-        })
+            return;
+        }
+
+        // Si no se produjo ningun return de la validacion, compruebo si quiero editar, borrar o añadir un gasto
+        if(gastoAModificar) {
+            // Modifico el gasto
+            console.log('Gasto a modificar: ' + gastoAModificar.id);
+            // editarGasto(gastoAModificar.id, categoria, fecha, inputDescripcion, inputCantidad);            
+
+        } else {
+            console.log('Añado el gasto');
+
+            // Agrego el gasto
+            agregarGasto(
+                categoria,
+                fecha,
+                inputDescripcion,
+                inputCantidad,
+                usuario
+            ) 
+            // Si se añadio correctamente el gasto
+            .then (() => {
+    
+                // Valido ok
+                cambiarMensaje('Gasto añadido con éxito');
+                cambiarValidacion('correcta');
+    
+                // Restauro los valores por defecto
+                cambiarCategoria('comida');
+                cambiarFecha(new Date());
+                cambiarInputDescripcion('');
+                cambiarInputCantidad('');
+    
+            })
+            // Si no se añadio el gasto
+            .catch((error)=>{
+                console.log(error);
+                cambiarMensaje('No se pudo añadir el gasto en la base de datos');
+                cambiarValidacion('incorrecta');
+            });
+        } 
     }
 
     const handleChange = (e) => {
@@ -163,7 +182,11 @@ const FormularioGasto = ({gasto}) => {
         // Remplazará todo lo que no sea un numero y un punto por un espacio blanco
         // Y añadirá al final el simbolo del euro
         else if (e.target.name === 'inputCantidad') {
-            cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, '') + ' €');
+            
+            cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, ''));     
+            // cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, '' + '€'));   
+            console.log(e.target.value);       
+            
           }
     }
     
@@ -189,17 +212,16 @@ const FormularioGasto = ({gasto}) => {
                 name="inputDescripcion"
                 placeholder="descripcion del gasto"
                 value={inputDescripcion}
-                onChange={handleChange}
-                
+                onChange={handleChange}                
                 />
 
                 <InputGrande
                 type="text"
                 name="inputCantidad"
                 placeholder="0.00€"
-                value={convertirAMoneda(inputCantidad)}
-                onChange={handleChange}
-                
+                // value={inputCantidad + "€"}
+                value={inputCantidad + "€"}                
+                onChange={handleChange}                
                 />
 
                 {/* Boton */}

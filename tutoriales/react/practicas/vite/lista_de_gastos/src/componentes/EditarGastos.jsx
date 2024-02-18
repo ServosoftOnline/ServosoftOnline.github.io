@@ -50,7 +50,7 @@ const EditarGastos = () => {
           <BtnRegresar ruta='/lista' />                     
         </Header>
         
-        <FormularioGasto gasto={gasto} />
+        <FormularioGasto gastoAModificar={gasto} />
 
         <BarraTotalGastado />
       </HelmetProvider>       
