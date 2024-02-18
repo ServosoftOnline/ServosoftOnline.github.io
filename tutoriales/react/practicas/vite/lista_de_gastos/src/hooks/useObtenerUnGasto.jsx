@@ -56,7 +56,7 @@ const useObtenerUnGasto = (idGasto) => {
 			const documento = await getDoc(doc(db, 'gastos', idGasto));
 			
 			// Si lo obtuve lo añado en el estado gasto. si no lo redirigo a lista de gastos
-			if(documento.exists) establecerGasto(documento.data());
+			if(documento.exists) establecerGasto(documento);
 			else navigate('/lista');
 		}
 

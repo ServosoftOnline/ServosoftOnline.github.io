@@ -10,6 +10,8 @@
       - Obtengo el id de la bara de direcciones y lo guardo en id
       
 */
+
+
 // React
 import React from "react";
 import { HelmetProvider, Helmet } from "react-helmet-async";
@@ -32,8 +34,8 @@ const EditarGastos = () => {
   // Extraigo el id que pasé como ruta dinamica asociada al componente EditarGastos en main.jsx
   const {id} = useParams();
   const [gasto] = useObtenerUnGasto(id);
-  // console.log('Muestro el gasto obtenido');
-  // console.log(gasto.categoria);
+  console.log('Muestro el id del gasto obtenido: ' + gasto.id);
+ 
   
  
   

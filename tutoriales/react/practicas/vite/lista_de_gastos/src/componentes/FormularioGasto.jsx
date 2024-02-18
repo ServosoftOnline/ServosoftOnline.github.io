@@ -75,10 +75,11 @@ import editarGasto from "../firebase/editarGasto";
 import convertirAMoneda from "../funciones/convertirAMoneda";
 
 // date-fns
-import { fromUnixTime } from "date-fns";
+import { fromUnixTime, getUnixTime } from "date-fns";
 
 // Componente
 const FormularioGasto = ({gastoAModificar}) => {
+    // console.log('Hay gasto a modificar?: ' + gastoAModificar);
   
     // Estados
     const [categoria, cambiarCategoria] = useState('comida');
@@ -92,9 +93,9 @@ const FormularioGasto = ({gastoAModificar}) => {
     const {sesion} = useAuth();
     const usuario = sesion.uid;
 
+    // Redirigir
     const navigate = useNavigate();
-
-
+   
     // Solo la primera vez que cargue el componente, compruebo si pasé un gasto como argumento
     useEffect(()=> {
         
@@ -120,8 +121,7 @@ const FormularioGasto = ({gastoAModificar}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
                        
-        // Valido en cliente:
-
+        // VALIDACION EN CLIENTE
         // Que no halla ningun campo vacio
         if(inputDescripcion==='' || inputCantidad==='') {
             cambiarMensaje('Debe rellenar todos los datos');
@@ -137,23 +137,32 @@ const FormularioGasto = ({gastoAModificar}) => {
             return;
         }
 
+        // FIN DE LA VALIDACION EN CLIENTE
+
         // Si no se produjo ningun return de la validacion, compruebo si quiero editar, borrar o añadir un gasto
         if(gastoAModificar) {
-            // Modifico el gasto
-            console.log('Gasto a modificar: ' + gastoAModificar.id);
-            // editarGasto(gastoAModificar.id, categoria, fecha, inputDescripcion, inputCantidad);            
+
+            // Modifico el gasto            
+            editarGasto({
+                id: gastoAModificar.id,
+                categoria: categoria,
+                fecha: getUnixTime(fecha),
+                inputDescripcion: inputDescripcion,
+                inputCantidad: inputCantidad
+                }
+            );            
 
         } else {
             console.log('Añado el gasto');
 
             // Agrego el gasto
-            agregarGasto(
-                categoria,
-                fecha,
-                inputDescripcion,
-                inputCantidad,
-                usuario
-            ) 
+            agregarGasto({
+                categoria: categoria,
+                fecha: fecha,
+                inputDescripcion: inputDescripcion,
+                inputCantidad: inputCantidad,
+                usuario: usuario
+            }) 
             // Si se añadio correctamente el gasto
             .then (() => {
     
