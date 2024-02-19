@@ -203,6 +203,7 @@ import Fondo from './elementos/Fondo.jsx';
 import Contenedor from "./elementos/Contenedor";
 
 // Componentes
+import BorrarGasto from './componentes/BorrarGasto.jsx'
 import EditarGastos from './componentes/EditarGastos.jsx'
 import GastosPorCategoria from './componentes/GastosPorCategoria.jsx'
 import InicioSesion from './componentes/InicioSesion.jsx'
@@ -265,6 +266,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path='/editar/:id' element={
                   <RutaPrivada path='/editar/:id'>
                       <EditarGastos />
+                  </RutaPrivada>                  
+                }/>
+
+                {/* En el path de borrar le pasaré un id */}
+                <Route path='/borrar/:id' element={
+                  <RutaPrivada path='/borrar/:id'>
+                      <BorrarGasto />
                   </RutaPrivada>                  
                 }/>
                               

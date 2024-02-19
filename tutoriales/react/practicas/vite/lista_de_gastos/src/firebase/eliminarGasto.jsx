@@ -6,9 +6,7 @@
             - las funciones para acceder al documento y borrarlo
 
         - Creo la funcion asincrona
-            - llamo a la funcion deleteDoc(doc(base de datos, "coleccion", id a borrar))
-            - Gestiono la promesa y obtengo el error si se produjese y lo muestro en consola
-            
+            - devuelvo el resultado de la operacion y la promesa la gestiona el llamante
 */
 
 // Firebase
@@ -17,12 +15,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 
 // La función
 const eliminarGasto = async (id) => {    
-    try {
-        await deleteDoc(doc(db, "gastos", id));
-
-    } catch (error) {
-        console.log(error);
-    }         
+    return await deleteDoc(doc(db, "gastos", id));
 }
 
 export default eliminarGasto;

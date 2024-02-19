@@ -23,7 +23,7 @@ import theme from "../objetos/theme";
 const Boton = styled(Link)`
 
     // Si el Boton tiene como propiedad colorPrimario el fondo tendrá el color primario del objeto theme. Si no será de color negro
-    background: ${(props) => props.$primario ? theme.colorPrimario : '#000'};
+    background: ${(props) => props.$primario ? theme.colorPrimario : '#000'};    
 
     // Si tiene la propiedad conIcono, el icono será mas ancho
     width: ${(props) => props.$conIcono ? '15.62rem' : 'auto'}; /* 250px */

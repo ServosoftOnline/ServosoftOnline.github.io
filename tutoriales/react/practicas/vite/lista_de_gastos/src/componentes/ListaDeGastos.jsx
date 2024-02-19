@@ -141,7 +141,7 @@ const ListaDeGastos = () => {
                           <IconoEditar /> 
                         </BotonAccion>
 
-                        <BotonAccion onClick={() => eliminarGasto(gasto.id)}>
+                        <BotonAccion as={Link} to={`/borrar/${gasto.id}`}> 
                           <IconoBorrar />
                         </BotonAccion>
 

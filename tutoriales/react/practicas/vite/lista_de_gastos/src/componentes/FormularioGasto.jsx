@@ -69,16 +69,19 @@ import IconoPlus from './../assets/plus.svg?react';
 // Contexto
 import { useAuth } from "../contextos/AuthContext";
 
-// Funciones
+// Funciones para editar contenido en firestore
 import agregarGasto from "../firebase/agregarGasto";
 import editarGasto from "../firebase/editarGasto";
-import convertirAMoneda from "../funciones/convertirAMoneda";
+import eliminarGasto from "../firebase/eliminarGasto";
 
 // date-fns
 import { fromUnixTime, getUnixTime } from "date-fns";
 
 // Componente
-const FormularioGasto = ({gastoAModificar}) => {
+const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
+
+    console.log('Gasto a modificar: ' + gastoAModificar);
+    console.log('Gasto a borrar: ' + gastoABorrar);
   
     // Estados
     const [categoria, cambiarCategoria] = useState('comida');
@@ -95,15 +98,16 @@ const FormularioGasto = ({gastoAModificar}) => {
     // Redirigir
     const navigate = useNavigate();
    
-    // Solo la primera vez que cargue el componente comprobaré si un gasto como argumento
+    // Compruebo si hay gastos que modificar o eliminar pasado como propiedad
     useEffect(()=> {
         
-        // Si hay gasto a modificar
+        // Si hay gasto a modificar o a borrar actualizaré el formulario con los resultados de la busqueda
         if(gastoAModificar) {
+
             // Si el id del usuario coincide con el uidUsuario que realizó el gasto
             if(usuario === gastoAModificar.data().uidUsuario){
 
-                // Cambio todos los estados de los inputs y se actualizarán los inputs con el gasto
+                // Cambio todos los estados de los inputs y se actualizarán los inputs con el gasto a modificar
                 cambiarCategoria(gastoAModificar.data().categoria);
                 cambiarFecha(fromUnixTime(gastoAModificar.data().fecha));
                 cambiarInputDescripcion(gastoAModificar.data().descripcion);
@@ -111,11 +115,40 @@ const FormularioGasto = ({gastoAModificar}) => {
 
             // Si no lo es lo redirijo hacia lista de gastos
             } else navigate('/lista');
+
+        } else if (gastoABorrar) {            
+            if(usuario === gastoABorrar.data().uidUsuario){                
+                cambiarCategoria(gastoABorrar.data().categoria);
+                cambiarFecha(fromUnixTime(gastoABorrar.data().fecha));
+                cambiarInputDescripcion(gastoABorrar.data().descripcion);
+                cambiarInputCantidad(gastoABorrar.data().importe);
+            } else navigate('/lista');
         }
 
-    }, [gastoAModificar, usuario]);
+    }, [gastoAModificar, gastoABorrar, usuario]);
 
     // Funciones
+    const validacionCorrecta = (inputDescripcion, inputCantidad, cambiarMensaje, cambiarValidacion) => {
+
+        // Que no halla ningun campo vacio
+        if(inputDescripcion==='' || inputCantidad==='') {
+            cambiarMensaje('Debe rellenar todos los datos');
+            cambiarValidacion('incorrecta');
+            return false;
+        }
+
+        // Que la cantidad tenga un numero entero seguido de un punto y como máximo dos decimales
+        const enteroConDecimalesOpcionales = /^\d+(\.\d{1,2})?$/;
+        if(!enteroConDecimalesOpcionales.test(inputCantidad)) {
+            cambiarMensaje('El importe debe tener un número entero con un máximo de dos decimales opcionales');
+            cambiarValidacion('incorrecta');
+            return false;
+        }
+
+        return true;
+    }
+
+
     const handleChange = (e) => {
         if(e.target.name === 'inputDescripcion') cambiarInputDescripcion(e.target.value);
         else if (e.target.name === 'inputCantidad') {
@@ -127,75 +160,78 @@ const FormularioGasto = ({gastoAModificar}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Si hay un gasto a modificar lo edito, si no valido y si valida bien agrego
-        if(gastoAModificar) {
-            console.log('Quiero modificar el gasto con la siguiente informacion:');
-            console.log(categoria, fecha, inputDescripcion, inputCantidad, usuario, gastoAModificar.id );
-            // Llamo a la función que edita un gasto en firestore                                  
-            editarGasto({
-                categoria: categoria,
-                fecha: getUnixTime(fecha),
-                inputDescripcion: inputDescripcion,                
-                inputCantidad: inputCantidad,
-                uidUsuario: usuario,
-                idGasto: gastoAModificar.id
-            }).then(() => {
-                navigate('/lista');
-            }).catch((error) => {
-                console.log(error);
-            })
-  
-        } else {
+        // Si la valicación es correcta veré si hay gasto que modificar o borrar. Si no agrego
+        if(validacionCorrecta(inputDescripcion, inputCantidad, cambiarMensaje, cambiarValidacion)) {
+            
+            // Si hay gasto a modificar lo modifico, si hay gasto a borrar lo borro. Si no agrego
+            if(gastoAModificar) {
 
+                editarGasto({
+                    categoria: categoria,
+                    fecha: getUnixTime(fecha),
+                    inputDescripcion: inputDescripcion,                
+                    inputCantidad: inputCantidad,
+                    uidUsuario: usuario,
+                    idGasto: gastoAModificar.id
+                })
+                .then(() => {
+                    cambiarMensaje('Gasto modificado con éxito');
+                    cambiarValidacion('correcta');
+                    navigate('/lista');
+
+                }).catch((error) => {
+                    console.log(error);
+                })
+    
+            } else if (gastoABorrar){                
+                eliminarGasto(gastoABorrar.id)
+                .then (() =>{
+                    cambiarMensaje('Gasto borrado con éxito');
+                    cambiarValidacion('correcta');
+                    navigate('/lista');               
+                    
+                }).catch ((error) => {
+                    console.log(error);
+                })           
+
+            } else {            
+            
+                // Agrego
+                agregarGasto({
+                    categoria: categoria,
+                    fecha: fecha,
+                    inputDescripcion: inputDescripcion,
+                    inputCantidad: inputCantidad,
+                    uidUsuario: usuario
+                })
+                .then (() => {
         
-            // VALIDACION EN CLIENTE
-            // Que no halla ningun campo vacio
-            if(inputDescripcion==='' || inputCantidad==='') {
-                cambiarMensaje('Debe rellenar todos los datos');
-                cambiarValidacion('incorrecta');
-                return;
+                    // Mensaje correcto
+                    cambiarMensaje('Gasto añadido con éxito');
+                    cambiarValidacion('correcta');
+        
+                    // Restauro los valores por defecto
+                    cambiarCategoria('comida');
+                    cambiarFecha(new Date());
+                    cambiarInputDescripcion('');
+                    cambiarInputCantidad('');
+        
+                })
+
+                // Error al añadir en firestore
+                .catch((error)=>{
+                    console.log(error);
+                    cambiarMensaje('No se pudo añadir el gasto en la base de datos');
+                    cambiarValidacion('incorrecta');
+                });
             }
 
-            // Que la cantidad tenga un numero entero seguido de un punto y como máximo dos decimales
-            const enteroConDecimalesOpcionales = /^\d+(\.\d{1,2})?$/;
-            if(!enteroConDecimalesOpcionales.test(inputCantidad)) {
-                cambiarMensaje('El importe debe tener un número entero con un máximo de dos decimales opcionales');
-                cambiarValidacion('incorrecta');
-                return;
-            }
-            // FIN DE LA VALIDACION EN CLIENTE
-            // Si no se produjo ningún return en la validación, Agrego el gasto
-            agregarGasto({
-                categoria: categoria,
-                fecha: fecha,
-                inputDescripcion: inputDescripcion,
-                inputCantidad: inputCantidad,
-                uidUsuario: usuario
-            }) 
-            // Si se añadio correctamente el gasto
-            .then (() => {
-    
-                // Mensaje correcto
-                cambiarMensaje('Gasto añadido con éxito');
-                cambiarValidacion('correcta');
-    
-                // Restauro los valores por defecto
-                cambiarCategoria('comida');
-                cambiarFecha(new Date());
-                cambiarInputDescripcion('');
-                cambiarInputCantidad('');
-    
-            })
-            // Si no se añadio el gasto
-            .catch((error)=>{
-                console.log(error);
-                cambiarMensaje('No se pudo añadir el gasto en la base de datos');
-                cambiarValidacion('incorrecta');
-            });
-        } 
+        } else {
+            console.log('Validacion incorrecta');
+        }        
     }
 
-    
+    // Fin de las funciones    
     
     return ( 
         <>        
@@ -226,15 +262,18 @@ const FormularioGasto = ({gastoAModificar}) => {
                 type="text"
                 name="inputCantidad"
                 placeholder="0.00€"
-                // value={inputCantidad + "€"}
-                value={inputCantidad + "€"}                
+                value={inputCantidad}                
                 onChange={handleChange}                
                 />
 
                 {/* Boton */}
                 <ContenedorBoton>
-                    <Boton $primario $conIcono as="button" type="submit">Agregar Gasto 
-                        <IconoPlus/> 
+                    <Boton $primario $conIcono as="button" type="submit">
+                        {/* Si hay gastoAmodificar muestra Editar Gasto.
+                        En caso contrario si hay gastoABorrar muestra pulse aqui para borrar.
+                        En caso contrario muestra Agregar Gasto */}
+                        {gastoAModificar ? 'Editar Gasto' : gastoABorrar ? 'Pulse aquí para borrar el gasto': 'Agregar Gasto'}
+                        {!gastoAModificar && !gastoABorrar ? <IconoPlus/> : null}
                     </Boton>
                 </ContenedorBoton>
 

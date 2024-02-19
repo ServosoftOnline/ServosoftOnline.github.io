@@ -21,14 +21,14 @@ import { collection, addDoc } from "firebase/firestore";
 import { getUnixTime } from "date-fns";
 
 // La función
-const agregarGasto = async ({categoria, fecha, inputDescripcion, inputCantidad, usuario}) => {
+const agregarGasto = async ({categoria, fecha, inputDescripcion, inputCantidad, uidUsuario}) => {    
 
     return addDoc(collection(db, 'gastos'), {
         categoria: categoria,
         fecha: getUnixTime(fecha),
         descripcion: inputDescripcion,
         importe: Number(parseFloat(inputCantidad).toFixed(2)),
-        uidUsuario: usuario
+        uidUsuario: uidUsuario
     });        
 }
 

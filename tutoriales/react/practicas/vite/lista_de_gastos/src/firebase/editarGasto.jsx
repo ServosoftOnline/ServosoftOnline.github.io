@@ -10,9 +10,6 @@ import { doc, updateDoc } from "firebase/firestore";
 
 // La función
 const editarGasto = async ({categoria, fecha, inputDescripcion, inputCantidad, uidUsuario, idGasto}) => {
-    console.log('Voy a actualizar el gasto con la siguiente informacion: ');
-    console.log(categoria, fecha, inputDescripcion, inputCantidad, uidUsuario, idGasto);
-
         
     return await updateDoc(doc(db, 'gastos', idGasto), {
         categoria: categoria,
