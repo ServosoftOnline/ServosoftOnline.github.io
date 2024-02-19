@@ -79,7 +79,6 @@ import { fromUnixTime, getUnixTime } from "date-fns";
 
 // Componente
 const FormularioGasto = ({gastoAModificar}) => {
-    // console.log('Hay gasto a modificar?: ' + gastoAModificar);
   
     // Estados
     const [categoria, cambiarCategoria] = useState('comida');
@@ -96,77 +95,87 @@ const FormularioGasto = ({gastoAModificar}) => {
     // Redirigir
     const navigate = useNavigate();
    
-    // Solo la primera vez que cargue el componente, compruebo si pasé un gasto como argumento
+    // Solo la primera vez que cargue el componente comprobaré si un gasto como argumento
     useEffect(()=> {
         
-        // Si hay gasto
+        // Si hay gasto a modificar
         if(gastoAModificar) {
-            // Si es del usuario actual
-            if(usuario === gastoAModificar.uidUsuario){
+            // Si el id del usuario coincide con el uidUsuario que realizó el gasto
+            if(usuario === gastoAModificar.data().uidUsuario){
 
                 // Cambio todos los estados de los inputs y se actualizarán los inputs con el gasto
-                cambiarCategoria(gastoAModificar.categoria);
-                cambiarFecha(fromUnixTime(gastoAModificar.fecha));
-                cambiarInputDescripcion(gastoAModificar.descripcion);
-                cambiarInputCantidad(gastoAModificar.importe);
+                cambiarCategoria(gastoAModificar.data().categoria);
+                cambiarFecha(fromUnixTime(gastoAModificar.data().fecha));
+                cambiarInputDescripcion(gastoAModificar.data().descripcion);
+                cambiarInputCantidad(gastoAModificar.data().importe);
 
             // Si no lo es lo redirijo hacia lista de gastos
             } else navigate('/lista');
-
         }
 
     }, [gastoAModificar, usuario]);
 
-    // Funciones    
+    // Funciones
+    const handleChange = (e) => {
+        if(e.target.name === 'inputDescripcion') cambiarInputDescripcion(e.target.value);
+        else if (e.target.name === 'inputCantidad') {
+            // Remplazará todo lo que no sea un numero y un punto por un espacio blanco
+            cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, ''));            
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-                       
-        // VALIDACION EN CLIENTE
-        // Que no halla ningun campo vacio
-        if(inputDescripcion==='' || inputCantidad==='') {
-            cambiarMensaje('Debe rellenar todos los datos');
-            cambiarValidacion('incorrecta');
-            return;
-        }
 
-        // Que la cantidad tenga un numero entero seguido de un punto y como máximo dos decimales
-        const enteroConDecimalesOpcionales = /^\d+(\.\d{1,2})?$/;
-        if(!enteroConDecimalesOpcionales.test(inputCantidad)) {
-            cambiarMensaje('El importe debe tener un número entero con un máximo de dos decimales opcionales');
-            cambiarValidacion('incorrecta');
-            return;
-        }
-
-        // FIN DE LA VALIDACION EN CLIENTE
-
-        // Si no se produjo ningun return de la validacion, compruebo si quiero editar, borrar o añadir un gasto
+        // Si hay un gasto a modificar lo edito, si no valido y si valida bien agrego
         if(gastoAModificar) {
-
-            // Modifico el gasto            
+            console.log('Quiero modificar el gasto con la siguiente informacion:');
+            console.log(categoria, fecha, inputDescripcion, inputCantidad, usuario, gastoAModificar.id );
+            // Llamo a la función que edita un gasto en firestore                                  
             editarGasto({
-                id: gastoAModificar.id,
                 categoria: categoria,
                 fecha: getUnixTime(fecha),
-                inputDescripcion: inputDescripcion,
-                inputCantidad: inputCantidad
-                }
-            );            
-
+                inputDescripcion: inputDescripcion,                
+                inputCantidad: inputCantidad,
+                uidUsuario: usuario,
+                idGasto: gastoAModificar.id
+            }).then(() => {
+                navigate('/lista');
+            }).catch((error) => {
+                console.log(error);
+            })
+  
         } else {
-            console.log('Añado el gasto');
 
-            // Agrego el gasto
+        
+            // VALIDACION EN CLIENTE
+            // Que no halla ningun campo vacio
+            if(inputDescripcion==='' || inputCantidad==='') {
+                cambiarMensaje('Debe rellenar todos los datos');
+                cambiarValidacion('incorrecta');
+                return;
+            }
+
+            // Que la cantidad tenga un numero entero seguido de un punto y como máximo dos decimales
+            const enteroConDecimalesOpcionales = /^\d+(\.\d{1,2})?$/;
+            if(!enteroConDecimalesOpcionales.test(inputCantidad)) {
+                cambiarMensaje('El importe debe tener un número entero con un máximo de dos decimales opcionales');
+                cambiarValidacion('incorrecta');
+                return;
+            }
+            // FIN DE LA VALIDACION EN CLIENTE
+            // Si no se produjo ningún return en la validación, Agrego el gasto
             agregarGasto({
                 categoria: categoria,
                 fecha: fecha,
                 inputDescripcion: inputDescripcion,
                 inputCantidad: inputCantidad,
-                usuario: usuario
+                uidUsuario: usuario
             }) 
             // Si se añadio correctamente el gasto
             .then (() => {
     
-                // Valido ok
+                // Mensaje correcto
                 cambiarMensaje('Gasto añadido con éxito');
                 cambiarValidacion('correcta');
     
@@ -186,18 +195,7 @@ const FormularioGasto = ({gastoAModificar}) => {
         } 
     }
 
-    const handleChange = (e) => {
-        if(e.target.name === 'inputDescripcion') cambiarInputDescripcion(e.target.value);
-        // Remplazará todo lo que no sea un numero y un punto por un espacio blanco
-        // Y añadirá al final el simbolo del euro
-        else if (e.target.name === 'inputCantidad') {
-            
-            cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, ''));     
-            // cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, '' + '€'));   
-            console.log(e.target.value);       
-            
-          }
-    }
+    
     
     return ( 
         <>        

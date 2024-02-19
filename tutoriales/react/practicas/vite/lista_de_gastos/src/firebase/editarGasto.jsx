@@ -7,21 +7,21 @@
 import { db } from './firebaseConfig';
 import { doc, updateDoc } from "firebase/firestore";
 
-// date-fns
-import { getUnixTime } from "date-fns";
 
 // La función
-const editarGasto = async ({id, categoria, fecha, inputDescripcion, inputCantidad}) => {
-    console.log('Quiero editar: ' + id + categoria + fecha + inputDescripcion + inputCantidad);
-    /*
-    return await updateDoc(doc(db, 'gastos', id), {
+const editarGasto = async ({categoria, fecha, inputDescripcion, inputCantidad, uidUsuario, idGasto}) => {
+    console.log('Voy a actualizar el gasto con la siguiente informacion: ');
+    console.log(categoria, fecha, inputDescripcion, inputCantidad, uidUsuario, idGasto);
+
+        
+    return await updateDoc(doc(db, 'gastos', idGasto), {
         categoria: categoria,
-        fecha: getUnixTime(fecha),
+        fecha: fecha,
         descripcion: inputDescripcion,
         importe: Number(parseFloat(inputCantidad).toFixed(2)),
-        uidUsuario: usuario
+        uidUsuario: uidUsuario
     });
-    */        
+           
 }
 
 export default editarGasto;
