@@ -171,18 +171,14 @@
           - Para ello modifico el hook useObtenerGastos.jsx y el componente listaDeGastos.jsx
 
         - Creo la funcionalidad para eliminar gastos de la lista
-          - Se encarga de esa funcion el archivo eliminarGasto de la carpeta firebase
+          - El componente se llama BorrarGasto.jsx
+          - Creo una ruta dinámica hacia BorrarGasto.jsx, le paso el id del gasto por la barra de direccion
+          - Creo el hook llamado useObtenerUnGasto.jsx que obtendrá el gasto a partir de ese id
+          - Modifico el botón del componente FormularioGasto para cuando exista un gasto a eliminar
+          - Si pincha el botón entonces elimino el gasto          
 
         - Creo la funcionalidad para editar un gasto
-          - Añado el componente FormularioGasto en EditarGastos.jsx
-          - Creo un nuevo hook useObtenerUnGasto.jsx y lo llamo desde EditarGastos.jsx
-          
-          
-        
-        
-        
-
-
+               
 
 
 */
