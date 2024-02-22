@@ -9,7 +9,7 @@
 */
 
 // React
-import React from "react";
+import React, {useContext} from "react";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
 // Elementos
@@ -20,6 +20,9 @@ import BtnRegresar from "../elementos/BtnRegresar";
 import FormularioGasto from './FormularioGasto';
 import BarraTotalGastado from "./BarraTotalGastado";
 
+// Contexto
+import { ContextoMensaje } from "../contextos/contextoMensaje";
+
 // Hooks
 import { useParams } from "react-router-dom";
 import useObtenerUnGasto from "./../hooks/useObtenerUnGasto";
@@ -29,7 +32,11 @@ const EditarGastos = () => {
   
   // Extraigo el id que pasé como ruta dinamica asociada al componente EditarGastos en main.jsx
   const {id} = useParams();
-  const [gasto] = useObtenerUnGasto(id);  
+  const [gasto] = useObtenerUnGasto(id);
+
+  // Accedo al contexto y reinicio el mensaje de validaciones por si hubiera algo guardado en él
+  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje}= useContext(ContextoMensaje);
+  reiniciarMensaje();
 
   return (
     <>

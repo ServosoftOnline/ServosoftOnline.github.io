@@ -1,5 +1,6 @@
 /*
   COMPONENTE PARA INICAR SESION EN AUTHENTIFICATION DE FIRE BASE
+
     - Se basa en el compronente RegistroUsuarios.jsx
     - Solo la parte donde inicio mi sesion en lugar de crear una cuenta
     - Y en la validacion del servidor
@@ -8,7 +9,7 @@
 */
 
 // React y react router
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 import { useNavigate } from "react-router-dom";
 
@@ -20,10 +21,12 @@ import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
 import {Formulario, Input, ContenedorBoton, SvgIniciarSesion} from './../elementos/ElementosDeFormulario';
 import Boton from "../elementos/Boton";
 
+// Contexto
+import { ContextoMensaje } from "../contextos/contextoMensaje";
+
 // Authentification de firebase
 import {auth} from './../firebase/firebaseConfig';
 import {signInWithEmailAndPassword } from "firebase/auth";
-
 
 // Componente
 const InicioSesion = () => {
@@ -31,7 +34,10 @@ const InicioSesion = () => {
   // Estados
   const [email, establecerEmail] = useState('');
   const [password, establecerPassword] = useState('');
-  const [mensaje, cambiarMensaje] = useState('');
+  // const [mensaje, cambiarMensaje] = useState('');
+
+  // Obtengo desde el contexto
+  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
 
   // React router
   const navigate = useNavigate();
@@ -60,14 +66,16 @@ const InicioSesion = () => {
     // VALIDACION EN CLIENTE
     // 1.- Que no tengo ningún campo vacío
     if(email==='' || password==='') {
-      cambiarMensaje('Debe rellenar todos los datos');
+      cambiarMensaje('Debe rellenar todos los datos', 'incorrecta');
+      // cambiarMensaje('Debe rellenar todos los datos');
       return;
     }
     
     // 2.- Que sea un correo electronico segun esta expresión regular
     const expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if ((!expresionCorreo.test(email))) {
-      cambiarMensaje('Introduzca un correo electrónico válido');
+      cambiarMensaje('Introduzca correo electrónico válido', 'incorrecta');
+      // cambiarMensaje('Introduzca un correo electrónico válido');
       return;
     };
 
@@ -75,8 +83,11 @@ const InicioSesion = () => {
     try {
       // Si se añade bien el usuario redirijo hacia la raiz donde se pueden ya añadir gastos
       await signInWithEmailAndPassword(auth, email, password);
-      console.log('Inicio de sesión correcto');
-      navigate('/');
+      cambiarMensaje('Inicio de sesión correcto', 'correcta');
+      reiniciarMensaje();
+      setTimeout(() => {
+        navigate('/');
+      }, 7000);      
 
     } catch (error) {
 
@@ -84,11 +95,13 @@ const InicioSesion = () => {
       console.log('error devuelto de firestore: ' + error.code);
       switch(error.code){
         case 'auth/invalid-credential':
-          cambiarMensaje('Correo no registrado o error en la contraseña.');
+          cambiarMensaje('Correo no registrado o error en la contraseña', 'incorrecta');
+          // cambiarMensaje('Correo no registrado o error en la contraseña.');
           break;
           
         default:
-          cambiarMensaje('Hubo un error al intentar crear la cuenta.');
+          cambiarMensaje('Hubo un error en el inicio de sesión', 'incorrecta');
+          // cambiarMensaje('Hubo un error al intentar crear la cuenta.');
           break;
       }
     }
@@ -143,7 +156,7 @@ const InicioSesion = () => {
         
         </Formulario>
 
-        <Mensaje $tipo="error" mensaje={mensaje}/>
+        <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
 
       </HelmetProvider>
     </>

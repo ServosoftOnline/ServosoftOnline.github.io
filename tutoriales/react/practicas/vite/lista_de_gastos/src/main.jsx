@@ -178,13 +178,15 @@
           - Si pincha el botón entonces elimino el gasto          
 
         - Creo la funcionalidad para editar un gasto
-               
+        
+
+
 
 
 */
 
 // React y react router
-import React from 'react'
+import React from 'react';
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -192,24 +194,25 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 // Helmet
 import {Helmet, HelmetProvider} from 'react-helmet-async';
-import favicon from './assets/logo.png'
+import favicon from './assets/logo.png';
 
 // Elementos
 import Fondo from './elementos/Fondo.jsx';
 import Contenedor from "./elementos/Contenedor";
 
 // Componentes
-import BorrarGasto from './componentes/BorrarGasto.jsx'
-import EditarGastos from './componentes/EditarGastos.jsx'
-import GastosPorCategoria from './componentes/GastosPorCategoria.jsx'
-import InicioSesion from './componentes/InicioSesion.jsx'
-import ListaDeGastos from './componentes/ListaDeGastos.jsx'
-import RegistroUsuarios from './componentes/RegistroUsuarios.jsx'
-import Error404 from './componentes/Error404.jsx'
-import RutaPrivada from './componentes/RutaPrivada.jsx'
+import BorrarGasto from './componentes/BorrarGasto.jsx';
+import EditarGastos from './componentes/EditarGastos.jsx';
+import GastosPorCategoria from './componentes/GastosPorCategoria.jsx';
+import InicioSesion from './componentes/InicioSesion.jsx';
+import ListaDeGastos from './componentes/ListaDeGastos.jsx';
+import RegistroUsuarios from './componentes/RegistroUsuarios.jsx';
+import Error404 from './componentes/Error404.jsx';
+import RutaPrivada from './componentes/RutaPrivada.jsx';
 
 // Contextos
-import { AuthProvider } from './contextos/AuthContext.jsx'
+import { AuthProvider } from './contextos/AuthContext.jsx';
+import {ProveedorMensaje} from './contextos/contextoMensaje.jsx';
 
 // WebFontLoader. Descarga fuente de google fonts
 import WebFont from 'webfontloader';
@@ -234,6 +237,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       
       {/* Contexto */}
       <AuthProvider>
+      <ProveedorMensaje>
 
         {/* React router */}
         <BrowserRouter>
@@ -283,6 +287,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </Contenedor>      
         </BrowserRouter>
 
+      </ProveedorMensaje>
       </AuthProvider>
       
     </HelmetProvider>

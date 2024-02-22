@@ -31,7 +31,7 @@
 */
 
 // React y react router
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 import { useNavigate } from "react-router-dom";
 
@@ -40,6 +40,8 @@ import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
 import {Formulario, Input, ContenedorBoton, SvgCrearCuenta} from './../elementos/ElementosDeFormulario';
 import Boton from "../elementos/Boton";
 
+// Contexto
+import {ContextoMensaje} from './../contextos/contextoMensaje';
 
 // Authentificaion de firebase
 import {auth} from './../firebase/firebaseConfig';
@@ -48,14 +50,16 @@ import {createUserWithEmailAndPassword} from "firebase/auth";
 // Componentes
 import Mensaje from './Mensaje';
 
-// Componente
+// El Componente
 const RegistroUsuarios = () => {
 
   // Estados
   const [email,   establecerEmail] = useState('');
   const [password, establecerPassword] = useState('');
   const [password2, establecerPassword2] = useState('');
-  const [mensaje, cambiarMensaje] = useState('');
+
+  // Obtengo desde el contexto
+  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
 
   // React router
   const navigate = useNavigate();
@@ -88,20 +92,20 @@ const RegistroUsuarios = () => {
     // Validación en el cliente
     // 1.- Que no tengo ningún campo vacío
     if(email==='' || password==='' || password2==='') {
-      cambiarMensaje('Debe rellenar todos los datos');
+      cambiarMensaje('Debe rellenar todos los datos', 'incorrecta');
       return;
     }
     
     // 2.- Que sea un correo electronico segun esta expresión regular
     const expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if ((!expresionCorreo.test(email))) {
-      cambiarMensaje('Introduzca un correo electrónico válido');
+      cambiarMensaje('Introduzca un correo electrónico válido', 'incorrecta');
       return;
     };
 
     // 3.- Que ambos passwords sean iguales
     if(password!==password2){
-      cambiarMensaje('Contraseña y repetir contraseña deben ser iguales');
+      cambiarMensaje('Contraseña y repetir contraseña deben ser iguales', 'incorrecta');
       return;
     }
 
@@ -109,8 +113,12 @@ const RegistroUsuarios = () => {
     try {
         // Si se añade bien el usuario redirijo hacia la raiz donde se pueden ya añadir gastos
         await createUserWithEmailAndPassword(auth, email, password);
-        console.log('Usuario creado correctamente');
-        navigate('/');
+        cambiarMensaje('Usuario creado correctamente', 'correcta');
+        reiniciarMensaje();
+        setTimeout(() => {
+          navigate('/');
+        }, 7000);
+        
 
     } catch (error) {
 
@@ -119,23 +127,22 @@ const RegistroUsuarios = () => {
       switch(error.code){
 
         case 'auth/weak-password':
-          cambiarMensaje('La contraseña tiene que tener al menos 6 caracteres.');
+          cambiarMensaje('La contraseña debe tener al menos 6 carácteres', 'incorrecta');
           break;
 
         case 'auth/email-already-in-use':
-          cambiarMensaje('Ya existe una cuenta con el correo electrónico proporcionado.');
+          cambiarMensaje('Ya exite una cuenta con el correo electrónico proporcionado', 'incorrecta');
           break;
 
         case 'auth/invalid-email':
-          cambiarMensaje('El correo electrónico no es válido.');
+          cambiarMensaje('El correo electrónico no es válido', 'incorrecta');
           break;
 
         default:
-          cambiarMensaje('Hubo un error al intentar crear la cuenta.');
+
+          cambiarMensaje('Hubo un error al intentar crear la cuenta', 'incorrecta');
           break;
-
       }
-
     }
   }
 
@@ -194,7 +201,7 @@ const RegistroUsuarios = () => {
           
         </Formulario>
 
-        <Mensaje $tipo="error" mensaje={mensaje}/>        
+        <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
 
       </HelmetProvider>
     </>

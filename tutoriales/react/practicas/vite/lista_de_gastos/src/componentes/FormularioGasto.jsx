@@ -51,7 +51,7 @@
 */
 
 // React 
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 
 // Elementos
@@ -66,8 +66,9 @@ import Mensaje from "./Mensaje";
 // Svg como componente
 import IconoPlus from './../assets/plus.svg?react';
 
-// Contexto
+// Contextos
 import { useAuth } from "../contextos/AuthContext";
+import {ContextoMensaje} from './../contextos/contextoMensaje';
 
 // Funciones para editar contenido en firestore
 import agregarGasto from "../firebase/agregarGasto";
@@ -79,24 +80,21 @@ import { fromUnixTime, getUnixTime } from "date-fns";
 
 // Componente
 const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
-
-    console.log('Gasto a modificar: ' + gastoAModificar);
-    console.log('Gasto a borrar: ' + gastoABorrar);
   
     // Estados
     const [categoria, cambiarCategoria] = useState('comida');
     const [fecha, cambiarFecha] = useState(new Date());
     const [inputDescripcion, cambiarInputDescripcion] = useState('');
     const [inputCantidad, cambiarInputCantidad] = useState('');
-    const [mensaje, cambiarMensaje] = useState();
-    const [validacion, cambiarValidacion] = useState('incorrecta');
 
-    // Universal id del usuario que inicio sesión
+    //Contexto: Universal id del usuario que inicio sesión y mensajes de validacion
     const {sesion} = useAuth();
     const usuario = sesion.uid;
-
-    // Redirigir
+    const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
+    
+    // Redirigir y reinicio el contexto de mensajes de validacion
     const navigate = useNavigate();
+    reiniciarMensaje();
    
     // Compruebo si hay gastos que modificar o eliminar pasado como propiedad
     useEffect(()=> {
@@ -128,23 +126,20 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
     }, [gastoAModificar, gastoABorrar, usuario]);
 
     // Funciones
-    const validacionCorrecta = (inputDescripcion, inputCantidad, cambiarMensaje, cambiarValidacion) => {
+    const validacionCorrecta = (inputDescripcion, inputCantidad) => {
 
         // Que no halla ningun campo vacio
         if(inputDescripcion==='' || inputCantidad==='') {
-            cambiarMensaje('Debe rellenar todos los datos');
-            cambiarValidacion('incorrecta');
+            cambiarMensaje('Debe rellenar todos los datos', 'incorrecta');
             return false;
         }
 
         // Que la cantidad tenga un numero entero seguido de un punto y como máximo dos decimales
         const enteroConDecimalesOpcionales = /^\d+(\.\d{1,2})?$/;
         if(!enteroConDecimalesOpcionales.test(inputCantidad)) {
-            cambiarMensaje('El importe debe tener un número entero con un máximo de dos decimales opcionales');
-            cambiarValidacion('incorrecta');
+            cambiarMensaje('El importe debe tener un número entero con un máximo de dos decimales opcionales','incorrecta');
             return false;
         }
-
         return true;
     }
 
@@ -161,8 +156,8 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
         e.preventDefault();
 
         // Si la valicación es correcta veré si hay gasto que modificar o borrar. Si no agrego
-        if(validacionCorrecta(inputDescripcion, inputCantidad, cambiarMensaje, cambiarValidacion)) {
-            
+        if(validacionCorrecta(inputDescripcion, inputCantidad)) {
+    
             // Si hay gasto a modificar lo modifico, si hay gasto a borrar lo borro. Si no agrego
             if(gastoAModificar) {
 
@@ -175,8 +170,7 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
                     idGasto: gastoAModificar.id
                 })
                 .then(() => {
-                    cambiarMensaje('Gasto modificado con éxito');
-                    cambiarValidacion('correcta');
+                    cambiarMensaje('Gasto modificado con éxito', 'correcta');
                     navigate('/lista');
 
                 }).catch((error) => {
@@ -186,8 +180,7 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
             } else if (gastoABorrar){                
                 eliminarGasto(gastoABorrar.id)
                 .then (() =>{
-                    cambiarMensaje('Gasto borrado con éxito');
-                    cambiarValidacion('correcta');
+                    cambiarMensaje('Gasto borrado con éxito', 'correcta');
                     navigate('/lista');               
                     
                 }).catch ((error) => {
@@ -205,32 +198,27 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
                     uidUsuario: usuario
                 })
                 .then (() => {
-        
-                    // Mensaje correcto
-                    cambiarMensaje('Gasto añadido con éxito');
-                    cambiarValidacion('correcta');
-        
+
                     // Restauro los valores por defecto
                     cambiarCategoria('comida');
                     cambiarFecha(new Date());
                     cambiarInputDescripcion('');
                     cambiarInputCantidad('');
-        
+
+                    // Mensaje correcto
+                    cambiarMensaje('Gasto añadido con éxito', 'correcta');
+                    reiniciarMensaje();
+
                 })
 
                 // Error al añadir en firestore
                 .catch((error)=>{
+                    cambiarMensaje('No se pudo añadir el gasto', 'correcta');
                     console.log(error);
-                    cambiarMensaje('No se pudo añadir el gasto en la base de datos');
-                    cambiarValidacion('incorrecta');
                 });
             }
-
-        } else {
-            console.log('Validacion incorrecta');
-        }        
+        }      
     }
-
     // Fin de las funciones    
     
     return ( 
@@ -277,8 +265,8 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
                     </Boton>
                 </ContenedorBoton>
 
-                {/* Mensaje con el error de la validacion si se produjese */}
-                <Mensaje $validacion={validacion} mensaje={mensaje}/>               
+                {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
+                <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
             
             </Formulario>
             
