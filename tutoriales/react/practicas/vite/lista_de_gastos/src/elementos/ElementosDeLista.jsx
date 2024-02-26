@@ -29,11 +29,11 @@ const ElementoLista = styled.li`
     display: grid;
     gap: 0.31rem; /* 5px */
     justify-content: space-between;
- 
+    
     & > div {
         width: 100%;
         display: flex;
-        align-items: center;
+        align-items: center;        
     }
  
     &:hover button,
@@ -54,7 +54,7 @@ const ElementoListaCategorias = styled.li`
     padding: 1.25rem 0; /* 20px */
     border-bottom: 2px solid #F2F2F2;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between;    
 `;
  
 const Categoria = styled.div`
@@ -77,12 +77,13 @@ const Categoria = styled.div`
 `;
  
 const Descripcion = styled.div`
-    justify-content: center;
+    justify-content: left;
     font-size: 1.25rem;
     text-transform: capitalize;
     @media (max-width: 50rem) { /* 50px */
         justify-content: end;
     }
+    
 `;
  
 const Valor = styled.div`

@@ -5,7 +5,7 @@ import theme from './../objetos/theme';
 
 const ContenedorInput = styled.div`
     // Permite mostrar el contenedor para despues ocultarlo
-    position: relative;
+    position: relative;    
  
     input {
         font-family: 'Work Sans', sans-serif;
@@ -22,7 +22,7 @@ const ContenedorInput = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        outline: none;
+        outline: none;              
     }
  
     // Reglas para react date picker (rpd)
@@ -43,8 +43,8 @@ const ContenedorInput = styled.div`
         border-radius: 10px;
     }
  
-    @media (max-width: 60rem) {
-        /* 950px */
+    @media (max-width: 60rem) /* 950px */ {        
+        
         & > * {
             width: 100%;
         }

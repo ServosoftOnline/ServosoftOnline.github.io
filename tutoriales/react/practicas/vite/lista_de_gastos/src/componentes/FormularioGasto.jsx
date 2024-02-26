@@ -86,7 +86,7 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
     const [fecha, cambiarFecha] = useState(new Date());
     const [inputDescripcion, cambiarInputDescripcion] = useState('');
     const [inputCantidad, cambiarInputCantidad] = useState('');
-
+    
     //Contexto: Universal id del usuario que inicio sesión y mensajes de validacion
     const {sesion} = useAuth();
     const usuario = sesion.uid;
@@ -170,8 +170,11 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
                     idGasto: gastoAModificar.id
                 })
                 .then(() => {
-                    cambiarMensaje('Gasto modificado con éxito', 'correcta');
-                    navigate('/lista');
+                    cambiarMensaje('Gasto modificado con éxito', 'correcta');                    
+                    setTimeout(() => {
+                        reiniciarMensaje();
+                        navigate('/');
+                      }, 5000);                   
 
                 }).catch((error) => {
                     console.log(error);
@@ -181,7 +184,10 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
                 eliminarGasto(gastoABorrar.id)
                 .then (() =>{
                     cambiarMensaje('Gasto borrado con éxito', 'correcta');
-                    navigate('/lista');               
+                    setTimeout(() => {
+                        reiniciarMensaje();
+                        navigate('/');
+                      }, 5000);
                     
                 }).catch ((error) => {
                     console.log(error);
@@ -207,7 +213,10 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
 
                     // Mensaje correcto
                     cambiarMensaje('Gasto añadido con éxito', 'correcta');
-                    reiniciarMensaje();
+                    setTimeout(() => {
+                        reiniciarMensaje();
+                        navigate('/');
+                      }, 5000);
 
                 })
 
@@ -232,8 +241,8 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
                         cambiarCategoria={cambiarCategoria}
                     />
                     <DatePicker
-                        fecha={fecha}
-                        cambiarFecha={cambiarFecha}
+                        fecha = {fecha}
+                        cambiarFecha = {cambiarFecha}                        
                     />
                 </ContenedorFiltros>
 
@@ -246,22 +255,30 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
                 onChange={handleChange}                
                 />
 
+                {/* El value hara que se muestre en pantalla el caracter euro si input cantidad existe */}
                 <InputGrande
                 type="text"
                 name="inputCantidad"
                 placeholder="0.00€"
-                value={inputCantidad}                
+                value={inputCantidad ? `${inputCantidad}€` : ''}                  
                 onChange={handleChange}                
                 />
 
                 {/* Boton */}
+                
                 <ContenedorBoton>
-                    <Boton $primario $conIcono as="button" type="submit">
-                        {/* Si hay gastoAmodificar muestra Editar Gasto.
-                        En caso contrario si hay gastoABorrar muestra pulse aqui para borrar.
-                        En caso contrario muestra Agregar Gasto */}
+                    <Boton 
+                        $primario
+                        $conIcono
+                        // {!gastoAModificar && !gastoABorrar ? $conIcono : null}                     
+                        as="button"
+                        type="submit"
+                    >
+                        {/* Muestra Editar Gasto, Borrar gasto o Agregar gasto dependiendo si existe gastoAModificar o GastoABorrar */}
+                        {/* Muestra el componente <IconoPlus> si no existe gastoAModificar y no existe gastoABorrar */}
                         {gastoAModificar ? 'Editar Gasto' : gastoABorrar ? 'Pulse aquí para borrar el gasto': 'Agregar Gasto'}
                         {!gastoAModificar && !gastoABorrar ? <IconoPlus/> : null}
+
                     </Boton>
                 </ContenedorBoton>
 

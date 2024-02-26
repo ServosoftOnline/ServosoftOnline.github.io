@@ -26,7 +26,7 @@ const ProveedorMensaje = ({children}) => {
             cambiarMensajeAMostrar('');
             cambiarRdoValidacion('');
         }
-        , 4000);        
+        , 5000);        
     }
        
     return (

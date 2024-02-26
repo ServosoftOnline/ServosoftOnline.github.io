@@ -25,6 +25,7 @@ import IconosCategorias from './../elementos/IconosCategorias';
 
 
 const SelectCategorias = ({categoria, cambiarCategoria}) => {
+
     // Estados
     const [mostrarSelect, cambiarMostrarSelect] = useState(false);
 
@@ -35,6 +36,7 @@ const SelectCategorias = ({categoria, cambiarCategoria}) => {
     }
 
     return (
+        
         // Cuando haga click en ContenedorSelect mostraré u ocultare el select
         <ContenedorSelect onClick={() => cambiarMostrarSelect(!mostrarSelect)}>
             <OpcionSeleccionada>{categoria}<IconoDown/></OpcionSeleccionada>

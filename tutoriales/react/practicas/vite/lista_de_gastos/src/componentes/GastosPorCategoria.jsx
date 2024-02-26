@@ -27,26 +27,24 @@ import BtnRegresar from "../elementos/BtnRegresar";
 // Componentes
 import BarraTotalGastado from './BarraTotalGastado';
 
+const GastosPorCategoria = () => { 
 
-const GastosPorCategoria = () => {
+  return (
+    <>
+      <HelmetProvider>
+        <Helmet>
+          <title>Gastos por categoria</title>
+        </Helmet>
 
-    return (
-      <>
-        <HelmetProvider>
-          <Helmet>
-            <title>Gastos por categoria</title>
-          </Helmet>
+        <Header>
+          <Titulo>Gastos por categoría</Titulo>
+          <BtnRegresar/>                    
+        </Header>
 
-          <Header>
-            <Titulo>Gastos por categoría</Titulo>
-            <BtnRegresar/>                    
-          </Header>
-
-          <BarraTotalGastado />
-        </HelmetProvider>       
-      </>
-        
-      );
+        <BarraTotalGastado />
+      </HelmetProvider>       
+    </>      
+  );
 }
  
 export default GastosPorCategoria;

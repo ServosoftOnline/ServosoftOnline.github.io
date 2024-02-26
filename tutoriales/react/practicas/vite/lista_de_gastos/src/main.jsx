@@ -213,6 +213,7 @@ import RutaPrivada from './componentes/RutaPrivada.jsx';
 // Contextos
 import { AuthProvider } from './contextos/AuthContext.jsx';
 import {ProveedorMensaje} from './contextos/contextoMensaje.jsx';
+import {ProveedorTotalGastadoEnElMes} from './contextos/TotalGastadoEnElMesContext.jsx';
 
 // WebFontLoader. Descarga fuente de google fonts
 import WebFont from 'webfontloader';
@@ -238,6 +239,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       {/* Contexto */}
       <AuthProvider>
       <ProveedorMensaje>
+      <ProveedorTotalGastadoEnElMes>
 
         {/* React router */}
         <BrowserRouter>
@@ -287,6 +289,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </Contenedor>      
         </BrowserRouter>
 
+      </ProveedorTotalGastadoEnElMes>
       </ProveedorMensaje>
       </AuthProvider>
       

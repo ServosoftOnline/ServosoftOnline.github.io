@@ -87,7 +87,7 @@ const InicioSesion = () => {
       reiniciarMensaje();
       setTimeout(() => {
         navigate('/');
-      }, 7000);      
+      }, 5000);      
 
     } catch (error) {
 

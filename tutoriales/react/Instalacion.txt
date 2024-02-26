@@ -271,7 +271,7 @@ INSTALAR UNA APP CON REACT
         - web: https://react-day-picker.js.org/
 
       - date-fns 
-        - Librería que permite transformar una fecha en texto
+        - Librería que permite trabajar con fechas
         - web: https://date-fns.org/
       
       - instalacion: npm install react-day-picker date-fns
@@ -294,6 +294,8 @@ INSTALAR UNA APP CON REACT
           - import { es } from "date-fns/locale";   Español
           - import { getUnixTime } from "date-fns"; Transforma una fecha en segundos
           - import { fromUnixTime } from "date-fns";  Transforma segundos en fecha
+          - import { startOfMonth } from 'date-fns'; Obtiene la fecha de inicio del mes actual
+          - import { endOfMonth } from 'date-fns'; Obtiene la fecha del fin del mes actual
 
           - Al llamar a la funcion format asigno el formato a partir de una serie de caracteres:
             - dd mostraría el dia de la fecha

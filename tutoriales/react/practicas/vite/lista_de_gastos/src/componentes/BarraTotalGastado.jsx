@@ -7,12 +7,14 @@ import React from "react";
 import BarraTotal from "../elementos/BarraTotal";
 import convertirAMoneda from "../funciones/convertirAMoneda";
 
+
 // Componente
 const BarraTotalGastado = () => {
+    
     return ( 
         <BarraTotal>
             <p>Total gastado en el mes:</p>
-            <p>{convertirAMoneda(0.00)}</p>
+            <p>{convertirAMoneda(0)}</p>
         </BarraTotal>        
      );
 }

@@ -19,6 +19,7 @@ import BtnRegresar from "../elementos/BtnRegresar";
 // Componentes
 import FormularioGasto from './FormularioGasto';
 import BarraTotalGastado from "./BarraTotalGastado";
+import Mensaje from "./Mensaje";
 
 // Contexto
 import { ContextoMensaje } from "../contextos/contextoMensaje";
@@ -50,7 +51,8 @@ const EditarGastos = () => {
           <BtnRegresar ruta='/lista' />                     
         </Header>
         
-        <FormularioGasto gastoAModificar={gasto} />
+        <FormularioGasto gastoAModificar={gasto} />        
+        {/* <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/> */}
 
         <BarraTotalGastado />
       </HelmetProvider>       

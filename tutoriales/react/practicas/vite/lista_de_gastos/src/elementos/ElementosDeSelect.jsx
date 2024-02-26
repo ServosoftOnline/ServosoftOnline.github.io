@@ -21,6 +21,10 @@ const ContenedorSelect = styled.div`
     &:hover {
         background: ${theme.grisClaro2};
     }
+
+    @media(max-width: 60rem){ /* 950px */
+        width: 100%;        
+    }
 `;
  
 const OpcionSeleccionada = styled.div`
@@ -33,7 +37,12 @@ const OpcionSeleccionada = styled.div`
         width: 1.25rem; /* 20px */
         height: auto;
         margin-left: 1.25rem; /* 20px */        
-    }   
+    }
+
+    // Centro la opcion seleccionada
+    @media(max-width: 60rem){ /* 950px */
+        display: block;        
+    }
 `;
  
 const Opciones = styled.div`
@@ -50,6 +59,7 @@ const Opciones = styled.div`
 const Opcion = styled.div`
     padding: 1.25rem; /* 20px */
     display: flex;
+    
     svg {
         width: 28px;
         height: auto;

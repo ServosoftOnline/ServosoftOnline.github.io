@@ -45,22 +45,21 @@ import { es } from "date-fns/locale";
 const DatePicker = ({fecha, cambiarFecha}) => {
 
     // Estado que almacena si el calendario está visible o no
-    const [visible, cambiarVisible] = useState(false);
+    const [mostrarCalendario, cambiarMostrarCalendario] = useState();
     
     return (
+        
+        <ContenedorInput>
 
-        // Cuando haga click sobre él input o el daypicker cambiará el estado de visible del calendario 
-        <ContenedorInput onClick={() => cambiarVisible(!visible)}>
-
-            {/* Input solo de lectura que mostrará la fecha seleccionada*/}            
-            <input 
+            {/* Input solo de lectura que mostrará la fecha seleccionada. Cuando haga click sobre el será visible o invisible*/}            
+            <input onClick={() => cambiarMostrarCalendario(!mostrarCalendario)}
                 type ="text"
                 readOnly
                 value={format(fecha, `dd 'de' MMMM 'de' yyyy`, {locale: es})}                
             />
 
             {/* Calendario visible solo si el estado visible contiene true */}
-            { visible &&
+            { mostrarCalendario &&
                 <DayPicker 
                     mode="single"
                     selected={fecha}

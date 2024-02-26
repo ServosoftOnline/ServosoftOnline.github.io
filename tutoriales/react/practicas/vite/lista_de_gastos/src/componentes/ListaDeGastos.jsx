@@ -63,7 +63,6 @@ import useObtenerGastos from "../hooks/useObtenerGastos";
 // Funciones
 import convertirAMoneda from "../funciones/convertirAMoneda";
 import formatearFecha from "../funciones/formatearFecha";
-import eliminarGasto from './../firebase/eliminarGasto';
 
 // SVG como elemento
 import IconoEditar from './../assets/editar.svg?react';
@@ -79,6 +78,7 @@ const ListaDeGastos = () => {
 
   // Funcion que comprueba si la fecha del index anterior es igual a la fecha del index actual
   const fechaEsIgual = (gastos, index, gasto) => {
+
     // La posición 0 no tiene fecha anterior
     if(index!==0) {
       const fechaActual = formatearFecha(gasto.fecha);
@@ -86,6 +86,7 @@ const ListaDeGastos = () => {
       if (fechaActual===fechaGastoAnterior) return true;
       else return false;
     }    
+    
   }
  
   return (
