@@ -33,7 +33,7 @@ HOOK QUE OBTIENE TODOS LOS GASTOS DE CADA CATEGORIA EN EL MES ACTUAL
 
 */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useObtenerTodosLosGastosDelMes from "./useObtenerTodosLosGastosDelMes";
 
 const useObtenerGastosDelMesPorCategoria = () => {
@@ -41,32 +41,39 @@ const useObtenerGastosDelMesPorCategoria = () => {
 	// Estados
 	const [gastosPorCategoria, cambiarGastosPorCategoria] = useState([]);
 	const [gastos] = useObtenerTodosLosGastosDelMes();
-	// console.log(gastos);
 
-	// Método reduce
-	const sumaDeGastos = gastos.reduce((objetoResultante, objetoActual) => {
-		const categoriaActual = objetoActual.categoria;
-		const cantidadActual = objetoActual.importe;
-		objetoResultante[categoriaActual] += cantidadActual;
-		return objetoResultante;
-	}, {
-		'comida': 0,
-    	'cuentas y pagos': 0,
-		'hogar': 0,
-		'transporte': 0,
-		'ropa': 0,
-		'salud e higiene': 0,
-		'compras': 0,
-		'diversion': 0
-	});
-	
-	// Obtuve el objeto sumaDeGastos, lo paso a un array y modifico el estado que quiero devolver
-	cambiarGastosPorCategoria(Object.keys(sumaDeGastos).map((elemento) => {
-		return {categoria: elemento, importe:sumaDeGastos[elemento]}
-	}));
+	useEffect(() => {
+
+		// Método reduce
+		const sumaDeGastos = gastos.reduce((objetoResultante, objetoActual) => {
+
+			const categoriaActual = objetoActual.categoria;
+			const cantidadActual = objetoActual.importe;
+			objetoResultante[categoriaActual] += cantidadActual;
+			return objetoResultante;
+
+		}, {
+			'comida': 0,
+			'cuentas y pagos': 0,
+			'hogar': 0,
+			'transporte': 0,
+			'ropa': 0,
+			'salud e higiene': 0,
+			'compras': 0,
+			'diversion': 0
+		});
+
+		
+		// Lo paso a un array de objetos
+		cambiarGastosPorCategoria(Object.keys(sumaDeGastos).map((elemento) => {
+			return {categoria: elemento, cantidad:sumaDeGastos[elemento]};
+		}));		
+
+	},[gastos]);
 
 	// Devuelvo el estado
-	return gastosPorCategoria;
+	return [gastosPorCategoria];
+	
 }
  
 export default useObtenerGastosDelMesPorCategoria;

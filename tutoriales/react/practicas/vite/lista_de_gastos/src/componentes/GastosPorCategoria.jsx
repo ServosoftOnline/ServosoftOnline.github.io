@@ -31,7 +31,8 @@ import BarraTotalGastado from './BarraTotalGastado';
 import useObtenerGastosDelMesPorCategoria from "../hooks/useObtenerGastosDelMesPorCategoria";
 
 const GastosPorCategoria = () => {
-  useObtenerGastosDelMesPorCategoria();
+  const [gastosDelMesPorCategoria] = useObtenerGastosDelMesPorCategoria();
+  console.log(gastosDelMesPorCategoria);
 
   return (
     <>
