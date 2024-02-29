@@ -27,7 +27,11 @@ import BtnRegresar from "../elementos/BtnRegresar";
 // Componentes
 import BarraTotalGastado from './BarraTotalGastado';
 
-const GastosPorCategoria = () => { 
+// Hooks
+import useObtenerGastosDelMesPorCategoria from "../hooks/useObtenerGastosDelMesPorCategoria";
+
+const GastosPorCategoria = () => {
+  useObtenerGastosDelMesPorCategoria();
 
   return (
     <>

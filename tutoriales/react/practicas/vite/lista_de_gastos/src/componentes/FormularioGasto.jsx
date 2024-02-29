@@ -173,7 +173,7 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
                     cambiarMensaje('Gasto modificado con éxito', 'correcta');                    
                     setTimeout(() => {
                         reiniciarMensaje();
-                        navigate('/');
+                        navigate('/lista');
                       }, 5000);                   
 
                 }).catch((error) => {
@@ -186,7 +186,7 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
                     cambiarMensaje('Gasto borrado con éxito', 'correcta');
                     setTimeout(() => {
                         reiniciarMensaje();
-                        navigate('/');
+                        navigate('/lista');
                       }, 5000);
                     
                 }).catch ((error) => {

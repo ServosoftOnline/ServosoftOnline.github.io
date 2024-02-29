@@ -19,7 +19,6 @@ import BtnRegresar from "../elementos/BtnRegresar";
 // Componentes
 import FormularioGasto from './FormularioGasto';
 import BarraTotalGastado from "./BarraTotalGastado";
-import Mensaje from "./Mensaje";
 
 // Contexto
 import { ContextoMensaje } from "../contextos/contextoMensaje";
@@ -36,7 +35,7 @@ const EditarGastos = () => {
   const [gasto] = useObtenerUnGasto(id);
 
   // Accedo al contexto y reinicio el mensaje de validaciones por si hubiera algo guardado en él
-  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje}= useContext(ContextoMensaje);
+  const {reiniciarMensaje}= useContext(ContextoMensaje);
   reiniciarMensaje();
 
   return (
