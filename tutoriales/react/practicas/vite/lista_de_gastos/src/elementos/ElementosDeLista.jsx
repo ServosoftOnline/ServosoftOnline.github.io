@@ -1,5 +1,7 @@
 /*
     ARCHIVO QUE CONTIENE TODOS LOS ELEMENTOS QUE USARÉ PARA MOSTRAR LA LISTA DE GASTOS
+        - La usaré para mostrar la lista de gastos y los gastos por categoría
+        
 */
 
 import styled from 'styled-components';

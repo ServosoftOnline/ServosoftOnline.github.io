@@ -1,5 +1,6 @@
 /*
   PAGINA QUE MUESTRA LOS GASTOS POR CATEGORIA
+
     - Importo:
       - La libreria de react
       - El componente helmet de react router
@@ -12,8 +13,9 @@
         - El titulo de la pestaña indicado entre las etiquetas Helmet
         - La cabecera que contendrá el boton para regresar a la pagina raiz
         - El titulo de la pagina
-
-
+        - La cabecera con el título y el botón para regresar
+        - La lista de gastos obtenidas por categorias obtenida desde el hook useObtenerGastosDelMesPorCategoria        
+        - La barra con el total de los gastos del mes
 */
 
 // React
@@ -23,6 +25,11 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 // Elementos
 import {Header, Titulo} from "../elementos/ElementosDeHeader";
 import BtnRegresar from "../elementos/BtnRegresar";
+import IconosCategorias from "../elementos/IconosCategorias";
+import {ListaDeCategorias, ElementoListaCategorias, Categoria, Valor} from './../elementos/ElementosDeLista';
+
+// Funciones
+import convertirAMoneda from "../funciones/convertirAMoneda";
 
 // Componentes
 import BarraTotalGastado from './BarraTotalGastado';
@@ -30,25 +37,43 @@ import BarraTotalGastado from './BarraTotalGastado';
 // Hooks
 import useObtenerGastosDelMesPorCategoria from "../hooks/useObtenerGastosDelMesPorCategoria";
 
+// Componente actual
 const GastosPorCategoria = () => {
-  const [gastosDelMesPorCategoria] = useObtenerGastosDelMesPorCategoria();
-  console.log(gastosDelMesPorCategoria);
+  const gastosDelMesPorCategoria = useObtenerGastosDelMesPorCategoria();
+  // console.log(gastosDelMesPorCategoria);
 
-  return (
-    <>
-      <HelmetProvider>
-        <Helmet>
-          <title>Gastos por categoria</title>
-        </Helmet>
+  return (    
+    <HelmetProvider>
 
-        <Header>
-          <Titulo>Gastos por categoría</Titulo>
-          <BtnRegresar/>                    
-        </Header>
+      {/* Título de la pagina */}
+      <Helmet>
+        <title>Gastos por categoria</title>
+      </Helmet>
 
-        <BarraTotalGastado />
-      </HelmetProvider>       
-    </>      
+      {/* Cabecera */}
+      <Header>
+        <Titulo>Gastos por categoría</Titulo>
+        <BtnRegresar/>                    
+      </Header>
+
+      {/* Muestro la información obtenida desde el hook */}
+      <ListaDeCategorias>
+        {gastosDelMesPorCategoria.map((elemento, index) => {
+          return (
+            <ElementoListaCategorias key = {index}>
+              <Categoria>
+                <IconosCategorias id={elemento.categoria}/>  
+                {elemento.categoria}
+              </Categoria>
+              <Valor>{convertirAMoneda(elemento.cantidad)}</Valor>            
+            </ElementoListaCategorias>
+          );
+        })}
+      </ListaDeCategorias>
+      
+      {/* Barra con el total */}
+      <BarraTotalGastado />
+    </HelmetProvider>       
   );
 }
  

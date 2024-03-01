@@ -32,7 +32,7 @@ const EditarGastos = () => {
   
   // Extraigo el id que pasé como ruta dinamica asociada al componente EditarGastos en main.jsx
   const {id} = useParams();
-  const [gasto] = useObtenerUnGasto(id);
+  const [gasto] = useObtenerUnGasto(id);  
 
   // Accedo al contexto y reinicio el mensaje de validaciones por si hubiera algo guardado en él
   const {reiniciarMensaje}= useContext(ContextoMensaje);
@@ -50,8 +50,7 @@ const EditarGastos = () => {
           <BtnRegresar ruta='/lista' />                     
         </Header>
         
-        <FormularioGasto gastoAModificar={gasto} />        
-        {/* <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/> */}
+        <FormularioGasto gastoAModificar={gasto} />
 
         <BarraTotalGastado />
       </HelmetProvider>       

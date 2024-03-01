@@ -1,6 +1,7 @@
 /*
-HOOK QUE OBTIENE TODOS LOS GASTOS DE CADA CATEGORIA EN EL MES ACTUAL
-	- Obtengo todos lo gastos acontecidos mediante el hook useObtenerTodosLosGastosDelMes	
+HOOK QUE OBTIENE TODOS LOS GASTOS DE CADA CATEGORIA EN EL MES ACTUAL CUYA CANTIDAD SEA MAYOR DE CERO	
+
+	- Obtengo todos lo gastos acontecidos en el mes actual mediante el hook useObtenerTodosLosGastosDelMes	
 	- Le aplico el método reduce para sumar todos los importes de las categorias del arreglo obtenido
 
 		- Devolverá un objeto donde:
@@ -20,7 +21,7 @@ HOOK QUE OBTIENE TODOS LOS GASTOS DE CADA CATEGORIA EN EL MES ACTUAL
 			- Un valor inicial
 				- En este caso un objeto con todas las categorías iniciadas a 0
 
-	- El objeto que almacené en la cte lo paso a un array
+	- El objeto que almacené en la cte sumaDeGastos lo paso a un array llamado arraySumaDeGastos
 		- Al objeto resultante le aplico el método keys para obtener sus propiedades
 		- Le aplico el metodo map y voy devolviendo un array de objetos
 			- con dos propiedades con sus respectivos valores
@@ -28,9 +29,10 @@ HOOK QUE OBTIENE TODOS LOS GASTOS DE CADA CATEGORIA EN EL MES ACTUAL
 				- La propiedad categoría y su valor es el elemento recorrido
 				- la propiedad importe con la sumaDeGastos cuyo indicé es el elemento recorrido
 
-	- llamo a la funcion que cambia el estado y almaceno el objeto devuelto en el paso anterior
+	- Filtro el arraySumaDeGastos generando otro array arraySumaDeGastosMayoresDeCero al cual le elimino las cantidades que sean cero
+	- Modifico el estado con el array filtrado
 	- Devuelvo el estado con el resultado de todo el proceso
-
+	
 */
 
 import { useEffect, useState } from "react";
@@ -63,17 +65,25 @@ const useObtenerGastosDelMesPorCategoria = () => {
 			'diversion': 0
 		});
 
-		
-		// Lo paso a un array de objetos
-		cambiarGastosPorCategoria(Object.keys(sumaDeGastos).map((elemento) => {
+		// Paso el objeto recogido en suma de gastos a un array de objetos			
+		const arraySumaDeGastos = (Object.keys(sumaDeGastos).map((elemento) => {
 			return {categoria: elemento, cantidad:sumaDeGastos[elemento]};
-		}));		
+		}));
+
+		// Filtro el array y elimino todos cuya cantidad sea cero
+		const arraySumaDeGastosMayoresDeCero = arraySumaDeGastos.filter((gasto) => {
+			if(gasto.cantidad > 0){
+				return gasto;
+			}
+		});
+
+		// Modifico el estado con el array ya filtrado
+		cambiarGastosPorCategoria(arraySumaDeGastosMayoresDeCero);		
 
 	},[gastos]);
 
 	// Devuelvo el estado
-	return [gastosPorCategoria];
-	
+	return gastosPorCategoria;	
 }
  
 export default useObtenerGastosDelMesPorCategoria;

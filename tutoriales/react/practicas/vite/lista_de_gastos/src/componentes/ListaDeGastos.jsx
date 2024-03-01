@@ -74,7 +74,7 @@ import IconoBorrar from './../assets/borrar.svg?react';
 const ListaDeGastos = () => {
 
   // Obtengo del hook lo siguiente
-  const [gastos, obtenerMasGastos, hayMasPorCargar] = useObtenerGastos();
+  const [gastos, obtenerMasGastos, hayMasPorCargar] = useObtenerGastos(); 
 
   // Funcion que comprueba si la fecha del index anterior es igual a la fecha del index actual
   const fechaEsIgual = (gastos, index, gasto) => {

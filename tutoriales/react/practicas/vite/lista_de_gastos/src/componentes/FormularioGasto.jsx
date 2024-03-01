@@ -16,7 +16,7 @@
                     - La pasaré como propiedad al componente SelectCategorias
                 - Un estado con el momento actual por defecto
                     - La pasaré como propiedad al componente DatePicker
-            
+
             - Efecto
                 - Se ejecutará al principio y cada vez que halla un cambio de usuario o de gasto
                 - Comprobará si existe un gasto y si es del usuario actual
@@ -25,9 +25,9 @@
             - las funciones:
                 - handleSubmit para validar lo que envio el formulario
                 - handleChange para ir modificando los estados de los inputs
-        
+
             - Devuelve:
-                - Los filtros:  
+                - Los filtros:
                     - Un elemento que mostrará un select con todas las categorias
                         - Le paso el estado categoria y la funcion que lo cambia
                         - Para cuando actualice su estado actualize tambien el select
@@ -50,7 +50,7 @@
 
 */
 
-// React 
+// React
 import React, {useState, useEffect, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -79,28 +79,28 @@ import eliminarGasto from "../firebase/eliminarGasto";
 import { fromUnixTime, getUnixTime } from "date-fns";
 
 // Componente
-const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
-  
+const FormularioGasto = ({gastoAModificar}) => {    
+
     // Estados
     const [categoria, cambiarCategoria] = useState('comida');
     const [fecha, cambiarFecha] = useState(new Date());
     const [inputDescripcion, cambiarInputDescripcion] = useState('');
     const [inputCantidad, cambiarInputCantidad] = useState('');
-    
-    //Contexto: Universal id del usuario que inicio sesión y mensajes de validacion
+
+    // Contexto: Universal id del usuario que inicio sesión y mensajes de validacion
     const {sesion} = useAuth();
     const usuario = sesion.uid;
     const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
-    
+
     // Redirigir y reinicio el contexto de mensajes de validacion
     const navigate = useNavigate();
     reiniciarMensaje();
    
     // Compruebo si hay gastos que modificar o eliminar pasado como propiedad
     useEffect(()=> {
-        
-        // Si hay gasto a modificar o a borrar actualizaré el formulario con los resultados de la busqueda
-        if(gastoAModificar) {
+
+        // Si hay gasto a modificar actualizaré el formulario con los resultados de la busqueda
+        if(gastoAModificar) {            
 
             // Si el id del usuario coincide con el uidUsuario que realizó el gasto
             if(usuario === gastoAModificar.data().uidUsuario){
@@ -113,17 +113,9 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
 
             // Si no lo es lo redirijo hacia lista de gastos
             } else navigate('/lista');
-
-        } else if (gastoABorrar) {            
-            if(usuario === gastoABorrar.data().uidUsuario){                
-                cambiarCategoria(gastoABorrar.data().categoria);
-                cambiarFecha(fromUnixTime(gastoABorrar.data().fecha));
-                cambiarInputDescripcion(gastoABorrar.data().descripcion);
-                cambiarInputCantidad(gastoABorrar.data().importe);
-            } else navigate('/lista');
         }
 
-    }, [gastoAModificar, gastoABorrar, usuario]);
+    }, [gastoAModificar, usuario]);
 
     // Funciones
     const validacionCorrecta = (inputDescripcion, inputCantidad) => {
@@ -147,8 +139,9 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
     const handleChange = (e) => {
         if(e.target.name === 'inputDescripcion') cambiarInputDescripcion(e.target.value);
         else if (e.target.name === 'inputCantidad') {
+
             // Remplazará todo lo que no sea un numero y un punto por un espacio blanco
-            cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, ''));            
+            cambiarInputCantidad(e.target.value.replace(/[^0-9.]/g, ''));
         }
     }
 
@@ -157,44 +150,33 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
 
         // Si la valicación es correcta veré si hay gasto que modificar o borrar. Si no agrego
         if(validacionCorrecta(inputDescripcion, inputCantidad)) {
-    
-            // Si hay gasto a modificar lo modifico, si hay gasto a borrar lo borro. Si no agrego
+
+            // Si hay gasto a modificar lo modifico. Si no agrego
             if(gastoAModificar) {
 
+                // Modifico
                 editarGasto({
                     categoria: categoria,
                     fecha: getUnixTime(fecha),
-                    inputDescripcion: inputDescripcion,                
+                    inputDescripcion: inputDescripcion,
                     inputCantidad: inputCantidad,
                     uidUsuario: usuario,
                     idGasto: gastoAModificar.id
                 })
                 .then(() => {
-                    cambiarMensaje('Gasto modificado con éxito', 'correcta');                    
-                    setTimeout(() => {
-                        reiniciarMensaje();
-                        navigate('/lista');
-                      }, 5000);                   
-
-                }).catch((error) => {
-                    console.log(error);
-                })
-    
-            } else if (gastoABorrar){                
-                eliminarGasto(gastoABorrar.id)
-                .then (() =>{
-                    cambiarMensaje('Gasto borrado con éxito', 'correcta');
+                    cambiarMensaje('Gasto modificado con éxito', 'correcta');
                     setTimeout(() => {
                         reiniciarMensaje();
                         navigate('/lista');
                       }, 5000);
-                    
-                }).catch ((error) => {
-                    console.log(error);
-                })           
 
-            } else {            
-            
+                }).catch((error) => {
+                    cambiarMensaje('Error de la base de datos al modificar el gasto', 'incorrecta');
+                    console.log(error);
+                })            
+
+            } else {
+
                 // Agrego
                 agregarGasto({
                     categoria: categoria,
@@ -222,16 +204,16 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
 
                 // Error al añadir en firestore
                 .catch((error)=>{
-                    cambiarMensaje('No se pudo añadir el gasto', 'correcta');
+                    cambiarMensaje('No se pudo añadir el gasto', 'incorrecta');
                     console.log(error);
                 });
             }
-        }      
+        }
     }
-    // Fin de las funciones    
-    
-    return ( 
-        <>        
+    // Fin de las funciones
+
+    return (
+        <>
             <Formulario onSubmit={handleSubmit}>
 
                 {/* Filtros */}
@@ -242,17 +224,17 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
                     />
                     <DatePicker
                         fecha = {fecha}
-                        cambiarFecha = {cambiarFecha}                        
+                        cambiarFecha = {cambiarFecha}
                     />
                 </ContenedorFiltros>
 
-                {/* Inputs */}                   
-                <Input 
+                {/* Inputs */}
+                <Input
                 type="text"
                 name="inputDescripcion"
                 placeholder="descripcion del gasto"
                 value={inputDescripcion}
-                onChange={handleChange}                
+                onChange={handleChange}
                 />
 
                 {/* El value hara que se muestre en pantalla el caracter euro si input cantidad existe */}
@@ -260,35 +242,34 @@ const FormularioGasto = ({gastoAModificar, gastoABorrar}) => {
                 type="text"
                 name="inputCantidad"
                 placeholder="0.00€"
-                value={inputCantidad ? `${inputCantidad}€` : ''}                  
-                onChange={handleChange}                
+                value={inputCantidad ? `${inputCantidad}€` : ''}
+                onChange={handleChange}
                 />
 
                 {/* Boton */}
-                
+
                 <ContenedorBoton>
-                    <Boton 
+                    <Boton
                         $primario
                         $conIcono
-                        // {!gastoAModificar && !gastoABorrar ? $conIcono : null}                     
                         as="button"
                         type="submit"
                     >
                         {/* Muestra Editar Gasto, Borrar gasto o Agregar gasto dependiendo si existe gastoAModificar o GastoABorrar */}
                         {/* Muestra el componente <IconoPlus> si no existe gastoAModificar y no existe gastoABorrar */}
-                        {gastoAModificar ? 'Editar Gasto' : gastoABorrar ? 'Pulse aquí para borrar el gasto': 'Agregar Gasto'}
-                        {!gastoAModificar && !gastoABorrar ? <IconoPlus/> : null}
+                        {gastoAModificar ? 'Editar Gasto' : 'Agregar Gasto'}
+                        {!gastoAModificar ? <IconoPlus/> : null}
 
                     </Boton>
                 </ContenedorBoton>
 
                 {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
                 <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
-            
+
             </Formulario>
-            
+
         </>
      );
 }
- 
+
 export default FormularioGasto;
