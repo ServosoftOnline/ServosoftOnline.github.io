@@ -185,7 +185,49 @@ INSTALAR UNA APP CON REACT
           - Indico el medio por el cual se puede identificar el usuario. Ej: correo electronico
           
         3.- cloud funtions proporciona funciones que podemos ejecutar en el lado del servidor
-        4.- hosting para publicar nuestro sitio en internet
+
+        4.- hosting para publicar nuestro sitio en internet. Pasos a seguir:
+            - Ejecuto npm run build para construir la carpeta a subir llamada dist
+
+            - Acceder a la consola de firebase y a Hosting. Muestra los siguientes pasos:
+
+              - Paso 1: Instalar o actualizar FirebaseCli
+                - En consola de visual studio ejecuta npm install -g firebase-tools (Tuve que añadir sudo)
+
+              - Paso 2: Inicialiar el proyecto
+                - En consola de visual studio ejecuta firebase login
+                - Ejecutto firebase init hosting
+
+                  - Respondo a las siguientes preguntas:
+                    - Selecionar Use an existing project
+                    - Selecciono mi proyecto a subir
+                    - Indico la carpeta donde se encuentra guardada. En este caso dist
+                    - Configure as a single-page app. Indico No
+                    - Set up automatic builds and desploys with Github? Y
+                    - Escribirá una pagina error 404 o sobreescribirá una si la hubiese
+                    - A la pregunta File dist/index.html already exist. Overwrite. IMPORTANTE: RESPONDER No
+
+                  - Si hubiera respondido Sí a Set up automatic builds and desploys with Github?
+
+                    - Respondería a las siguiente preguntas:                      
+                      - For which GitHub repository would you like to set up a GitHub workflow? respondí ServosoftOnline/ServosoftOnline.github.io
+                      - Set up the workflow to run a build script before every deploy? respondí No porque ya uso npm run build
+                      - GitHub workflow file for PR previews exists. Overwrite? firebase-hosting-pull-request.yml (y/N) N
+
+                - Me genera los archivos .firebaserc y firebase.json
+
+              - Paso 3: Implementar el Firebase Hosting
+                - Ejecuto firebase deploy --only hosting
+                - Se sube el proyecto
+                - Me proporciona los links de acceso para la web y su consola
+                  - Project Console: https://console.firebase.google.com/project/lista-de-gastos-e0c1c/overview
+                  - Hosting URL: https://lista-de-gastos-e0c1c.web.app
+
+
+
+
+
+          
         5.- cloud storage para subir archivos
           
     - REDUX
