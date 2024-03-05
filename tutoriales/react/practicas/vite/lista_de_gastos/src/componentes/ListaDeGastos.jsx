@@ -104,69 +104,77 @@ const ListaDeGastos = () => {
 
         {/* Lista  */}
         <Lista>
-          {
-            // Devuelvo un elemento de la lista en cada pasada
-            gastos.map((gasto, index) => {
+          {            
+            // Si no hay guardado ningún gasto muestra el mensaje y un botón como link para añadir gastos            
+            gastos.length===0 ?
+              <ContenedorSubtitulo>
+                <Subtitulo>No hay gastos que mostrar</Subtitulo>
+                <Boton as={Link} to='/' $primario>Ir a añadir gastos</Boton>
+              </ContenedorSubtitulo>
+            :
+            
+              // En caso contrario recorro los gastos. Mostrando:
+              // Fechas no repetidas, el gasto y un botón para mostrar más gastos o informar que no hay mas gastos que mostrar
+              gastos.map((gasto, index) => {
+                return (
 
-              return (
+                  // Solo tengo un key que debo añadir a los elementos Fecha y ElementosLista
+                  // Englobo a los elementos en un div al que le pongo el key
+                  <div key={gasto.id}>
 
-                // Solo tengo un key que debo añadir a los elementos Fecha y ElementosLista
-                // Englobo a los elementos en un div al que le pongo el key
-                <div key={gasto.id}>
+                    {/* Solo mostraré la fecha si es diferente a la anterior */}
+                    {!fechaEsIgual(gastos, index, gasto) &&
+                        <Fecha>
+                          {formatearFecha(gasto.fecha)}
+                        </Fecha>
+                    }
 
-                  {/* Solo mostraré la fecha si es diferente a la anterior */}
-                  {!fechaEsIgual(gastos, index, gasto) &&
-                      <Fecha>
-                        {formatearFecha(gasto.fecha)}
-                      </Fecha>
-                  }
+                    <ElementoLista>
+                  
+                      <Categoria>
+                          <IconosCategorias id={gasto.categoria}/>  
+                          {gasto.categoria}
+                      </Categoria>
 
-                  <ElementoLista>
-                
-                    <Categoria>
-                        <IconosCategorias id={gasto.categoria}/>  
-                        {gasto.categoria}
-                    </Categoria>
+                      <Descripcion>
+                        {gasto.descripcion}
+                      </Descripcion>
 
-                    <Descripcion>
-                      {gasto.descripcion}
-                    </Descripcion>
+                      <Valor>
+                        {convertirAMoneda(gasto.importe)}
+                      </Valor>
 
-                    <Valor>
-                      {convertirAMoneda(gasto.importe)}
-                    </Valor>
+                      {/* Botones para editar o borrar el gasto mostrado */}
+                      <ContenedorBotones>
 
-                    <ContenedorBotones>
+                          <BotonAccion as={Link} to={`/editar/${gasto.id}`}> 
+                            <IconoEditar /> 
+                          </BotonAccion>
 
-                        <BotonAccion as={Link} to={`/editar/${gasto.id}`}> 
-                          <IconoEditar /> 
-                        </BotonAccion>
+                          <BotonAccion as={Link} to={`/borrar/${gasto.id}`}> 
+                            <IconoBorrar />
+                          </BotonAccion>
 
-                        <BotonAccion as={Link} to={`/borrar/${gasto.id}`}> 
-                          <IconoBorrar />
-                        </BotonAccion>
+                        </ContenedorBotones>                  
+                    </ElementoLista>
+                  </div>                
+                )
+              })
+            }          
 
-                      </ContenedorBotones>                  
-                  </ElementoLista>
-                </div>                
-              )
-            })
-          }
+            {/* Cambio el contenido del botón dependiendo si hay mas gastos por mostrar*/}
+            {hayMasPorCargar ?
 
-          {/* Botón de cargar mas. Depende del estado hayMasPorCargar obtenido desde el hook */}
-          {hayMasPorCargar &&
-            <ContenedorBotonCentral>
-              <BotonCargarMas onClick={() => obtenerMasGastos()}>Cargar más gastos</BotonCargarMas>
-            </ContenedorBotonCentral>         
-          }
-          
-          {/* Si no hay gastos mostrar mensaje */}
-          {gastos.length===0 &&
-            <ContenedorSubtitulo>
-              <Subtitulo>No hay gastos que mostrar</Subtitulo>
-              <Boton as={Link} to='/' $primario>Ir a añadir gastos</Boton>
-            </ContenedorSubtitulo>
-          }
+                // Si hay más ejecuto la función de obtenerMasGastos del obtenida desde el hook
+                <ContenedorBotonCentral>
+                  <BotonCargarMas onClick={() => obtenerMasGastos()}>Cargar más gastos</BotonCargarMas>
+                </ContenedorBotonCentral>         
+              :            
+                // Si no muestro el mensaje no hay mas gastos sin la función onClick
+                <ContenedorBotonCentral>
+                  <BotonCargarMas>No hay más que mostrar</BotonCargarMas>
+                </ContenedorBotonCentral>
+            }
 
         </Lista>
 

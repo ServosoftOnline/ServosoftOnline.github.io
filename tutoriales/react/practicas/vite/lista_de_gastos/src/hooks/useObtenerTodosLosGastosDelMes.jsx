@@ -14,6 +14,8 @@
 			- Los recorro con la función map, llamo a cada iteracción documento
 			- Voy devolviendo un objeto con todos los documentos recorridos y añado la propiedad id con el valor del id del documento
 			- TELA MARINERA!!
+		
+		- EL HOOK useObtenerGastosDelMesPorCategoria llama a este hook y filtra sus resultados
 */
 
 // React
@@ -36,10 +38,11 @@ const useObtenerTodosLosGastosDelMes = () => {
 	const {sesion} = useAuth();	
 	const [gastos, cambiarGastos] = useState([]);
 	
-	// Si existe sesión ejecuto el efecto que se ejecutará al principio y si se cambia la sesion
-	if (sesion) {
-				
-		useEffect(() => {
+	// Ejecuto el efecto para realizar la consulta de forma asincrona					
+	useEffect(() => {
+
+		// Si existe sesión abierta realizo la consulta
+		if (sesion) {			
 
 			// Consulta 
 			const consultaObtenerTodosLosGastos = query(
@@ -59,10 +62,9 @@ const useObtenerTodosLosGastosDelMes = () => {
 
 			// Cierra la consulta
 			return unsuscribe;
+		}
 
-		}, [sesion]);		
-		
-	}
+	}, [sesion]);
 
 	// Devuelvo el estado gastos
 	return [gastos];

@@ -33,8 +33,7 @@ const InicioSesion = () => {
 
   // Estados
   const [email, establecerEmail] = useState('');
-  const [password, establecerPassword] = useState('');
-  // const [mensaje, cambiarMensaje] = useState('');
+  const [password, establecerPassword] = useState('');  
 
   // Obtengo desde el contexto
   const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
@@ -67,15 +66,13 @@ const InicioSesion = () => {
     // 1.- Que no tengo ningún campo vacío
     if(email==='' || password==='') {
       cambiarMensaje('Debe rellenar todos los datos', 'incorrecta');
-      // cambiarMensaje('Debe rellenar todos los datos');
       return;
     }
     
     // 2.- Que sea un correo electronico segun esta expresión regular
     const expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if ((!expresionCorreo.test(email))) {
-      cambiarMensaje('Introduzca correo electrónico válido', 'incorrecta');
-      // cambiarMensaje('Introduzca un correo electrónico válido');
+      cambiarMensaje('Introduzca correo electrónico válido', 'incorrecta'); 
       return;
     };
 
@@ -84,6 +81,7 @@ const InicioSesion = () => {
       // Si se añade bien el usuario redirijo hacia la raiz donde se pueden ya añadir gastos
       await signInWithEmailAndPassword(auth, email, password);
       cambiarMensaje('Inicio de sesión correcto', 'correcta');
+      console.log('sesion abierta');
       reiniciarMensaje();
       setTimeout(() => {
         navigate('/');
@@ -95,13 +93,11 @@ const InicioSesion = () => {
       console.log('error devuelto de firestore: ' + error.code);
       switch(error.code){
         case 'auth/invalid-credential':
-          cambiarMensaje('Correo no registrado o error en la contraseña', 'incorrecta');
-          // cambiarMensaje('Correo no registrado o error en la contraseña.');
+          cambiarMensaje('Correo no registrado o error en la contraseña', 'incorrecta');  
           break;
           
         default:
           cambiarMensaje('Hubo un error en el inicio de sesión', 'incorrecta');
-          // cambiarMensaje('Hubo un error al intentar crear la cuenta.');
           break;
       }
     }

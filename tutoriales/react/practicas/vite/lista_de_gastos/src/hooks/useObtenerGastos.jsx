@@ -108,34 +108,38 @@ const useObtenerGastos = () => {
 	// Efecto que se produce al principio y si cambia la sesion
 	useEffect(() => {
 
-		// Consulta que obtiene los 10 primeros gastos
-		const consultaObtenerPrimeros10Gastos = query(
-			collection(db, 'gastos'),
-			where('uidUsuario', '==', sesion.uid),
-			orderBy('fecha', 'asc'),
-			limit(10)
-		);
+		// Si existe sesion ejecuto la consulta
+		if(sesion){
+
+			// Consulta que obtiene los 10 primeros gastos
+			const consultaObtenerPrimeros10Gastos = query(
+				collection(db, 'gastos'),
+				where('uidUsuario', '==', sesion.uid),
+				orderBy('fecha', 'asc'),
+				limit(10)
+			);
 		
-		// Ejecuta la consulta de los 10 primeros gastos
-		const unsuscribe = onSnapshot(consultaObtenerPrimeros10Gastos, (snapshot) => {
-			// Si quedan más gastos por mostrar
-			if(snapshot.docs.length > 0){
-			 	// Guardo como último gasto, su índice será la longitud -1 porque los arrays empiezan en 0
-				cambiarUltimoGasto(snapshot.docs[snapshot.docs.length -1]);
-				// Actualizo el estado
-				cambiarHayMasPorCargar(true);
-				} else {
-					cambiarHayMasPorCargar(false);
-				}
+			// Ejecuta la consulta de los 10 primeros gastos
+			const unsuscribe = onSnapshot(consultaObtenerPrimeros10Gastos, (snapshot) => {
+				// Si quedan más gastos por mostrar
+				if(snapshot.docs.length > 0){
+					// Guardo como último gasto, su índice será la longitud -1 porque los arrays empiezan en 0
+					cambiarUltimoGasto(snapshot.docs[snapshot.docs.length -1]);
+					// Actualizo el estado
+					cambiarHayMasPorCargar(true);
+					} else {
+						cambiarHayMasPorCargar(false);
+					}
 
-			// Añado los primeros gastos y el id del gasto
-			cambiarGastos(snapshot.docs.map((gasto) => {
-			    return {...gasto.data(), id: gasto.id}
-			}));
-		});		
+				// Añado los primeros gastos y el id del gasto
+				cambiarGastos(snapshot.docs.map((gasto) => {
+					return {...gasto.data(), id: gasto.id}
+				}));
+			});		
 
-		// Cierra la consulta de los 10 primeros gastos    
-		return unsuscribe;
+			// Cierra la consulta de los 10 primeros gastos    
+			return unsuscribe;
+		}
 
 	}, [sesion]);
     

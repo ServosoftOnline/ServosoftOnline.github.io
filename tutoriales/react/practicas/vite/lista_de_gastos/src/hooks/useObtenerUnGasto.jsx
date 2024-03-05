@@ -40,30 +40,39 @@ import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase/firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 
+// Contextos
+import {useAuth} from './../contextos/AuthContext';
+
 // Hook
 const useObtenerUnGasto = (idGasto) => {
 
-	const navigate = useNavigate();
+	// Estados
 	const [gasto, establecerGasto] = useState('');	
+	const {sesion} = useAuth();
+	const navigate = useNavigate();	
 	
-	// Conecto una sola vez y al principio a la base de datos y obtengo el gasto.
+	// Ejecuto el efecto para realizar la consulta de forma asincrona
 	useEffect(() => {
 
-		// Declaro la función obtener Gasto
-		const obtenerGasto = async () => {
+		// Si hay sesión abierta realizo la consulta
+		if(sesion) {
 
-			// Obtengo el documento de forma asincrona			
-			const documento = await getDoc(doc(db, 'gastos', idGasto));
-			
-			// Si lo obtuve lo añado en el estado gasto. si no lo redirigo a lista de gastos
-			if(documento.exists) establecerGasto(documento);
-			else navigate('/lista');
-		}
+			// Declaro la función obtener Gasto
+			const obtenerGasto = async () => {
 
-		// la llamo
-		obtenerGasto();
+				// Obtengo el documento de forma asincrona			
+				const documento = await getDoc(doc(db, 'gastos', idGasto));
+				
+				// Si lo obtuve lo añado en el estado gasto. si no lo redirigo a lista de gastos
+				if(documento.exists) establecerGasto(documento);
+				else navigate('/lista');
+			}
 
-	}, [navigate, idGasto]);    
+			// la llamo
+			obtenerGasto();
+		}		
+
+	}, [navigate, idGasto, sesion]);    
 
 	// Devuelvo el estado con el gasto que contiene un objeto con el gasto
 	return [gasto];	

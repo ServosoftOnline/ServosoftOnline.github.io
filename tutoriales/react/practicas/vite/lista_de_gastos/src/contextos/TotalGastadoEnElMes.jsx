@@ -3,22 +3,25 @@
 */
 
 // React
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 // Hooks
-import useObtenerTodosLosGastosDelMes from './../hooks/useObtenerTodosLosGastosDelMes';
+import useObtenerTodosLosGastosDelMes from "../hooks/useObtenerTodosLosGastosDelMes";
 
 // Creo el contexto = Estado global
 const TotalGastadoEnElMes = React.createContext();
+
+// Creo el use
+const useTotalDelMes = () => useContext(TotalGastadoEnElMes);
 
 // Creo componente proveedor del estado
 const ProveedorTotalGastadoEnElMes = ({children}) => {
 
     // Estado que contiene un objeto con la configuración inicial
-    const [total, cambiarTotal] = useState();
+    const [total, cambiarTotal] = useState(0);
 
-    // Obtengo los gastos a partir del hook
-    const [gastos] = useObtenerTodosLosGastosDelMes();
+    // Obtengo los gastos a partir del hook    
+    const [gastos] = useObtenerTodosLosGastosDelMes();    
     
     // Calculo el acumulado del mes y lo añado al estado
     useEffect(() => {
@@ -36,4 +39,4 @@ const ProveedorTotalGastadoEnElMes = ({children}) => {
 }
 
 // No exporto por defecto. Exporto el contexto y su proveedor por separado y entre llaves 
-export {ProveedorTotalGastadoEnElMes, TotalGastadoEnElMes};
+export {ProveedorTotalGastadoEnElMes, useTotalDelMes};

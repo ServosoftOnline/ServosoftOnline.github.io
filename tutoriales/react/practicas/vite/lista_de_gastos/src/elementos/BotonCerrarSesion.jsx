@@ -23,7 +23,7 @@ import Boton from "./Boton";
 
 // Firebase
 import { signOut } from "firebase/auth";
-import { auth } from './../firebase/firebaseConfig'
+import { auth } from './../firebase/firebaseConfig';
 
 // Elemento
 const BotonCerrarSesion = () => {
@@ -43,7 +43,7 @@ const BotonCerrarSesion = () => {
 
     }
     return ( 
-        <Boton $iconoGrande as="button" onClick={cerrarSesion}>
+        <Boton $iconoGrande as="button" onClick={()=>{cerrarSesion()}}>
             <IconoCerrarSesion/>
         </Boton>
     );

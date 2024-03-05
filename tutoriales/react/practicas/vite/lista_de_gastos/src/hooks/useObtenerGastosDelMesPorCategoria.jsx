@@ -35,52 +35,64 @@ HOOK QUE OBTIENE TODOS LOS GASTOS DE CADA CATEGORIA EN EL MES ACTUAL CUYA CANTID
 	
 */
 
+// React
 import { useEffect, useState } from "react";
+
+// Hook
 import useObtenerTodosLosGastosDelMes from "./useObtenerTodosLosGastosDelMes";
+
+// Contextos
+import {useAuth} from './../contextos/AuthContext';
 
 const useObtenerGastosDelMesPorCategoria = () => {
 
 	// Estados
 	const [gastosPorCategoria, cambiarGastosPorCategoria] = useState([]);
+	const {sesion} = useAuth();
 	const [gastos] = useObtenerTodosLosGastosDelMes();
 
+	// Uso este efecto para realizar de forma asincrona la consulta
 	useEffect(() => {
 
-		// Método reduce
-		const sumaDeGastos = gastos.reduce((objetoResultante, objetoActual) => {
+		// Si hay sesión ejecuto la consulta
+		if(sesion){
 
-			const categoriaActual = objetoActual.categoria;
-			const cantidadActual = objetoActual.importe;
-			objetoResultante[categoriaActual] += cantidadActual;
-			return objetoResultante;
+			// Método reduce
+			const sumaDeGastos = gastos.reduce((objetoResultante, objetoActual) => {
 
-		}, {
-			'comida': 0,
-			'cuentas y pagos': 0,
-			'hogar': 0,
-			'transporte': 0,
-			'ropa': 0,
-			'salud e higiene': 0,
-			'compras': 0,
-			'diversion': 0
-		});
+				const categoriaActual = objetoActual.categoria;
+				const cantidadActual = objetoActual.importe;
+				objetoResultante[categoriaActual] += cantidadActual;
+				return objetoResultante;
 
-		// Paso el objeto recogido en suma de gastos a un array de objetos			
-		const arraySumaDeGastos = (Object.keys(sumaDeGastos).map((elemento) => {
-			return {categoria: elemento, cantidad:sumaDeGastos[elemento]};
-		}));
+			}, {
+				'comida': 0,
+				'cuentas y pagos': 0,
+				'hogar': 0,
+				'transporte': 0,
+				'ropa': 0,
+				'salud e higiene': 0,
+				'compras': 0,
+				'diversion': 0
+			});
 
-		// Filtro el array y elimino todos cuya cantidad sea cero
-		const arraySumaDeGastosMayoresDeCero = arraySumaDeGastos.filter((gasto) => {
-			if(gasto.cantidad > 0){
-				return gasto;
-			}
-		});
+			// Paso el objeto recogido en suma de gastos a un array de objetos			
+			const arraySumaDeGastos = (Object.keys(sumaDeGastos).map((elemento) => {
+				return {categoria: elemento, cantidad:sumaDeGastos[elemento]};
+			}));
 
-		// Modifico el estado con el array ya filtrado
-		cambiarGastosPorCategoria(arraySumaDeGastosMayoresDeCero);		
+			// Filtro el array y elimino todos cuya cantidad sea cero
+			const arraySumaDeGastosMayoresDeCero = arraySumaDeGastos.filter((gasto) => {
+				if(gasto.cantidad > 0){
+					return gasto;
+				}
+			});
 
-	},[gastos]);
+			// Modifico el estado con el array ya filtrado
+			cambiarGastosPorCategoria(arraySumaDeGastosMayoresDeCero);
+		}
+		
+	},[gastos, sesion]);
 
 	// Devuelvo el estado
 	return gastosPorCategoria;	

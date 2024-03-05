@@ -73,7 +73,6 @@ import {ContextoMensaje} from './../contextos/contextoMensaje';
 // Funciones para editar contenido en firestore
 import agregarGasto from "../firebase/agregarGasto";
 import editarGasto from "../firebase/editarGasto";
-import eliminarGasto from "../firebase/eliminarGasto";
 
 // date-fns
 import { fromUnixTime, getUnixTime } from "date-fns";
@@ -117,7 +116,7 @@ const FormularioGasto = ({gastoAModificar}) => {
 
     }, [gastoAModificar, usuario]);
 
-    // Funciones
+    // FUNCIONES
     const validacionCorrecta = (inputDescripcion, inputCantidad) => {
 
         // Que no halla ningun campo vacio
@@ -135,6 +134,62 @@ const FormularioGasto = ({gastoAModificar}) => {
         return true;
     }
 
+    const llamaAEditarGasto = () => {
+
+        editarGasto({
+            categoria: categoria,
+            fecha: getUnixTime(fecha),
+            inputDescripcion: inputDescripcion,
+            inputCantidad: inputCantidad,
+            uidUsuario: usuario,
+            idGasto: gastoAModificar.id
+        })
+        .then(() => {
+            cambiarMensaje('Gasto modificado con éxito', 'correcta');
+            setTimeout(() => {
+                reiniciarMensaje();
+                navigate('/lista');
+              }, 5000);
+
+        }).catch((error) => {
+            cambiarMensaje('Error de la base de datos al modificar el gasto', 'incorrecta');
+            console.log(error);
+        })
+    }
+
+    const llamaAAgregarGasto = () => {
+
+        agregarGasto({
+            categoria: categoria,
+            fecha: fecha,
+            inputDescripcion: inputDescripcion,
+            inputCantidad: inputCantidad,
+            uidUsuario: usuario
+        })
+        .then (() => {
+
+            // Restauro los valores por defecto
+            cambiarCategoria('comida');
+            cambiarFecha(new Date());
+            cambiarInputDescripcion('');
+            cambiarInputCantidad('');
+
+            // Mensaje correcto
+            cambiarMensaje('Gasto añadido con éxito', 'correcta');
+            setTimeout(() => {
+                reiniciarMensaje();
+                navigate('/');
+              }, 5000);
+
+        })
+
+        // Error al añadir en firestore
+        .catch((error)=>{
+            cambiarMensaje('No se pudo añadir el gasto', 'incorrecta');
+            console.log(error);
+        });
+
+    }
 
     const handleChange = (e) => {
         if(e.target.name === 'inputDescripcion') cambiarInputDescripcion(e.target.value);
@@ -148,69 +203,16 @@ const FormularioGasto = ({gastoAModificar}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Si la valicación es correcta veré si hay gasto que modificar o borrar. Si no agrego
+        // Si la valicación es correcta veré si hay gasto que modificar o borrar
         if(validacionCorrecta(inputDescripcion, inputCantidad)) {
-
             // Si hay gasto a modificar lo modifico. Si no agrego
-            if(gastoAModificar) {
-
-                // Modifico
-                editarGasto({
-                    categoria: categoria,
-                    fecha: getUnixTime(fecha),
-                    inputDescripcion: inputDescripcion,
-                    inputCantidad: inputCantidad,
-                    uidUsuario: usuario,
-                    idGasto: gastoAModificar.id
-                })
-                .then(() => {
-                    cambiarMensaje('Gasto modificado con éxito', 'correcta');
-                    setTimeout(() => {
-                        reiniciarMensaje();
-                        navigate('/lista');
-                      }, 5000);
-
-                }).catch((error) => {
-                    cambiarMensaje('Error de la base de datos al modificar el gasto', 'incorrecta');
-                    console.log(error);
-                })            
-
-            } else {
-
-                // Agrego
-                agregarGasto({
-                    categoria: categoria,
-                    fecha: fecha,
-                    inputDescripcion: inputDescripcion,
-                    inputCantidad: inputCantidad,
-                    uidUsuario: usuario
-                })
-                .then (() => {
-
-                    // Restauro los valores por defecto
-                    cambiarCategoria('comida');
-                    cambiarFecha(new Date());
-                    cambiarInputDescripcion('');
-                    cambiarInputCantidad('');
-
-                    // Mensaje correcto
-                    cambiarMensaje('Gasto añadido con éxito', 'correcta');
-                    setTimeout(() => {
-                        reiniciarMensaje();
-                        navigate('/');
-                      }, 5000);
-
-                })
-
-                // Error al añadir en firestore
-                .catch((error)=>{
-                    cambiarMensaje('No se pudo añadir el gasto', 'incorrecta');
-                    console.log(error);
-                });
-            }
+            if(gastoAModificar) llamaAEditarGasto();
+            else llamaAAgregarGasto();
         }
     }
-    // Fin de las funciones
+    // FIN DE LAS FUNCIONES
+
+
 
     return (
         <>

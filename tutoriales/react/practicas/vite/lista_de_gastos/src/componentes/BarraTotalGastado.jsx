@@ -3,18 +3,18 @@
 */
 
 // Importa react, el elemento BarraTotal, la funcion convertirAMoneda
-import React, {useContext} from "react";
+import React from "react";
 import BarraTotal from "../elementos/BarraTotal";
 import convertirAMoneda from "../funciones/convertirAMoneda";
 
-// Contexto
-import {TotalGastadoEnElMes} from './../contextos/TotalGastadoEnElMesContext';
+// Contexto proporcionado por useTotalDelMes
+import { useTotalDelMes } from "./../contextos/TotalGastadoEnElMes";
 
 // Componente
 const BarraTotalGastado = () => {
 
     // Extraigo el total del contexto
-    const {total} = useContext(TotalGastadoEnElMes);
+    const {total} = useTotalDelMes();
 
     // Lo devuelvo convertido en moneda en el interior de la barra
     return ( 

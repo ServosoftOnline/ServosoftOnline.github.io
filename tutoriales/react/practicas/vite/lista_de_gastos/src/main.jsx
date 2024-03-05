@@ -1,48 +1,70 @@
 /*
   APLICACION DE GASTOS.
 
-    - Aplicación mas completa del curso.
-    - Empiezo su desarrollo el dia 8 de enero de 2024
-    - Ha sido creada en vite
-    
-    - El backend lo hare mediante firebase
-      - Nombre del proyecto_ lista-de-gastos
+    - DESCRIPCION DE LA APLICACION:
+      - Aplicación mas completa del curso.
+      - Empiezo su desarrollo el dia 8 de enero de 2024. La finalizo el 2 de marzo de 2024.
+      - Permite:
+        - Crearse un usuario en la base de datos
+        - Acceder con ese usuario a la base de datos
+        - Añadir, editar o borrar un gasto
+        - Muestra los siguientes informres:
+          - Todos los gastos realizados por el usuario
+          - Todos los gastos realizados por el usuario durante el mes actual divididos en categorias
+          - Una barra que muestra el total de los gastos realizados durante el mes actual
 
-      - Sigo las instrucciones indicadas en instalacion.txt en el apartado de firebase para crear el proyecto
-        - No habilito google analytics
-        - Habilitaré firebase hosting mas adelante. Quizas no lo haga y lo deje subido en git y lo enlazaré desde mi cv
+      - El front lo hice con react y el backend mediante firebase:    
+        - Descrbí las tareas de instalacion de las librerias y configuracion de firebase en instalacion.txt
+        
+        - Con respecto al front usé las siguientes librerias y/o aplicaciones:
+          - react router
+          - styled components
+          - Context API, para crear los contextos
+          - webfontloader, que permite instalar fuentes de google fonts
+          - react helmet, que permite entre otras cosas definir el favicon
+          - Las ondas del fondo las cree mediante https://getwaves.io/. Fondo.jsx describe como hacerlo
+          - react dayPicker para hacer el calendario donde se selecciona la fecha
+          - date-fns que permitíra trabajar con fechas
 
-      - Sigo las instrucciones indicadas en .env.local en el la practica contactosFirebase
-        - Que permite ocultar el acceso a firebase mediante vbles de ambiente
+        - Con respecto al backend
+          - Usaré un conjuntos de servicios de google llamado firebase.
+            - El proyecto:
+              - Se llama lista-de-gastos y Está asociado a mi cuenta oscarfernandezsantiago@gmail.com
+              - Para su instalacion y vinculacion con la app sigo las instruciones que deje en -env.Local
+                - Que permite ocultar el acceso a firebase mediante vbles de ambiente        
+              - No habilito google analytics. Al menos por ahora
+              - Las reglas de seguridad al inicarla las pongo de prueba.
+                - Una vez acabada la aplicacion hay que ponerlas más duras para evitar que accedan al
 
-    - Uso las siguientes librerias:
-      - react router
-      - styled components
-      - webfontloader, que permite instalar fuentes de google fonts
-      - react helmet, que permite entre otras cosas definir el favicon
-      
+            - Servicios usados:
+              - Authentification permite gestionar los usarios creados desde la app
+              - Firestore contiene las colecciones y documentos de la base de datos creados desde la app
+                - Cuando inicio la aplicacion y configuro firestore debo crear unas reglas de seguridad-
+                - Al principio serán reglas de prueba
+                - Una vez acabada la aplicación debo ponerlas más seguras para hacerla privada
+              - Hosting me permite subir la app
 
-    - Pasos a seguir para crear una app:
+
+    - PASOS PARA REALIZÉ PARA CREAR ESTA APP. SE PUEDE APLICAR A OTRAS APLICACIONES:
 
       1.- Crear las rutas
-        1.- Crear el elemento contenedor que contendrá a la app
-        2.- Creo los componentes que contendrán a cada pagina
-        3.- Importar la fuente de google fonts que valla a usar
-        4.- Importar BrowserRouter, Route, Routes para usar react router
-        5.- Encierro todo en BrowserRouter
+        1.1.- Crear el elemento contenedor que contendrá a la app
+        1.2.- Creo los componentes que contendrán a cada pagina
+        1.3.- Importar la fuente de google fonts que valla a usar
+        1.4.- Importar BrowserRouter, Route, Routes para usar react router
+        1.5.- Encierro todo en BrowserRouter
 
-        6.- Creo cada una de las rutas englobadas en Routes
+        1.6.- Creo cada una de las rutas englobadas en Routes
           - Las rutas tendrán el path que será la web que debe escribirse en el navegador y cargará el componente asociado
           - Creo si hubiera alguna ruta dinámica
           - Creo la ruta para el error 404 si pusieran una web inexistente en el navegador
           - Creo la ruta para el directorio raiz. En este caso el componente ppal
 
-        7.- Pruebo cada una de las rutas escribiendolas en el navegador y viendo si se carga el componente adecuado
+        1.7.- Pruebo cada una de las rutas escribiendolas en el navegador y viendo si se carga el componente adecuado
 
       2.- Creo el favicon y el titulo
       3.- Añado el fondo
       4.- Creo el archivo llamado theme.jsx. Contiene un objeto con las vbles con todos los colores.
-
       5.- Creo las cabeceras y crear los desplazamientos entre ellas
 
         5.1.- Creo un archivo llamado ElementosDeHeader
@@ -58,7 +80,6 @@
             - primario. Tendrá el color primario asignado en theme.jsx. Si no le indico primario lo pintará en negro
             - conIcono. El icono será mas ancho
             - iconoGrande. Contendrá un svg
-
 
         5.3.- Creo el elemento BrnRegresar.jsx. Permite regresar a la ruta raiz
         5.4.- Al crear todas las cabeceras de las paginas iré añadiendo los estilos de header, los botones y el boton para regresar
@@ -79,7 +100,7 @@
 
           - Creo la logica para crear un usuario en firebase
 
-        6.3- Creo la pagina para iniciar sesion
+        6.3.- Creo la pagina para iniciar sesion
           - Su elemento asociado al que apunta su ruta se llama InicioSesion.jsx
           - La cabecera contendrá el titulo y un enlace hacia la pagina /crear-cuenta
           - Tendrá prácticamente la misma estructura que RegistroUsuarios.jsx
@@ -124,8 +145,7 @@
           - Este tendrá la información sobre si se ha iniciado sesion o no.
           - Importo el proveedor del estado en main.jsx y englobo a la aplicación dentro de él
           - LLamaré al contexto en cada componente donde comprobaré si se inicio o no sesión antes de realizar operaciones sensibles
-        REPASARLO: NO ESTOY SEGURO SI ESTA BIEN. 
-
+        
       11.- Abrego botón para cerrar la sesión y creo su funcionalidad
         - Lo mostraré en App.jsx
         - El elemento que lo define será BotonCerrarSesion.jsx
@@ -141,7 +161,11 @@
 
       13.- Añado al componente ppal el interfaz para añadir gastos
         - Creo el formulario que viene abajo y dejo espacio para el select y el daypicker (FormularioGasto.jsx)
-        
+        - Este formulario permitirá añadir gastos o editar un gasto obtenido desde lista de gastos
+          - Si le pasé un gasto como propiedad hará la funcionalidad de editar un gasto
+          - En caso contrario hará la funcionalidad de añadir un gasto
+          - El botón mostrará añadir un gasto o editar un gasto en cada caso
+
         13.1.- Creo el select con las diferentes categorias de gastos
               - Creo los diferentes elementos que contendrán los estilos del select (ElementosDeSelect.jsx)
               - Creo un elemento para los iconos que estarán juntos a las categorias. (iconoCategorias.jsx)
@@ -174,14 +198,22 @@
           - El componente se llama BorrarGasto.jsx
           - Creo una ruta dinámica hacia BorrarGasto.jsx, le paso el id del gasto por la barra de direccion
           - Creo el hook llamado useObtenerUnGasto.jsx que obtendrá el gasto a partir de ese id
-          - Modifico el botón del componente FormularioGasto para cuando exista un gasto a eliminar
-          - Si pincha el botón entonces elimino el gasto          
+          - llamo al hook desde el componente y mostraré los resultados
+          - Creo un botón para confirmar eliminar el gasto
+            - Si lo pulsa llamará a una función que llamará a /firebase/eliminarGasto
+            - Gestionará la promesa modificando el mensaje a mostrar con la validacion      
 
         - Creo la funcionalidad para editar un gasto
-        
+          - El componente se llama EditarGastos
+          - Uso el hook useObtenerUnGasto.jsx creado en el paso anterior
+          - importo el componente FormularioGasto y paso el resultado del hook como propiedad
 
+      17.- Establezco las reglas de seguridad en el proyecto en firebase
+        - Las reglas iniciales de prueba solo indicaban que podíamos acceder a todas las colecciones hasta una fecha dada
+        - Ahora tengo que indicar que solo accederán los usuarios registrados
+        - Ir a firebase/firestore/reglas y dejaré las reglas comentadas
 
-
+      18.- Subo la aplicacion mediante el servicio de hosting
 
 */
 
@@ -213,7 +245,7 @@ import RutaPrivada from './componentes/RutaPrivada.jsx';
 // Contextos
 import { AuthProvider } from './contextos/AuthContext.jsx';
 import {ProveedorMensaje} from './contextos/contextoMensaje.jsx';
-import {ProveedorTotalGastadoEnElMes} from './contextos/TotalGastadoEnElMesContext.jsx';
+import { ProveedorTotalGastadoEnElMes } from './contextos/TotalGastadoEnElMes.jsx';
 
 // WebFontLoader. Descarga fuente de google fonts
 import WebFont from 'webfontloader';
@@ -238,59 +270,60 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       
       {/* Contexto */}
       <AuthProvider>
-      <ProveedorMensaje>
-      <ProveedorTotalGastadoEnElMes>
+        <ProveedorTotalGastadoEnElMes>
+          <ProveedorMensaje>      
 
-        {/* React router */}
-        <BrowserRouter>
-          <Contenedor>
-            <Routes>
+            {/* React router */}
+            <BrowserRouter>
+              <Contenedor>
+                <Routes>
 
-              {/* Rutas públicas */}
-                <Route path='/iniciar-sesion' element={<InicioSesion />} />
-                <Route path='/crear-cuenta' element={<RegistroUsuarios />} />
-                <Route path='*' element={<Error404 />} />
+                  {/* Rutas públicas */}
+                    <Route path='/iniciar-sesion' element={<InicioSesion />} />
+                    <Route path='/crear-cuenta' element={<RegistroUsuarios />} />
+                    <Route path='*' element={<Error404 />} />
 
-              {/* Rutas privadas */}
-                <Route path='/categorias' element={
-                  <RutaPrivada path='/categorias'>
-                      <GastosPorCategoria />
-                  </RutaPrivada>                  
-                }/>
+                  {/* Rutas privadas */}
+                    <Route path='/categorias' element={
+                      <RutaPrivada path='/categorias'>
+                          <GastosPorCategoria />
+                      </RutaPrivada>                  
+                    }/>
 
-                <Route path='/lista' element={
-                  <RutaPrivada path='/lista'>
-                      <ListaDeGastos />
-                  </RutaPrivada>                  
-                }/>
+                    <Route path='/lista' element={
+                      <RutaPrivada path='/lista'>
+                          <ListaDeGastos />
+                      </RutaPrivada>                  
+                    }/>
 
-                {/* En el path de editar le pasaré un id */}
-                <Route path='/editar/:id' element={
-                  <RutaPrivada path='/editar/:id'>
-                      <EditarGastos />
-                  </RutaPrivada>                  
-                }/>
+                    {/* En el path de editar le pasaré un id */}
+                    <Route path='/editar/:id' element={
+                      <RutaPrivada path='/editar/:id'>
+                          <EditarGastos />
+                      </RutaPrivada>                  
+                    }/>
 
-                {/* En el path de borrar le pasaré un id */}
-                <Route path='/borrar/:id' element={
-                  <RutaPrivada path='/borrar/:id'>
-                      <BorrarGasto />
-                  </RutaPrivada>                  
-                }/>
-                              
-                {/* La ruta cuyo path sea la raiz cargaré el componente ppal */}
-                <Route path='/' element={
-                  <RutaPrivada path='/'>
-                      <App />
-                  </RutaPrivada>                  
-                }/>
+                    {/* En el path de borrar le pasaré un id */}
+                    <Route path='/borrar/:id' element={
+                      <RutaPrivada path='/borrar/:id'>
+                          <BorrarGasto />
+                      </RutaPrivada>                  
+                    }/>
+                                  
+                    {/* La ruta cuyo path sea la raiz cargaré el componente ppal */}
+                    <Route path='/' element={
+                      <RutaPrivada path='/'>
+                          <App />
+                      </RutaPrivada>                  
+                    }/>
 
-            </Routes>            
-          </Contenedor>      
-        </BrowserRouter>
+                </Routes>            
+              </Contenedor>
+            </BrowserRouter>
 
-      </ProveedorTotalGastadoEnElMes>
-      </ProveedorMensaje>
+      
+          </ProveedorMensaje>
+        </ProveedorTotalGastadoEnElMes>
       </AuthProvider>
       
     </HelmetProvider>
