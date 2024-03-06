@@ -236,8 +236,8 @@ const FormularioGasto = ({gastoAModificar}) => {
                 {/* Inputs */}
                 <Input
                 type="text"
-                name="inputDescripcion"
-                placeholder="descripcion del gasto"
+                name="inputDescripcion"                
+                placeholder="gasto"
                 value={inputDescripcion}
                 onChange={handleChange}
                 />

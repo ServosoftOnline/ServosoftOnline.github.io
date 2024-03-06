@@ -40,8 +40,6 @@ const Boton = styled(Link)`
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
-
-    // Queda el texto del botón a la izda, el icono a la derecha, centrados verticalmente
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
@@ -51,6 +49,12 @@ const Boton = styled(Link)`
     svg {
         height: ${(props) => props.$iconoGrande ? '100%' : '0.75rem;'};  /* 12px */
         fill: white;
+    }
+
+    @media(max-width: 60rem){ /* 950px */       
+        font-size: 1.25rem; /* 20px */
+        margin-left: 1rem; /* 16px */
+        padding: 0.5rem 1rem; /* 8px 16px */           
     }
 `;
 

@@ -188,7 +188,6 @@ INSTALAR UNA APP CON REACT
 
         4.- hosting para publicar nuestro sitio en internet. Pasos a seguir:
             - Ejecuto npm run build para construir la carpeta a subir llamada dist
-
             - Acceder a la consola de firebase y a Hosting. Muestra los siguientes pasos:
 
               - Paso 1: Instalar o actualizar FirebaseCli
@@ -196,7 +195,7 @@ INSTALAR UNA APP CON REACT
 
               - Paso 2: Inicialiar el proyecto
                 - En consola de visual studio ejecuta firebase login
-                - Ejecutto firebase init hosting
+                - Ejecuto firebase init hosting
 
                   - Respondo a las siguientes preguntas:
                     - Selecionar Use an existing project
@@ -223,10 +222,9 @@ INSTALAR UNA APP CON REACT
                   - Project Console: https://console.firebase.google.com/project/lista-de-gastos-e0c1c/overview
                   - Hosting URL: https://lista-de-gastos-e0c1c.web.app
 
-
-
-
-
+            - Si quiero actualizar un hosting ya subido
+              - ejecuto npm run build para modificar la el contenido de la carpeta dist
+              - subo los cambios ejecutando firebase deploy --only hosting
           
         5.- cloud storage para subir archivos
           

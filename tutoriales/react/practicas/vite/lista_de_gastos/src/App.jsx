@@ -47,8 +47,8 @@ const App = () => {
                <ContenedorHeader>
                   <Titulo>Agregar gasto</Titulo>
                   <ContenedorBotones>
-                     <Boton to = '/categorias'>Categorías</Boton>
-                     <Boton to = '/lista'>Lista de gastos</Boton>
+                     <Boton to = '/categorias'>Categorías</Boton>                     
+                     <Boton to = '/lista'>Gastos</Boton>
                      <BotonCerrarSesion/>
                   </ContenedorBotones>
                </ContenedorHeader>

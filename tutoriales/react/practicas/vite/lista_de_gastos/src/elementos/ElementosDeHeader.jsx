@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Header = styled.div`
     
     width: 100%;
-    padding: 2rem; /* 40px */
+    padding: 1.5rem; /* 40px */
     
     // Separo los componentes de forma horizontal y los alineo de forma vertical
     display: flex;
@@ -19,6 +19,7 @@ const Header = styled.div`
 `;
  
 const Titulo = styled.h1`
+
     font-weight: normal;
     text-transform: uppercase;
     font-size: 2.0rem; /* 32px */
@@ -34,7 +35,6 @@ const ContenedorHeader = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    
  
     // Coloco los elementos en forma de columna, los centro . Los div de dentro los pongo al final
     @media(max-width: 60rem){ /* 950px */
@@ -51,12 +51,11 @@ const ContenedorHeader = styled.div`
     }
 `;
  
-const ContenedorBotones = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+const ContenedorBotones = styled.div`  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
-
 
  
 export {Header, Titulo, ContenedorBotones, ContenedorHeader};

@@ -31,7 +31,7 @@ const ContenedorFiltros = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.87rem; /* 30px */
+    // margin-bottom: 1.87rem; /* 30px */
  
     // Cuando llegue la ventana a 950px los elementos se colocan en forma de columna y no uno al lado de otro
     @media(max-width: 60rem){ /* 950px */
@@ -89,6 +89,10 @@ const ContenedorBoton = styled.div`
     display: flex;
     justify-content: center;
     margin: 2rem 0;  /* 32px */
+
+    @media(max-width: 60rem){ /* 950px */
+        margin: 1rem 0;  /* 16px */
+    }
     
 `;
 
