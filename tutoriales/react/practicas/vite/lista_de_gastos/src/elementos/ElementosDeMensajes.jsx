@@ -34,6 +34,11 @@ const ContenedorMensajes = styled.div`
         }};
         
     }
+
+    @media(max-width: 60rem){ /* 950px */
+        // padding-bottom: 0px;
+        padding: 1px;
+    }
 `;
 
 export {ContenedorMensajes};

@@ -64,7 +64,7 @@ const Formulario = styled.form`
     }
  
     @media(max-width: 60rem){ /* 950px */
-        justify-content: start;        
+        justify-content: start;           
     }
 `;
  
@@ -87,12 +87,13 @@ const InputGrande = styled(Input)`
 `;
  
 const ContenedorBoton = styled.div`
+
     display: flex;
     justify-content: center;
     margin: 2rem 0;  /* 32px */
 
     @media(max-width: 60rem){ /* 950px */
-        margin: 1rem 0;  /* 16px */
+        margin: 0.5rem 0;  /* 16px */
     }
     
 `;
