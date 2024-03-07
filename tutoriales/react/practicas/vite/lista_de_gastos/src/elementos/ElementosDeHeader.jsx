@@ -3,18 +3,18 @@
 import styled from "styled-components";
 
 const Header = styled.div`
-    
-    width: 100%;
+background: green;
+    width: auto;
     padding: 2rem; /* 40px */
     
     // Separo los componentes de forma horizontal y los alineo de forma vertical
     display: flex;
     justify-content: space-between;
-    // align-items: center;
- 
+    
     // Cuando se reduzca el tamaño de la ventana a 950px, separo los componentes de forma horizontal y los pongo a la izquierda
     @media(max-width: 60rem){ /* 950px */
-        // justify-content: start;
+        height: 9rem; /* 144 px */
+        padding: 0.5rem; /* 8px */
     }
 `;
  

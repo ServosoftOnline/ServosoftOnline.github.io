@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import Mensaje from "./Mensaje";
 
 // Elementos
-import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
+import {Header, Titulo, ContenedorHeader, ContenedorBotones} from '../elementos/ElementosDeHeader';
 import {Formulario, Input, ContenedorBoton, SvgIniciarSesion} from './../elementos/ElementosDeFormulario';
 import Boton from "../elementos/Boton";
 
@@ -117,9 +117,9 @@ const InicioSesion = () => {
         <Header>
           <ContenedorHeader>
             <Titulo>Iniciar sesión</Titulo>
-            <div>
+            <ContenedorBotones>
               <Boton to = '/crear-cuenta'>Crear una cuenta</Boton>
-            </div>
+            </ContenedorBotones>
           </ContenedorHeader>
         </Header>
 
