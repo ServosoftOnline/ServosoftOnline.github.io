@@ -69,6 +69,7 @@ const Formulario = styled.form`
 `;
  
 const Input = styled.input`
+
     font-size: 2rem; /* 32px */
     text-transform: uppercase;
     border: none;
@@ -76,7 +77,7 @@ const Input = styled.input`
     outline: none;
  
     @media(max-width: 60rem){ /* 950px */
-        font-size: 1.8rem; /* 28.8px */
+        font-size: 1.5rem; /* 24px */
     }
 `;
  
@@ -100,12 +101,22 @@ const SvgIniciarSesion = styled(imagenIniciarSesion)`
     width: 100%;
     max.height: 6.25rem; /* 100px */
     margin-bottom : 1.25rem; /* 20px */
+
+    // Reduzco el tamaño 
+    @media(max-width: 60rem){ /* 950px */
+        height: 15rem; /* 240px */
+    }
 `;
 
 const SvgCrearCuenta = styled(imagenCrearCuenta)`
     width: 100%;
     max.height: 6.25rem; /* 100px */
     margin-bottom : 1.25rem; /* 20px */
+
+    // Reduzco el tamaño 
+    @media(max-width: 60rem){ /* 950px */
+        height: 15rem; /* 240px */
+    }
 `;
 
 

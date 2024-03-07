@@ -3,18 +3,19 @@
 import styled from "styled-components";
 
 const Header = styled.div`
-    
+
     width: 100%;
     padding: 1.5rem; /* 40px */
     
     // Separo los componentes de forma horizontal y los alineo de forma vertical
     display: flex;
     justify-content: space-between;
-    // align-items: center;
+    align-items: center;
  
     // Cuando se reduzca el tamaño de la ventana a 950px, separo los componentes de forma horizontal y los pongo a la izquierda
     @media(max-width: 60rem){ /* 950px */
-        // justify-content: start;
+        padding: 0.8rem; /* 12.8px */
+
     }
 `;
  
@@ -26,8 +27,8 @@ const Titulo = styled.h1`
     
     // Cuando se reduzca el tamaño de la ventana a 950px, disminuyo el tamaño de la fuente del titulo
     @media(max-width: 60rem){ /* 950px */
-        font-size: 2rem; /* 32px */
-        margin-bottom: 20px;
+        font-size: 1.7rem; /* 32px */
+        margin-bottom: 10px;
     }
 `;
  

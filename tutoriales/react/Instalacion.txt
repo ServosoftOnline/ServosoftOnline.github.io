@@ -2,6 +2,9 @@ INSTALAR UNA APP CON REACT
 
   - INSTALACIONES OBLIGATORIAS
 
+    - VISUAL STUDIO CODE
+      - Pulsar F11 maximiza o minimiza la app
+
     - NPM
       - npm install. Instala todas las dependencias
       - npm audit fix. Intenta reparar vulnerabilidades
