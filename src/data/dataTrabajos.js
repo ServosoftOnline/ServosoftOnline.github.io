@@ -13,6 +13,14 @@ export default {
             enlace: 'https://servosoftonline.github.io/L80/',
             imagenSrc: './img/trabajo1.jpg',
             descripcion: 'Sitio web de un grupo musical desarrollado en HTML, CSS y JAVASCRIPT. Es responsive, está creado en una sola página, sin usar ningun CMS y contiene una galería de imágenes',
+        },
+
+        {
+            id: '2',
+            proyecto: 'Control de gastos',
+            enlace: 'https://lista-de-gastos-e0c1c.web.app/',
+            imagenSrc: './img/trabajo1.jpg',
+            descripcion: 'Aplicación para llevar un control de gastos. El front-end está realizado con React el back-end con firebase. Es responsive, valído para monitores 4k, FullHd y móviles',
         }
     ]
 };
