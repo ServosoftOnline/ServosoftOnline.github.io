@@ -372,7 +372,7 @@ var dataExperiencia = {
             id: '4',
             profesion: 'Técnico infórmatico',
             fecha: 'JULIO 1999 - SEPTIEMBRE 2006',
-            descripcion: 'Diversos trabajos relacionados con la reparación de ordenadores, montaje de redes locales e instalación y reparacion de sistemas de seguridad. En mi último trabajo fuí responsable del mantenimiento de 12 oficinas repartidas por todo el territorio español.'
+            descripcion: 'Diversos trabajos relacionados con la reparación de ordenadores, montaje de redes locales e instalación y reparacion de sistemas de seguridad. En mi último trabajo, como informático, fuí responsable del mantenimiento de 12 oficinas repartidas por todo el territorio español.'
         }
     ]
 };
@@ -477,11 +477,9 @@ var dataCursos = {
 // AÑADE LOS CURSOS DE FORMA DINÁMICA
 
 const {cursos} = dataCursos;
-// console.log(cursos);
 
 // Obtengo la columna donde las añado
 const columnaDerecha$1 = document.querySelector('.columnaDerecha');
-// console.log(columnaDerecha);
 
 // Creo el div con la clase cursos
 const divCursos = document.createElement('div');
@@ -554,6 +552,14 @@ var dataTrabajos = {
             enlace: 'https://servosoftonline.github.io/L80/',
             imagenSrc: './img/trabajo1.jpg',
             descripcion: 'Sitio web de un grupo musical desarrollado en HTML, CSS y JAVASCRIPT. Es responsive, está creado en una sola página, sin usar ningun CMS y contiene una galería de imágenes',
+        },
+
+        {
+            id: '2',
+            proyecto: 'Control de gastos',
+            enlace: 'https://lista-de-gastos-e0c1c.web.app/',
+            imagenSrc: './img/trabajo2.jpg',
+            descripcion: 'Aplicación para llevar un control de gastos. El frontend está realizado con React y el backend con Firebase. Es responsive, valído para monitores 4k, FullHd y móviles',
         }
     ]
 };

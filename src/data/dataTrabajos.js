@@ -19,8 +19,8 @@ export default {
             id: '2',
             proyecto: 'Control de gastos',
             enlace: 'https://lista-de-gastos-e0c1c.web.app/',
-            imagenSrc: './img/trabajo1.jpg',
-            descripcion: 'Aplicación para llevar un control de gastos. El front-end está realizado con React el back-end con firebase. Es responsive, valído para monitores 4k, FullHd y móviles',
+            imagenSrc: './img/trabajo2.jpg',
+            descripcion: 'Aplicación para llevar un control de gastos. El frontend está realizado con React y el backend con Firebase. Es responsive, valído para monitores 4k, FullHd y móviles',
         }
     ]
 };
