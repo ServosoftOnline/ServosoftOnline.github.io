@@ -21,6 +21,14 @@ export default {
             enlace: 'https://lista-de-gastos-e0c1c.web.app/',
             imagenSrc: './img/trabajo2.jpg',
             descripcion: 'Aplicación para llevar un control de gastos. El frontend está realizado con React y el backend con Firebase. Es responsive, válido para monitores 4k, FullHd y móviles',
+        },
+
+        {
+            id: '3',
+            proyecto: 'Lista de tareas',
+            enlace: 'https://listadetareas-b9c81.web.app',
+            imagenSrc: './img/trabajo3.jpg',
+            descripcion: 'Aplicación para gestionar tareas. Podré añadir, editar, borrar o marcarlas como completadas. Podré selecionar si deseo ver todas las tareas u ocultar las completadas. Está realizada con react y guarda las tareas en el propio navegador',
         }
     ]
 };

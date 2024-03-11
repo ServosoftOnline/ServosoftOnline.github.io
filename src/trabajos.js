@@ -30,13 +30,17 @@ cabTrabajos.appendChild(h2MisTrabajos);
 
 
 // Recorro el array y voy añadiendo los trabajos
-trabajos.forEach((trabajo) => {
+trabajos.forEach((trabajo, index) => {
 
     // Creo el div con la clase contenido
     const divContenido = document.createElement('div');
     divContenido.setAttribute('class', 'contenido');
     divTrabajos.appendChild(divContenido);
 
+    // Titulo del proyecto
+    const h3Titulo = document.createElement('h3');
+    h3Titulo.textContent = trabajo.proyecto;
+    divContenido.appendChild(h3Titulo);
      
     // El div con la clase contenido-centrado contiene un enlace al sitio con una imagen descriptiva
     const divContenidoCentrado = document.createElement('div');
@@ -55,7 +59,7 @@ trabajos.forEach((trabajo) => {
     // El div con la clase contenido-alineado_izda contiene la descripcion del sitio y el enlace Ir al sitio >>
     const divAlineadoIzda = document.createElement('div');
     divAlineadoIzda.setAttribute('class', 'contenido-alineado_izda');
-    divContenido.appendChild(divAlineadoIzda);
+    divContenido.appendChild(divAlineadoIzda);    
 
     // Descripción
     const pDescripcion = document.createElement('p');
@@ -71,6 +75,13 @@ trabajos.forEach((trabajo) => {
     aIrAlSitio.textContent = 'IR AL SITIO';
     iIrAlsitio.setAttribute('class', 'fas fa-angle-double-right');
     aIrAlSitio.appendChild(iIrAlsitio);
-    divAlineadoIzda.appendChild(aIrAlSitio); 
+    divAlineadoIzda.appendChild(aIrAlSitio);
+
+    // Separador. El último elemento del array no mostrará el separador
+    if (index < trabajos.length - 1) {
+        const separador = document.createElement('hr');
+        divAlineadoIzda.appendChild(separador);
+    }   
+
 
 });
