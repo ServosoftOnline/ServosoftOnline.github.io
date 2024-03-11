@@ -65,6 +65,7 @@ trabajos.forEach((trabajo) => {
     // Enlace Ir al sitio con el icono >>
     const aIrAlSitio = document.createElement('a');
     const iIrAlsitio = document.createElement('i');
+        
     aIrAlSitio.setAttribute('href', trabajo.enlace);
     aIrAlSitio.setAttribute('target', '_blank');
     aIrAlSitio.textContent = 'IR AL SITIO';
