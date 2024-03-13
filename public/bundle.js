@@ -230,7 +230,7 @@ var data = {
         {
             id: '4',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Visual studio code',
+            capacidad: 'Visual studio',
         },
 
         {
@@ -262,12 +262,18 @@ var data = {
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'B. Prácticas',
         },
+
+        {
+            id: '10',
+            estrellas: '&#9733;&#9733;&#9733;&#9733',
+            capacidad: 'Linux',
+        }
+
+
     ]
 };
 
 // AÑADE LAS CAPACIDADES DE FORMA DINÁMICA
-
-// const {capacidades, estrellas} = data;
 
 
 // Obtengo la columna izquierda
@@ -349,17 +355,17 @@ var dataExperiencia = {
     experiencia: [
         {
             id: '1',
-            profesion: 'Desarrollador de aplicaciones',
-            fecha: 'ENERO 2017 - JULIO 2021',
-            descripcion: 'Me establecí como trabajador autonomo para ofrecer mis conocimientos y experiencia. Realizaba de forma simultánea el desarrollo de sitios y aplicaciones WEBs y servicios de telecomunicaciones.'
-        },
-
-        {
-            id: '2',
             profesion: 'Técnico en telecomunicaciones',
             fecha: 'SEPTIEMBRE 2009 - ACTUALIDAD',
             descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA son algunos de nuestros clientes. Instalo y resuelvo averías en diferentes tecnologías como XDSL, FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ...'          
         },
+
+        {
+            id: '2',
+            profesion: 'Desarrollador de aplicaciones',
+            fecha: 'ENERO 2017 - JULIO 2021',
+            descripcion: 'Me establecí como trabajador autonomo para ofrecer mis conocimientos y experiencia. Realizaba de forma simultánea el desarrollo de sitios y aplicaciones WEBs y servicios de telecomunicaciones.'
+        },       
 
         {
             id: '3',
@@ -380,7 +386,7 @@ var dataExperiencia = {
 // AÑADE LA EXPERIENCIA LABORAL DE FORMA DINÁMICA
 
 const {experiencia} = dataExperiencia;
-// console.log(experiencia);
+console.log(experiencia);
 
 // Obtengo la columna donde las añado
 const columnaDerecha$2 = document.querySelector('.columnaDerecha');
@@ -611,6 +617,7 @@ trabajos.forEach((trabajo, index) => {
 
     // Titulo del proyecto
     const h3Titulo = document.createElement('h3');
+    h3Titulo.setAttribute('class', 'titulo');
     h3Titulo.textContent = trabajo.proyecto;
     divContenido.appendChild(h3Titulo);
      
@@ -653,7 +660,6 @@ trabajos.forEach((trabajo, index) => {
     if (index < trabajos.length - 1) {
         const separador = document.createElement('hr');
         divAlineadoIzda.appendChild(separador);
-    }   
-
+    }
 
 });

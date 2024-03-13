@@ -7,17 +7,17 @@ export default {
     experiencia: [
         {
             id: '1',
-            profesion: 'Desarrollador de aplicaciones',
-            fecha: 'ENERO 2017 - JULIO 2021',
-            descripcion: 'Me establecí como trabajador autonomo para ofrecer mis conocimientos y experiencia. Realizaba de forma simultánea el desarrollo de sitios y aplicaciones WEBs y servicios de telecomunicaciones.'
-        },
-
-        {
-            id: '2',
             profesion: 'Técnico en telecomunicaciones',
             fecha: 'SEPTIEMBRE 2009 - ACTUALIDAD',
             descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA son algunos de nuestros clientes. Instalo y resuelvo averías en diferentes tecnologías como XDSL, FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ...'          
         },
+
+        {
+            id: '2',
+            profesion: 'Desarrollador de aplicaciones',
+            fecha: 'ENERO 2017 - JULIO 2021',
+            descripcion: 'Me establecí como trabajador autonomo para ofrecer mis conocimientos y experiencia. Realizaba de forma simultánea el desarrollo de sitios y aplicaciones WEBs y servicios de telecomunicaciones.'
+        },       
 
         {
             id: '3',

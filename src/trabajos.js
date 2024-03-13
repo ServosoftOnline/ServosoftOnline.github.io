@@ -39,6 +39,7 @@ trabajos.forEach((trabajo, index) => {
 
     // Titulo del proyecto
     const h3Titulo = document.createElement('h3');
+    h3Titulo.setAttribute('class', 'titulo');
     h3Titulo.textContent = trabajo.proyecto;
     divContenido.appendChild(h3Titulo);
      
@@ -81,7 +82,6 @@ trabajos.forEach((trabajo, index) => {
     if (index < trabajos.length - 1) {
         const separador = document.createElement('hr');
         divAlineadoIzda.appendChild(separador);
-    }   
-
+    }
 
 });

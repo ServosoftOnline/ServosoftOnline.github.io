@@ -109,7 +109,7 @@ INSTALAR UNA APP CON REACT
 
             - Usaré sass
               - Ver ejemplo en primeraAPP_vite_pluginSVG sobre como añadir el color azul
-              - instalacion: npm add -D sass
+              - instalacion: npm i sass
               - Creo un archivo llamado App.scss donde añado la regla css azul 
               - Importo directamente el archivo igual que en la primera forma
               - Aplico la regla escribiendo classname="regla"

@@ -164,7 +164,7 @@ ul {
 }
 
 /* capacidades */
-.capacidades .contenido {
+.capacidades .contenido {    
     display: flex;
     align-items: center;
     gap: 30px;
@@ -173,12 +173,12 @@ ul {
     padding-top: 10px;
 }
 
-.capacidades .contenido .capacidad p{
-    font-size: 22px;
+.capacidades .contenido .capacidad p{   
+    font-size: 1.4rem;
 }
 
-.capacidades .estrellas {
-    font-size: 1.2rem;
+.capacidades .estrellas {      
+    font-size: 1.4rem;
     color: gold;
 }
 
@@ -239,21 +239,20 @@ ul {
 
 .trabajos .contenido {
     /* background: green; */
+    margin-top: 20px;
 }
 
 .trabajos .contenido-centrado {
     /* background: blue; */
 }
 
-.trabajos .contenido-centrado img {
-    /* background: yellow;  */
+.trabajos .contenido-centrado img {    
     border: 8px solid #c0c0c0;
     width: 98%;
     margin-top: 30px;
 }
 
-.trabajos .contenido-alineado_izda {
-    /* background: orange;     */
+.trabajos .contenido-alineado_izda {    
     margin-bottom: 30px; 
     padding: 15px;    
     display: flex;
@@ -279,8 +278,8 @@ ul {
 
 /* RESPONSIVE 1360Px. HORIZONTAL TABLETS */
 @media (max-width: 1366px) {
-
-    /* body {
+    /* 
+    body {
         background-color: blue;
     } */
 
@@ -315,12 +314,16 @@ ul {
         font-size: 0.9rem;
     }
 
+    .capacidades .contenido .capacidad p{
+        font-size: 1.3rem;
+    }
+
     .columnaDerecha {
         border-bottom-right-radius: 0px;
     }
 
-    .experiencia .cabecera, .cursos .cabecera, .trabajos .cabecera {
-        gap: 20px;
+    .experiencia, .cabecera, .cursos, .cabecera, .trabajos, .cabecera {
+        gap: 20px;        
     }
 
     .trabajos .contenido-centrado img {
@@ -396,7 +399,7 @@ ul {
     }
 
     .capacidades .capacidad p {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 
     .columnaDerecha {
@@ -444,9 +447,10 @@ ul {
   
 /* RESPONSIVE  500 px. VERTICAL MOVILES*/
 @media (max-width: 500px) {
+    
     /* body {
         background-color: red;
-    } 
+    }  */
 
     .supercontenedor {        
         justify-content: left;
