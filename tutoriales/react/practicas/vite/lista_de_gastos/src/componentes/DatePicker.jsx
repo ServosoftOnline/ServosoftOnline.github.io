@@ -13,6 +13,10 @@
             - Tiene como parámetros el estado fecha, que por defecto es la fecha actual, y su función correspondiente
             - Creo un estado que indicará si el Daypicker estará visible o no.
 
+            - Creo la función que se llamará cuando seleccione la fecha en el calendario
+                - Cambio la fecha en el estado
+                - Oculto el calendario
+
             - Devuelvo:
 
                 - Un contenedor que cuando haga click en el cambiará el valor de visible a su contrario y contiene:
@@ -21,7 +25,7 @@
 
                     - Propiedades del DayPicker:
                         - mode="single". Solo puedo hacer click en una fecha
-                        - selected={fecha}. Contiene el estado fecha que obtuve como parámetro
+                        - selected={manejarSeleccionFecha}. Contiene el estado fecha que obtuve como parámetro
                         - onSelect={cambiarFecha}. Contiene la función asociada al estado fecha
                         - locale={es}. El idioma español        
 
@@ -45,7 +49,13 @@ import { es } from "date-fns/locale";
 const DatePicker = ({fecha, cambiarFecha}) => {
 
     // Estado que almacena si el calendario está visible o no
-    const [mostrarCalendario, cambiarMostrarCalendario] = useState();
+    const [mostrarCalendario, cambiarMostrarCalendario] = useState(false); 
+    
+    // Función para manejar la fecha seleccionada en el calendario. Añado al estado la fecha seleccionada y oculto el calendario
+    const manejarSeleccionFecha = (date) => {        
+        cambiarFecha(date);
+        cambiarMostrarCalendario(false);
+    };
     
     return (
         
@@ -59,13 +69,13 @@ const DatePicker = ({fecha, cambiarFecha}) => {
             />
 
             {/* Calendario visible solo si el estado visible contiene true */}
-            { mostrarCalendario &&
-                <DayPicker 
+            {   mostrarCalendario &&                
+                    <DayPicker                     
                     mode="single"
                     selected={fecha}
-                    onSelect={cambiarFecha}
+                    onSelect={manejarSeleccionFecha}
                     locale={es}
-                />
+                />                
             }
 
         </ContenedorInput>

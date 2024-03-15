@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import theme from './../objetos/theme';
  
 const Lista = styled.ul`
+
     list-style: none;
     padding: 0 2.5rem; /* 40px */
     height: 100%;
@@ -17,7 +18,7 @@ const Lista = styled.ul`
         grid-template-columns: 1fr 1fr 1fr auto;
     }
  
-    @media (max-width: 50rem) { /*80px*/
+    @media (max-width: 50rem) { /*80px*/        
         li {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
@@ -26,6 +27,7 @@ const Lista = styled.ul`
 `;
  
 const ElementoLista = styled.li`
+
     padding: 1.25rem 0; /* 20px */
     border-bottom: 2px solid #F2F2F2;
     display: grid;
@@ -42,10 +44,15 @@ const ElementoLista = styled.li`
     &:hover a {
         opacity: 1;
     }
+
+    @media (max-width: 50rem) { /*80px*/
+        height: 70%;     
+    }
 `;
  
  
 const ListaDeCategorias = styled.ul`
+
     list-style: none;
     padding: 0 2.5rem; /* 40px */
     height: 100%;

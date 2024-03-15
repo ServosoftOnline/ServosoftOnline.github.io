@@ -20,13 +20,13 @@ export default {
         {
             id: '3',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Javascript',
+            capacidad: 'Javascript(ECMASCRIPT6)',
         },
 
         {
             id: '4',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Visual studio code',
+            capacidad: 'Visual studio',
         },
 
         {
@@ -58,6 +58,14 @@ export default {
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'B. Prácticas',
         },
+
+        {
+            id: '10',
+            estrellas: '&#9733;&#9733;&#9733;&#9733',
+            capacidad: 'Linux',
+        }
+
+
     ]
 };
 

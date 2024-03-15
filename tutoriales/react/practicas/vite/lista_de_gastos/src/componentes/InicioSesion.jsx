@@ -28,6 +28,7 @@ import { ContextoMensaje } from "../contextos/contextoMensaje";
 import {auth} from './../firebase/firebaseConfig';
 import {signInWithEmailAndPassword } from "firebase/auth";
 
+
 // Componente
 const InicioSesion = () => {
 

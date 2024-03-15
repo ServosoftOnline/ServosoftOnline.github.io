@@ -48,6 +48,9 @@
 
                 - El mensaje de error en la validación si llegara a producirse
 
+
+                
+
 */
 
 // React
@@ -233,8 +236,8 @@ const FormularioGasto = ({gastoAModificar}) => {
                 {/* Inputs */}
                 <Input
                 type="text"
-                name="inputDescripcion"
-                placeholder="descripcion del gasto"
+                name="inputDescripcion"                
+                placeholder="gasto"
                 value={inputDescripcion}
                 onChange={handleChange}
                 />
@@ -249,20 +252,28 @@ const FormularioGasto = ({gastoAModificar}) => {
                 />
 
                 {/* Boton */}
-
                 <ContenedorBoton>
-                    <Boton
-                        $primario
-                        $conIcono
-                        as="button"
-                        type="submit"
-                    >
-                        {/* Muestra Editar Gasto, Borrar gasto o Agregar gasto dependiendo si existe gastoAModificar o GastoABorrar */}
-                        {/* Muestra el componente <IconoPlus> si no existe gastoAModificar y no existe gastoABorrar */}
-                        {gastoAModificar ? 'Editar Gasto' : 'Agregar Gasto'}
-                        {!gastoAModificar ? <IconoPlus/> : null}
-
-                    </Boton>
+                    
+                    {/* Si hay gastoAModificar muestra el botón sin la propiedad $conIcono y
+                    no añade el svg como imagen IconoPlus */}
+                    {gastoAModificar ?
+                        <Boton
+                            $primario                        
+                            as="button"
+                            type="submit"
+                            >Editar Gasto                            
+                        </Boton>
+                    :
+                        <Boton
+                            $primario
+                            $conIcono                                                   
+                            as="button"
+                            type="submit"
+                        >
+                            Agregar Gasto
+                            <IconoPlus/>
+                        </Boton>                        
+                    }
                 </ContenedorBoton>
 
                 {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}

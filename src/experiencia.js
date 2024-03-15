@@ -3,7 +3,7 @@
 // importo el objeto experiencia y creo un array con el contenido
 import dataExperiencia from "./data/dataExperiencia";
 const {experiencia} = dataExperiencia;
-// console.log(experiencia);
+console.log(experiencia);
 
 // Obtengo la columna donde las añado
 const columnaDerecha = document.querySelector('.columnaDerecha');

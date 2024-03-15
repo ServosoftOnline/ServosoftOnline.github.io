@@ -31,7 +31,7 @@ const ContenedorFiltros = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.87rem; /* 30px */
+    // margin-bottom: 1.87rem; /* 30px */
  
     // Cuando llegue la ventana a 950px los elementos se colocan en forma de columna y no uno al lado de otro
     @media(max-width: 60rem){ /* 950px */
@@ -64,12 +64,16 @@ const Formulario = styled.form`
     }
  
     @media(max-width: 60rem){ /* 950px */
-        justify-content: start;        
+        justify-content: start;           
     }
 `;
  
 const Input = styled.input`
+<<<<<<< HEAD
 background: orange;
+=======
+
+>>>>>>> 65886bb7694fd88bbb1e708f6e1141632e143d93
     font-size: 2rem; /* 32px */
     text-transform: uppercase;
     border: none;
@@ -77,7 +81,11 @@ background: orange;
     outline: none;
  
     @media(max-width: 60rem){ /* 950px */
+<<<<<<< HEAD
         font-size: 1.5rem; /* 28.8px */
+=======
+        font-size: 1.5rem; /* 24px */
+>>>>>>> 65886bb7694fd88bbb1e708f6e1141632e143d93
     }
 `;
  
@@ -87,9 +95,14 @@ const InputGrande = styled(Input)`
 `;
  
 const ContenedorBoton = styled.div`
+
     display: flex;
     justify-content: center;
     margin: 2rem 0;  /* 32px */
+
+    @media(max-width: 60rem){ /* 950px */
+        margin: 0.5rem 0;  /* 16px */
+    }
     
 `;
 
@@ -99,8 +112,14 @@ background: blue;
     max.height: 6.25rem; /* 100px */
     margin-bottom : 1.25rem; /* 20px */
 
+<<<<<<< HEAD
     @media(max-width: 60rem){ /* 950px */
         height: 16rem; /* 256px */        
+=======
+    // Reduzco el tamaño 
+    @media(max-width: 60rem){ /* 950px */
+        height: 15rem; /* 240px */
+>>>>>>> 65886bb7694fd88bbb1e708f6e1141632e143d93
     }
 `;
 
@@ -109,8 +128,14 @@ const SvgCrearCuenta = styled(imagenCrearCuenta)`
     max.height: 6.25rem; /* 100px */
     margin-bottom : 1.25rem; /* 20px */
 
+<<<<<<< HEAD
     @media(max-width: 60rem){ /* 950px */
         height: 16rem; /* 256px */        
+=======
+    // Reduzco el tamaño 
+    @media(max-width: 60rem){ /* 950px */
+        height: 15rem; /* 240px */
+>>>>>>> 65886bb7694fd88bbb1e708f6e1141632e143d93
     }
 `;
 

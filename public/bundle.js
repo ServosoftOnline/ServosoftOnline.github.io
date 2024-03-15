@@ -230,7 +230,7 @@ var data = {
         {
             id: '4',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Visual studio code',
+            capacidad: 'Visual studio',
         },
 
         {
@@ -262,12 +262,18 @@ var data = {
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'B. Prácticas',
         },
+
+        {
+            id: '10',
+            estrellas: '&#9733;&#9733;&#9733;&#9733',
+            capacidad: 'Linux',
+        }
+
+
     ]
 };
 
 // AÑADE LAS CAPACIDADES DE FORMA DINÁMICA
-
-// const {capacidades, estrellas} = data;
 
 
 // Obtengo la columna izquierda
@@ -349,17 +355,17 @@ var dataExperiencia = {
     experiencia: [
         {
             id: '1',
-            profesion: 'Desarrollador de aplicaciones',
-            fecha: 'ENERO 2017 - JULIO 2021',
-            descripcion: 'Me establecí como trabajador autonomo para ofrecer mis conocimientos y experiencia. Realizaba de forma simultánea el desarrollo de sitios y aplicaciones WEBs y servicios de telecomunicaciones.'
-        },
-
-        {
-            id: '2',
             profesion: 'Técnico en telecomunicaciones',
             fecha: 'SEPTIEMBRE 2009 - ACTUALIDAD',
             descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA son algunos de nuestros clientes. Instalo y resuelvo averías en diferentes tecnologías como XDSL, FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ...'          
         },
+
+        {
+            id: '2',
+            profesion: 'Desarrollador de aplicaciones',
+            fecha: 'ENERO 2017 - JULIO 2021',
+            descripcion: 'Me establecí como trabajador autonomo para ofrecer mis conocimientos y experiencia. Realizaba de forma simultánea el desarrollo de sitios y aplicaciones WEBs y servicios de telecomunicaciones.'
+        },       
 
         {
             id: '3',
@@ -372,7 +378,7 @@ var dataExperiencia = {
             id: '4',
             profesion: 'Técnico infórmatico',
             fecha: 'JULIO 1999 - SEPTIEMBRE 2006',
-            descripcion: 'Diversos trabajos relacionados con la reparación de ordenadores, montaje de redes locales e instalación y reparacion de sistemas de seguridad. En mi último trabajo fuí responsable del mantenimiento de 12 oficinas repartidas por todo el territorio español.'
+            descripcion: 'Diversos trabajos relacionados con la reparación de ordenadores, montaje de redes locales e instalación y reparacion de sistemas de seguridad. En mi último trabajo, como informático, fuí responsable del mantenimiento de 12 oficinas repartidas por todo el territorio español.'
         }
     ]
 };
@@ -380,7 +386,7 @@ var dataExperiencia = {
 // AÑADE LA EXPERIENCIA LABORAL DE FORMA DINÁMICA
 
 const {experiencia} = dataExperiencia;
-// console.log(experiencia);
+console.log(experiencia);
 
 // Obtengo la columna donde las añado
 const columnaDerecha$2 = document.querySelector('.columnaDerecha');
@@ -477,11 +483,9 @@ var dataCursos = {
 // AÑADE LOS CURSOS DE FORMA DINÁMICA
 
 const {cursos} = dataCursos;
-// console.log(cursos);
 
 // Obtengo la columna donde las añado
 const columnaDerecha$1 = document.querySelector('.columnaDerecha');
-// console.log(columnaDerecha);
 
 // Creo el div con la clase cursos
 const divCursos = document.createElement('div');
@@ -554,6 +558,22 @@ var dataTrabajos = {
             enlace: 'https://servosoftonline.github.io/L80/',
             imagenSrc: './img/trabajo1.jpg',
             descripcion: 'Sitio web de un grupo musical desarrollado en HTML, CSS y JAVASCRIPT. Es responsive, está creado en una sola página, sin usar ningun CMS y contiene una galería de imágenes',
+        },
+
+        {
+            id: '2',
+            proyecto: 'Control de gastos',
+            enlace: 'https://lista-de-gastos-e0c1c.web.app/',
+            imagenSrc: './img/trabajo2.jpg',
+            descripcion: 'Aplicación para llevar un control de gastos. El frontend está realizado con React y el backend con Firebase. Es responsive, válido para monitores 4k, FullHd y móviles',
+        },
+
+        {
+            id: '3',
+            proyecto: 'Lista de tareas',
+            enlace: 'https://listadetareas-b9c81.web.app',
+            imagenSrc: './img/trabajo3.jpg',
+            descripcion: 'Aplicación para gestionar tareas. Podré añadir, editar, borrar o marcarlas como completadas. Podré selecionar si deseo ver todas las tareas u ocultar las completadas. Está realizada con react y guarda las tareas en el propio navegador',
         }
     ]
 };
@@ -588,13 +608,18 @@ cabTrabajos.appendChild(h2MisTrabajos);
 
 
 // Recorro el array y voy añadiendo los trabajos
-trabajos.forEach((trabajo) => {
+trabajos.forEach((trabajo, index) => {
 
     // Creo el div con la clase contenido
     const divContenido = document.createElement('div');
     divContenido.setAttribute('class', 'contenido');
     divTrabajos.appendChild(divContenido);
 
+    // Titulo del proyecto
+    const h3Titulo = document.createElement('h3');
+    h3Titulo.setAttribute('class', 'titulo');
+    h3Titulo.textContent = trabajo.proyecto;
+    divContenido.appendChild(h3Titulo);
      
     // El div con la clase contenido-centrado contiene un enlace al sitio con una imagen descriptiva
     const divContenidoCentrado = document.createElement('div');
@@ -613,7 +638,7 @@ trabajos.forEach((trabajo) => {
     // El div con la clase contenido-alineado_izda contiene la descripcion del sitio y el enlace Ir al sitio >>
     const divAlineadoIzda = document.createElement('div');
     divAlineadoIzda.setAttribute('class', 'contenido-alineado_izda');
-    divContenido.appendChild(divAlineadoIzda);
+    divContenido.appendChild(divAlineadoIzda);    
 
     // Descripción
     const pDescripcion = document.createElement('p');
@@ -623,11 +648,18 @@ trabajos.forEach((trabajo) => {
     // Enlace Ir al sitio con el icono >>
     const aIrAlSitio = document.createElement('a');
     const iIrAlsitio = document.createElement('i');
+        
     aIrAlSitio.setAttribute('href', trabajo.enlace);
     aIrAlSitio.setAttribute('target', '_blank');
     aIrAlSitio.textContent = 'IR AL SITIO';
     iIrAlsitio.setAttribute('class', 'fas fa-angle-double-right');
     aIrAlSitio.appendChild(iIrAlsitio);
-    divAlineadoIzda.appendChild(aIrAlSitio); 
+    divAlineadoIzda.appendChild(aIrAlSitio);
+
+    // Separador. El último elemento del array no mostrará el separador
+    if (index < trabajos.length - 1) {
+        const separador = document.createElement('hr');
+        divAlineadoIzda.appendChild(separador);
+    }
 
 });

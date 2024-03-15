@@ -59,9 +59,8 @@ import './App.css';
 // Segunda forma de aplicar estilos css en vite. Importo estilos mediante modulos css
 import styles from './App.module.css';
 
-// Tercera forma de aplicar estilos css en vite. Importo estilos para aplicarr SASS
-import './App.scss';
-
+// Tercera forma de aplicar estilos css en vite. Importo estilos para aplicar SASS
+import './scss/App.scss';
 
 // importo los componentes asociados a las imagenes svg
 import ReactLogo from './assets/react.svg?react';

@@ -3,11 +3,9 @@
 // importo el objeto cursos y creo un array con el contenido
 import dataCursos from './data/dataCursos';
 const {cursos} = dataCursos;
-// console.log(cursos);
 
 // Obtengo la columna donde las añado
 const columnaDerecha = document.querySelector('.columnaDerecha');
-// console.log(columnaDerecha);
 
 // Creo el div con la clase cursos
 const divCursos = document.createElement('div');

@@ -2,8 +2,6 @@
 
 // importo el objeto titulaciones y creo un array con el contenido
 import data from './data/dataCapacidades';
-// const {capacidades, estrellas} = data;
-
 
 // Obtengo la columna izquierda
 const columnaIzquierda = document.querySelector('.columnaIzquierda');
