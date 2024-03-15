@@ -22,20 +22,28 @@ columnaIzquierda$5.appendChild(fotografia);
 // Muestra el perfil profesional de forma dinámica
 
 const columnaIzquierda$4 = document.querySelector('.columnaIzquierda');
+
+// Div con los textos
 const perfil = document.createElement('div');
 perfil.classList.add('perfil');
 perfil.innerHTML = `
     <h1>Óscar Fernández Santiago</h1>
     <h2>Desarrollador de aplicaciones Fullstack</h2>
-    <h3>Perfil profesional</h3>
+    <h3>Perfil profesional</h3>    
+`;
+columnaIzquierda$4.appendChild(perfil);
+
+// div con la descripción
+const contenidoPerfil = document.createElement('div');
+contenidoPerfil.setAttribute('class', 'contenido');
+contenidoPerfil.innerHTML = `
     <p>
         <b>Soy técnico superior en Administracion de Sistemas Informáticos Monousuario y Multiusuario.</b>
         Desde que me titulé en 1998 he trabajado siempre en el sector de la informática, telecomunicaciones
         y desarrollo de aplicaciones.
     </p>
 `;
-
-columnaIzquierda$4.appendChild(perfil);
+perfil.appendChild(contenidoPerfil);
 
 /*
     OBJETO DATOS DE CONTACTO
@@ -78,7 +86,6 @@ var dataContacto = {
 // AÑADE CONTACTO DE FORMA DINÁMICA - Debo hacerlo más dinámico insertando una data y recorriendo el contenido
 
 const {datosDeContacto} = dataContacto;
-// console.log(datosDeContacto);
 
 // Obtengo la columna de la izquierda
 const columnaIzquierda$3 = document.querySelector('.columnaIzquierda');
@@ -290,13 +297,19 @@ var data = {
         {
             id: '14',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'B. Prácticas',
+            capacidad: 'Buenas Prácticas',
         },
 
         {
             id: '15',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Linux',
+        },
+
+        {
+            id: '16',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
+            capacidad: 'Windows',
         }
 
     ]
@@ -323,33 +336,21 @@ const divContenido = document.createElement('div');
 divContenido. setAttribute('class', 'contenido');
 divCapacidades.appendChild(divContenido);
 
-// Creo el div con la clase contieneEstrellas
-const divContieneEstrellas = document.createElement('div');
-divContieneEstrellas.setAttribute('class', 'contieneEstrellas');
-divContenido.appendChild(divContieneEstrellas);
+// Creo la lista de las capacidades
+const listaCapacidades = document.createElement('ul');
+listaCapacidades.setAttribute('class', 'lista-dos-a-dos');
+divContenido.appendChild(listaCapacidades);
 
-// Añado la columna con las estrellas
-const spanEstrellas = document.createElement('span');
-spanEstrellas.setAttribute('class', 'estrellas');
-
-data.capacidades.forEach((itemEstrella) => {
-    const estrellasDeUnaCapacidad = document.createElement('p');
-    estrellasDeUnaCapacidad.innerHTML = itemEstrella.estrellas;
-    spanEstrellas.appendChild(estrellasDeUnaCapacidad);    
-});
-
-divContieneEstrellas.appendChild(spanEstrellas);
-
-// Creo el div con la clase capacidad
-const divCapacidad = document.createElement('div');
-divCapacidad.setAttribute('class', 'capacidad');
-divContenido.appendChild(divCapacidad);
-
-// Añado la columna de las capacidades
+// Elementos de la lista
 data.capacidades.forEach((itemCapacidad) => {
-    const parrafo = document.createElement('p');
-    parrafo.textContent = itemCapacidad.capacidad;
-    divCapacidad.appendChild(parrafo);
+    console.log(itemCapacidad);
+    const estrellas = document.createElement('li');
+    estrellas.innerHTML = itemCapacidad.estrellas;
+    listaCapacidades.appendChild(estrellas);
+
+    const capacidad = document.createElement('li');
+    capacidad.innerHTML = itemCapacidad.capacidad;
+    listaCapacidades.appendChild(capacidad);
 });
 
 // MUESTRO DE FORMA DINÁMICA EL APARTADO DE IDIOMAS

@@ -45,7 +45,6 @@ ul {
 
 /* contiene las dos columnas */
 .columnas {
-    margin: auto;
     margin-top: 10px;
     display: grid;
     grid-template-columns: 3fr 5fr;
@@ -63,12 +62,19 @@ ul {
     border-top-left-radius: 10px;
 }
 
+/* aplico un borde mas claro en diversos apartados */
+.columnaIzquierda .contenido {
+    background-color: whitesmoke;
+    border: 5px solid white;
+    border-radius: 10px;
+}
+
 /* centro la fotografia */
 .fotografia {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 /* aplico a la fotografía un borde sombreado elíptico  y un hover */
@@ -92,38 +98,34 @@ ul {
 /* perfil profesional */
 .perfil {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
 }
-.perfil h1,
-.perfil h2 {
+
+.perfil h1 {
+    margin-top: 0px;
     text-align: center;
 }
 
 .perfil h2 {
+    text-align: center;
     margin-top: 20px;
     margin-bottom: 40px;
 }
 
 .perfil h3 {
-    margin-top: 90px;
+    margin-top: 60px;
 }
 
-/* aplico un borde mas claro en diversos apartados */
-.columnaIzquierda .contenido {
-    background-color: whitesmoke;
-    border: 5px solid white;
-    border-radius: 10px;
+.perfil p {
+    margin: 10px;
 }
-
 /* separo entre ellos los apartados de la columna de la izquierda */
-.fotografia,
 .perfil,
 .contacto,
 .titulacion,
 .capacidades,
 .idiomas {
-    padding: 30px;
-    margin-bottom: 60px;
+    padding: 30px;    
 }
 
 /* separo las cabeceras h3 y las alineo al centro */
@@ -157,30 +159,39 @@ ul {
     margin: 0px;
 }
 
-
 /* en titulación separo las listas entre ellas */
 .titulacion  ul {
     padding-top: 20px;
 }
 
 /* capacidades */
-.capacidades .contenido {    
-    display: flex;
-    align-items: center;
-    gap: 30px;
+.capacidades .contenido {
     padding-left: 20px;
     padding-bottom: 10px;
     padding-top: 10px;
 }
 
-.capacidades .contenido .capacidad p{   
-    font-size: 1.4rem;
+ /* Estilos para la lista que contiene estrellas y capacidades */
+ .lista-dos-a-dos {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
-.capacidades .estrellas {      
-    font-size: 1.4rem;
+  /* Estilo para la columna de las capacidades */
+  .lista-dos-a-dos li {
+    flex: 0 0 48%;  
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  /* Estilo para la columna de las estrellas */
+  .lista-dos-a-dos li:nth-child(odd) {
+    flex: 0 0 30%; /* Ancho más pequeño */
     color: gold;
-}
+  }
 
 /* COLUMNA DE LA DERECHA */
 .columnaDerecha {

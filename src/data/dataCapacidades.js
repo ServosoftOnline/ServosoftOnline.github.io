@@ -86,13 +86,19 @@ export default {
         {
             id: '14',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'B. Prácticas',
+            capacidad: 'Buenas Prácticas',
         },
 
         {
             id: '15',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Linux',
+        },
+
+        {
+            id: '16',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
+            capacidad: 'Windows',
         }
 
     ]

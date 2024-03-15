@@ -21,31 +21,19 @@ const divContenido = document.createElement('div');
 divContenido. setAttribute('class', 'contenido');
 divCapacidades.appendChild(divContenido);
 
-// Creo el div con la clase contieneEstrellas
-const divContieneEstrellas = document.createElement('div');
-divContieneEstrellas.setAttribute('class', 'contieneEstrellas');
-divContenido.appendChild(divContieneEstrellas);
+// Creo la lista de las capacidades
+const listaCapacidades = document.createElement('ul');
+listaCapacidades.setAttribute('class', 'lista-dos-a-dos');
+divContenido.appendChild(listaCapacidades);
 
-// Añado la columna con las estrellas
-const spanEstrellas = document.createElement('span');
-spanEstrellas.setAttribute('class', 'estrellas');
-
-data.capacidades.forEach((itemEstrella) => {
-    const estrellasDeUnaCapacidad = document.createElement('p');
-    estrellasDeUnaCapacidad.innerHTML = itemEstrella.estrellas;
-    spanEstrellas.appendChild(estrellasDeUnaCapacidad);    
-});
-
-divContieneEstrellas.appendChild(spanEstrellas);
-
-// Creo el div con la clase capacidad
-const divCapacidad = document.createElement('div');
-divCapacidad.setAttribute('class', 'capacidad');
-divContenido.appendChild(divCapacidad);
-
-// Añado la columna de las capacidades
+// Elementos de la lista
 data.capacidades.forEach((itemCapacidad) => {
-    const parrafo = document.createElement('p');
-    parrafo.textContent = itemCapacidad.capacidad;
-    divCapacidad.appendChild(parrafo);
-});
+    console.log(itemCapacidad);
+    const estrellas = document.createElement('li');
+    estrellas.innerHTML = itemCapacidad.estrellas;
+    listaCapacidades.appendChild(estrellas);
+
+    const capacidad = document.createElement('li');
+    capacidad.innerHTML = itemCapacidad.capacidad;
+    listaCapacidades.appendChild(capacidad);
+})
