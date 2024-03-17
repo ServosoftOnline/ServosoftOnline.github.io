@@ -69,6 +69,7 @@ ul {
     border-radius: 10px;
 }
 
+/* FOTOGRAFIA */
 /* centro la fotografia */
 .fotografia {
     display: flex;
@@ -95,7 +96,7 @@ ul {
     box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* perfil profesional */
+/* PERFIL PROFESIONAL */
 .perfil {
     display: flex;
     flex-direction: column;    
@@ -139,36 +140,54 @@ ul {
     padding-bottom: 20px;
 }
 
-/* Contacto */
-/* separo los elementos de la lista de los datos de contacto */
-.contacto li {
+/* CONTACTO */
+.contacto ul {    
     display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 1.3rem;
+    flex-wrap: wrap; 
+    padding: 0px;      
 }
 
-/* en datos de contacto separo el icono de los datos */
-.contacto .contenido i {
-    margin-right: 15px;
+.contacto li {    
+    flex: 1 0 50%; /* Flex: crecimiento, encogimiento, base */
+    box-sizing: border-box;
+    padding: 6px;
+    padding-right: 0;
+    padding-left: 0;    
+}
+ 
+/* Anchos de las columnas de contactos */
+.contacto li:nth-child(odd) {
+    flex-basis: 14%; /* La columna de la izquierda ocupa el 14% del contenedor */
 }
 
-.contacto .contenido p {
-    text-align: center;
-    margin: 0px;
+.contacto li:nth-child(even) {
+    flex-basis: 86%; /* La columna de la derecha ocupa el 86% del contenedor */
 }
 
-/* en titulación separo las listas entre ellas */
+.contacto .iconoContacto {    
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */     
+    font-size: 1.25rem; /* 20px */
+}
+
+.contacto .descripcionContacto {    
+    padding-right: 0px; 
+    font-size: 1.25rem; /* 20px */
+}
+
+
+/* TITULACION */
 .titulacion  ul {
     padding-top: 20px;
 }
 
-/* capacidades */
+/* CAPACIDADES */
 .capacidades .contenido {
     padding-left: 20px;
     padding-bottom: 10px;
     padding-top: 10px;
+    
 }
 
  /* Estilos para la lista que contiene estrellas y capacidades */
@@ -176,18 +195,19 @@ ul {
     display: flex;
     flex-wrap: wrap;
     padding: 0;
-    margin: 0;
+    margin: 0;    
     list-style: none;
+    
 }
 
   /* Estilo para la columna de las capacidades */
   .lista-dos-a-dos li {
     flex: 0 0 48%;  
     padding: 5px;
-    box-sizing: border-box;
+    box-sizing: border-box;    
   }
 
-  /* Estilo para la columna de las estrellas */
+  /* Estilo para la columna de las estrellas. */
   .lista-dos-a-dos li:nth-child(odd) {
     flex: 0 0 30%; /* Ancho más pequeño */
     color: gold;
@@ -222,7 +242,7 @@ ul {
     padding: 20px;
 }
 
-/* experiencia laboral */
+/* EXPERIENCIA */
 .experiencia .contenido {
     padding: 30px;
 }
@@ -235,7 +255,7 @@ ul {
     font-weight: lighter;
 }
 
-/* cursos */
+/* CURSOS */
 .cursos .contenido {
     display: flex;
     gap: 40px;
@@ -243,19 +263,11 @@ ul {
     padding: 20px;
 }
 
-/* trabajos */
-.trabajos {
-    /* background: brown; */
-}
-
-.trabajos .contenido {
-    /* background: green; */
+/* TRABAJOS */
+.trabajos .contenido {  
     margin-top: 20px;
 }
 
-.trabajos .contenido-centrado {
-    /* background: blue; */
-}
 
 .trabajos .contenido-centrado img {    
     border: 8px solid #c0c0c0;
@@ -272,7 +284,7 @@ ul {
 }
 
 
-/* copyright */
+/* COPYRIGHT */
 .copyright {
     height: 40px;
     text-align: center;
@@ -289,10 +301,14 @@ ul {
 
 /* RESPONSIVE 1360Px. HORIZONTAL TABLETS */
 @media (max-width: 1366px) {
-    /* 
-    body {
+    
+    /* body {
         background-color: blue;
     } */
+
+    h2 {
+        font-size: 1.8rem;
+    }
 
     h3 {
         font-size: 1.9rem;
@@ -313,32 +329,33 @@ ul {
     .capacidades,
     .idiomas {
         padding: 15px;
+    }    
+
+    .contacto .iconoContacto,
+    .contacto .descripcionContacto {
+        font-size: 0.85rem; /* 13.6px */
     }
 
-    /* Elimino el hover de mi fotografía */
-    .fotografia .sombreada:hover {
-        transform: none;
-        box-shadow: none;
-    }
-
-    .contacto li {
-        font-size: 0.9rem;
-    }
-
-    .capacidades .contenido .capacidad p{
-        font-size: 1.3rem;
+    .lista-dos-a-dos {
+        font-size: 1.18rem; /* 19px */
     }
 
     .columnaDerecha {
         border-bottom-right-radius: 0px;
-    }
+    }   
 
-    .experiencia, .cabecera, .cursos, .cabecera, .trabajos, .cabecera {
-        gap: 20px;        
+    .experiencia .cabecera,
+    .cursos .cabecera,
+    .trabajos .cabecera {    
+        gap: 10px;    
     }
 
     .trabajos .contenido-centrado img {
         width: 94%;   
+    }
+
+    .copyright {
+        font-size: 1.18rem; /* 19px */    
     }
 }
 
@@ -347,14 +364,19 @@ ul {
 
     /* body {
         background-color: blueviolet;
-    } */
+    }     */
 
-    .contacto li {
-        font-size: 0.8rem;
+    .contacto .iconoContacto,
+    .contacto .descripcionContacto {
+        font-size: 0.77rem; /* 12.32px */
     }
 
-    .contacto i {
-        padding-right: 5px;
+    .lista-dos-a-dos li {     
+        font-size: 1.06rem; /* 17px */
+    }
+
+    .lista-dos-a-dos li:nth-child(odd) {
+        flex: 0 0 40%;  
     }
 
     .experiencia .cabecera h2,
@@ -392,25 +414,13 @@ ul {
         border-right: 0px solid #8a2be2;
     }
 
-    /* Hago mas pequeñas las fuentes de los datos de contacto */
-    .contacto .contenido li {
-        font-size: 1.4rem;
+    .contacto .iconoContacto,
+    .contacto .descripcionContacto {
+        font-size: 1.10rem; /* 17.6px */
     }
 
-    .titulacion .contenido li {
-        font-size: 1.3rem;
-    }
-
-    .capacidad {
-        padding-left: 0px;
-    }
-
-    .capacidades .estrellas {
-        font-size: 1.2rem;
-    }
-
-    .capacidades .capacidad p {
-        font-size: 1.2rem;
+    .lista-dos-a-dos li {     
+        font-size: 22px; /* 17px */
     }
 
     .columnaDerecha {
@@ -450,7 +460,7 @@ ul {
     }
 
    .copyright {
-        font-size: 1.2rem;
+        font-size: 1rem; /* 16px */
     }
 
 }
@@ -472,10 +482,13 @@ ul {
         margin-left: 2px;       
     }
 
-    /* Hago mas pequeñas las fuentes de los datos de contacto */
-    .contacto .contenido li {
-        font-size: 1rem;
-        gap: 5px;
+    .contacto .iconoContacto,
+    .contacto .descripcionContacto {
+        font-size: 0.9rem; /* 17.6px */
+    }
+
+    .lista-dos-a-dos li {     
+        font-size: 1.25rem;  /* 20px */
     }
 
     .copyright {

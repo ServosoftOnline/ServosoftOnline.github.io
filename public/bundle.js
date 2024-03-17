@@ -107,8 +107,38 @@ divContacto.appendChild(divContenido$1);
 
 // Creo la lista que contendrá los datos de contacto
 const ulDatosDeContacto = document.createElement('ul');
+// ulDatosDeContacto.setAttribute('class', 'lista-dos-a-dos');
 divContenido$1.appendChild(ulDatosDeContacto);
 
+// Recorro el array y voy mostrando los elementos de dos en dos
+datosDeContacto.forEach((itemDato) => {    
+
+    // Elemento que contiene el icono
+    const liIcono = document.createElement('li');
+    liIcono.setAttribute('class', 'iconoContacto');
+    ulDatosDeContacto.appendChild(liIcono);
+
+    // Icono
+    const iIcono = document.createElement('i');
+    iIcono.setAttribute('class', `${itemDato.clase}`);
+    iIcono.setAttribute('style', `${itemDato.estilo}`);
+    liIcono.appendChild(iIcono);
+
+    // Elemento que contiene la descripcion
+    const liDescripcion = document.createElement('li');
+    liDescripcion.setAttribute('class', 'descripcionContacto');
+    ulDatosDeContacto.appendChild(liDescripcion);
+
+    // Descripción
+    const pDescripcion = document.createElement('p');
+    pDescripcion.textContent = itemDato.dato;
+    liDescripcion.appendChild(pDescripcion);
+
+
+    
+});
+
+/* 
 // Recorro el array, creo los elementos de la lista, los iconos y los parrafos con los datos
 datosDeContacto.forEach((itemDato) => {
     
@@ -128,6 +158,8 @@ datosDeContacto.forEach((itemDato) => {
     liDatosDeContacto.appendChild(pDatosDeContacto);
 
 });
+
+*/
 
 /*
     OBJETO TITULACIONES
@@ -231,7 +263,7 @@ var data = {
         {
             id: '3',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Javascript(ECMASCRIPT6)',
+            capacidad: 'Javascript(ES6)',
         },
 
         {
@@ -248,7 +280,7 @@ var data = {
 
         {
             id: '6',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            estrellas: '&#9733;&#9733;&#9733',
             capacidad: 'Create react app',    
         },
 
@@ -273,41 +305,47 @@ var data = {
         {
             id: '10',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Firebase',        
+            capacidad: 'Diseño responsive',        
         },
 
         {
             id: '11',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Firebase',        
+        },
+
+        {
+            id: '12',
             estrellas: '&#9733;&#9733;',
             capacidad: 'PHP',        
         },
 
         {
-            id: '12',
+            id: '13',
             estrellas: '&#9733;&#9733;&#9733;',
             capacidad: 'Git',            
         },
 
         {
-            id: '13',
+            id: '14',
             estrellas: '&#9733;&#9733;&#9733;',
             capacidad: 'Github',            
         },       
 
         {
-            id: '14',
+            id: '15',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'Buenas Prácticas',
         },
 
         {
-            id: '15',
+            id: '16',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Linux',
         },
 
         {
-            id: '16',
+            id: '17',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Windows',
         }
@@ -343,7 +381,7 @@ divContenido.appendChild(listaCapacidades);
 
 // Elementos de la lista
 data.capacidades.forEach((itemCapacidad) => {
-    console.log(itemCapacidad);
+    
     const estrellas = document.createElement('li');
     estrellas.innerHTML = itemCapacidad.estrellas;
     listaCapacidades.appendChild(estrellas);
@@ -416,11 +454,9 @@ var dataExperiencia = {
 // AÑADE LA EXPERIENCIA LABORAL DE FORMA DINÁMICA
 
 const {experiencia} = dataExperiencia;
-console.log(experiencia);
 
 // Obtengo la columna donde las añado
 const columnaDerecha$2 = document.querySelector('.columnaDerecha');
-// console.log(columnaDerecha);
 
 // Creo el div con la clase experiencia
 const divExperiencia = document.createElement('div');

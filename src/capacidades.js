@@ -28,7 +28,7 @@ divContenido.appendChild(listaCapacidades);
 
 // Elementos de la lista
 data.capacidades.forEach((itemCapacidad) => {
-    console.log(itemCapacidad);
+    
     const estrellas = document.createElement('li');
     estrellas.innerHTML = itemCapacidad.estrellas;
     listaCapacidades.appendChild(estrellas);

@@ -20,7 +20,7 @@ export default {
         {
             id: '3',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Javascript(ECMASCRIPT6)',
+            capacidad: 'Javascript(ES6)',
         },
 
         {
@@ -37,7 +37,7 @@ export default {
 
         {
             id: '6',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            estrellas: '&#9733;&#9733;&#9733',
             capacidad: 'Create react app',    
         },
 
@@ -62,41 +62,47 @@ export default {
         {
             id: '10',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Firebase',        
+            capacidad: 'Diseño responsive',        
         },
 
         {
             id: '11',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Firebase',        
+        },
+
+        {
+            id: '12',
             estrellas: '&#9733;&#9733;',
             capacidad: 'PHP',        
         },
 
         {
-            id: '12',
+            id: '13',
             estrellas: '&#9733;&#9733;&#9733;',
             capacidad: 'Git',            
         },
 
         {
-            id: '13',
+            id: '14',
             estrellas: '&#9733;&#9733;&#9733;',
             capacidad: 'Github',            
         },       
 
         {
-            id: '14',
+            id: '15',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'Buenas Prácticas',
         },
 
         {
-            id: '15',
+            id: '16',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Linux',
         },
 
         {
-            id: '16',
+            id: '17',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Windows',
         }
