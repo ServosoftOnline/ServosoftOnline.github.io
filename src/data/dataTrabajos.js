@@ -28,7 +28,7 @@ export default {
             proyecto: 'Lista de tareas',
             enlace: 'https://listadetareas-b9c81.web.app',
             imagenSrc: './img/trabajo3.jpg',
-            descripcion: 'Aplicación para gestionar tareas. Podré añadir, editar, borrar o marcarlas como completadas. Podré selecionar si deseo ver todas las tareas u ocultar las completadas. Está realizada con react y guarda las tareas en el propio navegador',
+            descripcion: 'Aplicación para gestionar tareas. Podré añadirlas, editarlas, borrarlas y marcarlas como completadas. Las marcadas como completadas podré ocultarlas si así lo deseo. Está realizada con React y guarda las tareas en el propio navegador',
         }
     ]
 };
