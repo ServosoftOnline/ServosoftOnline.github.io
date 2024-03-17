@@ -26,6 +26,11 @@ h3 {
     font-family: 'Lobster Two', cursive;
 }
 
+h4 {
+    font-weight: bold;
+    /* font-weight: lighter; */
+}
+
 /* Elimina los marcadores */
 ul {
     list-style: none;
@@ -115,10 +120,11 @@ ul {
 }
 
 .perfil h3 {
-    margin-top: 60px;
+    margin-top: 50px;
 }
 
-.perfil p {
+.perfil p,
+.perfil h4 {
     margin: 10px;
 }
 /* separo entre ellos los apartados de la columna de la izquierda */
