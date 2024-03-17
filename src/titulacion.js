@@ -15,7 +15,7 @@ columnaIzquierda.appendChild(titulacion);
 
 // Creo la cabecera titulacion
 const cabeceraTitulacion = document.createElement('h3');
-cabeceraTitulacion.textContent = 'Titulacion';
+cabeceraTitulacion.textContent = 'Titulación';
 titulacion.appendChild(cabeceraTitulacion);
 
 // Creo el div con la clase contenido
@@ -23,17 +23,16 @@ const contenidoTitulacion = document.createElement('div');
 contenidoTitulacion.setAttribute('class', 'contenido');
 titulacion.appendChild(contenidoTitulacion);
 
-
 // Recorro las titulaciones y creo una lista en cada pasada con la información
 titulaciones.forEach((titulo) => {
-    
+
     // creo la lista
     const lista = document.createElement('ul');
     contenidoTitulacion.appendChild(lista);
 
     // añado el titulo en negrita
     const nombreTitulacion = document.createElement('li');
-    const titulacionNegrita = document.createElement('b');
+    const titulacionNegrita = document.createElement('h4');
     titulacionNegrita.textContent = titulo.titulo;
     nombreTitulacion.appendChild(titulacionNegrita);
     lista.appendChild(nombreTitulacion);

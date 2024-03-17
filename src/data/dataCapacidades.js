@@ -20,7 +20,7 @@ export default {
         {
             id: '3',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Javascript(ES6)',
+            capacidad: 'Javascript (ES6)',
         },
 
         {

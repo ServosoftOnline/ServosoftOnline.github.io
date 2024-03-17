@@ -34,11 +34,11 @@ ul {
 
 .supercontenedor {
     display: flex;
-    justify-content: center;    
+    justify-content: center;
 }
 
 .contenedor {
-    background: #F5F5F5;       
+    background: #F5F5F5;
     display: grid;
     grid-template-rows: auto auto;
     padding: 10px;
@@ -46,7 +46,7 @@ ul {
 
 /* contiene las dos columnas */
 .columnas {
-    
+
     display: grid;
     grid-template-columns: 3fr 5fr;
     border: solid 1px #8a2be2;
@@ -100,7 +100,7 @@ ul {
 /* PERFIL PROFESIONAL */
 .perfil {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
 }
 
 .perfil h1 {
@@ -127,7 +127,7 @@ ul {
 .titulacion,
 .capacidades,
 .idiomas {
-    padding: 30px;    
+    padding: 30px;
 }
 
 /* separo las cabeceras h3 y las alineo al centro */
@@ -142,20 +142,20 @@ ul {
 }
 
 /* CONTACTO */
-.contacto ul {    
+.contacto ul {
     display: flex;
-    flex-wrap: wrap; 
-    padding: 0px;      
+    flex-wrap: wrap;
+    padding: 0px;
 }
 
-.contacto li {    
+.contacto li {
     flex: 1 0 50%; /* Flex: crecimiento, encogimiento, base */
     box-sizing: border-box;
     padding: 6px;
     padding-right: 0;
-    padding-left: 0;    
+    padding-left: 0;
 }
- 
+
 /* Anchos de las columnas de contactos */
 .contacto li:nth-child(odd) {
     flex-basis: 14%; /* La columna de la izquierda ocupa el 14% del contenedor */
@@ -165,22 +165,22 @@ ul {
     flex-basis: 86%; /* La columna de la derecha ocupa el 86% del contenedor */
 }
 
-.contacto .iconoContacto {    
+.contacto .iconoContacto {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */     
+    align-items: center; /* Centra verticalmente */
     font-size: 1.25rem; /* 20px */
 }
 
-.contacto .descripcionContacto {    
-    padding-right: 0px; 
+.contacto .descripcionContacto {
+    padding-right: 0px;
     font-size: 1.25rem; /* 20px */
 }
 
 
 /* TITULACION */
 .titulacion  ul {
-    padding-top: 20px;
+    padding-bottom: 35px;
 }
 
 /* CAPACIDADES */
@@ -188,7 +188,6 @@ ul {
     padding-left: 20px;
     padding-bottom: 10px;
     padding-top: 10px;
-    
 }
 
  /* Estilos para la lista que contiene estrellas y capacidades */
@@ -196,16 +195,15 @@ ul {
     display: flex;
     flex-wrap: wrap;
     padding: 0;
-    margin: 0;    
+    margin: 0;
     list-style: none;
-    
 }
 
   /* Estilo para la columna de las capacidades */
   .lista-dos-a-dos li {
-    flex: 0 0 48%;  
+    flex: 0 0 48%;
     padding: 5px;
-    box-sizing: border-box;    
+    box-sizing: border-box;
   }
 
   /* Estilo para la columna de las estrellas. */
@@ -265,23 +263,23 @@ ul {
 }
 
 /* TRABAJOS */
-.trabajos .contenido {  
+.trabajos .contenido {
     margin-top: 20px;
 }
 
 
-.trabajos .contenido-centrado img {    
+.trabajos .contenido-centrado img {
     border: 8px solid #c0c0c0;
     width: 98%;
     margin-top: 30px;
 }
 
-.trabajos .contenido-alineado_izda {    
-    margin-bottom: 30px; 
-    padding: 15px;    
+.trabajos .contenido-alineado_izda {
+    margin-bottom: 30px;
+    padding: 15px;
     display: flex;
-    flex-direction: column;    
-    gap: 20px;    
+    flex-direction: column;
+    gap: 20px;
 }
 
 
@@ -301,12 +299,12 @@ ul {
 }
 
 /* RESPONSIVE 1360Px. HORIZONTAL TABLETS */
-@media (max-width: 1366px) {    
-    
-    /* body {
-        background-color: blue;
-    }       */
-    
+@media (max-width: 1366px) {
+
+    /* .contenedor {
+        background: blue;
+    } */
+
 
     h2 {
         font-size: 1.8rem;
@@ -314,7 +312,7 @@ ul {
 
     h3 {
         font-size: 1.9rem;
-    }    
+    }
 
     .columnas {
         grid-template-columns: 5fr 5fr;
@@ -327,7 +325,7 @@ ul {
     .capacidades,
     .idiomas {
         padding: 15px;
-    }    
+    }
 
     .contacto .iconoContacto,
     .contacto .descripcionContacto {
@@ -340,28 +338,28 @@ ul {
 
     .columnaDerecha {
         border-bottom-right-radius: 0px;
-    }   
+    }
 
     .experiencia .cabecera,
     .cursos .cabecera,
-    .trabajos .cabecera {    
-        gap: 10px;    
+    .trabajos .cabecera {
+        gap: 10px;
     }
 
     .trabajos .contenido-centrado img {
-        width: 94%;   
+        width: 94%;
     }
 
     .copyright {
-        font-size: 1.18rem; /* 19px */    
+        font-size: 1.18rem; /* 19px */
     }
 }
 
 /* RESPONSIVE 812PX. HORIZONTAL TABLETS */
 @media (max-width: 812px) {
 
-    /* body {
-        background-color: blueviolet;
+    /* .contenedor {
+        background: blueviolet;
     }     */
 
     .contacto .iconoContacto,
@@ -369,12 +367,12 @@ ul {
         font-size: 0.77rem; /* 12.32px */
     }
 
-    .lista-dos-a-dos li {     
+    .lista-dos-a-dos li {
         font-size: 1.06rem; /* 17px */
     }
 
     .lista-dos-a-dos li:nth-child(odd) {
-        flex: 0 0 40%;  
+        flex: 0 0 40%;
     }
 
     .experiencia .cabecera h2,
@@ -388,7 +386,7 @@ ul {
     .trabajos .cabecera i {
         font-size: 1.9rem;
     }
-    
+
     .copyright {
         font-size: 1.1rem;
     }
@@ -398,9 +396,9 @@ ul {
 /* RESPONSIVE 715PX. HORIZONTAL MOVILES */
 @media (max-width: 715px) {
 
-    /* body {
-        background-color: greenyellow;
-    } */    
+    /* .contenedor {
+        background: greenyellow;
+    } */
 
     .columnas {
         grid-template-columns: 1fr;
@@ -417,7 +415,7 @@ ul {
         font-size: 1.10rem; /* 17.6px */
     }
 
-    .lista-dos-a-dos li {     
+    .lista-dos-a-dos li {
         font-size: 22px; /* 17px */
     }
 
@@ -454,7 +452,7 @@ ul {
     }
 
     .trabajos .contenido-centrado img {
-        width: 95%;    
+        width: 95%;
     }
 
    .copyright {
@@ -463,29 +461,20 @@ ul {
 
 }
 
-  
+
 /* RESPONSIVE  500 px. VERTICAL MOVILES*/
 @media (max-width: 500px) {
-    
-    /* body {
-        background-color: red;
-    }  */
 
-    .supercontenedor {        
-        justify-content: left;
-    }
-
-    .contenedor {
-        width: 80%;
-        margin-left: 2px;       
-    }
+    /* .contenedor {
+        background: red;
+    } */
 
     .contacto .iconoContacto,
     .contacto .descripcionContacto {
         font-size: 0.9rem; /* 17.6px */
     }
 
-    .lista-dos-a-dos li {     
+    .lista-dos-a-dos li {
         font-size: 1.25rem;  /* 20px */
     }
 
