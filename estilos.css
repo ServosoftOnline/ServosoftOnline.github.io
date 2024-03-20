@@ -301,6 +301,7 @@ ul {
     border: 1px solid #8a2be2;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    padding: 10px;
 }
 
 /* RESPONSIVE 1360Px. HORIZONTAL TABLETS */

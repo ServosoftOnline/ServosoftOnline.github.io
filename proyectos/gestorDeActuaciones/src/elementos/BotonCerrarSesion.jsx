@@ -29,7 +29,6 @@ import Boton from "./Boton";
 const BotonCerrarSesion = () => {
     const navigate = useNavigate();
 
-    /* 
     // Funcion asíncrona
     const cerrarSesion = async () => {
         try {
@@ -43,11 +42,8 @@ const BotonCerrarSesion = () => {
         }       
 
     }
-    */
-
     return ( 
-        // <Boton $iconoGrande as="button" onClick={()=>{cerrarSesion()}}>
-        <Boton $iconoGrande as="button">
+        <Boton $iconoGrande as="button" onClick={()=>{cerrarSesion()}}>
             <IconoCerrarSesion/>
         </Boton>
     );
