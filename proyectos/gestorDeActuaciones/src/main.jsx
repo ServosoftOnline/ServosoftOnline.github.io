@@ -11,6 +11,9 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 import favicon from './assets/logo.png';
 
+// Contextos
+import { ProveedorMensaje } from './contextos/contextoMensaje.jsx';
+
 // Componentes
 import InicioSesion from './componentes/InicioSesion.jsx';
 import Administrador from './componentes/Administrador.jsx';
@@ -48,12 +51,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
       </Helmet>
 
-      {/* React router */}
-      <BrowserRouter>
-        <Contenedor>
-          <Routes>
+      {/* Contextos */}
+      <ProveedorMensaje>
 
-            {/* Rutas públicas administrador */}
+        {/* React router */}
+        <BrowserRouter>
+          <Contenedor>
+            <Routes>
+
+              {/* Rutas públicas administrador */}
               <Route path='/administrador' element={<Administrador />} />
               <Route path='/crear-usuario' element={<CrearUsuario />} />
               <Route path='/produccion' element={<Produccion />} />
@@ -73,14 +79,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Route path='/supervision' element={<Supervision />} />
               <Route path='/instalados-finalizados' element={<InstaladosFinalizados />} />
 
-
-
+              {/* Rutas públicas comunes */}
               <Route path='/' element={<InicioSesion />} />  
               <Route path='*' element={<Error404 />} />
 
-          </Routes>            
-        </Contenedor>
-      </BrowserRouter>
+            </Routes>            
+          </Contenedor>
+        </BrowserRouter>
+
+      </ProveedorMensaje>
     </HelmetProvider>
   </React.StrictMode>,
 );

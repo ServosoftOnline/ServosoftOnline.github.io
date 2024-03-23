@@ -7,7 +7,7 @@ import React from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
-import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
+import {Header, Titulo} from '../elementos/ElementosDeHeader';
 import BtnRegresar from "../elementos/BtnRegresar";
 
 
@@ -24,13 +24,9 @@ const CalendarioAusencias = () => {
         </Helmet>
 
         {/* Cabecera */}
-        <Header>
-          <ContenedorHeader>
-            <Titulo>Calendario de ausencias</Titulo>
-            <div>
-              <BtnRegresar ruta='/administrador' />
-            </div>
-          </ContenedorHeader>
+        <Header>          
+          <Titulo>Calendario de ausencias</Titulo>          
+          <BtnRegresar ruta='/administrador' />            
         </Header>            
 
       </HelmetProvider>

@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 const Contenedor = styled.div`
     background: #fff;
-    width: 90%;
+    width: 98%;
 
     // Usar tamaños en rem significa que si cambiar el font size de index.css se ajustaría mejor
-    max-width: 70rem; /*1110px*/    
+    max-width: 120rem;  /* 1920px Resolución FULL HD */    
     height: 90vh; /* 90% del altura */
     max-height: 50rem;  /* 800px */
     overflow-y: auto;   /* scroll */

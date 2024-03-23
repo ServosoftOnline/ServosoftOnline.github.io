@@ -7,9 +7,8 @@ import React from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
-import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
+import {Header, Titulo, ContenedorBotones} from '../elementos/ElementosDeHeader';
 import BtnRegresar from "../elementos/BtnRegresar";
-
 
 // El Componente
 const Ilocalizable = () => {
@@ -25,12 +24,10 @@ const Ilocalizable = () => {
 
         {/* Cabecera */}
         <Header>
-          <ContenedorHeader>
-            <Titulo>Ilocalizable</Titulo>
-            <div>              
-              <BtnRegresar ruta='/planeado' />
-            </div>
-          </ContenedorHeader>
+          <Titulo>Ilocalizable</Titulo>
+          <ContenedorBotones>
+            <BtnRegresar ruta='/planeado' />
+          </ContenedorBotones>
         </Header>            
 
       </HelmetProvider>

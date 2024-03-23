@@ -18,18 +18,18 @@ import { useNavigate } from "react-router-dom";
 // Imagen svg pasada a componente
 import IconoCerrarSesion from './../assets/log-out.svg?react';
 
-// Elemento importado
+// Elemento importado 
 import Boton from "./Boton";
 
 // Firebase
-// import { signOut } from "firebase/auth";
-// import { auth } from './../firebase/firebaseConfig';
+import { signOut } from "firebase/auth";
+import { auth } from './../firebase/firebaseConfig';
 
 // Elemento
 const BotonCerrarSesion = () => {
     const navigate = useNavigate();
 
-    /* 
+
     // Funcion asíncrona
     const cerrarSesion = async () => {
         try {
@@ -40,14 +40,11 @@ const BotonCerrarSesion = () => {
 
         } catch (error) {
             console.log(error);
-        }       
-
+        }
     }
-    */
 
     return ( 
-        // <Boton $iconoGrande as="button" onClick={()=>{cerrarSesion()}}>
-        <Boton $iconoGrande as="button">
+        <Boton $iconoGrande as="button" onClick={()=>{cerrarSesion()}}>
             <IconoCerrarSesion/>
         </Boton>
     );

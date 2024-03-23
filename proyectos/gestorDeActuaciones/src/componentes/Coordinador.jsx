@@ -4,8 +4,8 @@ import { HelmetProvider, Helmet } from "react-helmet-async";
 
 // Elementos
 import {Header, Titulo, ContenedorBotones, ContenedorHeader} from '../elementos/ElementosDeHeader';
-import BotonCerrarSesion from "../elementos/BotonCerrarSesion";
 import Boton from "../elementos/Boton";
+import BtnSalir from "../elementos/BtnSalir";
 
 
 // Mi componente
@@ -26,7 +26,8 @@ const Coordinador = () => {
             <ContenedorBotones>                            
                 <Boton to = '/direccion'>Direccion</Boton>
                 <Boton to = '/planeado'>Planeado</Boton>
-                <BotonCerrarSesion/>
+                <BtnSalir />
+                
             </ContenedorBotones>
 
           </ContenedorHeader>

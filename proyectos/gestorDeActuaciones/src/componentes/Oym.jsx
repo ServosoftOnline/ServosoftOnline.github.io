@@ -7,7 +7,7 @@ import React from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
-import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
+import {Header, Titulo, ContenedorBotones} from '../elementos/ElementosDeHeader';
 import BtnRegresar from "../elementos/BtnRegresar";
 
 
@@ -24,13 +24,11 @@ const Oym = () => {
         </Helmet>
 
         {/* Cabecera */}
-        <Header>
-          <ContenedorHeader>
-            <Titulo>O&m</Titulo>
-            <div>              
-              <BtnRegresar ruta='/planeado' />
-            </div>
-          </ContenedorHeader>
+        <Header>          
+          <Titulo>O&m</Titulo>
+          <ContenedorBotones>
+            <BtnRegresar ruta='/planeado' />
+          </ContenedorBotones>
         </Header>            
 
       </HelmetProvider>

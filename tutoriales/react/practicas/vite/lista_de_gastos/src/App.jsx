@@ -27,7 +27,6 @@ import {Header, Titulo, ContenedorBotones, ContenedorHeader} from "./elementos/E
 import Boton from "./elementos/Boton";
 import BotonCerrarSesion from "./elementos/BotonCerrarSesion";
 
-
 // Componentes
 import FormularioGasto from "./componentes/FormularioGasto";
 import BarraTotalGastado from './componentes/BarraTotalGastado';

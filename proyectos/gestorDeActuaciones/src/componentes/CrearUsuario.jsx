@@ -36,38 +36,46 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 import { useNavigate } from "react-router-dom";
 
 // Elementos
-import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
-import {Formulario, Input, ContenedorBoton, SvgCrearCuenta} from '../elementos/ElementosDeFormulario';
+import {Header, Titulo, ContenedorBotones} from '../elementos/ElementosDeHeader';
+import {Formulario, Input, ContenedorBoton, ContenedorFiltros} from '../elementos/ElementosDeFormulario';
 import Boton from "../elementos/Boton";
 import BtnRegresar from "../elementos/BtnRegresar";
+
+// Componentes
+import Mensaje from "./Mensaje";
+import SelectRoles from "./SelectRoles";
 
 // Contexto
 import {ContextoMensaje} from '../contextos/contextoMensaje';
 
 // Authentificaion de firebase
-// import {auth} from './../firebase/firebaseConfig';
-// import {createUserWithEmailAndPassword} from "firebase/auth";
-
+import {auth} from './../firebase/firebaseConfig';
+import {createUserWithEmailAndPassword} from "firebase/auth";
 
 
 // El Componente
 const CrearUsuario = () => {
 
   // Estados
+  const [idRol, establecerIdRol] = useState('Seleccione rol');
+  const [nombre, establecerNombre] = useState('');  
   const [email,   establecerEmail] = useState('');
   const [password, establecerPassword] = useState('');
   const [password2, establecerPassword2] = useState('');
-
-  
+  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
 
   // React router
   const navigate = useNavigate();
 
   // Funciones
-  const handleChange = (e) => {
+  const handleChange = (e) => {    
     
     // Dependidendo del nombre del input ejecutaré la funcion que cambia su respectivo estado
     switch(e.target.name){
+      case 'nombre':
+        establecerNombre(e.target.value);
+        break;
+
       case 'email':
         establecerEmail(e.target.value);
         break;
@@ -86,11 +94,11 @@ const CrearUsuario = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();    
 
     // Validación en el cliente
     // 1.- Que no tengo ningún campo vacío
-    if(email==='' || password==='' || password2==='') {
+    if(nombre ==='' || email==='' || password==='' || password2==='') {
       cambiarMensaje('Debe rellenar todos los datos', 'incorrecta');
       return;
     }
@@ -107,10 +115,54 @@ const CrearUsuario = () => {
       cambiarMensaje('Contraseña y repetir contraseña deben ser iguales', 'incorrecta');
       return;
     }
-
-    /* */
-    // Si no se produjo ningun return anterior, creo el usuario en authentification de firebase.
     
+    // Si no se produjo ningun return anterior, creo el usuario en authentification de firebase.
+    try {      
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const idUsuarioCreado = userCredential.user.uid;
+      cambiarMensaje('Usuario creado correctamente. Puede crear más si lo desea', 'correcta');
+
+      // Reestablezco valores
+      reiniciarMensaje();
+      establecerEmail('');
+      establecerPassword('');
+      establecerPassword2('');
+      establecerNombre('');
+
+      // Crear la coleccion de roles
+      console.log('Añado a la coleccion de roles: ');      
+      console.log('id del usuario creado por createUserWithEmailAndPassword: ' + idUsuarioCreado);      
+      console.log(nombre);
+      console.log(idRol);
+
+      // Elimino de la coleccion roles de usuarios eliminados a mano desde la consola
+      console.log('Actualizando la coleccion roles');
+
+
+
+    } catch (error) {
+
+      // Validación en el servidor. Codigos en: https://firebase.google.com/docs/auth/admin/errors?hl=es
+      console.log('error devuelto de firestore: ' + error.code);
+      switch(error.code){
+
+        case 'auth/weak-password':
+          cambiarMensaje('La contraseña debe tener al menos 6 carácteres', 'incorrecta');
+          break;
+
+        case 'auth/email-already-in-use':
+          cambiarMensaje('Ya exite una cuenta con el correo electrónico proporcionado', 'incorrecta');
+          break;
+
+        case 'auth/invalid-email':
+          cambiarMensaje('El correo electrónico no es válido', 'incorrecta');
+          break;
+
+        default:
+          cambiarMensaje('Hubo un error al intentar crear la cuenta', 'incorrecta');
+          break;
+      }
+    }
   }
 
   return (
@@ -124,18 +176,28 @@ const CrearUsuario = () => {
 
         {/* Cabecera */}
         <Header>
-          <ContenedorHeader>
-            <Titulo>Crear usuario</Titulo>
-            <div>
-            <BtnRegresar ruta='/administrador' />
-            </div>
-          </ContenedorHeader>
+          <Titulo>Crear usuario</Titulo>
+            <ContenedorBotones>
+              <BtnRegresar ruta='/administrador' />
+            </ContenedorBotones>          
         </Header>            
                     
         {/* Formulario */}
-        <Formulario onSubmit={handleSubmit}>
+        <Formulario onSubmit={handleSubmit}>    
+          <ContenedorFiltros>
+          <SelectRoles
+            idRol={idRol}
+            establecerIdRol={establecerIdRol}
+          />
+          </ContenedorFiltros>
 
-          <SvgCrearCuenta/>
+          <Input 
+            type="nombre"
+            name="nombre"
+            placeholder="Nombre completo"
+            value={nombre}
+            onChange={handleChange}
+          />      
 
           <Input 
             type="email"
@@ -163,12 +225,11 @@ const CrearUsuario = () => {
           />
 
           <ContenedorBoton>
-            <Boton $primario as="button" type="submit">Crear cuenta</Boton>
+            <Boton $primario as="button" type="submit">Crear usuario</Boton>
           </ContenedorBoton>
           
         </Formulario>
-
-        
+        <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>        
 
       </HelmetProvider>
     </>

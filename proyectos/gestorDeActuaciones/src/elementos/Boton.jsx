@@ -28,15 +28,20 @@ const Boton = styled(Link)`
     // Si tiene la propiedad conIcono, el icono será mas ancho
     width: ${(props) => props.$conIcono ? '15.62rem' : 'auto'}; /* 250px */
 
+    
+    // // Si tiene la propiedad grande, el icono será mayor
+    // font-size:  ${(props) => props.$grande ? '14rem' : 'auto'}; /* 250px */
+    
+
     // Descripción y ubicación del boton
-    margin-left: 1.25rem; /* 20px */
+    margin-left: 0.4rem; /* 6.4px */
     border: none;
     border-radius: 0.625rem; /* 10px */
     color: #fff;
     font-family: 'Work Sans', sans-serif;
-    height: 3.438rem; /* 55px */
-    padding: 1.25rem 1.87rem; /* 20px 30px */
-    font-size: 1.25rem; /* 20px */
+    height: 2rem; /* 32px */
+    padding: 0.4rem 0.4rem; /* 8px 8px */
+    font-size: 0.9rem; /* 16px */
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
@@ -52,9 +57,8 @@ const Boton = styled(Link)`
     }
 
     @media(max-width: 60rem){ /* 950px */       
-        font-size: 1.25rem; /* 20px */
-        margin-left: 1rem; /* 16px */
-        padding: 0.5rem 1rem; /* 8px 16px */           
+        font-size: 0.75rem;     /* 12px */
+        margin-left: 0.1rem;    /* 1.6px */
     }
 `;
 

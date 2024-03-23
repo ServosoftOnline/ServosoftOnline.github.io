@@ -4,32 +4,37 @@
 */
 
 // React y react router
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 import { useNavigate } from "react-router-dom";
 
+// Componentes
+import Mensaje from './Mensaje';
 
 // Elementos
 import {Formulario, Input, ContenedorBoton, SvgIniciarSesion} from './../elementos/ElementosDeFormulario';
 import Boton from "../elementos/Boton";
 
-// Authentification de firebase
-// import {auth} from './../firebase/firebaseConfig';
-// import {signInWithEmailAndPassword } from "firebase/auth";
+// Contexto
+import { ContextoMensaje } from "../contextos/contextoMensaje";
 
+// Authentification de firebase
+import {auth} from './../firebase/firebaseConfig';
+import {signInWithEmailAndPassword } from "firebase/auth";
 
 // Componente
 const InicioSesion = () => {
 
   // Estados
   const [email, establecerEmail] = useState('');
-  const [password, establecerPassword] = useState('');    
+  const [password, establecerPassword] = useState('');
+  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
 
   // React router
   const navigate = useNavigate();
 
   // Funciones
-  const handleChange = (e) => {
+  const handleChange = (e) => {    
   
     // Dependidendo del nombre del input ejecutaré la funcion que cambia su respectivo estado
     switch(e.target.name) {
@@ -47,7 +52,7 @@ const InicioSesion = () => {
   }
 
   const handleSubmit = async (e) => {    
-    e.preventDefault();
+    e.preventDefault();    
     
     // VALIDACION EN CLIENTE
     // 1.- Que no tengo ningún campo vacío
@@ -62,11 +67,10 @@ const InicioSesion = () => {
       cambiarMensaje('Introduzca correo electrónico válido', 'incorrecta'); 
       return;
     };
-
-    /* 
+    
     // Si no se produjo ningun return anterior, inicio sesión en authentification de firebase.
     try {
-      // Si se añade bien el usuario redirijo hacia la raiz donde se pueden ya añadir gastos
+      
       await signInWithEmailAndPassword(auth, email, password);
       cambiarMensaje('Inicio de sesión correcto', 'correcta');
       console.log('sesion abierta');
@@ -88,8 +92,7 @@ const InicioSesion = () => {
           cambiarMensaje('Hubo un error en el inicio de sesión', 'incorrecta');
           break;
       }
-    }
-    */
+    } 
     
   }
 
@@ -124,10 +127,17 @@ const InicioSesion = () => {
           />
 
           <ContenedorBoton>
-            <Boton $primario as="button" type="submit">Iniciar sesión</Boton>
+            <Boton
+              $primario
+              $grande
+              as="button" 
+              type="submit"
+              >Iniciar sesión
+            </Boton>
           </ContenedorBoton>
         
         </Formulario>
+        <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
 
         
       </HelmetProvider>

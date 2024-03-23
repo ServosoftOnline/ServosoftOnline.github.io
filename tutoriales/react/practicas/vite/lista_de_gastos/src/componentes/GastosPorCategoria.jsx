@@ -58,7 +58,9 @@ const GastosPorCategoria = () => {
 
       {/* Muestro la información obtenida desde el hook */}
       <ListaDeCategorias>
+
         {gastosDelMesPorCategoria.map((elemento, index) => {
+
           return (
             <ElementoListaCategorias key = {index}>
               <Categoria>
@@ -68,7 +70,9 @@ const GastosPorCategoria = () => {
               <Valor>{convertirAMoneda(elemento.cantidad)}</Valor>            
             </ElementoListaCategorias>
           );
+          
         })}
+
       </ListaDeCategorias>
       
       {/* Barra con el total */}

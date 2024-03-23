@@ -3,33 +3,18 @@
 import styled from "styled-components";
 
 const Header = styled.div`
-<<<<<<< HEAD
-background: green;
+
     width: auto;
     padding: 2rem; /* 40px */
-=======
-
-    width: 100%;
-    padding: 1.5rem; /* 40px */
->>>>>>> 65886bb7694fd88bbb1e708f6e1141632e143d93
     
     // Separo los componentes de forma horizontal y los alineo de forma vertical
     display: flex;
     justify-content: space-between;
-<<<<<<< HEAD
     
     // Cuando se reduzca el tamaño de la ventana a 950px, separo los componentes de forma horizontal y los pongo a la izquierda
     @media(max-width: 60rem){ /* 950px */
         height: 9rem; /* 144 px */
         padding: 0.5rem; /* 8px */
-=======
-    align-items: center;
- 
-    // Cuando se reduzca el tamaño de la ventana a 950px, separo los componentes de forma horizontal y los pongo a la izquierda
-    @media(max-width: 60rem){ /* 950px */
-        padding: 0.8rem; /* 12.8px */
-
->>>>>>> 65886bb7694fd88bbb1e708f6e1141632e143d93
     }
 `;
  

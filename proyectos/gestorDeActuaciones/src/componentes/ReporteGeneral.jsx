@@ -24,13 +24,9 @@ const ReporteGeneral = () => {
         </Helmet>
 
         {/* Cabecera */}
-        <Header>
-          <ContenedorHeader>
-            <Titulo>Reporte General</Titulo>
-            <div>
-              <BtnRegresar ruta='/administrador' />
-            </div>
-          </ContenedorHeader>
+        <Header>          
+          <Titulo>Reporte General</Titulo>
+          <BtnRegresar ruta='/administrador' />
         </Header>            
 
       </HelmetProvider>

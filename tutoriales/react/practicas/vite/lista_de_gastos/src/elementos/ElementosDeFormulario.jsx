@@ -69,11 +69,7 @@ const Formulario = styled.form`
 `;
  
 const Input = styled.input`
-<<<<<<< HEAD
-background: orange;
-=======
 
->>>>>>> 65886bb7694fd88bbb1e708f6e1141632e143d93
     font-size: 2rem; /* 32px */
     text-transform: uppercase;
     border: none;
@@ -81,11 +77,7 @@ background: orange;
     outline: none;
  
     @media(max-width: 60rem){ /* 950px */
-<<<<<<< HEAD
         font-size: 1.5rem; /* 28.8px */
-=======
-        font-size: 1.5rem; /* 24px */
->>>>>>> 65886bb7694fd88bbb1e708f6e1141632e143d93
     }
 `;
  
@@ -107,19 +99,13 @@ const ContenedorBoton = styled.div`
 `;
 
 const SvgIniciarSesion = styled(imagenIniciarSesion)`
-background: blue;
+
     width: auto;
     max.height: 6.25rem; /* 100px */
     margin-bottom : 1.25rem; /* 20px */
 
-<<<<<<< HEAD
     @media(max-width: 60rem){ /* 950px */
         height: 16rem; /* 256px */        
-=======
-    // Reduzco el tamaño 
-    @media(max-width: 60rem){ /* 950px */
-        height: 15rem; /* 240px */
->>>>>>> 65886bb7694fd88bbb1e708f6e1141632e143d93
     }
 `;
 
@@ -128,14 +114,8 @@ const SvgCrearCuenta = styled(imagenCrearCuenta)`
     max.height: 6.25rem; /* 100px */
     margin-bottom : 1.25rem; /* 20px */
 
-<<<<<<< HEAD
     @media(max-width: 60rem){ /* 950px */
         height: 16rem; /* 256px */        
-=======
-    // Reduzco el tamaño 
-    @media(max-width: 60rem){ /* 950px */
-        height: 15rem; /* 240px */
->>>>>>> 65886bb7694fd88bbb1e708f6e1141632e143d93
     }
 `;
 

@@ -30,10 +30,11 @@ const Btn = styled.button`
     // Tamaño
     display: block;
     width: 3.12rem; /* 50px */
-    height: 3.12rem; /* 50px */
+    height: 2.8rem; /* 50px */
     line-height: 3.12rem; /* 50px */
     text-align: center;
-    margin-right: 1.25rem; /* 20px */
+    margin-right: 0.2rem; /* 6.4px */
+    margin-left: 0.4rem;
     border: none;
     background: #000;
     color: #fff;
@@ -42,14 +43,14 @@ const Btn = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.31rem; /* 5px */
+    border-radius: 0.625rem; /* 10px */
     cursor: pointer;
  
     // Cuando el tamaño de la ventana sea inferior a 950 hago el boton mas pequeño
     @media(max-width: 60rem){ /* 950px */
-        width: 2.5rem; /* 40px */
-        height: 2.5rem; /* 40px */
+        
         line-height: 2.5rem; /* 40px */
+        margin-left: 0.1rem; /* 1.6px */
     }
 `;
  

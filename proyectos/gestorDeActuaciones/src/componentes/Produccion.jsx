@@ -24,13 +24,9 @@ const Produccion = () => {
         </Helmet>
 
         {/* Cabecera */}
-        <Header>
-          <ContenedorHeader>
-            <Titulo>Producción</Titulo>
-            <div>
-              <BtnRegresar ruta='/administrador' />
-            </div>
-          </ContenedorHeader>
+        <Header>          
+          <Titulo>Producción</Titulo>          
+          <BtnRegresar ruta='/administrador' />            
         </Header>            
 
       </HelmetProvider>

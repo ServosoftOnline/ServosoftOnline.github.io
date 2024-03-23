@@ -7,7 +7,7 @@ import React from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
-import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
+import {Header, Titulo, ContenedorBotones} from '../elementos/ElementosDeHeader';
 import BtnRegresar from "../elementos/BtnRegresar";
 
 
@@ -25,12 +25,10 @@ const Direccion = () => {
 
         {/* Cabecera */}
         <Header>
-          <ContenedorHeader>
             <Titulo>Direccion</Titulo>
-            <div>
+            <ContenedorBotones>
               <BtnRegresar ruta='/coordinador' />
-            </div>
-          </ContenedorHeader>
+            </ContenedorBotones>
         </Header>            
 
       </HelmetProvider>

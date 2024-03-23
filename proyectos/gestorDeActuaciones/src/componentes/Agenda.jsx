@@ -7,7 +7,7 @@ import React from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
-import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
+import {Header, Titulo, ContenedorBotones} from '../elementos/ElementosDeHeader';
 import BtnRegresar from "../elementos/BtnRegresar";
 
 
@@ -25,12 +25,10 @@ const Agenda = () => {
 
         {/* Cabecera */}
         <Header>
-          <ContenedorHeader>
-            <Titulo>Agenda</Titulo>
-            <div>              
-              <BtnRegresar ruta='/planeado' />
-            </div>
-          </ContenedorHeader>
+          <Titulo>Agenda</Titulo>
+          <ContenedorBotones>
+            <BtnRegresar ruta='/planeado' />          
+          </ContenedorBotones>
         </Header>            
 
       </HelmetProvider>

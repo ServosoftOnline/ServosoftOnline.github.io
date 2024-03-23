@@ -7,7 +7,7 @@ import React from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
-import {Header, Titulo, ContenedorHeader} from '../elementos/ElementosDeHeader';
+import {Header, Titulo, ContenedorHeader, ContenedorBotones} from '../elementos/ElementosDeHeader';
 import BtnRegresar from "../elementos/BtnRegresar";
 import Boton from "../elementos/Boton";
 
@@ -27,8 +27,13 @@ const Planeado = () => {
         {/* Cabecera */}
         <Header>
           <ContenedorHeader>
-            <Titulo>Planeado</Titulo>
+
             <div>
+              <Titulo>Planeado</Titulo>
+              
+            </div>
+
+            <ContenedorBotones>
               <Boton to = '/ilocalizable'>Ilocalizable</Boton>
               <Boton to = '/mantenimiento'>Mantenimiento</Boton>
               <Boton to = '/falta-citas'>Falta citas</Boton>
@@ -36,9 +41,10 @@ const Planeado = () => {
               <Boton to = '/oym'>O&m</Boton>
               <Boton to = '/agenda'>Agenda</Boton>
               <Boton to = '/supervision'>Supervisión</Boton>
-              <Boton to = '/instalados-finalizados'>Instalados / Finalizados</Boton>
+              <Boton to = '/instalados-finalizados'>Finalizados</Boton>
               <BtnRegresar ruta='/coordinador' />
-            </div>
+            </ContenedorBotones>            
+
           </ContenedorHeader>
         </Header>            
 
