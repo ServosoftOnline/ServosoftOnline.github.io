@@ -2,13 +2,10 @@
 import React from "react";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
-
 // Elementos
 import {Header, Titulo, ContenedorBotones, ContenedorHeader} from '../elementos/ElementosDeHeader';
 import Boton from './../elementos/Boton';
-import BtnSalir from "../elementos/BtnSalir";
-
-
+import BtnSalir from './../elementos/BtnSalir';
 
 
 // Mi componente

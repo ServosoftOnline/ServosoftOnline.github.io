@@ -1,6 +1,6 @@
 /* 
     ELEMENTO BOTON SALIR
-
+        
         - Importo la imagen log-out.svg y la importo como un componente llamado IconoSalir
         - Importo la funcion desconectar que permite salirse de firestore
         - Creo un boton y lo llamo Btn
@@ -11,14 +11,16 @@
 
 
 import React from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
-// Imagen svg como componente
+// svg como componente
 import IconoSalir from './../assets/log-out.svg?react';
 
 // firebase
-import desconectar from "../firebase/desconectar";
+import { signOut } from "firebase/auth";
+import { auth } from './../firebase/firebaseConfig';
+
 
 // Estilos
 const Btn = styled.button`
@@ -56,17 +58,24 @@ const Icono = styled(IconoSalir)`
 `;
 
 // Componente
-const BtnSalir = ({ruta = '/'}) => {
+const BtnSalir = () => {
     const navigate = useNavigate(); 
 
-    // Función  para salir de firestore y volver al directorio raiz
-    const salirYVolver = () => {
-        desconectar();
-        navigate(ruta);
+    // Funcion asíncrona
+    const cerrarSesion = async () => {
+        try {
+
+            await signOut(auth);
+            console.log('sesion cerrada');
+            navigate('/');
+
+        } catch (error) {
+            console.log(error);
+        }
     }
     
     return (
-        <Btn onClick={() => {salirYVolver()}}><Icono/></Btn>
+        <Btn onClick={() => {cerrarSesion()}}><Icono/></Btn>
     );
 }
  

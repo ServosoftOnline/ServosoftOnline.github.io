@@ -13,12 +13,13 @@ const Header = styled.div`
     // Separo los componentes de forma horizontal
     display: flex;
     justify-content: space-between;    
+    margin-bottom: 0rem;  
     
 `;
  
 const Titulo = styled.h1`
 
-    font-weight: normal;
+    font-weight: bold;
     text-transform: uppercase;
     font-size: 1.4rem; /* 22.4px */  
     margin-left: 1rem;  
@@ -30,7 +31,7 @@ const Titulo = styled.h1`
 `;
  
 const ContenedorHeader = styled.div`
-    background: ${theme.grisClaro};
+    background: ${theme.grisClaro2};
     width: 100%;
     display: flex;
     justify-content: space-between; 

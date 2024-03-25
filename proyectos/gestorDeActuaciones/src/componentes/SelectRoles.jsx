@@ -14,9 +14,12 @@
 
 */
 
-// React, Elementos, Archivo svg como componente, objeto categorias, iconos,
 import React from "react";
-import {ContenedorSelect, ContenedorFiltros, Opcion} from '../elementos/ElementosDeSelectRoles';
+
+// Elementos
+import {ContenedorSelect, ContenedorRoles, Titulo, Opcion} from '../elementos/ElementosDeSelectRoles';
+
+// Objetos
 import roles from "../objetos/roles";
 
 const SelectRoles = ({idRol, establecerIdRol}) => {    
@@ -28,8 +31,8 @@ const SelectRoles = ({idRol, establecerIdRol}) => {
 
     return (
 
-        <ContenedorFiltros>
-            <h2>Rol seleccionado: {idRol} </h2>               
+        <ContenedorRoles>
+            <Titulo>Rol: {idRol} </Titulo>               
             <ContenedorSelect>
                 {/* Recorro el objeto roles y los muestro */}
                 {roles.map((rol) => {
@@ -44,7 +47,7 @@ const SelectRoles = ({idRol, establecerIdRol}) => {
                     );
                 })}
             </ContenedorSelect>
-        </ContenedorFiltros>
+        </ContenedorRoles>
     );
 }
  

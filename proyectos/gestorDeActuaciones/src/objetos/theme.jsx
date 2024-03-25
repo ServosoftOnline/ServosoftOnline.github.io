@@ -6,8 +6,10 @@ const theme = {
     colorSecundario: '#000',
     verde: '#43A854',
     rojo: '#E34747',
+    naranja: '#FFA500',
     grisClaro: '#E8EFF1',
     grisClaro2: '#CBDDE2',
+    grisClaro3: '#DCECF0',
     azulClaro: '#8792F1'
 }
 

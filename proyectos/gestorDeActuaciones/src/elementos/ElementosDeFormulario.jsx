@@ -27,7 +27,6 @@ import imagenCrearCuenta from './../assets/login.svg?react';
 
 
 const ContenedorFiltros = styled.div`
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,7 +63,12 @@ const Formulario = styled.form`
     }
  
     @media(max-width: 60rem){ /* 950px */
+        padding: 0rem; /* 40px */
         justify-content: start;           
+
+        input {            
+            padding: 0.9rem 0; /* 24px */            
+        }
     }
 `;
  
@@ -77,7 +81,8 @@ const Input = styled.input`
     outline: none;
  
     @media(max-width: 60rem){ /* 950px */
-        font-size: 1.5rem; /* 28.8px */
+        font-size: 1.1rem; /* 19.2px */
+        padding: 0rem;
     }
 `;
  

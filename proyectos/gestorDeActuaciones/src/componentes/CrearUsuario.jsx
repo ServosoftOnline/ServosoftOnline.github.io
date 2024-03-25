@@ -52,6 +52,10 @@ import {ContextoMensaje} from '../contextos/contextoMensaje';
 import {auth} from './../firebase/firebaseConfig';
 import {createUserWithEmailAndPassword} from "firebase/auth";
 
+// Firestore de firebase
+import {db} from './../firebase/firebaseConfig'
+import { collection, addDoc } from "firebase/firestore";
+
 
 // El Componente
 const CrearUsuario = () => {
@@ -68,6 +72,99 @@ const CrearUsuario = () => {
   const navigate = useNavigate();
 
   // Funciones
+  const validacionCorrecta = () => {
+    
+    // 1.- Que no tengo ningún campo vacío
+    if(nombre ==='' || email==='' || password==='' || password2==='') {
+      cambiarMensaje('Debe rellenar todos los datos', 'incorrecta');
+      return false;
+    }
+
+    // 2.- Que halla seleccionado un rol
+    if(idRol === 'Seleccione rol') {
+      cambiarMensaje('Debe seleccionar un rol', 'incorrecta');
+      return false;
+    }
+    
+    // 3.- Que sea un correo electronico segun esta expresión regular
+    const expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    if ((!expresionCorreo.test(email))) {
+      cambiarMensaje('Introduzca un correo electrónico válido', 'incorrecta');
+      return false;
+    };
+
+    // 4.- Que ambos passwords sean iguales
+    if(password!==password2){
+      cambiarMensaje('Contraseña y repetir contraseña deben ser iguales', 'incorrecta');
+      return false;
+    }
+
+    return true;
+  }
+
+  const añadirUsuario = async () => {    
+    try {
+
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const idUsuarioCreado = userCredential.user.uid;
+      cambiarMensaje('Usuario creado correctamente. Puede crear más si lo desea', 'correcta');
+
+      // Reestablezco valores
+      reiniciarMensaje();
+      establecerEmail('');
+      establecerPassword('');
+      establecerPassword2('');
+      establecerNombre('');
+      establecerIdRol('Seleccione rol');
+
+      // Crear la coleccion de roles                   
+      añadirRol(idUsuarioCreado);
+
+      // Elimino de la coleccion roles de usuarios eliminados a mano desde la consola
+      // console.log('Actualizando la coleccion roles');
+
+    } catch (error) {
+
+      // Validación en el servidor. Codigos en: https://firebase.google.com/docs/auth/admin/errors?hl=es
+      console.log('error devuelto de firestore: ' + error.code);
+      switch(error.code){
+
+        case 'auth/weak-password':
+          cambiarMensaje('La contraseña debe tener al menos 6 carácteres', 'incorrecta');
+          break;
+
+        case 'auth/email-already-in-use':
+          cambiarMensaje('Ya exite una cuenta con el correo electrónico proporcionado', 'incorrecta');
+          break;
+
+        case 'auth/invalid-email':
+          cambiarMensaje('El correo electrónico no es válido', 'incorrecta');
+          break;
+
+        default:
+          cambiarMensaje('Hubo un error al intentar crear la cuenta', 'incorrecta');
+          break;
+      }
+    }
+
+  }
+
+  const añadirRol = async (idUsuarioCreado) => {
+    
+    try {
+        await addDoc(collection(db, 'roles'), {
+          idUsuario: idUsuarioCreado,
+          nombre: nombre,
+          idRol: idRol
+        });        
+
+    } catch (error) {
+      console.log('Error al añadir en la coleccion roles');
+      console.log(error);
+    }
+
+  }
+
   const handleChange = (e) => {    
     
     // Dependidendo del nombre del input ejecutaré la funcion que cambia su respectivo estado
@@ -93,75 +190,11 @@ const CrearUsuario = () => {
     }
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();    
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    // Validación en el cliente
-    // 1.- Que no tengo ningún campo vacío
-    if(nombre ==='' || email==='' || password==='' || password2==='') {
-      cambiarMensaje('Debe rellenar todos los datos', 'incorrecta');
-      return;
-    }
-    
-    // 2.- Que sea un correo electronico segun esta expresión regular
-    const expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    if ((!expresionCorreo.test(email))) {
-      cambiarMensaje('Introduzca un correo electrónico válido', 'incorrecta');
-      return;
-    };
-
-    // 3.- Que ambos passwords sean iguales
-    if(password!==password2){
-      cambiarMensaje('Contraseña y repetir contraseña deben ser iguales', 'incorrecta');
-      return;
-    }
-    
-    // Si no se produjo ningun return anterior, creo el usuario en authentification de firebase.
-    try {      
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const idUsuarioCreado = userCredential.user.uid;
-      cambiarMensaje('Usuario creado correctamente. Puede crear más si lo desea', 'correcta');
-
-      // Reestablezco valores
-      reiniciarMensaje();
-      establecerEmail('');
-      establecerPassword('');
-      establecerPassword2('');
-      establecerNombre('');
-
-      // Crear la coleccion de roles
-      console.log('Añado a la coleccion de roles: ');      
-      console.log('id del usuario creado por createUserWithEmailAndPassword: ' + idUsuarioCreado);      
-      console.log(nombre);
-      console.log(idRol);
-
-      // Elimino de la coleccion roles de usuarios eliminados a mano desde la consola
-      console.log('Actualizando la coleccion roles');
-
-
-
-    } catch (error) {
-
-      // Validación en el servidor. Codigos en: https://firebase.google.com/docs/auth/admin/errors?hl=es
-      console.log('error devuelto de firestore: ' + error.code);
-      switch(error.code){
-
-        case 'auth/weak-password':
-          cambiarMensaje('La contraseña debe tener al menos 6 carácteres', 'incorrecta');
-          break;
-
-        case 'auth/email-already-in-use':
-          cambiarMensaje('Ya exite una cuenta con el correo electrónico proporcionado', 'incorrecta');
-          break;
-
-        case 'auth/invalid-email':
-          cambiarMensaje('El correo electrónico no es válido', 'incorrecta');
-          break;
-
-        default:
-          cambiarMensaje('Hubo un error al intentar crear la cuenta', 'incorrecta');
-          break;
-      }
+    if(validacionCorrecta()) {
+      añadirUsuario();      
     }
   }
 

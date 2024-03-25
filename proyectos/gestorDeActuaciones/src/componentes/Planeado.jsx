@@ -26,13 +26,9 @@ const Planeado = () => {
 
         {/* Cabecera */}
         <Header>
-          <ContenedorHeader>
-
-            <div>
-              <Titulo>Planeado</Titulo>
-              
-            </div>
-
+          <ContenedorHeader>         
+            
+            <Titulo>Planeado</Titulo>
             <ContenedorBotones>
               <Boton to = '/ilocalizable'>Ilocalizable</Boton>
               <Boton to = '/mantenimiento'>Mantenimiento</Boton>
@@ -42,8 +38,8 @@ const Planeado = () => {
               <Boton to = '/agenda'>Agenda</Boton>
               <Boton to = '/supervision'>Supervisión</Boton>
               <Boton to = '/instalados-finalizados'>Finalizados</Boton>
-              <BtnRegresar ruta='/coordinador' />
-            </ContenedorBotones>            
+              <BtnRegresar ruta='/coordinador' />            
+            </ContenedorBotones>
 
           </ContenedorHeader>
         </Header>            

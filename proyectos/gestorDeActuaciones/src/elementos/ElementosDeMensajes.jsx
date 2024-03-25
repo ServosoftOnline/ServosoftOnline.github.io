@@ -35,8 +35,7 @@ const ContenedorMensajes = styled.div`
         
     }
 
-    @media(max-width: 60rem){ /* 950px */
-        // padding-bottom: 0px;
+    @media(max-width: 60rem){ /* 950px */        
         padding: 1px;
     }
 `;

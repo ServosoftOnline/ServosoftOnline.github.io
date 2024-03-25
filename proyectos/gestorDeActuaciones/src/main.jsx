@@ -13,6 +13,7 @@ import favicon from './assets/logo.png';
 
 // Contextos
 import { ProveedorMensaje } from './contextos/contextoMensaje.jsx';
+import {AuthProvider} from './contextos/AuthContext.jsx';
 
 // Componentes
 import InicioSesion from './componentes/InicioSesion.jsx';
@@ -52,6 +53,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </Helmet>
 
       {/* Contextos */}
+      <AuthProvider>
       <ProveedorMensaje>
 
         {/* React router */}
@@ -88,6 +90,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </BrowserRouter>
 
       </ProveedorMensaje>
+      </AuthProvider>
     </HelmetProvider>
   </React.StrictMode>,
 );

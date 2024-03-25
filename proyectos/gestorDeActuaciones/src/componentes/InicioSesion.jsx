@@ -22,6 +22,9 @@ import { ContextoMensaje } from "../contextos/contextoMensaje";
 import {auth} from './../firebase/firebaseConfig';
 import {signInWithEmailAndPassword } from "firebase/auth";
 
+// Hooks
+import useObtenerRolDeUnUsuario from "../hooks/useObtenerRolDeUnUsuario";
+
 // Componente
 const InicioSesion = () => {
 
@@ -34,47 +37,39 @@ const InicioSesion = () => {
   const navigate = useNavigate();
 
   // Funciones
-  const handleChange = (e) => {    
-  
-    // Dependidendo del nombre del input ejecutaré la funcion que cambia su respectivo estado
-    switch(e.target.name) {
-      case 'email':
-        establecerEmail(e.target.value);
-        break;
-
-      case 'password':
-        establecerPassword(e.target.value);
-        break;  
-        
-      default:
-        break;
-    }
-  }
-
-  const handleSubmit = async (e) => {    
-    e.preventDefault();    
+  const validacionEnCliente = () => {
     
-    // VALIDACION EN CLIENTE
     // 1.- Que no tengo ningún campo vacío
     if(email==='' || password==='') {
       cambiarMensaje('Debe rellenar todos los datos', 'incorrecta');
-      return;
+      return false;
     }
     
     // 2.- Que sea un correo electronico segun esta expresión regular
     const expresionCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if ((!expresionCorreo.test(email))) {
       cambiarMensaje('Introduzca correo electrónico válido', 'incorrecta'); 
-      return;
+      return false;
     };
-    
-    // Si no se produjo ningun return anterior, inicio sesión en authentification de firebase.
+
+    return true;
+  }
+
+  const iniciaSesion = async () => {
+
     try {
-      
-      await signInWithEmailAndPassword(auth, email, password);
+      // Inicio la sesion y obtengo su id de usuario
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const idUsuarioIniciado = userCredential.user.uid;
       cambiarMensaje('Inicio de sesión correcto', 'correcta');
-      console.log('sesion abierta');
+      console.log('sesion abierta por: ' + idUsuarioIniciado);
       reiniciarMensaje();
+
+      // Obtengo su rol desde la base de datos
+      const rolObtenido = useObtenerRolDeUnUsuario(idUsuarioIniciado);
+      console.log('Rol obtenido: ' + rolObtenido);
+
+      // Redirigo dependiendo de su rol
       setTimeout(() => {
         navigate('/');
       }, 5000);      
@@ -93,7 +88,30 @@ const InicioSesion = () => {
           break;
       }
     } 
-    
+  }
+
+  const handleChange = (e) => {    
+  
+    // Dependidendo del nombre del input ejecutaré la funcion que cambia su respectivo estado
+    switch(e.target.name) {
+      case 'email':
+        establecerEmail(e.target.value);
+        break;
+
+      case 'password':
+        establecerPassword(e.target.value);
+        break;  
+        
+      default:
+        break;
+    }
+  }
+
+  const handleSubmit = (e) => {    
+    e.preventDefault();
+    if(validacionEnCliente())  {
+      iniciaSesion();
+    }
   }
 
   return (
