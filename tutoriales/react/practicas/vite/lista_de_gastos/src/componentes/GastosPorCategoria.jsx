@@ -40,8 +40,7 @@ import useObtenerGastosDelMesPorCategoria from "../hooks/useObtenerGastosDelMesP
 // Componente actual
 const GastosPorCategoria = () => {
   const gastosDelMesPorCategoria = useObtenerGastosDelMesPorCategoria();
-  // console.log(gastosDelMesPorCategoria);
-
+  
   return (    
     <HelmetProvider>
 

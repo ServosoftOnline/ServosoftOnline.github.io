@@ -10,7 +10,7 @@
 */
 
 
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -20,7 +20,6 @@ import IconoSalir from './../assets/log-out.svg?react';
 // firebase
 import { signOut } from "firebase/auth";
 import { auth } from './../firebase/firebaseConfig';
-
 
 // Estilos
 const Btn = styled.button`
@@ -59,13 +58,13 @@ const Icono = styled(IconoSalir)`
 
 // Componente
 const BtnSalir = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();     
 
     // Funcion asíncrona
     const cerrarSesion = async () => {
         try {
 
-            await signOut(auth);
+            await signOut(auth);            
             console.log('sesion cerrada');
             navigate('/');
 

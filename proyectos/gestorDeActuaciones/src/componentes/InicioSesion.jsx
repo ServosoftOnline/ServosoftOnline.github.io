@@ -4,37 +4,53 @@
 */
 
 // React y react router
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 // Componentes
 import Mensaje from './Mensaje';
 
 // Elementos
-import {Formulario, Input, ContenedorBoton, SvgIniciarSesion} from './../elementos/ElementosDeFormulario';
+import {Formulario, Input, ContenedorBoton, SvgIniciarSesion} from '../elementos/ElementosDeFormulario';
 import Boton from "../elementos/Boton";
 
-// Contexto
-import { ContextoMensaje } from "../contextos/contextoMensaje";
+// Importar Contextos
+import {useAuth} from '../contextos/AuthContext';
+import {useRol} from './../contextos/RolContext';
+import {ContextoMensaje} from "../contextos/contextoMensaje";
 
 // Authentification de firebase
-import {auth} from './../firebase/firebaseConfig';
+import {auth} from '../firebase/firebaseConfig';
 import {signInWithEmailAndPassword } from "firebase/auth";
 
-// Hooks
-import useObtenerRolDeUnUsuario from "../hooks/useObtenerRolDeUnUsuario";
-
 // Componente
-const InicioSesion = () => {
+const InicioSesion = () => {  
 
   // Estados
   const [email, establecerEmail] = useState('');
-  const [password, establecerPassword] = useState('');
+  const [password, establecerPassword] = useState('');  
+
+  // Obtener contextos
+  const {sesion} = useAuth();	 
+  let {rol} = useRol();  
   const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
 
   // React router
   const navigate = useNavigate();
+
+  // Efecto IMPORTANTISIMO. Cuando halla sesion y rol navega a la ruta asociada a su rol. Rol contiene justo el nombre de la ruta
+  // En la primera pasada no hay sesion, el rol tarda en actualizarse. Si hay un cambio de rol se aprecia levemente el cambio de la ruta
+  useEffect(() => {
+
+    if(sesion && rol) {
+      reiniciarMensaje();     
+      setTimeout(() => {
+        navigate('/' + rol);  
+      }, 1000);
+    } 
+    
+  },[sesion, rol]);
 
   // Funciones
   const validacionEnCliente = () => {
@@ -54,26 +70,17 @@ const InicioSesion = () => {
 
     return true;
   }
+ 
 
   const iniciaSesion = async () => {
 
     try {
-      // Inicio la sesion y obtengo su id de usuario
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const idUsuarioIniciado = userCredential.user.uid;
+
+      // Iniciar sesion. Si hubiera sesion abierta navego a la ruta de su rol
+      await signInWithEmailAndPassword(auth, email, password);
       cambiarMensaje('Inicio de sesión correcto', 'correcta');
-      console.log('sesion abierta por: ' + idUsuarioIniciado);
-      reiniciarMensaje();
-
-      // Obtengo su rol desde la base de datos
-      const rolObtenido = useObtenerRolDeUnUsuario(idUsuarioIniciado);
-      console.log('Rol obtenido: ' + rolObtenido);
-
-      // Redirigo dependiendo de su rol
-      setTimeout(() => {
-        navigate('/');
-      }, 5000);      
-
+      console.log('sesion abierta');
+      
     } catch (error) {
 
       // VALIDACION EN SERVIDOR.
@@ -87,7 +94,8 @@ const InicioSesion = () => {
           cambiarMensaje('Hubo un error en el inicio de sesión', 'incorrecta');
           break;
       }
-    } 
+    }
+    
   }
 
   const handleChange = (e) => {    
@@ -107,13 +115,14 @@ const InicioSesion = () => {
     }
   }
 
+  // Si hay valicacion en cliente inicia sesion.
   const handleSubmit = (e) => {    
-    e.preventDefault();
-    if(validacionEnCliente())  {
+    e.preventDefault();    
+    if(validacionEnCliente()) {
       iniciaSesion();
     }
   }
-
+    
   return (
     <>
       <HelmetProvider>

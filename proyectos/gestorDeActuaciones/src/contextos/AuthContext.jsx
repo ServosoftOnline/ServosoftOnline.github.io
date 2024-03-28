@@ -55,6 +55,7 @@ const AuthProvider = ({children}) => {
 
         // CancelarSusripción almacenara un valor que podemos llamar cuando queramos cerrar la sesion en autthentification
         const cancelarSuscripción = onAuthStateChanged(auth, (usuario) => {
+            
             // Función que se ejecuta cada vez que halla algun cambio en la sesión
             cambiarUsuarioInicioSesion(usuario);
             cambiarCargando(false);
