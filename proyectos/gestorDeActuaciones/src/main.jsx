@@ -11,18 +11,27 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 import favicon from './assets/logo.png';
 
+// Elementos
+import Contenedor from "./elementos/Contenedor";
+
 // Contextos
 import { ProveedorMensaje } from './contextos/contextoMensaje.jsx';
 import {AuthProvider} from './contextos/AuthContext.jsx';
 import { RolProvider } from './contextos/RolContext.jsx';
 
-// Componentes
+// Componentes para las rutas
+// Común
 import InicioSesion from './componentes/InicioSesion.jsx';
+import Error404 from './componentes/Error404.jsx';
+
+// Administrador
 import Administrador from './componentes/Administrador.jsx';
 import CrearUsuario from './componentes/CrearUsuario.jsx';
 import Produccion from './componentes/Produccion.jsx';
 import CalendarioAusencias from './componentes/CalendarioAusencias.jsx';
 import ReporteGeneral from './componentes/ReporteGeneral.jsx';
+
+// Coordinador
 import Coordinador from './componentes/Coordinador.jsx';
 import Direccion from './componentes/Direccion.jsx';
 import Planeado from './componentes/Planeado.jsx';
@@ -35,12 +44,8 @@ import Agenda from './componentes/Agenda.jsx';
 import Supervision from './componentes/Supervision.jsx';
 import InstaladosFinalizados from './componentes/InstaladosFinalizados.jsx';
 
-
-import Error404 from './componentes/Error404.jsx';
-
-// Elementos
-import Contenedor from "./elementos/Contenedor";
-
+// Técnico
+import Tecnico from './componentes/Tecnico.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -63,15 +68,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Contenedor>
             <Routes>
 
-              {/* Rutas públicas administrador */}
+              {/* Rutas públicas para administradores */}
               <Route path='/administrador' element={<Administrador />} />
               <Route path='/crear-usuario' element={<CrearUsuario />} />
               <Route path='/produccion' element={<Produccion />} />
               <Route path='/calendario-ausencias' element={<CalendarioAusencias />} />
               <Route path='/reporte-general' element={<ReporteGeneral />} />
-              <Route path='/coordinador' element={<Coordinador />} />
               
-              {/* Rutas públicas coordinador */}
+              {/* Rutas públicas para coordinadores */}
+              <Route path='/coordinador' element={<Coordinador />} />
               <Route path='/direccion' element={<Direccion />} />
               <Route path='/planeado' element={<Planeado />} />
               <Route path='/ilocalizable' element={<Ilocalizable />} />
@@ -82,6 +87,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Route path='/agenda' element={<Agenda />} />
               <Route path='/supervision' element={<Supervision />} />
               <Route path='/instalados-finalizados' element={<InstaladosFinalizados />} />
+
+              {/* Rutas publicas para tecnicos */}
+              <Route path='/tecnico' element={<Tecnico />} />
 
               {/* Rutas públicas comunes */}
               <Route path='/' element={<InicioSesion />} />  

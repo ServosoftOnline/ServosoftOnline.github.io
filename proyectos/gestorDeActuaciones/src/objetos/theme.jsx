@@ -7,10 +7,13 @@ const theme = {
     verde: '#43A854',
     rojo: '#E34747',
     naranja: '#FFA500',
+    grisOscuro: '#7F8C8D',
     grisClaro: '#E8EFF1',
     grisClaro2: '#CBDDE2',
     grisClaro3: '#DCECF0',
-    azulClaro: '#8792F1'
+    azulClaro: '#8792F1',
+    verdeClaro: '#4E927C',
+    azulClaro: '#4A85B9'
 }
 
 export default theme;

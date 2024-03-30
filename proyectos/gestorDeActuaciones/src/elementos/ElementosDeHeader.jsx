@@ -4,9 +4,9 @@ import styled from "styled-components";
 import theme from "../objetos/theme";
 
 const Header = styled.div`
-    background: ${theme.grisClaro2};
+
     width: auto;
-    padding: 0.1rem; /* 8px */ 
+    border-bottom: 1px solid ${theme.grisOscuro};
     margin-bottom: 1rem;  
     align-items: center; 
     
@@ -34,9 +34,9 @@ const ContenedorHeader = styled.div`
     background: ${theme.grisClaro2};
     width: 100%;
     display: flex;
-    justify-content: space-between; 
-    border-top-left-radius: 10px; 
-    border-top-right-radius: 10px;
+    justify-content: space-between;     
+    
+    
  
     // Coloco los elementos en forma de columna, los centro . Los div de dentro los pongo al final
     @media(max-width: 60rem){ /* 950px */
@@ -52,13 +52,13 @@ const ContenedorHeader = styled.div`
     }
 `;
  
-const ContenedorBotones = styled.div`  
-    
+const ContenedorBotones = styled.div`      
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:0px;
-    margin:0px;
+    padding: 0rem;
+    margin-right: 2rem;
+    
 }
 `;
 

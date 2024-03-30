@@ -22,16 +22,18 @@ import theme from "../objetos/theme";
 // Defino los estilos. Al elemento lo llamo Boton. Le aplico la funcion styled y le paso el componente Link creado por react router
 const Boton = styled(Link)`
 
-    // Si el Boton tiene como propiedad colorPrimario el fondo tendrá el color primario del objeto theme. Si no será de color negro
-    background: ${(props) => props.$primario ? theme.colorPrimario : '#000'};    
+    // Colores para los botones: primario para los botones de los formularios, verde para administradores, azul para coordinador y rojo para tecnicos
+    background: ${(props) =>
+        props.$primario ? theme.colorPrimario :
+        props.$paraAdministrador ? theme.verdeClaro :
+        props.$paraCoordinador ? theme.azulClaro :
+        '#000'};    
 
     // Si tiene la propiedad conIcono, el icono será mas ancho
     width: ${(props) => props.$conIcono ? '15.62rem' : 'auto'}; /* 250px */
-
     
     // // Si tiene la propiedad grande, el icono será mayor
     // font-size:  ${(props) => props.$grande ? '14rem' : 'auto'}; /* 250px */
-    
 
     // Descripción y ubicación del boton
     margin-left: 0.4rem; /* 6.4px */

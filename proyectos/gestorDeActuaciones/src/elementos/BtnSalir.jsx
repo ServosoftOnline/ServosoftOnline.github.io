@@ -10,7 +10,7 @@
 */
 
 
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -20,6 +20,9 @@ import IconoSalir from './../assets/log-out.svg?react';
 // firebase
 import { signOut } from "firebase/auth";
 import { auth } from './../firebase/firebaseConfig';
+
+// Objetos
+import theme from "../objetos/theme";
 
 // Estilos
 const Btn = styled.button`
@@ -32,7 +35,7 @@ const Btn = styled.button`
     margin-right: 0.2rem; /* 6.4px */
     margin-left: 0.4rem;
     border: none;
-    background: #000;
+    background: ${theme.grisOscuro};
     color: #fff;
 
     // Alineado vertical y horizontal

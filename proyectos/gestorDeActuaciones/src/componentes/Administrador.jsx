@@ -7,9 +7,13 @@ import {Header, Titulo, ContenedorBotones, ContenedorHeader} from '../elementos/
 import Boton from './../elementos/Boton';
 import BtnSalir from './../elementos/BtnSalir';
 
+// Hooks
+import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
+
 
 // Mi componente
 const Administrador = () => {
+  const [nombre] = useObtenerNombreDeUnUsuario();
   
   return (
     
@@ -22,17 +26,15 @@ const Administrador = () => {
         <Header>
           <ContenedorHeader>
 
-            <Titulo>Administrador</Titulo>
+            <Titulo>Administrador: {nombre}</Titulo>
+
             <ContenedorBotones>
-
-                <Boton to = '/crear-usuario'>Crear usuario</Boton>                     
-                <Boton to = '/produccion'>Producción</Boton>     
-                <Boton to = '/calendario-ausencias'>Ausencias</Boton>     
-                <Boton to = '/reporte-general'>Reporte general</Boton>             
-                <Boton to = '/coordinador'>Coordinador</Boton>
+                <Boton $paraAdministrador to = '/crear-usuario'>Crear usuario</Boton>                     
+                <Boton $paraAdministrador to = '/produccion'>Producción</Boton>     
+                <Boton $paraAdministrador to = '/calendario-ausencias'>Ausencias</Boton>     
+                <Boton $paraAdministrador to = '/reporte-general'>Reporte general</Boton>             
+                <Boton $paraCoordinador to = '/coordinador'>Coordinación</Boton>
                 <BtnSalir />
-
-
             </ContenedorBotones>
 
           </ContenedorHeader>

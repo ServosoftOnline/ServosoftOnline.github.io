@@ -29,8 +29,7 @@ import imagenCrearCuenta from './../assets/login.svg?react';
 const ContenedorFiltros = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    // margin-bottom: 1.87rem; /* 30px */
+    align-items: center;    
  
     // Cuando llegue la ventana a 950px los elementos se colocan en forma de columna y no uno al lado de otro
     @media(max-width: 60rem){ /* 950px */

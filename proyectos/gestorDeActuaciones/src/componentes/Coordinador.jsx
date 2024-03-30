@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useContext } from "react";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
 // Elementos
@@ -7,9 +7,17 @@ import {Header, Titulo, ContenedorBotones, ContenedorHeader} from '../elementos/
 import Boton from "../elementos/Boton";
 import BtnSalir from "../elementos/BtnSalir";
 
+// Contexto
+import { RolContext } from "../contextos/RolContext";
+
+// Hooks
+import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
+
 
 // Mi componente
 const Coordinador = () => {
+  const {rol} = useContext(RolContext); 
+  const [nombre] = useObtenerNombreDeUnUsuario();
   
   return (
     
@@ -22,10 +30,11 @@ const Coordinador = () => {
         <Header>
           <ContenedorHeader>
 
-            <Titulo>Coordinador</Titulo>
+            <Titulo>Coordinador: {nombre}</Titulo>
             <ContenedorBotones>                            
-                <Boton to = '/direccion'>Direccion</Boton>
-                <Boton to = '/planeado'>Planeado</Boton>
+                <Boton $paraCoordinador to = '/direccion'>Direccion</Boton>
+                <Boton $paraCoordinador to = '/planeado'>Planeado</Boton>
+                {rol == "administrador" ? <Boton $paraAdministrador to="/administrador">Administración</Boton> : null}
                 <BtnSalir />
                 
             </ContenedorBotones>
