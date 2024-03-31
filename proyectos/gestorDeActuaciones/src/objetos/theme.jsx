@@ -10,8 +10,7 @@ const theme = {
     grisOscuro: '#7F8C8D',
     grisClaro: '#E8EFF1',
     grisClaro2: '#CBDDE2',
-    grisClaro3: '#DCECF0',
-    azulClaro: '#8792F1',
+    grisClaro3: '#DCECF0',    
     verdeClaro: '#4E927C',
     azulClaro: '#4A85B9'
 }
