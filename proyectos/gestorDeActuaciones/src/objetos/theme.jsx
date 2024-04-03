@@ -10,9 +10,11 @@ const theme = {
     grisOscuro: '#7F8C8D',
     grisClaro: '#E8EFF1',
     grisClaro2: '#CBDDE2',
-    grisClaro3: '#DCECF0',    
+    grisClaro3: '#DCECF0',
+    grisClaro4: '#666666',
     verdeClaro: '#4E927C',
-    azulClaro: '#4A85B9'
+    azulClaro: '#4A85B9',
+    negro: '#333333'
 }
 
 export default theme;

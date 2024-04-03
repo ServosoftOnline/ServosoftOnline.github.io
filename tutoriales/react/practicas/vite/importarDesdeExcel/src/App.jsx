@@ -9,7 +9,7 @@ const App = ()=> {
 
   // Función
   const handleFileUpload = (e) => {
-    console.log('Entro en handlefileUpload');
+
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsBinaryString(file);
@@ -42,8 +42,6 @@ const App = ()=> {
                 Object.keys(data[0]).map((key) => (
                   <th key={key}>{key}</th>
                 ))
-
-                
               }
             </tr>
           </thead>

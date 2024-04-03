@@ -19,19 +19,18 @@ import { ProveedorMensaje } from './contextos/contextoMensaje.jsx';
 import {AuthProvider} from './contextos/AuthContext.jsx';
 import { RolProvider } from './contextos/RolContext.jsx';
 
-// Componentes para las rutas
-// Común
+// Componentes para las rutas comúnes
 import InicioSesion from './componentes/InicioSesion.jsx';
 import Error404 from './componentes/Error404.jsx';
 
-// Administrador
+// Componentes para las rutas de administrador
 import Administrador from './componentes/Administrador.jsx';
 import CrearUsuario from './componentes/CrearUsuario.jsx';
 import Produccion from './componentes/Produccion.jsx';
 import CalendarioAusencias from './componentes/CalendarioAusencias.jsx';
 import ReporteGeneral from './componentes/ReporteGeneral.jsx';
 
-// Coordinador
+// Componentes para las rutas de coordinador
 import Coordinador from './componentes/Coordinador.jsx';
 import Direccion from './componentes/Direccion.jsx';
 import Planeado from './componentes/Planeado.jsx';
@@ -44,7 +43,7 @@ import Agenda from './componentes/Agenda.jsx';
 import Supervision from './componentes/Supervision.jsx';
 import InstaladosFinalizados from './componentes/InstaladosFinalizados.jsx';
 
-// Técnico
+// Componentes para las rutas de técnico
 import Tecnico from './componentes/Tecnico.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

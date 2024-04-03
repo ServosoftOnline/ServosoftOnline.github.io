@@ -350,6 +350,29 @@ INSTALAR UNA APP CON REACT
               - Formatea una fecha en segundos en día de mes de año en español
             - format(fecha, "dd 'de' MMMM 'de' yyyy", {locale: es})
               - Formatea una fecha en día de mes de año en español
+    
+    - XLSX
+      - Permite importar un archivo excel
+      - Documentacion: https://www.npmjs.com/package/xlsx
+      - Importacion: npm install xlsx
+
+    - XLSX-POPULATE
+      - Igual que XLSX pero más actual
+      - Documentacion: https://www.npmjs.com/package/@xlsx/xlsx-populate
+      - Video demostracion: https://www.youtube.com/watch?v=B6AuiFpICIc
+      - Instalacion: npm install xlsx-populate
+      - Importacion: import XlsxPopulate from 'xlsx-populate';
+      - Usos:
+          - XlsxPopulate.fromBlankAsync(). Para empezar un archivo en blanco
+          - XlsxPopulate.fromDataAsync(). Usar archivo con datos
+          - XlsxPopulate.fromFileAsync(). Para poder leer de un archivo   
+          - Se gestionan como promesas. Puedo usar .then o async/await   
+
+          - sheet son paginas, cell son celdas y value su contenido  
+      
+      - Para leer archivos xlsx desde visual studio code necesito instalar una extension. Ejemplo: excel viewver
+
+      
 
     
         

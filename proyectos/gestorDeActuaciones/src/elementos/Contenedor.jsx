@@ -8,7 +8,7 @@ const Contenedor = styled.div`
     // Usar tamaños en rem significa que si cambiar el font size de index.css se ajustaría mejor
     max-width: 120rem;  /* 1920px Resolución FULL HD */    
     height: 90vh; /* 90% del altura */
-    max-height: 50rem;  /* 800px */
+    max-height: 67.5rem;  /* 1080px */
     overflow-y: auto;   /* scroll */
 
     // Borde
@@ -19,7 +19,7 @@ const Contenedor = styled.div`
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    // justify-content: space-between;
     position: relative;
     z-index: 100;
  

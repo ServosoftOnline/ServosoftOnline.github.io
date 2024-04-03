@@ -4,7 +4,7 @@ import { HelmetProvider, Helmet } from "react-helmet-async";
 
 // Elementos
 import {Header, Titulo, ContenedorBotones, ContenedorHeader} from '../elementos/ElementosDeHeader';
-import {ContenedorFiltros, Formulario, Input, InputGrande, ContenedorBoton, SvgIniciarSesion, SvgCrearCuenta} from './../elementos/ElementosDeFormulario';
+import {ContenedorFiltros} from './../elementos/ElementosDeFormulario';
 import BtnSalir from '../elementos/BtnSalir';
 
 // Componentes

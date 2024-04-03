@@ -4,17 +4,15 @@ import styled from "styled-components";
 import theme from "../objetos/theme";
 
 const Header = styled.div`
-
-    width: auto;
+    background: ${theme.grisClaro2};
+    width: 100%;    
     border-bottom: 1px solid ${theme.grisOscuro};
     margin-bottom: 1rem;  
     align-items: center; 
     
     // Separo los componentes de forma horizontal
     display: flex;
-    justify-content: space-between;    
-    margin-bottom: 0rem;  
-    
+    justify-content: space-between;
 `;
  
 const Titulo = styled.h1`
@@ -34,9 +32,7 @@ const ContenedorHeader = styled.div`
     background: ${theme.grisClaro2};
     width: 100%;
     display: flex;
-    justify-content: space-between;     
-    
-    
+    justify-content: space-between;
  
     // Coloco los elementos en forma de columna, los centro . Los div de dentro los pongo al final
     @media(max-width: 60rem){ /* 950px */
@@ -58,10 +54,8 @@ const ContenedorBotones = styled.div`
     align-items: center;
     padding: 0rem;
     margin-right: 2rem;
-    
 }
 `;
-
 
  
 export {Header, Titulo, ContenedorBotones, ContenedorHeader};
