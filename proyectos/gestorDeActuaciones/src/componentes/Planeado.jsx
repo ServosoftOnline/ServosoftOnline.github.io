@@ -3,7 +3,7 @@
 */
 
 // React y react router
-import React from "react";
+import React, { useContext } from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
@@ -11,9 +11,13 @@ import {Header, Titulo, ContenedorHeader, ContenedorBotones} from '../elementos/
 import BtnRegresar from "../elementos/BtnRegresar";
 import Boton from "../elementos/Boton";
 
+// Hooks
+import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
 
 // El Componente
 const Planeado = () => {
+  const [nombre] = useObtenerNombreDeUnUsuario();
+
 
   return (
     <>      
@@ -28,16 +32,16 @@ const Planeado = () => {
         <Header>
           <ContenedorHeader>         
             
-            <Titulo>Planeado</Titulo>
+            <Titulo>Usuario: {nombre} (Planeado)</Titulo>
             <ContenedorBotones>
-              <Boton to = '/ilocalizable'>Ilocalizable</Boton>
-              <Boton to = '/mantenimiento'>Mantenimiento</Boton>
-              <Boton to = '/falta-citas'>Falta citas</Boton>
-              <Boton to = '/incidencias'>Incidencias</Boton>
-              <Boton to = '/oym'>O&m</Boton>
-              <Boton to = '/agenda'>Agenda</Boton>
-              <Boton to = '/supervision'>Supervisión</Boton>
-              <Boton to = '/instalados-finalizados'>Finalizados</Boton>
+              <Boton $paraCoordinador to = '/ilocalizable'>Ilocalizable</Boton>
+              <Boton $paraCoordinador to = '/mantenimiento'>Mantenimiento</Boton>
+              <Boton $paraCoordinador to = '/falta-citas'>Falta citas</Boton>
+              <Boton $paraCoordinador to = '/incidencias'>Incidencias</Boton>
+              <Boton $paraCoordinador to = '/oym'>O&m</Boton>
+              <Boton $paraCoordinador to = '/agenda'>Agenda</Boton>
+              <Boton $paraCoordinador to = '/supervision'>Supervisión</Boton>
+              <Boton $paraCoordinador to = '/instalados-finalizados'>Finalizados</Boton>
               <BtnRegresar ruta='/coordinador' />            
             </ContenedorBotones>
 

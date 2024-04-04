@@ -38,8 +38,7 @@ const ContenedorFiltros = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // margin-bottom: 1.87rem; /* 30px */
- 
+
     // Cuando llegue la ventana a 950px los elementos se colocan en forma de columna y no uno al lado de otro
     @media(max-width: 60rem){ /* 950px */
         flex-direction: column;
@@ -56,19 +55,16 @@ const ContenedorArchivoExcel = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
-  witdh: auto;
+  font-size: 1.2rem;
+  witdh: auto
 
   h3 {
     width: 30%;
-    margin-right: 1rem;
   }
 
   input {
     font-size: 1.2rem;
-    padding-top: 1rem;
-    margin-left: 1rem;
-    width: calc(70% - 1rem); /* Ajustar el ancho */
+    margin-left: 1.8rem;
   }
 `;
 
@@ -98,7 +94,6 @@ const ResultadosImportacion = styled.div`
         border: 1px solid black;
     }
 
-    
 `;
 
  

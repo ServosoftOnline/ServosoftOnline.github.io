@@ -10,9 +10,12 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 import {Header, Titulo, ContenedorBotones} from '../elementos/ElementosDeHeader';
 import BtnRegresar from "../elementos/BtnRegresar";
 
+// Hook
+import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
 
 // El Componente
 const Oym = () => {
+  const [nombre] = useObtenerNombreDeUnUsuario();
 
   return (
     <>      
@@ -25,7 +28,7 @@ const Oym = () => {
 
         {/* Cabecera */}
         <Header>          
-          <Titulo>O&m</Titulo>
+          <Titulo>Usuario: {nombre} (O&m)</Titulo>
           <ContenedorBotones>
             <BtnRegresar ruta='/planeado' />
           </ContenedorBotones>

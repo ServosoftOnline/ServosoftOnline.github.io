@@ -30,7 +30,7 @@ const Coordinador = () => {
         <Header>
           <ContenedorHeader>
 
-            <Titulo>Coordinador: {nombre}</Titulo>
+            <Titulo>Usuario: {nombre} (Coordinador)</Titulo>
             <ContenedorBotones>                            
                 <Boton $paraCoordinador to = '/direccion'>Direccion</Boton>
                 <Boton $paraCoordinador to = '/planeado'>Planeado</Boton>
