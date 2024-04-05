@@ -31,25 +31,90 @@ const Direccion = () => {
   const [nombre] = useObtenerNombreDeUnUsuario();
 
   // Funciones
-  // Valido que el fichero contiene los campos que necesito.
-  // Para hacer pruebas lo devuelvo true. Despues validaré
-  const validacionCorrecta = () => {
-    console.log('Validando');
-    // Validar que las cabeceras del archivo excel sean las correctas
+  const validaCabecera = () => {
+    
+  }
+  // Validar que las cabeceras del archivo excel sean las correctas
     // Validar que no exista ya en la base de datos una incidencia con ese código
-    return true;
+  const validacionCorrecta = ([data]) => {    
+    const cabeceraCorrecta = [
+      "Código Cliente",
+      "DNI Cliente",
+      "Nombre",
+      "Teléfono Contacto",
+      "Contrato",
+      "Producto",
+      "Tipo Servicio",
+      "Tienda",
+      "Código Incidencia",
+      "Tipo",
+      "Nivel",
+      "Fecha Incidencia",
+      "Hora",
+      "Descripción",
+      "Acción",
+      "Estado",
+      "Población Instalación",
+      "Direccion Instalación",
+      "Empresa Instaladora",
+      "Fecha Citacion",
+      "Incidencia Atendida",
+      "Fecha Atendida",
+      "Hora Atendida",
+      "Fecha Cerrada",
+      "Hora Cerrada",
+      "Usuario Cerrada",
+      "Desplazamiento",
+      "Motivo de error"
+    ];
+
+    const cabeceraObtenida = Object.keys(data);
+    console.log('Cabecera obtenida: ' + cabeceraObtenida);
+    console.log('Cabecera correcta: ' + cabeceraCorrecta);
+
+    // Comprobar si todas las propiedades de cabeceraObtenida están en cabeceraCorrecta
+    const esCorrecta = cabeceraCorrecta.every(propiedad =>
+      cabeceraObtenida.includes(propiedad)
+    );
+
+    return esCorrecta;
+  }
+
+  const mostrarArchivoImportado = () => {
+    return (
+      <table>
+        <thead>
+          <tr>
+            {
+              Object.keys(data[0]).map((key) => (
+                <th key={key} className="cabecera">{key}</th>
+              ))
+            }
+          </tr>
+        </thead>
+
+        <tbody>
+          {data.map((row, index) => (                    
+            <tr key={index}>
+              {Object.values(row).map((value, index) => (                        
+                <td key={index}>{value}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
   }
 
   // Obtengo los datos del formulario. Si valida llamo a la funcion que agrega la incidencia en la bbdd y le paso la data entera
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Obtengo los datos del formulario');
-    if (validacionCorrecta()) agregarIncidencias(data);
+    if (validacionCorrecta(data)) agregarIncidencias(data);
+    else console.log('Muestro error en pantalla');
   }
 
   // Obtengo el fichero y creo la data
   const handleFileUpload = (e) => {
-
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsBinaryString(file);
@@ -62,7 +127,7 @@ const Direccion = () => {
       // Añadir la opción defval para incluir celdas vacías como cadenas vacías
       const parseData = XLSX.utils.sheet_to_json(sheet, { defval: '' });           
       setData(parseData);
-    }; 
+    };
   };
 
   return (
@@ -88,48 +153,27 @@ const Direccion = () => {
           <BtnRegresar ruta='/coordinador' />
         </Header>
 
+        {/* Formulario */}
         <Formulario onSubmit={handleSubmit}>
 
           {/* Si hay datos muestro los resultados en una tabla */}
           <ResultadosImportacion>
-            {data.length > 0 && (              
-              <table>
-                <thead>
-                  <tr>
-                    {
-                      Object.keys(data[0]).map((key) => (
-                        <th key={key} className="cabecera">{key}</th>
-                      ))
-                    }
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {data.map((row, index) => (                    
-                    <tr key={index}>
-                      {Object.values(row).map((value, index) => (                        
-                        <td key={index}>{value}</td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
+            {data.length > 0 && mostrarArchivoImportado()}            
           </ResultadosImportacion>
 
-          {/* Si hay datos muestro el botón de añadir datos */}
+          {/* Si hay datos muestro el botón de añadir datos */}          
           <ContenedorBoton>
-          {data.length > 0 && (
-                  <Boton 
-                    $primario
-                    as="button"              
-                    >Añadir datos
-                  </Boton>
-          )}
+            {data.length > 0 ?
+              <Boton 
+                $primario
+                as="button"              
+                >Añadir datos
+              </Boton>
+              :
+              null
+            }
           </ContenedorBoton>
-
-        </Formulario>
-        
+        </Formulario>        
       </HelmetProvider>
     </>
   );
