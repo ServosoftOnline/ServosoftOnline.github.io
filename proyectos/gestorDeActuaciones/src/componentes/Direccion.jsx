@@ -31,9 +31,7 @@ const Direccion = () => {
   const [nombre] = useObtenerNombreDeUnUsuario();
 
   // Funciones
-  const validaCabecera = () => {
-    
-  }
+  
   // Validar que las cabeceras del archivo excel sean las correctas
     // Validar que no exista ya en la base de datos una incidencia con ese código
   const validacionCorrecta = ([data]) => {    
@@ -77,7 +75,12 @@ const Direccion = () => {
       cabeceraObtenida.includes(propiedad)
     );
 
-    return esCorrecta;
+    if (esCorrecta) {
+      console.log('Cabecera correcta. Continuo con la validacion');
+    }
+
+    // console.log('es correcta: ' + esCorrecta);
+    // return esCorrecta;
   }
 
   const mostrarArchivoImportado = () => {
