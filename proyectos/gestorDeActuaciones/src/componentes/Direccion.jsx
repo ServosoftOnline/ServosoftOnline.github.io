@@ -19,6 +19,7 @@ import Boton from './../elementos/Boton';
 
 // Hook
 import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
+import useIndidenciasDuplicadas from "../hooks/useIncidenciasDuplicadas";
 
 // Funcion para añadir en la base de datos
 import agregarIncidencias from "../firebase/agregarIncidencias";
@@ -29,12 +30,13 @@ const Direccion = () => {
   // Estado
   const [data, setData] = useState([]);
   const [nombre] = useObtenerNombreDeUnUsuario();
+  const incidenciasDuplicadas = useIndidenciasDuplicadas(data);
+  console.log('Incidencia duplicadas devueltas: ' + incidenciasDuplicadas);
 
   // Funciones
-  
-  // Validar que las cabeceras del archivo excel sean las correctas
-    // Validar que no exista ya en la base de datos una incidencia con ese código
-  const validacionCorrecta = ([data]) => {    
+  const validaCabecera = ([data]) => { 
+
+    // Objeto que contiene como debe ser la cabecera a insertar   
     const cabeceraCorrecta = [
       "Código Cliente",
       "DNI Cliente",
@@ -66,6 +68,7 @@ const Direccion = () => {
       "Motivo de error"
     ];
 
+    // Almaceno la cabecera obtenida en la cte
     const cabeceraObtenida = Object.keys(data);
     console.log('Cabecera obtenida: ' + cabeceraObtenida);
     console.log('Cabecera correcta: ' + cabeceraCorrecta);
@@ -75,12 +78,8 @@ const Direccion = () => {
       cabeceraObtenida.includes(propiedad)
     );
 
-    if (esCorrecta) {
-      console.log('Cabecera correcta. Continuo con la validacion');
-    }
-
-    // console.log('es correcta: ' + esCorrecta);
-    // return esCorrecta;
+    // Escorrecta contendrá true o false
+    return esCorrecta;
   }
 
   const mostrarArchivoImportado = () => {
@@ -112,8 +111,8 @@ const Direccion = () => {
   // Obtengo los datos del formulario. Si valida llamo a la funcion que agrega la incidencia en la bbdd y le paso la data entera
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validacionCorrecta(data)) agregarIncidencias(data);
-    else console.log('Muestro error en pantalla');
+    // if (validaCabecera(data) && !hayAlgunaIncidenciaDuplicada) agregarIncidencias(data);
+    // else console.log('Muestro error en pantalla');
   }
 
   // Obtengo el fichero y creo la data
