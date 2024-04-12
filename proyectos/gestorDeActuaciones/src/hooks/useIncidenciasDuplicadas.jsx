@@ -1,5 +1,5 @@
 /*
-    HOOK QUE OBTIENE EL ROL DE UN USUARIO
+    HOOK QUE COMPRUEBA SI UNA CODIGO DE INCIDENCIA ESTÁ YA EN LA BBDD
 
 */
 
@@ -9,44 +9,36 @@ import {useState, useEffect} from 'react';
 // Contextos
 import {useAuth} from '../contextos/AuthContext';
 
-// Firebase
-import {db} from '../firebase/firebaseConfig';
-import {collection, onSnapshot, query, where} from 'firebase/firestore';
+// Hooks importados
+import useObtenerTodosLosCodigosDeIncidencias from './useObtenerTodosLosCodigosDeIncidencias';
 
 // Hook
-const useIncidenciasDuplicadas = (data) => {
+const useIncidenciaDuplicadas = ([data]) => {
 
 	// Estados
-	const {sesion} = useAuth();	
-	const [incidencia, asignarIncidencia] = useState([]);	
+	const {sesion} = useAuth();
+	const [todosLosCodigosdeIncidenciaDeLaBBDD]= useObtenerTodosLosCodigosDeIncidencias();
+	const [todosLosCodigosDeIncidenciaDeLaData, asignarTodosLosCodigosDeIncidenciaDeLaData] = useState([]);
+	const [existeAlgunDuplicado, asignarExisteAlgunDuplicado] = useState(false);
+
+	// Recorro la data y voy viendo si está incluido en los codigos de incidencia en los obtenidos de la BBDD
+
+
+	console.log(data);
+	// if(todasLasIncidencias.length > 0) {
+	// 	console.log('Todos lo códigos de incidencia de la bbdd');
+	// 	todasLasIncidencias.forEach((incidencia) => {			
+	// 		console.log(incidencia.codigoIncicencia);
+	// 	});
+	// }
+
+	// includes(). Ejemplo: Saber si Silvia esta en el array de nombres
+// if(nombres.includes('Silvia')) console.log('Silvia se encuentra en el array nombres');
+// else console.log('Silvia no esta');
+// console.log(nombres);
+
+	return [existeAlgunDuplicado];
 	
-	// Ejecuto el efecto para realizar la consulta de forma asincrona					
-	useEffect(() => {
-
-	// Si existe sesión abierta realizo la consulta
-		if (sesion) {
-
-			// Consulta 
-			const consulta = query(
-				collection(db, 'incidencias'),
-				where('codigoIncidencia', '==', '266001')
-			);
-			
-			// Ejecuta la consulta. Si se produjera un error lo muestro en consola
-			const unsuscribe = onSnapshot(consulta, (snapshot) => {
-				asignarIncidencia(snapshot.docs.map((documento) => {				
-					return (documento.data().nombre);
-				}));			
-			}, (error) => {console.log(error)});		
-
-			// Cierra la consulta
-			return unsuscribe;
-		}
-
-	}, [sesion]);
-
-	// Devuelvo el estado gastos
-	return [incidencia];
 }
  
-export default useIncidenciasDuplicadas;
+export default useIncidenciaDuplicadas;

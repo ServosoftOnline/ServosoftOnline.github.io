@@ -1,41 +1,15 @@
 /*
   MODULO DIRECCION
-
-    - IMPORTANTE: ME COSTÓ MUCHÍSIMO TIEMPO FINALIZAR ESTE COMPONENTE. EL PAQUETE XLSX ESTÁ EN DESUSO. DEBO ENCONTRAR PAQUETE MAS ACTUALIZADA
+    - Permite seleccionar un archivo excel, mostrarlo en una tabla y al confirmar los datos añadirlo en la coleccion de incidencias
   
-    - Permite seleccionar un archivo excel, mostrarlo en una tabla y añadirlo a la base de datos si valida bien.
-      - Uso el paquete xlsx para obtener un archivo excel y guardo el resultado en lo que llamo data
-      - Al cargarlo muestro en pantalla una tabla con el contenido del archivo importado
-      - Se mostrará el boton de Añadir datos
-
-      - Cuando se pulse la funcion handleSubmit se encarga de la validación:
-        - Si la cabecera es valida
-        - y el array incidenciasDuplicadas que contiene las incidencias duplicadas no contiene ningun elemento
-        - añado en la base de datos
-
-    - Validaría lo siguiente:
-
-      - Que la cabecera sea la indicada en cabecera correcta
-        - Declaro en el array cabeceraCorrecta como debe ser la cabecera.
-        - En cabeceraObtenida creo un array mediante la funcion keys
-        - Las comparo con la funcion every
-        - esCorrecta contendrá true o false dependiendo del resultado de every y lo devuelvo
-
-      - Que la base de datos no contiene algun codigo de incidencia que se quiera añadir
-        - El hook useObtenerTodosLosCodigosDeIncidencias contiene un array con todos los códigos de incidencia de la BBDD
-        - Recorro la data y voy viendo mediante la funcion includes si la incidencia que estoy comprobando se encuentra en el array devuelto por el hook
-    
 */
 
 // React y react router
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // libreria xlsx
 import * as XLSX from 'xlsx';
-
-// Componentes
-import Mensaje from "./../componentes/Mensaje";
 
 // Elementos
 import {Header, Titulo} from '../elementos/ElementosDeHeader';
@@ -43,29 +17,22 @@ import {Formulario, ContenedorArchivoExcel, ResultadosImportacion, ContenedorBot
 import BtnRegresar from "../elementos/BtnRegresar";
 import Boton from './../elementos/Boton';
 
-// Hooks
+// Hook
 import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
-import useObtenerTodosLosCodigosDeIncidencias from "../hooks/useObtenerTodosLosCodigosDeIncidencias";
+import useIndidenciasDuplicadas from "../hooks/useIncidenciasDuplicadas";
 
-// Contextos
-import { ContextoMensaje } from "../contextos/contextoMensaje";
-
-// Funciones de firebase
+// Funcion para añadir en la base de datos
 import agregarIncidencias from "../firebase/agregarIncidencias";
 
 // El Componente
 const Direccion = () => {
 
-  // Estados
-  const [data, setData] = useState([]);      
+  // Estado
+  const [data, setData] = useState([]);
+  const [nombre] = useObtenerNombreDeUnUsuario();
+  const [incidenciasDuplicadas] = useIndidenciasDuplicadas(data);
+  // console.log('Incidencia duplicadas devueltas: ' + incidenciasDuplicadas);
 
-  // LLamadas a los hooks
-  const [nombre] = useObtenerNombreDeUnUsuario(); 
-  const [todosLosCodigosdeIncidenciaDeLaBBDD] = useObtenerTodosLosCodigosDeIncidencias();
-
-  // LLamadas a los contextos
-  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
-  
   // Funciones
   const validaCabecera = ([data]) => { 
 
@@ -102,7 +69,9 @@ const Direccion = () => {
     ];
 
     // Almaceno la cabecera obtenida en la cte
-    const cabeceraObtenida = Object.keys(data);    
+    const cabeceraObtenida = Object.keys(data);
+    console.log('Cabecera obtenida: ' + cabeceraObtenida);
+    console.log('Cabecera correcta: ' + cabeceraCorrecta);
 
     // Comprobar si todas las propiedades de cabeceraObtenida están en cabeceraCorrecta
     const esCorrecta = cabeceraCorrecta.every(propiedad =>
@@ -111,39 +80,6 @@ const Direccion = () => {
 
     // Escorrecta contendrá true o false
     return esCorrecta;
-  }
-
-  const validaIncidenciasDuplicadas= () => {    
-    
-    const incidenciasDuplicadasEncontradas = [];
-    data.forEach((incidencia) => {      
-      if(todosLosCodigosdeIncidenciaDeLaBBDD.includes(incidencia['Código Incidencia']))
-        incidenciasDuplicadasEncontradas.push(incidencia['Código Incidencia']);
-    });
-
-    return incidenciasDuplicadasEncontradas;
-  }  
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();     
-
-    // Para agregar las incidencias la cabecera debe ser válida y que no exista ninguna incidencia duplicada
-    if (validaCabecera(data)) {      
-      const incidenciasDuplicadas = validaIncidenciasDuplicadas();      
-
-      if (incidenciasDuplicadas.length === 0) {
-        cambiarMensaje('Agregando la informacion a la base de datos', 'correcta');        
-        agregarIncidencias(data);
-        reiniciarMensaje();
-        
-      } else {
-        cambiarMensaje ('Incidencias duplicadas: ' + incidenciasDuplicadas, 'incorrecta');
-      }
-
-    } else {      
-      cambiarMensaje('Archivo excel a importar incorrecto', 'incorrecta');
-    }
-    
   }
 
   const mostrarArchivoImportado = () => {
@@ -172,9 +108,16 @@ const Direccion = () => {
     )
   }
 
+  // Obtengo los datos del formulario. Si valida llamo a la funcion que agrega la incidencia en la bbdd y le paso la data entera
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // if (validaCabecera(data) && !hayAlgunaIncidenciaDuplicada) agregarIncidencias(data);
+    // else console.log('Muestro error en pantalla');
+  }
+
   // Obtengo el fichero y creo la data
   const handleFileUpload = (e) => {
-
+    console.log('Ejecuto el handleSubmit');
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsBinaryString(file);
@@ -188,7 +131,6 @@ const Direccion = () => {
       const parseData = XLSX.utils.sheet_to_json(sheet, { defval: '' });           
       setData(parseData);
     };
-
   };
 
   return (
@@ -234,10 +176,6 @@ const Direccion = () => {
               null
             }
           </ContenedorBoton>
-
-          {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
-          <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
-
         </Formulario>        
       </HelmetProvider>
     </>

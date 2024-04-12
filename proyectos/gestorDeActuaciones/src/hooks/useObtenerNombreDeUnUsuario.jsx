@@ -33,11 +33,11 @@ const useObtenerNombreDeUnUsuario = () => {
 			);
 			
 			// Ejecuta la consulta. Si se produjera un error lo muestro en consola
-			const unsuscribe = onSnapshot(consultaObtenerNombre, (snapshot) => {
-				establecerNombre(snapshot.docs.map((documento) => {				
+			const unsuscribe = (onSnapshot(consultaObtenerNombre, (snapshot) => {
+				establecerNombre(snapshot.docs.map((documento) => {								
 					return (documento.data().nombre);
 				}));			
-			}, (error) => {console.log(error)});		
+			}, (error) => {console.log(error)}));		
 
 			// Cierra la consulta
 			return unsuscribe;

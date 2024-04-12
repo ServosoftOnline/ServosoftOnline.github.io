@@ -5,7 +5,7 @@ METODOS PARA OBJETOS.
 - Los propios los llamaré asi: objeto.metodo(). Los de Javascripts los llamo asi: Object.metodo(objeto)
     
     - Metodos de Javascript para objetos:
-        - keys(). Devuelve un array con las nombre de las propiedades de un objeto.
+        - keys(). Devuelve un array con los nombres de las propiedades de un objeto.
         - values(). Devuelve un array con los valores de un objeto.
         - entries(). Devuelve un array con los nombres de las propiedades y sus valores correspondientes.
 

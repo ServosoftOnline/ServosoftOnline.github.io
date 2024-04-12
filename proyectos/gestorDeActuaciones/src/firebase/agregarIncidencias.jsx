@@ -11,11 +11,7 @@
 import { db } from './firebaseConfig';
 import { collection, addDoc } from "firebase/firestore";
 
-// date-fns
-import { getUnixTime } from "date-fns";
-
 // La función
-
 const agregarIncidencias = async (data) => {
     console.log('Extraigo la data y la añado a la colección'); 
     data.forEach(async (registro) => {
@@ -30,7 +26,7 @@ const agregarIncidencias = async (data) => {
                 "producto": registro["Producto"],
                 "tipoServicio": registro["Tipo Servicio"],
                 "tienda": registro["Tienda"],
-                "codigoIncicencia": registro["Código Incidencia"],
+                "codigoIncidencia": registro["Código Incidencia"],
                 "tipo": registro["Tipo"],
                 "nivel": registro["Nivel"],
                 "fechaIncidencia": registro["Fecha Incidencia"],
@@ -52,7 +48,7 @@ const agregarIncidencias = async (data) => {
             });
 
         } catch (error) {
-            console.error("Error al agregar documento:", error);
+            console.error("Error al agregar el documento:", error);
         }
     });
 }
