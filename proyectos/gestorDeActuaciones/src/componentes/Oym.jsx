@@ -30,7 +30,7 @@ const Oym = () => {
         <Header>          
           <Titulo>{nombre} (O&m)</Titulo>
           <ContenedorBotones>
-            <BtnRegresar ruta='/planeado' />
+            <BtnRegresar ruta='/coordinador' />
           </ContenedorBotones>
         </Header>            
 

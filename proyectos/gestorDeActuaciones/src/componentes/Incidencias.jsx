@@ -30,7 +30,7 @@ const Incidencias = () => {
         <Header>          
           <Titulo>{nombre} (Incidencias)</Titulo>
           <ContenedorBotones>
-            <BtnRegresar ruta='/planeado' />
+            <BtnRegresar ruta='/coordinador' />
           </ContenedorBotones>
         </Header>            
 

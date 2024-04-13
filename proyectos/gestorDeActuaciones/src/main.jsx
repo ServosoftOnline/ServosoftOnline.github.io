@@ -33,7 +33,7 @@ import ReporteGeneral from './componentes/ReporteGeneral.jsx';
 // Componentes para las rutas de coordinador
 import Coordinador from './componentes/Coordinador.jsx';
 import Direccion from './componentes/Direccion.jsx';
-import Planeado from './componentes/Planeado.jsx';
+// import Planeado from './componentes/Planeado.jsx';
 import Ilocalizable from './componentes/Ilocalizable.jsx';
 import Mantenimiento from './componentes/Mantenimiento.jsx';
 import FaltaCitas from './componentes/FaltaCitas.jsx';
@@ -77,7 +77,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               {/* Rutas públicas para coordinadores */}
               <Route path='/coordinador' element={<Coordinador />} />
               <Route path='/direccion' element={<Direccion />} />
-              <Route path='/planeado' element={<Planeado />} />
+              {/* <Route path='/planeado' element={<Planeado />} /> */}
               <Route path='/ilocalizable' element={<Ilocalizable />} />
               <Route path='/mantenimiento' element={<Mantenimiento />} />
               <Route path='/falta-citas' element={<FaltaCitas />} />

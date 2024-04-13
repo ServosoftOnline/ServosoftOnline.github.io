@@ -30,7 +30,7 @@ const Mantenimiento = () => {
         <Header>          
           <Titulo>{nombre} (Mantenimiento)</Titulo>
           <ContenedorBotones>
-            <BtnRegresar ruta='/planeado' />
+            <BtnRegresar ruta='/coordinador' />
           </ContenedorBotones>
         </Header>            
 

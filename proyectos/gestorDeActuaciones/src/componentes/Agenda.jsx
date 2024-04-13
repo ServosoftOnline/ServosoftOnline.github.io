@@ -30,7 +30,7 @@ const Agenda = () => {
         <Header>
           <Titulo>{nombre} (Agenda)</Titulo>
           <ContenedorBotones>
-            <BtnRegresar ruta='/planeado' />          
+            <BtnRegresar ruta='/coordinador' />          
           </ContenedorBotones>
         </Header>            
 

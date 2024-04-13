@@ -29,7 +29,7 @@ const InstaladosFinalizados = () => {
         <Header>
           <Titulo>{nombre} (Instalados / Finalizados)</Titulo>
           <ContenedorBotones>
-            <BtnRegresar ruta='/planeado' />
+            <BtnRegresar ruta='/coordinador' />
           </ContenedorBotones>
         </Header>            
 

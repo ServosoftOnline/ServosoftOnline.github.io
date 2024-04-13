@@ -41,9 +41,9 @@ const Boton = styled(Link)`
     border-radius: 0.625rem; /* 10px */
     color: #fff;
     font-family: 'Work Sans', sans-serif;
-    height: 2rem; /* 32px */
+    height: 2rem; /* 32px */    
     padding: 0.4rem 0.4rem; /* 8px 8px */
-    font-size: 0.9rem; /* 16px */
+    font-size: 0.8rem; /* 12.8px */
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
@@ -59,7 +59,7 @@ const Boton = styled(Link)`
     }
 
     @media(max-width: 60rem){ /* 950px */       
-        font-size: 0.75rem;     /* 12px */
+        font-size: 0.68rem;     /* 10.88px */
         margin-left: 0.1rem;    /* 1.6px */
     }
 `;

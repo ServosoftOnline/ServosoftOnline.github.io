@@ -30,7 +30,7 @@ const Ilocalizable = () => {
         <Header>
           <Titulo>{nombre} (Ilocalizable)</Titulo>
           <ContenedorBotones>
-            <BtnRegresar ruta='/planeado' />
+            <BtnRegresar ruta='/coordinador' />
           </ContenedorBotones>
         </Header>            
 

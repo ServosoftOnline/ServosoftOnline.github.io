@@ -27,7 +27,6 @@ const Administrador = () => {
           <ContenedorHeader>
 
             <Titulo>{nombre} (Administrador)</Titulo>
-
             <ContenedorBotones>
                 <Boton $paraAdministrador to = '/crear-usuario'>Crear usuario</Boton>                     
                 <Boton $paraAdministrador to = '/produccion'>Producción</Boton>     

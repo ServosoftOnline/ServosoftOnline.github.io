@@ -8,7 +8,10 @@ const Header = styled.div`
     width: 100%;    
     border-bottom: 1px solid ${theme.grisOscuro};
     margin-bottom: 1rem;  
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     align-items: center; 
+
     
     // Separo los componentes de forma horizontal
     display: flex;
@@ -16,7 +19,7 @@ const Header = styled.div`
 `;
 
 const ContenedorHeader = styled.div`
-    background: ${theme.grisClaro2};
+
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -56,12 +59,11 @@ const ContenedorTitulo = styled.div`
 `;
  
  
-const ContenedorBotones = styled.div`      
+const ContenedorBotones = styled.div` 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0rem;
-    margin-right: 2rem;
+    padding: 0rem;    
 `;
 
 const ContenedorArchivoExcel = styled.div`
