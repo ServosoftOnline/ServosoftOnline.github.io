@@ -28,7 +28,7 @@ const Ilocalizable = () => {
 
         {/* Cabecera */}
         <Header>
-          <Titulo>Usuario: {nombre} (Ilocalizable)</Titulo>
+          <Titulo>{nombre} (Ilocalizable)</Titulo>
           <ContenedorBotones>
             <BtnRegresar ruta='/planeado' />
           </ContenedorBotones>

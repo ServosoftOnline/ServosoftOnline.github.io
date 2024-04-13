@@ -28,7 +28,7 @@ const FaltaCitas = () => {
 
         {/* Cabecera */}
         <Header>          
-          <Titulo>Usuario: {nombre} (Falta citas)</Titulo>
+          <Titulo>{nombre} (Falta citas)</Titulo>
           <ContenedorBotones>
             <BtnRegresar ruta='/planeado' />
           </ContenedorBotones>

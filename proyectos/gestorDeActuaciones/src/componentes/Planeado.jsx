@@ -10,12 +10,17 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 import {Header, Titulo, ContenedorHeader, ContenedorBotones} from '../elementos/ElementosDeHeader';
 import BtnRegresar from "../elementos/BtnRegresar";
 import Boton from "../elementos/Boton";
+import BtnSalir from "../elementos/BtnSalir";
+
+// Contexto
+import { RolContext } from "../contextos/RolContext";
 
 // Hooks
 import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
 
 // El Componente
 const Planeado = () => {
+  const {rol} = useContext(RolContext); 
   const [nombre] = useObtenerNombreDeUnUsuario();
 
 
@@ -32,8 +37,9 @@ const Planeado = () => {
         <Header>
           <ContenedorHeader>         
             
-            <Titulo>Usuario: {nombre} (Planeado)</Titulo>
+            <Titulo>{nombre} (Planeado)</Titulo>
             <ContenedorBotones>
+              <Boton $paraCoordinador to = '/direccion'>Direccion</Boton>
               <Boton $paraCoordinador to = '/ilocalizable'>Ilocalizable</Boton>
               <Boton $paraCoordinador to = '/mantenimiento'>Mantenimiento</Boton>
               <Boton $paraCoordinador to = '/falta-citas'>Falta citas</Boton>
@@ -42,7 +48,9 @@ const Planeado = () => {
               <Boton $paraCoordinador to = '/agenda'>Agenda</Boton>
               <Boton $paraCoordinador to = '/supervision'>Supervisión</Boton>
               <Boton $paraCoordinador to = '/instalados-finalizados'>Finalizados</Boton>
-              <BtnRegresar ruta='/coordinador' />            
+              {rol == "administrador" ? <Boton $paraAdministrador to="/administrador">Administración</Boton> : null}
+              <BtnRegresar ruta='/coordinador' />   
+              <BtnSalir />         
             </ContenedorBotones>
 
           </ContenedorHeader>

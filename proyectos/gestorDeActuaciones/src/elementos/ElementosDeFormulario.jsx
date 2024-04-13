@@ -50,24 +50,6 @@ const ContenedorFiltros = styled.div`
     }
 `;
 
-const ContenedorArchivoExcel = styled.div`
- 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  witdh: auto
-
-  h3 {
-    width: 30%;
-  }
-
-  input {
-    font-size: 1.2rem;
-    margin-left: 1.8rem;
-  }
-`;
-
 const ResultadosImportacion = styled.div`
 
     display: flex;
@@ -146,4 +128,4 @@ const SvgCrearCuenta = styled(imagenCrearCuenta)`
 
 
 
-export {Formulario, ContenedorFiltros, ContenedorArchivoExcel, ResultadosImportacion, Input, ContenedorBoton, SvgIniciarSesion, SvgCrearCuenta} ;
+export {Formulario, ContenedorFiltros, ResultadosImportacion, Input, ContenedorBoton, SvgIniciarSesion, SvgCrearCuenta} ;

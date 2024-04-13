@@ -48,6 +48,9 @@ import SelectRoles from "./SelectRoles";
 // Contexto
 import {ContextoMensaje} from '../contextos/contextoMensaje';
 
+// Hooks
+import useObtenerNombreDeUnUsuario from "./../hooks/useObtenerNombreDeUnUsuario";
+
 // Authentificaion de firebase
 import {auth} from './../firebase/firebaseConfig';
 import {createUserWithEmailAndPassword} from "firebase/auth";
@@ -62,11 +65,12 @@ const CrearUsuario = () => {
 
   // Estados
   const [idRol, establecerIdRol] = useState('Seleccione rol');
-  const [nombre, establecerNombre] = useState('');  
+  const [nombreUsuario, establecerNombre] = useState('');  
   const [email,   establecerEmail] = useState('');
   const [password, establecerPassword] = useState('');
   const [password2, establecerPassword2] = useState('');
   const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
+  const [nombre] = useObtenerNombreDeUnUsuario();
 
   // React router
   const navigate = useNavigate();
@@ -75,7 +79,7 @@ const CrearUsuario = () => {
   const validacionCorrecta = () => {
     
     // 1.- Que no tengo ningún campo vacío
-    if(nombre ==='' || email==='' || password==='' || password2==='') {
+    if(nombreUsuario ==='' || email==='' || password==='' || password2==='') {
       cambiarMensaje('Debe rellenar todos los datos', 'incorrecta');
       return false;
     }
@@ -154,7 +158,7 @@ const CrearUsuario = () => {
     try {
         await addDoc(collection(db, 'roles'), {
           idUsuario: idUsuarioCreado,
-          nombre: nombre,
+          nombre: nombreUsuario,
           idRol: idRol
         });        
 
@@ -209,7 +213,7 @@ const CrearUsuario = () => {
 
         {/* Cabecera */}
         <Header>
-          <Titulo>Crear usuario</Titulo>
+          <Titulo>{nombre} (Crear usuario)</Titulo>
             <ContenedorBotones>
               <BtnRegresar ruta='/administrador' />
             </ContenedorBotones>          
@@ -228,7 +232,7 @@ const CrearUsuario = () => {
             type="nombre"
             name="nombre"
             placeholder="Nombre completo"
-            value={nombre}
+            value={nombreUsuario}
             onChange={handleChange}
           />      
 

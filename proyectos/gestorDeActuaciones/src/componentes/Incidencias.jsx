@@ -28,7 +28,7 @@ const Incidencias = () => {
 
         {/* Cabecera */}
         <Header>          
-          <Titulo>Usuario: {nombre} (Incidencias)</Titulo>
+          <Titulo>{nombre} (Incidencias)</Titulo>
           <ContenedorBotones>
             <BtnRegresar ruta='/planeado' />
           </ContenedorBotones>

@@ -28,7 +28,7 @@ const Supervision = () => {
 
         {/* Cabecera */}
         <Header>
-          <Titulo>Usuario: {nombre} (Supervisión)</Titulo>
+          <Titulo>{nombre} (Supervisión)</Titulo>
           <ContenedorBotones>
             <BtnRegresar ruta='/planeado' />          
           </ContenedorBotones>

@@ -10,9 +10,12 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 import {Header, Titulo} from '../elementos/ElementosDeHeader';
 import BtnRegresar from "../elementos/BtnRegresar";
 
+// hook
+import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
 
 // El Componente
 const CalendarioAusencias = () => {
+  const [nombre] = useObtenerNombreDeUnUsuario();
 
   return (
     <>      
@@ -25,7 +28,7 @@ const CalendarioAusencias = () => {
 
         {/* Cabecera */}
         <Header>          
-          <Titulo>Calendario de ausencias</Titulo>          
+          <Titulo>{nombre} (Calendario de ausencias)</Titulo>          
           <BtnRegresar ruta='/administrador' />            
         </Header>            
 

@@ -28,7 +28,7 @@ const Agenda = () => {
 
         {/* Cabecera */}
         <Header>
-          <Titulo>Usuario: {nombre} (Agenda)</Titulo>
+          <Titulo>{nombre} (Agenda)</Titulo>
           <ContenedorBotones>
             <BtnRegresar ruta='/planeado' />          
           </ContenedorBotones>

@@ -14,20 +14,7 @@ const Header = styled.div`
     display: flex;
     justify-content: space-between;
 `;
- 
-const Titulo = styled.h1`
 
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 1.4rem; /* 22.4px */  
-    margin-left: 1rem;  
-    
-    // Cuando se reduzca el tamaño de la ventana a 950px, disminuyo el tamaño de la fuente del titulo
-    @media(max-width: 60rem){ /* 950px */
-        font-size: 1.2rem; /* 19.2px */        
-    }
-`;
- 
 const ContenedorHeader = styled.div`
     background: ${theme.grisClaro2};
     width: 100%;
@@ -47,6 +34,27 @@ const ContenedorHeader = styled.div`
         }
     }
 `;
+
+ 
+const Titulo = styled.h1`
+
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.4rem; /* 22.4px */  
+    margin-left: 1rem;      
+    
+    // Cuando se reduzca el tamaño de la ventana a 950px, disminuyo el tamaño de la fuente del titulo
+    @media(max-width: 60rem){ /* 950px */
+        font-size: 1rem; /* 16px */          
+    }
+`;
+
+const ContenedorTitulo = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+`;
+ 
  
 const ContenedorBotones = styled.div`      
     display: flex;
@@ -54,8 +62,30 @@ const ContenedorBotones = styled.div`
     align-items: center;
     padding: 0rem;
     margin-right: 2rem;
-}
+`;
+
+const ContenedorArchivoExcel = styled.div`
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    witdh: auto
+
+    h3 {
+    width: 30%;
+    }
+
+    input {
+    font-size: 1.2rem;
+    margin-left: 1.8rem;
+    }
+
+    @media(max-width: 60rem){ /* 950px */
+        font-size: 1rem; /* 16px */
+    }
+
 `;
 
  
-export {Header, Titulo, ContenedorBotones, ContenedorHeader};
+export {Header, ContenedorHeader, Titulo, ContenedorTitulo, ContenedorBotones, ContenedorArchivoExcel};

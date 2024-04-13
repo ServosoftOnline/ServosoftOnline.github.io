@@ -28,7 +28,7 @@ const Oym = () => {
 
         {/* Cabecera */}
         <Header>          
-          <Titulo>Usuario: {nombre} (O&m)</Titulo>
+          <Titulo>{nombre} (O&m)</Titulo>
           <ContenedorBotones>
             <BtnRegresar ruta='/planeado' />
           </ContenedorBotones>

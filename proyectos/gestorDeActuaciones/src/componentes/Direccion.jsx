@@ -38,8 +38,8 @@ import * as XLSX from 'xlsx';
 import Mensaje from "./../componentes/Mensaje";
 
 // Elementos
-import {Header, Titulo} from '../elementos/ElementosDeHeader';
-import {Formulario, ContenedorArchivoExcel, ResultadosImportacion, ContenedorBoton} from './../elementos/ElementosDeFormulario';
+import {Header, ContenedorHeader, Titulo, ContenedorTitulo, ContenedorArchivoExcel} from '../elementos/ElementosDeHeader';
+import {Formulario, ResultadosImportacion, ContenedorBoton} from './../elementos/ElementosDeFormulario';
 import BtnRegresar from "../elementos/BtnRegresar";
 import Boton from './../elementos/Boton';
 
@@ -202,16 +202,24 @@ const Direccion = () => {
 
         {/* Cabecera */}
         <Header>
-          <Titulo>Usuario: {nombre} (Dirección)</Titulo>
-          <ContenedorArchivoExcel>
-            <h3>Archivo excel a importar: </h3>
-            <input
-              type="file"
-              accept='.xlsx, xls'
-              onChange={handleFileUpload} 
-            />
-          </ContenedorArchivoExcel>
-          <BtnRegresar ruta='/coordinador' />
+          <ContenedorHeader>
+
+            <ContenedorTitulo>
+              <Titulo>{nombre} (Dirección)</Titulo>
+              <BtnRegresar ruta='/coordinador' />
+            </ContenedorTitulo>
+
+            <ContenedorArchivoExcel>
+              <h3>Archivo excel a importar: </h3>
+              <input
+                type="file"
+                accept='.xlsx, xls'
+                onChange={handleFileUpload} 
+              />
+            </ContenedorArchivoExcel>
+            
+          </ContenedorHeader>          
+          
         </Header>
 
         {/* Formulario */}

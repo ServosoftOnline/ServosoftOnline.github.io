@@ -28,7 +28,7 @@ const Mantenimiento = () => {
 
         {/* Cabecera */}
         <Header>          
-          <Titulo>Usuario: {nombre} (Mantenimiento)</Titulo>
+          <Titulo>{nombre} (Mantenimiento)</Titulo>
           <ContenedorBotones>
             <BtnRegresar ruta='/planeado' />
           </ContenedorBotones>
