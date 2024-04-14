@@ -26,7 +26,7 @@ const useObtenerTodosLosCodigosDeIncidencias = () => {
         if (sesion) {
 
             // Consulta
-            const unsubscribe = onSnapshot(collection(db, 'incidencias'), (snapshot) => {
+            const unsubscribe = onSnapshot(collection(db, 'actuaciones'), (snapshot) => {
                 const codigosIncidencia = snapshot.docs.map((documento) => {
                     return documento.data().codigoIncidencia; // Accede al campo 'codigoIncidencia'
                 });
@@ -35,8 +35,7 @@ const useObtenerTodosLosCodigosDeIncidencias = () => {
                 console.log(error)
             });
 
-            // Cierra la consulta
-            // return () => unsubscribe();
+            // Cierra la consulta            
 			return unsubscribe;
         }
 

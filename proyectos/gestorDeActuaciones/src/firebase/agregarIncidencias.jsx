@@ -11,13 +11,17 @@
 import { db } from './firebaseConfig';
 import { collection, addDoc } from "firebase/firestore";
 
+// Date-fns
+import { getUnixTime } from "date-fns";
+
 // La función
 const agregarIncidencias = async (data) => {
     console.log('Extraigo la data y la añado a la colección'); 
     data.forEach(async (registro) => {
+
         try {
             console.log(registro);
-            await addDoc(collection(db, 'incidencias'), {
+            await addDoc(collection(db, 'actuaciones'), {
                 "codigoCliente": registro["Código Cliente"],
                 "dniCliente": registro["DNI Cliente"],
                 "nombre": registro["Nombre"],
@@ -28,12 +32,12 @@ const agregarIncidencias = async (data) => {
                 "tienda": registro["Tienda"],
                 "codigoIncidencia": registro["Código Incidencia"],
                 "tipo": registro["Tipo"],
-                "nivel": registro["Nivel"],
-                "fechaIncidencia": registro["Fecha Incidencia"],
+                "nivel": registro["Nivel"],                
+                "fechaIncidencia": getUnixTime(new Date()),  // Momento actual
                 "hora": registro["Hora"],
                 "descripcion": registro["Descripción"],
                 "accion": registro["Acción"],
-                "estado": "pte_de_coordinar",
+                "estado": "pte_de_coordinar", // Primer estado de la actuación
                 "poblacionInstalacion": registro["Población Instalación"],
                 "direccionInstalacion": registro["Direccion Instalación"],
                 "empresaInstaladora": registro["Empresa Instaladora"],
