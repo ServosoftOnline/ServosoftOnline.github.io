@@ -1,5 +1,7 @@
 /*
-  
+  COMPONENTE PRINCIPAL PARA LOS COORDINADORES.
+    - Mostrará las incidencias pendientes de coordinar
+    - Las editará y podrá cambiarlas de estado  
 */
 
 // React y react router
@@ -10,6 +12,10 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 import {Header, Titulo, ContenedorHeader, ContenedorBotones} from '../elementos/ElementosDeHeader';
 import {
   Lista,
+  ContenedorSubtitulo,
+  Subtitulo,
+  Fecha,
+  ElementoListaCabecera,
   ElementoLista,
   ListaDeCategorias,
   ElementoListaCategorias,
@@ -18,16 +24,19 @@ import {
   Direccion,
   Poblacion,
   TipoDeServicio,
-  Fecha,
+  Gestion,
   ContenedorBotonesLista,
   BotonAccion,
   BotonCargarMas,
   ContenedorBotonCentral,
-  ContenedorSubtitulo,
-  Subtitulo
+  
 } from './../elementos/ElementosDeLista';
 import Boton from "../elementos/Boton";
 import BtnSalir from "../elementos/BtnSalir";
+
+// SVG
+import IconoEditar from './../assets/editar.svg?react';
+import IconoBorrar from './../assets/borrar.svg?react';
 
 // Contexto
 import { RolContext } from "../contextos/RolContext";
@@ -45,11 +54,6 @@ const Coordinador = () => {
   const [nombre] = useObtenerNombreDeUnUsuario();
   const [actuacionesSinAsignar] = useObtenerIncidenciasPtesDeAsignar();
   const arrayActuacionesSinAsignar = Object.values(actuacionesSinAsignar);
-
-  arrayActuacionesSinAsignar.forEach((incidencia) => {
-    console.log(incidencia.codigoIncidencia);
-
-  });
   
   // Funcion del componente que comprueba si la fecha del index anterior es igual a la fecha del index actual
   const fechaEsIgual = (arrayActuacionesSinAsignar, index, incidencia) => {
@@ -112,17 +116,30 @@ const Coordinador = () => {
                 // Englobo a los elementos en un div al que le pongo el key
                 <div key={actuacion.codigoIncidencia}>
 
-                  {/* Solo mostraré la fecha si es diferente a la anterior */}
+                  {/* Solo mostraré la fecha y la cabecera si la fecha si es diferente a la anterior */}
                   {!fechaEsIgual(arrayActuacionesSinAsignar, index, actuacion) &&
+                    <>
+
                       <Fecha>
                         {formatearFecha(actuacion.fechaIncidencia)}
                       </Fecha>
+
+                      <ElementoListaCabecera>
+                        <Incidencia>Incidencia</Incidencia>
+                        <Cliente>Cliente</Cliente>
+                        <Direccion>Dirección</Direccion>
+                        <Poblacion>Población</Poblacion>
+                        <TipoDeServicio>Servicio</TipoDeServicio>
+                        <Gestion>Gestión</Gestion>
+                      </ElementoListaCabecera>
+                     
+                    </>
                   }
 
                   <ElementoLista>
                 
                     <Incidencia>                        
-                        {actuacion.codigoIncidencia}
+                      {actuacion.codigoIncidencia}
                     </Incidencia>
 
                     <Cliente>
@@ -130,29 +147,31 @@ const Coordinador = () => {
                     </Cliente>
 
                     <Direccion>
-                      {actuacion.direccion}
+                      {actuacion.direccionInstalacion}
                     </Direccion>
 
                     <Poblacion>
-                      {actuacion.poblacion}
+                      {actuacion.poblacionInstalacion}
                     </Poblacion>
 
                     <TipoDeServicio>
                       {actuacion.tipoServicio}
-                    </TipoDeServicio>
+                    </TipoDeServicio>                    
 
-                    {/* Botones para editar o borrar el gasto mostrado */}
-                    {/* <ContenedorBotonesLista>
+                    {/* Boton para editar la actuacion */}
+                    <ContenedorBotonesLista>
 
-                        <BotonAccion as={Link} to={`/editar/${actuacion.id}`}> 
+                        {/* <BotonAccion as={Link} to={`/editar/${actuacion.id}`}>  */}
+                        <BotonAccion>
                           <IconoEditar /> 
                         </BotonAccion>
 
-                        <BotonAccion as={Link} to={`/borrar/${actuacion.id}`}> 
+                        {/* <BotonAccion as={Link} to={`/borrar/${actuacion.id}`}>  */}
+                        <BotonAccion>
                           <IconoBorrar />
                         </BotonAccion>
 
-                      </ContenedorBotonesLista>                   */}
+                      </ContenedorBotonesLista>                  
                   </ElementoLista>
                 </div>                
               )

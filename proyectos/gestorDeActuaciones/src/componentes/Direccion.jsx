@@ -132,9 +132,9 @@ const Direccion = () => {
       const incidenciasDuplicadas = validaIncidenciasDuplicadas();      
 
       if (incidenciasDuplicadas.length === 0) {
-        cambiarMensaje('Agregando la informacion a la base de datos', 'correcta');        
-        agregarIncidencias(data);
-        reiniciarMensaje();
+        cambiarMensaje('Agregando la informacion a la base de datos', 'correcta');   
+        reiniciarMensaje();     
+        agregarIncidencias(data);        
         
       } else {
         cambiarMensaje ('Incidencias duplicadas: ' + incidenciasDuplicadas, 'incorrecta');

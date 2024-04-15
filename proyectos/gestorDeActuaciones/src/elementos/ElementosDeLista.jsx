@@ -6,38 +6,81 @@
 
 import styled from 'styled-components';
 import theme from './../objetos/theme';
- 
-const Lista = styled.ul`
 
+const Lista = styled.ul`
+    
     list-style: none;
-    padding: 0 2.5rem; /* 40px */
+    padding: 0 2rem; /* 40px */
     height: 100%;
     overflow-y: auto;
+    
+`;
+
+const ContenedorSubtitulo = styled.div`
+
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+`;
  
-    li {
-        grid-template-columns: 1fr 1fr 1fr auto;
+const Subtitulo = styled.h3`
+
+    color: ${theme.grisClaro2};
+    font-weight: 400;
+    font-size: 40px;
+    padding: 2.5rem 0; /* 40px */
+`;
+
+const Fecha = styled.div`
+
+    border-radius: 0.31rem; /* 5px */
+    background: ${theme.negro};
+    text-align: center;
+    color: #fff;
+    padding: 0.62rem 3.12rem; /* 10px 50px */
+    display: inline-block;
+    margin: 1.25rem 0; /* 20px */
+ 
+    @media (max-width: 50rem) { /* 80px */
+        width: 100%;
     }
- 
-    @media (max-width: 50rem) { /*80px*/        
-        li {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-        }
+`;
+
+const ElementoListaCabecera = styled.li`
+
+    background: ${theme.grisClaro};
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 2fr 4fr 1fr 1fr 1fr; 
+    font-weight: bolder;   
+    padding: 1.25rem 0; /* 20px */
+    border-bottom: 2px solid #F2F2F2;    
+    gap: 0.31rem; /* 5px */      
+    
+    & > div {
+        width: 100%;
+        display: flex;        
+    }
+
+    @media(max-width: 60rem){ /* 950px */
+        height: 70%;         
     }
 `;
  
 const ElementoLista = styled.li`
 
-    padding: 1.25rem 0; /* 20px */
-    border-bottom: 2px solid #F2F2F2;
+    list-style: none;
     display: grid;
-    gap: 0.31rem; /* 5px */
-    justify-content: space-between;
+    grid-template-columns: 1fr 2fr 4fr 1fr 1fr 1fr;    
+    padding: 1.25rem 0; /* 20px */
+    border-bottom: 2px solid #F2F2F2;    
+    gap: 0.31rem; /* 5px */      
     
     & > div {
         width: 100%;
-        display: flex;
-        align-items: center;        
+        display: flex;        
     }
  
     &:hover button,
@@ -50,35 +93,18 @@ const ElementoLista = styled.li`
     }
 `;
  
- 
-const ListaDeCategorias = styled.ul`
-
-    list-style: none;
-    padding: 0 2.5rem; /* 40px */
-    height: 100%;
-    overflow-y: auto;
-`;
- 
-const ElementoListaCategorias = styled.li`
-    padding: 1.25rem 0; /* 20px */
-    border-bottom: 2px solid #F2F2F2;
-    display: flex;
-    justify-content: space-between;    
-`;
- 
 const Incidencia = styled.div`
-    font-weight: 500;
-    font-size: 1.25rem; /* 20px */
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
- 
-    @media (max-width: 50rem) { /* 80px */
-        font-size: 1.12rem;
+
+    justify-content: left;
+    font-size: 1.25rem;
+    text-transform: capitalize;
+    @media (max-width: 50rem) { /* 50px */
+        justify-content: end;
     }
 `;
  
 const Cliente = styled.div`
+
     justify-content: left;
     font-size: 1.25rem;
     text-transform: capitalize;
@@ -89,6 +115,7 @@ const Cliente = styled.div`
 `;
 
 const Direccion = styled.div`
+
     justify-content: left;
     font-size: 1.25rem;
     text-transform: capitalize;
@@ -99,6 +126,7 @@ const Direccion = styled.div`
 `;
 
 const Poblacion = styled.div`
+
     justify-content: left;
     font-size: 1.25rem;
     text-transform: capitalize;
@@ -109,7 +137,8 @@ const Poblacion = styled.div`
 `;
 
 const TipoDeServicio = styled.div`
-    justify-content: left;
+
+    justify-content: center;
     font-size: 1.25rem;
     text-transform: capitalize;
     @media (max-width: 50rem) { /* 50px */
@@ -118,27 +147,27 @@ const TipoDeServicio = styled.div`
     
 `;
  
-const Fecha = styled.div`
-    border-radius: 0.31rem; /* 5px */
-    background: ${theme.azulClaro};
-    text-align: center;
-    color: #fff;
-    padding: 0.62rem 3.12rem; /* 10px 50px */
-    display: inline-block;
-    margin: 1.25rem 0; /* 20px */
- 
-    @media (max-width: 50rem) { /* 80px */
-        width: 100%;
+const Gestion = styled.div`
+
+    justify-content: center;
+    font-size: 1.25rem;
+    text-transform: capitalize;
+    @media (max-width: 50rem) { /* 50px */
+        justify-content: end;
     }
+    
 `;
- 
+
 const ContenedorBotonesLista = styled.div`
+
+    justify-content: center;
     @media (max-width: 50rem) { /* 80px */
         justify-content: end;
     }
 `;
- 
+
 const BotonAccion = styled.button`
+
     outline: none;
     background: ${theme.grisClaro};
     border: none;
@@ -168,22 +197,26 @@ const BotonAccion = styled.button`
         opacity: 1;
     }
 `;
- 
-const ContenedorSubtitulo = styled.div`
+
+
+
+
+// POR AHORA SIN UTILIZAR
+const ListaDeCategorias = styled.ul`
+
+    list-style: none;
+    padding: 0 2.5rem; /* 40px */
     height: 100%;
+    overflow-y: auto;
+`;
+ 
+const ElementoListaCategorias = styled.li`
+    padding: 1.25rem 0; /* 20px */
+    border-bottom: 2px solid #F2F2F2;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-between;    
 `;
- 
-const Subtitulo = styled.h3`
-    color: ${theme.grisClaro2};
-    font-weight: 400;
-    font-size: 40px;
-    padding: 2.5rem 0; /* 40px */
-`;
- 
+
 const ContenedorBotonCentral = styled.div`
     display: flex;
     justify-content: center;
@@ -215,6 +248,10 @@ const BotonCargarMas = styled.button`
  
 export {
     Lista,
+    ContenedorSubtitulo,
+    Subtitulo,
+    Fecha,
+    ElementoListaCabecera,
     ElementoLista,
     ListaDeCategorias,
     ElementoListaCategorias,
@@ -223,11 +260,9 @@ export {
     Direccion,
     Poblacion,
     TipoDeServicio,
-    Fecha,
+    Gestion,
     ContenedorBotonesLista,
     BotonAccion,
     BotonCargarMas,
-    ContenedorBotonCentral,
-    ContenedorSubtitulo,
-    Subtitulo
+    ContenedorBotonCentral    
 };

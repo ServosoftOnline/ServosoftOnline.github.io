@@ -14,7 +14,11 @@ const theme = {
     grisClaro4: '#666666',
     verdeClaro: '#4E927C',
     azulClaro: '#4A85B9',
-    negro: '#333333'
+    negro: '#333333',
+    grisAzulado1: '#778899', // Un tono gris azulado
+    grisAzulado2: '#5F9EA0', // Un tono gris azulado más oscuro
+    grisAzulado3: '#4682B4', // Un tono gris azulado aún más oscuro
+    grisAzulado4: '#4169E1' // Un tono gris azulado aún más oscuro
 }
 
 export default theme;
