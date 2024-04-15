@@ -30,7 +30,7 @@ import {
   BotonCargarMas,
   ContenedorBotonCentral,
   
-} from './../elementos/ElementosDeLista';
+} from '../elementos/ElementosDeLista';
 import Boton from "../elementos/Boton";
 import BtnSalir from "../elementos/BtnSalir";
 

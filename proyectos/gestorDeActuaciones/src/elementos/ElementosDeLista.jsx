@@ -10,7 +10,7 @@ import theme from './../objetos/theme';
 const Lista = styled.ul`
     
     list-style: none;
-    padding: 0 2rem; /* 40px */
+    padding: 0 2rem; /* 0 32px */
     height: 100%;
     overflow-y: auto;
     
@@ -43,8 +43,10 @@ const Fecha = styled.div`
     display: inline-block;
     margin: 1.25rem 0; /* 20px */
  
-    @media (max-width: 50rem) { /* 80px */
-        width: 100%;
+    @media(max-width: 60rem){ /* 950px */    
+        width: 86%;
+        font-size: 1rem;
+        padding: 0.2rem 3.12rem; /* 3.2px 49.92px */
     }
 `;
 
@@ -57,15 +59,21 @@ const ElementoListaCabecera = styled.li`
     font-weight: bolder;   
     padding: 1.25rem 0; /* 20px */
     border-bottom: 2px solid #F2F2F2;    
-    gap: 0.31rem; /* 5px */      
+    gap: 0.31rem; /* 5px */ 
+    font-size: 1.2rem;      
     
     & > div {
         width: 100%;
-        display: flex;        
+        display: flex;  
+             
     }
 
-    @media(max-width: 60rem){ /* 950px */
-        height: 70%;         
+    @media(max-width: 60rem){ /* 950px */ 
+        grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr; 
+        font-size: 1rem;
+        & > div {
+            
+        }
     }
 `;
  
@@ -76,11 +84,12 @@ const ElementoLista = styled.li`
     grid-template-columns: 1fr 2fr 4fr 1fr 1fr 1fr;    
     padding: 1.25rem 0; /* 20px */
     border-bottom: 2px solid #F2F2F2;    
-    gap: 0.31rem; /* 5px */      
+    gap: 0.31rem; /* 5px */   
+    font-size: 1.2rem;   
     
     & > div {
         width: 100%;
-        display: flex;        
+        display: flex;  
     }
  
     &:hover button,
@@ -88,72 +97,71 @@ const ElementoLista = styled.li`
         opacity: 1;
     }
 
-    @media (max-width: 50rem) { /*80px*/
-        height: 70%;     
+    @media(max-width: 60rem){ /* 950px */ 
+        grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr; 
+        font-size: 1rem;
+        padding: 0.8rem 0; /* 16px */
+        & > div {
+            
+        }
     }
 `;
  
 const Incidencia = styled.div`
 
-    justify-content: left;
-    font-size: 1.25rem;
+    justify-content: left;    
     text-transform: capitalize;
-    @media (max-width: 50rem) { /* 50px */
-        justify-content: end;
+    @media(max-width: 60rem){ /* 950px */
+        // justify-content: end;
     }
 `;
  
 const Cliente = styled.div`
 
-    justify-content: left;
-    font-size: 1.25rem;
+    justify-content: left;    
     text-transform: capitalize;
-    @media (max-width: 50rem) { /* 50px */
-        justify-content: end;
+    @media(max-width: 60rem){ /* 950px */
+        // justify-content: end;
     }
     
 `;
 
 const Direccion = styled.div`
-
-    justify-content: left;
-    font-size: 1.25rem;
+    
+    justify-content: left;    
     text-transform: capitalize;
-    @media (max-width: 50rem) { /* 50px */
-        justify-content: end;
+    @media(max-width: 60rem){ /* 950px */    
+        // justify-content: center;
     }
     
 `;
 
 const Poblacion = styled.div`
 
-    justify-content: left;
-    font-size: 1.25rem;
+    justify-content: left;    
     text-transform: capitalize;
-    @media (max-width: 50rem) { /* 50px */
-        justify-content: end;
+    @media(max-width: 60rem){ /* 950px */
+        // justify-content: end;
     }
     
 `;
 
 const TipoDeServicio = styled.div`
 
-    justify-content: center;
-    font-size: 1.25rem;
+    justify-content: center;    
     text-transform: capitalize;
-    @media (max-width: 50rem) { /* 50px */
-        justify-content: end;
+    @media(max-width: 60rem){ /* 950px */
+        // justify-content: end;
     }
     
 `;
  
 const Gestion = styled.div`
 
-    justify-content: center;
-    font-size: 1.25rem;
+    justify-content: center;    
     text-transform: capitalize;
-    @media (max-width: 50rem) { /* 50px */
-        justify-content: end;
+    @media(max-width: 60rem){ /* 950px */
+        // justify-content: end;
     }
     
 `;
@@ -161,7 +169,7 @@ const Gestion = styled.div`
 const ContenedorBotonesLista = styled.div`
 
     justify-content: center;
-    @media (max-width: 50rem) { /* 80px */
+    @media(max-width: 60rem){ /* 950px */
         justify-content: end;
     }
 `;
@@ -193,8 +201,14 @@ const BotonAccion = styled.button`
         width: 1.125rem; /* 18px */
     }
  
-    @media (max-width: 50rem) { /* 80px */
+    @media(max-width: 60rem){ /* 950px */
         opacity: 1;
+        width: 2rem;    /* 32px */
+        height: 2rem;   /* 32px */
+
+        svg {
+            width: 1rem; /* 18px */
+        }
     }
 `;
 

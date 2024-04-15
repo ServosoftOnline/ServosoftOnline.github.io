@@ -10,12 +10,16 @@ const Header = styled.div`
     margin-bottom: 1rem;  
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    align-items: center; 
-
+    align-items: center;
     
     // Separo los componentes de forma horizontal
     display: flex;
     justify-content: space-between;
+
+    @media(max-width: 60rem){ /* 950px */
+        margin-bottom: 0rem;
+        padding-bottom: 0rem;
+    }
 `;
 
 const ContenedorHeader = styled.div`
