@@ -6,16 +6,8 @@
 import React from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
-// Elementos
-import {Header, Titulo, ContenedorBotones} from '../elementos/ElementosDeHeader';
-import BtnRegresar from "../elementos/BtnRegresar";
-
-// Hook
-import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
-
 // El Componente
-const Agenda = () => {
-  const [nombre] = useObtenerNombreDeUnUsuario();
+const Agenda = () => { 
 
   return (
     <>      
@@ -24,17 +16,11 @@ const Agenda = () => {
         {/* Helmet */}
         <Helmet>
           <title>Agenda</title>
-        </Helmet>
-
-        {/* Cabecera */}
-        <Header>
-          <Titulo>{nombre} (Agenda)</Titulo>
-          <ContenedorBotones>
-            <BtnRegresar ruta='/coordinador' />          
-          </ContenedorBotones>
-        </Header>            
+        </Helmet>  
 
       </HelmetProvider>
+
+      <p>Agenda</p>
     </>
   );
 }

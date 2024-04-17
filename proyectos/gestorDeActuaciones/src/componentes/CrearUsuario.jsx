@@ -212,12 +212,12 @@ const CrearUsuario = () => {
         </Helmet>
 
         {/* Cabecera */}
-        <Header>
+        {/* <Header>
           <Titulo>{nombre} (Crear usuario)</Titulo>
             <ContenedorBotones>
               <BtnRegresar ruta='/administrador' />
             </ContenedorBotones>          
-        </Header>            
+        </Header>             */}
                     
         {/* Formulario */}
         <Formulario onSubmit={handleSubmit}>    

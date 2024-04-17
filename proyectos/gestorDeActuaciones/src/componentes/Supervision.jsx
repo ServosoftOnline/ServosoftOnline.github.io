@@ -6,16 +6,8 @@
 import React from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
-// Elementos
-import {Header, Titulo, ContenedorBotones} from '../elementos/ElementosDeHeader';
-import BtnRegresar from "../elementos/BtnRegresar";
-
-// Hooks
-import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
-
 // El Componente
-const Supervision = () => {
-  const [nombre] = useObtenerNombreDeUnUsuario();
+const Supervision = () => {  
 
   return (
     <>      
@@ -24,18 +16,13 @@ const Supervision = () => {
         {/* Helmet */}
         <Helmet>
           <title>Supervision</title>
-        </Helmet>
-
-        {/* Cabecera */}
-        <Header>
-          <Titulo>{nombre} (Supervisión)</Titulo>
-          <ContenedorBotones>
-            <BtnRegresar ruta='/coordinador' />          
-          </ContenedorBotones>
-        </Header>            
+        </Helmet> 
 
       </HelmetProvider>
+      
+      <p>Supervision</p>
     </>
+   
   );
 }
  

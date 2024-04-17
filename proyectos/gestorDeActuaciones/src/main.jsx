@@ -1,11 +1,17 @@
 /*
   GESTOR DE ACTUACIONES PARA EMPRESAS DE TELECOMUNICACIONES
-  - Uso react, styled components, react router dom, REACT-HELMET-ASYNC, PLUGIN VITE-PLUGIN-SVGR, REACT DAYPICKER Y DATE-FNS
 
+  - Es el componente principal de la aplicación
+
+  - Contiene:
+    - Las rutas anidadas de administradores, coordinadores y técnicos importadas de forma dinámica
+    - El contenedor ppal de la aplicación
+    - Los proveedores de los contextos de los mensajes de validación, el usuario que inicia la sesion y su rol 
+    - El favicon en la pestaña del navegador
 
 */
 
-import React from 'react';
+import React, {Suspense, lazy} from "react";
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
@@ -21,32 +27,19 @@ import { ProveedorMensaje } from './contextos/contextoMensaje.jsx';
 import { AuthProvider } from './contextos/AuthContext.jsx';
 import { RolProvider } from './contextos/RolContext.jsx';
 
-// Componentes para las rutas comúnes
-const InicioSesion = React.lazy(() => import( './componentes/InicioSesion.jsx'));
-const Error404 = React.lazy(() => import('./componentes/Error404.jsx'));
-
-// Componentes para las rutas de administrador
-const Administrador = React.lazy(() => import('./componentes/Administrador.jsx'));
-const CrearUsuario = React.lazy(() => import('./componentes/CrearUsuario.jsx'));
-const Produccion = React.lazy(() => import('./componentes/Produccion.jsx'));
-const CalendarioAusencias = React.lazy(() => import ('./componentes/CalendarioAusencias.jsx'));
-const ReporteGeneral = React.lazy(() => import('./componentes/ReporteGeneral.jsx'));
-
-// Componentes para las rutas de coordinador
-const Coordinador = React.lazy(()=> import ('./componentes/Coordinador.jsx'));
-const Direccion = React.lazy(() => import('./componentes/Direccion.jsx'));
-const Ilocalizable = React.lazy(() => import('./componentes/Ilocalizable.jsx'));
-const Mantenimiento = React.lazy(() => import ('./componentes/Mantenimiento.jsx'));
-const FaltaCitas = React.lazy(() => import('./componentes/FaltaCitas.jsx'));
-const Incidencias = React.lazy(() => import('./componentes/Incidencias.jsx'));
-const Oym = React.lazy(() => import('./componentes/Oym.jsx'));
-const Agenda = React.lazy(() => import('./componentes/Agenda.jsx'));
-const Supervision = React.lazy(() => import('./componentes/Supervision.jsx'));
-const InstaladosFinalizados = React.lazy(() => import('./componentes/InstaladosFinalizados.jsx'));
-
-// Componentes para las rutas de técnico
-const Tecnico = React.lazy(() => import('./componentes/Tecnico.jsx'));
+// Rutas
+// import Administrador from './componentes/Administrador.jsx';
+// import Coordinador from './componentes/Coordinador.jsx';
 // import Tecnico from './componentes/Tecnico.jsx';
+// import InicioSesion from './componentes/InicioSesion.jsx';
+// import Error404 from './componentes/Error404.jsx';
+
+// Rutas importadas de forma dinámica
+const Administrador = lazy(() => import('./componentes/Administrador.jsx'));
+const Coordinador = lazy(() => import('./componentes/Coordinador.jsx'));
+const Tecnico = lazy(() => import('./componentes/Tecnico.jsx'));
+const InicioSesion = lazy(() => import('./componentes/InicioSesion.jsx'));
+const Error404 = lazy(() => import('./componentes/Error404.jsx'));
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -66,38 +59,25 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         {/* React router */}
         <BrowserRouter>
-          <Contenedor>
-            <React.Suspense>
+          <Contenedor> 
+            <Suspense>
               <Routes>
-
-                {/* Rutas públicas para administradores */}
-                <Route path='/administrador' element={<Administrador />} />
-                <Route path='/crear-usuario' element={<CrearUsuario />} />
-                <Route path='/produccion' element={<Produccion />} />
-                <Route path='/calendario-ausencias' element={<CalendarioAusencias />} />
-                <Route path='/reporte-general' element={<ReporteGeneral />} />
                 
-                {/* Rutas públicas para coordinadores */}
-                <Route path='/coordinador' element={<Coordinador />} />
-                <Route path='/direccion' element={<Direccion />} />              
-                <Route path='/ilocalizable' element={<Ilocalizable />} />
-                <Route path='/mantenimiento' element={<Mantenimiento />} />
-                <Route path='/falta-citas' element={<FaltaCitas />} />
-                <Route path='/incidencias' element={<Incidencias />} />
-                <Route path='/oym' element={<Oym />} />
-                <Route path='/agenda' element={<Agenda />} />
-                <Route path='/supervision' element={<Supervision />} />
-                <Route path='/instalados-finalizados' element={<InstaladosFinalizados />} />
+                {/* Ruta raiz */}
+                <Route path='/' element={<InicioSesion />} /> 
 
-                {/* Rutas publicas para tecnicos */}
+                {/* Rutas anidadas */}
+                <Route path="/administrador/*" element={<Administrador />} />                
+                <Route path='/coordinador/*' element={<Coordinador />} />
+
+                {/* Rutas publicas para los tenicos, Por ahora no tengo rutas anidadas */}
                 <Route path='/tecnico' element={<Tecnico />} />
 
-                {/* Rutas públicas comunes */}
-                <Route path='/' element={<InicioSesion />} />  
+                {/* Ruta pública "No encuentra la página" */}                 
                 <Route path='*' element={<Error404 />} />
 
-              </Routes> 
-            </React.Suspense>           
+              </Routes>             
+            </Suspense>
           </Contenedor>
         </BrowserRouter>
 

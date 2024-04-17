@@ -6,16 +6,8 @@
 import React from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
-// Elementos
-import {Header, Titulo, ContenedorBotones} from '../elementos/ElementosDeHeader';
-import BtnRegresar from "../elementos/BtnRegresar";
-
-// Hook
-import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
-
 // El Componente
-const Mantenimiento = () => {
-  const [nombre] = useObtenerNombreDeUnUsuario();
+const Mantenimiento = () => {  
 
   return (
     <>      
@@ -24,17 +16,10 @@ const Mantenimiento = () => {
         {/* Helmet */}
         <Helmet>
           <title>Mantenimiento</title>
-        </Helmet>
-
-        {/* Cabecera */}
-        <Header>          
-          <Titulo>{nombre} (Mantenimiento)</Titulo>
-          <ContenedorBotones>
-            <BtnRegresar ruta='/coordinador' />
-          </ContenedorBotones>
-        </Header>            
+        </Helmet>  
 
       </HelmetProvider>
+      <p>Mostrar indicencias en estado de manteniento</p>
     </>
   );
 }

@@ -6,16 +6,9 @@
 import React from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
-// Elementos
-import {Header, Titulo, ContenedorBotones} from '../elementos/ElementosDeHeader';
-import BtnRegresar from "../elementos/BtnRegresar";
-
-// Hooks
-import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
-
 // El Componente
 const InstaladosFinalizados = () => {
-  const [nombre] = useObtenerNombreDeUnUsuario();
+  
   return (
     <>      
       <HelmetProvider>
@@ -25,15 +18,9 @@ const InstaladosFinalizados = () => {
           <title>Instalados / Finalizados</title>
         </Helmet>
 
-        {/* Cabecera */}
-        <Header>
-          <Titulo>{nombre} (Instalados / Finalizados)</Titulo>
-          <ContenedorBotones>
-            <BtnRegresar ruta='/coordinador' />
-          </ContenedorBotones>
-        </Header>            
-
       </HelmetProvider>
+
+      <p>Instalados/Finalizados</p>
     </>
   );
 }

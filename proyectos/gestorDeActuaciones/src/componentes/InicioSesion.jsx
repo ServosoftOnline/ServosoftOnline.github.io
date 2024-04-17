@@ -44,7 +44,7 @@ const InicioSesion = () => {
   useEffect(() => {
 
     if(sesion && rol) {
-      reiniciarMensaje();     
+      reiniciarMensaje();           
       setTimeout(() => {
         navigate('/' + rol);  
       }, 1000);

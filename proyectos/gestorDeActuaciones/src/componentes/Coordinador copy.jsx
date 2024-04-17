@@ -1,14 +1,14 @@
 /*
   COMPONENTE COORDINADOR:
-
-    - Contiene las rutas para los coordinadores importadas de forma dinámica
+    - Contiene las rutas para los coordinadores
     - Obtiene el nombre del usuario para mostrarlo en la cabecera
     - Obtiene el rol del usuario mediante un conexto para mostrar el enlace a administrador solo si es administrador
-    - Muestra los botones que actuan como link para desplazarse por las diferentes rutas    
+    - Muestra los botones que actuan como link para desplazarse por las diferentes rutas
+    - 
 */
 
 // React y react router
-import React, {useContext, Suspense, lazy} from "react";
+import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
@@ -17,17 +17,17 @@ import {Header, Titulo, ContenedorHeader, ContenedorBotones} from '../elementos/
 import Boton from "../elementos/Boton";
 import BtnSalir from "../elementos/BtnSalir";
 
-// Elementos para las rutas importados de forma dinámica
-const SinAsignar = lazy(() => import('./SinAsignar'));
-const Direccion = lazy(() => import ('./Direccion'));
-const Ilocalizable = lazy(() => import ('./Ilocalizable'));
-const Mantenimiento = lazy(() => import('./Mantenimiento'));
-const FaltaCitas = lazy(() => import('./FaltaCitas'));
-const Incidencias = lazy(() => import ('./Incidencias'));
-const Oym = lazy(() => import('./Oym') );
-const Agenda = lazy(() => import('./Agenda'));
-const Supervision = lazy(() => import('./Supervision'));
-const InstaladosFinalizados = lazy(() => import('./InstaladosFinalizados'));
+// Elementos para las rutas
+import SinAsignar from "./SinAsignar";
+import Direccion from "./Direccion";
+import Ilocalizable from "./Ilocalizable";
+import Mantenimiento from "./Mantenimiento";
+import FaltaCitas from "./FaltaCitas";
+import Incidencias from "./Incidencias";
+import Oym from "./Oym";
+import Agenda from "./Agenda";
+import Supervision from "./Supervision";
+import InstaladosFinalizados from "./InstaladosFinalizados";
 
 
 // Contexto
@@ -80,9 +80,8 @@ const Coordinador = () => {
         </ContenedorHeader>
       </Header>
 
-      {/* Rutas declaradas de forma dinámica*/}
-      <Suspense>
-        <Routes>
+      {/* Rutas */}
+      <Routes>
           <Route path="sin-asignar" element={<SinAsignar />}/>
           <Route path="direccion" element={<Direccion />}/>
           <Route path="ilocalizable" element={<Ilocalizable />}/>
@@ -94,7 +93,6 @@ const Coordinador = () => {
           <Route path="supervision" element={<Supervision />}/>
           <Route path="instalados-finalizados" element={<InstaladosFinalizados />}/>
         </Routes>
-      </Suspense>
 
     </>
   );

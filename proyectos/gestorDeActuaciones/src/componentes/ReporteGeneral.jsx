@@ -25,15 +25,10 @@ const ReporteGeneral = () => {
         {/* Helmet */}
         <Helmet>
           <title>Reporte General</title>
-        </Helmet>
-
-        {/* Cabecera */}
-        <Header>          
-          <Titulo>{nombre} (Reporte General)</Titulo>
-          <BtnRegresar ruta='/administrador' />
-        </Header>            
+        </Helmet>   
 
       </HelmetProvider>
+      <p>Reporte general</p>
     </>
   );
 }

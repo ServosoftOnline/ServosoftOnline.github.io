@@ -35,13 +35,12 @@ import {Helmet, HelmetProvider} from 'react-helmet-async';
 import * as XLSX from 'xlsx';
 
 // Componentes
-import Mensaje from "./../componentes/Mensaje";
+import Mensaje from "./Mensaje";
 
 // Elementos
-import {Header, ContenedorHeader, Titulo, ContenedorTitulo, ContenedorArchivoExcel} from '../elementos/ElementosDeHeader';
-import {Formulario, ResultadosImportacion, ContenedorBoton} from './../elementos/ElementosDeFormulario';
-import BtnRegresar from "../elementos/BtnRegresar";
-import Boton from './../elementos/Boton';
+import {ContenedorArchivoExcel} from '../elementos/ElementosDeHeader';
+import {Formulario, ResultadosImportacion, ContenedorBoton} from '../elementos/ElementosDeFormulario';
+import Boton from '../elementos/Boton';
 
 // Hooks
 import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
@@ -59,8 +58,7 @@ const Direccion = () => {
   // Estados
   const [data, setData] = useState([]);      
 
-  // LLamadas a los hooks
-  const [nombre] = useObtenerNombreDeUnUsuario(); 
+  // LLamadas a los hooks  
   const [todosLosCodigosdeIncidenciaDeLaBBDD] = useObtenerTodosLosCodigosDeIncidencias();
 
   // LLamadas a los contextos
@@ -200,27 +198,14 @@ const Direccion = () => {
           <title>Dirección</title>
         </Helmet>
 
-        {/* Cabecera */}
-        <Header>
-          <ContenedorHeader>
-
-            <ContenedorTitulo>
-              <Titulo>{nombre} (Dirección)</Titulo>
-              <BtnRegresar ruta='/coordinador' />
-            </ContenedorTitulo>
-
-            <ContenedorArchivoExcel>
-              <h3>Archivo excel a importar: </h3>
-              <input
-                type="file"
-                accept='.xlsx, xls'
-                onChange={handleFileUpload} 
-              />
-            </ContenedorArchivoExcel>
-            
-          </ContenedorHeader>          
-          
-        </Header>
+        <ContenedorArchivoExcel>
+          <h3>Archivo excel a importar: </h3>
+          <input
+            type="file"
+            accept='.xlsx, xls'
+            onChange={handleFileUpload} 
+          />
+        </ContenedorArchivoExcel>
 
         {/* Formulario */}
         <Formulario onSubmit={handleSubmit}>

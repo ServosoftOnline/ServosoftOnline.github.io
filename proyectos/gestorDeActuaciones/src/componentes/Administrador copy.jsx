@@ -1,12 +1,12 @@
 /*
   COMPONENTE ADMINISTRADOR:
-    - Contiene las rutas para los administradores importadas de forma dinámica
+    - Contiene las rutas para los administradores
     - Obtiene el nombre del usuario para mostrarlo en la cabecera
     - Muestra los botones que actuan como link para desplazarse por las diferentes rutas
 */
 
 // React
-import React, {Suspense, lazy} from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
@@ -15,11 +15,11 @@ import {Header, Titulo, ContenedorBotones, ContenedorHeader} from '../elementos/
 import Boton from '../elementos/Boton';
 import BtnSalir from '../elementos/BtnSalir';
 
-// Elementos para las rutas importados de forma dinámica
-const CrearUsuario = lazy(() => import('./CrearUsuario'));
-const Produccion = lazy(() => import('./Produccion'));
-const CalendarioAusencias = lazy(() => import('.//CalendarioAusencias'));
-const ReporteGeneral = lazy(() => import('./ReporteGeneral'));
+// Elementos para las rutas
+import CrearUsuario from './CrearUsuario';
+import Produccion from './Produccion';
+import CalendarioAusencias from './CalendarioAusencias';
+import ReporteGeneral from './ReporteGeneral';
 
 // Hooks
 import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
@@ -53,15 +53,13 @@ const Administrador = () => {
         </ContenedorHeader>
       </Header>
 
-      {/* Rutas declaradas de forma dinámica */}
-      <Suspense>
-        <Routes>
-            <Route path="crear-usuario" element={<CrearUsuario />}/>
-            <Route path="produccion" element={<Produccion />}/>
-            <Route path="calendario-ausencias" element={<CalendarioAusencias />}/>
-            <Route path="reporte-general" element={<ReporteGeneral/>}/>
-          </Routes> 
-      </Suspense>
+      {/* Rutas */}
+      <Routes>
+          <Route path="crear-usuario" element={<CrearUsuario />}/>
+          <Route path="produccion" element={<Produccion />}/>
+          <Route path="calendario-ausencias" element={<CalendarioAusencias />}/>
+          <Route path="reporte-general" element={<ReporteGeneral/>}/>
+        </Routes> 
     </>
            
   );
