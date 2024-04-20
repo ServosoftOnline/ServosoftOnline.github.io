@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // Elementos
 import  {Lista, ContenedorSubtitulo, Subtitulo, Fecha, ElementoListaCabecera, ElementoLista, Incidencia, Cliente, Direccion, Poblacion,
@@ -95,8 +96,7 @@ const SinAsignar = () => {
                     {/* Boton para editar la actuacion */}
                     <ContenedorBotonesLista>
 
-                        {/* <BotonAccion as={Link} to={`/editar/${actuacion.id}`}>  */}
-                        <BotonAccion>
+                        <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.codigoIncidencia}`}>                                                 
                           <IconoEditar /> 
                         </BotonAccion>
 

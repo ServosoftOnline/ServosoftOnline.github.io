@@ -27,13 +27,6 @@ import { ProveedorMensaje } from './contextos/contextoMensaje.jsx';
 import { AuthProvider } from './contextos/AuthContext.jsx';
 import { RolProvider } from './contextos/RolContext.jsx';
 
-// Rutas
-// import Administrador from './componentes/Administrador.jsx';
-// import Coordinador from './componentes/Coordinador.jsx';
-// import Tecnico from './componentes/Tecnico.jsx';
-// import InicioSesion from './componentes/InicioSesion.jsx';
-// import Error404 from './componentes/Error404.jsx';
-
 // Rutas importadas de forma dinámica
 const Administrador = lazy(() => import('./componentes/Administrador.jsx'));
 const Coordinador = lazy(() => import('./componentes/Coordinador.jsx'));

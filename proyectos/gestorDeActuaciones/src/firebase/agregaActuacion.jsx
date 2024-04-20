@@ -15,13 +15,15 @@ import { collection, addDoc } from "firebase/firestore";
 import { getUnixTime } from "date-fns";
 
 // La función
-const agregarIncidencias = async (data) => {
+const agregaActuacion = async (data) => {
     console.log('Extraigo la data y la añado a la colección'); 
     data.forEach(async (registro) => {
 
         try {
             console.log(registro);
             await addDoc(collection(db, 'actuaciones'), {
+
+                // Obtenidos desde el excel
                 "codigoCliente": registro["Código Cliente"],
                 "dniCliente": registro["DNI Cliente"],
                 "nombre": registro["Nombre"],
@@ -49,7 +51,17 @@ const agregarIncidencias = async (data) => {
                 "horaCerrada": registro["Hora Cerrada"],
                 "usuarioCerrada": registro["Usuario Cerrada"],
                 "desplazamiento": registro["Desplazamiento"],
-                "motivoDeError": registro["Motivo de error"]
+                "motivoDeError": registro["Motivo de error"],
+
+                // Añado los que necesito
+                "linkDorus": "",
+                "coordenadas": "",
+                "stb":"",
+                "zonaInstalacion": "",
+                "tipoDeTrabajo": "",
+                "dificultad": "",
+                "comentariosNs": ""
+
             });
 
         } catch (error) {
@@ -58,4 +70,4 @@ const agregarIncidencias = async (data) => {
     });
 }
 
-export default agregarIncidencias;
+export default agregaActuacion;

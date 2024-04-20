@@ -43,14 +43,13 @@ import {Formulario, ResultadosImportacion, ContenedorBoton} from '../elementos/E
 import Boton from '../elementos/Boton';
 
 // Hooks
-import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
 import useObtenerTodosLosCodigosDeIncidencias from "../hooks/useObtenerTodosLosCodigosDeIncidencias";
 
 // Contextos
 import { ContextoMensaje } from "../contextos/contextoMensaje";
 
 // Funciones de firebase
-import agregarIncidencias from "../firebase/agregarIncidencias";
+import agregaActuacion from "../firebase/agregaActuacion";
 
 // El Componente
 const Direccion = () => {
@@ -132,7 +131,7 @@ const Direccion = () => {
       if (incidenciasDuplicadas.length === 0) {
         cambiarMensaje('Agregando la informacion a la base de datos', 'correcta');   
         reiniciarMensaje();     
-        agregarIncidencias(data);        
+        agregaActuacion(data);        
         
       } else {
         cambiarMensaje ('Incidencias duplicadas: ' + incidenciasDuplicadas, 'incorrecta');
@@ -181,7 +180,8 @@ const Direccion = () => {
       const data = e.target.result;
       const workbook = XLSX.read(data, { type: 'binary' });
       const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];      
+      const sheet = workbook.Sheets[sheetName];    
+
       // Añadir la opción defval para incluir celdas vacías como cadenas vacías
       const parseData = XLSX.utils.sheet_to_json(sheet, { defval: '' });           
       setData(parseData);

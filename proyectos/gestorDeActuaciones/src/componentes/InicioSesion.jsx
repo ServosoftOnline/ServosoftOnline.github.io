@@ -17,7 +17,7 @@ import Boton from "../elementos/Boton";
 
 // Importar Contextos
 import {useAuth} from '../contextos/AuthContext';
-import {useRol} from './../contextos/RolContext';
+import {useRol} from '../contextos/RolContext';
 import {ContextoMensaje} from "../contextos/contextoMensaje";
 
 // Authentification de firebase

@@ -211,10 +211,16 @@ INSTALAR UNA APP CON REACT
 
                   - Si hubiera respondido Sí a Set up automatic builds and desploys with Github?
 
-                    - Respondería a las siguiente preguntas:                      
+                    - Respondería a las siguiente preguntas si quiero usar npm run build:                      
                       - For which GitHub repository would you like to set up a GitHub workflow? respondí ServosoftOnline/ServosoftOnline.github.io
                       - Set up the workflow to run a build script before every deploy? respondí No porque ya uso npm run build
                       - GitHub workflow file for PR previews exists. Overwrite? firebase-hosting-pull-request.yml (y/N) N
+
+                    - Respondería a estas preguntas si prefiero no usar npm run build
+                      - For which GitHub repository would you like to set up a GitHub workflow? respondí ServosoftOnline/ServosoftOnline.github.io
+                      - Set up the workflow to run a build script before every deploy? respondí Si
+                      
+
 
                 - Me genera los archivos .firebaserc y firebase.json
 

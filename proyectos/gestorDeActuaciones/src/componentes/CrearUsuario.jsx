@@ -33,13 +33,10 @@
 // React y react router
 import React, {useState, useContext} from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
-import { useNavigate } from "react-router-dom";
 
 // Elementos
-import {Header, Titulo, ContenedorBotones} from '../elementos/ElementosDeHeader';
 import {Formulario, Input, ContenedorBoton, ContenedorFiltros} from '../elementos/ElementosDeFormulario';
 import Boton from "../elementos/Boton";
-import BtnRegresar from "../elementos/BtnRegresar";
 
 // Componentes
 import Mensaje from "./Mensaje";
@@ -47,9 +44,6 @@ import SelectRoles from "./SelectRoles";
 
 // Contexto
 import {ContextoMensaje} from '../contextos/contextoMensaje';
-
-// Hooks
-import useObtenerNombreDeUnUsuario from "./../hooks/useObtenerNombreDeUnUsuario";
 
 // Authentificaion de firebase
 import {auth} from './../firebase/firebaseConfig';
@@ -69,11 +63,7 @@ const CrearUsuario = () => {
   const [email,   establecerEmail] = useState('');
   const [password, establecerPassword] = useState('');
   const [password2, establecerPassword2] = useState('');
-  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
-  const [nombre] = useObtenerNombreDeUnUsuario();
-
-  // React router
-  const navigate = useNavigate();
+  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);  
 
   // Funciones
   const validacionCorrecta = () => {
@@ -123,9 +113,6 @@ const CrearUsuario = () => {
 
       // Crear la coleccion de roles                   
       añadirRol(idUsuarioCreado);
-
-      // Elimino de la coleccion roles de usuarios eliminados a mano desde la consola
-      // console.log('Actualizando la coleccion roles');
 
     } catch (error) {
 
@@ -210,14 +197,6 @@ const CrearUsuario = () => {
         <Helmet>
           <title>Crear cuenta</title>
         </Helmet>
-
-        {/* Cabecera */}
-        {/* <Header>
-          <Titulo>{nombre} (Crear usuario)</Titulo>
-            <ContenedorBotones>
-              <BtnRegresar ruta='/administrador' />
-            </ContenedorBotones>          
-        </Header>             */}
                     
         {/* Formulario */}
         <Formulario onSubmit={handleSubmit}>    
