@@ -7,7 +7,7 @@ const zonas = [
     {id: 'MALAGA',      descripcion:'Málaga'},
     {id: 'LA_MANGA',    descripcion:'La Manga'},
     {id: 'CHICLANA',    descripcion:'Chiclana'},
-    {id: 'HUELVA',      descripcion:'Huelva'}    
+    {id: 'HUELVA',      descripcion:'Huelva'}
 ];
 
 export default zonas;
