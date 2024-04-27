@@ -1,25 +1,27 @@
 /*
-  
+  MUESTRA TODAS LAS ACTUACIONES QUE ESTE EN ESTADO INCIDENCIA:
+    - Anulada, Error de dirección', Falta permiso, No hay paso / Anulado por cliente, Obra cliente, 
+    - Sin finalizar, Anulamos?, Duplicado, Sin llaves del RITI, Canalización obstruida (Calle), Canalización obstruida (Cliente)
 */
 
 // React y react router
 import React from "react";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+
+// Componente
+import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
+
+// Hook
+import useObtenerActuacionesEnIncidencia from "../hooks/useObtenerActuacionesEnIncidencia";
 
 // El Componente
 const Incidencias = () => {
 
+  const [actuacionesEnIncidencia] = useObtenerActuacionesEnIncidencia();
+  const arrayActuacionesEnIncidencia = Object.values(actuacionesEnIncidencia);
+
   return (
     <>      
-      <HelmetProvider>
-
-        {/* Helmet */}
-        <Helmet>
-          <title>Incidencias</title>
-        </Helmet> 
-
-      </HelmetProvider>
-      <p>Incidencias</p>
+      <ListaActuacionesDeUnEstado array = {arrayActuacionesEnIncidencia}/>      
     </>
   );
 }

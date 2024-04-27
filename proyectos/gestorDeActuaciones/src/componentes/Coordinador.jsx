@@ -98,7 +98,7 @@ const Coordinador = () => {
           <Route path="instalados-finalizados" element={<InstaladosFinalizados />}/>          
 
           {/* Rutas dinamicas */}          
-          <Route path="detalles/:codigoIncidencia" element={<EditarActuacion />}/>
+          <Route path="detalles/:idActuacion" element={<EditarActuacion />}/>
         </Routes>
       </Suspense>
 

@@ -1,26 +1,27 @@
 /*
-  
+  MUESTRA LAS ORDENES QUE SE ENCUENTREN EN ESTADOFALTACITAS:
+    - A espera de confirmar cliente o Falta cita  
 */
 
 // React y react router
 import React from "react";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+
+// Componente
+import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
+
+// Hook
+import useObtenerIncidenciasEnFaltaCitas from "../hooks/useObtenerIncidenciasEnFaltaCitas";
 
 // El Componente
 const FaltaCitas = () => { 
 
+  const [incidenciasEnFaltaCitas]= useObtenerIncidenciasEnFaltaCitas();
+  const arrayIncidenciasEnFaltaCitas = Object.values(incidenciasEnFaltaCitas);
+
   return (
     <>      
-      <HelmetProvider>
-
-        {/* Helmet */}
-        <Helmet>
-          <title>Falta citas</title>
-        </Helmet>   
-
-      </HelmetProvider>
-
-      <p>Mostar Incidencias que faltaron a las citas</p>
+      <ListaActuacionesDeUnEstado array = {arrayIncidenciasEnFaltaCitas}/>
+      
     </>
   );
 }

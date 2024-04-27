@@ -1,25 +1,27 @@
 /*
-  
+  MUESTRA LAS ORDENES QUE SE ENCUENTREN EN ESTADOMANTENIMIENTO:
+    - Falta conexion DC o Sin señal en CTO / Mantenimiento
 */
 
 // React y react router
 import React from "react";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+
+// Componente
+import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
+
+// Hook
+import useObtenerIncidenciasEnMantenimiento from "../hooks/useObtenerIncidenciasEnMantenimiento";
 
 // El Componente
 const Mantenimiento = () => {  
 
+  const [incidenciasEnMantenimiento] = useObtenerIncidenciasEnMantenimiento();
+  const arrayIncidenciasEnMantenimiento = Object.values(incidenciasEnMantenimiento);
+
   return (
-    <>      
-      <HelmetProvider>
-
-        {/* Helmet */}
-        <Helmet>
-          <title>Mantenimiento</title>
-        </Helmet>  
-
-      </HelmetProvider>
-      <p>Mostrar indicencias en estado de manteniento</p>
+    <>
+      <ListaActuacionesDeUnEstado array = {arrayIncidenciasEnMantenimiento}  />
+      
     </>
   );
 }

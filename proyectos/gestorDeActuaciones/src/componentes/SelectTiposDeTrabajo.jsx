@@ -3,38 +3,44 @@
 */
 
 import React, {useState} from "react";
-import {ContenedorSelect, OpcionSeleccionada, Opciones, Opcion} from '../elementos/ElementosDeSelect';
+import {Select, ContenedorSelect, OpcionSeleccionada, Opciones, Opcion} from '../elementos/ElementosDeSelect';
 import IconoDown from './../assets/down.svg?react';
-import tiposDeTrabajo from "../objetos/tiposDeTrabajo";
+import objetoTiposDeTrabajo from "../objetos/objetoTiposDeTrabajo";
 
-
-const SelectTiposDeTrabajo = ({tipoDeTrabajo, asignarTipoDeTrabajo}) => {
+const SelectTiposDeTrabajo = ({tiposDeTrabajo, asignarTiposDeTrabajo, asignarIdTipoDeTrabajo}) => {
 
     // Estados
-    const [mostrarSelect, cambiarMostrarSelect] = useState(false);
+    const [mostrarSelect, cambiarMostrarSelect] = useState(false);    
 
     // Funciones
-    const handleClick = (e) => {
-
-        // Cambio la zona con el atributo personalizado obtenido
-        asignarTipoDeTrabajo(e.target.dataset.valor);        
+    const handleClick = (e) => {        
+        asignarTiposDeTrabajo(e.target.dataset.valor);  
+        asignarIdTipoDeTrabajo(e.target.dataset.valor2);
     }
 
     return (
         
-        // Cuando haga click en ContenedorSelect mostraré u ocultare el select
+        <Select>
+        <h4>Tipo de trabajo:</h4>
         <ContenedorSelect onClick={() => cambiarMostrarSelect(!mostrarSelect)}>
-            <OpcionSeleccionada>{tipoDeTrabajo == undefined ? 'Seleccione tipo de trabajo:' : tipoDeTrabajo}<IconoDown/></OpcionSeleccionada>
 
+            {/* Si tiposDeTrabajo contiene el valor inicial de estado que era un espacio vacio muestra Seleccione.
+                En caso contrario muestra el contenido del estado tiposDeTrabajo */}
+
+                <OpcionSeleccionada>                                        
+                    {tiposDeTrabajo == '' ? 'Seleccione' : tiposDeTrabajo}
+                    <IconoDown/>
+                </OpcionSeleccionada>
+            
             {/* Solo mostraré las opciones si mostrarSelect es true */}
             {mostrarSelect && 
                 <Opciones>
-                    {/* Recorro el objeto categorias y muestro una categoria en cada iteraccion */}
-                    {tiposDeTrabajo.map((tipo) => {
+                    {/* Recorro el objeto tiposDeTrabajo y muestro un tipo en cada iteraccion */}
+                    {objetoTiposDeTrabajo.map((tipo) => {
                         return <Opcion
                             key= {tipo.id}
-                            // Atributo personalizado con el id de la categoria seleccionada
-                            data-valor= {tipo.id}
+                            data-valor= {tipo.descripcion}    
+                            data-valor2= {tipo.id}                        
                             onClick={handleClick}
                         >                           
                             {tipo.descripcion}
@@ -44,6 +50,7 @@ const SelectTiposDeTrabajo = ({tipoDeTrabajo, asignarTipoDeTrabajo}) => {
             }
             
         </ContenedorSelect>
+        </Select>
     );
 }
  

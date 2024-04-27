@@ -20,47 +20,53 @@ const agregaActuacion = async (data) => {
     data.forEach(async (registro) => {
 
         try {
+
+            // Creo la coleccion actuaciones
             console.log(registro);
             await addDoc(collection(db, 'actuaciones'), {
 
                 // Obtenidos desde el excel
-                "codigoCliente": registro["Código Cliente"],
-                "dniCliente": registro["DNI Cliente"],
                 "nombre": registro["Nombre"],
-                "telefono": registro["Teléfono Contacto"],
-                "contrato": registro["Contrato"],
-                "producto": registro["Producto"],
+                "telefonos": registro["Teléfono Contacto"],
                 "tipoServicio": registro["Tipo Servicio"],
-                "tienda": registro["Tienda"],
                 "codigoIncidencia": registro["Código Incidencia"],
-                "tipo": registro["Tipo"],
-                "nivel": registro["Nivel"],                
-                "fechaIncidencia": getUnixTime(new Date()),  // Momento actual
-                "hora": registro["Hora"],
-                "descripcion": registro["Descripción"],
-                "accion": registro["Acción"],
-                "estado": "pte_de_coordinar", // Primer estado de la actuación
-                "poblacionInstalacion": registro["Población Instalación"],
-                "direccionInstalacion": registro["Direccion Instalación"],
-                "empresaInstaladora": registro["Empresa Instaladora"],
-                "fechaCitacion": registro["Fecha Citacion"],
-                "incidenciaAtendida": registro["Incidencia Atendida"],
-                "fechaAtendida": registro["Fecha Atendida"],
-                "horaAtendida": registro["Hora Atendida"],
-                "fechaCerrada": registro["Fecha Cerrada"],
-                "horaCerrada": registro["Hora Cerrada"],
-                "usuarioCerrada": registro["Usuario Cerrada"],
-                "desplazamiento": registro["Desplazamiento"],
-                "motivoDeError": registro["Motivo de error"],
-
+                "poblacion": registro["Población Instalación"],
+                "direccion": registro["Direccion Instalación"],
+                
                 // Añado los que necesito
                 "linkDorus": "",
-                "coordenadas": "",
-                "stb":"",
                 "zonaInstalacion": "",
-                "tipoDeTrabajo": "",
+                "coordenadas": "",
+                "tipoActuacion": "",
                 "dificultad": "",
-                "comentariosNs": ""
+                "puntos":0,
+                "tipoTrabajo": "",
+                "idTipoTrabajo": "",                
+                "stb":"",
+                "estado": "EstadoPteCoordinar", // Primer estado de la actuación
+                "comentariosTecnicos": "",
+                "fechaIncidencia": getUnixTime(new Date()),
+                "fechaUltimaActualizacion": getUnixTime(new Date()),
+                "estadoDescripcion": "Pendiente de coordinar",
+                "fechaCitacion": "",
+                "tecnico1": "",
+                "tecnico2": "",
+                "tecnico3": "",
+                "tecnico4": "",
+                "tecnico5": "",
+                
+                /* 
+                Las añadire en otra coleccion
+                "fechaUltimoCambioEstado": ""
+                
+                "fechaAtendida": "",
+                "horaAtendida": "",
+                "fechaCerrada": "",
+                "horaCerrada": "",
+                "usuarioCerrada": "",
+                "desplazamientos": "",
+                "motivoDeError": "",
+                */
 
             });
 

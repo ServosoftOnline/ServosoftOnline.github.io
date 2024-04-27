@@ -1,53 +1,57 @@
 /*
-    SELECT STB. SOLO CONTIENE SI O NO
+    SELECT STB. CONTIENE SI O NO
 */
 
 import React, {useState} from "react";
-import {ContenedorSelect, OpcionSeleccionada, Opciones, Opcion} from '../elementos/ElementosDeSelect';
+import {Select, ContenedorSelect, OpcionSeleccionada, Opciones, Opcion} from '../elementos/ElementosDeSelect';
 import IconoDown from './../assets/down.svg?react';
-
 
 const SelectStb = ({stb, asignarStb}) => {
 
     // Estados
-    const [mostrarSelect, cambiarMostrarSelect] = useState(false);
+    const [mostrarSelect, cambiarMostrarSelect] = useState(false);    
 
     // Funciones
-    const handleClick = (e) => {
-
-        // Cambio la zona con el atributo personalizado obtenido
+    const handleClick = (e) => {       
         asignarStb(e.target.dataset.valor);        
     }
 
     return (
         
-        // Cuando haga click en ContenedorSelect mostraré u ocultare el select
-        <ContenedorSelect onClick={() => cambiarMostrarSelect(!mostrarSelect)}>
-            <OpcionSeleccionada>{stb == undefined ? 'STB:' : 'STB:'+ stb}<IconoDown/></OpcionSeleccionada>
+        <Select>
+            <h4>Stb:</h4>
+            <ContenedorSelect onClick={() => cambiarMostrarSelect(!mostrarSelect)}>
 
-            {/* Solo mostraré las opciones si mostrarSelect es true */}
-            {mostrarSelect && 
-                <>
-                    <Opciones>
-                        <Opcion 
-                            key='SI'
-                            data-valor = 'SI'
-                            onClick={handleClick}
-                        > STB: SI                            
-                        </Opcion>
+                {/* Mostrara Seleccione si aun contiene el valor inicial del estado que era un espacio en blanco o mostrará el estado */}
+                <OpcionSeleccionada>                                        
+                    {stb == '' ? 'Seleccione' : stb}
+                    <IconoDown/>
+                </OpcionSeleccionada>
 
-                        <Opcion 
-                            key='NO'
-                            data-valor = 'NO'
-                            onClick={handleClick}
-                        > STB: NO                            
-                        </Opcion>
+                {/* Solo mostraré las opciones si mostrarSelect es true */}
+                {mostrarSelect && 
+                    <>
+                        <Opciones>
+                            <Opcion 
+                                key='SI'
+                                data-valor = 'Si'                                
+                                onClick={handleClick}
+                            > Sí                            
+                            </Opcion>
 
-                    </Opciones>                
-                </>
-            }
-            
-        </ContenedorSelect>
+                            <Opcion 
+                                key='NO'
+                                data-valor = 'No'                                
+                                onClick={handleClick}
+                            > No                            
+                            </Opcion>
+
+                        </Opciones>                
+                    </>
+                }
+                
+            </ContenedorSelect>
+        </Select>
     );
 }
  

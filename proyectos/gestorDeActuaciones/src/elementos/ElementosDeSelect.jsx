@@ -2,18 +2,25 @@
 import styled from "styled-components";
 import theme from '../objetos/theme';
 
+const Select = styled.div`
+
+    display:flex;
+    justify-content: center;
+    align-items: center; 
+    gap: 1rem;      
+    height: 2rem; 
+`;
+
 const ContenedorSelect = styled.div`
-    background: ${theme.grisClaro};
+
+    background: ${theme.grisClaro};    
     cursor: pointer;
     border-radius: 0.625rem; /* 10px */
 
     // Hará que los elementos que muestre el select esten alineados
     position: relative;
-
-    height: 4rem; /* 64px */
-    width: 40%;
-    padding: 0px 1.25rem; /* 20px */
-    font-size: 1.5rem; /* 24px */
+    
+    width: 89%;
     text-align: center;
     display: flex;
     align-items: center;
@@ -23,46 +30,52 @@ const ContenedorSelect = styled.div`
     }
 
     @media(max-width: 60rem){ /* 950px */
-        width: 100%;        
+        // width: 55%;        
     }
 `;
  
-const OpcionSeleccionada = styled.div`
-    width: 100%;
-    text-transform: uppercase;
+const OpcionSeleccionada = styled.div`  
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 99%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
     svg {
-        width: 1.25rem; /* 20px */
-        height: auto;
-        margin-left: 1.25rem; /* 20px */        
+        margin-left: 1.25rem; /* 20px */     
+        justify-content: right;  
+        height: 3rem; 
     }
 
     // Centro la opcion seleccionada
     @media(max-width: 60rem){ /* 950px */
-        display: block;        
+        svg {    
+            height: 2rem; 
+        }        
     }
 `;
  
 const Opciones = styled.div`
     background: ${theme.grisClaro};
+
+    // Ajuste de distancia con la opcion seleccionada
     position: absolute;
-    top: 5.62rem; /* 90px */
-    left: 0;
-    width: 100%;
-    border-radius: 0.625rem; /* 10px */
+    top: 2.3rem; /* 90px */    
+    width: 100%;    
     max-height: 18.75rem; /* 300px */
     overflow-y: auto;
 `;
  
 const Opcion = styled.div`
-    padding: 1.25rem; /* 20px */
+
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
     display: flex;
     
     svg {
-        width: 28px;
-        height: auto;
+        width: 28px;        
         margin-right: 1.25rem; /* 20px */
     }
     &:hover {
@@ -70,6 +83,4 @@ const Opcion = styled.div`
     }
 `;
 
-export {ContenedorSelect, OpcionSeleccionada, Opciones, Opcion};
-
-
+export {Select, ContenedorSelect, OpcionSeleccionada, Opciones, Opcion};

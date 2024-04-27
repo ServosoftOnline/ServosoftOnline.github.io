@@ -1,26 +1,27 @@
 /*
-  
+  MUESTRA LAS ACTUACIONES EN ESTADO OYM:
+    - Trabajos de cableado, Falta cable F12 / CTO, Falta cable general  
 */
 
-// React y react router
+// React
 import React from "react";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+
+// Hook
+import useObtenerActuacionesEnOym from "../hooks/useObtenerActuacionesEnOym";
+
+// Componente
+import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
 
 // El Componente
 const Oym = () => {  
 
+  // Obtengo el objeto de la consulta y la paso a array
+  const [actuacionesEnOym] = useObtenerActuacionesEnOym();
+  const arrayActuacionesEnOym = Object.values(actuacionesEnOym);  
+
   return (
     <>      
-      <HelmetProvider>
-
-        {/* Helmet */}
-        <Helmet>
-          <title>O&m</title>
-        </Helmet>            
-
-      </HelmetProvider>
-
-      <p>O&m</p>
+      <ListaActuacionesDeUnEstado array = {arrayActuacionesEnOym} />      
     </>
   );
 }

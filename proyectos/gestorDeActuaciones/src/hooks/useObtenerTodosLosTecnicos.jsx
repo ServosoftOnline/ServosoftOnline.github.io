@@ -1,5 +1,5 @@
 /*
-    HOOK QUE OBTIENE LAS INCIDENCIAS PENDIENTES DE COORDINAR
+    HOOK QUE OBTIENE TODOS LOS CODIGOS DE INCIDENCIAS DE LA COLECCION INCIDENCIAS
 */
 
 // React
@@ -10,14 +10,14 @@ import { useAuth } from '../contextos/AuthContext';
 
 // Firebase
 import { db } from '../firebase/firebaseConfig';
-import { collection, onSnapshot, query, where, orderBy, limit} from 'firebase/firestore';
+import { collection, onSnapshot, query, where, orderBy} from 'firebase/firestore';
 
 // Hook
-const useObtenerIncidenciasPtesDeAsignar = () => {
+const useObtenerTodosLosTecnicos = () => {
 
     // Estados
 	const {sesion} = useAuth();	
-	const [incidenciasSinAsignar, asignarIncidenciasSinAsignar] = useState([]);
+	const [todosLosTecnicos, asignarTodosLosTecnicos] = useState([]);
 
 	// Ejecuto el efecto para realizar la consulta de forma asincrona					
 	useEffect(() => {
@@ -27,15 +27,14 @@ const useObtenerIncidenciasPtesDeAsignar = () => {
 
 			// Consulta 
 			const consulta = query(
-				collection(db, 'actuaciones'),			
-				where('estado', '==', 'EstadoPteCoordinar'),
-				orderBy('fechaIncidencia', 'asc'),
-				limit(10)
+				collection(db, 'roles'),			
+				where('idRol', '==', 'tecnico'),
+				orderBy('nombre', 'asc')				
 			);
 
 			// Ejecuta la consulta. Si se produjera un error lo muestro en consola
 			const unsuscribe = onSnapshot(consulta, (snapshot) => {
-				asignarIncidenciasSinAsignar(snapshot.docs.map((documento) => {
+				asignarTodosLosTecnicos(snapshot.docs.map((documento) => {
 					return ({...documento.data(), id: documento.id});					
 				}));			
 			}, (error) => {console.log(error)});		
@@ -46,8 +45,8 @@ const useObtenerIncidenciasPtesDeAsignar = () => {
 
 	}, [sesion]);
 
-	// Devuelvo el estado gastos
-	return [incidenciasSinAsignar];
+    // Devuelvo el estado gastos
+    return [todosLosTecnicos];
 }
 
-export default useObtenerIncidenciasPtesDeAsignar;
+export default useObtenerTodosLosTecnicos;

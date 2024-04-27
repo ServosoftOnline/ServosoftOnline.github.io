@@ -6,6 +6,7 @@
 
 import { format, fromUnixTime } from "date-fns";
 import { es } from "date-fns/locale";
+
 const formatearFecha = (fechaEnSegundos) => {
     return format(fromUnixTime(fechaEnSegundos), "dd 'de' MMMM 'de' yyyy", {locale: es});
 }

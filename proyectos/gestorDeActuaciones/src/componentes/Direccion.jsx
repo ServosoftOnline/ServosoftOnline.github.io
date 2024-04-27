@@ -68,34 +68,12 @@ const Direccion = () => {
 
     // Objeto que contiene como debe ser la cabecera a insertar   
     const cabeceraCorrecta = [
-      "Código Cliente",
-      "DNI Cliente",
-      "Nombre",
+      "Nombre",      
       "Teléfono Contacto",
-      "Contrato",
-      "Producto",
       "Tipo Servicio",
-      "Tienda",
       "Código Incidencia",
-      "Tipo",
-      "Nivel",
-      "Fecha Incidencia",
-      "Hora",
-      "Descripción",
-      "Acción",
-      "Estado",
       "Población Instalación",
-      "Direccion Instalación",
-      "Empresa Instaladora",
-      "Fecha Citacion",
-      "Incidencia Atendida",
-      "Fecha Atendida",
-      "Hora Atendida",
-      "Fecha Cerrada",
-      "Hora Cerrada",
-      "Usuario Cerrada",
-      "Desplazamiento",
-      "Motivo de error"
+      "Direccion Instalación"
     ];
 
     // Almaceno la cabecera obtenida en la cte
@@ -129,18 +107,18 @@ const Direccion = () => {
       const incidenciasDuplicadas = validaIncidenciasDuplicadas();      
 
       if (incidenciasDuplicadas.length === 0) {
-        cambiarMensaje('Agregando la informacion a la base de datos', 'correcta');   
-        reiniciarMensaje();     
+        cambiarMensaje('Agregando la informacion a la base de datos', 'correcta');             
         agregaActuacion(data);        
         
       } else {
-        cambiarMensaje ('Incidencias duplicadas: ' + incidenciasDuplicadas, 'incorrecta');
+        cambiarMensaje ('Incidencias duplicadas: ' + incidenciasDuplicadas, 'incorrecta');        
       }
 
     } else {      
-      cambiarMensaje('Archivo excel a importar incorrecto', 'incorrecta');
+      cambiarMensaje('Archivo excel a importar incorrecto', 'incorrecta');      
     }
-    
+
+    reiniciarMensaje();    
   }
 
   const mostrarArchivoImportado = () => {
@@ -190,49 +168,41 @@ const Direccion = () => {
   };
 
   return (
-    <>      
-      <HelmetProvider>
+    <>  
+      <ContenedorArchivoExcel>
+        <h3>Archivo excel a importar: </h3>
+        <input
+          type="file"
+          accept='.xlsx, xls'
+          onChange={handleFileUpload} 
+        />
+      </ContenedorArchivoExcel>
 
-        {/* Helmet */}
-        <Helmet>
-          <title>Dirección</title>
-        </Helmet>
+      {/* Formulario */}
+      <Formulario onSubmit={handleSubmit}>
 
-        <ContenedorArchivoExcel>
-          <h3>Archivo excel a importar: </h3>
-          <input
-            type="file"
-            accept='.xlsx, xls'
-            onChange={handleFileUpload} 
-          />
-        </ContenedorArchivoExcel>
+        {/* Si hay datos muestro los resultados en una tabla */}
+        <ResultadosImportacion>
+          {data.length > 0 && mostrarArchivoImportado()}            
+        </ResultadosImportacion>
 
-        {/* Formulario */}
-        <Formulario onSubmit={handleSubmit}>
+        {/* Si hay datos muestro el botón de añadir datos */}          
+        <ContenedorBoton>
+          {data.length > 0 ?
+            <Boton 
+              $primario
+              as="button"              
+              >Añadir datos
+            </Boton>
+            :
+            null
+          }
+        </ContenedorBoton>
 
-          {/* Si hay datos muestro los resultados en una tabla */}
-          <ResultadosImportacion>
-            {data.length > 0 && mostrarArchivoImportado()}            
-          </ResultadosImportacion>
+        {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
+        <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
 
-          {/* Si hay datos muestro el botón de añadir datos */}          
-          <ContenedorBoton>
-            {data.length > 0 ?
-              <Boton 
-                $primario
-                as="button"              
-                >Añadir datos
-              </Boton>
-              :
-              null
-            }
-          </ContenedorBoton>
-
-          {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
-          <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
-
-        </Formulario>        
-      </HelmetProvider>
+      </Formulario>              
     </>
   );
 }

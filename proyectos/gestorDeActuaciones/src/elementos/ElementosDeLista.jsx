@@ -55,11 +55,11 @@ const ElementoListaCabecera = styled.li`
     background: ${theme.grisClaro};
     list-style: none;
     display: grid;
-    grid-template-columns: 1fr 2fr 4fr 1fr 1fr 1fr; 
+    grid-template-columns: 1fr 2fr 4fr 1fr 2fr 1fr; 
     font-weight: bolder;   
     padding: 1.25rem 0; /* 20px */
     border-bottom: 2px solid #F2F2F2;    
-    gap: 0.31rem; /* 5px */ 
+    gap: 0.5rem; /* 5px */ 
     font-size: 1.2rem;      
     
     & > div {
@@ -70,7 +70,7 @@ const ElementoListaCabecera = styled.li`
 
     @media(max-width: 60rem){ /* 950px */ 
         grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr; 
-        font-size: 1rem;
+        font-size: 0.8rem;
         & > div {
             
         }
@@ -81,11 +81,12 @@ const ElementoLista = styled.li`
 
     list-style: none;
     display: grid;
-    grid-template-columns: 1fr 2fr 4fr 1fr 1fr 1fr;    
+    grid-template-columns: 1fr 2fr 4fr 1fr 2fr 1fr;    
     padding: 1.25rem 0; /* 20px */
     border-bottom: 2px solid #F2F2F2;    
-    gap: 0.31rem; /* 5px */   
-    font-size: 1.2rem;   
+    gap: 0.7rem; /* 5px */   
+    font-size: 1rem;  
+    align-items: center;     
     
     & > div {
         width: 100%;
@@ -99,7 +100,7 @@ const ElementoLista = styled.li`
 
     @media(max-width: 60rem){ /* 950px */ 
         grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr; 
-        font-size: 1rem;
+        font-size: 0.8rem;
         padding: 0.8rem 0; /* 16px */
         & > div {
             
@@ -146,7 +147,7 @@ const Poblacion = styled.div`
     
 `;
 
-const TipoDeServicio = styled.div`
+const Estado = styled.div`
 
     justify-content: center;    
     text-transform: capitalize;
@@ -273,7 +274,7 @@ export {
     Cliente,
     Direccion,
     Poblacion,
-    TipoDeServicio,
+    Estado,
     Gestion,
     ContenedorBotonesLista,
     BotonAccion,

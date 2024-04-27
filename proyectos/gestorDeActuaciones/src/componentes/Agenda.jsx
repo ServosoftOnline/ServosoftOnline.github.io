@@ -1,26 +1,25 @@
 /*
-  
+  COMPONENTE QUE MUESTRA UNA LISTA CON LAS ACTUACIONES CITADAS
 */
 
 // React y react router
 import React from "react";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+
+// Hook
+import useObtenerActuacionesAgendadas from "../hooks/useObtenerActuacionesAgendadas";
+
+// Componente
+import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
 
 // El Componente
-const Agenda = () => { 
+const Agenda = () => {
+  
+  const [actuacionesAgendadas] = useObtenerActuacionesAgendadas();
+  const arrayActuacionesAgendadas = Object.values(actuacionesAgendadas);
 
   return (
     <>      
-      <HelmetProvider>
-
-        {/* Helmet */}
-        <Helmet>
-          <title>Agenda</title>
-        </Helmet>  
-
-      </HelmetProvider>
-
-      <p>Agenda</p>
+      <ListaActuacionesDeUnEstado array = {arrayActuacionesAgendadas}/>      
     </>
   );
 }

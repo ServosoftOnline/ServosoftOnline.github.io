@@ -1,5 +1,22 @@
 /*
     ELEMENTOS QUE USARÉ EN LOS FORMULARIOS
+        
+        - Importo:
+            - styled components
+            - El objeto theme que contiene los colores
+            - La imagen svg que pondré en la pagina de inicar sesión creada como componente
+            - Igual para la página de crear una cuenta
+
+        - Creo los siguientes elementos:
+            - ContenedorFiltros. 
+                - Corresponden a la lista donde se indican los tipos de gastos y la fecha en Agregar gasto (App.jsx).
+
+            - Formulario
+            - Input
+            - InputGrande
+            - ContenedorBoton
+
+        - Los exporto por separado
 */
 
 
@@ -8,13 +25,32 @@ import theme from "../objetos/theme";
 import imagenIniciarSesion from './../assets/registro.svg?react';
 import imagenCrearCuenta from './../assets/login.svg?react';
 
+
+const ContenedorFiltros = styled.div`
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin-bottom: 1.87rem; /* 30px */
+ 
+    // Cuando llegue la ventana a 950px los elementos se colocan en forma de columna y no uno al lado de otro
+    @media(max-width: 60rem){ /* 950px */
+        flex-direction: column;
+ 
+        & > * {
+            width: 100%;
+            margin-bottom: 0.62rem; /* 10px */
+        }
+    }
+`;
+ 
 const Formulario = styled.form`
 
     padding: 0 2.5rem; /* 40px */
     height: 100%;
     display: flex;
     flex-direction: column;
-    // justify-content: space-around;
+    justify-content: space-around;
     
     // Características de los inputs de dentro del formulario
     input {
@@ -31,53 +67,6 @@ const Formulario = styled.form`
         justify-content: start;           
     }
 `;
-
-
-const ContenedorFiltros = styled.div`
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    // Cuando llegue la ventana a 950px los elementos se colocan en forma de columna y no uno al lado de otro
-    @media(max-width: 60rem){ /* 950px */
-        flex-direction: column;
- 
-        & > * {
-            width: 100%;
-            margin-bottom: 0.62rem; /* 10px */
-        }
-    }
-`;
-
-const ResultadosImportacion = styled.div`
-
-    display: flex;
-    justify-content: start;
-    
-    table {
-        border: 1px solid black;
-    }
-
-    .cabecera {
-        background: ${theme.negro};
-        border: 1px solid black;
-        text-align: left;
-        color: white;       
-        padding-right: 1.5rem;  
-    }
-
-    td {        
-        vertical-align: top;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;        
-        text-align: left;
-        padding-right: 1.5rem;  
-        border: 1px solid black;
-    }
-
-`;
-
  
 const Input = styled.input`
 
@@ -91,7 +80,11 @@ const Input = styled.input`
         font-size: 1.5rem; /* 28.8px */
     }
 `;
-
+ 
+const InputGrande = styled(Input)`
+    font-size: 3rem; /* 48px */
+    font-weight: bold;
+`;
  
 const ContenedorBoton = styled.div`
 
@@ -126,6 +119,35 @@ const SvgCrearCuenta = styled(imagenCrearCuenta)`
     }
 `;
 
+// ELEMENTOS PARA EL COMPONENTE DIRECCION
+const ResultadosImportacion = styled.div`
+
+    display: flex;
+    justify-content: start;
+    
+    table {
+        border: 1px solid black;
+    }
+
+    .cabecera {
+        background: ${theme.negro};
+        border: 1px solid black;
+        text-align: left;
+        color: white;       
+        padding-right: 1.5rem;  
+    }
+
+    td {        
+        vertical-align: top;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;        
+        text-align: left;
+        padding-right: 1.5rem;  
+        border: 1px solid black;
+    }
+
+`;
 
 
-export {Formulario, ContenedorFiltros, ResultadosImportacion, Input, ContenedorBoton, SvgIniciarSesion, SvgCrearCuenta} ;
+
+export {ContenedorFiltros, Formulario, Input, InputGrande, ContenedorBoton, SvgIniciarSesion, SvgCrearCuenta, ResultadosImportacion} ;

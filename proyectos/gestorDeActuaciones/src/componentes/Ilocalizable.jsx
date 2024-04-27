@@ -1,25 +1,25 @@
 /*
-  
+  COMPONENTE QUE MUESTRA TODAS LAS INCIDENCIAS CUYO CLIENTE ESTA ILOCALIZABLE
 */
 
 // React y react router
 import React from "react";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+
+// Hook
+import useObtenerIncidenciasIlocalizables from "../hooks/useObtenerIncidenciasIlocalizables";
+
+// Componentes
+import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
 
 // El Componente
 const Ilocalizable = () => {
 
+  const [incidenciasIlocalizables] = useObtenerIncidenciasIlocalizables();  
+  const arrayActuacionesSinLocalizar = Object.values(incidenciasIlocalizables);  
+
   return (
-    <>      
-      <HelmetProvider>
-
-        {/* Helmet */}
-        <Helmet>
-          <title>Ilocalizable</title>
-        </Helmet>   
-
-      </HelmetProvider>
-      <p>Mostrar incidencias en estado ilocalizable</p>
+    <>
+      <ListaActuacionesDeUnEstado array = {arrayActuacionesSinLocalizar} />
     </>
   );
 }
