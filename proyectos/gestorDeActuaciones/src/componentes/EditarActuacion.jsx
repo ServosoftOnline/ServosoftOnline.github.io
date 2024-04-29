@@ -267,11 +267,6 @@ const EditarActuacion = () => {
                         />
                     </div>
 
-                    <SelectZonasDeInstalacion
-                        zonasDeInstalacion= {zonasDeInstalacion}
-                        asignarZonasDeInstalacion={asignarZonasDeInstalacion} 
-                    />
-
                 </SubContenedor1>                
 
                 <SubContenedor2>
@@ -324,7 +319,11 @@ const EditarActuacion = () => {
                         />
                     </div>
 
-                    <p>Solo visible n4</p>                    
+                    <SelectZonasDeInstalacion
+                        zonasDeInstalacion= {zonasDeInstalacion}
+                        asignarZonasDeInstalacion={asignarZonasDeInstalacion} 
+                    />
+                                       
                 </SubContenedor3>
 
                 <SubContenedor5>                    
@@ -350,16 +349,15 @@ const EditarActuacion = () => {
 
                 {/* Este subcontenedor solo se muestra si la actuacion esta en estado agenda */}
                 {estado === 'EstadoAgenda' &&
-                    <>
-                        <label for="Citacion">Citación:</label>
+                    <>                        
                         <SubContenedor6>
                             <div>
-                                <p>Fecha:</p>                            
+                                <h4>Fecha:</h4>                            
                                 <p>date</p>
                             </div>
 
                             <div>
-                                <p>Técnicos:</p>                                                            
+                                <h4>Técnicos:</h4>                                                            
 
                                 {/* Codigo proporcionado por ChatGPT:
                                     idTipoDeTrabajo contiene un número que coincide con el número de tecnicos
@@ -369,7 +367,7 @@ const EditarActuacion = () => {
                                 <ContenedorSelectTecnicos>
                                     {Array.from({ length: idTipoDeTrabajo }, (_, index) => (
                                         <SelectTecnicos
-                                            numeroTecnico={index}
+                                            numeroTecnicos={index}
                                             tecnico={eval(`tecnico${index + 1}`)}
                                             asignarTecnico={eval(`asignarTecnico${index + 1}`)}
                                         />

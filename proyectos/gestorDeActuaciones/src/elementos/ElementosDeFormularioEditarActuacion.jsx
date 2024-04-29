@@ -7,8 +7,8 @@ import styled from "styled-components";
 const ContenedorEditarActuacion = styled.div `
     display: grid;
     grid-template-columns: 1fr;
-    padding-left: 1rem;
-    padding-right: 1rem;   
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;   
 
     // Todas las etiquetas que van junto a los inputs van en negrita
     label {
@@ -20,7 +20,7 @@ const SubContenedorSoloLectura = styled.div `
 // background:lightyellow;
     
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 
@@ -29,8 +29,7 @@ const SubContenedorSoloLectura = styled.div `
     }
 
     @media(max-width: 60rem){ /* 950px */
-
-        grid-template-columns: 1fr 1fr 1fr;       
+            
         font-size: 0.8rem;
         padding-bottom: 0rem;
 
@@ -44,29 +43,25 @@ const SubContenedor1 = styled.div `
 // background: lightgreen;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    justify-content: center; /* Centra horizontalmente los elementos dentro del contenedor */
-    align-items: center; /* Centra verticalmente los elementos dentro del contenedor */
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
 
     // Permite que al desplegar los select estos se pongan delante
     position: relative;
     z-index: 6;
 
-    padding-top: 1rem;
-    padding-bottom: 1.5rem;
-
     input {
-        width: 22rem;
+        width: 29.5rem;
     }
 
-    @media(max-width: 60rem){ /* 950px */
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+    @media(max-width: 60rem){ /* 950px */                
         font-size: 0.8rem;           
 
         input {
-            width: 23rem;            
+            width: 14.5rem;            
         }
     }
 `;
@@ -75,38 +70,38 @@ const SubContenedor2 = styled.div `
 // background:lightblue;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;  
-    justify-content: center;
-    align-items: center; 
+    grid-template-columns: 1fr 1fr 1fr;  
     gap: 1rem;
-    padding-bottom: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
 
     // Permite que al desplegar los select estos se pongan delante
     position: relative;
     z-index: 5;
 
     input {
-        width: 22rem;
+        width: 29.5rem;
     }
 
     @media(max-width: 60rem){ /* 950px */
         font-size: 0.8rem;           
 
         input {
-            width: 10.5rem;
+            width: 14.5rem;
         }
     }
 `;
 
 const SubContenedor3 = styled.div `
-background:grey;
+// background:grey;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
-    justify-content: center;
-    align-items: center; 
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
-    padding-bottom: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
 
     // Permite que al desplegar los select estos se pongan delante
     position: relative;
@@ -116,10 +111,10 @@ background:grey;
         text-align: center;
     }
 
-    padding-bottom: 2rem;
-
     @media(max-width: 60rem){ /* 950px */
+        grid-template-columns: 1fr 1fr 2fr;
         font-size: 0.8rem;           
+        padding-bottom: 0.5rem;
         input {
             width: 4.8rem;            
         }
@@ -128,10 +123,13 @@ background:grey;
 `;
 
 const SubContenedor4 = styled.div `
- background:red;
+// background:red;
 
     display: grid;
     grid-template-columns: 1fr;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
 
     // tamaño especial para el input de comentarios tecnicos. Lo trataré como un text area
     textarea {
@@ -152,30 +150,40 @@ const SubContenedor4 = styled.div `
 `;
 
 const SubContenedor5 = styled.div `
-background:orange;
+// background:orange;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
-    padding-top: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
 
     // Permite que al desplegar los select estos se pongan delante
     position: relative;
-    z-index: 3;
-
-    padding-bottom: 1.5rem;
+    z-index: 3;    
 
     @media(max-width: 60rem){ /* 950px */
+    grid-template-columns: 1fr 1fr 2fr;
         font-size: 0.8rem;           
     }
 `;
 
 const SubContenedor6 = styled.div `
-background: salmon;
+// background: salmon;
 
     display: grid;
-    grid-template-columns: 1fr 3fr; 
-       
+    grid-template-columns: 1fr 4fr;             
+    
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+
+    @media(max-width: 60rem){ /* 950px */
+        font-size: 0.6rem;         
+        grid-template-columns: none;
+        grid-template-rows: 1fr 1fr; 
+    }
     
 `;
 
@@ -183,7 +191,7 @@ const ContenedorSelectTecnicos = styled.div `
 // background: pink;
 
     display:flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center; 
     gap: 1rem;
     height: 2.9rem;
@@ -192,7 +200,7 @@ const ContenedorSelectTecnicos = styled.div `
 `;
 
 const ContenedorBoton = styled.div`
-// background: crimson;
+//  background: crimson;
 
     display: flex;
     justify-content: center;

@@ -15,7 +15,7 @@ import useObtenerTodosLosTecnicos from "../hooks/useObtenerTodosLosTecnicos";
 import IconoDown from './../assets/down.svg?react';
 
 // El componente
-const SelectTecnicos = ({numeroTecnico, tecnico, asignarTecnico}) => {  
+const SelectTecnicos = ({numeroTecnicos, tecnico, asignarTecnico}) => {  
 
     // Array con los tecnicos obtenidos del hook
     const [todosLosTecnicos] = useObtenerTodosLosTecnicos();
@@ -32,11 +32,12 @@ const SelectTecnicos = ({numeroTecnico, tecnico, asignarTecnico}) => {
     return (
         <Select>
         
-            <h4>{numeroTecnico+1}º:</h4>
+            <h4>{numeroTecnicos+1}º:</h4>
             <ContenedorSelect onClick={() => cambiarMostrarSelect(!mostrarSelect)}>            
                 
                 <OpcionSeleccionada>                                        
-                    {tecnico}
+                    {/* {tecnico} */}
+                    {tecnico == '' ? 'Seleccione' : tecnico}
                     <IconoDown/>
                 </OpcionSeleccionada>          
 

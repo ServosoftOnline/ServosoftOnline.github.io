@@ -4,34 +4,36 @@ import theme from '../objetos/theme';
 
 const Select = styled.div`
 
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center; 
     gap: 1rem;      
     height: 2rem; 
+
+    @media(max-width: 60rem){ /* 950px */
+        gap: 0.3rem;        
+    }
 `;
 
 const ContenedorSelect = styled.div`
 
     background: ${theme.grisClaro};    
-    cursor: pointer;
+    display: flex;
+    align-items: center;
     border-radius: 0.625rem; /* 10px */
+    cursor: pointer;    
 
     // Hará que los elementos que muestre el select esten alineados
     position: relative;
     
     width: 89%;
-    text-align: center;
-    display: flex;
-    align-items: center;
+    text-align: center;    
     transition: .5s ease all;
+    
     &:hover {
         background: ${theme.grisClaro2};
     }
-
-    @media(max-width: 60rem){ /* 950px */
-        // width: 55%;        
-    }
+    
 `;
  
 const OpcionSeleccionada = styled.div`  
@@ -48,8 +50,7 @@ const OpcionSeleccionada = styled.div`
         justify-content: right;  
         height: 3rem; 
     }
-
-    // Centro la opcion seleccionada
+    
     @media(max-width: 60rem){ /* 950px */
         svg {    
             height: 2rem; 
@@ -66,6 +67,10 @@ const Opciones = styled.div`
     width: 100%;    
     max-height: 18.75rem; /* 300px */
     overflow-y: auto;
+
+    @media(max-width: 60rem){ /* 950px */
+        top: 1.5rem; /* 90px */        
+    }
 `;
  
 const Opcion = styled.div`
