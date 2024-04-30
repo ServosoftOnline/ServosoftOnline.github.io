@@ -46,28 +46,13 @@ const agregaActuacion = async (data) => {
                 "estado": "EstadoPteCoordinar", // Primer estado de la actuación
                 "comentariosTecnicos": "",
                 "fechaIncidencia": getUnixTime(new Date()),
-                "fechaUltimaActualizacion": getUnixTime(new Date()),
-                "estadoDescripcion": "Pendiente de coordinar",
-                "fechaCitacion": "",
+                "fechaCitacion": getUnixTime(new Date()),              
+                "estadoDescripcion": "Pendiente de coordinar",                
                 "tecnico1": "",
                 "tecnico2": "",
                 "tecnico3": "",
                 "tecnico4": "",
-                "tecnico5": "",
-                
-                /* 
-                Las añadire en otra coleccion
-                "fechaUltimoCambioEstado": ""
-                
-                "fechaAtendida": "",
-                "horaAtendida": "",
-                "fechaCerrada": "",
-                "horaCerrada": "",
-                "usuarioCerrada": "",
-                "desplazamientos": "",
-                "motivoDeError": "",
-                */
-
+                "tecnico5": ""
             });
 
         } catch (error) {

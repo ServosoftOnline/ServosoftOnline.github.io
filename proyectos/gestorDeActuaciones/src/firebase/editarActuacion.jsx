@@ -36,8 +36,7 @@ const editarActuacion = async ({linkDorus, direccion, poblacion, zonaInstalacion
         tecnico3: tecnico3,
         tecnico4: tecnico4,
         tecnico5: tecnico5,
-        comentariosTecnicos: comentariosTecnicos,
-        fechaUltimaActualizacion: getUnixTime(new Date())
+        comentariosTecnicos: comentariosTecnicos
     });
            
 }

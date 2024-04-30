@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 // Elementos formulario editar actuacion
 import {ContenedorEditarActuacion, SubContenedorSoloLectura, SubContenedor1, SubContenedor2,
         SubContenedor3, SubContenedor4, SubContenedor5, SubContenedor6, ContenedorSelectTecnicos,
-        ContenedorBoton } from './../elementos/ElementosDeFormularioEditarActuacion';
+        ContenedorDatePicker, ContenedorBoton } from './../elementos/ElementosDeFormularioEditarActuacion';
 
 // Componentes select
 import SelectZonasDeInstalacion from "./SelectZonasDeInstalacion";
@@ -24,6 +24,7 @@ import SelectTecnicos from "./SelectTecnicos";
 
 // Resto de los componentes
 import Boton from "./../elementos/Boton";
+import DatePicker from "./DatePicker";
 
 // Funcion firebase
 import editarActuacion from "../firebase/editarActuacion";
@@ -36,6 +37,7 @@ import { ContextoMensaje } from "./../contextos/contextoMensaje";
 
 // Hooks
 import useObtenerActuacionAPartirDeSuId from "../hooks/useObtenerActuacionAPartirDeSuId";
+import { fromUnixTime, getUnixTime } from "date-fns";
 
 // Componente
 const EditarActuacion = () => {
@@ -66,8 +68,8 @@ const EditarActuacion = () => {
     const [estado, asignarEstado] = useState();
     const [estadoDescripcion, asignarEstadoDescripcion] = useState();
 
-    // Estados quinta fila
-    const [fechaCitacion, asignarFechaCitacion] = useState('');
+    // Estados quinta fila    
+    const [fechaCitacion, asignarFechaCitacion] = useState(new Date());
     const [tecnico1, asignarTecnico1] = useState('');
     const [tecnico2, asignarTecnico2] = useState('');
     const [tecnico3, asignarTecnico3] = useState('');
@@ -99,7 +101,7 @@ const EditarActuacion = () => {
         asignarEstado(actuacion.estado);
         asignarEstadoDescripcion(actuacion.estadoDescripcion);
 
-        asignarFechaCitacion(actuacion.fechaCitacion);
+        asignarFechaCitacion(fromUnixTime(actuacion.fechaCitacion));
         asignarTecnico1(actuacion.tecnico1);
         asignarTecnico2(actuacion.tecnico2);
         asignarTecnico3(actuacion.tecnico3);
@@ -114,7 +116,7 @@ const EditarActuacion = () => {
     // Funciones
 
     const llamaAEditarActuacion = () => {
-
+        
         editarActuacion({
             linkDorus: linkDorus,
             direccion: direccion,
@@ -130,7 +132,7 @@ const EditarActuacion = () => {
             stb: stb,
             estado: estado,
             estadoDescripcion: estadoDescripcion,
-            fechaCitacion: fechaCitacion,
+            fechaCitacion: getUnixTime(fechaCitacion),
             tecnico1: tecnico1,
             tecnico2: tecnico2,
             tecnico3: tecnico3,
@@ -349,31 +351,27 @@ const EditarActuacion = () => {
 
                 {/* Este subcontenedor solo se muestra si la actuacion esta en estado agenda */}
                 {estado === 'EstadoAgenda' &&
-                    <>                        
-                        <SubContenedor6>
-                            <div>
-                                <h4>Fecha:</h4>                            
-                                <p>date</p>
-                            </div>
+                    <>                          
+                        <h4>Citación:</h4>
+                        <SubContenedor6>                                                                              
+                            <ContenedorDatePicker>
+                                <DatePicker fechaCitacion={fechaCitacion} asignarFechaCitacion={asignarFechaCitacion} />
+                            </ContenedorDatePicker>                            
 
-                            <div>
-                                <h4>Técnicos:</h4>                                                            
-
-                                {/* Codigo proporcionado por ChatGPT:
-                                    idTipoDeTrabajo contiene un número que coincide con el número de tecnicos
-                                    Array.from() para crear un array con la longitud especificada por idTipoDeTrabajo
-                                    y proporciona tantos select como indique el número */}
-                                
-                                <ContenedorSelectTecnicos>
-                                    {Array.from({ length: idTipoDeTrabajo }, (_, index) => (
-                                        <SelectTecnicos
-                                            numeroTecnicos={index}
-                                            tecnico={eval(`tecnico${index + 1}`)}
-                                            asignarTecnico={eval(`asignarTecnico${index + 1}`)}
-                                        />
-                                    ))}
-                                </ContenedorSelectTecnicos>
-                            </div>
+                            {/* Codigo proporcionado por ChatGPT:
+                                idTipoDeTrabajo contiene un número que coincide con el número de tecnicos
+                                Array.from() para crear un array con la longitud especificada por idTipoDeTrabajo
+                                y proporciona tantos select como indique el número */}
+                            
+                            <ContenedorSelectTecnicos>
+                                {Array.from({ length: idTipoDeTrabajo }, (_, index) => (
+                                    <SelectTecnicos
+                                        numeroTecnicos={index}
+                                        tecnico={eval(`tecnico${index + 1}`)}
+                                        asignarTecnico={eval(`asignarTecnico${index + 1}`)}
+                                    />
+                                ))}
+                            </ContenedorSelectTecnicos>                        
 
                         </SubContenedor6>                
                     </>

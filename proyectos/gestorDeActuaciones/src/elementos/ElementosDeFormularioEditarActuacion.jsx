@@ -170,19 +170,22 @@ const SubContenedor5 = styled.div `
 `;
 
 const SubContenedor6 = styled.div `
-// background: salmon;
+// background: blue;
 
     display: grid;
-    grid-template-columns: 1fr 4fr;             
-    
-    padding-top: 1rem;
+    grid-template-columns: 1fr 4fr;   
+    align-items: center;                  
     padding-bottom: 1rem;
     padding-right: 1rem;
+    gap: 2rem;
+    
 
     @media(max-width: 60rem){ /* 950px */
-        font-size: 0.6rem;         
+
         grid-template-columns: none;
         grid-template-rows: 1fr 1fr; 
+        font-size: 0.7rem;         
+        gap: 0rem;        
     }
     
 `;
@@ -191,11 +194,15 @@ const ContenedorSelectTecnicos = styled.div `
 // background: pink;
 
     display:flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center; 
     gap: 1rem;
     height: 2.9rem;
 
+    z-index: 1;
+`;
+
+const ContenedorDatePicker = styled.div `
     z-index: 2;
 `;
 
@@ -213,4 +220,4 @@ const ContenedorBoton = styled.div`
 `;
 
 export  {ContenedorEditarActuacion, SubContenedorSoloLectura, SubContenedor1, SubContenedor2, SubContenedor3, 
-        SubContenedor4, SubContenedor5, SubContenedor6, ContenedorSelectTecnicos, ContenedorBoton } ;
+        SubContenedor4, SubContenedor5, SubContenedor6, ContenedorSelectTecnicos, ContenedorDatePicker, ContenedorBoton } ;
