@@ -1,5 +1,8 @@
 /*
     MUESTRA LAS ACTUACIONES DE UN ESTADO CON EL BOTON DE EDITARLAS O BORRARLAS
+        - Este componente puede ser llamado desde los componentes coordinador o tecnico
+        - Dependiendo que componente lo llame el link al que apunta el icono editar será a un formulario o a otro
+        - Solo se mostrará el icono borrar si es un coordinador
 */
 
 // React
@@ -19,7 +22,7 @@ import fechaCitacionEsIgual from '../funciones/fechaCitacionEsIgual';
 import formatearFecha from '../funciones/formatearFecha';
 
 // Componente
-const ListaActuacionesDeUnTecnico = ({array}) => {    
+const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador}) => {
     
     return (
         <Lista>
@@ -28,7 +31,7 @@ const ListaActuacionesDeUnTecnico = ({array}) => {
             array.length === 0 ?
             
                 <ContenedorSubtitulo>
-                    <Subtitulo>No hay actuaciones agendadas para ti</Subtitulo>                
+                    <Subtitulo>No hay actuaciones agendadas</Subtitulo>                
                 </ContenedorSubtitulo>
             :
 
@@ -85,16 +88,27 @@ const ListaActuacionesDeUnTecnico = ({array}) => {
 
                         {/* Boton para editar la actuacion */}
                         <ContenedorBotonesLista>
+                            
+                            {laPideUnCoordinador ? 
+                                <>
+                                    <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>
+                                        <IconoEditar /> 
+                                    </BotonAccion>
 
-                            {/* <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>     */}
-                            <BotonAccion as={Link} to={`/tecnico/editar-actuacion/${actuacion.id}`}>                                            
-                                <IconoEditar /> 
-                            </BotonAccion>
+                                    <BotonAccion>
+                                        <IconoBorrar />
+                                    </BotonAccion>
+                                </>
+                                : null}                                
+
+                            {laPideUnTecnico ?
+                                <BotonAccion as={Link} to={`/tecnico/editar-actuacion/${actuacion.id}`} >
+                                    <IconoEditar /> 
+                                </BotonAccion>
+                                : null}                            
 
                             {/* <BotonAccion as={Link} to={`/borrar/${actuacion.id}`}>  */}
-                            <BotonAccion>
-                                <IconoBorrar />
-                            </BotonAccion>
+                            
 
                             </ContenedorBotonesLista>                  
                         </ElementoLista>

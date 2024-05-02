@@ -13,7 +13,26 @@ const ContenedorEditarActuacion = styled.div `
     // Todas las etiquetas que van junto a los inputs van en negrita
     label {
         font-weight: bold;
-    } 
+    }
+    
+    input {
+        font-size: 1.1rem;
+    }
+
+    textarea {
+        font-size: 1.1rem;
+    }
+
+    @media(max-width: 60rem){ /* 950px */
+            
+        input {
+            font-size: 0.9rem;
+        }
+
+        textarea {
+            font-size: 0.9rem;
+        }
+    }
 `;
 
 const SubContenedorSoloLectura = styled.div `

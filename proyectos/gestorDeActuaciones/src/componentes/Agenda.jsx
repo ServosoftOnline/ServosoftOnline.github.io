@@ -1,5 +1,5 @@
 /*
-  COMPONENTE QUE MUESTRA UNA LISTA CON LAS ACTUACIONES CITADAS
+  COMPONENTE QUE MUESTRA UNA LISTA CON TODAS LAS ACTUACIONES CITADAS
 */
 
 // React y react router
@@ -9,7 +9,8 @@ import React from "react";
 import useObtenerActuacionesAgendadas from "../hooks/useObtenerActuacionesAgendadas";
 
 // Componente
-import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
+// import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
+import ListaActuacionesDeUnTecnico from "./ListaActuacionesDeUnTecnico";
 
 // El Componente
 const Agenda = () => {
@@ -19,7 +20,8 @@ const Agenda = () => {
 
   return (
     <>      
-      <ListaActuacionesDeUnEstado array = {arrayActuacionesAgendadas}/>      
+      {/* <ListaActuacionesDeUnEstado array = {arrayActuacionesAgendadas}/>       */}
+      <ListaActuacionesDeUnTecnico array = {arrayActuacionesAgendadas} laPideUnCoordinador={'si'}/>
     </>
   );
 }

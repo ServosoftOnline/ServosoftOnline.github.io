@@ -29,9 +29,8 @@ const useObtenerActuacionesAgendadas = () => {
 			const consulta = query(
 				collection(db, 'actuaciones'),			
 				where('estado', '==', 'EstadoAgenda'),
-				orderBy('fechaCitacion', 'asc'),
-				orderBy('codigoIncidencia', 'asc'),
-				limit(60)
+				orderBy('fechaIncidencia', 'asc'),
+				limit(10)
 			);
 
 			// Ejecuta la consulta. Si se produjera un error lo muestro en consola

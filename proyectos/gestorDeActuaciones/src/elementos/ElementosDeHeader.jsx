@@ -23,10 +23,9 @@ const Header = styled.div`
 `;
 
 const ContenedorHeader = styled.div`
-
-    width: 100%;
     display: flex;
     justify-content: space-between;
+    width: 100%;    
  
     // Coloco los elementos en forma de columna, los centro . Los div de dentro los pongo al final
     @media(max-width: 60rem){ /* 950px */
@@ -62,7 +61,11 @@ const ContenedorTitulo = styled.div`
     gap: 1rem;
 `;
  
- 
+const TodosLosBotones = styled.div `
+    display: flex;
+    align-items: center;
+`;
+
 const ContenedorBotones = styled.div` 
     display: flex;
     justify-content: space-between;
@@ -94,4 +97,4 @@ const ContenedorArchivoExcel = styled.div`
 `;
 
  
-export {Header, ContenedorHeader, Titulo, ContenedorTitulo, ContenedorBotones, ContenedorArchivoExcel};
+export {Header, ContenedorHeader, Titulo, ContenedorTitulo, TodosLosBotones, ContenedorBotones, ContenedorArchivoExcel};

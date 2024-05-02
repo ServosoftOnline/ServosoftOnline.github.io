@@ -13,7 +13,7 @@ import { Route, Routes } from "react-router-dom";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
-import {Header, Titulo, ContenedorHeader, ContenedorBotones} from '../elementos/ElementosDeHeader';
+import {Header, Titulo, ContenedorHeader, TodosLosBotones, ContenedorBotones} from '../elementos/ElementosDeHeader';
 import Boton from "../elementos/Boton";
 import BtnSalir from "../elementos/BtnSalir";
 
@@ -63,20 +63,28 @@ const Coordinador = () => {
         <ContenedorHeader>         
           
           <Titulo>{nombre} </Titulo>
-          <ContenedorBotones>
-            <Boton $paraCoordinador to = "direccion">Dirección</Boton>
-            <Boton $paraCoordinador to = "sin-asignar">Sin asignar</Boton>            
-            <Boton $paraCoordinador to = "ilocalizable">Ilocalizable</Boton>
-            <Boton $paraCoordinador to = "mantenimiento">Mantenimiento</Boton>
-            <Boton $paraCoordinador to = "falta-citas">Falta citas</Boton>
-            <Boton $paraCoordinador to = "incidencias">Incidencias</Boton>
-            <Boton $paraCoordinador to = "oym">O&m</Boton>
-            <Boton $paraCoordinador to = "agenda">Agenda</Boton>
-            <Boton $paraCoordinador to = "supervision">Supervisión</Boton>
-            <Boton $paraCoordinador to = "instalados-finalizados">Finalizados</Boton>
-            {rol == "administrador" ? <Boton $paraAdministrador to="/administrador">Administración</Boton> : null}              
-            <BtnSalir />         
-          </ContenedorBotones>
+          
+          <TodosLosBotones>
+
+            <ContenedorBotones>
+              <Boton $paraCoordinador to = "direccion">Dirección</Boton>
+              <Boton $paraCoordinador to = "sin-asignar">Sin asignar</Boton>            
+              <Boton $paraCoordinador to = "ilocalizable">Ilocalizable</Boton>
+              <Boton $paraCoordinador to = "mantenimiento">Mantenimiento</Boton>
+              <Boton $paraCoordinador to = "falta-citas">Falta citas</Boton>
+            </ContenedorBotones>
+
+            <ContenedorBotones>
+              <Boton $paraCoordinador to = "incidencias">Incidencias</Boton>
+              <Boton $paraCoordinador to = "oym">O&m</Boton>
+              <Boton $paraCoordinador to = "agenda">Agenda</Boton>
+              <Boton $paraCoordinador to = "supervision">Supervisión</Boton>
+              <Boton $paraCoordinador to = "instalados-finalizados">Finalizados</Boton>
+              {rol == "administrador" ? <Boton $paraAdministrador to="/administrador">Administración</Boton> : null}              
+              <BtnSalir />         
+            </ContenedorBotones>
+            
+          </TodosLosBotones>
 
         </ContenedorHeader>
       </Header>
