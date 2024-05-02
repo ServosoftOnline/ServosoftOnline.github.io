@@ -30,7 +30,8 @@ const useObtenerIncidenciasPtesDeAsignar = () => {
 				collection(db, 'actuaciones'),			
 				where('estado', '==', 'EstadoPteCoordinar'),
 				orderBy('fechaIncidencia', 'asc'),
-				limit(10)
+				orderBy('codigoIncidencia', 'asc'),
+				limit(60)
 			);
 
 			// Ejecuta la consulta. Si se produjera un error lo muestro en consola

@@ -15,11 +15,11 @@ import IconoEditar from './../assets/editar.svg?react';
 import IconoBorrar from './../assets/borrar.svg?react';
 
 // Funciones
-import fechaIncidenciaEsIgual from '../funciones/fechaIncidenciaEsIgual';
+import fechaCitacionEsIgual from '../funciones/fechaCitacionEsIgual';
 import formatearFecha from '../funciones/formatearFecha';
 
 // Componente
-const ListaActuacionesDeUnEstado = ({array}) => {    
+const ListaActuacionesDeUnTecnico = ({array}) => {    
     
     return (
         <Lista>
@@ -28,7 +28,7 @@ const ListaActuacionesDeUnEstado = ({array}) => {
             array.length === 0 ?
             
                 <ContenedorSubtitulo>
-                    <Subtitulo>No hay actuaciones en este estado</Subtitulo>                
+                    <Subtitulo>No hay actuaciones agendadas para ti</Subtitulo>                
                 </ContenedorSubtitulo>
             :
 
@@ -42,11 +42,11 @@ const ListaActuacionesDeUnEstado = ({array}) => {
                     <div key={actuacion.codigoIncidencia}>
 
                         {/* Solo mostraré la fecha y la cabecera si la fecha si es diferente a la anterior */}
-                        {!fechaIncidenciaEsIgual(array, index, actuacion) &&
+                        {!fechaCitacionEsIgual(array, index, actuacion) &&
                         <>
 
                             <Fecha>
-                                {formatearFecha(actuacion.fechaIncidencia)}
+                                {formatearFecha(actuacion.fechaCitacion)}
                             </Fecha>
 
                             <ElementoListaCabecera>
@@ -86,7 +86,8 @@ const ListaActuacionesDeUnEstado = ({array}) => {
                         {/* Boton para editar la actuacion */}
                         <ContenedorBotonesLista>
 
-                            <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>                                                 
+                            {/* <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>     */}
+                            <BotonAccion as={Link} to={`/tecnico/editar-actuacion/${actuacion.id}`}>                                            
                                 <IconoEditar /> 
                             </BotonAccion>
 
@@ -105,4 +106,4 @@ const ListaActuacionesDeUnEstado = ({array}) => {
     );
 }
  
-export default ListaActuacionesDeUnEstado;
+export default ListaActuacionesDeUnTecnico;

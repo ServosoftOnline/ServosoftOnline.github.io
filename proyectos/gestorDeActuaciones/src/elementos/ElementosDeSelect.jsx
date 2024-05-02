@@ -79,10 +79,11 @@ const Opcion = styled.div`
     padding-left: 0.5rem;
     display: flex;
     
-    svg {
-        width: 28px;        
-        margin-right: 1.25rem; /* 20px */
-    }
+    
+    // svg {
+    //     width: 28px;        
+    //     margin-right: 1.25rem; /* 20px */
+    // }
     &:hover {
         background: ${theme.grisClaro2};
     }

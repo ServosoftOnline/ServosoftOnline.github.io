@@ -164,7 +164,7 @@ const SubContenedor5 = styled.div `
     z-index: 3;    
 
     @media(max-width: 60rem){ /* 950px */
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 2fr 1fr 3fr;
         font-size: 0.8rem;           
     }
 `;

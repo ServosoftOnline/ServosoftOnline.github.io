@@ -62,10 +62,10 @@ const Coordinador = () => {
       <Header>
         <ContenedorHeader>         
           
-          <Titulo>{nombre} (Planeado)</Titulo>
+          <Titulo>{nombre} </Titulo>
           <ContenedorBotones>
-            <Boton $paraCoordinador to = "sin-asignar">Sin asignar</Boton>
             <Boton $paraCoordinador to = "direccion">Dirección</Boton>
+            <Boton $paraCoordinador to = "sin-asignar">Sin asignar</Boton>            
             <Boton $paraCoordinador to = "ilocalizable">Ilocalizable</Boton>
             <Boton $paraCoordinador to = "mantenimiento">Mantenimiento</Boton>
             <Boton $paraCoordinador to = "falta-citas">Falta citas</Boton>

@@ -41,7 +41,7 @@ const Administrador = () => {
       {/* Cabecera */}
       <Header>
           <ContenedorHeader>
-            <Titulo>{nombre} (Administrador)</Titulo>
+            <Titulo>{nombre}</Titulo>
             <ContenedorBotones>              
               <Boton $paraAdministrador to = "crear-usuario">Crear usuario</Boton>                     
               <Boton $paraAdministrador to = "produccion">Producción</Boton>     

@@ -15,7 +15,7 @@ const SinAsignar = () => {
 
     // LLamadas al hook y paso el objeto a un array para trabajar con los resultados
     const [actuacionesSinAsignar] = useObtenerIncidenciasPtesDeAsignar();
-    const arrayActuacionesSinAsignar = Object.values(actuacionesSinAsignar);
+    const arrayActuacionesSinAsignar = Object.values(actuacionesSinAsignar);    
 
     return (
       <>

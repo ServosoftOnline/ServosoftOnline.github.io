@@ -35,8 +35,7 @@ const SelectTecnicos = ({numeroTecnicos, tecnico, asignarTecnico}) => {
             <h4>{numeroTecnicos+1}º:</h4>
             <ContenedorSelect onClick={() => cambiarMostrarSelect(!mostrarSelect)}>            
                 
-                <OpcionSeleccionada>                                        
-                    {/* {tecnico} */}
+                <OpcionSeleccionada>                                                            
                     {tecnico == '' ? 'Seleccione' : tecnico}
                     <IconoDown/>
                 </OpcionSeleccionada>          

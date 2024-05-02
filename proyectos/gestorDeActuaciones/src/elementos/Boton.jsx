@@ -27,6 +27,7 @@ const Boton = styled(Link)`
         props.$primario ? theme.colorPrimario :
         props.$paraAdministrador ? theme.verdeClaro :
         props.$paraCoordinador ? theme.azulClaro :
+        props.$paraTecnico ? theme.rojo :
         '#000'};    
 
     // Si tiene la propiedad conIcono, el icono será mas ancho
@@ -61,6 +62,7 @@ const Boton = styled(Link)`
     @media(max-width: 60rem){ /* 950px */       
         font-size: 0.68rem;     /* 10.88px */
         margin-left: 0.1rem;    /* 1.6px */
+        height: 1.3rem; 
     }
 `;
 

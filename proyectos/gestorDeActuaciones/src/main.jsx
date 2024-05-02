@@ -1,6 +1,7 @@
 /*
   GESTOR DE ACTUACIONES PARA EMPRESAS DE TELECOMUNICACIONES
-
+  
+  - Inicié la programación de la aplicacion el 18 de marzo de 2024
   - Es el componente principal de la aplicación
 
   - Contiene:
@@ -62,9 +63,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 {/* Rutas anidadas */}
                 <Route path="/administrador/*" element={<Administrador />} />                
                 <Route path='/coordinador/*' element={<Coordinador />} />
-
-                {/* Rutas publicas para los tenicos, Por ahora no tengo rutas anidadas */}
-                <Route path='/tecnico' element={<Tecnico />} />
+                <Route path='/tecnico/*' element={<Tecnico />} />
 
                 {/* Ruta pública "No encuentra la página" */}                 
                 <Route path='*' element={<Error404 />} />

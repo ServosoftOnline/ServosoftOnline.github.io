@@ -44,9 +44,27 @@ const InicioSesion = () => {
   useEffect(() => {
 
     if(sesion && rol) {
-      reiniciarMensaje();           
+      reiniciarMensaje();                 
+
+      // Redirijo dependiendo de la posicion 0 del array rol
       setTimeout(() => {
-        navigate('/' + rol);  
+        switch (rol[0]){
+
+          case 'administrador':              
+              navigate('/administrador'); 
+              break;
+
+          case 'coordinador':              
+              navigate('coordinador/sin-asignar'); 
+              break;
+
+          case 'tecnico':              
+              navigate('tecnico/agenda-tecnico'); 
+              break;
+
+          default:
+              null;
+        }        
       }, 1000);
     } 
     
