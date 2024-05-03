@@ -111,6 +111,40 @@ const FormularioEditarActuacion = () => {
         asignarComentariosTecnicos(actuacion.comentariosTecnicos);
 
     },[actuacion.linkDorus]);  
+
+    // Cada vez que se actualize el estado idTipoDeTrabajo reinicio los estados de los tecnicos dependiendo del valor de este
+    useEffect(() => {
+
+        switch (idTipoDeTrabajo){
+
+            case '1':                
+                asignarTecnico2('');
+                asignarTecnico3('');
+                asignarTecnico4('');
+                asignarTecnico5('');
+                break;
+
+            case '2':                
+                asignarTecnico3('');
+                asignarTecnico4('');
+                asignarTecnico5('');                                    
+                break;
+
+            case '3':                
+                asignarTecnico4('');
+                asignarTecnico5(''); 
+                break;
+
+            case '4':                
+                asignarTecnico5('');                 
+                break;
+
+            default:
+                null;
+        }
+
+
+    },[idTipoDeTrabajo]);
      
     
     // FUNCIONES DEL COMPONENTE
@@ -151,14 +185,7 @@ const FormularioEditarActuacion = () => {
             console.log(error);
         })
     }
-
-    // Función que corrige los tecnicos que se insertan en la BBDD si cambiamos el tipo de trabajo
-    const corrigeTecnicos = () => {
-        console.log('Corrigo los estados con los tecnicos a insertar');
-        console.log('estado idTipoDeTrabajo:' + idTipoDeTrabajo);
-
-    }
-
+    
     // Funcion que valida el contenido del formulario antes de insertar
     const validacionCorrecta = () => {
         
@@ -176,13 +203,14 @@ const FormularioEditarActuacion = () => {
         console.log('zona de instalacion: ' + zonasDeInstalacion);
 
         console.log('tipo de trabajo: ' + tiposDeTrabajo);
+        console.log('id tipo de trabajo: ' + idTipoDeTrabajo);
         console.log('STB:' + stb);    
         console.log('Estado: ' + estado);
         console.log('Comentarios tecnicos: ' + comentariosTecnicos);
        
        
 
-        // que los campos obligatorios no estén vacios. estado deberá contener otro estado que no se el de EstadoPteCoordinar
+        // Validación1: Que los campos obligatorios no estén vacios. estado deberá contener otro estado que no se el de EstadoPteCoordinar
         if (linkDorus === '' || direccion === '' || poblacion === '' || zonasDeInstalacion === '' || coordenadas ==='' ||telefonos === ''
             || tiposDeActuacion === '' || dificultad === '' || tiposDeTrabajo === '' || stb === '') {
 
@@ -190,14 +218,85 @@ const FormularioEditarActuacion = () => {
             return false;
         }
 
+        // Validación2: Que en EstadoAgenda no se dejen tecnicos por seleccionar
+        if(estado === 'EstadoAgenda') {
+
+            switch (idTipoDeTrabajo){
+
+                case '1':
+                    console.log('Un tecnico');                    
+                    console.log('Tecnico1: ' + tecnico1);
+                    console.log('Tecnico2: ' + tecnico2);
+                    console.log('Tecnico3: ' + tecnico3);
+                    console.log('Tecnico4: ' + tecnico4);
+                    console.log('Tecnico5: ' + tecnico5);
+                    if(tecnico1 ===''){
+                        cambiarMensaje('Debe seleccionar todos los técnicos','incorrecta');
+                        return false;
+                    }
+                    break;
+
+                case '2':
+                    console.log('Dos tecnicos');                                       
+                    console.log('Tecnico1: ' + tecnico1);
+                    console.log('Tecnico2: ' + tecnico2);
+                    console.log('Tecnico3: ' + tecnico3);
+                    console.log('Tecnico4: ' + tecnico4);
+                    console.log('Tecnico5: ' + tecnico5);
+                    if(tecnico1 ==='' || tecnico2 ===''){
+                        cambiarMensaje('Debe seleccionar todos los técnicos','incorrecta');
+                        return false;
+                    }
+                    break;
+
+                case '3':
+                    console.log('Tres tecnicos');                                        
+                    console.log('Tecnico1: ' + tecnico1);
+                    console.log('Tecnico2: ' + tecnico2);
+                    console.log('Tecnico3: ' + tecnico3);
+                    console.log('Tecnico4: ' + tecnico4);
+                    console.log('Tecnico5: ' + tecnico5);
+                    if(tecnico1 ==='' || tecnico2 ==='' || tecnico3 ===''){
+                        cambiarMensaje('Debe seleccionar todos los técnicos','incorrecta');
+                        return false;
+                    }
+                    break;
+
+                case '4':
+                    console.log('Cuatro tecnicos');                                        
+                    console.log('Tecnico1: ' + tecnico1);
+                    console.log('Tecnico2: ' + tecnico2);
+                    console.log('Tecnico3: ' + tecnico3);
+                    console.log('Tecnico4: ' + tecnico4);
+                    console.log('Tecnico5: ' + tecnico5);
+                    if(tecnico1 ==='' || tecnico2 ==='' || tecnico3 ==='' || tecnico4 === ''){
+                        cambiarMensaje('Debe seleccionar todos los técnicos','incorrecta');
+                        return false;
+                    }
+                    break;
+
+                default:
+                    console.log('Cinco tecnicos');
+                    console.log('Tecnico1: ' + tecnico1);
+                    console.log('Tecnico2: ' + tecnico2);
+                    console.log('Tecnico3: ' + tecnico3);
+                    console.log('Tecnico4: ' + tecnico4);
+                    console.log('Tecnico5: ' + tecnico5);
+                    if(tecnico1 ==='' || tecnico2 ==='' || tecnico3 ==='' || tecnico4 === '' || tecnico5 === ''){
+                        cambiarMensaje('Debe seleccionar todos los técnicos','incorrecta');
+                        return false;
+                    }
+            }
+        }
+
+
         return true;        
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(validacionCorrecta()) {            
-            corrigeTecnicos();
+        if(validacionCorrecta()) {                       
             llamaAEditarActuacion();
         } 
     }
