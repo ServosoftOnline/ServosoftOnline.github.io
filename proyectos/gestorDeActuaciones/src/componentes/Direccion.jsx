@@ -68,12 +68,9 @@ const Direccion = () => {
 
     // Objeto que contiene como debe ser la cabecera a insertar   
     const cabeceraCorrecta = [
-      "Nombre",      
-      "Teléfono Contacto",
-      "Tipo Servicio",
-      "Código Incidencia",
-      "Población Instalación",
-      "Direccion Instalación"
+      "Cod Incidencia",      
+      "Nombre",
+      "Descripción"      
     ];
 
     // Almaceno la cabecera obtenida en la cte

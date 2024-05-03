@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 // Elementos formulario editar actuacion
 import {ContenedorEditarActuacion, SubContenedorSoloLectura, SubContenedor1, SubContenedor2,
         SubContenedor3, SubContenedor4, SubContenedor5, SubContenedor6, ContenedorSelectTecnicos,
-        ContenedorDatePicker, ContenedorBoton } from './../elementos/ElementosDeFormularioEditarActuacion';
+        ContenedorDatePicker, ContenedorBoton } from '../elementos/ElementosDeFormularioEditarActuacion';
 
 // Componentes select
 import SelectZonasDeInstalacion from "./SelectZonasDeInstalacion";
@@ -23,24 +23,24 @@ import SelectTiposDeActuacion from "./SelectTiposDeActuacion";
 import SelectTecnicos from "./SelectTecnicos";
 
 // Resto de los componentes
-import Boton from "./../elementos/Boton";
+import Boton from "../elementos/Boton";
 import DatePicker from "./DatePicker";
 
 // Funcion firebase
 import editarActuacion from "../firebase/editarActuacion";
 
 // Componentes
-import Mensaje from "./../componentes/Mensaje";
+import Mensaje from "./Mensaje";
 
 // Contexto
-import { ContextoMensaje } from "./../contextos/contextoMensaje";
+import { ContextoMensaje } from "../contextos/contextoMensaje";
 
 // Hooks
 import useObtenerActuacionAPartirDeSuId from "../hooks/useObtenerActuacionAPartirDeSuId";
 import { fromUnixTime, getUnixTime } from "date-fns";
 
 // Componente
-const EditarActuacion = () => {
+const FormularioEditarActuacion = () => {
 
     const {idActuacion} = useParams();    
     const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
@@ -50,7 +50,6 @@ const EditarActuacion = () => {
     const [linkDorus, asignarLinkDorus] = useState();    
     const [direccion, asignarDireccion] = useState();
     const [poblacion, asignarPoblacion] = useState();
-    const [zonasDeInstalacion, asignarZonasDeInstalacion] = useState();
 
     // Estados segunda fila
     const [coordenadas, asignarCoordenadas] = useState();
@@ -60,6 +59,7 @@ const EditarActuacion = () => {
     // Estados tercera fila
     const [dificultad, asignarDificultad] = useState();
     const [puntos, asignarPuntos] = useState();
+    const [zonasDeInstalacion, asignarZonasDeInstalacion] = useState();
     
     // Estados cuarta fila
     const [tiposDeTrabajo, asignarTiposDeTrabajo] = useState();
@@ -86,14 +86,14 @@ const EditarActuacion = () => {
         asignarLinkDorus(actuacion.linkDorus);
         asignarDireccion(actuacion.direccion);
         asignarPoblacion(actuacion.poblacion);
-        asignarZonasDeInstalacion(actuacion.zonaInstalacion);
 
         asignarCoordenadas(actuacion.coordenadas);
         asignarTelefonos(actuacion.telefonos);
         asignarTiposDeActuacion(actuacion.tipoActuacion);
 
         asignarDificultad(actuacion.dificultad);
-        asignarPuntos(actuacion.puntos);        
+        asignarPuntos(actuacion.puntos); 
+        asignarZonasDeInstalacion(actuacion.zonaInstalacion);       
 
         asignarTiposDeTrabajo(actuacion.tipoTrabajo);
         asignarIdTipoDeTrabajo(actuacion.idTipoTrabajo);
@@ -113,8 +113,8 @@ const EditarActuacion = () => {
     },[actuacion.linkDorus]);  
      
     
-    // Funciones
-
+    // FUNCIONES DEL COMPONENTE
+    // Funcion que llama a la funcion que insertará los datos en la base de datos. Lo hago para separar front y backend
     const llamaAEditarActuacion = () => {
         
         editarActuacion({
@@ -152,33 +152,41 @@ const EditarActuacion = () => {
         })
     }
 
+    // Función que corrige los tecnicos que se insertan en la BBDD si cambiamos el tipo de trabajo
+    const corrigeTecnicos = () => {
+        console.log('Corrigo los estados con los tecnicos a insertar');
+        console.log('estado idTipoDeTrabajo:' + idTipoDeTrabajo);
 
+    }
+
+    // Funcion que valida el contenido del formulario antes de insertar
     const validacionCorrecta = () => {
         
-        /* 
+       
         console.log('link Dorus: ' + linkDorus);
         console.log('Direccion: ' + direccion);
         console.log('Poblacion: ' + poblacion);
-        console.log('zona de instalacion: ' + zonaInstalacion);
-        
+
         console.log('Coordenadas: ' + coordenadas);
         console.log('telefonos: ' + telefonos);    
         console.log('Tipo de actuacion: ' + tiposDeActuacion);
          
         console.log('Dificultad: ' + dificultad);
         console.log('Puntos: ' + puntos);
+        console.log('zona de instalacion: ' + zonasDeInstalacion);
 
-        console.log('tipo de trabajo: ' + tipoDeTrabajo);
+        console.log('tipo de trabajo: ' + tiposDeTrabajo);
         console.log('STB:' + stb);    
         console.log('Estado: ' + estado);
         console.log('Comentarios tecnicos: ' + comentariosTecnicos);
-        */        
+       
+       
 
         // que los campos obligatorios no estén vacios. estado deberá contener otro estado que no se el de EstadoPteCoordinar
-        if (linkDorus === '' || direccion === '' || poblacion === '' || zonasDeInstalacion === '' || telefonos === ''
+        if (linkDorus === '' || direccion === '' || poblacion === '' || zonasDeInstalacion === '' || coordenadas ==='' ||telefonos === ''
             || tiposDeActuacion === '' || dificultad === '' || tiposDeTrabajo === '' || stb === '') {
 
-            cambiarMensaje('Debe rellenar todos los datos obligatorios. Son todos menos las coordenadas y los comentarios técnicos', 'incorrecta');            
+            cambiarMensaje('Rellene todos los datos obligatorios. Son todos menos los comentarios técnicos', 'incorrecta');            
             return false;
         }
 
@@ -186,8 +194,12 @@ const EditarActuacion = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();               
-        if(validacionCorrecta()) llamaAEditarActuacion();
+        e.preventDefault();
+
+        if(validacionCorrecta()) {            
+            corrigeTecnicos();
+            llamaAEditarActuacion();
+        } 
     }
 
     const handleChange = (e) => {
@@ -227,13 +239,13 @@ const EditarActuacion = () => {
         
         <ContenedorEditarActuacion>
 
-            <SubContenedorSoloLectura>
-                <div> <label for="codigoIncidencia">Código de incidencia: </label> {actuacion.codigoIncidencia} </div>
-                <div> <label for="codigoIncidencia">Cliente: </label> {actuacion.nombre} </div>
-                <div> <label for="codigoIncidencia">Tipo de servicio: </label> {actuacion.tipoServicio} </div>
-            </SubContenedorSoloLectura>
-
             <form onSubmit={handleSubmit}>
+
+                <SubContenedorSoloLectura>
+                    <div> <label for="codigoIncidencia">Código de incidencia: </label> {actuacion.codigoIncidencia} </div>
+                    <div> <label for="codigoIncidencia">Cliente: </label> {actuacion.nombre} </div>
+                    <div> <label for="codigoIncidencia">Descripción: </label> {actuacion.descripcion} </div>
+                </SubContenedorSoloLectura>
 
                 <SubContenedor1>
                     <div>
@@ -241,7 +253,7 @@ const EditarActuacion = () => {
                         <input
                             type="text"
                             name="linkDorus"                
-                            placeholder="Introduzca link obligatorio"
+                            placeholder="Introduzca link"
                             value={linkDorus}
                             onChange={handleChange}
                         />
@@ -252,7 +264,8 @@ const EditarActuacion = () => {
                         <input
                             type="text"
                             name="direccion"                
-                            placeholder= {actuacion.direccion}
+                            // placeholder= {actuacion.direccion}
+                            placeholder="Introduzca dirección"
                             value={direccion}
                             onChange={handleChange}
                         />
@@ -262,8 +275,9 @@ const EditarActuacion = () => {
                         <label for="poblacion">Población:</label>
                         <input
                             type="text"
-                            name="poblacion"                
-                            placeholder={actuacion.poblacion}
+                            name="poblacion"   
+                            placeholder="Introduzca población"             
+                            // placeholder={actuacion.poblacion}
                             value={poblacion}
                             onChange={handleChange}
                         />
@@ -277,7 +291,7 @@ const EditarActuacion = () => {
                         <input
                             type="text"
                             name="coordenadas"                
-                            placeholder="Coordenadas opcionales"
+                            placeholder="Introduzca coordenadas"
                             value={coordenadas}
                             onChange={handleChange}
                         />
@@ -411,4 +425,4 @@ const EditarActuacion = () => {
     );
 }
  
-export default EditarActuacion;
+export default FormularioEditarActuacion;

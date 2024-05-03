@@ -4,7 +4,6 @@ const objetoTiposDeActuacion = [
     
     {id: 'altaNueva', descripcion:'Alta nueva'},
     {id: 'instalacionStb', descripcion:'Instalación STB'},
-    {id: 'tareasPe', descripcion:'Tareas PE'},
     {id: 'cambioDeRouter', descripcion:'Cambio de Router'},
     {id: 'traslado', descripcion:'Traslado'},
     {id: 'averiaCliente', descripcion:'Avería cliente'},

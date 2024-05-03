@@ -3,6 +3,7 @@
 */
 
 import styled from "styled-components";
+import theme from "../objetos/theme";
 
 const ContenedorEditarActuacion = styled.div `
     display: grid;
@@ -22,6 +23,10 @@ const ContenedorEditarActuacion = styled.div `
     textarea {
         font-size: 1.1rem;
     }
+
+    input::placeholder {
+        color: ${theme.rojoIntenso};
+      }
 
     @media(max-width: 60rem){ /* 950px */
             

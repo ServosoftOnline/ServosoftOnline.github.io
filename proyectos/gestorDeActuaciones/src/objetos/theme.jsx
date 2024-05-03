@@ -6,6 +6,7 @@ const theme = {
     colorSecundario: '#000',
     verde: '#43A854',
     rojo: '#E34747',
+    rojoIntenso: '#990000',
     naranja: '#FFA500',
     grisOscuro: '#7F8C8D',
     grisClaro: '#E8EFF1',

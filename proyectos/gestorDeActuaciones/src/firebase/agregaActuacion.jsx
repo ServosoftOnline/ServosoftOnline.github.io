@@ -26,17 +26,17 @@ const agregaActuacion = async (data) => {
             await addDoc(collection(db, 'actuaciones'), {
 
                 // Obtenidos desde el excel
+                "codigoIncidencia": registro["Cod Incidencia"],
                 "nombre": registro["Nombre"],
-                "telefonos": registro["Teléfono Contacto"],
-                "tipoServicio": registro["Tipo Servicio"],
-                "codigoIncidencia": registro["Código Incidencia"],
-                "poblacion": registro["Población Instalación"],
-                "direccion": registro["Direccion Instalación"],
-                
+                "descripcion": registro["Descripción"],
+
                 // Añado los que necesito
                 "linkDorus": "",
-                "zonaInstalacion": "",
+                "poblacion": "",
+                "direccion": "",
                 "coordenadas": "",
+                "telefonos": "",
+                "zonaInstalacion": "",
                 "tipoActuacion": "",
                 "dificultad": "",
                 "puntos":0,

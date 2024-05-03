@@ -55,7 +55,7 @@ const ElementoListaCabecera = styled.li`
     background: ${theme.grisClaro};
     list-style: none;
     display: grid;
-    grid-template-columns: 1fr 2fr 4fr 1fr 2fr 1fr; 
+    grid-template-columns: 1fr 3fr 4fr 2fr 2fr 1fr; 
     font-weight: bolder;   
     padding: 1.25rem 0; /* 20px */
     border-bottom: 2px solid #F2F2F2;    
@@ -69,7 +69,7 @@ const ElementoListaCabecera = styled.li`
     }
 
     @media(max-width: 60rem){ /* 950px */ 
-        grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr; 
+        grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr; 
         font-size: 0.8rem;
         & > div {
             
@@ -81,7 +81,7 @@ const ElementoLista = styled.li`
 
     list-style: none;
     display: grid;
-    grid-template-columns: 1fr 2fr 4fr 1fr 2fr 1fr;    
+    grid-template-columns: 1fr 3fr 4fr 2fr 2fr 1fr;     
     padding: 1.25rem 0; /* 20px */
     border-bottom: 2px solid #F2F2F2;    
     gap: 0.7rem; /* 5px */   
@@ -99,7 +99,7 @@ const ElementoLista = styled.li`
     }
 
     @media(max-width: 60rem){ /* 950px */ 
-        grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr; 
+        grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr; 
         font-size: 0.8rem;
         padding: 0.8rem 0; /* 16px */
         & > div {

@@ -72,11 +72,11 @@ const ListaActuacionesDeUnEstado = ({array}) => {
                         </Cliente>
 
                         <Direccion>
-                            {actuacion.direccion}
+                            {actuacion.direccion ? actuacion.direccion : 'Pendiente de rellenar'}
                         </Direccion>
 
                         <Poblacion>
-                            {actuacion.poblacion}
+                            {actuacion.poblacion ? actuacion.poblacion : 'Pendiente de rellenar'}
                         </Poblacion>
 
                         <Estado>
