@@ -96,6 +96,7 @@ const SubContenedor2 = styled.div `
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;  
     gap: 1rem;
+    align-items: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-right: 1rem;
@@ -109,10 +110,11 @@ const SubContenedor2 = styled.div `
     }
 
     @media(max-width: 60rem){ /* 950px */
-        font-size: 0.8rem;           
+        font-size: 0.8rem; 
+        grid-template-columns: 1fr 1fr 2fr;          
 
         input {
-            width: 14.5rem;
+            width: 11rem;
         }
     }
 `;
@@ -123,6 +125,7 @@ const SubContenedor3 = styled.div `
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
+    align-items: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-right: 1rem;
@@ -136,11 +139,11 @@ const SubContenedor3 = styled.div `
     }
 
     @media(max-width: 60rem){ /* 950px */
-        grid-template-columns: 1fr 1fr 2fr;
+        grid-template-columns: 2fr 1fr 3fr;
         font-size: 0.8rem;           
         padding-bottom: 0.5rem;
         input {
-            width: 4.8rem;            
+            width: 3rem;            
         }
     }
     
@@ -188,7 +191,7 @@ const SubContenedor5 = styled.div `
     z-index: 3;    
 
     @media(max-width: 60rem){ /* 950px */
-    grid-template-columns: 2fr 1fr 3fr;
+        grid-template-columns: 2fr 1fr 3fr;
         font-size: 0.8rem;           
     }
 `;

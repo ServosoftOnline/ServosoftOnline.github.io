@@ -218,72 +218,76 @@ const FormularioEditarActuacion = () => {
             return false;
         }
 
-        // Validación2: Que en EstadoAgenda no se dejen tecnicos por seleccionar
+        // Validación2: Que en EstadoAgenda no se dejen tecnicos por seleccionar y que los tecnicos sean diferentes
         if(estado === 'EstadoAgenda') {
 
             switch (idTipoDeTrabajo){
 
                 case '1':
-                    console.log('Un tecnico');                    
-                    console.log('Tecnico1: ' + tecnico1);
-                    console.log('Tecnico2: ' + tecnico2);
-                    console.log('Tecnico3: ' + tecnico3);
-                    console.log('Tecnico4: ' + tecnico4);
-                    console.log('Tecnico5: ' + tecnico5);
+                    
                     if(tecnico1 ===''){
                         cambiarMensaje('Debe seleccionar todos los técnicos','incorrecta');
                         return false;
                     }
                     break;
 
-                case '2':
-                    console.log('Dos tecnicos');                                       
-                    console.log('Tecnico1: ' + tecnico1);
-                    console.log('Tecnico2: ' + tecnico2);
-                    console.log('Tecnico3: ' + tecnico3);
-                    console.log('Tecnico4: ' + tecnico4);
-                    console.log('Tecnico5: ' + tecnico5);
+                case '2':                    
+
                     if(tecnico1 ==='' || tecnico2 ===''){
                         cambiarMensaje('Debe seleccionar todos los técnicos','incorrecta');
+                        return false;
+                        
+                    } else if (tecnico1===tecnico2){
+                        cambiarMensaje('Deben ser tecnicos diferentes', 'incorrecta');
                         return false;
                     }
                     break;
 
                 case '3':
-                    console.log('Tres tecnicos');                                        
-                    console.log('Tecnico1: ' + tecnico1);
-                    console.log('Tecnico2: ' + tecnico2);
-                    console.log('Tecnico3: ' + tecnico3);
-                    console.log('Tecnico4: ' + tecnico4);
-                    console.log('Tecnico5: ' + tecnico5);
+                    
                     if(tecnico1 ==='' || tecnico2 ==='' || tecnico3 ===''){
                         cambiarMensaje('Debe seleccionar todos los técnicos','incorrecta');
                         return false;
+
+                    } else if(
+                            tecnico1===tecnico2 || tecnico1===tecnico3 ||
+                            tecnico2===tecnico3
+                        ){                            
+                        cambiarMensaje('Deben ser tecnicos diferentes', 'incorrecta');
+                        return false;
                     }
+
                     break;
 
                 case '4':
-                    console.log('Cuatro tecnicos');                                        
-                    console.log('Tecnico1: ' + tecnico1);
-                    console.log('Tecnico2: ' + tecnico2);
-                    console.log('Tecnico3: ' + tecnico3);
-                    console.log('Tecnico4: ' + tecnico4);
-                    console.log('Tecnico5: ' + tecnico5);
+                    
                     if(tecnico1 ==='' || tecnico2 ==='' || tecnico3 ==='' || tecnico4 === ''){
                         cambiarMensaje('Debe seleccionar todos los técnicos','incorrecta');
+                        return false;
+
+                    } else if(
+                            tecnico1===tecnico2 || tecnico1===tecnico3 || tecnico1===tecnico4 ||
+                            tecnico2===tecnico3 || tecnico2===tecnico4 ||
+                            tecnico3===tecnico4                            
+                        ){
+                        cambiarMensaje('Deben ser tecnicos diferentes', 'incorrecta');
                         return false;
                     }
                     break;
 
                 default:
-                    console.log('Cinco tecnicos');
-                    console.log('Tecnico1: ' + tecnico1);
-                    console.log('Tecnico2: ' + tecnico2);
-                    console.log('Tecnico3: ' + tecnico3);
-                    console.log('Tecnico4: ' + tecnico4);
-                    console.log('Tecnico5: ' + tecnico5);
+                    
                     if(tecnico1 ==='' || tecnico2 ==='' || tecnico3 ==='' || tecnico4 === '' || tecnico5 === ''){
                         cambiarMensaje('Debe seleccionar todos los técnicos','incorrecta');
+                        return false;
+
+                    } else if(
+                        tecnico1===tecnico2 || tecnico1===tecnico3 || tecnico1===tecnico4 || tecnico1===tecnico5 ||
+                        tecnico2===tecnico3 || tecnico2===tecnico4 || tecnico2===tecnico5 ||
+                        tecnico3===tecnico4 || tecnico3===tecnico5 ||
+                        tecnico4===tecnico5                            
+                    ){
+                        cambiarMensaje('Deben ser tecnicos diferentes', 'incorrecta');
                         return false;
                     }
             }
@@ -385,6 +389,7 @@ const FormularioEditarActuacion = () => {
                 </SubContenedor1>                
 
                 <SubContenedor2>
+                    
                     <div>
                         <label for="coordenadas">Coordenadas:</label>
                         <input
