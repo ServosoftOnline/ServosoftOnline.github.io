@@ -379,8 +379,7 @@ const FormularioEditarActuacion = () => {
                         <input
                             type="text"
                             name="poblacion"   
-                            placeholder="Introduzca población"             
-                            // placeholder={actuacion.poblacion}
+                            placeholder="Introduzca población"                                         
                             value={poblacion}
                             onChange={handleChange}
                         />

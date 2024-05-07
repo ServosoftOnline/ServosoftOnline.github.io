@@ -25,7 +25,7 @@ import BtnSalir from '../elementos/BtnSalir';
 // Elementos para las rutas importados de forma dinámica
 const AgendaTecnico = lazy(() => import('./AgendaTecnico'));
 const ProductividadTecnico = lazy(() => import('./ProductividadTecnico'));
-const EditarActuacionTecnico = lazy(() => import('./EditarActuacionTecnico'));
+const FormularioEditarActuacionTecnico = lazy(() => import('./FormularioEditarActuacionTecnico'));
 
 // Componentes
 import BarraProductividad from "./../componentes/BarraProductividad";
@@ -68,7 +68,7 @@ const Tecnico = () => {
           <Route path="productividad-tecnico" element={<ProductividadTecnico />}/>
           
           {/* Rutas dinamicas */}          
-          <Route path="editar-actuacion/:idActuacion" element={<EditarActuacionTecnico />}/>
+          <Route path="editar-actuacion/:idActuacion" element={<FormularioEditarActuacionTecnico />}/>
         </Routes>
       </Suspense> 
 

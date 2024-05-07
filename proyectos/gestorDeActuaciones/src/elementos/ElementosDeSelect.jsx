@@ -5,7 +5,7 @@ import theme from '../objetos/theme';
 const Select = styled.div`
 
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     align-items: center; 
     gap: 1rem;      
     height: 2rem; 
@@ -78,12 +78,7 @@ const Opcion = styled.div`
     padding-top: 0.5rem;
     padding-left: 0.5rem;
     display: flex;
-    
-    
-    // svg {
-    //     width: 28px;        
-    //     margin-right: 1.25rem; /* 20px */
-    // }
+   
     &:hover {
         background: ${theme.grisClaro2};
     }
