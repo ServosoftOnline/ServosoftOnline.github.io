@@ -6,17 +6,22 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+// date-fns
+import {getUnixTime } from "date-fns";
+
 // Elementos
-import {ContenedorEditarActuacion, Formulario, SubContenedorSoloLectura, SubContenedor1, SubContenedor2, SubContenedor3, 
-        SubContenedor4, SubContenedor5, SubContenedor6, ContenedorSelectTecnicos, ContenedorDatePicker, ContenedorBoton }
-        from './../elementos/ElementosDeFormularioEditarActuacionTecnico';
+import {ContenedorEditarActuacion, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad,
+    DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias, ComentariosTecnicos, ContenedorComentariosTecnicos,
+    ContenedorEstadoYBoton, Estado, ContenedorBoton} from './../elementos/ElementosDeFormularioEditarActuacionTecnico';
 
 // Componentes select
-import SelectDificultades from "./SelectTDificultades";
 import SelectEstadosModuloTecnico from "./SelectEstadosModuloTecnico";
 
 // Resto de los componentes
 import Boton from "../elementos/Boton";
+
+// Funciones
+import formatearFechaEnHoraYSegundos from "../funciones/formatearFechaEnHoraYSegundos";
 
 // Funcion firebase
 import editarActuacion from "../firebase/editarActuacion";
@@ -24,8 +29,10 @@ import editarActuacion from "../firebase/editarActuacion";
 // Componentes
 import Mensaje from "./Mensaje";
 
-// Contexto
-import { ContextoMensaje } from "../contextos/contextoMensaje";
+// Contextos
+import { ContextoMensaje } from './../contextos/contextoMensaje';
+import {DesplazamientoContext} from './../contextos/DesplazamientoContext';
+
 
 // Hooks
 import useObtenerActuacionAPartirDeSuId from "../hooks/useObtenerActuacionAPartirDeSuId";
@@ -35,16 +42,19 @@ import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
 // Mi componente
 const  FormularioEditarActuacionTecnico= () => {
 
-    const {idActuacion} = useParams();    
+    // Obtendo el idActuacion pasado por la barra de direccion
+    const {idActuacion} = useParams();
+
+    // Obtengo del contexto los mensajes que mostraré en pantalla
     const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);   
+
+    // Obtengo el contexto de control de desplazamientos de los tecnicos
+    const {asignarEstaEnCamino ,asignarEstaEnCliente} = useContext(DesplazamientoContext);  
 
     // Informacion obtenida desde los hooks
     const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
     const [todosLosTecnicos] = useObtenerTecnicosAPartirDelIdActuacion(idActuacion);
     const [nombre] = useObtenerNombreDeUnUsuario();
-    const DificultadAntesDeEntrar= actuacion.dificultad;
-    const PuntosAntesDeEntrar = actuacion.puntos;
-     
     
     // Estados        
     const [estado, asignarEstado] = useState(actuacion.estado);    
@@ -53,7 +63,9 @@ const  FormularioEditarActuacionTecnico= () => {
     const [momentoLlegadaACliente, asignarMomentoLlegadaACliente] = useState();
     const [momentoFinActuacion, asignarMomentoFinActuacion] = useState();
     const [consideraNivel4, asignarConsideraNivel4] = useState("No");
-    const [dificultadTemporal, asignarDificultadTemporal] = useState();
+    const [dificultadTemporal, asignarDificultadTemporal] = useState("Nivel 4");
+    const [puntosTemporales, asignarPuntosTemporales] = useState(0);
+    const [comentariosTecnicosDeVerdad, asignarComentariosTecnicosDeVerdad] = useState("");
 
     // Obtengo los acompañantes filtrando a todos los tecnicos obtenidos por el hook eliminandole quien inico la sesion guardado en nombre
     let acompañantes = []; 
@@ -63,48 +75,48 @@ const  FormularioEditarActuacionTecnico= () => {
                 return tecnico;
             }
         });
-    };
-    console.log(acompañantes);
+    };   
 
 
-    // // Establezco los estados con los datos de la actuacion obtenida del hook. Para mostrar los valores
-    // //  Por ahora solo es necesario tener una depedencia
+    // Efecto para obtener los datos que iré mostrando en el formulario
     useEffect(() => {        
-    //     /* 
-    //     asignarLinkDorus(actuacion.linkDorus);
-    //     asignarDireccion(actuacion.direccion);
-    //     asignarPoblacion(actuacion.poblacion);
 
-    //     asignarCoordenadas(actuacion.coordenadas);
-    //     asignarTelefonos(actuacion.telefonos);
-    //     asignarTiposDeActuacion(actuacion.tipoActuacion);
-    //     */
-       
-           
+        asignarEstadoDescripcion(actuacion.estadoDescripcion);
+        asignarMomentoInicioCamino(actuacion.horaEnCamino);
+        asignarMomentoLlegadaACliente(actuacion.horaDeLlegada);
+
+    },[actuacion.estadoDescripcion, actuacion.horaEnCamino, actuacion.horaDeLlegada]);  
+   
+    // Efecto que asigna la hora de finalizacion de la actuación en todos los casos posibles una vez acabada la actuacion
+    useEffect(() => {
+
+        switch (estado){            
             
+            case 'EstadoSupervision':                
+                asignarMomentoFinActuacion(getUnixTime(new Date()));                
+                break;
 
-    //     /* 
-    //     asignarZonasDeInstalacion(actuacion.zonaInstalacion);       
-    //     asignarTiposDeTrabajo(actuacion.tipoTrabajo);
-    //     asignarIdTipoDeTrabajo(actuacion.idTipoTrabajo);
-    //     asignarStb(actuacion.stb);
-    //     */
+            case 'EstadoIlocalizable':                
+                asignarMomentoFinActuacion(getUnixTime(new Date()));
+                break;
 
-    //     asignarEstado(actuacion.estado);
-            asignarEstadoDescripcion(actuacion.estadoDescripcion);
+            case 'EstadoIncidencias':                
+                asignarMomentoFinActuacion(getUnixTime(new Date()));
+                break;
 
-    //     /* 
-    //     asignarFechaCitacion(fromUnixTime(actuacion.fechaCitacion));
-    //     asignarTecnico1(actuacion.tecnico1);
-    //     asignarTecnico2(actuacion.tecnico2);
-    //     asignarTecnico3(actuacion.tecnico3);
-    //     asignarTecnico4(actuacion.tecnico4);
-    //     asignarTecnico5(actuacion.tecnico5);
+            case 'EstadoFaltaCitas':                
+                asignarMomentoFinActuacion(getUnixTime(new Date()));
+                break;
 
-    //     asignarComentariosTecnicos(actuacion.comentariosTecnicos);
-    //     */
+            case 'EstadoMantenimiento':                
+                asignarMomentoFinActuacion(getUnixTime(new Date()));
+                break;
+                
+            default:
+                console.log('No entro en ninguno case');
+        }
 
-    },[actuacion.estadoDescripcion]);  
+    },[estado]);
 
     // Funciones    
     const abrirGoogleMaps = (coordenadas) => {
@@ -113,14 +125,36 @@ const  FormularioEditarActuacionTecnico= () => {
     }
 
     const handleChange = (e) => {
-        asignarConsideraNivel4(e.target.value);
+
+        switch (e.target.name){
+
+            case 'nivel4':                
+                asignarConsideraNivel4(e.target.value);
+                break;
+
+            case 'comentariosTecnicos':                
+                asignarComentariosTecnicosDeVerdad(e.target.value);
+                break;
+
+            default:
+                console.log('No entro en ninguno case');
+        }
+        
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Ejecuto el handlesubmit');
+        asignarEstaEnCamino(false);
+        asignarEstaEnCliente(false);
+    }
     
     return (        
 
         <ContenedorEditarActuacion>
-            <Formulario>
+            <form onSubmit={handleSubmit}>
 
+                {/* Subcontenedor solo con elementos de lectura */}
                 <SubContenedorSoloLectura>
 
                     {/* Codigo de incidencia, cliente y descripcion */}
@@ -144,7 +178,7 @@ const  FormularioEditarActuacionTecnico= () => {
                         <a href="#" onClick={() => abrirGoogleMaps(actuacion.coordenadas)}>{actuacion.coordenadas}</a>
                     </div>
 
-                    {/* Telefonos, tipo de atuacion , zona, momentos de en camino e incio de actuacion y comentarios coordinacion */}                    
+                    {/* Telefonos, tipo de actuacion, zona, momentos de en camino e inicio de actuacion y comentarios coordinacion */}                    
                     <div> <label htmlFor="telefonos">Telefonos: </label> {actuacion.telefonos} </div>
                     <div> <label htmlFor="tipoActuacion">Tipo de actuación: </label> {actuacion.tipoActuacion} </div>
                     <div> <label htmlFor="zona">Zona: </label> {actuacion.zonaInstalacion} </div>
@@ -154,84 +188,151 @@ const  FormularioEditarActuacionTecnico= () => {
                     <div>
 
                         <label htmlFor="tecnicosAcompañantes">Técnicos acompañantes: </label>
-                        {acompañantes.map((acompañante, index) => (
-                            <React.Fragment key={index}>
-                                {acompañante}
-                                {index !== acompañantes.length - 1 && ", "}
-                            </React.Fragment>
-                        ))}
-                    </div>
-                    
-                    {/* Comentarios desde coordinacion */}
-                    <div> 
-                        <label htmlFor="comentariosCoordinacion"> Comentarios desde coordinación: </label>
-                        {actuacion.comentariosTecnicos} 
+                        {
+                            acompañantes.length === 0 ? 'Vas solo'
+                            :                        
+                            acompañantes.map((acompañante, index) => (
+                                <React.Fragment key={index}>
+                                    {acompañante}
+                                    {index !== acompañantes.length - 1 && ", "}
+                                </React.Fragment>
+                            ))
+                        }
                     </div>
 
                 </SubContenedorSoloLectura>
 
-                <SubContenedor1>
-                    <div> <label htmlFor="momentoInicioCamino">Inicio camino: </label> {momentoInicioCamino} </div>
-                    <div> <label htmlFor="momentoInicioActuacion">Inicio actuacion: </label> {momentoLlegadaACliente}</div>
-                    <div> <label htmlFor="momentoFinActuacion">Fin actuacion: </label> {momentoFinActuacion}</div>
-                </SubContenedor1>
-
-                <SubContenedor2>
-
-                    <SelectEstadosModuloTecnico
-                        asignarEstado={asignarEstado}
-                        estadoDescripcion = {estadoDescripcion}
-                        asignarEstadoDescripcion = {asignarEstadoDescripcion}
-                    />                
-
-                </SubContenedor2>
-
-                <SubContenedor3>
-
-                    <div> <label htmlFor="dificultad">Dificultad actual: </label> {actuacion.dificultad} </div>
-                    <div> <label htmlFor="puntos">Puntos: </label> {actuacion.puntos} </div>
-
-                </SubContenedor3>
-
-                <SubContenedor4>
+                {/* Comentarios desde coordinacion */}
+                <ComentariosDesdeCoordinacion> 
+                    <label htmlFor="comentariosCoordinacion"> Comentarios desde coordinación: </label>
+                    <p>{actuacion.comentariosTecnicos !== "" ? actuacion.comentariosTecnicos : "No hay comentarios" } </p>
+                </ComentariosDesdeCoordinacion>
+                
+                {/* Momentos */}
+                <Momentos>
                     <div>
-                        <h4>¿Consideras la actuacion de nivel4?</h4>
+                        <label htmlFor="momentoInicioCamino">Inicio camino: </label>
+                        {momentoInicioCamino !== undefined ? formatearFechaEnHoraYSegundos(momentoInicioCamino):null} 
                     </div>
 
                     <div>
-                        <input 
-                            type="radio"
-                            name="nivel4"
-                            id="si"
-                            value = "Si"
-                            onChange={handleChange}
-                            checked={consideraNivel4==="Si"}
-                        />
-                        <label htmlFor="si">Sí</label>
-
-                        <input 
-                            type="radio"
-                            name="nivel4"
-                            id="no"
-                            value = "No"
-                            onChange={handleChange}
-                            checked={consideraNivel4==="No"}
-                        />
-                        <label htmlFor="no">No</label>
+                        <label htmlFor="momentoInicioActuacion">Inicio actuacion: </label>
+                        {momentoLlegadaACliente !== undefined ? formatearFechaEnHoraYSegundos(momentoLlegadaACliente):null}                         
                     </div>
-                </SubContenedor4>
-                
-                {consideraNivel4 === "Si" &&
-                    
-                    <SubContenedor5>
-                    checkbox
-                    </SubContenedor5>
-                }
-                
 
-            </Formulario>
+                    <div>
+                        <label htmlFor="momentoFinActuacion">Fin actuacion: </label>
+                        {momentoFinActuacion !== undefined ? formatearFechaEnHoraYSegundos(momentoFinActuacion):null}                        
+                    </div>
+                </Momentos>
+
+                {/* Dificultad de la actuacion */}                
+                <Dificultad>
+
+                    <label htmlFor="DificultadYPuntos">Dificultad de la actuacion: </label>
+                    <ContenedorDificultad>
+                        
+                        <DificultadYPuntos>
+
+                            <div>
+                                <label htmlFor="dificultad">Dificultad actual: </label>
+                                {consideraNivel4 === "Si" ? dificultadTemporal : actuacion.dificultad} 
+                            </div>
+
+                            <div>
+                                <label htmlFor="puntos">Puntos: </label>
+                                {consideraNivel4==="Si" ? puntosTemporales : actuacion.puntos} 
+                            </div>
+                        </DificultadYPuntos>
+
+                        <ConsideracionNivel4>
+                            <div>
+                                <h4>¿Consideras la actuacion de nivel4?</h4>
+                            </div>
+
+                            <div>
+                                <input 
+                                    type="radio"
+                                    name="nivel4"
+                                    id="si"
+                                    value = "Si"
+                                    onChange={handleChange}
+                                    checked={consideraNivel4==="Si"}
+                                />
+                                <label htmlFor="si">Sí</label>
+
+                                <input 
+                                    type="radio"
+                                    name="nivel4"
+                                    id="no"
+                                    value = "No"
+                                    onChange={handleChange}
+                                    checked={consideraNivel4==="No"}
+                                />
+                                <label htmlFor="no">No</label>
+                            </div>
+                        </ConsideracionNivel4>
+                
+                        {/* Se mostrará el checkbox solo si el tecnico lo considera una actuacion de nivel4 */}
+                        {consideraNivel4 === "Si" &&
+                            
+                            <CheckBox>
+                                checkbox
+                            </CheckBox>
+                        }
+                    </ContenedorDificultad>
+
+                </Dificultad>
+                
+                {/* Fotografias */}
+                <Fotografias>
+                    <label htmlFor="Fotografias">Fotografías: </label>
+                    <ContenedorFotografias>
+
+                    </ContenedorFotografias>                    
+                </Fotografias>
+
+                {/* Comentarios Tecnicos */}
+                <ComentariosTecnicos>
+                    <label for="comentariosTecnicos">Comentarios técnicos:</label>
+                    <ContenedorComentariosTecnicos>
+                        
+                        <textarea                            
+                            name="comentariosTecnicos"                
+                            placeholder="Introduzca comentarios obligatorios"
+                            value={comentariosTecnicosDeVerdad}
+                            onChange={handleChange}                            
+                        />
+                    </ContenedorComentariosTecnicos>
+                </ComentariosTecnicos>
+
+                {/* Estado y boton del formulario */}
+                <ContenedorEstadoYBoton>
+
+                    <Estado>
+                        <SelectEstadosModuloTecnico
+                            asignarEstado={asignarEstado}
+                            estadoDescripcion = {estadoDescripcion}
+                            asignarEstadoDescripcion = {asignarEstadoDescripcion}
+                        />
+                    </Estado>
+
+                    <ContenedorBoton>
+                        <Boton
+                            $primario                        
+                            as="button"
+                            type="submit"
+                            >Actualizar                            
+                        </Boton>
+                    </ContenedorBoton>                    
+
+                </ContenedorEstadoYBoton>
+
+                {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
+                <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
+
+            </form>
         </ContenedorEditarActuacion>
-        
     );
 }
  

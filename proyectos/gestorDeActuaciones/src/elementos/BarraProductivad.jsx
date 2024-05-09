@@ -4,7 +4,7 @@ import styled from "styled-components";
 import theme from './../objetos/theme'
 
 const BarraProductividad = styled.div`
-    background: ${theme.verde};
+    background: ${theme.verdeIcono};
     font-size: 1rem; /* 16px */
     letter-spacing: 1px;
     font-weight: 500;

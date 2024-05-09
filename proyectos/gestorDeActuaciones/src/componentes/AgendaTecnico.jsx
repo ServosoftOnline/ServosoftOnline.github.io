@@ -19,7 +19,7 @@ import useObtenerActuacionesCitadasDeUnTecnico from "../hooks/useObtenerActuacio
 const  AgendaTecnico= ({nombre}) => {
 
     const [actuaciones] = useObtenerActuacionesCitadasDeUnTecnico(nombre);  
-    const arrayActuaciones = Object.values(actuaciones);
+    const arrayActuaciones = Object.values(actuaciones);    
 
     return (
         <>

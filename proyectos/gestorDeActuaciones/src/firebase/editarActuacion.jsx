@@ -7,9 +7,6 @@
 import { db } from './firebaseConfig';
 import { doc, updateDoc } from "firebase/firestore";
 
-// Date-fns
-import { getUnixTime } from "date-fns";
-
 // La función
 const editarActuacion = async ({linkDorus, direccion, poblacion, zonaInstalacion, coordenadas, telefonos,
     tipoActuacion, dificultad, puntos, tipoTrabajo, idTipoTrabajo, stb, estado, estadoDescripcion, fechaCitacion, tecnico1, tecnico2,

@@ -23,7 +23,7 @@ import favicon from './assets/logo.png';
 // Elementos
 import Contenedor from "./elementos/Contenedor.jsx";
 
-// Contextos
+// Proveedores de contextos
 import { ProveedorMensaje } from './contextos/contextoMensaje.jsx';
 import { AuthProvider } from './contextos/AuthContext.jsx';
 import { RolProvider } from './contextos/RolContext.jsx';

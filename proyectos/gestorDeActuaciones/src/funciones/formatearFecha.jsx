@@ -10,5 +10,9 @@ import { es } from "date-fns/locale";
 const formatearFecha = (fechaEnSegundos) => {
     return format(fromUnixTime(fechaEnSegundos), "dd 'de' MMMM 'de' yyyy", {locale: es});
 }
+
+const formatearHora = (fechaEnSegundos) => {
+    return format(fromUnixTime(fechaEnSegundos), "HH:mm:ss");
+}
  
 export default formatearFecha;

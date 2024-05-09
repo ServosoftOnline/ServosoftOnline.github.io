@@ -10,7 +10,7 @@ import { useAuth } from '../contextos/AuthContext';
 
 // Firebase
 import { db } from '../firebase/firebaseConfig';
-import { collection, onSnapshot, query, where, orderBy, limit} from 'firebase/firestore';
+import { collection, onSnapshot, query, where, orderBy, limit, or} from 'firebase/firestore';
 
 // Hook
 const useObtenerActuacionesAgendadas = () => {
@@ -27,8 +27,14 @@ const useObtenerActuacionesAgendadas = () => {
 
 			// Consulta 
 			const consulta = query(
-				collection(db, 'actuaciones'),			
-				where('estado', '==', 'EstadoAgenda'),
+				
+				collection(db, 'actuaciones'),
+				or (
+					where('estado', '==', 'EstadoAgenda'),
+					where('estado', '==', 'EstadoEnCamino'),
+					where('estado', '==', 'EstadoEnCliente'),
+				),			
+				
 				orderBy('fechaCitacion', 'asc'),
 				orderBy('codigoIncidencia', 'asc'),
 				limit(60)

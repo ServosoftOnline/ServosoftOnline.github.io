@@ -13,7 +13,7 @@
 */
 
 // React
-import React, {useContext} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 // date-fns
@@ -38,14 +38,8 @@ import formatearFechaEnHoraYSegundos from './../funciones/formatearFechaEnHoraYS
 import actualizaEstadoAEnCamino from './../firebase/actualizaEstadoAEnCamino';
 import actualizaEstadoAEnCliente from '../firebase/actualizaEstadoAEnCliente';
 
-// Importo contexto para control de desplazamiento de tecnicos
-import {DesplazamientoContext} from './../contextos/DesplazamientoContext';
-
 // Componente
 const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador}) => {
-
-    // Obtengo desde el contexto
-    const {estaEnCamino, asignarEstaEnCamino ,estaEnCliente, asignarEstaEnCliente} = useContext(DesplazamientoContext);    
 
     // Funciones
     const llamaAActualizaEstadoAEnCamino = (idActuacion) => { 
@@ -58,7 +52,6 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
         })
 
         .then(() => {            
-            asignarEstaEnCamino(true);
             console.log('Vas en camino');                      
 
         }).catch((error) => {
@@ -78,7 +71,6 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
         })
 
         .then(() => {          
-            asignarEstaEnCliente(true);
             console.log('Estas en cliente');                      
 
         }).catch((error) => {
@@ -168,10 +160,9 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                 
                             </Estado>                    
 
-                            {/* Botones para editar la actuacion */}
+                            {/* Boton para editar la actuacion */}
                             <ContenedorBotonesLista>
                                 
-                                {/* Muestro botones de editar y borrar */}
                                 {laPideUnCoordinador ? 
                                     <>
                                         <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>
@@ -184,23 +175,15 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                     </>
                                     : null}                                
 
-                                {/* Muestro los botones de en camino y estar en cliente dependiendo del contexto desplazamientos */}
                                 {laPideUnTecnico ?
                                     <>
-                                        {estaEnCamino === false ?
-                                        
-                                            <BotonAccion onClick={() => llamaAActualizaEstadoAEnCamino(actuacion.id)}> 
-                                                <IconoCoche />
-                                            </BotonAccion>
+                                        <BotonAccion onClick={() => llamaAActualizaEstadoAEnCamino(actuacion.id)}> 
+                                            <IconoCoche />
+                                        </BotonAccion>
 
-                                            :
-                                                estaEnCliente === false && estaEnCamino === true ?
-                                                <BotonAccion onClick={() => llamaAActualizarEStadoAEnCliente(actuacion.id)}> 
-                                                    <IconoCliente />
-                                                </BotonAccion>
-                                                :
-                                                null                                                                                    
-                                        }
+                                        <BotonAccion onClick={() => llamaAActualizarEStadoAEnCliente(actuacion.id)}> 
+                                            <IconoCliente />
+                                        </BotonAccion>
 
                                         <BotonAccion as={Link} to={`/tecnico/editar-actuacion/${actuacion.id}`} >
                                             <IconoEditar /> 

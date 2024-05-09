@@ -1,5 +1,5 @@
 /*
-  COMPONENTE QUE MUESTRA UNA LISTA CON TODAS LAS ACTUACIONES CITADAS
+  COMPONENTE QUE MUESTRA UNA LISTA CON TODAS LAS ACTUACIONES CITADAS, EN CAMINO, EN CLIENTE
 */
 
 // React y react router
@@ -8,8 +8,7 @@ import React from "react";
 // Hook
 import useObtenerActuacionesAgendadas from "../hooks/useObtenerActuacionesAgendadas";
 
-// Componente
-// import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
+// Componente/
 import ListaActuacionesDeUnTecnico from "./ListaActuacionesDeUnTecnico";
 
 // El Componente
@@ -19,8 +18,7 @@ const Agenda = () => {
   const arrayActuacionesAgendadas = Object.values(actuacionesAgendadas);
 
   return (
-    <>      
-      {/* <ListaActuacionesDeUnEstado array = {arrayActuacionesAgendadas}/>       */}
+    <>
       <ListaActuacionesDeUnTecnico array = {arrayActuacionesAgendadas} laPideUnCoordinador={'si'}/>
     </>
   );

@@ -10,9 +10,12 @@ import theme from './../objetos/theme';
 const Lista = styled.ul`
     
     list-style: none;
-    padding: 0 2rem; /* 0 32px */
-    height: 100%;
+    padding: 0 2rem; /* 0 32px */    
     overflow-y: auto;
+
+    @media(max-width: 60rem){ /* 950px */            
+        padding: 0 0.8rem;
+    }
     
 `;
 
@@ -37,6 +40,7 @@ const Fecha = styled.div`
 
     border-radius: 0.31rem; /* 5px */
     background: ${theme.negro};
+    font-size: 0.9rem;
     text-align: center;
     color: #fff;
     padding: 0.62rem 3.12rem; /* 10px 50px */
@@ -44,49 +48,36 @@ const Fecha = styled.div`
     margin: 1.25rem 0; /* 20px */
  
     @media(max-width: 60rem){ /* 950px */    
-        width: 86%;
-        font-size: 1rem;
+        width: 87%;
+        font-size: 0.8rem;
         padding: 0.2rem 3.12rem; /* 3.2px 49.92px */
     }
 `;
 
 const ElementoListaCabecera = styled.li`
 
-    background: ${theme.grisClaro};
-    list-style: none;
+    background: ${theme.grisClaro};    
     display: grid;
-    grid-template-columns: 1fr 3fr 4fr 2fr 2fr 1fr; 
+    grid-template-columns: 7rem 2fr 2fr 1fr 1fr 5rem; 
     font-weight: bolder;   
-    padding: 1.25rem 0; /* 20px */
-    border-bottom: 2px solid #F2F2F2;    
-    gap: 0.5rem; /* 5px */ 
-    font-size: 1.2rem;      
-    
-    & > div {
-        width: 100%;
-        display: flex;  
-             
-    }
+    gap: 0.5rem;
+    padding: 1rem 0; /* 20px */        
+    font-size: 1rem;
 
     @media(max-width: 60rem){ /* 950px */ 
-        grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr; 
-        font-size: 0.8rem;
-        & > div {
-            
-        }
+        grid-template-columns: 4.5rem 1fr 1fr 1fr 5.5rem 5rem; 
+        font-size: 0.7rem;        
     }
 `;
  
 const ElementoLista = styled.li`
 
-    list-style: none;
     display: grid;
-    grid-template-columns: 1fr 3fr 4fr 2fr 2fr 1fr;     
-    padding: 1.25rem 0; /* 20px */
-    border-bottom: 2px solid #F2F2F2;    
-    gap: 0.7rem; /* 5px */   
-    font-size: 1rem;  
+    grid-template-columns: 7rem 2fr 2fr 1fr 1fr 5rem;         
     align-items: center;     
+    gap: 0.5rem;
+    border-bottom: 2px solid #F2F2F2;     
+    font-size: 1rem;
     
     & > div {
         width: 100%;
@@ -99,84 +90,76 @@ const ElementoLista = styled.li`
     }
 
     @media(max-width: 60rem){ /* 950px */ 
-        grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr; 
-        font-size: 0.8rem;
-        padding: 0.8rem 0; /* 16px */
-        & > div {
-            
-        }
+        grid-template-columns: 4.5rem 1fr 1fr 1fr 5.5rem 5rem; 
+        font-size: 0.7rem;
+        padding: 0.1rem 0; /* 16px */
+        
     }
 `;
  
 const Incidencia = styled.div`
-
-    justify-content: left;    
-    text-transform: capitalize;
-    @media(max-width: 60rem){ /* 950px */
-        // justify-content: end;
-    }
+// background: yellow;
+    justify-content: left;
 `;
  
 const Cliente = styled.div`
-
+// background: lightblue;
     justify-content: left;    
-    text-transform: capitalize;
-    @media(max-width: 60rem){ /* 950px */
-        // justify-content: end;
-    }
-    
+    text-transform: capitalize;    
 `;
 
 const Direccion = styled.div`
-    
+// background: lightgreen;
     justify-content: left;    
     text-transform: capitalize;
-    @media(max-width: 60rem){ /* 950px */    
-        // justify-content: center;
-    }
-    
 `;
 
 const Poblacion = styled.div`
-
+// background: lightgrey;
     justify-content: left;    
-    text-transform: capitalize;
-    @media(max-width: 60rem){ /* 950px */
-        // justify-content: end;
-    }
-    
+    text-transform: capitalize;    
 `;
 
 const Estado = styled.div`
-
-    justify-content: center;    
+// background: lightyellow;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
     text-transform: capitalize;
+    gap: 0.4rem; 
+
     @media(max-width: 60rem){ /* 950px */
-        // justify-content: end;
+        flex-direction: column;
     }
-    
+`;
+
+const SpanHoraEnCamino = styled.span`
+    color: ${theme.amarilloIcono};
+    font-weight: bolder; 
+`;
+
+const SpanHoraDeLlegada = styled.span`
+    color: ${theme.verdeIcono};
+    font-weight: bolder; 
 `;
  
 const Gestion = styled.div`
-
-    justify-content: center;    
-    text-transform: capitalize;
-    @media(max-width: 60rem){ /* 950px */
-        // justify-content: end;
-    }
-    
+// background: violet;
+    text-align: center;       
 `;
 
 const ContenedorBotonesLista = styled.div`
-
+// background: green;
     justify-content: center;
+    padding-right: 0.2rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
     @media(max-width: 60rem){ /* 950px */
         justify-content: end;
     }
 `;
 
 const BotonAccion = styled.button`
-
     outline: none;
     background: ${theme.grisClaro};
     border: none;
@@ -275,6 +258,8 @@ export {
     Direccion,
     Poblacion,
     Estado,
+    SpanHoraEnCamino,
+    SpanHoraDeLlegada,
     Gestion,
     ContenedorBotonesLista,
     BotonAccion,
