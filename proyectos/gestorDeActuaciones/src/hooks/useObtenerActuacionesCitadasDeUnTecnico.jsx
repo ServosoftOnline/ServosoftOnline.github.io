@@ -30,13 +30,12 @@ const useObtenerActuacionesCitadasDeUnTecnico = (nombre) => {
 			
 			const obtenerActuaciones = () => {	
 				
-				const consulta = query(collection(db, 'actuaciones'), and(
+				const consulta = query(collection(db, 'actuaciones'), and (
 
 						or(
 							where('estado', '==', 'EstadoAgenda'),
 							where('estado', '==', 'EstadoEnCamino'),
-							where('estado', '==', 'EstadoEnCliente'),
-							where('estado', '==', 'EstadoSupervision'),
+							where('estado', '==', 'EstadoEnCliente')
 						),
 						
 						or(

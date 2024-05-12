@@ -189,7 +189,7 @@ const FormularioEditarActuacion = () => {
     // Funcion que valida el contenido del formulario antes de insertar
     const validacionCorrecta = () => {
         
-       
+       /* 
         console.log('link Dorus: ' + linkDorus);
         console.log('Direccion: ' + direccion);
         console.log('Poblacion: ' + poblacion);
@@ -207,7 +207,7 @@ const FormularioEditarActuacion = () => {
         console.log('STB:' + stb);    
         console.log('Estado: ' + estado);
         console.log('Comentarios tecnicos: ' + comentariosTecnicos);
-       
+       */
        
 
         // Validación1: Que los campos obligatorios no estén vacios. estado deberá contener otro estado que no se el de EstadoPteCoordinar
@@ -345,14 +345,14 @@ const FormularioEditarActuacion = () => {
             <form onSubmit={handleSubmit}>
 
                 <SubContenedorSoloLectura>
-                    <div> <label for="codigoIncidencia">Código de incidencia: </label> {actuacion.codigoIncidencia} </div>
-                    <div> <label for="codigoIncidencia">Cliente: </label> {actuacion.nombre} </div>
-                    <div> <label for="codigoIncidencia">Descripción: </label> {actuacion.descripcion} </div>
+                    <div> <label htmlFor="codigoIncidencia">Código de incidencia: </label> {actuacion.codigoIncidencia} </div>
+                    <div> <label htmlFor="codigoIncidencia">Cliente: </label> {actuacion.nombre} </div>
+                    <div> <label htmlFor="codigoIncidencia">Descripción: </label> {actuacion.descripcion} </div>
                 </SubContenedorSoloLectura>
 
                 <SubContenedor1>
                     <div>
-                        <label for="linkDorus">Link Dorus:</label>
+                        <label htmlFor="linkDorus">Link Dorus:</label>
                         <input
                             type="text"
                             name="linkDorus"                
@@ -363,11 +363,10 @@ const FormularioEditarActuacion = () => {
                     </div>
 
                     <div>
-                        <label for="direccion">Dirección:</label>
+                        <label htmlFor="direccion">Dirección:</label>
                         <input
                             type="text"
-                            name="direccion"                
-                            // placeholder= {actuacion.direccion}
+                            name="direccion"                                            
                             placeholder="Introduzca dirección"
                             value={direccion}
                             onChange={handleChange}
@@ -375,7 +374,7 @@ const FormularioEditarActuacion = () => {
                     </div>
 
                     <div>
-                        <label for="poblacion">Población:</label>
+                        <label htmlFor="poblacion">Población:</label>
                         <input
                             type="text"
                             name="poblacion"   
@@ -390,7 +389,7 @@ const FormularioEditarActuacion = () => {
                 <SubContenedor2>
                     
                     <div>
-                        <label for="coordenadas">Coordenadas:</label>
+                        <label htmlFor="coordenadas">Coordenadas:</label>
                         <input
                             type="text"
                             name="coordenadas"                
@@ -401,7 +400,7 @@ const FormularioEditarActuacion = () => {
                     </div> 
 
                     <div>
-                        <label for="telefonos">Telefono/s:</label>
+                        <label htmlFor="telefonos">Telefono/s:</label>
                         <input
                             type="text"
                             name="telefonos"                
@@ -427,7 +426,7 @@ const FormularioEditarActuacion = () => {
                     />
 
                     <div>
-                        <label for="puntos">Puntos:</label>
+                        <label htmlFor="puntos">Puntos:</label>
                         <input
                             type="text"
                             name="puntos"                
@@ -497,7 +496,7 @@ const FormularioEditarActuacion = () => {
                 <SubContenedor4>
 
                     <div>
-                        <label for="comentariosTecnicos">Comentarios técnicos:</label>
+                        <label htmlFor="comentariosTecnicos">Comentarios técnicos:</label>
                         <textarea                            
                             name="comentariosTecnicos"                
                             placeholder="Introduzca comentarios opcionales"

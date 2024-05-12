@@ -18,9 +18,6 @@ import {Header, Titulo, ContenedorBotones, ContenedorHeader} from '../elementos/
 import Boton from "../elementos/Boton";
 import BtnSalir from '../elementos/BtnSalir';
 
-// Proveedores de contextos
-import {DesplazamientoProvider} from './../contextos/DesplazamientoContext.jsx'
-
 // Elementos para las rutas importados de forma dinámica
 const AgendaTecnico = lazy(() => import('./AgendaTecnico'));
 const ProductividadTecnico = lazy(() => import('./ProductividadTecnico'));
@@ -60,24 +57,19 @@ const Tecnico = () => {
         </ContenedorHeader>
       </Header>  
 
-      {/* Proporciono contexto de desplazamientos para tecnicos */}
-      <DesplazamientoProvider>
+      {/* Rutas declaradas de forma dinámica*/}
+      <Suspense>
+        <Routes>
 
-        {/* Rutas declaradas de forma dinámica*/}
-        <Suspense>
-          <Routes>
-
-            {/* Rutas estáticas */}
-            <Route path="agenda-tecnico" element={<AgendaTecnico nombre={nombre} />}/>
-            <Route path="productividad-tecnico" element={<ProductividadTecnico />}/>
-            
-            {/* Rutas dinamicas */}          
-            <Route path="editar-actuacion/:idActuacion" element={<FormularioEditarActuacionTecnico />}/>
-          </Routes>
-        </Suspense>
-
-      </DesplazamientoProvider>
-
+          {/* Rutas estáticas */}
+          <Route path="agenda-tecnico" element={<AgendaTecnico nombre={nombre} />}/>
+          <Route path="productividad-tecnico" element={<ProductividadTecnico />}/>
+          
+          {/* Rutas dinamicas */}          
+          <Route path="editar-actuacion/:idActuacion" element={<FormularioEditarActuacionTecnico />}/>
+        </Routes>
+      </Suspense>
+      
       {/* Barra de productividad */}
       <BarraProductividad />
       

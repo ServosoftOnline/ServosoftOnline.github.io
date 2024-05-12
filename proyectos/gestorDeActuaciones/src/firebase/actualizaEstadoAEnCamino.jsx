@@ -1,19 +1,26 @@
 /*
     FUNCION QUE ACTUALIZA EL ESTADO DE UNA ACTUACION A "ENCAMINO"
+        - Modifico el estado y estadoDescripcion con EstadoEnCamino y En camino respectivamente
+        - HoraEnCamino con el momento actual
+        - horaDeLlegada borro su contenido por si ya fui en otro momento y tuviera un momento guardado
 
 */
 
 // Firebase
 import { db } from './firebaseConfig';
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteField} from "firebase/firestore";
+
+// date-fns
+import { getUnixTime } from "date-fns";
 
 // La función
-const actualizaEstadoAEnCamino = async ({estado, estadoDescripcion, horaEnCamino, idActuacion}) => {
+const actualizaEstadoAEnCamino = async (idActuacion) => {
         
     return await updateDoc(doc(db, 'actuaciones', idActuacion), {        
-        estado: estado,
-        estadoDescripcion: estadoDescripcion,
-        horaEnCamino: horaEnCamino
+        estado: 'EstadoEnCamino',
+        estadoDescripcion: 'En camino',
+        horaEnCamino: getUnixTime(new Date()),
+        horaDeLlegada: deleteField()
     });
            
 }

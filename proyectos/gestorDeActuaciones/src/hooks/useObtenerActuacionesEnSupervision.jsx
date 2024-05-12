@@ -1,5 +1,5 @@
 /*
-    HOOK QUE OBTIENE LAS ACTUACIONES EN ESTADO DE O&m:	
+    HOOK QUE OBTIENE LAS ACTUACIONES EN ESTADO SUPERVISION:	
 */
 
 // React
@@ -13,11 +13,11 @@ import { db } from '../firebase/firebaseConfig';
 import { collection, onSnapshot, query, where, orderBy, limit} from 'firebase/firestore';
 
 // Hook
-const useObtenerActuacionesAgendadas = () => {
+const useObtenerActuacionesEnSupervision = () => {
 
     // Estados
 	const {sesion} = useAuth();	
-	const [actuacionesAgendadas, asignarActuacionesAgendadas] = useState([]);
+	const [actuacionesEnSupervision, asignarActuacionesEnSupervision] = useState([]);
 
 	// Ejecuto el efecto para realizar la consulta de forma asincrona					
 	useEffect(() => {
@@ -28,14 +28,14 @@ const useObtenerActuacionesAgendadas = () => {
 			// Consulta 
 			const consulta = query(
 				collection(db, 'actuaciones'),			
-				where('estado', '==', 'EstadoAgenda'),
+				where('estado', '==', 'EstadoSupervision'),
 				orderBy('fechaIncidencia', 'asc'),
 				limit(10)
 			);
 
 			// Ejecuta la consulta. Si se produjera un error lo muestro en consola
 			const unsuscribe = onSnapshot(consulta, (snapshot) => {
-				asignarActuacionesAgendadas(snapshot.docs.map((documento) => {
+				asignarActuacionesEnSupervision(snapshot.docs.map((documento) => {
 					return ({...documento.data(), id: documento.id});					
 				}));			
 			}, (error) => {console.log(error)});		
@@ -47,7 +47,7 @@ const useObtenerActuacionesAgendadas = () => {
 	}, [sesion]);
 
 	// Devuelvo el estado gastos
-	return [actuacionesAgendadas];
+	return [actuacionesEnSupervision];
 }
 
-export default useObtenerActuacionesAgendadas;
+export default useObtenerActuacionesEnSupervision;

@@ -13,11 +13,8 @@
 */
 
 // React
-import React, {useContext} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-// date-fns
-import { getUnixTime } from "date-fns";
 
 // Elementos
 import  {Lista, ContenedorSubtitulo, Subtitulo, Fecha, ElementoListaCabecera, ElementoLista, Incidencia, Cliente, Direccion, Poblacion,
@@ -35,31 +32,24 @@ import formatearFecha from '../funciones/formatearFecha';
 import formatearFechaEnHoraYSegundos from './../funciones/formatearFechaEnHoraYSegundos';
 
 // Funcion que actualiza en firebase
-import actualizaEstadoAEnCamino from './../firebase/actualizaEstadoAEnCamino';
+import actualizaEstadoAEnCamino from '../firebase/actualizaEstadoAEnCamino';
 import actualizaEstadoAEnCliente from '../firebase/actualizaEstadoAEnCliente';
 
-// Importo contexto para control de desplazamiento de tecnicos
-import {DesplazamientoContext} from './../contextos/DesplazamientoContext';
 
 // Componente
-const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador}) => {
-
-    // Obtengo desde el contexto
-    const {estaEnCamino, asignarEstaEnCamino ,estaEnCliente, asignarEstaEnCliente} = useContext(DesplazamientoContext);    
-
+const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador}) => {  
+    
+    // Estados
+    const [tecnicoEncamino, asignarTecnicoEnCamino] = useState(false);
+    
     // Funciones
     const llamaAActualizaEstadoAEnCamino = (idActuacion) => { 
+        
+        actualizaEstadoAEnCamino(idActuacion)
 
-        actualizaEstadoAEnCamino({            
-            estado: 'EstadoEnCamino',
-            estadoDescripcion: 'En camino',
-            horaEnCamino: getUnixTime(new Date()),
-            idActuacion: idActuacion
-        })
-
-        .then(() => {            
-            asignarEstaEnCamino(true);
-            console.log('Vas en camino');                      
+        .then(() => {                        
+            console.log('Vas en camino'); 
+            asignarTecnicoEnCamino(true);
 
         }).catch((error) => {
             console.log('Error al actualizar vas en camino');            
@@ -70,15 +60,9 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
 
     const llamaAActualizarEStadoAEnCliente = (idActuacion) => {
 
-        actualizaEstadoAEnCliente({            
-            estado: 'EstadoEnCliente',
-            estadoDescripcion: 'En cliente',
-            horaDeLlegada: getUnixTime(new Date()),
-            idActuacion: idActuacion
-        })
+        actualizaEstadoAEnCliente(idActuacion)
 
-        .then(() => {          
-            asignarEstaEnCliente(true);
+        .then(() => {                      
             console.log('Estas en cliente');                      
 
         }).catch((error) => {
@@ -182,32 +166,34 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                             <IconoBorrar />
                                         </BotonAccion>
                                     </>
-                                    : null}                                
+                                    : null}       
+                                
 
-                                {/* Muestro los botones de en camino y estar en cliente dependiendo del contexto desplazamientos */}
-                                {laPideUnTecnico ?
+                                {/* Muestro los botones de en camino y estar en cliente dependiendo del contexto desplazamientos */}                                
+                                {laPideUnTecnico ?                                    
+                                    
                                     <>
-                                        {estaEnCamino === false ?
-                                        
+                                        {actuacion.estado === 'EstadoAgenda' && tecnicoEncamino===false ?
                                             <BotonAccion onClick={() => llamaAActualizaEstadoAEnCamino(actuacion.id)}> 
                                                 <IconoCoche />
                                             </BotonAccion>
-
-                                            :
-                                                estaEnCliente === false && estaEnCamino === true ?
-                                                <BotonAccion onClick={() => llamaAActualizarEStadoAEnCliente(actuacion.id)}> 
-                                                    <IconoCliente />
-                                                </BotonAccion>
-                                                :
-                                                null                                                                                    
+                                            : null
                                         }
-
+                                        
+                                        {actuacion.estado ==='EstadoEnCamino' ?
+                                            <BotonAccion onClick={() => llamaAActualizarEStadoAEnCliente(actuacion.id)}> 
+                                                <IconoCliente />
+                                            </BotonAccion> 
+                                            : null
+                                        }
+                                
                                         <BotonAccion as={Link} to={`/tecnico/editar-actuacion/${actuacion.id}`} >
                                             <IconoEditar /> 
                                         </BotonAccion>
                                     </>
                                     
-                                    : null}  
+                                    : null
+                                }  
                                 </ContenedorBotonesLista>                  
                             </ElementoLista>
                         </div>                

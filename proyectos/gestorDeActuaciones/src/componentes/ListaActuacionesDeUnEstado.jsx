@@ -19,7 +19,7 @@ import fechaIncidenciaEsIgual from '../funciones/fechaIncidenciaEsIgual';
 import formatearFecha from '../funciones/formatearFecha';
 
 // Componente
-const ListaActuacionesDeUnEstado = ({array}) => {    
+const ListaActuacionesDeUnEstado = ({array}) => {
     
     return (
         <Lista>
@@ -85,7 +85,7 @@ const ListaActuacionesDeUnEstado = ({array}) => {
 
                         {/* Boton para editar la actuacion */}
                         <ContenedorBotonesLista>
-
+                        
                             <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>                                                 
                                 <IconoEditar /> 
                             </BotonAccion>

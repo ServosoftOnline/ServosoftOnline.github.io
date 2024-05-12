@@ -11,7 +11,7 @@ const estadosModuloTecnico = [
     {id:6,  estado: 'EstadoIncidencias',    descripcion:'Canalización obstruida (Calle)'},
     {id:7,  estado: 'EstadoIncidencias',    descripcion:'Canalización obstruida (Cliente)'},
     {id:8, estado:  'EstadoIncidencias',    descripcion:'No hay paso / Anulado por cliente'},
-    {id:9, estado: 'EstadoIncidencias',    descripcion:'Falta permiso'},
+    {id:9, estado:  'EstadoIncidencias',    descripcion:'Falta permiso'},
     {id:10, estado: 'EstadoIncidencias',    descripcion:'Obra cliente'},
     {id:11, estado: 'EstadoIncidencias',    descripcion:'Sin finalizar'},
     {id:12, estado: 'EstadoIncidencias',    descripcion:'Anulamos?'},

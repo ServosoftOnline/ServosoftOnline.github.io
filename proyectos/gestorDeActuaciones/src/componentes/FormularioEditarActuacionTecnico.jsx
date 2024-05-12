@@ -24,15 +24,13 @@ import Boton from "../elementos/Boton";
 import formatearFechaEnHoraYSegundos from "../funciones/formatearFechaEnHoraYSegundos";
 
 // Funcion firebase
-import editarActuacion from "../firebase/editarActuacion";
+import actualizaColeccionActuaciones from "../firebase/actualizaColeccionActuaciones";
 
 // Componentes
 import Mensaje from "./Mensaje";
 
 // Contextos
-import { ContextoMensaje } from './../contextos/contextoMensaje';
-import {DesplazamientoContext} from './../contextos/DesplazamientoContext';
-
+import { ContextoMensaje } from "./../contextos/contextoMensaje";
 
 // Hooks
 import useObtenerActuacionAPartirDeSuId from "../hooks/useObtenerActuacionAPartirDeSuId";
@@ -46,10 +44,7 @@ const  FormularioEditarActuacionTecnico= () => {
     const {idActuacion} = useParams();
 
     // Obtengo del contexto los mensajes que mostraré en pantalla
-    const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);   
-
-    // Obtengo el contexto de control de desplazamientos de los tecnicos
-    const {asignarEstaEnCamino ,asignarEstaEnCliente} = useContext(DesplazamientoContext);  
+    const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
 
     // Informacion obtenida desde los hooks
     const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
@@ -57,7 +52,7 @@ const  FormularioEditarActuacionTecnico= () => {
     const [nombre] = useObtenerNombreDeUnUsuario();
     
     // Estados        
-    const [estado, asignarEstado] = useState(actuacion.estado);    
+    const [estado, asignarEstado] = useState();    
     const [estadoDescripcion, asignarEstadoDescripcion] = useState();
     const [momentoInicioCamino, asignarMomentoInicioCamino] = useState();
     const [momentoLlegadaACliente, asignarMomentoLlegadaACliente] = useState();
@@ -65,7 +60,7 @@ const  FormularioEditarActuacionTecnico= () => {
     const [consideraNivel4, asignarConsideraNivel4] = useState("No");
     const [dificultadTemporal, asignarDificultadTemporal] = useState("Nivel 4");
     const [puntosTemporales, asignarPuntosTemporales] = useState(0);
-    const [comentariosTecnicosDeVerdad, asignarComentariosTecnicosDeVerdad] = useState("");
+    const [comentariosTecnicos, asignarComentariosTecnicos] = useState("");
 
     // Obtengo los acompañantes filtrando a todos los tecnicos obtenidos por el hook eliminandole quien inico la sesion guardado en nombre
     let acompañantes = []; 
@@ -88,12 +83,13 @@ const  FormularioEditarActuacionTecnico= () => {
     },[actuacion.estadoDescripcion, actuacion.horaEnCamino, actuacion.horaDeLlegada]);  
    
     // Efecto que asigna la hora de finalizacion de la actuación en todos los casos posibles una vez acabada la actuacion
+    // Debo reiniciar los momentos de en camino y llegada para guardarlos vacios en la bbdd solo si no es EstadoSupervision
     useEffect(() => {
 
         switch (estado){            
             
             case 'EstadoSupervision':                
-                asignarMomentoFinActuacion(getUnixTime(new Date()));                
+                asignarMomentoFinActuacion(getUnixTime(new Date()));
                 break;
 
             case 'EstadoIlocalizable':                
@@ -124,6 +120,47 @@ const  FormularioEditarActuacionTecnico= () => {
         window.open(url, '_blank'); 
     }
 
+    const validacionCorrecta = () => {
+        
+        // Debo cambiar el estado. Al principio el formulario mostrará en camino o en cliente y no puede quedarse así
+        if (estado === undefined) {
+            cambiarMensaje('Debes cambiar el estado','incorrecta');
+            return false;
+
+        } else {
+            cambiarMensaje('Actualización correcta', 'correcta');
+            reiniciarMensaje();
+            return true;
+        }        
+    }
+
+    const LlamaAActualizarColeccionActuaciones = (idActuacion) => {
+        
+        console.log('Actualizando la coleccion actuaciones');        
+        console.log('Momento de inicio: ' + momentoInicioCamino);
+        console.log('Momento de llegada a cliente: ' + momentoLlegadaACliente);
+        console.log('Momento de fin de actuacion: ' + momentoFinActuacion);
+        
+
+        actualizaColeccionActuaciones({  
+            horaEnCamino: momentoInicioCamino,
+            horaDeLlegada: momentoLlegadaACliente,
+            horaFinalizacion: momentoFinActuacion,     
+            comentariosTecnicos: comentariosTecnicos,
+            estado: estado,
+            estadoDescripcion: estadoDescripcion,
+            idActuacion: idActuacion
+        })
+
+        .then(() => {                        
+            console.log('Actualizo coleccion de actuaciones');                      
+
+        }).catch((error) => {
+            console.log('Error al actualizar la coleccion de actuaciones');            
+            console.log(error);
+        }) 
+    }
+
     const handleChange = (e) => {
 
         switch (e.target.name){
@@ -133,7 +170,7 @@ const  FormularioEditarActuacionTecnico= () => {
                 break;
 
             case 'comentariosTecnicos':                
-                asignarComentariosTecnicosDeVerdad(e.target.value);
+                asignarComentariosTecnicos(e.target.value);
                 break;
 
             default:
@@ -143,10 +180,11 @@ const  FormularioEditarActuacionTecnico= () => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Ejecuto el handlesubmit');
-        asignarEstaEnCamino(false);
-        asignarEstaEnCliente(false);
+        e.preventDefault();        
+
+        // Si la validacion es correcta llamo a la funcion que actualizará la coleccion actuaciones
+        validacionCorrecta() ? LlamaAActualizarColeccionActuaciones(idActuacion) : null;
+
     }
     
     return (        
@@ -294,13 +332,13 @@ const  FormularioEditarActuacionTecnico= () => {
 
                 {/* Comentarios Tecnicos */}
                 <ComentariosTecnicos>
-                    <label for="comentariosTecnicos">Comentarios técnicos:</label>
+                    <label htmlFor="comentariosTecnicos">Comentarios técnicos:</label>
                     <ContenedorComentariosTecnicos>
                         
                         <textarea                            
                             name="comentariosTecnicos"                
-                            placeholder="Introduzca comentarios obligatorios"
-                            value={comentariosTecnicosDeVerdad}
+                            placeholder="Introduzca comentarios opcionales"
+                            value={comentariosTecnicos}
                             onChange={handleChange}                            
                         />
                     </ContenedorComentariosTecnicos>
@@ -328,10 +366,11 @@ const  FormularioEditarActuacionTecnico= () => {
 
                 </ContenedorEstadoYBoton>
 
-                {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
-                <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
-
             </form>
+
+            {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
+            <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
+
         </ContenedorEditarActuacion>
     );
 }

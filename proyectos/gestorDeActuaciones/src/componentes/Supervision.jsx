@@ -1,28 +1,25 @@
 /*
+  MUESTRA UNA LISTA CON LAS ACTUACIONES EN ESTADO DE SUPERVISION
   
 */
 
 // React y react router
 import React from "react";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+
+// Hook
+import useObtenerActuacionesEnSupervision from "../hooks/useObtenerActuacionesEnSupervision";
+
+// Componente
+import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
 
 // El Componente
 const Supervision = () => {  
 
+  const [actuacionesEnSupervision] = useObtenerActuacionesEnSupervision();
+  const arrayActuacionesEnSupervision = Object.values(actuacionesEnSupervision); 
+
   return (
-    <>      
-      <HelmetProvider>
-
-        {/* Helmet */}
-        <Helmet>
-          <title>Supervision</title>
-        </Helmet> 
-
-      </HelmetProvider>
-      
-      <p>Supervision</p>
-    </>
-   
+    <ListaActuacionesDeUnEstado array = {arrayActuacionesEnSupervision}/>    
   );
 }
  

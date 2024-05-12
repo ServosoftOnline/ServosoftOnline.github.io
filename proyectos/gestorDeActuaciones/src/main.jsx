@@ -48,7 +48,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
       {/* Contextos */}
       <AuthProvider>
-      <RolProvider>
+      <RolProvider>      
       <ProveedorMensaje>
 
         {/* React router */}
@@ -73,7 +73,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </Contenedor>
         </BrowserRouter>
 
-      </ProveedorMensaje>
+      </ProveedorMensaje>      
       </RolProvider>
       </AuthProvider>
       
