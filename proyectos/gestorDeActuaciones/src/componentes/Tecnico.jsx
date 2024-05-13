@@ -3,7 +3,6 @@
 
     - Contiene:
       - Sus rutas importadas de forma dinámica
-      - El proveedor del contexto para controlar cuando inice los desplazamientos los técnicos
       - La barra de productividad 
 
 */
@@ -28,6 +27,7 @@ import BarraProductividad from "./../componentes/BarraProductividad";
 
 // Hooks
 import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
+
 
 // Mi componente
 const Tecnico = () => {

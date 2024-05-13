@@ -89,8 +89,8 @@ const Direccion = () => {
     
     const incidenciasDuplicadasEncontradas = [];
     data.forEach((incidencia) => {      
-      if(todosLosCodigosdeIncidenciaDeLaBBDD.includes(incidencia['Código Incidencia']))
-        incidenciasDuplicadasEncontradas.push(incidencia['Código Incidencia']);
+      if(todosLosCodigosdeIncidenciaDeLaBBDD.includes(incidencia['Cod Incidencia']))
+        incidenciasDuplicadasEncontradas.push(incidencia['Cod Incidencia']);
     });
 
     return incidenciasDuplicadasEncontradas;

@@ -3,8 +3,11 @@
 */
 
 // React
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
+
+// Firestore
+import { deleteField } from "firebase/firestore";
 
 // date-fns
 import {getUnixTime } from "date-fns";
@@ -31,6 +34,7 @@ import Mensaje from "./Mensaje";
 
 // Contextos
 import { ContextoMensaje } from "./../contextos/contextoMensaje";
+import { DesplazamientoContext } from "../contextos/DesplazamientoContext";
 
 // Hooks
 import useObtenerActuacionAPartirDeSuId from "../hooks/useObtenerActuacionAPartirDeSuId";
@@ -46,10 +50,15 @@ const  FormularioEditarActuacionTecnico= () => {
     // Obtengo del contexto los mensajes que mostraré en pantalla
     const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
 
-    // Informacion obtenida desde los hooks
-    const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
-    const [todosLosTecnicos] = useObtenerTecnicosAPartirDelIdActuacion(idActuacion);
-    const [nombre] = useObtenerNombreDeUnUsuario();
+    // Obtengo del contexto de desplazamientos
+    const   {
+        tecnicosEnCamino,
+        tecnicosEnCliente,
+        añadirTecnicoEnCamino,
+        eliminarTecnicoEnCamino,
+        añadirTecnicoEnCliente,
+        eliminarTecnicoEnCliente
+    } = useContext(DesplazamientoContext);
     
     // Estados        
     const [estado, asignarEstado] = useState();    
@@ -61,6 +70,11 @@ const  FormularioEditarActuacionTecnico= () => {
     const [dificultadTemporal, asignarDificultadTemporal] = useState("Nivel 4");
     const [puntosTemporales, asignarPuntosTemporales] = useState(0);
     const [comentariosTecnicos, asignarComentariosTecnicos] = useState("");
+
+    // Informacion obtenida desde los hooks
+    const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
+    const [todosLosTecnicos] = useObtenerTecnicosAPartirDelIdActuacion(idActuacion);
+    const [nombre] = useObtenerNombreDeUnUsuario();
 
     // Obtengo los acompañantes filtrando a todos los tecnicos obtenidos por el hook eliminandole quien inico la sesion guardado en nombre
     let acompañantes = []; 
@@ -86,6 +100,7 @@ const  FormularioEditarActuacionTecnico= () => {
     // Debo reiniciar los momentos de en camino y llegada para guardarlos vacios en la bbdd solo si no es EstadoSupervision
     useEffect(() => {
 
+        eliminarTecnicoEnCliente(nombre);
         switch (estado){            
             
             case 'EstadoSupervision':                
@@ -122,16 +137,14 @@ const  FormularioEditarActuacionTecnico= () => {
 
     const validacionCorrecta = () => {
         
-        // Debo cambiar el estado. Al principio el formulario mostrará en camino o en cliente y no puede quedarse así
+        // Validacion 1: Debo cambiar el estado. Al principio el formulario mostrará en camino o en cliente y no puede quedarse así
         if (estado === undefined) {
             cambiarMensaje('Debes cambiar el estado','incorrecta');
             return false;
-
-        } else {
-            cambiarMensaje('Actualización correcta', 'correcta');
-            reiniciarMensaje();
-            return true;
         }        
+        
+        return true;
+        
     }
 
     const LlamaAActualizarColeccionActuaciones = (idActuacion) => {
@@ -141,10 +154,10 @@ const  FormularioEditarActuacionTecnico= () => {
         console.log('Momento de llegada a cliente: ' + momentoLlegadaACliente);
         console.log('Momento de fin de actuacion: ' + momentoFinActuacion);
         
-
+        // Puede haber casos en que el tecnico no desplace o no llegue a cliente. En ese caso actualizo eliminando el contenido
         actualizaColeccionActuaciones({  
-            horaEnCamino: momentoInicioCamino,
-            horaDeLlegada: momentoLlegadaACliente,
+            horaEnCamino: momentoInicioCamino !== undefined ? momentoInicioCamino : deleteField() ,
+            horaDeLlegada: momentoLlegadaACliente !== undefined ? momentoLlegadaACliente: deleteField(),
             horaFinalizacion: momentoFinActuacion,     
             comentariosTecnicos: comentariosTecnicos,
             estado: estado,

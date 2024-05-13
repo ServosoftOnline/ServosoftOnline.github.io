@@ -35,7 +35,12 @@ const useObtenerActuacionesCitadasDeUnTecnico = (nombre) => {
 						or(
 							where('estado', '==', 'EstadoAgenda'),
 							where('estado', '==', 'EstadoEnCamino'),
-							where('estado', '==', 'EstadoEnCliente')
+							where('estado', '==', 'EstadoEnCliente'),
+							where('estado', '==', 'EstadoSupervision'),							
+							where('estado', '==', 'EstadoFaltaCitas'),
+							where('estado', '==', 'EstadoIncidencias')
+							// Si pongo este último where supera los limites de firebase
+							// where('estado', '==', 'EstadoIlocalizable')
 						),
 						
 						or(

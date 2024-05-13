@@ -13,7 +13,7 @@
 */
 
 // React
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Elementos
@@ -35,24 +35,42 @@ import formatearFechaEnHoraYSegundos from './../funciones/formatearFechaEnHoraYS
 import actualizaEstadoAEnCamino from '../firebase/actualizaEstadoAEnCamino';
 import actualizaEstadoAEnCliente from '../firebase/actualizaEstadoAEnCliente';
 
+// Contexto
+import {DesplazamientoContext} from './../contextos/DesplazamientoContext';
+
+// Hook
+import useObtenerNombreDeUnUsuario from '../hooks/useObtenerNombreDeUnUsuario';
 
 // Componente
 const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador}) => {  
     
-    // Estados
-    const [tecnicoEncamino, asignarTecnicoEnCamino] = useState(false);
-    
+    // Obtengo el nombre del usuario
+    const [nombre] = useObtenerNombreDeUnUsuario();    
+
+    // Extraigo del contexto 
+    const   {
+        tecnicosEnCamino,
+        tecnicosEnCliente,
+        añadirTecnicoEnCamino,
+        eliminarTecnicoEnCamino,
+        añadirTecnicoEnCliente,
+        eliminarTecnicoEnCliente
+    } = useContext(DesplazamientoContext);
+
+    console.log('tecnicos en camino en alguna actuacion: ' + tecnicosEnCamino);
+    console.log('tecnicos en cliente en alguna actuacion: ' + tecnicosEnCliente);
+
     // Funciones
     const llamaAActualizaEstadoAEnCamino = (idActuacion) => { 
         
         actualizaEstadoAEnCamino(idActuacion)
 
-        .then(() => {                        
-            console.log('Vas en camino'); 
-            asignarTecnicoEnCamino(true);
+        .then(() => {                                    
+            añadirTecnicoEnCamino(nombre);
+
 
         }).catch((error) => {
-            console.log('Error al actualizar vas en camino');            
+            console.log('Error al actualizar un tecnico en camino');            
             console.log(error);
         })       
         
@@ -62,11 +80,13 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
 
         actualizaEstadoAEnCliente(idActuacion)
 
-        .then(() => {                      
-            console.log('Estas en cliente');                      
+        .then(() => {                                  
+            eliminarTecnicoEnCamino(nombre);
+            añadirTecnicoEnCliente(nombre);
+            
 
         }).catch((error) => {
-            console.log('Error al actualizar estas en cliente');            
+            console.log('Error al actualizar al menos un tecnico en cliente');            
             console.log(error);
         })
     }
@@ -173,7 +193,12 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                 {laPideUnTecnico ?                                    
                                     
                                     <>
-                                        {actuacion.estado === 'EstadoAgenda' && tecnicoEncamino===false ?
+                                        {/* {console.log('tecnicos en camino en alguna actuacion: ' + tecnicosEnCamino)}
+                                        {console.log('tecnicos en cliente en alguna actuacion: ' + tecnicosEnCliente)} */}
+
+                                        {/* {actuacion.estado === 'EstadoAgenda' && tecnicoEncamino===false ? */}
+                                        
+                                        {actuacion.estado === 'EstadoAgenda' && !tecnicosEnCamino.includes(nombre) ?
                                             <BotonAccion onClick={() => llamaAActualizaEstadoAEnCamino(actuacion.id)}> 
                                                 <IconoCoche />
                                             </BotonAccion>
