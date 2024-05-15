@@ -9,11 +9,12 @@
 
         - Los colores de los botones y su estado asociado serán naranjas, verdes o azules
         - Las descripciones de los estados serán naranjas o verdes correspondiendo a los colores de sus botones
+
         
 */
 
 // React
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Elementos
@@ -29,61 +30,86 @@ import IconoCliente from './../assets/cliente.svg?react';
 // Funciones
 import fechaCitacionEsIgual from '../funciones/fechaCitacionEsIgual';
 import formatearFecha from '../funciones/formatearFecha';
-import formatearFechaEnHoraYSegundos from './../funciones/formatearFechaEnHoraYSegundos';
+import formatearFechaEnHoraYSegundos from '../funciones/formatearFechaEnHoraYSegundos';
 
 // Funcion que actualiza en firebase
-import actualizaEstadoAEnCamino from '../firebase/actualizaEstadoAEnCamino';
-import actualizaEstadoAEnCliente from '../firebase/actualizaEstadoAEnCliente';
-
-// Contexto
-import {DesplazamientoContext} from './../contextos/DesplazamientoContext';
+import actualizaActuacionEnCamino from '../firebase/actualizaActuacionEnCamino';
+import actualizaActuacionEnCliente from '../firebase/actualizaActuacionEnCliente';
+import actualizaTecnicoEnCamino from '../firebase/actualizaTecnicoEnCamino';
+import actualizaTecnicoEnCliente from '../firebase/actualizaTecnicoEnCliente';
 
 // Hook
-import useObtenerNombreDeUnUsuario from '../hooks/useObtenerNombreDeUnUsuario';
+import useObtenerIdRolesDeUnUsuario from '../hooks/useObtenerIdRolesDeUnUsuario';
+import useObtenerEstadoDeUnUsuario from '../hooks/useObtenerEstadoDeUnUsuario';
+import useObtenerIdActuacionDeUnUsuario from '../hooks/useObtenerIdActuacionDeUnUsuario';
 
 // Componente
 const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador}) => {  
     
-    // Obtengo el nombre del usuario
-    const [nombre] = useObtenerNombreDeUnUsuario();    
+    // Obtengo el id del rol del tecnico y su estado
+    const [idRoles] = useObtenerIdRolesDeUnUsuario();  
+    const [estadoDelTecnico] = useObtenerEstadoDeUnUsuario();    
 
-    // Extraigo del contexto 
-    const   {
-        tecnicosEnCamino,
-        tecnicosEnCliente,
-        añadirTecnicoEnCamino,
-        eliminarTecnicoEnCamino,
-        añadirTecnicoEnCliente,
-        eliminarTecnicoEnCliente
-    } = useContext(DesplazamientoContext);
+    // Obtengo idActuacionDeUnUsuario como un objeto. Lo paso a array el cual contiene a un string. Me sirve para comparar mismos tipos de datos
+    const [idActuacionDeUnUsuario] = useObtenerIdActuacionDeUnUsuario();
+    const [stringIdActuacionDeUnUsuario] = Object.values(idActuacionDeUnUsuario);
+    
+    // Funciones para actualizar los estados de la actuacion y del tecnico a EnCamino
 
-    console.log('tecnicos en camino en alguna actuacion: ' + tecnicosEnCamino);
-    console.log('tecnicos en cliente en alguna actuacion: ' + tecnicosEnCliente);
+    const tecnicoEnCamino = (idRoles, idActuacion) => {    
+        actualizaTecnicoEnCamino(idRoles, idActuacion)
 
-    // Funciones
-    const llamaAActualizaEstadoAEnCamino = (idActuacion) => { 
-        
-        actualizaEstadoAEnCamino(idActuacion)
-
-        .then(() => {                                    
-            añadirTecnicoEnCamino(nombre);
-
+        .then (() => {
+            console.log('Actualizado el estado del usuario a en camino');
 
         }).catch((error) => {
-            console.log('Error al actualizar un tecnico en camino');            
+            console.log('Error al actualizar el estado del usuario a en camino');
+            console.log(error);
+        })
+
+    }
+
+    const actuacionEnCamino = (idActuacion) => { 
+        
+        actualizaActuacionEnCamino(idActuacion)
+
+        .then(() => {                                    
+            console.log('Actualizado la actuacion a estado en camino');
+            console.log('Llamo a la funcion que actualiza al tecnico a estado en camino');
+            tecnicoEnCamino(idRoles, idActuacion);            
+
+
+        }).catch((error) => {            
+            console.log('Error al actualizar la actuacion al estado en camino');            
             console.log(error);
         })       
         
     }
 
-    const llamaAActualizarEStadoAEnCliente = (idActuacion) => {
+    // Funciones para actualizar los estados de la actuacion y del tecnico a EnCliente
 
-        actualizaEstadoAEnCliente(idActuacion)
+    const tecnicosEnCliente = (idRoles) => {
+
+        actualizaTecnicoEnCliente(idRoles)
+
+        .then (() => {
+            console.log('Actualizado el estado del tecnico a en cliente');
+
+        }).catch((error) => {
+            console.log('Error al actualizar el estado del tecnico a en cliente');
+            console.log(error);
+        })
+
+    }
+
+    const actuacionEnCliente = (idActuacion) => {
+
+        actualizaActuacionEnCliente(idActuacion)
 
         .then(() => {                                  
-            eliminarTecnicoEnCamino(nombre);
-            añadirTecnicoEnCliente(nombre);
-            
+            console.log('Actualizado actuación a estado en cliente');
+            console.log('LLamo a la funcion que actualiza al tecnico a estado en cliente');
+            tecnicosEnCliente(idRoles);             
 
         }).catch((error) => {
             console.log('Error al actualizar al menos un tecnico en cliente');            
@@ -134,91 +160,92 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
 
                             <ElementoLista>
                         
-                            <Incidencia>                        
-                                {actuacion.codigoIncidencia}
-                            </Incidencia>
+                                <Incidencia>                        
+                                    {actuacion.codigoIncidencia}
+                                </Incidencia>
 
-                            <Cliente>
-                                {actuacion.nombre}
-                            </Cliente>
+                                <Cliente>
+                                    {actuacion.nombre}
+                                </Cliente>
 
-                            <Direccion>
-                                {actuacion.direccion}
-                            </Direccion>
+                                <Direccion>
+                                    {actuacion.direccion}
+                                </Direccion>
 
-                            <Poblacion>
-                                {actuacion.poblacion}
-                            </Poblacion>
+                                <Poblacion>
+                                    {actuacion.poblacion}
+                                </Poblacion>
 
-                            {/* Muestro el estado siempre. Lo mostraré en colores solo cuando esté en camino o en cliente*/}
-                            {/* Mostraré la hora si estoy en camino o en cliente solo de colores */}
-                            <Estado>
+                                {/* Muestro el estado siempre. Lo mostraré en colores solo cuando esté en camino o en cliente*/}
+                                {/* Mostraré la hora si estoy en camino o en cliente solo de colores */}
+                                <Estado>
 
-                                { actuacion.estadoDescripcion === "En camino" ?
-                                        <>
-                                            <SpanHoraEnCamino>{actuacion.estadoDescripcion}</SpanHoraEnCamino>
-                                            <SpanHoraEnCamino>{formatearFechaEnHoraYSegundos(actuacion.horaEnCamino)}</SpanHoraEnCamino>
-                                        </>
-                                    :
-                                        actuacion.estadoDescripcion === "En cliente" ?
-                                        <>
-                                            <SpanHoraDeLlegada>{actuacion.estadoDescripcion}</SpanHoraDeLlegada>
-                                            <SpanHoraDeLlegada>{formatearFechaEnHoraYSegundos(actuacion.horaDeLlegada)}</SpanHoraDeLlegada>
-                                        </>
-
+                                    { actuacion.estadoDescripcion === "En camino" ?
+                                            <>
+                                                <SpanHoraEnCamino>{actuacion.estadoDescripcion}</SpanHoraEnCamino>
+                                                <SpanHoraEnCamino>{formatearFechaEnHoraYSegundos(actuacion.horaEnCamino)}</SpanHoraEnCamino>
+                                            </>
                                         :
-                                            <span>{actuacion.estadoDescripcion}</span>
-                                }
-                                
-                            </Estado>                    
+                                            actuacion.estadoDescripcion === "En cliente" ?
+                                            <>
+                                                <SpanHoraDeLlegada>{actuacion.estadoDescripcion}</SpanHoraDeLlegada>
+                                                <SpanHoraDeLlegada>{formatearFechaEnHoraYSegundos(actuacion.horaDeLlegada)}</SpanHoraDeLlegada>
+                                            </>
 
-                            {/* Botones para editar la actuacion */}
-                            <ContenedorBotonesLista>
-                                
-                                {/* Muestro botones de editar y borrar */}
-                                {laPideUnCoordinador ? 
-                                    <>
-                                        <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>
-                                            <IconoEditar /> 
-                                        </BotonAccion>
-
-                                        <BotonAccion>
-                                            <IconoBorrar />
-                                        </BotonAccion>
-                                    </>
-                                    : null}       
-                                
-
-                                {/* Muestro los botones de en camino y estar en cliente dependiendo del contexto desplazamientos */}                                
-                                {laPideUnTecnico ?                                    
+                                            :
+                                                <span>{actuacion.estadoDescripcion}</span>
+                                    }
                                     
-                                    <>
-                                        {/* {console.log('tecnicos en camino en alguna actuacion: ' + tecnicosEnCamino)}
-                                        {console.log('tecnicos en cliente en alguna actuacion: ' + tecnicosEnCliente)} */}
+                                </Estado>                    
 
-                                        {/* {actuacion.estado === 'EstadoAgenda' && tecnicoEncamino===false ? */}
-                                        
-                                        {actuacion.estado === 'EstadoAgenda' && !tecnicosEnCamino.includes(nombre) ?
-                                            <BotonAccion onClick={() => llamaAActualizaEstadoAEnCamino(actuacion.id)}> 
-                                                <IconoCoche />
+                                {/* Botones para gestionar la actuacion */}
+                                <ContenedorBotonesLista>
+                                    
+                                    {/* Muestro botones de editar y borrar si se pide desde el modulo coordinador */}
+                                    {laPideUnCoordinador === true ? 
+                                        <>
+                                            <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>
+                                                <IconoEditar /> 
                                             </BotonAccion>
-                                            : null
-                                        }
-                                        
-                                        {actuacion.estado ==='EstadoEnCamino' ?
-                                            <BotonAccion onClick={() => llamaAActualizarEStadoAEnCliente(actuacion.id)}> 
-                                                <IconoCliente />
-                                            </BotonAccion> 
-                                            : null
-                                        }
-                                
-                                        <BotonAccion as={Link} to={`/tecnico/editar-actuacion/${actuacion.id}`} >
-                                            <IconoEditar /> 
-                                        </BotonAccion>
-                                    </>
+
+                                            <BotonAccion>
+                                                <IconoBorrar />
+                                            </BotonAccion>
+                                        </>
+                                        : null}       
                                     
-                                    : null
-                                }  
+
+                                    {/* Muestro los botones de en camino, en cliente y editar si se pide desde el modulo tecnico.
+                                        El boton del coche se mostrará si el tecnico estuviera en estado citado
+                                        El boton del cliente se mostrará solo si estoy en camino hacia la actuacion obtenida del hook
+                                        que seañ igual a la actuacion que estoy recorriendo al pintar los elementos de la lista.
+                                        El botón de la lista se muestra siempre  */}                                
+                                        
+                                    {laPideUnTecnico === true ?                                    
+
+                                        <>  
+                                            
+                                            {/* si no pongo el indice 0, no va. NO QUITARLO */}
+                                            {estadoDelTecnico[0] === 'Citado' &&
+                                                <BotonAccion onClick={() => actuacionEnCamino(actuacion.id)}> 
+                                                    <IconoCoche />
+                                                </BotonAccion>
+                                            }  
+
+                                            {/* MUY IMPORANTE COMPARAR DATOS DEL MISMO TIPO */}
+                                            {estadoDelTecnico[0] === 'EnCamino' && stringIdActuacionDeUnUsuario === actuacion.id &&
+                                                <BotonAccion onClick={() => actuacionEnCliente(actuacion.id)}> 
+                                                    <IconoCliente />
+                                                </BotonAccion>
+                                            }
+                                            
+                                            <BotonAccion as={Link} to={`/tecnico/editar-actuacion/${actuacion.id}`} >
+                                                <IconoEditar /> 
+                                            </BotonAccion>
+                                        </>
+                                        
+                                        : null
+                                    }  
                                 </ContenedorBotonesLista>                  
                             </ElementoLista>
                         </div>                

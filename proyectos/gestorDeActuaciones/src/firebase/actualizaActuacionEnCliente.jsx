@@ -14,7 +14,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { getUnixTime } from "date-fns";
 
 // La función
-const actualizaEstadoAEnCliente = async (idActuacion) => {
+const actualizaActuacionEnCliente = async (idActuacion) => {
             
     return await updateDoc(doc(db, 'actuaciones', idActuacion), {        
         estado: 'EstadoEnCliente',
@@ -24,4 +24,4 @@ const actualizaEstadoAEnCliente = async (idActuacion) => {
            
 }
 
-export default actualizaEstadoAEnCliente;
+export default actualizaActuacionEnCliente;

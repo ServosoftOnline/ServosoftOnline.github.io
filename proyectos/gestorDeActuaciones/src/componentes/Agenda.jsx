@@ -19,7 +19,7 @@ const Agenda = () => {
 
   return (
     <>
-      <ListaActuacionesDeUnTecnico array = {arrayActuacionesAgendadas} laPideUnCoordinador={'si'}/>
+      <ListaActuacionesDeUnTecnico array = {arrayActuacionesAgendadas} laPideUnCoordinador={true}/>
     </>
   );
 }

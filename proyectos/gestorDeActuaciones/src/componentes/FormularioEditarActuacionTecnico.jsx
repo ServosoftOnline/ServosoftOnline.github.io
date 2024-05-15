@@ -28,18 +28,19 @@ import formatearFechaEnHoraYSegundos from "../funciones/formatearFechaEnHoraYSeg
 
 // Funcion firebase
 import actualizaColeccionActuaciones from "../firebase/actualizaColeccionActuaciones";
+import actualizaTecnicoACitado from "../firebase/actualizaTecnicoACitado";
 
 // Componentes
 import Mensaje from "./Mensaje";
 
 // Contextos
 import { ContextoMensaje } from "./../contextos/contextoMensaje";
-import { DesplazamientoContext } from "../contextos/DesplazamientoContext";
 
 // Hooks
 import useObtenerActuacionAPartirDeSuId from "../hooks/useObtenerActuacionAPartirDeSuId";
 import useObtenerTecnicosAPartirDelIdActuacion from "../hooks/useObtenerTecnicosAPartirDelIdActuacion";
 import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
+import useObtenerIdRolesDeUnUsuario from "../hooks/useObtenerIdRolesDeUnUsuario";
 
 // Mi componente
 const  FormularioEditarActuacionTecnico= () => {
@@ -49,16 +50,6 @@ const  FormularioEditarActuacionTecnico= () => {
 
     // Obtengo del contexto los mensajes que mostraré en pantalla
     const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
-
-    // Obtengo del contexto de desplazamientos
-    const   {
-        tecnicosEnCamino,
-        tecnicosEnCliente,
-        añadirTecnicoEnCamino,
-        eliminarTecnicoEnCamino,
-        añadirTecnicoEnCliente,
-        eliminarTecnicoEnCliente
-    } = useContext(DesplazamientoContext);
     
     // Estados        
     const [estado, asignarEstado] = useState();    
@@ -74,7 +65,9 @@ const  FormularioEditarActuacionTecnico= () => {
     // Informacion obtenida desde los hooks
     const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
     const [todosLosTecnicos] = useObtenerTecnicosAPartirDelIdActuacion(idActuacion);
-    const [nombre] = useObtenerNombreDeUnUsuario();
+    const [nombre] = useObtenerNombreDeUnUsuario(); 
+    const [idRoles] = useObtenerIdRolesDeUnUsuario();
+
 
     // Obtengo los acompañantes filtrando a todos los tecnicos obtenidos por el hook eliminandole quien inico la sesion guardado en nombre
     let acompañantes = []; 
@@ -98,9 +91,8 @@ const  FormularioEditarActuacionTecnico= () => {
    
     // Efecto que asigna la hora de finalizacion de la actuación en todos los casos posibles una vez acabada la actuacion
     // Debo reiniciar los momentos de en camino y llegada para guardarlos vacios en la bbdd solo si no es EstadoSupervision
-    useEffect(() => {
-
-        eliminarTecnicoEnCliente(nombre);
+    useEffect(() => {        
+        
         switch (estado){            
             
             case 'EstadoSupervision':                
@@ -135,6 +127,20 @@ const  FormularioEditarActuacionTecnico= () => {
         window.open(url, '_blank'); 
     }
 
+    const llamaAActualizaTecnicoACitado = (idRoles) => {
+        console.log('idRoles obtenido: ' + idRoles);
+        actualizaTecnicoACitado(idRoles)
+
+        .then (() => {
+            console.log('Cambiado el estado del tecnico a citado');
+
+        }).catch((error) => {
+            console.log('Error al cambiar el estado del tecnico a citado');
+            console.log(error);
+        })
+
+    }
+
     const validacionCorrecta = () => {
         
         // Validacion 1: Debo cambiar el estado. Al principio el formulario mostrará en camino o en cliente y no puede quedarse así
@@ -147,12 +153,7 @@ const  FormularioEditarActuacionTecnico= () => {
         
     }
 
-    const LlamaAActualizarColeccionActuaciones = (idActuacion) => {
-        
-        console.log('Actualizando la coleccion actuaciones');        
-        console.log('Momento de inicio: ' + momentoInicioCamino);
-        console.log('Momento de llegada a cliente: ' + momentoLlegadaACliente);
-        console.log('Momento de fin de actuacion: ' + momentoFinActuacion);
+    const LlamaAActualizarColeccionActuaciones = (idActuacion) => {   
         
         // Puede haber casos en que el tecnico no desplace o no llegue a cliente. En ese caso actualizo eliminando el contenido
         actualizaColeccionActuaciones({  
@@ -196,7 +197,10 @@ const  FormularioEditarActuacionTecnico= () => {
         e.preventDefault();        
 
         // Si la validacion es correcta llamo a la funcion que actualizará la coleccion actuaciones
-        validacionCorrecta() ? LlamaAActualizarColeccionActuaciones(idActuacion) : null;
+        if (validacionCorrecta()) {
+            LlamaAActualizarColeccionActuaciones(idActuacion);           
+            llamaAActualizaTecnicoACitado(idRoles);
+        }       
 
     }
     

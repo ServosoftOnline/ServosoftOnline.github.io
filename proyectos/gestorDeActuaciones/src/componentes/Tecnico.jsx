@@ -25,14 +25,49 @@ const FormularioEditarActuacionTecnico = lazy(() => import('./FormularioEditarAc
 // Componentes
 import BarraProductividad from "./../componentes/BarraProductividad";
 
+// Firebase
+import iniciarJornada from "../firebase/iniciarJornada";
+import finalizarJornada from "../firebase/finalizarJornada";
+
 // Hooks
 import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
+import useObtenerIdRolesDeUnUsuario from "../hooks/useObtenerIdRolesDeUnUsuario";
+import useObtenerInicioDeJornada from "../hooks/useObtenerInicioDeJornada";
 
 
 // Mi componente
 const Tecnico = () => {
   const [nombre] = useObtenerNombreDeUnUsuario();
+  const [idRoles] = useObtenerIdRolesDeUnUsuario();
+  const [inicioJornada] = useObtenerInicioDeJornada(idRoles);
+  console.log('Inicio jornada: ' + inicioJornada);
+
   
+
+  // Funciones
+  const LlamaAIniciarJornada = async (idRoles) => {
+    console.log('Iniciando jornada');
+    try {
+      await iniciarJornada(idRoles);
+
+    }catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  const LlamaAFinalizarJornada = async (idRoles) => {
+    console.log('Finalizando jornada');
+    try {
+      await finalizarJornada(idRoles);
+
+    }catch (error) {
+      console.log(error);
+    }
+
+  }
+
+
   return (
     <>
 
@@ -49,9 +84,19 @@ const Tecnico = () => {
           <Titulo>{nombre}</Titulo>
 
           <ContenedorBotones>
+
+            {/* Botones que actuan por defecto como links */}
             <Boton $paraTecnico to = "agenda-tecnico">Mi agenda</Boton>
             <Boton $paraTecnico to = "productividad-tecnico">Productividad</Boton> 
+
+            {/* Mostrará los botones para iniciar o finalizar jornada si no inicio la jornada o si la inicio respectivamente */}
+            <Boton onClick={() => LlamaAIniciarJornada(idRoles)}>Iniciar jornada </Boton>
+            <Boton onClick={() => LlamaAFinalizarJornada(idRoles)}>Finalizar jornada </Boton>
+            
+
+            {/* Boton para salir de la app */}
             <BtnSalir />
+
           </ContenedorBotones>
 
         </ContenedorHeader>

@@ -14,11 +14,11 @@ import { db } from '../firebase/firebaseConfig';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 
 // Hook
-const useObtenerNombreEIdDeUnUsuario = () => {
+const useObtenerIdRolesDeUnUsuario = () => {
 
     // Estados
-    const { sesion } = useAuth();
-    const [nombre, setNombre] = useState('');    
+    const { sesion } = useAuth();    
+    const [idRoles, setIdRoles] = useState(null);
 
     // Ejecuto el efecto para realizar la consulta de forma asincrona
     useEffect(() => {
@@ -34,9 +34,8 @@ const useObtenerNombreEIdDeUnUsuario = () => {
 
             // Ejecuta la consulta. Si se produjera un error lo muestro en consola
             const unsuscribe = onSnapshot(consultaObtenerNombre, (snapshot) => {
-                snapshot.docs.forEach((documento) => {
-                    const datosUsuario = documento.data();
-                    setNombre(datosUsuario.nombre);                    
+                snapshot.docs.forEach((documento) => {                    
+                    setIdRoles(documento.id);
                 });
             }, (error) => { console.log(error) });
 
@@ -47,7 +46,7 @@ const useObtenerNombreEIdDeUnUsuario = () => {
     }, [sesion]);
 
     // Devuelvo los estados nombre y idUsuario
-    return [nombre];
+    return [idRoles];
 }
 
-export default useObtenerNombreEIdDeUnUsuario;
+export default useObtenerIdRolesDeUnUsuario;
