@@ -19,7 +19,7 @@ import BtnSalir from "../elementos/BtnSalir";
 
 // Elementos para las rutas importados de forma dinámica
 const SinAsignar = lazy(() => import('./SinAsignar'));
-const FormularioEditarActuacion = lazy(() => import('./FormularioEditarActuacion'));
+const FormularioEditarActuacionCoordinador = lazy(() => import('./FormularioEditarActuacionCoordinador'));
 const Direccion = lazy(() => import ('./Direccion'));
 const Ilocalizable = lazy(() => import ('./Ilocalizable'));
 const Mantenimiento = lazy(() => import('./Mantenimiento'));
@@ -106,7 +106,7 @@ const Coordinador = () => {
           <Route path="instalados-finalizados" element={<InstaladosFinalizados />}/>          
 
           {/* Rutas dinamicas */}          
-          <Route path="detalles/:idActuacion" element={<FormularioEditarActuacion />}/>
+          <Route path="detalles/:idActuacion" element={<FormularioEditarActuacionCoordinador />}/>
         </Routes>
       </Suspense>
 

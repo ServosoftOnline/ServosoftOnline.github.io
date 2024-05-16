@@ -14,16 +14,18 @@ import ListaActuacionesDeUnTecnico from "./ListaActuacionesDeUnTecnico";
 
 // Hooks
 import useObtenerActuacionesCitadasDeUnTecnico from "../hooks/useObtenerActuacionesCitadasDeUnTecnico";
+import useObtenerEstadoDeUnUsuario from '../hooks/useObtenerEstadoDeUnUsuario';
 
 // Mi componente
 const  AgendaTecnico= ({nombre}) => {
 
     const [actuaciones] = useObtenerActuacionesCitadasDeUnTecnico(nombre);  
     const arrayActuaciones = Object.values(actuaciones);    
+    const [estadoDelTecnico] = useObtenerEstadoDeUnUsuario();  
 
     return (
         <>
-            <ListaActuacionesDeUnTecnico array = {arrayActuaciones} laPideUnTecnico= {true}/>    
+            <ListaActuacionesDeUnTecnico array = {arrayActuaciones} laPideUnTecnico= {true} estadoDelTecnico={estadoDelTecnico}/>    
         </>
     );
 }

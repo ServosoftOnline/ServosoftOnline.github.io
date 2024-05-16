@@ -3,19 +3,17 @@
 
     - Contiene:
       - Sus rutas importadas de forma dinámica
-      - Su barra de productividad 
-      - Los botones de agenda, productividad e iniciar u finalizar jornada. Estos últimos alterarán.
-      - El inicio de la jornada laboral está almacenado en un contexto
+      - La barra de productividad 
 
 */
 
 // React
-import React, {Suspense, lazy, useContext} from "react";
+import React, {Suspense, lazy, useState} from "react";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 
 // Elementos
-import {Header, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo, ContenedorBotones, ContenedorHeader} from '../elementos/ElementosDeHeader';
+import {Header, Titulo, ContenedorBotones, ContenedorHeader} from '../elementos/ElementosDeHeader';
 import Boton from "../elementos/Boton";
 import BtnSalir from '../elementos/BtnSalir';
 
@@ -33,28 +31,30 @@ import finalizarJornada from "../firebase/finalizarJornada";
 
 // Hooks
 import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
+import useObtenerInicioDeJornada from "../hooks/useObtenerInicioDeJornada";
 import useObtenerIdRolesDeUnUsuario from "../hooks/useObtenerIdRolesDeUnUsuario";
-
-// Contexto
-import {InicioJornadaContext} from './../contextos/InicioJornadaContext';
 
 
 // Mi componente
 const Tecnico = () => {
 
   // Obtencion de informacion desde los hooks  
-  const [idRoles] = useObtenerIdRolesDeUnUsuario();    
-  const [nombre] = useObtenerNombreDeUnUsuario();   
+  const [idRoles] = useObtenerIdRolesDeUnUsuario();  
+  const [inicioJornada] = useObtenerInicioDeJornada(idRoles);
+  const [nombre] = useObtenerNombreDeUnUsuario();
 
-  // Obtengo desde el contexto el inicio de la jornada
-  const {inicioJornada, establecerInicioDeJornada} = useContext(InicioJornadaContext); 
+  // Estados
+  const [estadoInicioJornada, setEstadoInicioJornada] = useState(inicioJornada);
+
+  
+  console.log('Inicio de jornada: ' + inicioJornada);
 
   // Funciones
   const LlamaAIniciarJornada = async (idRoles) => {
-    
+    console.log('Iniciando jornada');
     try {
-      await iniciarJornada(idRoles);    
-      establecerInicioDeJornada(true);      
+      await iniciarJornada(idRoles);
+      setEstadoInicioJornada(true);
 
     }catch (error) {
       console.log(error);
@@ -63,10 +63,10 @@ const Tecnico = () => {
   }
 
   const LlamaAFinalizarJornada = async (idRoles) => {
-    
+    console.log('Finalizando jornada');
     try {
       await finalizarJornada(idRoles);
-      establecerInicioDeJornada(false);    
+      setEstadoInicioJornada(false);
 
     }catch (error) {
       console.log(error);
@@ -74,24 +74,21 @@ const Tecnico = () => {
 
   }
 
+
   return (
     <>
 
       {/* Proporciono contexto a Helmet */}
       <HelmetProvider>
         <Helmet>
-          <title>Técnico: {nombre}</title>
+          <title>Técnico</title>
         </Helmet>
       </HelmetProvider> 
       
       {/* Cabecera */}
       <Header>
         <ContenedorHeader>
-
-          <ContenedorTitulos>
-            <Titulo> {nombre} </Titulo>
-            {inicioJornada ? <ParrafoVerde>( Jornada inicializada )</ParrafoVerde> : <ParrafoRojo>( Jornada finalizada )</ParrafoRojo>}
-          </ContenedorTitulos>
+          <Titulo>{nombre}</Titulo>
 
           <ContenedorBotones>
 
@@ -99,11 +96,12 @@ const Tecnico = () => {
             <Boton $paraTecnico to = "agenda-tecnico">Mi agenda</Boton>
             <Boton $paraTecnico to = "productividad-tecnico">Productividad</Boton> 
 
-            {/* Mostrará los botones para iniciar o finalizar jornada dependiendo si inicio o no la jornada */}                        
-            {inicioJornada ?
-                <Boton onClick={() => LlamaAFinalizarJornada(idRoles)}>Finalizar jornada </Boton>
-              : 
-                <Boton onClick={() => LlamaAIniciarJornada(idRoles)}>Iniciar jornada </Boton> }
+            {/* Mostrará los botones para iniciar o finalizar jornada si no inicio la jornada o si la inicio respectivamente */}
+            {estadoInicioJornada ? <Boton onClick={() => LlamaAFinalizarJornada(idRoles)}>Finalizar jornada </Boton> : <Boton onClick={() => LlamaAIniciarJornada(idRoles)}>Iniciar jornada </Boton>}
+            
+            
+            
+            
 
             {/* Boton para salir de la app */}
             <BtnSalir />

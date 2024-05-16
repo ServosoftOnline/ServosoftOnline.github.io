@@ -17,7 +17,7 @@ import { doc, getDoc } from 'firebase/firestore';
 const useObtenerInicioDeJornada = (idRoles) => {
 
     // Estados
-	const [inicioJornada, setInicioJornada] = useState('');	
+	const [inicioJornadaObtenido, setInicioJornadaObtenido] = useState('');	
 	const {sesion} = useAuth();	
 	
 	// Ejecuto el efecto para realizar la consulta de forma asincrona
@@ -33,7 +33,7 @@ const useObtenerInicioDeJornada = (idRoles) => {
 			
 					// Si el documento existe, obtengo los datos de los técnicos y los añado al estado tecnicos
 					if (documento.exists) {						
-						setInicioJornada(documento.data().inicioJornada);
+						setInicioJornadaObtenido(documento.data().inicioJornada);
 					} else {						
 						console.log('El documento no existe');
 					}
@@ -51,7 +51,7 @@ const useObtenerInicioDeJornada = (idRoles) => {
 	}, [idRoles, sesion]);    
 
 	// Devuelvo el estado con el gasto que contiene un objeto con el gasto
-	return [inicioJornada];	
+	return [inicioJornadaObtenido];	
 }
 
 export default useObtenerInicioDeJornada;

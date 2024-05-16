@@ -27,7 +27,7 @@ import Contenedor from "./elementos/Contenedor.jsx";
 import { ProveedorMensaje } from './contextos/contextoMensaje.jsx';
 import { AuthProvider } from './contextos/AuthContext.jsx';
 import { RolProvider } from './contextos/RolContext.jsx';
-import { DesplazamientoProvider } from './contextos/DesplazamientoContext.jsx';
+import {InicioJornadaProvider} from './contextos/InicioJornadaContext.jsx';
 
 // Rutas importadas de forma dinámica
 const Administrador = lazy(() => import('./componentes/Administrador.jsx'));
@@ -51,7 +51,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <AuthProvider>
       <RolProvider>      
       <ProveedorMensaje>
-      <DesplazamientoProvider>
+      <InicioJornadaProvider>
 
         {/* React router */}
         <BrowserRouter>
@@ -75,7 +75,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </Contenedor>
         </BrowserRouter>
 
-      </DesplazamientoProvider>
+      </InicioJornadaProvider>
       </ProveedorMensaje>      
       </RolProvider>
       </AuthProvider>

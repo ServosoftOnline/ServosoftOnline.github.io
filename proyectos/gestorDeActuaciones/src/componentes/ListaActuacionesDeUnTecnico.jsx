@@ -40,15 +40,14 @@ import actualizaTecnicoEnCliente from '../firebase/actualizaTecnicoEnCliente';
 
 // Hook
 import useObtenerIdRolesDeUnUsuario from '../hooks/useObtenerIdRolesDeUnUsuario';
-import useObtenerEstadoDeUnUsuario from '../hooks/useObtenerEstadoDeUnUsuario';
 import useObtenerIdActuacionDeUnUsuario from '../hooks/useObtenerIdActuacionDeUnUsuario';
 
 // Componente
-const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador}) => {  
-    
+const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador, estadoDelTecnico}) => {  
+    console.log('estado del tecnico: ' + estadoDelTecnico);
     // Obtengo el id del rol del tecnico y su estado
     const [idRoles] = useObtenerIdRolesDeUnUsuario();  
-    const [estadoDelTecnico] = useObtenerEstadoDeUnUsuario();    
+      
 
     // Obtengo idActuacionDeUnUsuario como un objeto. Lo paso a array el cual contiene a un string. Me sirve para comparar mismos tipos de datos
     const [idActuacionDeUnUsuario] = useObtenerIdActuacionDeUnUsuario();

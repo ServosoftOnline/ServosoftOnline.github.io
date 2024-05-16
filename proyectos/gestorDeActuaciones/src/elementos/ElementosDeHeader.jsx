@@ -29,6 +29,7 @@ const ContenedorHeader = styled.div`
  
     // Coloco los elementos en forma de columna, los centro . Los div de dentro los pongo al final
     @media(max-width: 60rem){ /* 950px */
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -41,11 +42,29 @@ const ContenedorHeader = styled.div`
     }
 `;
 
+const ContenedorTitulos = styled.div `
+    align-items: center;
+    display: flex;    
+
+    p{
+        font-weight: bold;
+        margin-left: 0.5rem;
+    }
+    
+`;
+
+const ParrafoVerde = styled.p`
+    color: ${theme.verdeIcono};
+`;
+
+const ParrafoRojo = styled.p`
+    color: ${theme.rojoIcono};
+`;
  
 const Titulo = styled.h1`
 
     font-weight: bold;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 1.4rem; /* 22.4px */  
     margin-left: 1rem;      
     
@@ -97,4 +116,4 @@ const ContenedorArchivoExcel = styled.div`
 `;
 
  
-export {Header, ContenedorHeader, Titulo, ContenedorTitulo, TodosLosBotones, ContenedorBotones, ContenedorArchivoExcel};
+export {Header, ContenedorHeader, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo, ContenedorTitulo, TodosLosBotones, ContenedorBotones, ContenedorArchivoExcel};
