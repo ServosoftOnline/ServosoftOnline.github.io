@@ -14,7 +14,7 @@ const finalizarJornada = (idRoles) => {
     return updateDoc(doc(db, 'roles', idRoles), {  
         estado: 'descanso',
         idActuacion: deleteField(),
-        inicioJornada: 'no'        
+        inicioJornada: false       
     });
            
 }

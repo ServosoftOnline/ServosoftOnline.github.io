@@ -1,5 +1,6 @@
 /*
     HOOK QUE OBTIENE LOS TECNICOS QUE ACOMPAÑARÁN EN UNA ACTUACION PARTIR DE SU ID
+		- La primera vez que se ejecuta este hook idRoles contiene null. La promesa se ejecutará la segunda vez que pase por aqui
 */
 
 // React
@@ -23,7 +24,7 @@ const useObtenerInicioDeJornada = (idRoles) => {
 	useEffect(() => {
 
 		// Si hay sesión abierta realizo la consulta
-		if(sesion) {
+		if(sesion && idRoles !== null) {
 
 			const obtenerInicioJornada = async () => {
 				try {

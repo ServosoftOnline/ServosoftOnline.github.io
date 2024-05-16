@@ -14,7 +14,7 @@ const iniciarJornada = (idRoles) => {
     return updateDoc(doc(db, 'roles', idRoles), {  
         estado: 'Citado',
         idActuacion: deleteField(),
-        inicioJornada: 'si'        
+        inicioJornada: true        
     });
            
 }

@@ -8,7 +8,7 @@
 */
 
 // React
-import React, {Suspense, lazy} from "react";
+import React, {Suspense, lazy, useState} from "react";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 
@@ -31,24 +31,30 @@ import finalizarJornada from "../firebase/finalizarJornada";
 
 // Hooks
 import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
-import useObtenerIdRolesDeUnUsuario from "../hooks/useObtenerIdRolesDeUnUsuario";
 import useObtenerInicioDeJornada from "../hooks/useObtenerInicioDeJornada";
+import useObtenerIdRolesDeUnUsuario from "../hooks/useObtenerIdRolesDeUnUsuario";
 
 
 // Mi componente
 const Tecnico = () => {
+
+  // Obtencion de informacion desde los hooks
   const [nombre] = useObtenerNombreDeUnUsuario();
-  const [idRoles] = useObtenerIdRolesDeUnUsuario();
+  const [idRoles] = useObtenerIdRolesDeUnUsuario();  
   const [inicioJornada] = useObtenerInicioDeJornada(idRoles);
-  console.log('Inicio jornada: ' + inicioJornada);
+
+  // Estados
+  const [estadoInicioJornada, setEstadoInicioJornada] = useState(inicioJornada);
 
   
+  console.log('Inicio de jornada: ' + inicioJornada);
 
   // Funciones
   const LlamaAIniciarJornada = async (idRoles) => {
     console.log('Iniciando jornada');
     try {
       await iniciarJornada(idRoles);
+      setEstadoInicioJornada(true);
 
     }catch (error) {
       console.log(error);
@@ -60,6 +66,7 @@ const Tecnico = () => {
     console.log('Finalizando jornada');
     try {
       await finalizarJornada(idRoles);
+      setEstadoInicioJornada(false);
 
     }catch (error) {
       console.log(error);
@@ -90,8 +97,10 @@ const Tecnico = () => {
             <Boton $paraTecnico to = "productividad-tecnico">Productividad</Boton> 
 
             {/* Mostrará los botones para iniciar o finalizar jornada si no inicio la jornada o si la inicio respectivamente */}
-            <Boton onClick={() => LlamaAIniciarJornada(idRoles)}>Iniciar jornada </Boton>
-            <Boton onClick={() => LlamaAFinalizarJornada(idRoles)}>Finalizar jornada </Boton>
+            {estadoInicioJornada ? <Boton onClick={() => LlamaAFinalizarJornada(idRoles)}>Finalizar jornada </Boton> : <Boton onClick={() => LlamaAIniciarJornada(idRoles)}>Iniciar jornada </Boton>}
+            
+            
+            
             
 
             {/* Boton para salir de la app */}
