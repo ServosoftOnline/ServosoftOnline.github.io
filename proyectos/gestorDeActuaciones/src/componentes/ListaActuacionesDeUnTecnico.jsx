@@ -44,7 +44,7 @@ import useObtenerIdActuacionDeUnUsuario from '../hooks/useObtenerIdActuacionDeUn
 
 // Componente
 const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador, estadoDelTecnico}) => {  
-    console.log('estado del tecnico: ' + estadoDelTecnico);
+    
     // Obtengo el id del rol del tecnico y su estado
     const [idRoles] = useObtenerIdRolesDeUnUsuario();  
       

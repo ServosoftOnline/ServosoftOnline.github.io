@@ -8,6 +8,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+// date-fns
+import { fromUnixTime, getUnixTime } from "date-fns";
+
 // Elementos formulario editar actuacion
 import {ContenedorEditarActuacion, SubContenedorSoloLectura, SubContenedor1, SubContenedor2,
         SubContenedor3, SubContenedor4, SubContenedor5, SubContenedor6, ContenedorSelectTecnicos,
@@ -37,14 +40,16 @@ import { ContextoMensaje } from "../contextos/contextoMensaje";
 
 // Hooks
 import useObtenerActuacionAPartirDeSuId from "../hooks/useObtenerActuacionAPartirDeSuId";
-import { fromUnixTime, getUnixTime } from "date-fns";
+import useObtenerNombreSiEstaEnCaminoOEncliente from "../hooks/useObtenerNombreSiEstaEnCaminoOEncliente";
+
 
 // Componente
 const FormularioEditarActuacionCoordinador = () => {
 
-    const {idActuacion} = useParams();    
-    const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
-    const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
+    const {idActuacion} = useParams();        
+    const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);  
+    const [tecnicosEnCaminoOEnCliente] = useObtenerNombreSiEstaEnCaminoOEncliente(idActuacion);    
+    const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje, eliminarMensaje} = useContext(ContextoMensaje);
 
     // Estados primera fila
     const [linkDorus, asignarLinkDorus] = useState();    
@@ -79,7 +84,7 @@ const FormularioEditarActuacionCoordinador = () => {
     // Estados sexta fila
     const [comentariosTecnicos, asignarComentariosTecnicos] = useState();
 
-    // Establezco los estados con los datos de la actuacion obtenida del hook. Para mostrar los valores
+    // Efecto para establezcer los estados con los datos de la actuacion obtenida del hook.
     //  Por ahora solo es necesario tener una depedencia
     useEffect(() => {        
 
@@ -112,7 +117,7 @@ const FormularioEditarActuacionCoordinador = () => {
 
     },[actuacion.linkDorus]);  
 
-    // Cada vez que se actualize el estado idTipoDeTrabajo reinicio los estados de los tecnicos dependiendo del valor de este
+    // Efecto para que cada vez que se actualize el estado idTipoDeTrabajo reinicio los estados de los tecnicos dependiendo del valor de este
     useEffect(() => {
 
         switch (idTipoDeTrabajo){
@@ -145,9 +150,44 @@ const FormularioEditarActuacionCoordinador = () => {
 
 
     },[idTipoDeTrabajo]);
+
+    // Efecto que se ejecuta al principio para mostrar una alerta si existiera al menos un tecnico en camino o en cliente
+    useEffect(() => {        
+        compruebaSiUnTecnicoVaEnCaminoOEstaEncliente();       
+    },[tecnicosEnCaminoOEnCliente]);
      
     
     // FUNCIONES DEL COMPONENTE
+    const compruebaSiUnTecnicoVaEnCaminoOEstaEncliente = () =>{
+
+        console.log('Tecnico o tecnicos que estan en camino o en cliente: ' + tecnicosEnCaminoOEnCliente);
+        console.log(tecnicosEnCaminoOEnCliente);
+
+        if(tecnicosEnCaminoOEnCliente.length > 0){
+            cambiarMensaje('Técnico o técnicos en camino o en cliente: ' + tecnicosEnCaminoOEnCliente + ' . Avísalos si cambias el estado de la actuacion', 'incorrecta');
+        } else {
+            eliminarMensaje();
+        }
+
+    }
+
+    // Funcion que modifica el estado de los tecnicos
+    const actualizaEstadoDeLosTecnicos = () => {
+
+        console.log('Estado: ' + estado);
+        if(estado === 'EstadoEnCamino' || estado === 'EstadoEnCliente'){
+            console.log('No cambiaré el estado a los tecnicos');
+        } else {
+            console.log('Tecnico o tecnicos a los que cambiaré su estado: ' + tecnicosEnCaminoOEnCliente);
+            tecnicosEnCaminoOEnCliente.forEach((tecnico) => {
+                console.log('Cambio el estado a citado al tecnico: ' + tecnico);
+            });
+            
+        }
+            
+            
+    }
+
     // Funcion que llama a la funcion que insertará los datos en la base de datos. Lo hago para separar front y backend
     const llamaAEditarActuacion = () => {
         
@@ -293,15 +333,17 @@ const FormularioEditarActuacionCoordinador = () => {
             }
         }
 
-
         return true;        
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        reiniciarMensaje();
 
-        if(validacionCorrecta()) {                       
+        if(validacionCorrecta()) {  
+            
             llamaAEditarActuacion();
+            actualizaEstadoDeLosTecnicos();
         } 
     }
 

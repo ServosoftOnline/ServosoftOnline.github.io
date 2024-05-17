@@ -28,9 +28,15 @@ const ProveedorMensaje = ({children}) => {
         }
         , 5000);        
     }
+
+    // Es igual que reiniciar el mensaje pero sin setTimeOut
+    const eliminarMensaje = () => {
+        cambiarMensajeAMostrar('');
+        cambiarRdoValidacion('');
+    }
        
     return (
-       <ContextoMensaje.Provider value={{mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje}}>            
+       <ContextoMensaje.Provider value={{mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje, eliminarMensaje}}>            
         {children}
        </ContextoMensaje.Provider>
     );
