@@ -26,9 +26,17 @@ const ContenedorMensajes = styled.div`
         color: ${(props) => {
             if(props.$validacion === 'incorrecta'){
                 return theme.rojo;
+
             } else if (props.$validacion === 'correcta') {
                 return theme.verde;
-            } else {
+
+            } else if (props.$validacion === 'advertencia') {
+                return theme.naranja;
+            }
+            
+            
+            
+            else {
                 return '#000';
             }
         }};

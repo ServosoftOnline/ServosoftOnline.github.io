@@ -31,6 +31,7 @@ import DatePicker from "./DatePicker";
 
 // Funcion firebase
 import editarActuacion from "../firebase/editarActuacion";
+import actualizaTecnicoACitado from './../firebase/actualizaTecnicoACitado';
 
 // Componentes
 import Mensaje from "./Mensaje";
@@ -41,6 +42,7 @@ import { ContextoMensaje } from "../contextos/contextoMensaje";
 // Hooks
 import useObtenerActuacionAPartirDeSuId from "../hooks/useObtenerActuacionAPartirDeSuId";
 import useObtenerNombreSiEstaEnCaminoOEncliente from "../hooks/useObtenerNombreSiEstaEnCaminoOEncliente";
+import useObtenerIdRolesSiEstaEnCaminoOEncliente from "../hooks/useObtenerIdRolesSiEstaEnCaminoOEncliente";
 
 
 // Componente
@@ -49,6 +51,7 @@ const FormularioEditarActuacionCoordinador = () => {
     const {idActuacion} = useParams();        
     const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);  
     const [tecnicosEnCaminoOEnCliente] = useObtenerNombreSiEstaEnCaminoOEncliente(idActuacion);    
+    const [idRolesTecnicosEnCaminoOCliente] = useObtenerIdRolesSiEstaEnCaminoOEncliente(idActuacion);
     const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje, eliminarMensaje} = useContext(ContextoMensaje);
 
     // Estados primera fila
@@ -158,33 +161,42 @@ const FormularioEditarActuacionCoordinador = () => {
      
     
     // FUNCIONES DEL COMPONENTE
-    const compruebaSiUnTecnicoVaEnCaminoOEstaEncliente = () =>{
-
-        console.log('Tecnico o tecnicos que estan en camino o en cliente: ' + tecnicosEnCaminoOEnCliente);
-        console.log(tecnicosEnCaminoOEnCliente);
+    // Funcion que detecta los nombres de los tecnicos que van en camino o estan en un cliente. Si los encuentra muestra advertencia
+    const compruebaSiUnTecnicoVaEnCaminoOEstaEncliente = () =>{        
 
         if(tecnicosEnCaminoOEnCliente.length > 0){
-            cambiarMensaje('Técnico o técnicos en camino o en cliente: ' + tecnicosEnCaminoOEnCliente + ' . Avísalos si cambias el estado de la actuacion', 'incorrecta');
+            cambiarMensaje(tecnicosEnCaminoOEnCliente + ' en camino o en cliente. Avisa si cambias el estado de la actuación', 'advertencia');
         } else {
             eliminarMensaje();
         }
 
     }
 
-    // Funcion que modifica el estado de los tecnicos
+    // Funcion que modifica el estado de los tecnicos. Solo si el estado de la actuacion fuera EnCamino o EnCliente.
     const actualizaEstadoDeLosTecnicos = () => {
-
-        console.log('Estado: ' + estado);
+        
         if(estado === 'EstadoEnCamino' || estado === 'EstadoEnCliente'){
             console.log('No cambiaré el estado a los tecnicos');
+
         } else {
-            console.log('Tecnico o tecnicos a los que cambiaré su estado: ' + tecnicosEnCaminoOEnCliente);
-            tecnicosEnCaminoOEnCliente.forEach((tecnico) => {
-                console.log('Cambio el estado a citado al tecnico: ' + tecnico);
-            });
             
-        }
+            if(idRolesTecnicosEnCaminoOCliente !== undefined){
+
+                idRolesTecnicosEnCaminoOCliente.forEach((idRol) => {
+                    console.log('Cambio el estado a citado al tecnico: ' + idRol);
+                    actualizaTecnicoACitado(idRol)
+
+                    .then(() => {
+                        console.log('cambiado ' + idRol + ' correctamente');                                    
             
+                    }).catch((error) => {
+                        cambiarMensaje('Error al cambiar el idRol: ' + idRol);                        
+                        console.log(error);
+                    })
+                });
+            }
+                        
+        }           
             
     }
 
