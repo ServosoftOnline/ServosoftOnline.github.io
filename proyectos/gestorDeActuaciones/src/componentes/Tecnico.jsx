@@ -99,7 +99,7 @@ const Tecnico = () => {
             <Boton $paraTecnico to = "agenda-tecnico">Mi agenda</Boton>
             <Boton $paraTecnico to = "productividad-tecnico">Productividad</Boton> 
 
-            {/* Mostrará los botones para iniciar o finalizar jornada dependiendo si inicio o no la jornada */}                        
+            {/* Mostrará los botones para iniciar o finalizar jornada dependiendo si inició o no inició la jornada */}                        
             {inicioJornada ?
                 <Boton onClick={() => LlamaAFinalizarJornada(idRoles)}>Finalizar jornada </Boton>
               : 

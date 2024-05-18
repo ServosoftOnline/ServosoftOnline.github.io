@@ -165,7 +165,7 @@ const FormularioEditarActuacionCoordinador = () => {
     const compruebaSiUnTecnicoVaEnCaminoOEstaEncliente = () =>{        
 
         if(tecnicosEnCaminoOEnCliente.length > 0){
-            cambiarMensaje(tecnicosEnCaminoOEnCliente + ' en camino o en cliente. Avisa si cambias el estado de la actuación', 'advertencia');
+            cambiarMensaje(tecnicosEnCaminoOEnCliente + ' en camino o en cliente a esta actuación. Avisa si cambias el estado', 'advertencia');
         } else {
             eliminarMensaje();
         }
@@ -575,6 +575,7 @@ const FormularioEditarActuacionCoordinador = () => {
                 <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
                 
             </form>
+            
 
         </ContenedorEditarActuacion>
         
