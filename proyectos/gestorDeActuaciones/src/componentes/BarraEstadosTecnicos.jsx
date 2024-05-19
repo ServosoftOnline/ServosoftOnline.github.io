@@ -13,6 +13,7 @@ import useTecnicosIniciaronJornada from "../hooks/useTecnicosIniciaronJornada";
 import useTecnicosFinalizaronJornada from "../hooks/useTecnicosFinalizaronJornada";
 import useTecnicosEnCamino from "../hooks/useTecnicosEnCamino";
 import useTecnicosEnCliente from "../hooks/useTecnicosEnCliente";
+import useTecnicosCitados from "../hooks/useTecnicosCitados";
 
 
 // Componente
@@ -23,6 +24,7 @@ const BarraEstadosTecnicos = () => {
     const [tecnicosFinalizaronJornada] = useTecnicosFinalizaronJornada();
     const [tecnicosEnCamino] = useTecnicosEnCamino();
     const [tecnicosEnCliente] = useTecnicosEnCliente();
+    const [tecnicosCitados] = useTecnicosCitados();
 
     console.log(tecnicosEnCamino);
 
@@ -31,6 +33,7 @@ const BarraEstadosTecnicos = () => {
     const nombresFinalizaronJornadaSeparados = tecnicosFinalizaronJornada.join(', ');
     const nombresTecnicosEnCaminoSeparados = tecnicosEnCamino.join(', ');
     const nombresTecnicosEnClienteSeparados = tecnicosEnCliente.join(', ');
+    const nombresTecnicosCitadosSeparados = tecnicosCitados.join(', ');
 
     return (
         
@@ -41,17 +44,19 @@ const BarraEstadosTecnicos = () => {
             <Cabecera>            
                 <p> Iniciaron jornada: </p>
                 <p> Finalizaron jornada: </p>
-                <p> De vacaciones: </p>
+                <p> Citados: </p>
                 <p> En camino: </p>
-                <p> En cliente: </p>            
+                <p> En cliente: </p>
+                <p> De vacaciones: </p>
             </Cabecera> 
 
             <Tecnicos>
-                <Nombres>{nombresIniciaronJornadaSeparados}</Nombres>      
-                <Nombres>{nombresFinalizaronJornadaSeparados}</Nombres>      
-                <Nombres>array tecnicos</Nombres>      
-                <Nombres>{nombresTecnicosEnCaminoSeparados}</Nombres>      
-                <Nombres>{nombresTecnicosEnClienteSeparados}</Nombres>      
+                <Nombres>{nombresIniciaronJornadaSeparados}</Nombres>
+                <Nombres>{nombresFinalizaronJornadaSeparados}</Nombres>
+                <Nombres>{nombresTecnicosCitadosSeparados}</Nombres>
+                <Nombres>{nombresTecnicosEnCaminoSeparados}</Nombres>
+                <Nombres>{nombresTecnicosEnClienteSeparados}</Nombres>
+                <Nombres>array tecnicos</Nombres>
             </Tecnicos> 
 
         </Barra>        

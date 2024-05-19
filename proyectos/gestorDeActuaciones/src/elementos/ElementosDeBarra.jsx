@@ -4,52 +4,74 @@ import styled from "styled-components";
 import theme from '../objetos/theme'
 
 const Barra = styled.div `
-    // background: lightblue;
-    padding: 0 1rem; /* 0 32px */      
+    background: ${theme.lightSmoke};
+    padding: 0 0.5rem; /* 0 32px */  
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 2px solid ${theme.darkerSmoke};
+    border-radius: 10px;   
     
 `;
 
 const ParrafoDeLaBarra = styled.p`
+
+    // text-decoration: underline;
+    // text-underline-offset: 0.3rem;
     font-weight: bolder;
+
+    @media(max-width: 60rem){ /* 950px */            
+        font-size: 0.8rem;
+    }
 `;
 
 const Cabecera = styled.div `
-background: lightgreen;
 
+    background: ${theme.mediumSmoke};    
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-content: space-between;
     padding-left: 0.5rem;
     padding-right: 1.5rem;   
+    gap: 0.5rem;
     margin-top: 1rem;
     font-weight: bolder;
 
     // Borde
-    border: 2px solid green;   
+    border: 1px solid ${theme.darkSmoke};  
+    border-radius: 10px 10px 0 0; // Aplico borde redondeado a las esquinas de arriva
 
     @media(max-width: 60rem){ /* 950px */            
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
 
 `;
 
 const Tecnicos = styled.div `
-// background: lightyellow;
-    
+
+    background: ${theme.smoke};    
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-content: space-between; 
-    padding-left: 0.5rem;
-    padding-right: 1.5rem;   
     text-transform: capitalize;
+    padding-left: 0.5rem;
+    padding-right: 1.5rem;
+    gap: 0.5rem;
+    margin-bottom: 1rem; 
+
+    // Borde
+    border: 1px solid ${theme.darkSmoke};   
+    border-radius: 0 0 10px 10px;  // Aplico borde redondeado a las esquinas de abajo
 
     @media(max-width: 60rem){ /* 950px */            
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
 
 `;
 
 const Nombres = styled.p `
+    
 
 `;
 
