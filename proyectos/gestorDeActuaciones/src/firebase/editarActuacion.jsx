@@ -10,7 +10,7 @@ import { doc, updateDoc } from "firebase/firestore";
 // La función
 const editarActuacion = async ({linkDorus, direccion, poblacion, zonaInstalacion, coordenadas, telefonos,
     tipoActuacion, dificultad, puntos, tipoTrabajo, idTipoTrabajo, stb, estado, estadoDescripcion, fechaCitacion, tecnico1, tecnico2,
-    tecnico3, tecnico4, tecnico5,comentariosTecnicos, idActuacion}) => {
+    tecnico3, tecnico4, tecnico5, comentariosCoordinacion, idActuacion}) => {
         
     return await updateDoc(doc(db, 'actuaciones', idActuacion), {
         linkDorus: linkDorus,
@@ -33,7 +33,7 @@ const editarActuacion = async ({linkDorus, direccion, poblacion, zonaInstalacion
         tecnico3: tecnico3,
         tecnico4: tecnico4,
         tecnico5: tecnico5,
-        comentariosTecnicos: comentariosTecnicos
+        comentariosCoordinacion: comentariosCoordinacion
     });
            
 }

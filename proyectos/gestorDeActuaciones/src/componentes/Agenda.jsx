@@ -10,6 +10,8 @@ import useObtenerActuacionesAgendadas from "../hooks/useObtenerActuacionesAgenda
 
 // Componente/
 import ListaActuacionesDeUnTecnico from "./ListaActuacionesDeUnTecnico";
+import BarraEstadosTecnicos from "./BarraEstadosTecnicos";
+import { Barra } from "../elementos/ElementosDeBarra";
 
 // El Componente
 const Agenda = () => {
@@ -18,8 +20,9 @@ const Agenda = () => {
   const arrayActuacionesAgendadas = Object.values(actuacionesAgendadas);
 
   return (
-    <>
+    <>      
       <ListaActuacionesDeUnTecnico array = {arrayActuacionesAgendadas} laPideUnCoordinador={true}/>
+      <BarraEstadosTecnicos />
     </>
   );
 }

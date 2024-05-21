@@ -25,7 +25,9 @@ const Header = styled.div`
 const ContenedorHeader = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 100%;    
+    width: 100%; 
+    padding-left: 1rem;
+    padding-right: 1rem;   
  
     // Coloco los elementos en forma de columna, los centro . Los div de dentro los pongo al final
     @media(max-width: 60rem){ /* 950px */
@@ -33,18 +35,22 @@ const ContenedorHeader = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;   
+        
  
         & > div {
             display: flex;
-            margin-bottom: 0.9rem; /* 20px */
-            justify-content: end;            
+            margin-bottom: 0.7rem; /* 20px */
+            // justify-content: end;            
         }
     }
 `;
 
 const ContenedorTitulos = styled.div `
-    align-items: center;
-    display: flex;    
+
+    display: flex; 
+    align-items: center;       
 
     p{
         font-weight: bold;
@@ -53,6 +59,7 @@ const ContenedorTitulos = styled.div `
     
 `;
 
+// Los párrafos son para incio y fin de jornada
 const ParrafoVerde = styled.p`
     color: ${theme.verdeIcono};
 `;
@@ -82,7 +89,15 @@ const ContenedorTitulo = styled.div`
  
 const TodosLosBotones = styled.div `
     display: flex;
-    align-items: center;
+    align-items: center;    
+    
+
+    @media(max-width: 60rem){ /* 950px */
+        // flex-direction: column;
+        // gap: 0.5rem;
+    }
+
+
 `;
 
 const ContenedorBotones = styled.div` 

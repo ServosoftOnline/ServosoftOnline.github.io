@@ -47,7 +47,7 @@ const Btn = styled.button`
  
     // Cuando el tamaño de la ventana sea inferior a 950 hago el boton mas pequeño
     @media(max-width: 60rem){ /* 950px */
-        height: 2.1rem; 
+        height: 2.6rem; 
         line-height: 2.5rem; /* 40px */
         margin-left: 0.1rem; /* 1.6px */
     }

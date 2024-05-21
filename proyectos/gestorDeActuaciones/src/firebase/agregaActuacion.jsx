@@ -44,7 +44,7 @@ const agregaActuacion = async (data) => {
                 "idTipoTrabajo": "",                
                 "stb":"",
                 "estado": "EstadoPteCoordinar", // Primer estado de la actuación
-                "comentariosTecnicos": "",
+                "comentariosCoordinacion": "",
                 "fechaIncidencia": getUnixTime(new Date()),
                 "fechaCitacion": getUnixTime(new Date()),              
                 "estadoDescripcion": "Pendiente de coordinar",                

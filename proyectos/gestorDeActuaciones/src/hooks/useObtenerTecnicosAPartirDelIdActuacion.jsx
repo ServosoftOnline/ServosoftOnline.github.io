@@ -16,45 +16,50 @@ import { doc, getDoc } from 'firebase/firestore';
 const useObtenerTecnicosAPartirDelIdActuacion = (idActuacion) => {
 
     // Estados
-	const [todosLosTecnicos, establecerTodosLosTecnicos] = useState('');	
-	const {sesion} = useAuth();	
-	
-	// Ejecuto el efecto para realizar la consulta de forma asincrona
-	useEffect(() => {
+    const [todosLosTecnicos, establecerTodosLosTecnicos] = useState([]); // Cambiado a array vacío en lugar de cadena vacía
+    const { sesion } = useAuth();
 
-		// Si hay sesión abierta realizo la consulta
-		if(sesion) {
+    // Ejecuto el efecto para realizar la consulta de forma asincrona
+    useEffect(() => {
 
-			const obtenerTecnicos = async () => {
-				try {
-					// Obtengo el documento de forma asincrónica
-					const documento = await getDoc(doc(db, 'actuaciones', idActuacion));
-			
-					// Si el documento existe, obtengo los datos de los técnicos y los añado al estado tecnicos
-					if (documento.exists) {
-						const data = documento.data();
-						const { tecnico1, tecnico2, tecnico3, tecnico4, tecnico5 } = data;
-						const tecnicosAcompañantes = [tecnico1, tecnico2, tecnico3, tecnico4, tecnico5];
-						establecerTodosLosTecnicos(tecnicosAcompañantes);
-					} else {
-						// Si el documento no existe, podrías manejar el caso de alguna manera, como lanzando un error o mostrando un mensaje al usuario
-						console.log('El documento no existe');
-					}
+        // Si hay sesión abierta realizo la consulta
+        if (sesion) {
 
-				} catch (error) {
-					// Manejo de errores en caso de que ocurra algún problema al obtener los datos
-					console.error('Error al obtener los datos de los técnicos:', error);
-				}
-			}
+            const obtenerTecnicos = async () => {
+                try {
+                    // Obtengo el documento de forma asincrónica
+                    const documento = await getDoc(doc(db, 'actuaciones', idActuacion));
 
-			// la llamo
-			obtenerTecnicos();
-		}		
+                    // Si el documento existe, obtengo los datos de los técnicos y los añado al estado tecnicos
+                    if (documento.exists) {
+                        const data = documento.data();
+                        const { tecnico1, tecnico2, tecnico3, tecnico4, tecnico5 } = data;
+                        const tecnicosAcompañantes = [tecnico1, tecnico2, tecnico3, tecnico4, tecnico5];
 
-	}, [idActuacion, sesion]);    
+                        // Filtra los técnicos que no sean espacios en blanco
+                        const tecnicosFiltrados = tecnicosAcompañantes.filter(tecnico => tecnico.trim() !== '');
 
-	// Devuelvo el estado con el gasto que contiene un objeto con el gasto
-	return [todosLosTecnicos];	
+                        // Establece el estado con los técnicos filtrados
+                        establecerTodosLosTecnicos(tecnicosFiltrados);
+                    } else {
+                        // Si el documento no existe, podrías manejar el caso de alguna manera, como lanzando un error o mostrando un mensaje al usuario
+                        console.log('El documento no existe');
+                    }
+
+                } catch (error) {
+                    // Manejo de errores en caso de que ocurra algún problema al obtener los datos
+                    console.error('Error al obtener los datos de los técnicos:', error);
+                }
+            }
+
+            // La llamo
+            obtenerTecnicos();
+        }
+
+    }, [idActuacion, sesion]);
+
+    // Devuelvo el estado con los tecnicos filtrados
+    return [todosLosTecnicos];
 }
 
 export default useObtenerTecnicosAPartirDelIdActuacion;

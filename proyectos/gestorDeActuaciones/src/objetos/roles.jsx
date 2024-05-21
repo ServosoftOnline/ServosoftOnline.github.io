@@ -1,9 +1,9 @@
 // OBJETO QUE CONTIENE LOS DIFERENTES ROLES DE LA APLICACION
 
 const roles = [
-    {id:'administrador', descripcion: 'ADMINISTRADOR'},
-    {id:'coordinador', descripcion: 'COORDINADOR'},
-    {id:'tecnico', descripcion:'TECNICO'}
+    {id:'administrador', descripcion: 'administrador'},
+    {id:'coordinador', descripcion: 'coordinador'},
+    {id:'tecnico', descripcion:'técnico'}
 ];
 
 export default roles;

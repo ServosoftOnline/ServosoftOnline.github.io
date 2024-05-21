@@ -24,9 +24,7 @@ const BarraEstadosTecnicos = () => {
     const [tecnicosFinalizaronJornada] = useTecnicosFinalizaronJornada();
     const [tecnicosEnCamino] = useTecnicosEnCamino();
     const [tecnicosEnCliente] = useTecnicosEnCliente();
-    const [tecnicosCitados] = useTecnicosCitados();
-
-    console.log(tecnicosEnCamino);
+    const [tecnicosCitados] = useTecnicosCitados();   
 
     // Separon los nombres con comas y un espacio en blanco
     const nombresIniciaronJornadaSeparados = tecnicosIniciaronJornada.join(', ');

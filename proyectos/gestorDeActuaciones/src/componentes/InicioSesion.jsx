@@ -12,7 +12,7 @@ import {useNavigate} from "react-router-dom";
 import Mensaje from './Mensaje';
 
 // Elementos
-import {Formulario, Input, ContenedorBoton, SvgIniciarSesion} from '../elementos/ElementosDeFormulario';
+import {Formulario, ContenedorInputs, Input, ContenedorBoton, SvgIniciarSesion} from '../elementos/ElementosDeFormulario';
 import Boton from "../elementos/Boton";
 
 // Importar Contextos
@@ -34,17 +34,23 @@ const InicioSesion = () => {
   // Obtener contextos
   const {sesion} = useAuth();	 
   let {rol} = useRol();  
-  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
+  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, eliminarMensaje} = useContext(ContextoMensaje);
 
   // React router
   const navigate = useNavigate();
+
+  // Efecto para que elimine si hubiera algun mensaje de errores o advertencias anteriores
+  useEffect(() => {
+    eliminarMensaje();
+  },[]);
 
   // Efecto IMPORTANTISIMO. Cuando halla sesion y rol navega a la ruta asociada a su rol. Rol contiene justo el nombre de la ruta
   // En la primera pasada no hay sesion, el rol tarda en actualizarse. Si hay un cambio de rol se aprecia levemente el cambio de la ruta
   useEffect(() => {
 
     if(sesion && rol) {
-      reiniciarMensaje();                 
+
+      eliminarMensaje();      
 
       // Redirijo dependiendo de la posicion 0 del array rol
       setTimeout(() => {
@@ -154,22 +160,26 @@ const InicioSesion = () => {
         <Formulario onSubmit={handleSubmit}>
           
           <SvgIniciarSesion/>
-          
-          <Input 
-            type="email"
-            name="email"
-            placeholder="Correo electrónico"
-            value={email}
-            onChange={handleChange}
-          />
 
-          <Input 
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={handleChange}
-          />
+          <ContenedorInputs>
+          
+            <Input 
+              type="email"
+              name="email"
+              placeholder="Correo electrónico"
+              value={email}
+              onChange={handleChange}
+            />
+
+            <Input 
+              type="password"
+              name="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={handleChange}
+            />
+
+          </ContenedorInputs>
 
           <ContenedorBoton>
             <Boton

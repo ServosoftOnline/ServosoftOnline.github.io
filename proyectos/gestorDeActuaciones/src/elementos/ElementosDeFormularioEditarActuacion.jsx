@@ -150,33 +150,6 @@ const SubContenedor3 = styled.div `
 `;
 
 const SubContenedor4 = styled.div `
-// background:red;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-right: 1rem;
-
-    // tamaño especial para el input de comentarios tecnicos. Lo trataré como un text area
-    textarea {
-        width: 92rem;
-        height: 5rem;
-        text-align: left;
-        vertical-align: top;
-    }
-
-    @media(max-width: 60rem){ /* 950px */
-        font-size: 0.8rem;           
-
-        textarea {
-            width: 47rem;
-            height: 3rem;        
-        }
-    }
-`;
-
-const SubContenedor5 = styled.div `
 // background:orange;
 
     display: grid;
@@ -196,7 +169,11 @@ const SubContenedor5 = styled.div `
     }
 `;
 
-const SubContenedor6 = styled.div `
+const TecnicosAsignados = styled.div`
+
+`;
+
+const Citacion = styled.div `
 // background: blue;
 
     display: grid;
@@ -233,6 +210,33 @@ const ContenedorDatePicker = styled.div `
     z-index: 2;
 `;
 
+const ComentariosCoordinacion = styled.div `
+// background:red;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+
+    // tamaño especial para el input de comentarios tecnicos. Lo trataré como un text area
+    textarea {
+        width: 92rem;
+        height: 5rem;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    @media(max-width: 60rem){ /* 950px */
+        font-size: 0.8rem;           
+
+        textarea {
+            width: 47rem;
+            height: 3rem;        
+        }
+    }
+`;
+
 const ContenedorBoton = styled.div`
 //  background: crimson;
 
@@ -247,4 +251,4 @@ const ContenedorBoton = styled.div`
 `;
 
 export  {ContenedorEditarActuacion, SubContenedorSoloLectura, SubContenedor1, SubContenedor2, SubContenedor3, 
-        SubContenedor4, SubContenedor5, SubContenedor6, ContenedorSelectTecnicos, ContenedorDatePicker, ContenedorBoton } ;
+        ComentariosCoordinacion, SubContenedor4, TecnicosAsignados, Citacion, ContenedorSelectTecnicos, ContenedorDatePicker, ContenedorBoton } ;

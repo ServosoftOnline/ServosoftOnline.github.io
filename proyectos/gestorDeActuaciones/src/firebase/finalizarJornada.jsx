@@ -15,6 +15,7 @@ const finalizarJornada = (idRoles) => {
         estado: 'descanso',
         idActuacion: deleteField(),
         inicioJornada: false       
+            
     });
            
 }

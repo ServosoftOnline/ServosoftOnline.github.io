@@ -35,7 +35,7 @@ import React, {useState, useContext} from "react";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
-import {Formulario, Input, ContenedorBoton, ContenedorFiltros} from '../elementos/ElementosDeFormulario';
+import {Formulario, ContenedorInputs, Input, ContenedorBoton, ContenedorFiltros} from '../elementos/ElementosDeFormulario';
 import Boton from "../elementos/Boton";
 
 // Componentes
@@ -125,7 +125,7 @@ const CrearUsuario = () => {
           break;
 
         case 'auth/email-already-in-use':
-          cambiarMensaje('Ya exite una cuenta con el correo electrónico proporcionado', 'incorrecta');
+          cambiarMensaje('Ya existe una cuenta con el correo electrónico proporcionado', 'incorrecta');
           break;
 
         case 'auth/invalid-email':
@@ -199,46 +199,51 @@ const CrearUsuario = () => {
         </Helmet>
                     
         {/* Formulario */}
-        <Formulario onSubmit={handleSubmit}>    
+        <Formulario onSubmit={handleSubmit}>  
+
           <ContenedorFiltros>
-          <SelectRoles
-            idRol={idRol}
-            establecerIdRol={establecerIdRol}
-          />
+            <SelectRoles
+              idRol={idRol}
+              establecerIdRol={establecerIdRol}
+            />
           </ContenedorFiltros>
 
-          <Input 
-            type="nombre"
-            name="nombre"
-            placeholder="Nombre completo"
-            value={nombreUsuario}
-            onChange={handleChange}
-          />      
+          <ContenedorInputs>
 
-          <Input 
-            type="email"
-            name="email"
-            placeholder="Correo electrónico"
-            value={email}
-            onChange={handleChange}
+            <Input 
+              type="nombre"
+              name="nombre"
+              placeholder="Nombre completo"
+              value={nombreUsuario}
+              onChange={handleChange}
+            />      
 
-          />
+            <Input 
+              type="email"
+              name="email"
+              placeholder="Correo electrónico"
+              value={email}
+              onChange={handleChange}
 
-          <Input 
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={handleChange}
-          />
+            />
 
-          <Input 
-            type="password"
-            name="password2"
-            placeholder="Repetir contraseña"
-            value={password2}
-            onChange={handleChange}              
-          />
+            <Input 
+              type="password"
+              name="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={handleChange}
+            />
+
+            <Input
+              type="password"
+              name="password2"
+              placeholder="Repetir contraseña"
+              value={password2}
+              onChange={handleChange}              
+            />
+
+          </ContenedorInputs>
 
           <ContenedorBoton>
             <Boton $primario as="button" type="submit">Crear usuario</Boton>

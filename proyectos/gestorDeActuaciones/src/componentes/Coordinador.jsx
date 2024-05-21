@@ -30,8 +30,6 @@ const Agenda = lazy(() => import('./Agenda'));
 const Supervision = lazy(() => import('./Supervision'));
 const InstaladosFinalizados = lazy(() => import('./InstaladosFinalizados'));
 
-// Componentes
-import BarraEstadosTecnicos from "./BarraEstadosTecnicos";
 
 // Contexto
 import { RolContext } from "../contextos/RolContext";
@@ -111,9 +109,6 @@ const Coordinador = () => {
           <Route path="detalles/:idActuacion" element={<FormularioEditarActuacionCoordinador />}/>
         </Routes>
       </Suspense>
-
-      {/* Barra de estados de técnicos */}
-      <BarraEstadosTecnicos />
 
     </>
   );

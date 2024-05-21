@@ -13,7 +13,7 @@ import { fromUnixTime, getUnixTime } from "date-fns";
 
 // Elementos formulario editar actuacion
 import {ContenedorEditarActuacion, SubContenedorSoloLectura, SubContenedor1, SubContenedor2,
-        SubContenedor3, SubContenedor4, SubContenedor5, SubContenedor6, ContenedorSelectTecnicos,
+        SubContenedor3, ComentariosCoordinacion, SubContenedor4, TecnicosAsignados, Citacion, ContenedorSelectTecnicos,
         ContenedorDatePicker, ContenedorBoton } from '../elementos/ElementosDeFormularioEditarActuacion';
 
 // Componentes select
@@ -24,6 +24,9 @@ import SelectStb from "./SelectStb";
 import SelectEstadosModuloPlaneado from "./SelectEstadosModuloPlaneado";
 import SelectTiposDeActuacion from "./SelectTiposDeActuacion";
 import SelectTecnicos from "./SelectTecnicos";
+
+// Componentes
+import BarraEstadosTecnicos from "./BarraEstadosTecnicos";
 
 // Resto de los componentes
 import Boton from "../elementos/Boton";
@@ -43,15 +46,22 @@ import { ContextoMensaje } from "../contextos/contextoMensaje";
 import useObtenerActuacionAPartirDeSuId from "../hooks/useObtenerActuacionAPartirDeSuId";
 import useObtenerNombreSiEstaEnCaminoOEncliente from "../hooks/useObtenerNombreSiEstaEnCaminoOEncliente";
 import useObtenerIdRolesSiEstaEnCaminoOEncliente from "../hooks/useObtenerIdRolesSiEstaEnCaminoOEncliente";
+import useObtenerTecnicosAPartirDelIdActuacion from "../hooks/useObtenerTecnicosAPartirDelIdActuacion";
 
 
 // Componente
 const FormularioEditarActuacionCoordinador = () => {
 
+    // Obtengo idActuacion a partir de la barra de direccion
     const {idActuacion} = useParams();        
+
+    // Obtengo la información de los hooks
     const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);  
     const [tecnicosEnCaminoOEnCliente] = useObtenerNombreSiEstaEnCaminoOEncliente(idActuacion);    
     const [idRolesTecnicosEnCaminoOCliente] = useObtenerIdRolesSiEstaEnCaminoOEncliente(idActuacion);
+    const [todosLosTecnicos] = useObtenerTecnicosAPartirDelIdActuacion(idActuacion);
+
+    // Obtengo el contexto para mostrar mensajes
     const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje, eliminarMensaje} = useContext(ContextoMensaje);
 
     // Estados primera fila
@@ -85,7 +95,7 @@ const FormularioEditarActuacionCoordinador = () => {
     const [tecnico5, asignarTecnico5] = useState('');
 
     // Estados sexta fila
-    const [comentariosTecnicos, asignarComentariosTecnicos] = useState();
+    const [comentariosCoordinacion, asignarComentariosCoordinacion] = useState();
 
     // Efecto para establezcer los estados con los datos de la actuacion obtenida del hook.
     //  Por ahora solo es necesario tener una depedencia
@@ -116,7 +126,7 @@ const FormularioEditarActuacionCoordinador = () => {
         asignarTecnico4(actuacion.tecnico4);
         asignarTecnico5(actuacion.tecnico5);
 
-        asignarComentariosTecnicos(actuacion.comentariosTecnicos);
+        asignarComentariosCoordinacion(actuacion.comentariosCoordinacion);
 
     },[actuacion.linkDorus]);  
 
@@ -154,18 +164,18 @@ const FormularioEditarActuacionCoordinador = () => {
 
     },[idTipoDeTrabajo]);
 
-    // Efecto que se ejecuta al principio para mostrar una alerta si existiera al menos un tecnico en camino o en cliente
+    // Efecto que se ejecuta al principio para comprobar si el tecnico o tecnicos van en camino o estan en cliente
     useEffect(() => {        
         compruebaSiUnTecnicoVaEnCaminoOEstaEncliente();       
     },[tecnicosEnCaminoOEnCliente]);
      
     
     // FUNCIONES DEL COMPONENTE
-    // Funcion que detecta los nombres de los tecnicos que van en camino o estan en un cliente. Si los encuentra muestra advertencia
+    // Funcion que detecta los nombres de los tecnicos que van en camino o estan en un cliente. Los muestra separado por comas y un espacio
     const compruebaSiUnTecnicoVaEnCaminoOEstaEncliente = () =>{        
 
         if(tecnicosEnCaminoOEnCliente.length > 0){
-            cambiarMensaje(tecnicosEnCaminoOEnCliente + ' en camino o en cliente a esta actuación. Avisa si cambias el estado', 'advertencia');
+            cambiarMensaje(tecnicosEnCaminoOEnCliente.join(', ') + ' en camino o en cliente a esta actuación. Avisa si cambias el estado', 'advertencia');
         } else {
             eliminarMensaje();
         }
@@ -224,7 +234,7 @@ const FormularioEditarActuacionCoordinador = () => {
             tecnico3: tecnico3,
             tecnico4: tecnico4,
             tecnico5: tecnico5,
-            comentariosTecnicos: comentariosTecnicos,            
+            comentariosCoordinacion: comentariosCoordinacion,            
             idActuacion: idActuacion
         })
         .then(() => {
@@ -383,8 +393,8 @@ const FormularioEditarActuacionCoordinador = () => {
                 asignarTelefonos(e.target.value);
                 break;            
 
-            case 'comentariosTecnicos':
-                asignarComentariosTecnicos(e.target.value);
+            case 'comentariosCoordinacion':
+                asignarComentariosCoordinacion(e.target.value);
                 break;
 
             default:
@@ -498,7 +508,7 @@ const FormularioEditarActuacionCoordinador = () => {
                                        
                 </SubContenedor3>
 
-                <SubContenedor5>                    
+                <SubContenedor4>                    
 
                     <SelectTiposDeTrabajo
                         tiposDeTrabajo = {tiposDeTrabajo}
@@ -517,13 +527,21 @@ const FormularioEditarActuacionCoordinador = () => {
                         asignarEstadoDescripcion = {asignarEstadoDescripcion}
                     />
 
-                </SubContenedor5>
+                </SubContenedor4>
+                
+                {/* Si hay tecnicos asignados a esta actuacion los muestro */}
+                {todosLosTecnicos.length>0 &&
+                    <TecnicosAsignados>
+                        <p>Tecnicos asignados: {todosLosTecnicos}</p>
+                    </TecnicosAsignados>                    
+                }
+                
 
                 {/* Este subcontenedor solo se muestra si la actuacion esta en estado agenda */}
                 {estado === 'EstadoAgenda' &&
                     <>                          
                         <h4>Citación:</h4>
-                        <SubContenedor6>                                                                              
+                        <Citacion>                                                                              
                             <ContenedorDatePicker>
                                 <DatePicker fechaCitacion={fechaCitacion} asignarFechaCitacion={asignarFechaCitacion} />
                             </ContenedorDatePicker>                            
@@ -543,23 +561,23 @@ const FormularioEditarActuacionCoordinador = () => {
                                 ))}
                             </ContenedorSelectTecnicos>                        
 
-                        </SubContenedor6>                
+                        </Citacion>                
                     </>
                 }                
                 
-                <SubContenedor4>
+                <ComentariosCoordinacion>
 
                     <div>
-                        <label htmlFor="comentariosTecnicos">Comentarios técnicos:</label>
+                        <label htmlFor="comentariosCoordinacion">Comentarios de coordinación:</label>
                         <textarea                            
-                            name="comentariosTecnicos"                
+                            name="comentariosCoordinacion"                
                             placeholder="Introduzca comentarios opcionales"
-                            value={comentariosTecnicos}
+                            value={comentariosCoordinacion}
                             onChange={handleChange}                            
                         />
                     </div>
 
-                </SubContenedor4>
+                </ComentariosCoordinacion>
 
                 <ContenedorBoton>
                     <Boton
@@ -573,6 +591,10 @@ const FormularioEditarActuacionCoordinador = () => {
 
                 {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
                 <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
+
+
+                {/* Barra de estados de técnicos */}
+                <BarraEstadosTecnicos />
                 
             </form>
             

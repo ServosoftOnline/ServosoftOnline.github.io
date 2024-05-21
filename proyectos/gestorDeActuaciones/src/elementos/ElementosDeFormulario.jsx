@@ -30,17 +30,9 @@ const ContenedorFiltros = styled.div`
 
     display: flex;
     justify-content: space-between;
-    align-items: center;    
- 
-    // Cuando llegue la ventana a 950px los elementos se colocan en forma de columna y no uno al lado de otro
-    @media(max-width: 60rem){ /* 950px */
-        flex-direction: column;
- 
-        & > * {
-            width: 100%;
-            margin-bottom: 0.62rem; /* 10px */
-        }
-    }
+    align-items: center;   
+    margin-top: 1rem;  
+    
 `;
  
 const Formulario = styled.form`
@@ -55,7 +47,7 @@ const Formulario = styled.form`
     input {
         width: 100%;
         text-align: center;
-        padding: 1.5rem 0; /* 24px */
+        padding: 0.9rem 0; /* 24px */
         font-family: 'Work Sans', sans-serif;
         &::placeholder {
             color: rgba(0,0,0,.2);
@@ -66,17 +58,24 @@ const Formulario = styled.form`
         justify-content: start;           
     }
 `;
- 
+
+const ContenedorInputs = styled.div`
+    border: 1px solid ${theme.mediumSmoke};
+    margin-bottom: 0.8rem;
+    
+    
+`;
 const Input = styled.input`
 
-    font-size: 2rem; /* 32px */
+    font-size: 1.7rem; /* 32px */
     text-transform: uppercase;
     border: none;
-    border-bottom: 2px solid ${theme.grisClaro};
-    outline: none;
+    border-bottom: 2px solid ${theme.grisClaro};    
+    
  
     @media(max-width: 60rem){ /* 950px */
-        font-size: 1.5rem; /* 28.8px */
+        font-size: 1.2rem; /* 28.8px */
+        
     }
 `;
  
@@ -149,4 +148,4 @@ const ResultadosImportacion = styled.div`
 
 
 
-export {ContenedorFiltros, Formulario, Input, InputGrande, ContenedorBoton, SvgIniciarSesion, SvgCrearCuenta, ResultadosImportacion} ;
+export {ContenedorFiltros, Formulario, ContenedorInputs, Input, InputGrande, ContenedorBoton, SvgIniciarSesion, SvgCrearCuenta, ResultadosImportacion} ;

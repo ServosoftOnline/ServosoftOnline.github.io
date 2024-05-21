@@ -33,7 +33,7 @@ const Boton = styled(Link)`
     // Si tiene la propiedad conIcono, el icono será mas ancho
     width: ${(props) => props.$conIcono ? '15.62rem' : 'auto'}; /* 250px */
     
-    // // Si tiene la propiedad grande, el icono será mayor
+    // Si tiene la propiedad grande, el icono será mayor
     // font-size:  ${(props) => props.$grande ? '14rem' : 'auto'}; /* 250px */
 
     // Descripción y ubicación del boton
@@ -44,7 +44,7 @@ const Boton = styled(Link)`
     font-family: 'Work Sans', sans-serif;
     height: 2rem; /* 32px */    
     padding: 0.4rem 0.4rem; /* 8px 8px */
-    font-size: 0.8rem; /* 12.8px */
+    font-size: 0.9rem; /* 12.8px */
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
@@ -60,9 +60,9 @@ const Boton = styled(Link)`
     }
 
     @media(max-width: 60rem){ /* 950px */       
-        font-size: 0.68rem;     /* 10.88px */
+        font-size: 0.7rem;     /* 10.88px */
         margin-left: 0.1rem;    /* 1.6px */
-        height: 1.3rem; 
+        height: 1.5rem; 
     }
 `;
 

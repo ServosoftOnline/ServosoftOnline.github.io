@@ -28,8 +28,7 @@
 */
 
 // React y react router
-import React, {useContext, useState} from "react";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+import React, {useContext, useEffect, useState} from "react";
 
 // libreria xlsx
 import * as XLSX from 'xlsx';
@@ -61,7 +60,12 @@ const Direccion = () => {
   const [todosLosCodigosdeIncidenciaDeLaBBDD] = useObtenerTodosLosCodigosDeIncidencias();
 
   // LLamadas a los contextos
-  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
+  const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje, eliminarMensaje} = useContext(ContextoMensaje);
+
+  // Efecto para eliminar un mensaje si este existirera en el contecto
+  useEffect(() => {
+    eliminarMensaje();    
+  },[]);
   
   // Funciones
   const validaCabecera = ([data]) => { 
