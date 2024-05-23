@@ -20,9 +20,9 @@ const theme = {
     verdeIcono: '#26a269',
     amarilloIcono: '#e5a50a',
     rojoIcono: '#e01b24',
-
-    // Otros
     azulClaro: '#4A85B9',
+
+    // Otros    
     negro: '#333333',
 
     // smoke
@@ -31,6 +31,17 @@ const theme = {
     mediumSmoke: '#CCCCCC',
     darkSmoke: '#B3B3B3',
     darkerSmoke: '#999999',
+
+    // Azules
+    azulBlanco: '#F8F8FF',
+    azulNieblaClara: '#F0F8FF',
+    azulHielo: '#E0FFFF',
+    azulCrema: '#F0FFFF',
+    azulPolvoPálido: '#EEF6FA',
+    azulHumoPálido: '#F3F3F3',
+    azulPerlaPálido: '#E6FFFF',
+    azulAlabastro: '#F4F8FF',
+    azulEspuma: '#F1FCFF',
     
     // Grises
     grisOscuro: '#7F8C8D',

@@ -14,7 +14,7 @@ import { fromUnixTime, getUnixTime } from "date-fns";
 // Elementos formulario editar actuacion
 import {ContenedorEditarActuacion, SubContenedorSoloLectura, SubContenedor1, SubContenedor2,
         SubContenedor3, ComentariosCoordinacion, SubContenedor4, TecnicosAsignados, Citacion, ContenedorSelectTecnicos,
-        ContenedorDatePicker, ContenedorBoton } from '../elementos/ElementosDeFormularioEditarActuacion';
+        ContenedorDatePicker, Fecha, Hora, ContenedorBoton } from '../elementos/ElementosDeFormularioEditarActuacion';
 
 // Componentes select
 import SelectZonasDeInstalacion from "./SelectZonasDeInstalacion";
@@ -529,21 +529,23 @@ const FormularioEditarActuacionCoordinador = () => {
 
                 </SubContenedor4>
                 
-                {/* Si hay tecnicos asignados a esta actuacion los muestro */}
-                {todosLosTecnicos.length>0 &&
-                    <TecnicosAsignados>
-                        <p>Tecnicos asignados: {todosLosTecnicos}</p>
-                    </TecnicosAsignados>                    
-                }
-                
 
                 {/* Este subcontenedor solo se muestra si la actuacion esta en estado agenda */}
                 {estado === 'EstadoAgenda' &&
                     <>                          
-                        <h4>Citación:</h4>
+                        
                         <Citacion>                                                                              
                             <ContenedorDatePicker>
-                                <DatePicker fechaCitacion={fechaCitacion} asignarFechaCitacion={asignarFechaCitacion} />
+                                <Fecha>
+                                    <h4>Fecha:</h4>
+                                    <DatePicker fechaCitacion={fechaCitacion} asignarFechaCitacion={asignarFechaCitacion} />
+                                </Fecha>
+                                
+                                <Hora>
+                                    <h4>Hora: </h4>
+                                    <p>Select con las horas</p>
+                                </Hora>
+                                
                             </ContenedorDatePicker>                            
 
                             {/* Codigo proporcionado por ChatGPT:
@@ -564,6 +566,15 @@ const FormularioEditarActuacionCoordinador = () => {
                         </Citacion>                
                     </>
                 }                
+
+                {/* Si hay tecnicos asignados a esta actuacion los muestro */}
+                {todosLosTecnicos.length>0 &&
+                    <TecnicosAsignados>
+                        <label htmlFor="tecnicosAsignados">Técnicos asignados:</label>
+                        {/* const nombresTecnicosCitadosSeparados = tecnicosCitados.join(', '); */}
+                        <p>{todosLosTecnicos.join(', ')}</p>
+                    </TecnicosAsignados>                    
+                }
                 
                 <ComentariosCoordinacion>
 

@@ -1,6 +1,10 @@
 /*
   MUESTRA UNA LISTA CON LAS ACTUACIONES EN ESTADO DE SUPERVISION
   
+    - El coordinador que solicita la lista de actuacionesDeUnEstado le pasa el array con las actuaciones
+    - Al pasarle el valor true en estaSupervisando.
+      - Hará que el componente listaActuacionesDeUnEstado cambie el link donde apunte el icono de editar
+  
 */
 
 // React y react router
@@ -19,7 +23,7 @@ const Supervision = () => {
   const arrayActuacionesEnSupervision = Object.values(actuacionesEnSupervision); 
 
   return (
-    <ListaActuacionesDeUnEstado array = {arrayActuacionesEnSupervision}/>    
+    <ListaActuacionesDeUnEstado array = {arrayActuacionesEnSupervision} estaSupervisando = {true}/>    
   );
 }
  

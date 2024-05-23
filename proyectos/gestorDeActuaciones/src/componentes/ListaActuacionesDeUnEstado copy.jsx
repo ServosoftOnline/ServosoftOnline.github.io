@@ -86,18 +86,12 @@ const ListaActuacionesDeUnEstado = ({array, estaSupervisando}) => {
                         {/* Boton para editar la actuacion */}
                         <ContenedorBotonesLista>
                             
-                            {/* Si el componente fue llamado desde el modulo supervisor el link apuntara al formularioEditarActuacionSupervision */}
-                            {estaSupervisando ?                                
-                                <BotonAccion as={Link} to={`/coordinador/supervision/${actuacion.id}`}>                                                 
-                                    <IconoEditar /> 
-                                </BotonAccion>
-                                :                                
-                                <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>                                                 
-                                    <IconoEditar /> 
-                                </BotonAccion>
-                            }
-                            
-                            
+                            {console.log('Esta supervisando?: ' + estaSupervisando)}
+                            <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>                                                 
+                                <IconoEditar /> 
+                            </BotonAccion>
+
+                            {/* <BotonAccion as={Link} to={`/borrar/${actuacion.id}`}>  */}
                             <BotonAccion>
                                 <IconoBorrar />
                             </BotonAccion>

@@ -42,6 +42,7 @@ const OpcionSeleccionada = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 99%;
+    text-transform: capitalize;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
 
@@ -78,6 +79,7 @@ const Opcion = styled.div`
     padding-top: 0.5rem;
     padding-left: 0.5rem;
     display: flex;
+    text-transform: capitalize;
    
     &:hover {
         background: ${theme.grisClaro2};

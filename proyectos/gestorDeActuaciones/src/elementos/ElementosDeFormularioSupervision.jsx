@@ -1,11 +1,12 @@
 /*
-    ELEMENTOS QUE USARÉ EN EL FORMULARIO PARA EDITAR ACTUACIONES
+    ELEMENTOS QUE USARÉ EN EL FORMULARIO PARA SUPERVISAR ORDENES
 */
 
 import styled from "styled-components";
 import theme from "../objetos/theme";
 
-const ContenedorEditarActuacion = styled.div `
+// TODO EL CONTENEDOR DEBAJO DE LA BARRA DE BOTONES
+const ContenedorSupervisarActuacion = styled.div `
 
     display: grid;
     grid-template-columns: 1fr;
@@ -19,6 +20,13 @@ const ContenedorEditarActuacion = styled.div `
     @media(max-width: 60rem){ /* 950px */
         font-size: 0.8rem;        
     }
+`;
+
+
+// ELEMENTOS DE LA ACTUACION
+const ContenedorActuacion = styled.div`
+background: lightgreen;
+
 `;
 
 const TecnicosAcompañantes = styled.div`
@@ -54,6 +62,14 @@ const ComentariosDesdeCoordinacion = styled.div `
     }
 `;
 
+
+// ELEMENTOS PARA EL TRABAJO DEL TECNICO
+const ContenedorTrabajoDelTecnico = styled.div`
+background: lightgray;
+
+`;
+
+
 const Momentos = styled.div `
 
     background:lightgray;
@@ -65,6 +81,58 @@ const Momentos = styled.div `
     
 `;
 
+const ContenedorFotografias = styled.div`
+    border: 0.1rem solid black;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+`;
+
+const Fotografias = styled.div `
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;    
+`;
+
+const ComentariosTecnicos = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    p {
+        border: 0.1rem solid black;
+        padding: 0.5rem;
+    }    
+`;
+
+const ContenedorComentariosTecnicos = styled.div`
+
+    display: grid;
+    grid-template-columns: 1fr;           
+    padding-bottom: 1rem;        
+    
+    textarea {
+        font-size: 1.1rem;
+        width: 92.5rem;
+        height: 7rem;        
+    }
+
+    @media(max-width: 60rem){ /* 950px */     
+        textarea {
+            font-size: 0.9rem;
+            width: 48rem;
+            height: 5rem;
+        }
+    }
+`;
+
+// ELEMENTOS PARA LA DECISION DEL SUPERVISOR
+
+const DecisionDelSupervisor = styled.div`
+background: lightyellow;
+
+`;
 const Dificultad = styled.div`    
     margin-top: 1.8rem;
     margin-bottom: 1rem;
@@ -103,52 +171,6 @@ background:lightpink;
     padding: 0.5rem;
 `;
 
-const Fotografias = styled.div `
-    margin-top: 1.8rem;
-    margin-bottom: 1rem;    
-`;
-
-const ContenedorFotografias = styled.div`
-    border: 0.1rem solid black;
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-
-`;
-
-const ComentariosTecnicos = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-
-    p {
-        border: 0.1rem solid black;
-        padding: 0.5rem;
-    }    
-`;
-
-const ContenedorComentariosTecnicos = styled.div`
-
-    display: grid;
-    grid-template-columns: 1fr;           
-    padding-bottom: 1rem;        
-    
-    textarea {
-        font-size: 1.1rem;
-        width: 92.5rem;
-        height: 7rem;        
-    }
-
-    @media(max-width: 60rem){ /* 950px */     
-        textarea {
-            font-size: 0.9rem;
-            width: 48rem;
-            height: 5rem;
-        }
-    }
-`;
-
 const ContenedorEstadoYBoton = styled.div`
 
     display: grid;
@@ -159,16 +181,13 @@ const ContenedorEstadoYBoton = styled.div`
 
 const Estado = styled.div `
 // background:lightblue;
-    
-
 `;
 
 const ContenedorBoton = styled.div`
     display: grid;
-    justify-content: center;
-    
+    justify-content: center;    
 `;
 
-export  {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad,
-        DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias, ComentariosTecnicos,
-        ContenedorComentariosTecnicos, ContenedorEstadoYBoton, Estado, ContenedorBoton} ;
+export  {ContenedorSupervisarActuacion, ContenedorActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad,
+        ContenedorTrabajoDelTecnico, DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias,
+        ComentariosTecnicos, ContenedorComentariosTecnicos, DecisionDelSupervisor, ContenedorEstadoYBoton, Estado, ContenedorBoton};

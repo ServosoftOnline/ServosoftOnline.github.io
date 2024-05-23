@@ -13,7 +13,7 @@ import { deleteField } from "firebase/firestore";
 import {getUnixTime } from "date-fns";
 
 // Elementos
-import {ContenedorEditarActuacion, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad,
+import {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad,
     DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias, ComentariosTecnicos, ContenedorComentariosTecnicos,
     ContenedorEstadoYBoton, Estado, ContenedorBoton} from './../elementos/ElementosDeFormularioEditarActuacionTecnico';
 
@@ -43,13 +43,13 @@ import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
 import useObtenerIdRolesDeUnUsuario from "../hooks/useObtenerIdRolesDeUnUsuario";
 
 // Mi componente
-const  FormularioEditarActuacionTecnico= () => {
+const  FormularioEditarActuacionTecnico = () => {
 
     // Obtendo el idActuacion pasado por la barra de direccion
     const {idActuacion} = useParams();
 
     // Obtengo del contexto los mensajes que mostraré en pantalla
-    const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
+    const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje, eliminarMensaje} = useContext(ContextoMensaje);
     
     // Estados        
     const [estado, asignarEstado] = useState();    
@@ -82,7 +82,7 @@ const  FormularioEditarActuacionTecnico= () => {
 
     // Efecto para obtener los datos que iré mostrando en el formulario
     useEffect(() => {        
-
+        eliminarMensaje();
         asignarEstadoDescripcion(actuacion.estadoDescripcion);
         asignarMomentoInicioCamino(actuacion.horaEnCamino);
         asignarMomentoLlegadaACliente(actuacion.horaDeLlegada);
@@ -143,11 +143,20 @@ const  FormularioEditarActuacionTecnico= () => {
 
     const validacionCorrecta = () => {
         
-        // Validacion 1: Debo cambiar el estado. Al principio el formulario mostrará en camino o en cliente y no puede quedarse así
+        // Validacion 1: El estado no puede quedarse en camino o en cliente
         if (estado === undefined) {
-            cambiarMensaje('Debes cambiar el estado','incorrecta');
+            cambiarMensaje('El estado no puede quedarse en camino o en cliente. Debes cambiarlo','incorrecta');
             return false;
-        }        
+        } 
+        
+        // Validacion 2: No se puede cambiar de estado sin que halla un momento de inicio de camino y estada en cliente
+        console.log('horaEncamino: ' + actuacion.horaEnCamino);
+        console.group('horaDeLlegada: ' + actuacion.horaDeLlegada);
+        if(actuacion.horaEnCamino === undefined || actuacion.horaDeLlegada === undefined ) {
+            cambiarMensaje('Antes de cambiar el estado de la actuación debes marcar "En camino" y "En cliente"', 'incorrecta');
+            return false;
+        }
+
         
         return true;
         
@@ -200,6 +209,8 @@ const  FormularioEditarActuacionTecnico= () => {
         if (validacionCorrecta()) {
             LlamaAActualizarColeccionActuaciones(idActuacion);           
             llamaAActualizaTecnicoACitado(idRoles);
+            cambiarMensaje('Actualizacion correcta', 'correcta');
+            reiniciarMensaje();
         }       
 
     }
@@ -240,7 +251,7 @@ const  FormularioEditarActuacionTecnico= () => {
                     <div> <label htmlFor="tipoTrabajo">Tipo de trabajo: </label> {actuacion.tipoTrabajo} </div>
 
                     {/* Tecnicos acompañantes, los devuelvo separados por comas mediante map */}
-                    <div>
+                    <TecnicosAcompañantes>
 
                         <label htmlFor="tecnicosAcompañantes">Técnicos acompañantes: </label>
                         {
@@ -253,14 +264,14 @@ const  FormularioEditarActuacionTecnico= () => {
                                 </React.Fragment>
                             ))
                         }
-                    </div>
+                    </TecnicosAcompañantes>
 
                 </SubContenedorSoloLectura>
 
                 {/* Comentarios desde coordinacion */}
                 <ComentariosDesdeCoordinacion> 
                     <label htmlFor="comentariosCoordinacion"> Comentarios desde coordinación: </label>
-                    <p>{actuacion.comentariosTecnicos !== "" ? actuacion.comentariosTecnicos : "No hay comentarios" } </p>
+                    <p>{actuacion.comentariosCoordinacion !== "" ? actuacion.comentariosCoordinacion : "No hay comentarios" } </p>
                 </ComentariosDesdeCoordinacion>
                 
                 {/* Momentos */}
