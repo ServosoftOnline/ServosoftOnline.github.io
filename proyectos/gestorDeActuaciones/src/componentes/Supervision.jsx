@@ -13,7 +13,7 @@ import React from "react";
 // Hook
 import useObtenerActuacionesEnSupervision from "../hooks/useObtenerActuacionesEnSupervision";
 
-// Componente
+// Componentes
 import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
 
 // El Componente

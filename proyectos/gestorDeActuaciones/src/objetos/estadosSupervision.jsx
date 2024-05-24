@@ -2,7 +2,7 @@
 
 const estadosSupervision = [
 
-    {id:0,  estado: 'EstadoFinalizado',     descripcion:'Actuacion finalizada'},
+    {id:0,  estado: 'EstadoSupervisado',     descripcion:'Supervisada'},
     {id:1,  estado: 'EstadoPteCoordinar',   descripcion:'Pendiente de coordinar'}    
     
 ];

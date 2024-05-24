@@ -38,8 +38,9 @@ const useObtenerActuacionesCitadasDeUnTecnico = (nombre) => {
 							where('estado', '==', 'EstadoEnCliente'),
 							where('estado', '==', 'EstadoSupervision'),							
 							where('estado', '==', 'EstadoFaltaCitas'),
-							where('estado', '==', 'EstadoIncidencias')
-							// Si pongo este último where supera los limites de firebase
+							where('estado', '==', 'EstadoIncidencias'),
+							where('estado', '==', 'EstadoSupervisado')
+							// Si pongo este último where supera los limites de firebase. Por ahora no devuelve los estados ilocalizables
 							// where('estado', '==', 'EstadoIlocalizable')
 						),
 						
@@ -48,8 +49,9 @@ const useObtenerActuacionesCitadasDeUnTecnico = (nombre) => {
 							where('tecnico1', '==', `${nombre}`),
 							where('tecnico2', '==', `${nombre}`),
 							where('tecnico3', '==', `${nombre}`),
-							where('tecnico4', '==', `${nombre}`),
-							where('tecnico5', '==', `${nombre}`),	
+							where('tecnico4', '==', `${nombre}`)
+							// Si pongo este último where supera los limites de firebase. Por ahora no funciona con 5 tecnicos
+							// where('tecnico5', '==', `${nombre}`)
 						)					
 					),
 					orderBy('fechaCitacion', 'asc'));

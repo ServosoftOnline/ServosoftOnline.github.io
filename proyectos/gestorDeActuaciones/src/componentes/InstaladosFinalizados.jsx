@@ -1,27 +1,27 @@
 /*
-  
+  MUESTRA UNA LISTA CON LAS ACTUACIONES FINALIZADAS.
+    - Ya han sido supervisadas
+
 */
 
 // React y react router
 import React from "react";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+
+// Hooks
+import useObtenerActuacionesSupervisadas from "../hooks/useObtenerActuacionesFinalizadas";
+
+// Componentes
+import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
 
 // El Componente
 const InstaladosFinalizados = () => {
+
+  // Obtengo desde el hook
+  const [actuacionesSupervisadas] = useObtenerActuacionesSupervisadas();
+  const arrayActuacionesSupervisadas = Object.values(actuacionesSupervisadas); 
   
   return (
-    <>      
-      <HelmetProvider>
-
-        {/* Helmet */}
-        <Helmet>
-          <title>Instalados / Finalizados</title>
-        </Helmet>
-
-      </HelmetProvider>
-
-      <p>Instalados/Finalizados</p>
-    </>
+    <ListaActuacionesDeUnEstado array = {arrayActuacionesSupervisadas} estaSupervisando = {true}/>    
   );
 }
  

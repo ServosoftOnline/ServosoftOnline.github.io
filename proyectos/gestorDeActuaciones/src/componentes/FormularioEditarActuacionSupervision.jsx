@@ -12,9 +12,10 @@ import { useParams } from "react-router-dom";
 import { deleteField } from "firebase/firestore";
 
 // Elementos
-import  {ContenedorSupervisarActuacion, ContenedorActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, ComentariosDesdeCoordinacion,
-        Momentos, Dificultad, ContenedorDificultad, ContenedorTrabajoDelTecnico, DificultadYPuntos, ConsideracionNivel4, CheckBox,
-        Fotografias, ContenedorFotografias, ComentariosTecnicos, ContenedorComentariosTecnicos, DecisionDelSupervisor,
+import  {ContenedorSupervisarActuacion, ContenedorActuacion, TecnicosAcompañantes, SubContenedorSoloLectura,
+        ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico, Momentos, ContenedorFotografias, Fotografias,
+        ComentariosTecnicos, ContenedorComentariosTecnicos, DecisionDelSupervisor, Dificultad, ContenedorDificultad,
+        DificultadYPuntos, ConsideracionNivel4, CheckBox, ComentariosSupervision, ContenedorComentariosSupervision,
         ContenedorEstadoYBoton, Estado, ContenedorBoton} from '../elementos/ElementosDeFormularioSupervision';
 
 // Componentes select
@@ -29,6 +30,7 @@ import formatearFechaEnHoraYSegundos from "../funciones/formatearFechaEnHoraYSeg
 // Funcion firebase
 import actualizaColeccionActuaciones from "../firebase/actualizaColeccionActuaciones";
 import actualizaTecnicoACitado from "../firebase/actualizaTecnicoACitado";
+import actualizaActuacionSupervisada from "../firebase/actualizaActuacionSupervisada";
 
 // Componentes
 import Mensaje from "./Mensaje";
@@ -76,6 +78,29 @@ const  FormularioEditarActuacionSupervision = () => {
         window.open(url, '_blank'); 
     }
 
+    const llamaAActualizacionSupervisada = () => {
+        
+        console.log('cambio estado a actuacion supervisada');
+        console.log('idActuacion: ' + idActuacion);
+        console.log('Comentarios supervision: ' + comentariosSupervision);
+
+        actualizaActuacionSupervisada(idActuacion, comentariosSupervision)
+
+        .then (() => {
+            console.log('Cambiado el estado de la actuación a finalizada');
+
+        }).catch((error) => {
+            console.log('Error al cambiar el estado de la actuación a finalizada');
+            console.log(error);
+        })
+
+    }
+
+    const llamaAPendienteDeCoordinar = () => {
+        console.log('cambio estado a pendiente de coordinar');
+    }
+
+
     const llamaAActualizaTecnicoACitado = (idRoles) => {
         console.log('idRoles obtenido: ' + idRoles);
         actualizaTecnicoACitado(idRoles)
@@ -93,7 +118,13 @@ const  FormularioEditarActuacionSupervision = () => {
     // Por ahora no tengo ninguna validación por realizar. Lo dejo así por si más adelante debo validar algo
     const validacionCorrecta = () => {
 
-        // Valicacion1: No puede quedarse el estado en Instalado. Debe cambiarlo a finalizada o pte de coordinar
+        console.log(estado);
+        // Valicacion1: No puede quedarse el estado en Instalado. Debe cambiarlo a finalizada o pte de coordinar  
+        if (estado === undefined) {
+            cambiarMensaje('Debes cambiar el estado a Actuacion finalizada o pendiente de coordinar','incorrecta');
+            return false;
+        } 
+              
         return true;        
     }
 
@@ -142,8 +173,12 @@ const  FormularioEditarActuacionSupervision = () => {
 
         // Si la validacion es correcta llamo a la funcion que actualizará la coleccion actuaciones
         if (validacionCorrecta()) {
+            estado === 'EstadoSupervisado' ? llamaAActualizacionSupervisada() : llamaAPendienteDeCoordinar();
             // LlamaAActualizarColeccionActuaciones(idActuacion);           
             // llamaAActualizaTecnicoACitado(idRoles);
+
+            cambiarMensaje('Actualizacion correcta', 'correcta');
+            reiniciarMensaje();
         }       
 
     }
@@ -153,8 +188,10 @@ const  FormularioEditarActuacionSupervision = () => {
         <ContenedorSupervisarActuacion>
             
             {/* ACTUACION */}
-            <ContenedorActuacion>
+            <h3>Actuación:</h3>
 
+            <ContenedorActuacion>
+                
                 <SubContenedorSoloLectura>
 
                     {/* Codigo de incidencia, cliente y descripcion */}
@@ -204,8 +241,10 @@ const  FormularioEditarActuacionSupervision = () => {
             </ContenedorActuacion>    
 
             {/* TRABAJO DEL TECNICO */}
+            <h3>Trabajo del técnico:</h3>
+
             <ContenedorTrabajoDelTecnico>
-                
+
                 <Momentos>
 
                     <div>
@@ -243,6 +282,7 @@ const  FormularioEditarActuacionSupervision = () => {
 
 
             {/* DECISION DEL SUPERVISOR    */}
+            <h3>Tu decisión:</h3>
             <DecisionDelSupervisor>
             
                 <form onSubmit={handleSubmit}>
@@ -263,9 +303,11 @@ const  FormularioEditarActuacionSupervision = () => {
                                     <label htmlFor="puntos">Puntos: </label>
                                     {consideraNivel4==="Si" ? puntosTemporales : actuacion.puntos} 
                                 </div>
+
                             </DificultadYPuntos>
 
                             <ConsideracionNivel4>
+
                                 <div>
                                     <h4>¿El técnico ha considerado la actuacion de nivel4?</h4>
                                 </div>
@@ -291,6 +333,7 @@ const  FormularioEditarActuacionSupervision = () => {
                                     />
                                     <label htmlFor="no">No</label>
                                 </div>
+
                             </ConsideracionNivel4>                
                             
                             {consideraNivel4 === "Si" &&
@@ -305,10 +348,10 @@ const  FormularioEditarActuacionSupervision = () => {
                     </Dificultad>                
 
                     {/* Comentarios Supervisión */}
-                    <ComentariosTecnicos>
+                    <ComentariosSupervision>
 
                         <label htmlFor="comentariosSupervision">Comentarios supervisión:</label>
-                        <ContenedorComentariosTecnicos>
+                        <ContenedorComentariosSupervision>
                             
                             <textarea                            
                                 name="comentariosSupervision"                
@@ -316,34 +359,39 @@ const  FormularioEditarActuacionSupervision = () => {
                                 value={comentariosSupervision}
                                 onChange={handleChange}                            
                             />
-                        </ContenedorComentariosTecnicos>
+                        </ContenedorComentariosSupervision>
 
-                    </ComentariosTecnicos>               
+                    </ComentariosSupervision>               
             
-                    {/* Estado y boton del formulario */}
-                    <ContenedorEstadoYBoton>
+                    {/* Estado y boton del formulario. Solo se muestra si su estado no es EstadoSupervisado */}
+                    {actuacion.estado !== 'EstadoSupervisado' &&
 
-                        <Estado>                    
+                        <ContenedorEstadoYBoton>
 
-                            <SelectEstadosSupervision
-                                asignarEstado={asignarEstado}
-                                estadoDescripcion = {estadoDescripcion}
-                                asignarEstadoDescripcion = {asignarEstadoDescripcion}
-                            />
+                            <Estado>                    
 
+                                <SelectEstadosSupervision
+                                    asignarEstado={asignarEstado}
+                                    estadoDescripcion = {estadoDescripcion}
+                                    asignarEstadoDescripcion = {asignarEstadoDescripcion}
+                                />
 
-                        </Estado>
+                            </Estado>
 
-                        <ContenedorBoton>
-                            <Boton
-                                $primario                        
-                                as="button"
-                                type="submit"
-                                >Actualizar                            
-                            </Boton>
-                        </ContenedorBoton>                    
+                            <ContenedorBoton>
 
-                    </ContenedorEstadoYBoton>
+                                <Boton
+                                    $primario                        
+                                    as="button"
+                                    type="submit"
+                                    >Actualizar                            
+                                </Boton>
+                                
+                            </ContenedorBoton>                    
+
+                        </ContenedorEstadoYBoton>
+                    }
+                    
 
                 </form>
             </DecisionDelSupervisor>

@@ -225,7 +225,8 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                         <>  
                                             
                                             {/* si no pongo el indice 0, no va. NO QUITARLO */}
-                                            {estadoDelTecnico[0] === 'Citado' &&
+                                            {/* El icono del coche solo se muestra si el estado del tecnico es citado y la actuacion no ha sido supervisada */}
+                                            {(estadoDelTecnico[0] === 'Citado' && actuacion.estado !== 'EstadoSupervisado') &&
                                                 <BotonAccion onClick={() => actuacionEnCamino(actuacion.id)}> 
                                                     <IconoCoche />
                                                 </BotonAccion>

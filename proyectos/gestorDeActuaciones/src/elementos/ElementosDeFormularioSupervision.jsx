@@ -7,7 +7,7 @@ import theme from "../objetos/theme";
 
 // TODO EL CONTENEDOR DEBAJO DE LA BARRA DE BOTONES
 const ContenedorSupervisarActuacion = styled.div `
-
+    
     display: grid;
     grid-template-columns: 1fr;
     padding-left: 0.5rem;
@@ -15,7 +15,11 @@ const ContenedorSupervisarActuacion = styled.div `
     
     label {
         font-weight: bold;        
-    }
+    }  
+
+    h3{
+        padding-left: 0.7rem;
+    }  
 
     @media(max-width: 60rem){ /* 950px */
         font-size: 0.8rem;        
@@ -25,7 +29,12 @@ const ContenedorSupervisarActuacion = styled.div `
 
 // ELEMENTOS DE LA ACTUACION
 const ContenedorActuacion = styled.div`
-background: lightgreen;
+    
+    background: ${theme.lightSmoke};    
+    margin-bottom: 1.5rem;    
+    padding: 1rem;
+    border: 2px solid ${theme.azulClaro};
+    border-radius: 10px;
 
 `;
 
@@ -38,8 +47,8 @@ const SubContenedorSoloLectura = styled.div `
     
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    // margin-top: 0.5rem;
+    // margin-bottom: 0.5rem;
     gap: 0.8rem;
 
     div {        
@@ -50,14 +59,15 @@ const SubContenedorSoloLectura = styled.div `
 `;
 
 const ComentariosDesdeCoordinacion = styled.div `
-
+    
     display: grid;
     grid-template-columns: 1fr;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 1rem;    
 
     p {
-        border: 0.1rem solid black;
+        background: white;
+        border: 1px solid ${theme.azulClaro};
+        border-radius: 10px;
         padding: 0.5rem;
     }
 `;
@@ -65,24 +75,32 @@ const ComentariosDesdeCoordinacion = styled.div `
 
 // ELEMENTOS PARA EL TRABAJO DEL TECNICO
 const ContenedorTrabajoDelTecnico = styled.div`
-background: lightgray;
 
+    background: ${theme.lightSmoke};    
+    margin-bottom: 1.5rem;    
+    padding: 1rem;
+    border: 2px solid ${theme.azulClaro};
+    border-radius: 10px;
 `;
 
 
 const Momentos = styled.div `
 
-    background:lightgray;
+    background: white;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
-    border: 0.1rem solid black;
+    border: 1px solid ${theme.azulClaro};
+    border-radius: 10px;
     padding: 0.5rem; 
     margin-bottom: 0.5rem;       
     
 `;
 
 const ContenedorFotografias = styled.div`
-    border: 0.1rem solid black;
+
+    background: white;
+    border: 1px solid ${theme.azulClaro};
+    // border-radius: 10px;
     margin-top: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -97,11 +115,12 @@ const Fotografias = styled.div `
 const ComentariosTecnicos = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 1rem;    
 
     p {
-        border: 0.1rem solid black;
+        background: white;
+        border: 1px solid ${theme.azulClaro};
+        border-radius: 10px;
         padding: 0.5rem;
     }    
 `;
@@ -110,38 +129,29 @@ const ContenedorComentariosTecnicos = styled.div`
 
     display: grid;
     grid-template-columns: 1fr;           
-    padding-bottom: 1rem;        
-    
-    textarea {
-        font-size: 1.1rem;
-        width: 92.5rem;
-        height: 7rem;        
-    }
-
-    @media(max-width: 60rem){ /* 950px */     
-        textarea {
-            font-size: 0.9rem;
-            width: 48rem;
-            height: 5rem;
-        }
-    }
+    padding-bottom: 1rem;
 `;
 
 // ELEMENTOS PARA LA DECISION DEL SUPERVISOR
 
 const DecisionDelSupervisor = styled.div`
-background: lightyellow;
+   
+    background: ${theme.lightSmoke};    
+    margin-bottom: 1.5rem;    
+    padding: 1rem;
+    border: 2px solid ${theme.azulClaro};
+    border-radius: 10px;
 
 `;
-const Dificultad = styled.div`    
-    margin-top: 1.8rem;
-    margin-bottom: 1rem;
+const Dificultad = styled.div`        
+    margin-bottom: 1rem;    
 `;
 
 const ContenedorDificultad = styled.div`
-    border: 0.1rem solid black;
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
+    background: white;
+    border: 1px solid ${theme.azulClaro};
+    border-radius: 10px;
+    margin-top: 0.5rem;    
     padding-bottom: 0.5rem;
     
 `;
@@ -171,6 +181,45 @@ background:lightpink;
     padding: 0.5rem;
 `;
 
+const ComentariosSupervision = styled.div`
+
+    display: grid;
+    grid-template-columns: 1fr;    
+    padding-top: 1rem;    
+    
+
+    p {
+        border: 0.1rem solid black;
+        padding: 0.5rem;
+        
+    }    
+`;
+
+const ContenedorComentariosSupervision = styled.div`
+
+    display: grid;
+    grid-template-columns: 1fr;           
+    padding-bottom: 1rem;        
+    
+    
+    textarea {
+        font-size: 1.1rem;
+        width: 90rem;
+        height: 7rem;        
+        border: 1px solid ${theme.azulClaro};
+        margin-top: 0.5rem;    
+    }
+
+    @media(max-width: 60rem){ /* 950px */     
+        textarea {
+            font-size: 0.9rem;
+            width: 46.5rem;
+            height: 5rem;
+        }
+    }
+`;
+
+
 const ContenedorEstadoYBoton = styled.div`
 
     display: grid;
@@ -185,9 +234,11 @@ const Estado = styled.div `
 
 const ContenedorBoton = styled.div`
     display: grid;
-    justify-content: center;    
+    justify-content: center;        
 `;
 
-export  {ContenedorSupervisarActuacion, ContenedorActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad,
-        ContenedorTrabajoDelTecnico, DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias,
-        ComentariosTecnicos, ContenedorComentariosTecnicos, DecisionDelSupervisor, ContenedorEstadoYBoton, Estado, ContenedorBoton};
+export  {ContenedorSupervisarActuacion, ContenedorActuacion, TecnicosAcompañantes, SubContenedorSoloLectura,
+        ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico, Momentos, ContenedorFotografias, Fotografias,
+        ComentariosTecnicos, ContenedorComentariosTecnicos, DecisionDelSupervisor, Dificultad, ContenedorDificultad,
+        DificultadYPuntos, ConsideracionNivel4, CheckBox, ComentariosSupervision, ContenedorComentariosSupervision,
+        ContenedorEstadoYBoton, Estado, ContenedorBoton}

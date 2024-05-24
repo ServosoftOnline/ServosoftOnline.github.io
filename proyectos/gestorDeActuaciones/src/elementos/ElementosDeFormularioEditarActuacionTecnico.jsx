@@ -169,6 +169,19 @@ const ContenedorBoton = styled.div`
     
 `;
 
-export  {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad,
-        DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias, ComentariosTecnicos,
-        ContenedorComentariosTecnicos, ContenedorEstadoYBoton, Estado, ContenedorBoton} ;
+const ComentariosDesdeSupervision = styled.div `
+
+    display: grid;
+    grid-template-columns: 1fr;
+    // padding-top: 1rem;
+    // padding-bottom: 1rem;
+
+    p {
+        border: 0.1rem solid black;
+        padding: 0.5rem;
+    }
+`;
+
+export  {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos,
+        Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias,
+        ComentariosTecnicos, ContenedorComentariosTecnicos, ContenedorEstadoYBoton, Estado, ContenedorBoton, ComentariosDesdeSupervision} ;

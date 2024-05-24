@@ -15,7 +15,7 @@ import {getUnixTime } from "date-fns";
 // Elementos
 import {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad,
     DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias, ComentariosTecnicos, ContenedorComentariosTecnicos,
-    ContenedorEstadoYBoton, Estado, ContenedorBoton} from './../elementos/ElementosDeFormularioEditarActuacionTecnico';
+    ContenedorEstadoYBoton, Estado, ContenedorBoton, ComentariosDesdeSupervision} from './../elementos/ElementosDeFormularioEditarActuacionTecnico';
 
 // Componentes select
 import SelectEstadosModuloTecnico from "./SelectEstadosModuloTecnico";
@@ -81,7 +81,8 @@ const  FormularioEditarActuacionTecnico = () => {
 
 
     // Efecto para obtener los datos que iré mostrando en el formulario
-    useEffect(() => {        
+    useEffect(() => {       
+         
         eliminarMensaje();
         asignarEstadoDescripcion(actuacion.estadoDescripcion);
         asignarMomentoInicioCamino(actuacion.horaEnCamino);
@@ -270,12 +271,15 @@ const  FormularioEditarActuacionTecnico = () => {
 
                 {/* Comentarios desde coordinacion */}
                 <ComentariosDesdeCoordinacion> 
+
                     <label htmlFor="comentariosCoordinacion"> Comentarios desde coordinación: </label>
                     <p>{actuacion.comentariosCoordinacion !== "" ? actuacion.comentariosCoordinacion : "No hay comentarios" } </p>
+
                 </ComentariosDesdeCoordinacion>
                 
                 {/* Momentos */}
                 <Momentos>
+
                     <div>
                         <label htmlFor="momentoInicioCamino">Inicio camino: </label>
                         {momentoInicioCamino !== undefined ? formatearFechaEnHoraYSegundos(momentoInicioCamino):null} 
@@ -290,6 +294,7 @@ const  FormularioEditarActuacionTecnico = () => {
                         <label htmlFor="momentoFinActuacion">Fin actuacion: </label>
                         {momentoFinActuacion !== undefined ? formatearFechaEnHoraYSegundos(momentoFinActuacion):null}                        
                     </div>
+                    
                 </Momentos>
 
                 {/* Dificultad de la actuacion */}                
@@ -372,27 +377,65 @@ const  FormularioEditarActuacionTecnico = () => {
                     </ContenedorComentariosTecnicos>
                 </ComentariosTecnicos>
 
-                {/* Estado y boton del formulario */}
-                <ContenedorEstadoYBoton>
+                {/* Estado y boton del formulario. No se mostrara si la actuacion esta en estado supervisado */}
+                {/* {actuacion.estado !== 'EstadoSupervisado' &&
+                    <ContenedorEstadoYBoton>
 
-                    <Estado>
-                        <SelectEstadosModuloTecnico
-                            asignarEstado={asignarEstado}
-                            estadoDescripcion = {estadoDescripcion}
-                            asignarEstadoDescripcion = {asignarEstadoDescripcion}
-                        />
-                    </Estado>
+                        <Estado>
+                            <SelectEstadosModuloTecnico
+                                asignarEstado={asignarEstado}
+                                estadoDescripcion = {estadoDescripcion}
+                                asignarEstadoDescripcion = {asignarEstadoDescripcion}
+                            />
+                        </Estado>
 
-                    <ContenedorBoton>
-                        <Boton
-                            $primario                        
-                            as="button"
-                            type="submit"
-                            >Actualizar                            
-                        </Boton>
-                    </ContenedorBoton>                    
+                        <ContenedorBoton>
+                            <Boton
+                                $primario                        
+                                as="button"
+                                type="submit"
+                                >Actualizar                            
+                            </Boton>
+                        </ContenedorBoton>                    
 
-                </ContenedorEstadoYBoton>
+                    </ContenedorEstadoYBoton>
+
+                } */}
+                {/* Si la actuacion tiene un estado diferente a estado supervisado muestra el contenedor con el estado y el boton */}
+                {/* En caso contrario muestra los comentarios del supervisor. Es un operador ternario */}
+
+                {actuacion.estado !== 'EstadoSupervisado' ? (
+                    <ContenedorEstadoYBoton>
+                        
+                        <Estado>
+                            <SelectEstadosModuloTecnico
+                                asignarEstado={asignarEstado}
+                                estadoDescripcion={estadoDescripcion}
+                                asignarEstadoDescripcion={asignarEstadoDescripcion}
+                            />
+                        </Estado>
+
+                        <ContenedorBoton>
+                            <Boton
+                                $primario                        
+                                as="button"
+                                type="submit"
+                            >
+                                Actualizar
+                            </Boton>
+                        </ContenedorBoton>
+
+                    </ContenedorEstadoYBoton>
+                ) : (
+                    <>
+                        <label htmlFor="comentariosSupervision"> Comentarios del supervisor: </label>
+                        <ComentariosDesdeSupervision>                    
+                            <p>{actuacion.comentariosSupervision !== "" ? actuacion.comentariosSupervision : "No hay comentarios" } </p>
+                        </ComentariosDesdeSupervision>
+                    </>
+                )}
+
+                
 
             </form>
 
