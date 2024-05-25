@@ -26,6 +26,7 @@ const useObtenerTecnicosAPartirDelIdActuacion = (idActuacion) => {
         if (sesion) {
 
             const obtenerTecnicos = async () => {
+
                 try {
                     // Obtengo el documento de forma asincrónica
                     const documento = await getDoc(doc(db, 'actuaciones', idActuacion));
@@ -48,7 +49,7 @@ const useObtenerTecnicosAPartirDelIdActuacion = (idActuacion) => {
 
                 } catch (error) {
                     // Manejo de errores en caso de que ocurra algún problema al obtener los datos
-                    console.error('Error al obtener los datos de los técnicos:', error);
+                    console.error('Error al obtener los datos de los técnicos. Es un error previsto si el supervisor lo mando a pte de coordinar. Los borré a conciencia:', error);
                 }
             }
 

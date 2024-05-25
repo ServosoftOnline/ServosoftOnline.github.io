@@ -28,9 +28,8 @@ import Boton from "../elementos/Boton";
 import formatearFechaEnHoraYSegundos from "../funciones/formatearFechaEnHoraYSegundos";
 
 // Funcion firebase
-import actualizaColeccionActuaciones from "../firebase/actualizaColeccionActuaciones";
-import actualizaTecnicoACitado from "../firebase/actualizaTecnicoACitado";
 import actualizaActuacionSupervisada from "../firebase/actualizaActuacionSupervisada";
+import actualizaActuacionAPteDeCoordinar from "../firebase/actualizaActuacionAPteDeCoordinar";
 
 // Componentes
 import Mensaje from "./Mensaje";
@@ -49,7 +48,7 @@ const  FormularioEditarActuacionSupervision = () => {
     // Obtendo el idActuacion pasado por la barra de direccion
     const {idActuacion} = useParams();
 
-    // Obtengo del contexto los mensajes que mostraré en pantalla
+    // Contexto para mensajes en pantalla
     const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
     
     // Estados        
@@ -58,17 +57,16 @@ const  FormularioEditarActuacionSupervision = () => {
     const [consideraNivel4, asignarConsideraNivel4] = useState("No");
     const [dificultadTemporal, asignarDificultadTemporal] = useState("Nivel 4");
     const [puntosTemporales, asignarPuntosTemporales] = useState(0);
-    const [comentariosSupervision, asignarComentariosSupervision] = useState("");
-    
+    const [comentariosSupervision, asignarComentariosSupervision] = useState("");    
 
     // Informacion obtenida desde los hooks
     const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
-    const [todosLosTecnicos] = useObtenerTecnicosAPartirDelIdActuacion(idActuacion);    
-    const [idRoles] = useObtenerIdRolesDeUnUsuario();
+    const [todosLosTecnicos] = useObtenerTecnicosAPartirDelIdActuacion(idActuacion);       
 
     // Efecto para obtener los datos que iré mostrando en el formulario
     useEffect(() => {        
         asignarEstadoDescripcion(actuacion.estadoDescripcion);
+        asignarComentariosSupervision(actuacion.comentariosSupervision);
     },[actuacion.estadoDescripcion]);    
     
 
@@ -79,46 +77,37 @@ const  FormularioEditarActuacionSupervision = () => {
     }
 
     const llamaAActualizacionSupervisada = () => {
-        
-        console.log('cambio estado a actuacion supervisada');
-        console.log('idActuacion: ' + idActuacion);
-        console.log('Comentarios supervision: ' + comentariosSupervision);
 
         actualizaActuacionSupervisada(idActuacion, comentariosSupervision)
 
-        .then (() => {
-            console.log('Cambiado el estado de la actuación a finalizada');
+        .then (() => {            
+            cambiarMensaje('Cambiado estado de la actuacion a supervisada', 'advertencia');            
 
         }).catch((error) => {
-            console.log('Error al cambiar el estado de la actuación a finalizada');
+            
+            cambiarMensaje('Error al tratar de cambiar la actuacion a supervisada', 'incorrecta');
             console.log(error);
         })
 
     }
 
-    const llamaAPendienteDeCoordinar = () => {
-        console.log('cambio estado a pendiente de coordinar');
-    }
+    const llamaAActuacionPendienteDeCoordinar = () => {
+        
+        actualizaActuacionAPteDeCoordinar(idActuacion, comentariosSupervision)
 
-
-    const llamaAActualizaTecnicoACitado = (idRoles) => {
-        console.log('idRoles obtenido: ' + idRoles);
-        actualizaTecnicoACitado(idRoles)
-
-        .then (() => {
-            console.log('Cambiado el estado del tecnico a citado');
+        .then (() => {            
+            cambiarMensaje('Cambiado estado de la actuacion a pte de coordinar', 'advertencia');            
 
         }).catch((error) => {
-            console.log('Error al cambiar el estado del tecnico a citado');
+            console.log('Error al cambiar el estado de la actuación a pte de coordinar');
             console.log(error);
         })
 
     }
 
-    // Por ahora no tengo ninguna validación por realizar. Lo dejo así por si más adelante debo validar algo
+    // Validaciones
     const validacionCorrecta = () => {
-
-        console.log(estado);
+        
         // Valicacion1: No puede quedarse el estado en Instalado. Debe cambiarlo a finalizada o pte de coordinar  
         if (estado === undefined) {
             cambiarMensaje('Debes cambiar el estado a Actuacion finalizada o pendiente de coordinar','incorrecta');
@@ -126,29 +115,7 @@ const  FormularioEditarActuacionSupervision = () => {
         } 
               
         return true;        
-    }
-
-    const LlamaAActualizarColeccionActuaciones = (idActuacion) => {   
-        
-        // Considerar cambiar esto porque era valido para tecnicos pero quizas no valga para supervisar
-        // Puede haber casos en que el tecnico no desplace o no llegue a cliente. En ese caso actualizo eliminando el contenido
-        actualizaColeccionActuaciones({  
-            horaEnCamino: momentoInicioCamino !== undefined ? momentoInicioCamino : deleteField() ,
-            horaDeLlegada: momentoLlegadaACliente !== undefined ? momentoLlegadaACliente: deleteField(),
-            horaFinalizacion: momentoFinActuacion,
-            estado: estado,
-            estadoDescripcion: estadoDescripcion,
-            idActuacion: idActuacion
-        })
-
-        .then(() => {                        
-            console.log('Actualizo coleccion de actuaciones');                      
-
-        }).catch((error) => {
-            console.log('Error al actualizar la coleccion de actuaciones');            
-            console.log(error);
-        }) 
-    }
+    }    
 
     const handleChange = (e) => {
 
@@ -173,14 +140,8 @@ const  FormularioEditarActuacionSupervision = () => {
 
         // Si la validacion es correcta llamo a la funcion que actualizará la coleccion actuaciones
         if (validacionCorrecta()) {
-            estado === 'EstadoSupervisado' ? llamaAActualizacionSupervisada() : llamaAPendienteDeCoordinar();
-            // LlamaAActualizarColeccionActuaciones(idActuacion);           
-            // llamaAActualizaTecnicoACitado(idRoles);
-
-            cambiarMensaje('Actualizacion correcta', 'correcta');
-            reiniciarMensaje();
-        }       
-
+            estado === 'EstadoSupervisado' ? llamaAActualizacionSupervisada() : llamaAActuacionPendienteDeCoordinar();            
+        }
     }
     
     return (        
@@ -394,10 +355,13 @@ const  FormularioEditarActuacionSupervision = () => {
                     
 
                 </form>
+
+                {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
+                <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
+
             </DecisionDelSupervisor>
 
-            {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
-            <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
+            
 
         </ContenedorSupervisarActuacion>
     );

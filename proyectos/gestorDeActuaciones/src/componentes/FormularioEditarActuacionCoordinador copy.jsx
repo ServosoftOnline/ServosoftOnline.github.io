@@ -118,7 +118,7 @@ const FormularioEditarActuacionCoordinador = () => {
         asignarStb(actuacion.stb);
         asignarEstado(actuacion.estado);
         asignarEstadoDescripcion(actuacion.estadoDescripcion);
-        {console.log('actuacion.fechaCitacion: ' + actuacion.fechaCitacion)}
+
         asignarFechaCitacion(fromUnixTime(actuacion.fechaCitacion));
         asignarTecnico1(actuacion.tecnico1);
         asignarTecnico2(actuacion.tecnico2);

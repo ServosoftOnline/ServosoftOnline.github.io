@@ -61,6 +61,7 @@ const  FormularioEditarActuacionTecnico = () => {
     const [dificultadTemporal, asignarDificultadTemporal] = useState("Nivel 4");
     const [puntosTemporales, asignarPuntosTemporales] = useState(0);
     const [comentariosTecnicos, asignarComentariosTecnicos] = useState("");
+    
 
     // Informacion obtenida desde los hooks
     const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
@@ -87,6 +88,7 @@ const  FormularioEditarActuacionTecnico = () => {
         asignarEstadoDescripcion(actuacion.estadoDescripcion);
         asignarMomentoInicioCamino(actuacion.horaEnCamino);
         asignarMomentoLlegadaACliente(actuacion.horaDeLlegada);
+        asignarComentariosTecnicos(actuacion.comentariosTecnicos);
 
     },[actuacion.estadoDescripcion, actuacion.horaEnCamino, actuacion.horaDeLlegada]);  
    
@@ -157,10 +159,8 @@ const  FormularioEditarActuacionTecnico = () => {
             cambiarMensaje('Antes de cambiar el estado de la actuación debes marcar "En camino" y "En cliente"', 'incorrecta');
             return false;
         }
-
         
-        return true;
-        
+        return true;        
     }
 
     const LlamaAActualizarColeccionActuaciones = (idActuacion) => {   
@@ -370,41 +370,26 @@ const  FormularioEditarActuacionTecnico = () => {
                         
                         <textarea                            
                             name="comentariosTecnicos"                
-                            placeholder="Introduzca comentarios opcionales"
+                            placeholder={actuacion.comentariosTecnicos ? actuacion.comentariosTecnicos : "Introduzca comentarios opcionales"}
                             value={comentariosTecnicos}
                             onChange={handleChange}                            
                         />
                     </ContenedorComentariosTecnicos>
                 </ComentariosTecnicos>
-
-                {/* Estado y boton del formulario. No se mostrara si la actuacion esta en estado supervisado */}
-                {/* {actuacion.estado !== 'EstadoSupervisado' &&
-                    <ContenedorEstadoYBoton>
-
-                        <Estado>
-                            <SelectEstadosModuloTecnico
-                                asignarEstado={asignarEstado}
-                                estadoDescripcion = {estadoDescripcion}
-                                asignarEstadoDescripcion = {asignarEstadoDescripcion}
-                            />
-                        </Estado>
-
-                        <ContenedorBoton>
-                            <Boton
-                                $primario                        
-                                as="button"
-                                type="submit"
-                                >Actualizar                            
-                            </Boton>
-                        </ContenedorBoton>                    
-
-                    </ContenedorEstadoYBoton>
-
-                } */}
-                {/* Si la actuacion tiene un estado diferente a estado supervisado muestra el contenedor con el estado y el boton */}
-                {/* En caso contrario muestra los comentarios del supervisor. Es un operador ternario */}
-
-                {actuacion.estado !== 'EstadoSupervisado' ? (
+                
+                {/* Si hay comentarios de supervisor los muestro */}
+                {actuacion.comentariosSupervision &&
+                    <>
+                    <label htmlFor="comentariosSupervision"> Comentarios del supervisor: </label>
+                    <ComentariosDesdeSupervision>                    
+                        <p>{actuacion.comentariosSupervision !== "" ? actuacion.comentariosSupervision : "No hay comentarios" } </p>
+                    </ComentariosDesdeSupervision>
+                    </>
+                }
+                
+        
+                {/* No se mostrarán el estado y el botón si el estado de la actuacion es supervisado */}
+                {actuacion.estado !== 'EstadoSupervisado' && 
                     <ContenedorEstadoYBoton>
                         
                         <Estado>
@@ -426,16 +411,7 @@ const  FormularioEditarActuacionTecnico = () => {
                         </ContenedorBoton>
 
                     </ContenedorEstadoYBoton>
-                ) : (
-                    <>
-                        <label htmlFor="comentariosSupervision"> Comentarios del supervisor: </label>
-                        <ComentariosDesdeSupervision>                    
-                            <p>{actuacion.comentariosSupervision !== "" ? actuacion.comentariosSupervision : "No hay comentarios" } </p>
-                        </ComentariosDesdeSupervision>
-                    </>
-                )}
-
-                
+                }                
 
             </form>
 
