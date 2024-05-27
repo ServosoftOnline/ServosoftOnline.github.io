@@ -19,6 +19,10 @@ const ContenedorEditarActuacion = styled.div `
     @media(max-width: 60rem){ /* 950px */
         font-size: 0.8rem;        
     }
+
+    @media (max-width: 768px) {        
+        font-size: 1rem;        
+    }
 `;
 
 const TecnicosAcompañantes = styled.div`
@@ -38,6 +42,12 @@ const SubContenedorSoloLectura = styled.div `
         border-bottom: 2px solid ${theme.grisClaro};
         padding-bottom: 0.5rem;
     }
+
+    @media (max-width: 768px) {        
+        grid-template-columns: 1fr;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
     
 `;
 
@@ -52,6 +62,12 @@ const ComentariosDesdeCoordinacion = styled.div `
         border: 0.1rem solid black;
         padding: 0.5rem;
     }
+
+    @media (max-width: 768px) {
+        p {
+            width: auto;           
+        }
+    }
 `;
 
 const Momentos = styled.div `
@@ -62,6 +78,14 @@ const Momentos = styled.div `
     border: 0.1rem solid black;
     padding: 0.5rem; 
     margin-bottom: 0.5rem;       
+    
+
+    @media (max-width: 768px) {
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+        padding: 0.3rem;
+    }
     
 `;
 
@@ -75,17 +99,25 @@ const ContenedorDificultad = styled.div`
     margin-top: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    
+
+    @media (max-width: 768px) {  
+        width: auto;
+    }
 `;
 
 const DificultadYPuntos = styled.div `
     display: grid;
     grid-template-columns: 1fr 1fr;    
     align-items: center;
-    padding: 0.5rem; 
+    padding: 0.5rem;     
+
+    @media (max-width: 768px) {      
+        grid-template-columns: 60% 40%;
+    }
 `;
 
 const ConsideracionNivel4 = styled.div `
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -94,6 +126,11 @@ const ConsideracionNivel4 = styled.div `
     label {
         padding-right: 1.5rem;
     }
+
+    @media (max-width: 768px) {      
+        grid-template-columns: 60% 40%;
+    }
+    
 `;
 
 const CheckBox = styled.div `
@@ -113,6 +150,10 @@ const ContenedorFotografias = styled.div`
     margin-top: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+
+    @media (max-width: 768px) {      
+        width: auto%;
+    }
 
 `;
 
@@ -143,9 +184,28 @@ const ContenedorComentariosTecnicos = styled.div`
     @media(max-width: 60rem){ /* 950px */     
         textarea {
             font-size: 0.9rem;
-            width: 48rem;
+            width: auto;
             height: 5rem;
         }
+    }
+
+    @media (max-width: 768px) {      
+        
+        textarea {
+            font-size: 1rem;
+            height: 9rem;
+        }
+    }
+`;
+
+const ComentariosDesdeSupervision = styled.div `
+
+    display: grid;
+    grid-template-columns: 1fr;    
+
+    p {
+        border: 0.1rem solid black;
+        padding: 0.5rem;
     }
 `;
 
@@ -155,6 +215,11 @@ const ContenedorEstadoYBoton = styled.div`
     grid-template-columns: 1fr 1fr;    
     align-items: center;
     margin-bottom: 2rem;
+    margin-top: 2rem;
+
+    @media (max-width: 768px) {      
+        grid-template-columns: 2fr 1fr;            
+    }
 `;
 
 const Estado = styled.div `
@@ -169,18 +234,6 @@ const ContenedorBoton = styled.div`
     
 `;
 
-const ComentariosDesdeSupervision = styled.div `
-
-    display: grid;
-    grid-template-columns: 1fr;
-    // padding-top: 1rem;
-    // padding-bottom: 1rem;
-
-    p {
-        border: 0.1rem solid black;
-        padding: 0.5rem;
-    }
-`;
 
 export  {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos,
         Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias,

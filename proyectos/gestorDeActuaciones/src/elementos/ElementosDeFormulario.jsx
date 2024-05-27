@@ -36,7 +36,7 @@ const ContenedorFiltros = styled.div`
 `;
  
 const Formulario = styled.form`
-
+// background: lightblue;
     padding: 0 2.5rem; /* 40px */
     height: 100%;
     display: flex;
@@ -57,6 +57,10 @@ const Formulario = styled.form`
     @media(max-width: 60rem){ /* 950px */
         justify-content: start;           
     }
+
+    @media (max-width: 768px) {      
+        height: 55%;
+    }
 `;
 
 const ContenedorInputs = styled.div`
@@ -70,8 +74,7 @@ const Input = styled.input`
     font-size: 1.7rem; /* 32px */
     text-transform: uppercase;
     border: none;
-    border-bottom: 2px solid ${theme.grisClaro};    
-    
+    border-bottom: 2px solid ${theme.grisClaro};     
  
     @media(max-width: 60rem){ /* 950px */
         font-size: 1.2rem; /* 28.8px */
@@ -89,6 +92,7 @@ const ContenedorBoton = styled.div`
     display: flex;
     justify-content: center;
     margin: 2rem 0;  /* 32px */
+    padding-top: 2rem;
 
     @media(max-width: 60rem){ /* 950px */
         margin: 0.5rem 0;  /* 16px */
@@ -100,7 +104,8 @@ const SvgIniciarSesion = styled(imagenIniciarSesion)`
 
     width: auto;
     max.height: 6.25rem; /* 100px */
-    margin-bottom : 1.25rem; /* 20px */
+    margin-bottom : 2rem; /* 32px */
+    margin-top : 2rem; /* 32px */
 
     @media(max-width: 60rem){ /* 950px */
         height: 16rem; /* 256px */        

@@ -19,6 +19,10 @@ const BarraProductividad = styled.div`
         flex-direction: column;
         font-size: 14px;
     }
+
+    @media (max-width: 768px) {        
+        font-size: 0.6rem;        
+    }
 `;
 
 export default BarraProductividad;

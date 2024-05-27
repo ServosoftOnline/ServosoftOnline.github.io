@@ -62,11 +62,15 @@ const Fecha = styled.div`
     padding: 0.62rem 3.12rem; /* 10px 50px */
     display: inline-block;
     margin: 1.25rem 0; /* 20px */
+    
  
-    @media(max-width: 60rem){ /* 950px */    
-        width: 87%;
+    @media(max-width: 60rem){ /* 950px */            
         font-size: 0.8rem;
         padding: 0.2rem 3.12rem; /* 3.2px 49.92px */
+    }
+
+    @media (max-width: 768px) {        
+        font-size: 1rem;          
     }
 `;
 
@@ -83,6 +87,11 @@ const ElementoListaCabecera = styled.li`
     @media(max-width: 60rem){ /* 950px */ 
         grid-template-columns: 4.5rem 1fr 1fr 1fr 5.5rem 5rem; 
         font-size: 0.7rem;        
+    }
+
+    @media (max-width: 768px) {        
+        font-size: 0.75rem;  
+        gap: 0.3rem;      
     }
 `;
  
@@ -108,8 +117,12 @@ const ElementoLista = styled.li`
     @media(max-width: 60rem){ /* 950px */ 
         grid-template-columns: 4.5rem 1fr 1fr 1fr 5.5rem 5rem; 
         font-size: 0.7rem;
-        padding: 0.1rem 0; /* 16px */
-        
+        padding: 0.1rem 0; /* 16px */        
+    }
+
+    @media (max-width: 768px) {        
+        font-size: 0.7rem;   
+        gap: 0.3rem;     
     }
 `;
  

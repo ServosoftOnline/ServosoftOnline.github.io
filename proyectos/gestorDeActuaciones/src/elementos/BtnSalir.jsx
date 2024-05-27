@@ -51,6 +51,10 @@ const Btn = styled.button`
         line-height: 2.5rem; /* 40px */
         margin-left: 0.1rem; /* 1.6px */
     }
+
+    @media (max-width: 768px) {
+        height: 3rem;         
+    }
 `;
  
 const Icono = styled(IconoSalir)`

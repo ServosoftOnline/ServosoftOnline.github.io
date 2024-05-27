@@ -64,6 +64,12 @@ const Boton = styled(Link)`
         margin-left: 0.1rem;    /* 1.6px */
         height: 1.5rem; 
     }
+
+    @media (max-width: 768px) {
+        font-size: 1rem;     /* 10.88px */
+        margin-right: 0.3rem;    /* 1.6px */
+        height: 2rem;
+    }
 `;
 
 export default Boton;
