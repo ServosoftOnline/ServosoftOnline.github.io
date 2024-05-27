@@ -36,6 +36,22 @@ const Subtitulo = styled.h3`
     padding: 2.5rem 0; /* 40px */
 `;
 
+const ContenedorMostrarBarraEstadoTecnicos = styled.div`
+
+    display: flex;
+    align-items: center;
+    
+    h4 {
+        margin-right: 1rem;
+    }
+
+    label {
+        margin-right: 0.5rem;
+    }
+
+    
+`;
+
 const Fecha = styled.div`
 
     border-radius: 0.31rem; /* 5px */
@@ -185,7 +201,7 @@ const BotonAccion = styled.button`
         width: 1.125rem; /* 18px */
     }
  
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: 60rem){ /* 960px */
         opacity: 1;
         width: 2rem;    /* 32px */
         height: 2rem;   /* 32px */
@@ -248,6 +264,7 @@ export {
     Lista,
     ContenedorSubtitulo,
     Subtitulo,
+    ContenedorMostrarBarraEstadoTecnicos,
     Fecha,
     ElementoListaCabecera,
     ElementoLista,

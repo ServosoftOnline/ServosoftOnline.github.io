@@ -21,17 +21,17 @@ const BarraEstadosTecnicos = () => {
 
     // Obtengo desde los hooks
     const [tecnicosIniciaronJornada] = useTecnicosIniciaronJornada();
-    const [tecnicosFinalizaronJornada] = useTecnicosFinalizaronJornada();
     const [tecnicosEnCamino] = useTecnicosEnCamino();
     const [tecnicosEnCliente] = useTecnicosEnCliente();
-    const [tecnicosCitados] = useTecnicosCitados();   
+    const [tecnicosCitados] = useTecnicosCitados();       
+    const [tecnicosFinalizaronJornada] = useTecnicosFinalizaronJornada();
 
     // Separon los nombres con comas y un espacio en blanco
     const nombresIniciaronJornadaSeparados = tecnicosIniciaronJornada.join(', ');
-    const nombresFinalizaronJornadaSeparados = tecnicosFinalizaronJornada.join(', ');
     const nombresTecnicosEnCaminoSeparados = tecnicosEnCamino.join(', ');
     const nombresTecnicosEnClienteSeparados = tecnicosEnCliente.join(', ');
     const nombresTecnicosCitadosSeparados = tecnicosCitados.join(', ');
+    const nombresFinalizaronJornadaSeparados = tecnicosFinalizaronJornada.join(', ');
 
     return (
         
@@ -41,19 +41,19 @@ const BarraEstadosTecnicos = () => {
 
             <Cabecera>            
                 <p> Iniciaron jornada: </p>
-                <p> Finalizaron jornada: </p>
-                <p> Citados: </p>
                 <p> En camino: </p>
                 <p> En cliente: </p>
+                <p> Parados: </p>
+                <p> Finalizaron jornada: </p>
                 <p> De vacaciones: </p>
             </Cabecera> 
 
             <Tecnicos>
                 <Nombres>{nombresIniciaronJornadaSeparados}</Nombres>
-                <Nombres>{nombresFinalizaronJornadaSeparados}</Nombres>
-                <Nombres>{nombresTecnicosCitadosSeparados}</Nombres>
                 <Nombres>{nombresTecnicosEnCaminoSeparados}</Nombres>
                 <Nombres>{nombresTecnicosEnClienteSeparados}</Nombres>
+                <Nombres>{nombresTecnicosCitadosSeparados}</Nombres>
+                <Nombres>{nombresFinalizaronJornadaSeparados}</Nombres>
                 <Nombres>array tecnicos</Nombres>
             </Tecnicos> 
 

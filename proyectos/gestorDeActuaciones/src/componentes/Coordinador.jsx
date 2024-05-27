@@ -31,7 +31,6 @@ const Agenda = lazy(() => import('./Agenda'));
 const Supervision = lazy(() => import('./Supervision'));
 const InstaladosFinalizados = lazy(() => import('./InstaladosFinalizados'));
 
-
 // Contexto
 import { RolContext } from "../contextos/RolContext";
 
@@ -44,8 +43,8 @@ const Coordinador = () => {
   // LLamadas a los hooks
   const [nombre] = useObtenerNombreDeUnUsuario();
 
-  // Estados
-  const {rol} = useContext(RolContext);     
+  // Obtengo desde los contextos
+  const {rol} = useContext(RolContext);       
   
   return (
     <>
@@ -89,7 +88,7 @@ const Coordinador = () => {
 
         </ContenedorHeader>
       </Header>
-
+      
       {/* Rutas declaradas de forma dinámica*/}
       <Suspense>
         <Routes>

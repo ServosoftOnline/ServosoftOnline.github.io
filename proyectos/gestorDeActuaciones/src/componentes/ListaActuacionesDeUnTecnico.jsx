@@ -14,12 +14,13 @@
 */
 
 // React
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 
 // Elementos
-import  {Lista, ContenedorSubtitulo, Subtitulo, Fecha, ElementoListaCabecera, ElementoLista, Incidencia, Cliente, Direccion, Poblacion,
-        Estado, SpanHoraEnCamino, SpanHoraDeLlegada, Gestion,ContenedorBotonesLista,BotonAccion,} from '../elementos/ElementosDeLista';
+import  {Lista, ContenedorSubtitulo, Subtitulo, ContenedorMostrarBarraEstadoTecnicos, Fecha, ElementoListaCabecera, ElementoLista,
+        Incidencia, Cliente, Direccion, Poblacion, Estado, SpanHoraEnCamino, SpanHoraDeLlegada, Gestion,ContenedorBotonesLista,
+        BotonAccion,} from '../elementos/ElementosDeLista';
 
 // SVG
 import IconoEditar from './../assets/editar.svg?react';
@@ -42,19 +43,31 @@ import actualizaTecnicoEnCliente from '../firebase/actualizaTecnicoEnCliente';
 import useObtenerIdRolesDeUnUsuario from '../hooks/useObtenerIdRolesDeUnUsuario';
 import useObtenerIdActuacionDeUnUsuario from '../hooks/useObtenerIdActuacionDeUnUsuario';
 
+// Componentes importados
+import BarraEstadosTecnicos from "./BarraEstadosTecnicos";
+
+// Contextos
+import {muestraEstadosTecnicosContext} from './../contextos/muestraEstadosTecnicosContext';
+
 // Componente
 const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador, estadoDelTecnico}) => {  
     
     // Obtengo el id del rol del tecnico y su estado
-    const [idRoles] = useObtenerIdRolesDeUnUsuario();  
-      
+    const [idRoles] = useObtenerIdRolesDeUnUsuario(); 
 
     // Obtengo idActuacionDeUnUsuario como un objeto. Lo paso a array el cual contiene a un string. Me sirve para comparar mismos tipos de datos
     const [idActuacionDeUnUsuario] = useObtenerIdActuacionDeUnUsuario();
     const [stringIdActuacionDeUnUsuario] = Object.values(idActuacionDeUnUsuario);
-    
-    // Funciones para actualizar los estados de la actuacion y del tecnico a EnCamino
 
+    // Obtengo desde el contexto
+    const {mostrarBarraTecnicos, setMostrarBarraTecnicos} = useContext(muestraEstadosTecnicosContext);
+
+    // Estados
+    // const [mostrarBarraTecnicos, setMostrarBarraTecnicos] = useState("true");
+
+    // FUNCIONES:
+
+    // Funciones para actualizar los estados de la actuacion y del tecnico a EnCamino
     const tecnicoEnCamino = (idRoles, idActuacion) => {    
         actualizaTecnicoEnCamino(idRoles, idActuacion)
 
@@ -115,6 +128,10 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
             console.log(error);
         })
     }
+
+    const handleChange = (e) => {    
+        setMostrarBarraTecnicos(e.target.value);
+      }
     
     return (
         <>
@@ -127,134 +144,174 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                         <Subtitulo>No hay actuaciones agendadas</Subtitulo>                
                     </ContenedorSubtitulo>
                 :
+                    // En caso contrario. Si lo pide un coordinador pregunto si desea mostrar la barra de estado de tecnicos
+                    // Muestro la lista siempre, la pida un coordinador o no
+                    <>                       
+                        {laPideUnCoordinador &&
+                        <> 
+                            <form>
+                                <ContenedorMostrarBarraEstadoTecnicos>
 
-                    // En caso contrario recorro las actuaciones sin mostrar fecha repetidas y mostrando la informacion relevente
-                    array.map((actuacion, index) => {                
-                        
-                        return (
-
-                        // Solo tengo un key que debo añadir a los elementos Fecha y ElementosLista
-                        // Englobo a los elementos en un div al que le pongo el key
-                        <div key={actuacion.codigoIncidencia}>
-
-                            {/* Solo mostraré la fecha y la cabecera si la fecha si es diferente a la anterior */}
-                            {!fechaCitacionEsIgual(array, index, actuacion) &&
-                            <>
-
-                                <Fecha>
-                                    {formatearFecha(actuacion.fechaCitacion)}
-                                </Fecha>
-
-                                <ElementoListaCabecera>
-                                    <Incidencia>Incidencia</Incidencia>
-                                    <Cliente>Cliente</Cliente>
-                                    <Direccion>Dirección</Direccion>
-                                    <Poblacion>Población</Poblacion>
-                                    <Estado>Estado</Estado>
-                                    <Gestion>Gestión</Gestion>
-                                </ElementoListaCabecera>
+                                    <h4>¿Deseas mostrar el estado de los técnicos?</h4>
                                 
-                            </>
-                            }
+                                    <input 
+                                        type="radio"
+                                        name="barraTecnicos"
+                                        id="si"
+                                        value = "true"
+                                        onChange={handleChange}
+                                        checked={mostrarBarraTecnicos === "true"}
+                                    />
+                                    <label htmlFor="si">Sí</label>
 
-                            <ElementoLista>
+                                    <input 
+                                    type="radio"
+                                    name="barraTecnicos"
+                                    id="no"
+                                    value = "false"
+                                    onChange={handleChange}
+                                    checked={mostrarBarraTecnicos === "false"}
+                                    />
+                                    <label htmlFor="no">No</label>
+                                    
+                                </ContenedorMostrarBarraEstadoTecnicos>
+                                
+                            </form>
+
+                            {/* Muestro la barra solo si en el contexto mostrarBarraTecnicos contiene true */}
+                            {mostrarBarraTecnicos==='true' && <BarraEstadosTecnicos /> }
+                        </>
+                        }
                         
-                                <Incidencia>                        
-                                    {actuacion.codigoIncidencia}
-                                </Incidencia>
+                        {// Recorro las actuaciones sin mostrar fecha repetidas y mostrando la informacion relevente
+                        array.map((actuacion, index) => {                
+                            
+                            return (
 
-                                <Cliente>
-                                    {actuacion.nombre}
-                                </Cliente>
+                            // Solo tengo un key que debo añadir a los elementos Fecha y ElementosLista
+                            // Englobo a los elementos en un div al que le pongo el key
+                            <div key={actuacion.codigoIncidencia}>
 
-                                <Direccion>
-                                    {actuacion.direccion}
-                                </Direccion>
+                                {/* Solo mostraré la fecha y la cabecera si la fecha si es diferente a la anterior */}
+                                {!fechaCitacionEsIgual(array, index, actuacion) &&
+                                <>
 
-                                <Poblacion>
-                                    {actuacion.poblacion}
-                                </Poblacion>
+                                    <Fecha>
+                                        {formatearFecha(actuacion.fechaCitacion)}
+                                    </Fecha>
 
-                                {/* Muestro el estado siempre. Lo mostraré en colores solo cuando esté en camino o en cliente*/}
-                                {/* Mostraré la hora si estoy en camino o en cliente solo de colores */}
-                                <Estado>
+                                    <ElementoListaCabecera>
+                                        <Incidencia>Incidencia</Incidencia>
+                                        <Cliente>Cliente</Cliente>
+                                        <Direccion>Dirección</Direccion>
+                                        <Poblacion>Población</Poblacion>
+                                        <Estado>Estado</Estado>
+                                        <Gestion>Gestión</Gestion>
+                                    </ElementoListaCabecera>
+                                    
+                                </>
+                                }
 
-                                    { actuacion.estadoDescripcion === "En camino" ?
-                                            <>
-                                                <SpanHoraEnCamino>{actuacion.estadoDescripcion}</SpanHoraEnCamino>
-                                                <SpanHoraEnCamino>{formatearFechaEnHoraYSegundos(actuacion.horaEnCamino)}</SpanHoraEnCamino>
-                                            </>
-                                        :
-                                            actuacion.estadoDescripcion === "En cliente" ?
-                                            <>
-                                                <SpanHoraDeLlegada>{actuacion.estadoDescripcion}</SpanHoraDeLlegada>
-                                                <SpanHoraDeLlegada>{formatearFechaEnHoraYSegundos(actuacion.horaDeLlegada)}</SpanHoraDeLlegada>
-                                            </>
+                                <ElementoLista>
+                            
+                                    <Incidencia>                        
+                                        {actuacion.codigoIncidencia}
+                                    </Incidencia>
 
+                                    <Cliente>
+                                        {actuacion.nombre}
+                                    </Cliente>
+
+                                    <Direccion>
+                                        {actuacion.direccion}
+                                    </Direccion>
+
+                                    <Poblacion>
+                                        {actuacion.poblacion}
+                                    </Poblacion>
+
+                                    {/* Muestro el estado siempre. Lo mostraré en colores solo cuando esté en camino o en cliente*/}
+                                    {/* Mostraré la hora si estoy en camino o en cliente solo de colores */}
+                                    <Estado>
+
+                                        { actuacion.estadoDescripcion === "En camino" ?
+                                                <>
+                                                    <SpanHoraEnCamino>{actuacion.estadoDescripcion}</SpanHoraEnCamino>
+                                                    <SpanHoraEnCamino>{formatearFechaEnHoraYSegundos(actuacion.horaEnCamino)}</SpanHoraEnCamino>
+                                                </>
                                             :
-                                                <span>{actuacion.estadoDescripcion}</span>
-                                    }
-                                    
-                                </Estado>                    
+                                                actuacion.estadoDescripcion === "En cliente" ?
+                                                <>
+                                                    <SpanHoraDeLlegada>{actuacion.estadoDescripcion}</SpanHoraDeLlegada>
+                                                    <SpanHoraDeLlegada>{formatearFechaEnHoraYSegundos(actuacion.horaDeLlegada)}</SpanHoraDeLlegada>
+                                                </>
 
-                                {/* Botones para gestionar la actuacion */}
-                                <ContenedorBotonesLista>
-                                    
-                                    {/* Muestro botones de editar y borrar si se pide desde el modulo coordinador */}
-                                    {laPideUnCoordinador === true ? 
-                                        <>
-                                            <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>
-                                                <IconoEditar /> 
-                                            </BotonAccion>
-
-                                            <BotonAccion>
-                                                <IconoBorrar />
-                                            </BotonAccion>
-                                        </>
-                                        : null}       
-                                    
-
-                                    {/* Muestro los botones de en camino, en cliente y editar si se pide desde el modulo tecnico.
-                                        El boton del coche se mostrará si el tecnico estuviera en estado citado
-                                        El boton del cliente se mostrará solo si estoy en camino hacia la actuacion obtenida del hook
-                                        que seañ igual a la actuacion que estoy recorriendo al pintar los elementos de la lista.
-                                        El botón de la lista se muestra siempre  */}                                
+                                                :
+                                                    <span>{actuacion.estadoDescripcion}</span>
+                                        }
                                         
-                                    {laPideUnTecnico === true ?                                    
+                                    </Estado>                    
 
-                                        <>  
-                                            
-                                            {/* si no pongo el indice 0, no va. NO QUITARLO */}
-                                            {/* El icono del coche solo se muestra si el estado del tecnico es citado y la actuacion no ha sido supervisada */}
-                                            {(estadoDelTecnico[0] === 'Citado' && actuacion.estado !== 'EstadoSupervisado') &&
-                                                <BotonAccion onClick={() => actuacionEnCamino(actuacion.id)}> 
-                                                    <IconoCoche />
-                                                </BotonAccion>
-                                            }  
-
-                                            {/* MUY IMPORANTE COMPARAR DATOS DEL MISMO TIPO */}
-                                            {estadoDelTecnico[0] === 'EnCamino' && stringIdActuacionDeUnUsuario === actuacion.id &&
-                                                <BotonAccion onClick={() => actuacionEnCliente(actuacion.id)}> 
-                                                    <IconoCliente />
-                                                </BotonAccion>
-                                            }
-                                            
-                                            <BotonAccion as={Link} to={`/tecnico/editar-actuacion/${actuacion.id}`} >
-                                                <IconoEditar /> 
-                                            </BotonAccion>
-                                        </>
+                                    {/* Botones para gestionar la actuacion */}
+                                    <ContenedorBotonesLista>
                                         
-                                        : null
-                                    }  
-                                </ContenedorBotonesLista>                  
-                            </ElementoLista>
-                        </div>                
-                        )
-                    })
-                }
-            </Lista>
-        </>
-        
+                                        {/* Muestro botones de editar y borrar si se pide desde el modulo coordinador */}
+                                        {laPideUnCoordinador === true ? 
+                                            <>
+                                                <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>
+                                                    <IconoEditar /> 
+                                                </BotonAccion>
+
+                                                <BotonAccion>
+                                                    <IconoBorrar />
+                                                </BotonAccion>
+                                            </>
+                                            : null}       
+                                        
+
+                                        {/* Muestro los botones de en camino, en cliente y editar si se pide desde el modulo tecnico.
+                                            El boton del coche se mostrará si el tecnico estuviera en estado citado
+                                            El boton del cliente se mostrará solo si estoy en camino hacia la actuacion obtenida del hook
+                                            que seañ igual a la actuacion que estoy recorriendo al pintar los elementos de la lista.
+                                            El botón de la lista se muestra siempre  */}                                
+                                            
+                                        {laPideUnTecnico === true ?                                    
+
+                                            <>  
+                                                
+                                                {/* si no pongo el indice 0, no va. NO QUITARLO */}
+                                                {/* El icono del coche solo se muestra si el estado del tecnico es citado y la actuacion no ha sido supervisada */}
+                                                {(estadoDelTecnico[0] === 'Citado' && actuacion.estado !== 'EstadoSupervisado') &&
+                                                    <BotonAccion onClick={() => actuacionEnCamino(actuacion.id)}> 
+                                                        <IconoCoche />
+                                                    </BotonAccion>
+                                                }  
+
+                                                {/* MUY IMPORANTE COMPARAR DATOS DEL MISMO TIPO */}
+                                                {estadoDelTecnico[0] === 'EnCamino' && stringIdActuacionDeUnUsuario === actuacion.id &&
+                                                    <BotonAccion onClick={() => actuacionEnCliente(actuacion.id)}> 
+                                                        <IconoCliente />
+                                                    </BotonAccion>
+                                                }
+                                                
+                                                <BotonAccion as={Link} to={`/tecnico/editar-actuacion/${actuacion.id}`} >
+                                                    <IconoEditar /> 
+                                                </BotonAccion>
+                                            </>
+                                            
+                                            : null
+                                        }  
+                                    </ContenedorBotonesLista>                  
+                                </ElementoLista>
+                            </div>                
+                            )
+                        })}
+                    </>
+                    
+            }
+        </Lista>
+    </>
+    
     );
 }
  

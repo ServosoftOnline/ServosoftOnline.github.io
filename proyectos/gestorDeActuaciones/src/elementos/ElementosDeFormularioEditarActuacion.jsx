@@ -38,6 +38,14 @@ const ContenedorEditarActuacion = styled.div `
         textarea {
             font-size: 0.9rem;
         }
+
+        p {
+            font-size: 0.9rem;
+        }
+
+        label {
+            font-size: 0.9rem;
+        }
     }
 `;
 
@@ -66,7 +74,7 @@ const SubContenedorSoloLectura = styled.div `
 `;
 
 const SubContenedor1 = styled.div `
-// background: lightgreen;
+//background: lightgreen;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -103,7 +111,7 @@ const SubContenedor2 = styled.div `
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-right: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
 
     // Permite que al desplegar los select estos se pongan delante
     position: relative;
@@ -124,7 +132,7 @@ const SubContenedor2 = styled.div `
 `;
 
 const SubContenedor3 = styled.div `
-// background:grey;
+// background:lightgrey;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -133,7 +141,7 @@ const SubContenedor3 = styled.div `
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-right: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 
     // Permite que al desplegar los select estos se pongan delante
     position: relative;
@@ -163,7 +171,7 @@ const SubContenedor4 = styled.div `
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-right: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 
     // Permite que al desplegar los select estos se pongan delante
     position: relative;
@@ -176,15 +184,15 @@ const SubContenedor4 = styled.div `
 `;
 
 const Citacion = styled.div `
- background: ${theme.azulBlanco};
+    background: ${theme.azulBlanco};
 
     display: grid;    
     grid-template-columns: 1fr 1fr;    
     align-items: center;
-    width: 98%;
+    width: auto;
     padding-bottom: 1rem;
     padding-right: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
     gap: 2rem;
 
     // Borde
@@ -264,22 +272,33 @@ const TecnicosAsignados = styled.div`
     align-items: center;
     gap: 1rem;
     text-transform: capitalize;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+
+`;
+
+const ContenedorComentarios = styled.div `
+
+    background: ${theme.azulBlanco};
+    width: auto;
+    padding: 1rem;
+
+    // Borde
+    border: 1px solid ${theme.grisAzulado3};
+    border-radius: 10px;
 
 `;
 
 const ComentariosCoordinacion = styled.div `
-// background:red;
 
     display: grid;
     grid-template-columns: 1fr;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-right: 1rem;
+    width: auto;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 
     // tamaño especial para el input de comentarios tecnicos. Lo trataré como un text area
     textarea {
-        width: 92rem;
+        width: auto;
         height: 5rem;
         text-align: left;
         vertical-align: top;
@@ -288,11 +307,21 @@ const ComentariosCoordinacion = styled.div `
     @media(max-width: 60rem){ /* 950px */
         font-size: 0.8rem;
 
-        textarea {
-            width: 47rem;
+        textarea {            
             height: 3rem;
         }
     }
+`;
+
+const ComentariosSupervision = styled.div `
+    
+    p {
+        background: white;
+        border: 1px solid black;
+        padding: 0.5rem;
+        width: auto;
+    }
+
 `;
 
 const ContenedorBoton = styled.div`
@@ -308,5 +337,6 @@ const ContenedorBoton = styled.div`
 
 `;
 
-export  {ContenedorEditarActuacion, SubContenedorSoloLectura, SubContenedor1, SubContenedor2, SubContenedor3,
-        ComentariosCoordinacion, SubContenedor4, TecnicosAsignados, Citacion, ContenedorSelectTecnicos, ContenedorDatePicker, Fecha, Hora, ContenedorBoton } ;
+export  {ContenedorEditarActuacion, SubContenedorSoloLectura, SubContenedor1, SubContenedor2, SubContenedor3, ContenedorComentarios,
+        ComentariosCoordinacion, ComentariosSupervision, SubContenedor4, TecnicosAsignados, Citacion, ContenedorSelectTecnicos, ContenedorDatePicker,
+        Fecha, Hora, ContenedorBoton };

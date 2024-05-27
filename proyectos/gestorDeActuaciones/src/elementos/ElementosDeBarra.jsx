@@ -6,8 +6,8 @@ import theme from '../objetos/theme'
 const Barra = styled.div `
     background: ${theme.lightSmoke};
     padding: 0 0.5rem; /* 0 32px */  
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    // margin-left: 0.5rem;
+    // margin-right: 0.5rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 2px solid ${theme.darkerSmoke};

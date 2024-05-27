@@ -13,8 +13,8 @@ import { fromUnixTime, getUnixTime } from "date-fns";
 
 // Elementos formulario editar actuacion
 import {ContenedorEditarActuacion, SubContenedorSoloLectura, SubContenedor1, SubContenedor2,
-        SubContenedor3, ComentariosCoordinacion, SubContenedor4, TecnicosAsignados, Citacion, ContenedorSelectTecnicos,
-        ContenedorDatePicker, Fecha, Hora, ContenedorBoton } from '../elementos/ElementosDeFormularioEditarActuacion';
+        SubContenedor3, ContenedorComentarios, ComentariosCoordinacion, ComentariosSupervision, SubContenedor4, TecnicosAsignados, Citacion,
+        ContenedorSelectTecnicos, ContenedorDatePicker, Fecha, Hora, ContenedorBoton } from '../elementos/ElementosDeFormularioEditarActuacion';
 
 // Componentes select
 import SelectZonasDeInstalacion from "./SelectZonasDeInstalacion";
@@ -96,6 +96,7 @@ const FormularioEditarActuacionCoordinador = () => {
 
     // Estados sexta fila
     const [comentariosCoordinacion, asignarComentariosCoordinacion] = useState('');    
+    
 
     // Efecto para establezcer los estados con los datos de la actuacion obtenida del hook.
     //  Por ahora solo es necesario tener una depedencia
@@ -118,7 +119,7 @@ const FormularioEditarActuacionCoordinador = () => {
         asignarStb(actuacion.stb);
         asignarEstado(actuacion.estado);
         asignarEstadoDescripcion(actuacion.estadoDescripcion);
-        {console.log('actuacion.fechaCitacion: ' + actuacion.fechaCitacion)}
+        
         asignarFechaCitacion(fromUnixTime(actuacion.fechaCitacion));
         asignarTecnico1(actuacion.tecnico1);
         asignarTecnico2(actuacion.tecnico2);
@@ -126,7 +127,7 @@ const FormularioEditarActuacionCoordinador = () => {
         asignarTecnico4(actuacion.tecnico4);
         asignarTecnico5(actuacion.tecnico5);
 
-        asignarComentariosCoordinacion(actuacion.comentariosCoordinacion);        
+        asignarComentariosCoordinacion(actuacion.comentariosCoordinacion); 
 
     },[actuacion.linkDorus]);  
 
@@ -570,15 +571,20 @@ const FormularioEditarActuacionCoordinador = () => {
                 {/* Si hay tecnicos asignados a esta actuacion los muestro */}
                 {todosLosTecnicos.length>0 &&
                     <TecnicosAsignados>
-                        <label htmlFor="tecnicosAsignados">Técnicos asignados:</label>
+                        <label htmlFor="tecnicosAsignados">Técnicos asignados a esta actuación:</label>
                         {/* const nombresTecnicosCitadosSeparados = tecnicosCitados.join(', '); */}
                         <p>{todosLosTecnicos.join(', ')}</p>
                     </TecnicosAsignados>                    
                 }
-                
-                <ComentariosCoordinacion>
 
-                    <div>
+                {/* Barra de estados de técnicos */}
+                <BarraEstadosTecnicos />
+
+                {/* Contenedor con los comentarios                 */}
+                <ContenedorComentarios>
+
+                    {/* Comentarios de coordinacion. De escritura */}
+                    <ComentariosCoordinacion>
                         <label htmlFor="comentariosCoordinacion">Comentarios de coordinación:</label>
                         <textarea                            
                             name="comentariosCoordinacion"                
@@ -586,9 +592,17 @@ const FormularioEditarActuacionCoordinador = () => {
                             value={comentariosCoordinacion}
                             onChange={handleChange}                            
                         />
-                    </div>
+                    </ComentariosCoordinacion>
 
-                </ComentariosCoordinacion>
+                    {/* Comentarios de supervision. Los muestra si existieran. De sólo lectura */}                    
+                    {actuacion.comentariosSupervision &&
+                        <ComentariosSupervision>
+                            <label htmlFor="comentariosSupervision">Comentarios de supervisión:</label>
+                            <p>{actuacion.comentariosSupervision}</p>
+                        </ComentariosSupervision>
+                    }
+
+                </ContenedorComentarios>
 
                 <ContenedorBoton>
                     <Boton
@@ -602,10 +616,6 @@ const FormularioEditarActuacionCoordinador = () => {
 
                 {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
                 <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
-
-
-                {/* Barra de estados de técnicos */}
-                <BarraEstadosTecnicos />
                 
             </form>
             
