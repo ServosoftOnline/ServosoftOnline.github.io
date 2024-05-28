@@ -14,7 +14,7 @@
 */
 
 // React
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
 // Elementos
@@ -45,6 +45,7 @@ import useObtenerIdActuacionDeUnUsuario from '../hooks/useObtenerIdActuacionDeUn
 
 // Componentes importados
 import BarraEstadosTecnicos from "./BarraEstadosTecnicos";
+import ResolucionChecker from './ResolucionChecker';
 
 // Contextos
 import {muestraEstadosTecnicosContext} from './../contextos/muestraEstadosTecnicosContext';
@@ -60,7 +61,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
     const [stringIdActuacionDeUnUsuario] = Object.values(idActuacionDeUnUsuario);
 
     // Obtengo desde el contexto
-    const {mostrarBarraTecnicos, setMostrarBarraTecnicos} = useContext(muestraEstadosTecnicosContext);
+    const {mostrarBarraTecnicos, setMostrarBarraTecnicos} = useContext(muestraEstadosTecnicosContext);    
 
 
     // FUNCIONES:
@@ -132,6 +133,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
     
     return (
         <>
+            <ResolucionChecker/>
             <Lista>
             {
                 // Si no obtuve actuaciones muestro mensaje
