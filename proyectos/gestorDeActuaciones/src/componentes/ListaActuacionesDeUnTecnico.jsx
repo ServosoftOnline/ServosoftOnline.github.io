@@ -9,7 +9,8 @@
 
         - Los colores de los botones y su estado asociado serán naranjas, verdes o azules
         - Las descripciones de los estados serán naranjas o verdes correspondiendo a los colores de sus botones
-
+        - Obtengo mediante la funcion resolutionChecker el ancho en pixeles de la pantalla del dispositivo
+        - Tengo en cuenta ese ancho para ajustar el interfaz del tecnico cuando el movil está en posicion vertical
         
 */
 
@@ -32,6 +33,7 @@ import IconoCliente from './../assets/cliente.svg?react';
 import fechaCitacionEsIgual from '../funciones/fechaCitacionEsIgual';
 import formatearFecha from '../funciones/formatearFecha';
 import formatearFechaEnHoraYSegundos from '../funciones/formatearFechaEnHoraYSegundos';
+import resolucionChecker from '../funciones/resolucionChecker';
 
 // Funcion que actualiza en firebase
 import actualizaActuacionEnCamino from '../firebase/actualizaActuacionEnCamino';
@@ -45,7 +47,7 @@ import useObtenerIdActuacionDeUnUsuario from '../hooks/useObtenerIdActuacionDeUn
 
 // Componentes importados
 import BarraEstadosTecnicos from "./BarraEstadosTecnicos";
-import ResolucionChecker from './ResolucionChecker';
+
 
 // Contextos
 import {muestraEstadosTecnicosContext} from './../contextos/muestraEstadosTecnicosContext';
@@ -61,7 +63,11 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
     const [stringIdActuacionDeUnUsuario] = Object.values(idActuacionDeUnUsuario);
 
     // Obtengo desde el contexto
-    const {mostrarBarraTecnicos, setMostrarBarraTecnicos} = useContext(muestraEstadosTecnicosContext);    
+    const {mostrarBarraTecnicos, setMostrarBarraTecnicos} = useContext(muestraEstadosTecnicosContext); 
+    
+    // Obtengo el ancho de la funcion resolucionChecker.
+    const ancho = resolucionChecker();
+    console.log(ancho);
 
 
     // FUNCIONES:
@@ -133,7 +139,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
     
     return (
         <>
-            <ResolucionChecker/>
+            
             <Lista>
             {
                 // Si no obtuve actuaciones muestro mensaje
@@ -199,11 +205,12 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                         {formatearFecha(actuacion.fechaCitacion)}
                                     </Fecha>
 
-                                    {/* Para reducir espacio en el interfaz del técnico le reduzco las palabras a siglas. Y oculto la dirección */}
+                                    {/* Reduzco el interfaz dependiendo del ancho del dispositivo con el que acceda */}
+                                    {/* Solo muestro la direccion si el ancho es superior a 385 px                                     */}
                                     <ElementoListaCabecera>
-                                        <Incidencia> {laPideUnTecnico ? 'Cdi' : 'Incidencia'} </Incidencia>
-                                        <Cliente> {laPideUnTecnico ? 'Cli' : 'Cliente'} </Cliente>
-                                        {laPideUnCoordinador && <Direccion>Dirección</Direccion> }
+                                        <Incidencia> { ancho < 385 ? 'Cod.I' : 'Incidencia'} </Incidencia>
+                                        <Cliente>Cliente</Cliente>
+                                        {ancho > 385 && <Direccion>Dirección</Direccion> }
                                         <Poblacion>Población</Poblacion>
                                         <Estado>Estado</Estado>
                                         <Gestion>Gestión</Gestion>
@@ -222,13 +229,12 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                         {actuacion.nombre}
                                     </Cliente>
 
-                                    {/* Solo muestro la direccion si la pide un coordinador */}
-                                    {laPideUnCoordinador &&
+                                    {/* Solo muestro la direccion si el ancho es superior a 385px */}
+                                    {ancho > 385 &&
                                         <Direccion>
                                             {actuacion.direccion}
                                         </Direccion>
                                     }
-                                    
 
                                     <Poblacion>
                                         {actuacion.poblacion}
