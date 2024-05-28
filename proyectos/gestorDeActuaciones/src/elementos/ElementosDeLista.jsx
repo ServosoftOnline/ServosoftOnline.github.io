@@ -14,7 +14,7 @@ const Lista = styled.ul`
     overflow-y: auto;
 
     @media(max-width: 60rem){   /* 950px */            
-        padding: 0 0.8rem;
+        padding: 0 0.3rem;
     }
 
     @media(max-width: 48rem) {  /* 768px */        
@@ -24,6 +24,7 @@ const Lista = styled.ul`
 `;
 
 const ContenedorLista = styled.div`
+
     
     
 `;
@@ -67,7 +68,7 @@ const Fecha = styled.div`
 
     border-radius: 0.31rem; /* 5px */
     background: ${theme.negro};
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     text-align: center;
     color: #fff;
     padding: 0.62rem 3.12rem; /* 10px 50px */
@@ -76,8 +77,11 @@ const Fecha = styled.div`
     
  
     @media(max-width: 60rem){ /* 950px */            
-        font-size: 0.8rem;
-        padding: 0.2rem 3.12rem; /* 3.2px 49.92px */
+        font-size: 1rem;
+        margin: 0.4rem 0; /* 20px */
+        padding: 0.3rem 3.12rem; /* 3.2px 49.92px */
+        margin-top: 2rem;
+        margin-bottom: 1rem;
     }
 
     @media(max-width: 48rem) {  /* 768px */        
@@ -98,7 +102,9 @@ const ElementoListaCabecera = styled.li`
 
     @media(max-width: 60rem){ /* 950px */ 
         grid-template-columns: 4.5rem 1fr 1fr 1fr 5.5rem 5rem; 
-        font-size: 0.7rem;        
+        font-size: 0.7rem;      
+        padding: 0.5rem 0; /* 20px */   
+        
     }
 
     @media(max-width: 48rem) {  /* 768px */        
@@ -113,9 +119,9 @@ const ElementoLista = styled.li`
     display: grid;
     grid-template-columns: 7rem 2fr 2fr 1fr 1fr 5rem;         
     align-items: center;     
-    gap: 0.5rem;
+    gap: 0.6rem;    
     border-bottom: 2px solid #F2F2F2;     
-    font-size: 1rem;
+    font-size: 1rem;    
     
     & > div {
         width: 100%;
@@ -130,7 +136,7 @@ const ElementoLista = styled.li`
     @media(max-width: 60rem){ /* 950px */ 
         grid-template-columns: 4.5rem 1fr 1fr 1fr 5.5rem 5rem; 
         font-size: 0.7rem;
-        padding: 0.1rem 0; /* 16px */        
+        padding: 0.3rem 0; /* 16px */                
     }
 
     @media(max-width: 48rem) {  /* 768px */         
@@ -158,10 +164,10 @@ const Direccion = styled.div`
 `;
 
 const Poblacion = styled.div`
-// background: lightgrey;
-    justify-content: left;    
-    text-transform: capitalize;    
+    justify-content: left;
+    text-transform: lowercase capitalize;    
 `;
+
 
 const Estado = styled.div`
 // background: lightyellow;

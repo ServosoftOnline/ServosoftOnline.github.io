@@ -5,11 +5,9 @@ import theme from "../objetos/theme";
 
 const Header = styled.div`
     background: ${theme.grisClaro2};
-    width: 100%;    
+    width: auto;    
     border-bottom: 1px solid ${theme.grisOscuro};
-    margin-bottom: 1rem;  
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
     align-items: center;
     
     // Separo los componentes de forma horizontal
@@ -31,18 +29,10 @@ const ContenedorHeader = styled.div`
  
     // Coloco los elementos en forma de columna, los centro . Los div de dentro los pongo al final
     @media(max-width: 60rem){ /* 950px */
-
-        display: flex;
+        
         flex-direction: column;
         align-items: center;
-        padding-left: 0.1rem;
-        padding-right: 0.1rem;   
-        
- 
-        & > div {
-            display: flex;
-            margin-bottom: 0.7rem; /* 20px */                       
-        }
+        margin-bottom: 0.5rem;         
     }
 `;
 
@@ -108,10 +98,12 @@ const TodosLosBotones = styled.div `
 `;
 
 const ContenedorBotones = styled.div` 
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0rem;    
+    padding: 0rem;  
+    
 `;
 
 const ContenedorArchivoExcel = styled.div`
@@ -138,4 +130,5 @@ const ContenedorArchivoExcel = styled.div`
 `;
 
  
-export {Header, ContenedorHeader, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo, ContenedorTitulo, TodosLosBotones, ContenedorBotones, ContenedorArchivoExcel};
+export  {Header, ContenedorHeader, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo,
+        ContenedorTitulo, TodosLosBotones, ContenedorBotones, ContenedorArchivoExcel};
