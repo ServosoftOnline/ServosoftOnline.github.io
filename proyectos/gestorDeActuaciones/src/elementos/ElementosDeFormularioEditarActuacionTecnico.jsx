@@ -20,7 +20,7 @@ const ContenedorEditarActuacion = styled.div `
         font-size: 0.8rem;        
     }
 
-    @media (max-width: 768px) {        
+    @media(max-width: 48rem) {  /* 768px */        
         font-size: 1rem;        
     }
 `;
@@ -43,8 +43,9 @@ const SubContenedorSoloLectura = styled.div `
         padding-bottom: 0.5rem;
     }
 
-    @media (max-width: 768px) {        
+    @media(max-width: 48rem) {  /* 768px */         
         grid-template-columns: 1fr;
+        flex-direction: column:
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
     }
@@ -63,7 +64,7 @@ const ComentariosDesdeCoordinacion = styled.div `
         padding: 0.5rem;
     }
 
-    @media (max-width: 768px) {
+    @media(max-width: 48rem) {  /* 768px */ 
         p {
             width: auto;           
         }
@@ -80,7 +81,7 @@ const Momentos = styled.div `
     margin-bottom: 0.5rem;       
     
 
-    @media (max-width: 768px) {
+    @media(max-width: 48rem) {  /* 768px */ 
         display: flex;
         justify-content: space-between;
         width: auto;
@@ -100,7 +101,7 @@ const ContenedorDificultad = styled.div`
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 
-    @media (max-width: 768px) {  
+    @media(max-width: 48rem) {  /* 768px */  
         width: auto;
     }
 `;
@@ -111,7 +112,7 @@ const DificultadYPuntos = styled.div `
     align-items: center;
     padding: 0.5rem;     
 
-    @media (max-width: 768px) {      
+    @media(max-width: 48rem) {  /* 768px */      
         grid-template-columns: 60% 40%;
     }
 `;
@@ -127,7 +128,7 @@ const ConsideracionNivel4 = styled.div `
         padding-right: 1.5rem;
     }
 
-    @media (max-width: 768px) {      
+    @media(max-width: 48rem) {  /* 768px */     
         grid-template-columns: 60% 40%;
     }
     
@@ -141,23 +142,26 @@ background:lightpink;
 `;
 
 const Fotografias = styled.div `
+
     margin-top: 1.8rem;
     margin-bottom: 1rem;    
 `;
 
 const ContenedorFotografias = styled.div`
+
     border: 0.1rem solid black;
     margin-top: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 
-    @media (max-width: 768px) {      
-        width: auto%;
+    @media(max-width: 48rem) {  /* 768px */      
+        width: auto;
     }
 
 `;
 
 const ComentariosTecnicos = styled.div`
+
     display: grid;
     grid-template-columns: 1fr;
     padding-top: 1rem;
@@ -176,20 +180,19 @@ const ContenedorComentariosTecnicos = styled.div`
     padding-bottom: 1rem;        
     
     textarea {
-        font-size: 1.1rem;
-        width: 92.5rem;
+        width: auto;
+        font-size: 1.1rem;        
         height: 7rem;        
     }
 
     @media(max-width: 60rem){ /* 950px */     
         textarea {
-            font-size: 0.9rem;
-            width: auto;
+            font-size: 0.9rem;            
             height: 5rem;
         }
     }
 
-    @media (max-width: 768px) {      
+    @media(max-width: 48rem) {  /* 768px */      
         
         textarea {
             font-size: 1rem;
@@ -217,27 +220,15 @@ const ContenedorEstadoYBoton = styled.div`
     margin-bottom: 2rem;
     margin-top: 2rem;
 
-    @media (max-width: 768px) {
+    @media(max-width: 48rem) {  /* 768px */ 
+
         display: flex;  
         flex-direction: column;
-        gap: 2rem;
-        // align-items: justify;   
-        // grid-template-columns: 4fr 1fr;   
-        // grid-template-rows: 1fr 1fr;  
-        // height: 8rem;       
+        gap: 2rem;               
     }
 `;
 
-const Estado = styled.div `  
-@media (max-width: 768px) {      
-    // grid-template-columns: 2fr 1fr;            
-}
-// background: lightblue;
-// display: grid;
-// grid-template-rows: 1fr 1fr 1fr 1fr;   
-// margin: 0rem;
-// padding: 0rem;
-    
+const Estado = styled.div ` 
 
 `;
 

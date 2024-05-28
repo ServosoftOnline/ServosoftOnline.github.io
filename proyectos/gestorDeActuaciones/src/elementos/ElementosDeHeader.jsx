@@ -54,9 +54,9 @@ const ContenedorTitulos = styled.div `
     p{
         font-weight: bold;
         margin-left: 0.5rem;
-    }
+    }    
 
-    @media (max-width: 768px) {        
+    @media(max-width: 48rem) {  /* 768px */        
                 
         flex-direction: column;
 
@@ -89,6 +89,10 @@ const Titulo = styled.h1`
     @media(max-width: 60rem){ /* 950px */
         font-size: 1rem; /* 16px */          
     }
+
+    @media(max-width: 48rem) {  /* 768px */        
+        font-size: 1.7rem; /* 32px */          
+    }
 `;
 
 const ContenedorTitulo = styled.div`
@@ -100,13 +104,6 @@ const ContenedorTitulo = styled.div`
 const TodosLosBotones = styled.div `
     display: flex;
     align-items: center;    
-    
-
-    @media(max-width: 60rem){ /* 950px */
-        // flex-direction: column;
-        // gap: 0.5rem;
-    }
-
 
 `;
 

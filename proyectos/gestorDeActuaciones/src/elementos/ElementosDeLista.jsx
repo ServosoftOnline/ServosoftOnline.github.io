@@ -13,11 +13,11 @@ const Lista = styled.ul`
     padding: 0 2rem; /* 0 32px */    
     overflow-y: auto;
 
-    @media(max-width: 60rem){ /* 950px */            
+    @media(max-width: 60rem){   /* 950px */            
         padding: 0 0.8rem;
     }
 
-    @media (max-width: 768px) {        
+    @media(max-width: 48rem) {  /* 768px */        
         padding: 0 0.2rem;        
     }
     
@@ -80,8 +80,8 @@ const Fecha = styled.div`
         padding: 0.2rem 3.12rem; /* 3.2px 49.92px */
     }
 
-    @media (max-width: 768px) {        
-        font-size: 1rem;  
+    @media(max-width: 48rem) {  /* 768px */        
+        font-size: 1.2rem;  
         display: block;        
     }
 `;
@@ -101,7 +101,7 @@ const ElementoListaCabecera = styled.li`
         font-size: 0.7rem;        
     }
 
-    @media (max-width: 768px) {        
+    @media(max-width: 48rem) {  /* 768px */        
         grid-template-columns: 2.5rem 7rem 4.5rem 4rem 4rem; 
         font-size: 0.7rem;  
         gap: 0.1rem;      
@@ -133,9 +133,9 @@ const ElementoLista = styled.li`
         padding: 0.1rem 0; /* 16px */        
     }
 
-    @media (max-width: 768px) {        
+    @media(max-width: 48rem) {  /* 768px */         
         grid-template-columns: 2.5rem 7rem 4.5rem 4rem 4rem;         
-        font-size: 0.55rem;   
+        font-size: 0.6rem;   
         gap: 0.1rem;     
     }
 `;

@@ -202,7 +202,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                         <Incidencia> {laPideUnTecnico ? 'Cdi' : 'Incidencia'} </Incidencia>
                                         <Cliente> {laPideUnTecnico ? 'Cli' : 'Cliente'} </Cliente>
                                         {laPideUnCoordinador && <Direccion>Dirección</Direccion> }
-                                        <Poblacion>{laPideUnTecnico ? 'Pob':'Población'}</Poblacion>
+                                        <Poblacion>Población</Poblacion>
                                         <Estado>Estado</Estado>
                                         <Gestion>Gestión</Gestion>
                                     </ElementoListaCabecera>
