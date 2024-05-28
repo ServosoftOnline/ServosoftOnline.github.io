@@ -65,9 +65,11 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
     // Obtengo desde el contexto
     const {mostrarBarraTecnicos, setMostrarBarraTecnicos} = useContext(muestraEstadosTecnicosContext); 
     
-    // Obtengo el ancho de la funcion resolucionChecker.
-    const ancho = resolucionChecker();
+    // Obtengo el ancho de la funcion resolucionChecker y defino el ancho de los smartphone
+    const ancho = parseInt(resolucionChecker());
+    const anchoSmartphone = 400;
     console.log(ancho);
+    console.log(anchoSmartphone);
 
 
     // FUNCIONES:
@@ -206,11 +208,11 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                     </Fecha>
 
                                     {/* Reduzco el interfaz dependiendo del ancho del dispositivo con el que acceda */}
-                                    {/* Solo muestro la direccion si el ancho es superior a 385 px                                     */}
+                                    {/* Solo muestro la direccion si el ancho es superior a la cte anchoSmartphone*/}
                                     <ElementoListaCabecera>
-                                        <Incidencia> { ancho < 385 ? 'Cod.I' : 'Incidencia'} </Incidencia>
+                                        <Incidencia> { ancho < anchoSmartphone ? 'Cod.I' : 'Incidencia'} </Incidencia>
                                         <Cliente>Cliente</Cliente>
-                                        {ancho > 385 && <Direccion>Dirección</Direccion> }
+                                        {ancho > anchoSmartphone && <Direccion>Dirección</Direccion> }
                                         <Poblacion>Población</Poblacion>
                                         <Estado>Estado</Estado>
                                         <Gestion>Gestión</Gestion>
@@ -229,8 +231,8 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                         {actuacion.nombre}
                                     </Cliente>
 
-                                    {/* Solo muestro la direccion si el ancho es superior a 385px */}
-                                    {ancho > 385 &&
+                                    {/* Solo muestro la direccion si el ancho es superior a la cte anchoSmartphone */}
+                                    {ancho > anchoSmartphone &&
                                         <Direccion>
                                             {actuacion.direccion}
                                         </Direccion>
