@@ -217,18 +217,32 @@ const ContenedorEstadoYBoton = styled.div`
     margin-bottom: 2rem;
     margin-top: 2rem;
 
-    @media (max-width: 768px) {      
-        grid-template-columns: 2fr 1fr;            
+    @media (max-width: 768px) {
+        display: flex;  
+        flex-direction: column;
+        gap: 2rem;
+        // align-items: justify;   
+        // grid-template-columns: 4fr 1fr;   
+        // grid-template-rows: 1fr 1fr;  
+        // height: 8rem;       
     }
 `;
 
-const Estado = styled.div `
-// background:lightblue;
+const Estado = styled.div `  
+@media (max-width: 768px) {      
+    // grid-template-columns: 2fr 1fr;            
+}
+// background: lightblue;
+// display: grid;
+// grid-template-rows: 1fr 1fr 1fr 1fr;   
+// margin: 0rem;
+// padding: 0rem;
     
 
 `;
 
 const ContenedorBoton = styled.div`
+
     display: grid;
     justify-content: center;
     

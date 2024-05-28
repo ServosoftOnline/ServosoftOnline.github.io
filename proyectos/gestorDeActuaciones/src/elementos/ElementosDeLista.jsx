@@ -16,6 +16,15 @@ const Lista = styled.ul`
     @media(max-width: 60rem){ /* 950px */            
         padding: 0 0.8rem;
     }
+
+    @media (max-width: 768px) {        
+        padding: 0 0.2rem;        
+    }
+    
+`;
+
+const ContenedorLista = styled.div`
+    
     
 `;
 
@@ -26,6 +35,7 @@ const ContenedorSubtitulo = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
 `;
  
 const Subtitulo = styled.h3`
@@ -34,6 +44,7 @@ const Subtitulo = styled.h3`
     font-weight: 400;
     font-size: 40px;
     padding: 2.5rem 0; /* 40px */
+    
 `;
 
 const ContenedorMostrarBarraEstadoTecnicos = styled.div`
@@ -70,7 +81,8 @@ const Fecha = styled.div`
     }
 
     @media (max-width: 768px) {        
-        font-size: 1rem;          
+        font-size: 1rem;  
+        display: block;        
     }
 `;
 
@@ -90,8 +102,9 @@ const ElementoListaCabecera = styled.li`
     }
 
     @media (max-width: 768px) {        
-        font-size: 0.75rem;  
-        gap: 0.3rem;      
+        grid-template-columns: 2.5rem 7rem 4.5rem 4rem 4rem; 
+        font-size: 0.7rem;  
+        gap: 0.1rem;      
     }
 `;
  
@@ -121,8 +134,9 @@ const ElementoLista = styled.li`
     }
 
     @media (max-width: 768px) {        
-        font-size: 0.7rem;   
-        gap: 0.3rem;     
+        grid-template-columns: 2.5rem 7rem 4.5rem 4rem 4rem;         
+        font-size: 0.55rem;   
+        gap: 0.1rem;     
     }
 `;
  
@@ -215,6 +229,7 @@ const BotonAccion = styled.button`
     }
  
     @media(max-width: 60rem){ /* 960px */
+
         opacity: 1;
         width: 2rem;    /* 32px */
         height: 2rem;   /* 32px */
@@ -275,6 +290,7 @@ const BotonCargarMas = styled.button`
  
 export {
     Lista,
+    ContenedorLista,
     ContenedorSubtitulo,
     Subtitulo,
     ContenedorMostrarBarraEstadoTecnicos,

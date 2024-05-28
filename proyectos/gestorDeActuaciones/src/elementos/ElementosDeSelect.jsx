@@ -4,8 +4,7 @@ import theme from '../objetos/theme';
 
 const Select = styled.div`
 
-    display: flex;
-    // justify-content: center;
+    display: flex;    
     align-items: center; 
     gap: 1rem;      
     height: 2rem; 
@@ -13,6 +12,12 @@ const Select = styled.div`
     @media(max-width: 60rem){ /* 950px */
         gap: 0.3rem;        
     }
+
+    @media (max-width: 768px) { 
+        width: 22rem;   
+        gap: 0rem;       
+    }
+
 `;
 
 const ContenedorSelect = styled.div`
@@ -33,6 +38,12 @@ const ContenedorSelect = styled.div`
     &:hover {
         background: ${theme.grisClaro2};
     }
+    
+    @media (max-width: 768px) { 
+        margin-left: 0.4rem;          
+        margin-right: 0.4rem;          
+    }
+
     
 `;
  
@@ -57,6 +68,11 @@ const OpcionSeleccionada = styled.div`
             height: 2rem; 
         }        
     }
+
+    @media (max-width: 768px) { 
+        font-size: 0.9rem;        
+    }
+    
 `;
  
 const Opciones = styled.div`
@@ -72,6 +88,10 @@ const Opciones = styled.div`
     @media(max-width: 60rem){ /* 950px */
         top: 1.5rem; /* 90px */        
     }
+
+    @media (max-width: 768px) { 
+        font-size: 0.8rem;        
+    }
 `;
  
 const Opcion = styled.div`
@@ -84,6 +104,7 @@ const Opcion = styled.div`
     &:hover {
         background: ${theme.grisClaro2};
     }
+    
 `;
 
 export {Select, ContenedorSelect, OpcionSeleccionada, Opciones, Opcion};

@@ -18,9 +18,9 @@ import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 
 // Elementos
-import  {Lista, ContenedorSubtitulo, Subtitulo, ContenedorMostrarBarraEstadoTecnicos, Fecha, ElementoListaCabecera, ElementoLista,
-        Incidencia, Cliente, Direccion, Poblacion, Estado, SpanHoraEnCamino, SpanHoraDeLlegada, Gestion,ContenedorBotonesLista,
-        BotonAccion,} from '../elementos/ElementosDeLista';
+import  {Lista, ContenedorLista, ContenedorSubtitulo, Subtitulo, ContenedorMostrarBarraEstadoTecnicos, Fecha, ElementoListaCabecera,
+        ElementoLista, Incidencia, Cliente, Direccion, Poblacion, Estado, SpanHoraEnCamino, SpanHoraDeLlegada, Gestion,
+        ContenedorBotonesLista, BotonAccion} from '../elementos/ElementosDeLista';
 
 // SVG
 import IconoEditar from './../assets/editar.svg?react';
@@ -62,11 +62,8 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
     // Obtengo desde el contexto
     const {mostrarBarraTecnicos, setMostrarBarraTecnicos} = useContext(muestraEstadosTecnicosContext);
 
-    // Estados
-    // const [mostrarBarraTecnicos, setMostrarBarraTecnicos] = useState("true");
 
     // FUNCIONES:
-
     // Funciones para actualizar los estados de la actuacion y del tecnico a EnCamino
     const tecnicoEnCamino = (idRoles, idActuacion) => {    
         actualizaTecnicoEnCamino(idRoles, idActuacion)
@@ -146,7 +143,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                 :
                     // En caso contrario. Si lo pide un coordinador pregunto si desea mostrar la barra de estado de tecnicos
                     // Muestro la lista siempre, la pida un coordinador o no
-                    <>                       
+                    <ContenedorLista>                       
                         {laPideUnCoordinador &&
                         <> 
                             <form>
@@ -200,11 +197,12 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                         {formatearFecha(actuacion.fechaCitacion)}
                                     </Fecha>
 
+                                    {/* Para reducir espacio en el interfaz del técnico le reduzco las palabras a siglas. Y oculto la dirección */}
                                     <ElementoListaCabecera>
-                                        <Incidencia>Incidencia</Incidencia>
-                                        <Cliente>Cliente</Cliente>
-                                        <Direccion>Dirección</Direccion>
-                                        <Poblacion>Población</Poblacion>
+                                        <Incidencia> {laPideUnTecnico ? 'Cdi' : 'Incidencia'} </Incidencia>
+                                        <Cliente> {laPideUnTecnico ? 'Cli' : 'Cliente'} </Cliente>
+                                        {laPideUnCoordinador && <Direccion>Dirección</Direccion> }
+                                        <Poblacion>{laPideUnTecnico ? 'Pob':'Población'}</Poblacion>
                                         <Estado>Estado</Estado>
                                         <Gestion>Gestión</Gestion>
                                     </ElementoListaCabecera>
@@ -222,9 +220,13 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                         {actuacion.nombre}
                                     </Cliente>
 
-                                    <Direccion>
-                                        {actuacion.direccion}
-                                    </Direccion>
+                                    {/* Solo muestro la direccion si la pide un coordinador */}
+                                    {laPideUnCoordinador &&
+                                        <Direccion>
+                                            {actuacion.direccion}
+                                        </Direccion>
+                                    }
+                                    
 
                                     <Poblacion>
                                         {actuacion.poblacion}
@@ -306,7 +308,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                             </div>                
                             )
                         })}
-                    </>
+                    </ContenedorLista>
                     
             }
         </Lista>

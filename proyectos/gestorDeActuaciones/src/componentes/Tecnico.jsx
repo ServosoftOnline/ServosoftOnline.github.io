@@ -15,7 +15,9 @@ import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 
 // Elementos
-import {Header, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo, ContenedorBotones, ContenedorHeader} from '../elementos/ElementosDeHeader';
+import  {Header, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo, ContenedorBotones,
+        ContenedorHeader} from '../elementos/ElementosDeHeader';
+        
 import Boton from "../elementos/Boton";
 import BtnSalir from '../elementos/BtnSalir';
 

@@ -69,6 +69,8 @@ const Boton = styled(Link)`
         font-size: 1rem;     /* 10.88px */
         margin-right: 0.3rem;    /* 1.6px */
         height: 2rem;
+        text-align: center;
+        
     }
 `;
 

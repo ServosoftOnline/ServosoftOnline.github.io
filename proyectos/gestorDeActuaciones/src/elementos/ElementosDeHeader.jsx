@@ -41,8 +41,7 @@ const ContenedorHeader = styled.div`
  
         & > div {
             display: flex;
-            margin-bottom: 0.7rem; /* 20px */
-            // justify-content: end;            
+            margin-bottom: 0.7rem; /* 20px */                       
         }
     }
 `;
@@ -55,6 +54,17 @@ const ContenedorTitulos = styled.div `
     p{
         font-weight: bold;
         margin-left: 0.5rem;
+    }
+
+    @media (max-width: 768px) {        
+                
+        flex-direction: column;
+
+        p {
+            padding: 0rem;
+            margin: 0rem;
+        }
+    
     }
     
 `;
