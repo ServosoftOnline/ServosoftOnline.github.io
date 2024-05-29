@@ -33,7 +33,7 @@ import IconoCliente from './../assets/cliente.svg?react';
 import fechaCitacionEsIgual from '../funciones/fechaCitacionEsIgual';
 import formatearFecha from '../funciones/formatearFecha';
 import formatearFechaEnHoraYSegundos from '../funciones/formatearFechaEnHoraYSegundos';
-import resolucionChecker from '../funciones/resolucionChecker';
+import resolucionChecker from '../funciones/anchoDePantalla';
 
 // Funcion que actualiza en firebase
 import actualizaActuacionEnCamino from '../firebase/actualizaActuacionEnCamino';
@@ -67,7 +67,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
     
     // Obtengo el ancho de la funcion resolucionChecker y defino el ancho de los smartphone
     const ancho = parseInt(resolucionChecker());
-    const anchoSmartphone = 400;
+    const anchoSmartphone = 430;
     console.log(ancho);
     console.log(anchoSmartphone);
 

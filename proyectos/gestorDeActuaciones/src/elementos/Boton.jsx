@@ -70,6 +70,7 @@ const Boton = styled(Link)`
         margin-right: 0.3rem;    /* 1.6px */
         height: 2rem;
         text-align: center;
+        padding: 0.6rem 0.4rem; /* 8px 8px */
         
     }
 `;

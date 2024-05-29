@@ -1,11 +1,11 @@
 /*
-    COMPONENTE QUE SIRVE PARA OBTENER LA RESOLUCION DEL DISPOSITIVO QUE ESTA ACCEDIENDO A LA APP
-        - Dependiendo de esta resolución modificaré el funcionamiento de la app cuando se encuentre en resoluciones bajas
+    FUNCION QUE DEVUELVE EL ANCHO DE UNA PANTALLA
+      - Dependiendo de esta resolución modificaré el funcionamiento de la app cuando se encuentre en resoluciones bajas
 */
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-const resolutionChecker = () => {
+const anchoDePantalla = () => {
 
   // Estado para almacenar la resolución de la pantalla
   const [resolution, setResolution] = useState({
@@ -36,4 +36,4 @@ const resolutionChecker = () => {
 
 };
 
-export default resolutionChecker;
+export default anchoDePantalla;

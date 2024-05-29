@@ -34,30 +34,56 @@ const ContenedorHeader = styled.div`
         align-items: center;
         margin-bottom: 0.5rem;         
     }
+    
 `;
 
-const ContenedorTitulos = styled.div `
+// const ContenedorTitulos = styled.div `
+
+//     display: flex; 
+//     align-items: center;       
+
+//     p{
+//         font-weight: bold;
+//         margin-left: 0.5rem;
+//     }    
+
+//     @media(max-width: 48rem) {  /* 768px */        
+                
+//         flex-direction: column;
+
+//         p {
+//             padding: 0rem;
+//             margin: 0rem;
+//         }    
+//     }
+    
+// `;
+
+const ContenedorTitulos = styled.div`
 
     display: flex; 
-    align-items: center;       
+    align-items: center;         
+    font-weight: bold;
+    margin-left: 0.5rem;
+    gap: 1rem;
 
-    p{
-        font-weight: bold;
-        margin-left: 0.5rem;
-    }    
+    @media(max-width: 48rem) {  /* 768px */  
 
-    @media(max-width: 48rem) {  /* 768px */        
-                
-        flex-direction: column;
+        display: block;
+        text-align: center;
+        gap: 0rem;
 
-        p {
-            padding: 0rem;
-            margin: 0rem;
+        h1, p {
+            margin: 0;      /* Elimina el margen por defecto */
+            padding: 0;     /* Elimina el padding por defecto */
         }
-    
+
+        h1 {
+            margin-top: 0.5rem;
+        }
     }
-    
 `;
+
 
 // Los párrafos son para incio y fin de jornada
 const ParrafoVerde = styled.p`
@@ -85,15 +111,11 @@ const Titulo = styled.h1`
     }
 `;
 
-const ContenedorTitulo = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-`;
+
  
 const TodosLosBotones = styled.div `
     display: flex;
-    align-items: center;    
+    align-items: center;        
 
 `;
 
@@ -103,6 +125,10 @@ const ContenedorBotones = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0rem;  
+
+    @media(max-width: 48rem) {  /* 768px */        
+        margin-top: 0.5rem;
+    }
     
 `;
 
@@ -130,5 +156,5 @@ const ContenedorArchivoExcel = styled.div`
 `;
 
  
-export  {Header, ContenedorHeader, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo,
-        ContenedorTitulo, TodosLosBotones, ContenedorBotones, ContenedorArchivoExcel};
+export  {Header, ContenedorHeader, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo, TodosLosBotones,
+        ContenedorBotones, ContenedorArchivoExcel};

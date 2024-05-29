@@ -13,9 +13,11 @@ import { deleteField } from "firebase/firestore";
 import {getUnixTime } from "date-fns";
 
 // Elementos
-import {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad,
-    DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias, ComentariosTecnicos, ContenedorComentariosTecnicos,
-    ContenedorEstadoYBoton, Estado, ContenedorBoton, ComentariosDesdeSupervision} from './../elementos/ElementosDeFormularioEditarActuacionTecnico';
+import  {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, LinkDorus, LinkCoordenadas,
+        ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4,
+        CheckBox, Fotografias, ContenedorFotografias, ComentariosTecnicos, ContenedorComentariosTecnicos,
+        ContenedorEstadoYBoton, Estado, ContenedorBoton,
+        ComentariosDesdeSupervision} from './../elementos/ElementosDeFormularioEditarActuacionTecnico';
 
 // Componentes select
 import SelectEstadosModuloTecnico from "./SelectEstadosModuloTecnico";
@@ -230,20 +232,20 @@ const  FormularioEditarActuacionTecnico = () => {
                     <div> <label htmlFor="descripcion">Descripción: </label> {actuacion.descripcion} </div>
 
                     {/* link para dorus */}
-                    <div>
+                    <LinkDorus>
                         <label htmlFor="linkDorus">Link Dorus: </label>
                         <a href={actuacion.linkDorus} target="_blank">{actuacion.linkDorus}</a>                         
-                    </div>
+                    </LinkDorus>
 
                     {/* Dirección y población */}
                     <div> <label htmlFor="direccion">Dirección: </label> {actuacion.direccion} </div>
                     <div> <label htmlFor="poblacion">Población: </label> {actuacion.poblacion} </div>
 
                     {/* Coordenadas de google maps */}
-                    <div> 
+                    <LinkCoordenadas> 
                         <label htmlFor="coordenadas">Coordenadas: </label> 
                         <a href="#" onClick={() => abrirGoogleMaps(actuacion.coordenadas)}>{actuacion.coordenadas}</a>
-                    </div>
+                    </LinkCoordenadas>
 
                     {/* Telefonos, tipo de actuacion, zona, momentos de en camino e inicio de actuacion y comentarios coordinacion */}                    
                     <div> <label htmlFor="telefonos">Telefonos: </label> {actuacion.telefonos} </div>
@@ -254,7 +256,7 @@ const  FormularioEditarActuacionTecnico = () => {
                     {/* Tecnicos acompañantes, los devuelvo separados por comas mediante map */}
                     <TecnicosAcompañantes>
 
-                        <label htmlFor="tecnicosAcompañantes">Técnicos acompañantes: </label>
+                        <label htmlFor="tecnicosAcompañantes">Acompañantes: </label>
                         {
                             acompañantes.length === 0 ? 'Vas solo'
                             :                        
@@ -318,7 +320,7 @@ const  FormularioEditarActuacionTecnico = () => {
 
                         <ConsideracionNivel4>
                             <div>
-                                <h4>¿Consideras la actuacion de nivel4?</h4>
+                                <h4>¿Consideras actuación nivel4?</h4>
                             </div>
 
                             <div>

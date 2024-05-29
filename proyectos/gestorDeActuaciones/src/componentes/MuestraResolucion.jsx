@@ -1,5 +1,6 @@
 /*
     COMPONENTES QUE USARÉ PARA REALIZAR PRUEBAS Y VER QUE RESOLUCION TIENE LA PANTALLA DONDE ESTOY PROBANDO
+      - Lo ire insertando en aquellos interfaces donde lo vea necesario
 
 */
 import React, { useState, useEffect } from 'react';

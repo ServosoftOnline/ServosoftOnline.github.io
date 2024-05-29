@@ -11,7 +11,6 @@ import React from "react";
 
 // Componentes
 import ListaActuacionesDeUnTecnico from "./ListaActuacionesDeUnTecnico";
-import MuestraResolucion from "./MuestraResolucion";
 
 // Hooks
 import useObtenerActuacionesCitadasDeUnTecnico from "../hooks/useObtenerActuacionesCitadasDeUnTecnico";
@@ -25,8 +24,7 @@ const  AgendaTecnico= ({nombre}) => {
     const [estadoDelTecnico] = useObtenerEstadoDeUnUsuario();  
 
     return (
-        <>
-            <MuestraResolucion/>
+        <>            
             <ListaActuacionesDeUnTecnico array = {arrayActuaciones} laPideUnTecnico= {true} estadoDelTecnico={estadoDelTecnico}/>    
         </>
     );

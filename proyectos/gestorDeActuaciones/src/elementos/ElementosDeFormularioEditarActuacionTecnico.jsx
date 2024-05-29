@@ -38,18 +38,62 @@ const SubContenedorSoloLectura = styled.div `
     margin-bottom: 0.5rem;
     gap: 0.8rem;
 
-    div {        
+    div {          
         border-bottom: 2px solid ${theme.grisClaro};
         padding-bottom: 0.5rem;
     }
 
     @media(max-width: 48rem) {  /* 768px */         
-        grid-template-columns: 1fr;
-        flex-direction: column:
+        grid-template-columns: 1fr;       
         margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.5rem;  
+        
+        div {
+
+            display: grid;
+            grid-template-rows: 1fr;      
+
+        }
     }
     
+`;
+
+const LinkDorus = styled.div`
+
+    @media(max-width: 48rem) {  /* 768px */ 
+
+        display: flex;
+        flex-direction: column;
+
+        // Permite que el texto del enlace no se desborder
+        a {
+            display: block; /* Asegura que el enlace ocupe toda la línea */
+            max-width: 100%;
+            word-break: break-all; /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+    }
+`;
+
+const LinkCoordenadas = styled.div`
+
+    @media(max-width: 48rem) {  /* 768px */ 
+
+        display: flex;
+        flex-direction: column;
+
+        // Permite que el texto del enlace no se desborder
+        a {
+            display: block; /* Asegura que el enlace ocupe toda la línea */
+            max-width: 100%;
+            word-break: break-all; /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+    }
 `;
 
 const ComentariosDesdeCoordinacion = styled.div `
@@ -113,7 +157,9 @@ const DificultadYPuntos = styled.div `
     padding: 0.5rem;     
 
     @media(max-width: 48rem) {  /* 768px */      
-        grid-template-columns: 60% 40%;
+        grid-template-columns: 71% 29%;
+        font-size: 0.9rem;
+        padding: 0 0.5rem;
     }
 `;
 
@@ -129,7 +175,15 @@ const ConsideracionNivel4 = styled.div `
     }
 
     @media(max-width: 48rem) {  /* 768px */     
-        grid-template-columns: 60% 40%;
+        grid-template-columns: 71% 29%;
+        font-size: 0.9rem;        
+        padding: 0 0.5rem;
+
+        label {
+            padding-right: 0.1rem;
+        }
+
+        
     }
     
 `;
@@ -230,6 +284,7 @@ const ContenedorEstadoYBoton = styled.div`
 
 const Estado = styled.div ` 
 
+    
 `;
 
 const ContenedorBoton = styled.div`
@@ -240,6 +295,7 @@ const ContenedorBoton = styled.div`
 `;
 
 
-export  {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, ComentariosDesdeCoordinacion, Momentos,
-        Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias,
-        ComentariosTecnicos, ContenedorComentariosTecnicos, ContenedorEstadoYBoton, Estado, ContenedorBoton, ComentariosDesdeSupervision} ;
+export  {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, LinkDorus, LinkCoordenadas,
+        ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4,
+        CheckBox, Fotografias, ContenedorFotografias, ComentariosTecnicos, ContenedorComentariosTecnicos,
+        ContenedorEstadoYBoton, Estado, ContenedorBoton, ComentariosDesdeSupervision};

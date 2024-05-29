@@ -53,7 +53,9 @@ const Btn = styled.button`
     }
 
     @media (max-width: 768px) {
-        height: 3rem;         
+        height: 3rem; 
+        width: 4rem; /* 50px */
+        height: 3.2rem; /* 50px */       
     }
 `;
  
