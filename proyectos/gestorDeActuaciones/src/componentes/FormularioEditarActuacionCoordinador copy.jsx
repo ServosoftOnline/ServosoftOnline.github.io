@@ -12,9 +12,9 @@ import { useParams } from "react-router-dom";
 import { fromUnixTime, getUnixTime } from "date-fns";
 
 // Elementos formulario editar actuacion
-import  {ContenedorEditarActuacion, ContenedorSoloLectura, Cliente, Descripcion, Contenedor1, Contenedor2,
-        ContenedorCoordenadas, ContenedorTelefonos, ContenedorSelectZona, Contenedor3, ContenedorSelectDificultad,
-        ContenedorComentarios, ComentariosCoordinacion, ComentariosSupervision, ContenedorSelectTipoDeActuacion, Contenedor4,
+import  {ContenedorEditarActuacion, ContenedorSoloLectura, Contenedor1, Contenedor2, ContenedorCoordenadas,
+        ContenedorTelefonos, ContenedorSelectZona, Contenedor3, ContenedorSelectDificultad, ContenedorComentarios,
+        ComentariosCoordinacion, ComentariosSupervision, ContenedorSelectTipoDeActuacion, Contenedor4,
         ContenedorSelectTipoDeTrabajo, ContenedorSelectStb, ContenedorSelectEstado, TecnicosAsignados, Citacion,
         ContenedorSelectTecnicos, ContenedorDatePicker, Fecha, Hora,
         ContenedorBoton} from '../elementos/ElementosDeFormularioCoordinacion';
@@ -393,8 +393,8 @@ const FormularioEditarActuacionCoordinador = () => {
 
                 <ContenedorSoloLectura>
                     <div> <label htmlFor="codigoIncidencia">Código de incidencia: </label> {actuacion.codigoIncidencia} </div>
-                    <Cliente> <label htmlFor="codigoIncidencia">Cliente: </label> {actuacion.nombre} </Cliente>
-                    <Descripcion> <label htmlFor="codigoIncidencia">Descripción: </label> {actuacion.descripcion} </Descripcion>
+                    <div> <label htmlFor="codigoIncidencia">Cliente: </label> {actuacion.nombre} </div>
+                    <div> <label htmlFor="codigoIncidencia">Descripción: </label> {actuacion.descripcion} </div>
                 </ContenedorSoloLectura>
 
                 <Contenedor1>
@@ -539,44 +539,43 @@ const FormularioEditarActuacionCoordinador = () => {
 
                 {/* Este subcontenedor solo se muestra si la actuacion esta en estado agenda */}
                 {estado === 'EstadoAgenda' &&
+                                             
+                        
+                        <Citacion>       
+                                                                                                   
+                            <ContenedorDatePicker>
+                                
+                                <Fecha>
+                                    <h4>Fecha:</h4>
+                                    <DatePicker fechaCitacion={fechaCitacion} asignarFechaCitacion={asignarFechaCitacion} />
+                                </Fecha>
+                                
+                                <Hora>
+                                    <h4>Hora: </h4>
+                                    <p>horas</p>
+                                </Hora>
+                            
+                            </ContenedorDatePicker>                                                        
+
+                            {/* Codigo proporcionado por ChatGPT:
+                                idTipoDeTrabajo contiene un número que coincide con el número de tecnicos
+                                Array.from() para crear un array con la longitud especificada por idTipoDeTrabajo
+                                y proporciona tantos select como indique el número */}
+                            
+                            <ContenedorSelectTecnicos>
+                                {Array.from({ length: idTipoDeTrabajo }, (_, index) => (
+                                    <SelectTecnicos
+                                        numeroTecnicos={index}
+                                        tecnico={eval(`tecnico${index + 1}`)}
+                                        asignarTecnico={eval(`asignarTecnico${index + 1}`)}
+                                    />
+                                ))}
+                            </ContenedorSelectTecnicos>                        
+                            
+
+                        </Citacion>                
                     
-                    <Citacion>       
-                                                                                                
-                        <ContenedorDatePicker>
-                            
-                            <Fecha>
-                                <h4>Fecha:</h4>
-                                <DatePicker fechaCitacion={fechaCitacion} asignarFechaCitacion={asignarFechaCitacion} />
-                            </Fecha>
-                            
-                            <Hora>
-                                <h4>Hora: </h4>
-                                <p>horas</p>
-                            </Hora>
-                        
-                        </ContenedorDatePicker>                                                        
-
-                        {/* Codigo proporcionado por ChatGPT:
-                            idTipoDeTrabajo contiene un número que coincide con el número de tecnicos
-                            Array.from() para crear un array con la longitud especificada por idTipoDeTrabajo
-                            y proporciona tantos select como indique el número.
-                            style me permite pasarle un z-Index de forma dinámica para que los select no se pongan encima */}
-                        
-                        <ContenedorSelectTecnicos>
-                            {Array.from({ length: idTipoDeTrabajo }, (_, index) => (
-                                <SelectTecnicos
-                                    numeroTecnicos={index}
-                                    tecnico={eval(`tecnico${index + 1}`)}
-                                    asignarTecnico={eval(`asignarTecnico${index + 1}`)}
-                                    style={{ zIndex: idTipoDeTrabajo - index, position: 'relative'}}
-                
-                                />
-                            ))}
-                        </ContenedorSelectTecnicos>       
-
-                    </Citacion>                
                 }                
-
 
                 {/* Si hay tecnicos asignados a esta actuacion los muestro */}
                 {todosLosTecnicos.length>0 &&
@@ -588,7 +587,7 @@ const FormularioEditarActuacionCoordinador = () => {
                 }
 
                 {/* Barra de estados de técnicos */}
-                {/* <BarraEstadosTecnicos /> */}
+                <BarraEstadosTecnicos />
 
                 {/* Contenedor con los comentarios                 */}
                 <ContenedorComentarios>

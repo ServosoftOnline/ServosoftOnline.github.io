@@ -13,10 +13,10 @@ import { deleteField } from "firebase/firestore";
 import {getUnixTime } from "date-fns";
 
 // Elementos
-import  {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, LinkDorus, LinkCoordenadas,
-        ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4,
-        CheckBox, Fotografias, ContenedorFotografias, ComentariosTecnicos, ContenedorComentariosTecnicos,
-        ContenedorEstadoYBoton, Estado, ContenedorBoton,
+import  {ContenedorEditarActuacion, ContenedorSoloLectura, ContenedorCliente, ContenedorDescripcion, LinkDorus,
+        ContenedorDireccion, LinkCoordenadas, ContenedorAcompañantes, ComentariosDesdeCoordinacion, Momentos,
+        Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias,
+        ComentariosTecnicos, ContenedorComentariosTecnicos, ContenedorEstadoYBoton, Estado, ContenedorBoton,
         ComentariosDesdeSupervision} from './../elementos/ElementosDeFormularioEditarActuacionTecnico';
 
 // Componentes select
@@ -224,12 +224,23 @@ const  FormularioEditarActuacionTecnico = () => {
             <form onSubmit={handleSubmit}>
 
                 {/* Subcontenedor solo con elementos de lectura */}
-                <SubContenedorSoloLectura>
+                <ContenedorSoloLectura>
 
                     {/* Codigo de incidencia, cliente y descripcion */}
-                    <div> <label htmlFor="codigoIncidencia">Código de incidencia: </label> {actuacion.codigoIncidencia} </div>
-                    <div> <label htmlFor="cliente">Cliente: </label> {actuacion.nombre} </div>
-                    <div> <label htmlFor="descripcion">Descripción: </label> {actuacion.descripcion} </div>
+                    <div>
+                        <label htmlFor="codigoIncidencia">Código de incidencia: </label>
+                        {actuacion.codigoIncidencia}
+                    </div>
+
+                    <ContenedorCliente>
+                        <label htmlFor="cliente">Cliente: </label>
+                        {actuacion.nombre}
+                    </ContenedorCliente>
+
+                    <ContenedorDescripcion>
+                        <label htmlFor="descripcion">Descripción: </label>
+                        {actuacion.descripcion}
+                    </ContenedorDescripcion>
 
                     {/* link para dorus */}
                     <LinkDorus>
@@ -238,8 +249,15 @@ const  FormularioEditarActuacionTecnico = () => {
                     </LinkDorus>
 
                     {/* Dirección y población */}
-                    <div> <label htmlFor="direccion">Dirección: </label> {actuacion.direccion} </div>
-                    <div> <label htmlFor="poblacion">Población: </label> {actuacion.poblacion} </div>
+                    <ContenedorDireccion>
+                        <label htmlFor="direccion">Dirección: </label>
+                        {actuacion.direccion}
+                    </ContenedorDireccion>
+
+                    <div>
+                        <label htmlFor="poblacion">Población: </label>
+                        {actuacion.poblacion}
+                    </div>
 
                     {/* Coordenadas de google maps */}
                     <LinkCoordenadas> 
@@ -248,13 +266,28 @@ const  FormularioEditarActuacionTecnico = () => {
                     </LinkCoordenadas>
 
                     {/* Telefonos, tipo de actuacion, zona, momentos de en camino e inicio de actuacion y comentarios coordinacion */}                    
-                    <div> <label htmlFor="telefonos">Telefonos: </label> {actuacion.telefonos} </div>
-                    <div> <label htmlFor="tipoActuacion">Tipo de actuación: </label> {actuacion.tipoActuacion} </div>
-                    <div> <label htmlFor="zona">Zona: </label> {actuacion.zonaInstalacion} </div>
-                    <div> <label htmlFor="tipoTrabajo">Tipo de trabajo: </label> {actuacion.tipoTrabajo} </div>
+                    <div>
+                        <label htmlFor="telefonos">Telefonos: </label>
+                        {actuacion.telefonos}
+                    </div>
+
+                    <div>
+                        <label htmlFor="tipoActuacion">Tipo de actuación: </label>
+                        {actuacion.tipoActuacion}
+                    </div>
+
+                    <div>
+                        <label htmlFor="zona">Zona: </label>
+                        {actuacion.zonaInstalacion}
+                    </div>
+
+                    <div>
+                        <label htmlFor="tipoTrabajo">Tipo de trabajo: </label>
+                        {actuacion.tipoTrabajo}
+                    </div>
 
                     {/* Tecnicos acompañantes, los devuelvo separados por comas mediante map */}
-                    <TecnicosAcompañantes>
+                    <ContenedorAcompañantes>
 
                         <label htmlFor="tecnicosAcompañantes">Acompañantes: </label>
                         {
@@ -267,9 +300,9 @@ const  FormularioEditarActuacionTecnico = () => {
                                 </React.Fragment>
                             ))
                         }
-                    </TecnicosAcompañantes>
+                    </ContenedorAcompañantes>
 
-                </SubContenedorSoloLectura>
+                </ContenedorSoloLectura>
 
                 {/* Comentarios desde coordinacion */}
                 <ComentariosDesdeCoordinacion> 
@@ -316,6 +349,7 @@ const  FormularioEditarActuacionTecnico = () => {
                                 <label htmlFor="puntos">Puntos: </label>
                                 {consideraNivel4==="Si" ? puntosTemporales : actuacion.puntos} 
                             </div>
+
                         </DificultadYPuntos>
 
                         <ConsideracionNivel4>
@@ -382,10 +416,11 @@ const  FormularioEditarActuacionTecnico = () => {
                 {/* Si hay comentarios de supervisor los muestro */}
                 {actuacion.comentariosSupervision &&
                     <>
-                    <label htmlFor="comentariosSupervision"> Comentarios del supervisor: </label>
-                    <ComentariosDesdeSupervision>                    
-                        <p>{actuacion.comentariosSupervision !== "" ? actuacion.comentariosSupervision : "No hay comentarios" } </p>
-                    </ComentariosDesdeSupervision>
+                        <label htmlFor="comentariosSupervision"> Comentarios del supervisor: </label>
+
+                        <ComentariosDesdeSupervision>                    
+                            <p>{actuacion.comentariosSupervision !== "" ? actuacion.comentariosSupervision : "No hay comentarios" } </p>
+                        </ComentariosDesdeSupervision>
                     </>
                 }
                 

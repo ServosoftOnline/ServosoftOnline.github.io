@@ -63,13 +63,13 @@ const Boton = styled(Link)`
         font-size: 0.7rem;     /* 10.88px */
         margin-left: 0.1rem;    /* 1.6px */
         height: 1.5rem; 
+        text-align: center;
     }
 
     @media (max-width: 768px) {
         font-size: 1rem;     /* 10.88px */
         margin-right: 0.3rem;    /* 1.6px */
-        height: 2rem;
-        text-align: center;
+        height: 2rem;        
         padding: 0.6rem 0.4rem; /* 8px 8px */
         
     }

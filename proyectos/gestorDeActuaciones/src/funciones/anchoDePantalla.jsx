@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react';
 
 const anchoDePantalla = () => {
-
+  
   // Estado para almacenar la resolución de la pantalla
   const [resolution, setResolution] = useState({
     width: window.innerWidth,
@@ -31,8 +31,12 @@ const anchoDePantalla = () => {
     };
   }, []);
 
-  // Devuelvo el ancho
-  return resolution.width;
+  // Establezco los anchos actuales y el maximo que debe tener para aplicarle la programacion en pantallas moviles
+  const anchoActual = resolution.width
+  const anchoMaximo = 430;
+
+  // Devuelvo los anchos
+  return {anchoActual, anchoMaximo};
 
 };
 

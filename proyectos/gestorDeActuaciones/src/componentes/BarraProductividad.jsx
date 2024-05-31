@@ -17,10 +17,11 @@ const BarraTotalGastado = () => {
 
     // Lo devuelvo convertido en moneda en el interior de la barra
     return ( 
-        <BarraProductividad>            
-            <p> <b>Productividad diaria: </b>0 pts</p>
-            <p> <b>Productividad semanal: </b>0 pts</p>
-            <p> <b>Productividad mensual: </b>0 pts</p>
+        <BarraProductividad>                
+            <p> <b>Productividad</b> </p>
+            <p>diaria: 0pts</p>
+            <p>semanal: 0 pts</p>
+            <p>mensual:0 pts</p>
         </BarraProductividad>        
      );
 }

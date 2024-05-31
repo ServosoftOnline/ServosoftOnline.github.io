@@ -43,9 +43,8 @@ const BarraEstadosTecnicos = () => {
                 <p> Iniciaron jornada: </p>
                 <p> En camino: </p>
                 <p> En cliente: </p>
-                <p> Parados: </p>
-                <p> Finalizaron jornada: </p>
-                <p> De vacaciones: </p>
+                <p> Otras gestiones: </p>
+                <p> Finalizaron jornada: </p>                
             </Cabecera> 
 
             <Tecnicos>
@@ -53,8 +52,7 @@ const BarraEstadosTecnicos = () => {
                 <Nombres>{nombresTecnicosEnCaminoSeparados}</Nombres>
                 <Nombres>{nombresTecnicosEnClienteSeparados}</Nombres>
                 <Nombres>{nombresTecnicosCitadosSeparados}</Nombres>
-                <Nombres>{nombresFinalizaronJornadaSeparados}</Nombres>
-                <Nombres>array tecnicos</Nombres>
+                <Nombres>{nombresFinalizaronJornadaSeparados}</Nombres>                
             </Tecnicos> 
 
         </Barra>        

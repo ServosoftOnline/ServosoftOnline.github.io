@@ -88,6 +88,10 @@ const ContenedorTitulos = styled.div`
 // Los párrafos son para incio y fin de jornada
 const ParrafoVerde = styled.p`
     color: ${theme.verdeIcono};
+
+    @media(max-width: 60rem){ /* 950px */
+        font-size: 1.5rem; /* 16px */          
+    }
 `;
 
 const ParrafoRojo = styled.p`
@@ -103,7 +107,7 @@ const Titulo = styled.h1`
     
     // Cuando se reduzca el tamaño de la ventana a 950px, disminuyo el tamaño de la fuente del titulo
     @media(max-width: 60rem){ /* 950px */
-        font-size: 1rem; /* 16px */          
+        font-size: 1.5rem; /* 16px */          
     }
 
     @media(max-width: 48rem) {  /* 768px */        
@@ -115,7 +119,15 @@ const Titulo = styled.h1`
  
 const TodosLosBotones = styled.div `
     display: flex;
-    align-items: center;        
+    align-items: center;  
+    
+    @media(max-width: 60rem){ /* 950px */
+        flex-direction: column; 
+    }
+
+    @media(max-width: 48rem) {  /* 768px */        
+        display: none;
+    }
 
 `;
 

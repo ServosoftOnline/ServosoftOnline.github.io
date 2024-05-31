@@ -72,10 +72,13 @@ const Coordinador = () => {
               <Boton $paraCoordinador to = "ilocalizable">Ilocalizable</Boton>
               <Boton $paraCoordinador to = "mantenimiento">Mantenimiento</Boton>
               <Boton $paraCoordinador to = "falta-citas">Falta citas</Boton>
+            </ContenedorBotones>
+
+            <ContenedorBotones>
               <Boton $paraCoordinador to = "incidencias">Incidencias</Boton>
               <Boton $paraCoordinador to = "oym">O&m</Boton>
               <Boton $paraCoordinador to = "agenda">Agenda</Boton>
-              <Boton $paraCoordinador to = "supervision">Supervisión</Boton>            
+              <Boton $paraCoordinador to = "supervision">Supervisión</Boton>
               <Boton $paraCoordinador to = "instalados-finalizados">Finalizados</Boton>
               {rol == "administrador" ? <Boton $paraAdministrador to="/administrador">Administración</Boton> : null}              
               <BtnSalir />         

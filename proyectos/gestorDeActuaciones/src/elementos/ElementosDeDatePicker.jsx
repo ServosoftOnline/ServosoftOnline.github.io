@@ -4,6 +4,7 @@ import styled from "styled-components";
 import theme from "./../objetos/theme";
 
 const ContenedorInput = styled.div`
+
     // Permite mostrar el contenedor para despues ocultarlo
     position: relative;    
  
@@ -18,7 +19,7 @@ const ContenedorInput = styled.div`
         cursor: pointer;
         border-radius: 0.625rem; /* 10px */
         height: 2rem; /* 32px */
-        width: 100%;
+        width: 100%;        
         padding: 0 1.25rem; /* 20px */
         font-size: 1rem; /* 24px */
         text-align: center;        
@@ -49,6 +50,8 @@ const ContenedorInput = styled.div`
             width: 100%;
         }
     }
+
+    
 `;
 
 export {ContenedorInput};

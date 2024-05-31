@@ -25,16 +25,13 @@ const ContenedorEditarActuacion = styled.div `
     }
 `;
 
-const TecnicosAcompañantes = styled.div`
-    text-transform: capitalize;
-`;
-
-const SubContenedorSoloLectura = styled.div `
+const ContenedorSoloLectura = styled.div `
 // background:lightyellow;
     
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 0.5rem;
+    aling-items: center;
+    margin-top: 1rem;
     margin-bottom: 0.5rem;
     gap: 0.8rem;
 
@@ -58,9 +55,65 @@ const SubContenedorSoloLectura = styled.div `
     
 `;
 
+const ContenedorCliente = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+
+        // Permite que el texto del enlace no se desborder
+        a {
+            display: block; /* Asegura que el enlace ocupe toda la línea */
+            max-width: 100%;
+            word-break: break-all; /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+    }
+`;
+
+const ContenedorDescripcion = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+
+        // Permite que el texto del enlace no se desborder
+        a {
+            display: block; /* Asegura que el enlace ocupe toda la línea */
+            max-width: 100%;
+            word-break: break-all; /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+    }
+`;
+
 const LinkDorus = styled.div`
 
-    @media(max-width: 48rem) {  /* 768px */ 
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+
+        // Permite que el texto del enlace no se desborder
+        a {
+            display: block; /* Asegura que el enlace ocupe toda la línea */
+            max-width: 100%;
+            word-break: break-all; /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+    }
+`;
+const ContenedorDireccion = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
 
         display: flex;
         flex-direction: column;
@@ -79,7 +132,28 @@ const LinkDorus = styled.div`
 
 const LinkCoordenadas = styled.div`
 
-    @media(max-width: 48rem) {  /* 768px */ 
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+
+        // Permite que el texto del enlace no se desborder
+        a {
+            display: block; /* Asegura que el enlace ocupe toda la línea */
+            max-width: 100%;
+            word-break: break-all; /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+    }
+`;
+
+const ContenedorAcompañantes = styled.div`
+
+    text-transform: capitalize;
+
+    @media(max-width: 60rem){ /* 950px */ 
 
         display: flex;
         flex-direction: column;
@@ -295,7 +369,8 @@ const ContenedorBoton = styled.div`
 `;
 
 
-export  {ContenedorEditarActuacion, TecnicosAcompañantes, SubContenedorSoloLectura, LinkDorus, LinkCoordenadas,
-        ComentariosDesdeCoordinacion, Momentos, Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4,
-        CheckBox, Fotografias, ContenedorFotografias, ComentariosTecnicos, ContenedorComentariosTecnicos,
-        ContenedorEstadoYBoton, Estado, ContenedorBoton, ComentariosDesdeSupervision};
+export  {ContenedorEditarActuacion, ContenedorSoloLectura, ContenedorCliente, ContenedorDescripcion, LinkDorus,
+        ContenedorDireccion, LinkCoordenadas, ContenedorAcompañantes, ComentariosDesdeCoordinacion, Momentos,
+        Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox, Fotografias, ContenedorFotografias,
+        ComentariosTecnicos, ContenedorComentariosTecnicos, ContenedorEstadoYBoton, Estado, ContenedorBoton,
+        ComentariosDesdeSupervision};

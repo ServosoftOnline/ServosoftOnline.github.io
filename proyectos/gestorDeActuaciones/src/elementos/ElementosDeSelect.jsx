@@ -29,7 +29,8 @@ const ContenedorSelect = styled.div`
     cursor: pointer;    
 
     // Hará que los elementos que muestre el select esten alineados
-    position: relative;
+    position: relative;    
+   
     
     width: 89%;
     text-align: center;    

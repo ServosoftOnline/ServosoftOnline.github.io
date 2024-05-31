@@ -4,6 +4,7 @@ import styled from "styled-components";
 import theme from './../objetos/theme'
 
 const BarraProductividad = styled.div`
+
     background: ${theme.verdeIcono};
     font-size: 1rem; /* 16px */
     letter-spacing: 1px;
@@ -15,12 +16,11 @@ const BarraProductividad = styled.div`
     justify-content: space-between;
     align-items: center;
  
-    @media(max-width: 31.25rem) { /* 500px */
-        flex-direction: column;
+    @media(max-width: 60rem){ /* 950px */         
         font-size: 14px;
     }
 
-    @media (max-width: 768px) {        
+    @media(max-width: 48rem) {  /* 768px */        
         font-size: 0.6rem;        
     }
 `;

@@ -33,7 +33,7 @@ import IconoCliente from './../assets/cliente.svg?react';
 import fechaCitacionEsIgual from '../funciones/fechaCitacionEsIgual';
 import formatearFecha from '../funciones/formatearFecha';
 import formatearFechaEnHoraYSegundos from '../funciones/formatearFechaEnHoraYSegundos';
-import resolucionChecker from '../funciones/anchoDePantalla';
+import anchoDePantalla from './../funciones/anchoDePantalla';
 
 // Funcion que actualiza en firebase
 import actualizaActuacionEnCamino from '../firebase/actualizaActuacionEnCamino';
@@ -65,12 +65,10 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
     // Obtengo desde el contexto
     const {mostrarBarraTecnicos, setMostrarBarraTecnicos} = useContext(muestraEstadosTecnicosContext); 
     
-    // Obtengo el ancho de la funcion resolucionChecker y defino el ancho de los smartphone
-    const ancho = parseInt(resolucionChecker());
-    const anchoSmartphone = 430;
-    console.log(ancho);
-    console.log(anchoSmartphone);
-
+    // Obtengo el ancho de la funcion anchoDePantalla y defino el ancho de los smartphone
+    const {anchoActual, anchoMaximo} = anchoDePantalla();    
+    console.log(anchoActual);
+    console.log(anchoMaximo)
 
     // FUNCIONES:
     // Funciones para actualizar los estados de la actuacion y del tecnico a EnCamino
@@ -210,9 +208,9 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                     {/* Reduzco el interfaz dependiendo del ancho del dispositivo con el que acceda */}
                                     {/* Solo muestro la direccion si el ancho es superior a la cte anchoSmartphone*/}
                                     <ElementoListaCabecera>
-                                        <Incidencia> { ancho < anchoSmartphone ? 'Cod.I' : 'Incidencia'} </Incidencia>
+                                        <Incidencia> { anchoActual < anchoMaximo ? 'Cod.I' : 'Incidencia'} </Incidencia>
                                         <Cliente>Cliente</Cliente>
-                                        {ancho > anchoSmartphone && <Direccion>Dirección</Direccion> }
+                                        {anchoActual > anchoMaximo && <Direccion>Dirección</Direccion> }
                                         <Poblacion>Población</Poblacion>
                                         <Estado>Estado</Estado>
                                         <Gestion>Gestión</Gestion>
@@ -232,7 +230,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                     </Cliente>
 
                                     {/* Solo muestro la direccion si el ancho es superior a la cte anchoSmartphone */}
-                                    {ancho > anchoSmartphone &&
+                                    {anchoActual > anchoMaximo &&
                                         <Direccion>
                                             {actuacion.direccion}
                                         </Direccion>

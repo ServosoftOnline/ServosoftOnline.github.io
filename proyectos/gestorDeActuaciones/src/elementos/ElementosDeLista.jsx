@@ -31,11 +31,8 @@ const ContenedorLista = styled.div`
 
 const ContenedorSubtitulo = styled.div`
 
-    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: center;    
 
 `;
  
@@ -43,8 +40,16 @@ const Subtitulo = styled.h3`
 
     color: ${theme.grisClaro2};
     font-weight: 400;
-    font-size: 40px;
-    padding: 2.5rem 0; /* 40px */
+    font-size: 3.5rem;
+
+    @media(max-width: 60rem){ /* 950px */            
+        font-size: 2.3rem;
+    }
+
+    @media(max-width: 48rem) {  /* 768px */        
+        font-size: 1.3rem;
+    }
+    
     
 `;
 
@@ -59,6 +64,13 @@ const ContenedorMostrarBarraEstadoTecnicos = styled.div`
 
     label {
         margin-right: 0.5rem;
+    }
+
+    @media(max-width: 48rem) {  /* 768px */        
+
+        h4, label {            
+            font-size: 0.70rem;            
+        }
     }
 
     
