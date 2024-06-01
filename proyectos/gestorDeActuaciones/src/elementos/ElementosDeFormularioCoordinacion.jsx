@@ -429,6 +429,11 @@ const ContenedorComentarios = styled.div `
     border: 1px solid ${theme.darkerSmoke};
     border-radius: 10px;
 
+    @media(max-width: 48rem) {  /* 768px */        
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
 `;
 
 const ComentariosCoordinacion = styled.div `
@@ -438,6 +443,7 @@ const ComentariosCoordinacion = styled.div `
     width: auto;
     gap: 1rem;
     margin-bottom: 1.5rem;
+    
 
     // tamaño especial para el input de comentarios tecnicos. Lo trataré como un text area
     textarea {
@@ -453,6 +459,11 @@ const ComentariosCoordinacion = styled.div `
         textarea {            
             height: 3rem;
         }
+    }
+
+    @media(max-width: 48rem) {  /* 768px */        
+        flex-direction: column;
+        padding-left: 0.5rem;        
     }
 `;
 

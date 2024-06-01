@@ -588,7 +588,8 @@ const FormularioEditarActuacionCoordinador = () => {
                 }
 
                 {/* Barra de estados de técnicos */}
-                {/* <BarraEstadosTecnicos /> */}
+                <BarraEstadosTecnicos />
+                
 
                 {/* Contenedor con los comentarios                 */}
                 <ContenedorComentarios>

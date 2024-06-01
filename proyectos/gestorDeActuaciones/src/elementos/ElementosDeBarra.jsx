@@ -26,6 +26,7 @@ const ParrafoDeLaBarra = styled.p`
 
     @media(max-width: 60rem){ /* 950px */            
         font-size: 0.8rem;
+        
     }
 `;
 
@@ -87,11 +88,40 @@ const Tecnicos = styled.div `
 
 const Nombres = styled.p `
 
-    
-    
-
 `;
 
+// DISEÑO RESPONSIVE PARA MOVILES
+
+const ContenedorEstadosTecnicosEnMoviles = styled.div`
+
+    background: ${theme.smoke}; 
+    border: 1px solid ${theme.darkSmoke};     
+    border-radius: 10px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+    
+
+    label, p {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        text-transform: capitalize;
+    }
+
+    label {
+        font-weight: bolder;
+    }
+    
+
+    div{
+        display:flex;
+        flex-direction: column;
+        padding-bottom: 1rem;        
+    }
+    
+`
 
 
-export {Barra, ParrafoDeLaBarra, Cabecera, Tecnicos, Nombres};
+
+export {Barra, ParrafoDeLaBarra, Cabecera, Tecnicos, Nombres, ContenedorEstadosTecnicosEnMoviles};
