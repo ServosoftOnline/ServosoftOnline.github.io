@@ -8,14 +8,20 @@
 */
 
 // React y react router
-import React, {useContext, Suspense, lazy} from "react";
+import React, {useState, useContext, Suspense, lazy} from "react";
 import { Route, Routes } from "react-router-dom";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
-import {Header, Titulo, ContenedorHeader, TodosLosBotones, ContenedorBotones} from '../elementos/ElementosDeHeader';
+import  {Header, ContenedorTitulos, Titulo, ContenedorHeader, TodosLosBotones,
+        ContenedorBotones, Links} from '../elementos/ElementosDeHeader';
+
 import Boton from "../elementos/Boton";
 import BtnSalir from "../elementos/BtnSalir";
+
+// SVG
+import IconoCerrar from './../assets/cerrar.svg?react';
+import IconoMenu from './../assets/menuIcon.svg?react';
 
 // Elementos para las rutas importados de forma dinámica
 const SinAsignar = lazy(() => import('./SinAsignar'));
@@ -37,14 +43,23 @@ import { RolContext } from "../contextos/RolContext";
 // Hooks
 import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
 
+// Funciones
+import anchoDePantalla from './../funciones/anchoDePantalla';
+
 // El Componente
 const Coordinador = () => {
+
+  // Obtengo el ancho de pantalla actual y el ancho máximo para considerarlo una pantalla de un smartphone
+  const {anchoActual, anchoMaximo} = anchoDePantalla();  
 
   // LLamadas a los hooks
   const [nombre] = useObtenerNombreDeUnUsuario();
 
   // Obtengo desde los contextos
-  const {rol} = useContext(RolContext);       
+  const {rol} = useContext(RolContext);   
+  
+  // Estados
+  const [mostrarLinks, setMostrarLinks] = useState(false);
   
   return (
     <>
@@ -60,13 +75,47 @@ const Coordinador = () => {
 
       {/* Cabecera */}
       <Header>
+
         <ContenedorHeader>         
+
+          {/* Se mostraran el icono para acceder a los botones y el boton de salir solo en smartphone */}
+          {!mostrarLinks ?
+                     
+            <ContenedorTitulos>
+
+              {anchoActual <= anchoMaximo && <IconoMenu onClick={() => setMostrarLinks(!mostrarLinks)}/>}
+              <Titulo> {nombre} </Titulo> 
+              {anchoActual <= anchoMaximo && <BtnSalir /> }           
+
+            </ContenedorTitulos>
+
+            :
+
+            <Links>
+            
+              <IconoCerrar onClick={() => setMostrarLinks(!mostrarLinks)}/>
+              <a href="/coordinador/direccion">Dirección</a>
+              <a href="/coordinador/sin-asignar">Sin coordinar</a>
+              <a href="/coordinador/ilocalizable">Ilocalizable</a>
+              <a href="/coordinador/mantenimiento">Mantenimiento</a>
+              <a href="/coordinador/falta-citas">Falta citas</a>
+              <a href="/coordinador/incidencias">Incidencias</a>
+              <a href="/coordinador/oym">O&m</a>
+              <a href="/coordinador/agenda">Agenda</a>
+              <a href="/coordinador/supervision">Supervisión</a>
+              <a href="/coordinador/instalados-finalizados">Finalizados</a>              
+              {rol == 'administrador' ? <a href="/administrador">Administración</a> : null}
+
+            </Links>
+
+          }
           
-          <Titulo>{nombre} </Titulo>
           
+          {/* Los botones se ocultarán en smartphones. Esto lo gestione mediante media queries en css */}
           <TodosLosBotones>
 
             <ContenedorBotones>
+
               <Boton $paraCoordinador to = "direccion">Dirección</Boton>
               <Boton $paraCoordinador to = "sin-asignar">Sin coordinar</Boton>            
               <Boton $paraCoordinador to = "ilocalizable">Ilocalizable</Boton>
@@ -77,12 +126,16 @@ const Coordinador = () => {
               <Boton $paraCoordinador to = "agenda">Agenda</Boton>
               <Boton $paraCoordinador to = "supervision">Supervisión</Boton>            
               <Boton $paraCoordinador to = "instalados-finalizados">Finalizados</Boton>
-              {rol == "administrador" ? <Boton $paraAdministrador to="/administrador">Administración</Boton> : null}              
-              <BtnSalir />         
+              {rol == "administrador" ? <Boton $paraAdministrador to="/administrador">Administración</Boton> : null} 
+              <BtnSalir />      
+
             </ContenedorBotones>
+
+            {console.log('Mostrar links: ' + mostrarLinks)}
+                          
             
           </TodosLosBotones>
-
+           
         </ContenedorHeader>
       </Header>
       

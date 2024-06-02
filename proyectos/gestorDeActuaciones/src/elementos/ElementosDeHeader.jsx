@@ -37,28 +37,6 @@ const ContenedorHeader = styled.div`
     
 `;
 
-// const ContenedorTitulos = styled.div `
-
-//     display: flex; 
-//     align-items: center;       
-
-//     p{
-//         font-weight: bold;
-//         margin-left: 0.5rem;
-//     }    
-
-//     @media(max-width: 48rem) {  /* 768px */        
-                
-//         flex-direction: column;
-
-//         p {
-//             padding: 0rem;
-//             margin: 0rem;
-//         }    
-//     }
-    
-// `;
-
 const ContenedorTitulos = styled.div`
 
     display: flex; 
@@ -69,18 +47,10 @@ const ContenedorTitulos = styled.div`
 
     @media(max-width: 48rem) {  /* 768px */  
 
-        display: block;
-        text-align: center;
-        gap: 0rem;
-
-        h1, p {
-            margin: 0;      /* Elimina el margen por defecto */
-            padding: 0;     /* Elimina el padding por defecto */
-        }
-
         h1 {
-            margin-top: 0.5rem;
+            font-size: 1.5rem;
         }
+
     }
 `;
 
@@ -103,7 +73,7 @@ const Titulo = styled.h1`
     font-weight: bold;
     text-transform: capitalize;
     font-size: 1.4rem; /* 22.4px */  
-    margin-left: 1rem;      
+    margin-left: 1rem;        
     
     // Cuando se reduzca el tamaño de la ventana a 950px, disminuyo el tamaño de la fuente del titulo
     @media(max-width: 60rem){ /* 950px */
@@ -114,8 +84,6 @@ const Titulo = styled.h1`
         font-size: 1.7rem; /* 32px */          
     }
 `;
-
-
  
 const TodosLosBotones = styled.div `
     display: flex;
@@ -144,6 +112,36 @@ const ContenedorBotones = styled.div`
     
 `;
 
+const Links = styled.div`
+
+    @media(max-width: 48rem) {  /* 768px */        
+
+        background: ${theme.azulBlanco};
+        display: flex;
+        flex-direction: column;        
+        width: 100%;
+        padding: 1rem;
+
+        svg {
+            margin-left: auto; /* Esto empuja el SVG a la derecha */
+        }
+
+        a {
+            color: ${theme.grisAzulado1};
+            border-bottom: 2px solid ${theme.grisClaro};
+            text-decoration: none;
+            margin: 0.5rem 0;            
+
+            &:hover {
+                color: ${theme.azulBlanco}; 
+                background: ${theme.grisAzulado1};
+              }
+        }    
+
+    }
+  
+`;
+
 const ContenedorArchivoExcel = styled.div`
  
     display: flex;
@@ -168,5 +166,5 @@ const ContenedorArchivoExcel = styled.div`
 `;
 
  
-export  {Header, ContenedorHeader, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo, TodosLosBotones,
-        ContenedorBotones, ContenedorArchivoExcel};
+export  {Header, ContenedorHeader, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo,
+        TodosLosBotones, ContenedorBotones, Links, ContenedorArchivoExcel};
