@@ -32,7 +32,7 @@ const Btn = styled.button`
     height: 2.8rem; /* 50px */
     line-height: 3.12rem; /* 50px */
     text-align: center;
-    margin-right: 0.2rem; /* 6.4px */
+    margin-right: 0.2rem;
     margin-left: 0.4rem;
     border: none;
     background: ${theme.grisOscuro};
@@ -47,15 +47,18 @@ const Btn = styled.button`
  
     // Cuando el tamaño de la ventana sea inferior a 950 hago el boton mas pequeño
     @media(max-width: 60rem){ /* 950px */
+
         height: 2.6rem; 
         line-height: 2.5rem; /* 40px */
-        margin-left: 0.1rem; /* 1.6px */
+        margin-left: 0.1rem; 
     }
 
     @media (max-width: 768px) {
 
         height: 2.4rem; 
         width: 2.4rem;
+        margin-left: 0rem;
+        margin-right: 0rem;
         
     }
 `;

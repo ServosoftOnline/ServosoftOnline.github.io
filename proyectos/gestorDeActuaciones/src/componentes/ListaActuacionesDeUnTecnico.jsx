@@ -66,9 +66,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
     const {mostrarBarraTecnicos, setMostrarBarraTecnicos} = useContext(muestraEstadosTecnicosContext); 
     
     // Obtengo el ancho de la funcion anchoDePantalla y defino el ancho de los smartphone
-    const {anchoActual, anchoMaximo} = anchoDePantalla();    
-    console.log(anchoActual);
-    console.log(anchoMaximo)
+    const {anchoActual, anchoMaximo} = anchoDePantalla();       
 
     // FUNCIONES:
     // Funciones para actualizar los estados de la actuacion y del tecnico a EnCamino

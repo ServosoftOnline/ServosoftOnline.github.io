@@ -4,28 +4,29 @@ import styled from "styled-components";
 import theme from "../objetos/theme";
 
 const Header = styled.div`
+
     background: ${theme.grisClaro2};
+    display: flex;
+    justify-content: space-between;
     width: auto;    
     border-bottom: 1px solid ${theme.grisOscuro};
     margin-bottom: 1rem;
-    align-items: center;
+    align-items: center;    
     
-    // Separo los componentes de forma horizontal
-    display: flex;
-    justify-content: space-between;
-
     @media(max-width: 60rem){ /* 950px */
+ 
         margin-bottom: 0rem;
         padding-bottom: 0rem;
     }
 `;
 
 const ContenedorHeader = styled.div`
+
     display: flex;
     justify-content: space-between;
     width: 100%; 
     padding-left: 1rem;
-    padding-right: 1rem;   
+    padding-right: 1rem;       
  
     // Coloco los elementos en forma de columna, los centro . Los div de dentro los pongo al final
     @media(max-width: 60rem){ /* 950px */
@@ -33,6 +34,13 @@ const ContenedorHeader = styled.div`
         flex-direction: column;
         align-items: center;
         margin-bottom: 0.5rem;         
+    }
+
+    @media(max-width: 48rem) {  /* 768px */  
+        
+        margin-bottom: 0rem;         
+        padding-left: 0rem;
+        padding-right: 0rem;   
     }
     
 `;
@@ -45,47 +53,75 @@ const ContenedorTitulos = styled.div`
     margin-left: 0.5rem;
     gap: 1rem;
 
-    @media(max-width: 48rem) {  /* 768px */  
-
+    @media(max-width: 48rem) {  /* 768px */
+        
+        margin-left: 0rem;
+        gap: 2.5rem; /* Asegura un espacio reducido en pantallas pequeñas */
+        
         h1 {
             font-size: 1.5rem;
         }
-
     }
 `;
 
+const ContenedorTituloJornada = styled.div`
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @media(max-width: 48rem) {  /* 768px */
+
+        align-self: baseline;
+        gap: 0.2rem; /* Reduce el espacio entre los elementos */
+        flex-direction: column;  
+    }
+`;
+
+const Titulo = styled.h2`
+
+    text-transform: capitalize;    
+    margin-left: 1rem;            
+
+    @media(max-width: 48rem) {  /* 768px */        
+        font-size: 1.3rem; /* 32px */  
+        margin: 0rem; 
+        padding-top: 0.5rem;               
+    }
+`;
 
 // Los párrafos son para incio y fin de jornada
 const ParrafoVerde = styled.p`
+
     color: ${theme.verdeIcono};
 
     @media(max-width: 60rem){ /* 950px */
         font-size: 1.5rem; /* 16px */          
     }
+
+    @media(max-width: 48rem) {  /* 768px */        
+        font-size: 1rem; 
+        margin-top: 0rem; /* Añade un margen superior pequeño */
+    }
 `;
 
 const ParrafoRojo = styled.p`
     color: ${theme.rojoIcono};
-`;
- 
-const Titulo = styled.h1`
 
-    font-weight: bold;
-    text-transform: capitalize;
-    font-size: 1.4rem; /* 22.4px */  
-    margin-left: 1rem;        
-    
-    // Cuando se reduzca el tamaño de la ventana a 950px, disminuyo el tamaño de la fuente del titulo
     @media(max-width: 60rem){ /* 950px */
         font-size: 1.5rem; /* 16px */          
     }
 
     @media(max-width: 48rem) {  /* 768px */        
-        font-size: 1.7rem; /* 32px */          
+        font-size: 1rem; 
+        margin-top: 0.2rem; /* Añade un margen superior pequeño */
     }
 `;
  
+
+ 
 const TodosLosBotones = styled.div `
+
     display: flex;
     align-items: center;  
     
@@ -106,6 +142,10 @@ const ContenedorBotones = styled.div`
     align-items: center;
     padding: 0rem;  
 
+    @media(max-width: 60rem){ /* 950px */
+        gap: 0.3rem; 
+    }
+
     @media(max-width: 48rem) {  /* 768px */        
         margin-top: 0.5rem;
     }
@@ -124,22 +164,46 @@ const Links = styled.div`
 
         svg {
             margin-left: auto; /* Esto empuja el SVG a la derecha */
+            padding-right: 0.5rem;
         }
 
         a {
             color: ${theme.grisAzulado1};
             border-bottom: 2px solid ${theme.grisClaro};
-            text-decoration: none;
-            margin: 0.5rem 0;            
+            text-decoration: none;            
+            padding: 0.5rem;
 
             &:hover {
                 color: ${theme.azulBlanco}; 
                 background: ${theme.grisAzulado1};
               }
-        }    
-
+        }  
     }
   
+`;
+
+const EnlaceIniciarJornada = styled.p`
+
+    @media(max-width: 48rem) {  /* 768px */   
+
+        color: ${theme.verdeIcono};
+        cursor: pointer;
+        margin: 0px;
+        padding-left: 0.5rem;
+        padding-top: 0.5rem;
+    }
+`;
+
+const EnlaceFinalizarJornada = styled.p`
+
+    @media(max-width: 48rem) {  /* 768px */   
+
+        color: ${theme.rojoIcono};
+        cursor: pointer;
+        margin: 0px;
+        padding-left: 0.5rem;
+        padding-top: 0.5rem;
+    }
 `;
 
 const ContenedorArchivoExcel = styled.div`
@@ -166,5 +230,5 @@ const ContenedorArchivoExcel = styled.div`
 `;
 
  
-export  {Header, ContenedorHeader, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo,
-        TodosLosBotones, ContenedorBotones, Links, ContenedorArchivoExcel};
+export  {Header, ContenedorHeader, ContenedorTitulos, ContenedorTituloJornada, ParrafoVerde, ParrafoRojo, Titulo,
+        TodosLosBotones, ContenedorBotones, Links, EnlaceIniciarJornada, EnlaceFinalizarJornada, ContenedorArchivoExcel};

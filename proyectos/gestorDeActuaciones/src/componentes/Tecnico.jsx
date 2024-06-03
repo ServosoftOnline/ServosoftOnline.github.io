@@ -10,13 +10,14 @@
 */
 
 // React
-import React, {Suspense, lazy, useContext} from "react";
+import React, {useState, Suspense, lazy, useContext} from "react";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 
 // Elementos
-import  {Header, ContenedorTitulos, ParrafoVerde, ParrafoRojo, Titulo, ContenedorBotones,
-        ContenedorHeader} from '../elementos/ElementosDeHeader';
+import  {Header, ContenedorTitulos, ContenedorTituloJornada, ParrafoVerde, ParrafoRojo, Titulo, ContenedorBotones, Links,
+        EnlaceIniciarJornada, EnlaceFinalizarJornada, ContenedorHeader,
+        TodosLosBotones} from '../elementos/ElementosDeHeader';
         
 import Boton from "../elementos/Boton";
 import BtnSalir from '../elementos/BtnSalir';
@@ -25,6 +26,10 @@ import BtnSalir from '../elementos/BtnSalir';
 const AgendaTecnico = lazy(() => import('./AgendaTecnico'));
 const ProductividadTecnico = lazy(() => import('./ProductividadTecnico'));
 const FormularioEditarActuacionTecnico = lazy(() => import('./FormularioEditarActuacionTecnico'));
+
+// SVG
+import IconoCerrar from './../assets/cerrar.svg?react';
+import IconoMenu from './../assets/menuIcon.svg?react';
 
 // Componentes
 import BarraProductividad from "./../componentes/BarraProductividad";
@@ -40,6 +45,8 @@ import useObtenerIdRolesDeUnUsuario from "../hooks/useObtenerIdRolesDeUnUsuario"
 // Contexto
 import {InicioJornadaContext} from './../contextos/InicioJornadaContext';
 
+// Funciones importadas
+import anchoDePantalla from './../funciones/anchoDePantalla';
 
 // Mi componente
 const Tecnico = () => {
@@ -51,7 +58,13 @@ const Tecnico = () => {
   // Obtengo desde el contexto el inicio de la jornada
   const {inicioJornada, establecerInicioDeJornada} = useContext(InicioJornadaContext); 
 
-  // Funciones
+  // Obtengo el ancho de pantalla actual y el ancho máximo para considerarlo una pantalla de un smartphone
+  const {anchoActual, anchoMaximo} = anchoDePantalla(); 
+
+  // Estados
+  const [mostrarLinks, setMostrarLinks] = useState(false);
+
+  // Funciones de mi componente
   const LlamaAIniciarJornada = async (idRoles) => {
     
     try {
@@ -88,31 +101,78 @@ const Tecnico = () => {
       
       {/* Cabecera */}
       <Header>
+
         <ContenedorHeader>
 
-          <ContenedorTitulos>
-            <Titulo> {nombre} </Titulo>
-            {inicioJornada ? <ParrafoVerde>( Jornada inicializada )</ParrafoVerde> : <ParrafoRojo>( Jornada finalizada )</ParrafoRojo>}
-          </ContenedorTitulos>
+          {/* Mostraré el contenedor de los titulos o los links en vertical en los smartphones */}
+          {!mostrarLinks ? 
 
-          <ContenedorBotones>
+            <ContenedorTitulos>
 
-            {/* Botones que actuan por defecto como links */}
-            <Boton $paraTecnico to = "agenda-tecnico">Mi agenda</Boton>
-            <Boton $paraTecnico to = "productividad-tecnico">Productividad</Boton> 
+              {anchoActual <= anchoMaximo && <IconoMenu onClick={() => setMostrarLinks(!mostrarLinks)}/>}
 
-            {/* Mostrará los botones para iniciar o finalizar jornada dependiendo si inició o no inició la jornada */}                        
-            {inicioJornada ?
-                <Boton onClick={() => LlamaAFinalizarJornada(idRoles)}>Finalizar jornada </Boton>
-              : 
-                <Boton onClick={() => LlamaAIniciarJornada(idRoles)}>Iniciar jornada </Boton> }
+              <ContenedorTituloJornada>
+                <Titulo> {nombre} </Titulo>
+                {inicioJornada ? 
+                    <ParrafoVerde>( Jornada iniciada )</ParrafoVerde>
+                  : 
+                    <ParrafoRojo>( Jornada finalizada )</ParrafoRojo>
+                }
+              </ContenedorTituloJornada>
+              
+              {anchoActual <= anchoMaximo && <BtnSalir /> }                              
 
-            {/* Boton para salir de la app */}
-            <BtnSalir />
+            </ContenedorTitulos>
 
-          </ContenedorBotones>
+            :
+
+            <Links>
+            
+              <IconoCerrar onClick={() => setMostrarLinks(!mostrarLinks)}/>
+
+              <a href="/tecnico/agenda-tecnico">Mi agenda</a>
+              <a href="/tecnico/productividad-tecnico">Productividad</a>
+
+              {inicioJornada ?
+
+                  <EnlaceFinalizarJornada
+                    onClick={() => LlamaAFinalizarJornada(idRoles)}> Finalizar jornada 
+                  </EnlaceFinalizarJornada>
+                : 
+                  <EnlaceIniciarJornada
+                    onClick={() => LlamaAIniciarJornada(idRoles)}>Iniciar jornada
+                  </EnlaceIniciarJornada>
+              }
+
+            </Links>
+
+          }
+
+          {/* Todos los botones se ocultarán en smartphones. Esto lo gestione mediante media queries en css */}
+          <TodosLosBotones>
+
+            <ContenedorBotones>
+
+              {/* Botones que actuan por defecto como links */}              
+              <Boton $paraTecnico to = "agenda-tecnico">Mi agenda</Boton>
+              <Boton $paraTecnico to = "productividad-tecnico">Productividad</Boton> 
+
+              {/* Mostrará los botones para iniciar o finalizar jornada dependiendo si inició o no inició la jornada */}                        
+              {inicioJornada ?
+                  <Boton onClick={() => LlamaAFinalizarJornada(idRoles)}>Finalizar jornada </Boton>
+                : 
+                  <Boton onClick={() => LlamaAIniciarJornada(idRoles)}>Iniciar jornada </Boton> 
+              }
+
+              {/* Boton para salir de la app */}
+              <BtnSalir />
+
+            </ContenedorBotones>
+
+          </TodosLosBotones>
 
         </ContenedorHeader>
+
       </Header>  
 
       {/* Rutas declaradas de forma dinámica*/}

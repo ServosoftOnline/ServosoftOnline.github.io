@@ -78,7 +78,7 @@ const Coordinador = () => {
 
         <ContenedorHeader>         
 
-          {/* Se mostraran el icono para acceder a los botones y el boton de salir solo en smartphone */}
+          {/* Mostraré el contenedor de los titulos o los links en vertical en los smartphones */}
           {!mostrarLinks ?
                      
             <ContenedorTitulos>
@@ -110,7 +110,6 @@ const Coordinador = () => {
 
           }
           
-          
           {/* Los botones se ocultarán en smartphones. Esto lo gestione mediante media queries en css */}
           <TodosLosBotones>
 
@@ -130,10 +129,7 @@ const Coordinador = () => {
               <BtnSalir />      
 
             </ContenedorBotones>
-
             {console.log('Mostrar links: ' + mostrarLinks)}
-                          
-            
           </TodosLosBotones>
            
         </ContenedorHeader>
