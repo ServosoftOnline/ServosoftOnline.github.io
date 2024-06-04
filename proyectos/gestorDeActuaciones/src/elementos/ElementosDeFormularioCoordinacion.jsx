@@ -47,6 +47,13 @@ const ContenedorEditarActuacion = styled.div `
             font-size: 0.9rem;
         }
     }
+
+    @media(max-width: 48rem) {  /* 768px */         
+
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
+    
+    }
 `;
 
 const ContenedorSoloLectura = styled.div `
@@ -337,60 +344,66 @@ const Citacion = styled.div `
 
     background: ${theme.mediumSmoke};     
     border: 1px solid ${theme.darkerSmoke};
-    border-radius: 10px;
-    padding: 0 1rem;  
+    border-radius: 10px;    
     
-    @media(max-width: 48rem) {  /* 768px */        
-        width: auto;
-        padding: 0rem;
-    }
 `;
 
 const ContenedorDatePicker = styled.div `
-    display: flex;
 
-    // Permite que al desplegar los select estos se pongan delante
-    position: relative;
-    z-index: 2;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    gap: 1rem;
+    padding: 0 0.5rem;
+    align-items: center;
 
-    @media(max-width: 48rem) {  /* 768px */        
-        flex-direction: column;
-        padding-left: 0.5rem;
-    } 
+    @media(max-width: 60rem){ /* 950px */ 
+        
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0rem;
+
+    }
     
 `;
 
 const Fecha = styled.div`
-    display: flex;
+
+    display: flex;    
     align-items: center;
+    align-items: center;
+
+    // Permite que al desplegar los select estos se pongan delante
+    position: relative;
+    z-index: 2;
     
     h4{
-        padding-right: 0.5rem;
+        padding-right: 0.5rem;        
     }
 
+    @media(max-width: 60rem){ /* 950px */ 
+        font-size: 0.9rem;
+    }
     
 `;
 
 const Hora = styled.div`
-    display: flex;
-    align-items: center;
-    margin-left: 2rem;
-
-    h4{
-        padding-right: 0.5rem;
+    
+    h4 {
+        padding-left: 0.5rem;
+    }  
+    
+    @media(max-width: 60rem){ /* 950px */ 
+        font-size: 0.9rem;
     }
-
-    @media(max-width: 48rem) {  /* 768px */        
-        margin-left: 0rem;
-    } 
     
 `;
 
 const ContenedorSelectTecnicos = styled.div `
+
     display: flex;
     gap: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 
     // Permite que al desplegar los select estos se pongan delante
     position: relative;

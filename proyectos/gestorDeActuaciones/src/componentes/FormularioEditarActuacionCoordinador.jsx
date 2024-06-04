@@ -26,6 +26,7 @@ import SelectDificultades from "./SelectTDificultades";
 import SelectStb from "./SelectStb";
 import SelectEstadosModuloPlaneado from "./SelectEstadosModuloPlaneado";
 import SelectTiposDeActuacion from "./SelectTiposDeActuacion";
+import SelectHoras from "./SelectHoras";
 import SelectTecnicos from "./SelectTecnicos";
 
 // Componentes
@@ -91,6 +92,8 @@ const FormularioEditarActuacionCoordinador = () => {
 
     // Estados quinta fila    
     const [fechaCitacion, asignarFechaCitacion] = useState(new Date());
+    const [idHoraCitacion, setIdHoraCitacion] = useState('');
+    const [descripcionHoraCitacion, setDescripcionHoraCitacion] = useState('');
     const [tecnico1, asignarTecnico1] = useState('');
     const [tecnico2, asignarTecnico2] = useState('');
     const [tecnico3, asignarTecnico3] = useState('');
@@ -101,36 +104,36 @@ const FormularioEditarActuacionCoordinador = () => {
     const [comentariosCoordinacion, asignarComentariosCoordinacion] = useState('');    
     
 
-    // Efecto para establezcer los estados con los datos de la actuacion obtenida del hook.
+    // Establezco los estados con la informacion de la actuacion obtenida. Sólo si no tienen un valor undefined
     //  Por ahora solo es necesario tener una depedencia
     useEffect(() => {        
 
-        asignarLinkDorus(actuacion.linkDorus);
-        asignarDireccion(actuacion.direccion);
-        asignarPoblacion(actuacion.poblacion);
+        actuacion.linkDorus         != undefined && asignarLinkDorus(actuacion.linkDorus);
+        actuacion.direccion         != undefined && asignarDireccion(actuacion.direccion);
+        actuacion.poblacion         != undefined && asignarPoblacion(actuacion.poblacion);
 
-        asignarCoordenadas(actuacion.coordenadas);
-        asignarTelefonos(actuacion.telefonos);
-        asignarTiposDeActuacion(actuacion.tipoActuacion);
+        actuacion.coordenadas       != undefined && asignarCoordenadas(actuacion.coordenadas);
+        actuacion.telefonos         != undefined && asignarTelefonos(actuacion.telefonos);
+        actuacion.tipoActuacion     != undefined && asignarTiposDeActuacion(actuacion.tipoActuacion);
 
-        asignarDificultad(actuacion.dificultad);
-        asignarPuntos(actuacion.puntos); 
-        asignarZonasDeInstalacion(actuacion.zonaInstalacion);       
+        actuacion.dificultad        != undefined && asignarDificultad(actuacion.dificultad);
+        actuacion.puntos            != undefined && asignarPuntos(actuacion.puntos); 
+        actuacion.zonaInstalacion   != undefined && asignarZonasDeInstalacion(actuacion.zonaInstalacion);       
 
-        asignarTiposDeTrabajo(actuacion.tipoTrabajo);
-        asignarIdTipoDeTrabajo(actuacion.idTipoTrabajo);
-        asignarStb(actuacion.stb);
-        asignarEstado(actuacion.estado);
-        asignarEstadoDescripcion(actuacion.estadoDescripcion);
+        actuacion.tipoTrabajo       != undefined && asignarTiposDeTrabajo(actuacion.tipoTrabajo);
+        actuacion.idTipoTrabajo     != undefined && asignarIdTipoDeTrabajo(actuacion.idTipoTrabajo);
+        actuacion.stb               != undefined && asignarStb(actuacion.stb);
+        actuacion.estado            != undefined && asignarEstado(actuacion.estado);
+        actuacion.estadoDescripcion != undefined && asignarEstadoDescripcion(actuacion.estadoDescripcion);
         
-        asignarFechaCitacion(fromUnixTime(actuacion.fechaCitacion));
-        asignarTecnico1(actuacion.tecnico1);
-        asignarTecnico2(actuacion.tecnico2);
-        asignarTecnico3(actuacion.tecnico3);
-        asignarTecnico4(actuacion.tecnico4);
-        asignarTecnico5(actuacion.tecnico5);
+        actuacion.fechaCitacion     != undefined && asignarFechaCitacion(fromUnixTime(actuacion.fechaCitacion));
+        actuacion.tecnico1          != undefined && asignarTecnico1(actuacion.tecnico1);
+        actuacion.tecnico2          != undefined && asignarTecnico2(actuacion.tecnico2);
+        actuacion.tecnico3          != undefined && asignarTecnico3(actuacion.tecnico3);
+        actuacion.tecnico4          != undefined && asignarTecnico4(actuacion.tecnico4);
+        actuacion.tecnico5          != undefined && asignarTecnico5(actuacion.tecnico5);
 
-        asignarComentariosCoordinacion(actuacion.comentariosCoordinacion); 
+        actuacion.comentariosCoordinacion != undefined && asignarComentariosCoordinacion(actuacion.comentariosCoordinacion); 
 
     },[actuacion.linkDorus]);  
 
@@ -168,10 +171,19 @@ const FormularioEditarActuacionCoordinador = () => {
 
     },[idTipoDeTrabajo]);
 
+    // EFECTOS
+
     // Efecto que se ejecuta al principio para comprobar si el tecnico o tecnicos van en camino o estan en cliente
     useEffect(() => {        
         compruebaSiUnTecnicoVaEnCaminoOEstaEncliente();       
     },[tecnicosEnCaminoOEnCliente]);
+
+    /* Debo reiniciar la cita si se cambia a un estado que no sea citada. Si no lo hago y el coordinador cambiara de opinión
+    seleccionando citada, asignandole una hora y despues cambia el estado a cualquier otro estado guardaría la hora de la cita */
+    useEffect(() => {
+        estadoDescripcion != 'Citada' ? setIdHoraCitacion('') : null;
+
+    },[estadoDescripcion]);
      
     
     // FUNCIONES DEL COMPONENTE
@@ -233,6 +245,8 @@ const FormularioEditarActuacionCoordinador = () => {
             estado: estado,
             estadoDescripcion: estadoDescripcion,
             fechaCitacion: getUnixTime(fechaCitacion),
+            idHoraCitacion: idHoraCitacion,
+            descripcionHoraCitacion: descripcionHoraCitacion,
             tecnico1: tecnico1,
             tecnico2: tecnico2,
             tecnico3: tecnico3,
@@ -259,7 +273,7 @@ const FormularioEditarActuacionCoordinador = () => {
         if (linkDorus === '' || direccion === '' || poblacion === '' || zonasDeInstalacion === '' || coordenadas ==='' ||telefonos === ''
             || tiposDeActuacion === '' || dificultad === '' || tiposDeTrabajo === '' || stb === '') {
 
-            cambiarMensaje('Rellene todos los datos obligatorios. Son todos menos los comentarios técnicos', 'incorrecta');            
+            cambiarMensaje('Rellene todos los datos obligatorios. Son todos menos los comentarios', 'incorrecta');            
             return false;
         }
 
@@ -338,6 +352,13 @@ const FormularioEditarActuacionCoordinador = () => {
             }
         }
 
+        // Validacion 3: En estado de cita se debe seleccionar una hora de cita
+        if (estadoDescripcion == 'Citada' && idHoraCitacion =='') {
+            cambiarMensaje('Debe seleccionar una hora para la cita', 'incorrecta');
+            return false;
+        }
+        
+        // Fin de las validaciones. Si llegué hasta aqui sin devolver ningun false la validación fue correcta
         return true;        
     }
 
@@ -392,9 +413,11 @@ const FormularioEditarActuacionCoordinador = () => {
             <form onSubmit={handleSubmit}>
 
                 <ContenedorSoloLectura>
+
                     <div> <label htmlFor="codigoIncidencia">Código de incidencia: </label> {actuacion.codigoIncidencia} </div>
                     <Cliente> <label htmlFor="codigoIncidencia">Cliente: </label> {actuacion.nombre} </Cliente>
                     <Descripcion> <label htmlFor="codigoIncidencia">Descripción: </label> {actuacion.descripcion} </Descripcion>
+
                 </ContenedorSoloLectura>
 
                 <Contenedor1>
@@ -537,44 +560,56 @@ const FormularioEditarActuacionCoordinador = () => {
                 </Contenedor4>
                 
 
-                {/* Este subcontenedor solo se muestra si la actuacion esta en estado agenda */}
+                {/* Este subcontenedor solo se muestra si la actuacion esta en estado agenda. */}
                 {estado === 'EstadoAgenda' &&
-                    
-                    <Citacion>       
+
+                    <>
+                        <Citacion>       
                                                                                                 
-                        <ContenedorDatePicker>
+                            <ContenedorDatePicker>
+                                
+                                <Fecha>
+                                    <h4>Fecha: </h4>
+                                    <DatePicker fechaCitacion={fechaCitacion} asignarFechaCitacion={asignarFechaCitacion} />
+                                </Fecha>
+                                
+    
+                                {/* Codigo proporcionado por ChatGPT:
+                                    idTipoDeTrabajo contiene un número que coincide con el número de tecnicos
+                                    Array.from() para crear un array con la longitud especificada por idTipoDeTrabajo
+                                    y proporciona tantos select como indique el número.
+                                    style me permite pasarle un z-Index de forma dinámica para que los select no se pongan encima */}
+                                
+                                <ContenedorSelectTecnicos>                            
+                                    
+                                    {Array.from({ length: idTipoDeTrabajo }, (_, index) => (
+                                        
+                                        <SelectTecnicos
+                                            numeroTecnicos={index}
+                                            tecnico={eval(`tecnico${index + 1}`)}
+                                            asignarTecnico={eval(`asignarTecnico${index + 1}`)}
+                                            style={{ zIndex: idTipoDeTrabajo - index, position: 'relative'}}
+                        
+                                        />
+                                    ))}
+                                    
+                                </ContenedorSelectTecnicos>
                             
-                            <Fecha>
-                                <h4>Fecha:</h4>
-                                <DatePicker fechaCitacion={fechaCitacion} asignarFechaCitacion={asignarFechaCitacion} />
-                            </Fecha>
-                            
+                            </ContenedorDatePicker>                                                        
+                            {console.log('idHoraCitacion: ' + idHoraCitacion)}
+                            {console.log('descripcionHoraCitacion: ' + descripcionHoraCitacion)}
                             <Hora>
-                                <h4>Hora: </h4>
-                                <p>horas</p>
-                            </Hora>
-                        
-                        </ContenedorDatePicker>                                                        
-
-                        {/* Codigo proporcionado por ChatGPT:
-                            idTipoDeTrabajo contiene un número que coincide con el número de tecnicos
-                            Array.from() para crear un array con la longitud especificada por idTipoDeTrabajo
-                            y proporciona tantos select como indique el número.
-                            style me permite pasarle un z-Index de forma dinámica para que los select no se pongan encima */}
-                        
-                        <ContenedorSelectTecnicos>
-                            {Array.from({ length: idTipoDeTrabajo }, (_, index) => (
-                                <SelectTecnicos
-                                    numeroTecnicos={index}
-                                    tecnico={eval(`tecnico${index + 1}`)}
-                                    asignarTecnico={eval(`asignarTecnico${index + 1}`)}
-                                    style={{ zIndex: idTipoDeTrabajo - index, position: 'relative'}}
-                
+                                <h4>Hora: {descripcionHoraCitacion} </h4>
+                                <SelectHoras
+                                    setIdHoraCitacion = {setIdHoraCitacion}
+                                    setDescripcionHoraCitacion = {setDescripcionHoraCitacion}
                                 />
-                            ))}
-                        </ContenedorSelectTecnicos>       
-
-                    </Citacion>                
+                            </Hora>
+    
+                        </Citacion>                
+                    
+                    </>
+                    
                 }                
 
 

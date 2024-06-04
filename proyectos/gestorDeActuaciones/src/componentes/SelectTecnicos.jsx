@@ -44,17 +44,19 @@ const SelectTecnicos = ({numeroTecnicos, tecnico, asignarTecnico, style }) => {
                 {mostrarSelect &&                     
                     <>
                         <Opciones>
-                            {/* Recorro el objeto estados modulo planeado y muestro un estado en cada iteraccion */}
-                            {arrayTodosLosTecnicos.map((tecnico) => {
-                                
-                                return <Opcion
-                                    key= {tecnico.id}                                
-                                    data-valor= {tecnico.nombre}                                  
-                                    onClick={handleClick}
-                                >                           
-                                    {tecnico.nombre}
-                                </Opcion>;                                               
-                            })}
+                            
+                            {/* Recorro el objeto estados modulo planeado y muestro un estado en cada iteraccion */}                            
+                            {arrayTodosLosTecnicos.map((tecnico) => {                                                                        
+                                    
+                                    return <Opcion                                        
+                                        key= {tecnico.id}                                
+                                        data-valor= {tecnico.nombre}                                  
+                                        onClick={handleClick}
+                                    >                           
+                                        {tecnico.nombre}
+                                    </Opcion>                                           
+                                })
+                            }
                         </Opciones>
                     </>
                 }

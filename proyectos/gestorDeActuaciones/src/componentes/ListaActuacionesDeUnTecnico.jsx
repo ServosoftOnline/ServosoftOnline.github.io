@@ -255,7 +255,10 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                                 </>
 
                                                 :
-                                                    <span>{actuacion.estadoDescripcion}</span>
+                                                    <>
+                                                        <span>{actuacion.estadoDescripcion}</span>
+                                                        <span>{actuacion.descripcionHoraCitacion}</span>
+                                                    </>
                                         }
                                         
                                     </Estado>                    

@@ -129,7 +129,7 @@ const Coordinador = () => {
               <BtnSalir />      
 
             </ContenedorBotones>
-            {console.log('Mostrar links: ' + mostrarLinks)}
+            
           </TodosLosBotones>
            
         </ContenedorHeader>

@@ -54,11 +54,11 @@ const  FormularioEditarActuacionTecnico = () => {
     const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje, eliminarMensaje} = useContext(ContextoMensaje);
     
     // Estados        
-    const [estado, asignarEstado] = useState();    
-    const [estadoDescripcion, asignarEstadoDescripcion] = useState();
-    const [momentoInicioCamino, asignarMomentoInicioCamino] = useState();
-    const [momentoLlegadaACliente, asignarMomentoLlegadaACliente] = useState();
-    const [momentoFinActuacion, asignarMomentoFinActuacion] = useState();
+    const [estado, asignarEstado] = useState('');    
+    const [estadoDescripcion, asignarEstadoDescripcion] = useState('');
+    const [momentoInicioCamino, asignarMomentoInicioCamino] = useState('');
+    const [momentoLlegadaACliente, asignarMomentoLlegadaACliente] = useState('');
+    const [momentoFinActuacion, asignarMomentoFinActuacion] = useState('');
     const [consideraNivel4, asignarConsideraNivel4] = useState("No");
     const [dificultadTemporal, asignarDificultadTemporal] = useState("Nivel 4");
     const [puntosTemporales, asignarPuntosTemporales] = useState(0);
@@ -81,18 +81,22 @@ const  FormularioEditarActuacionTecnico = () => {
             }
         });
     };   
-
+    
 
     // Efecto para obtener los datos que iré mostrando en el formulario
     useEffect(() => {       
-         
+        console.log(actuacion.estadoDescripcion);
+        console.log(actuacion.horaEnCamino);
+        console.log(actuacion.horaDeLlegada);
+        console.log(actuacion.comentariosTecnicos);
+
         eliminarMensaje();
         asignarEstadoDescripcion(actuacion.estadoDescripcion);
         asignarMomentoInicioCamino(actuacion.horaEnCamino);
         asignarMomentoLlegadaACliente(actuacion.horaDeLlegada);
         asignarComentariosTecnicos(actuacion.comentariosTecnicos);
 
-    },[actuacion.estadoDescripcion, actuacion.horaEnCamino, actuacion.horaDeLlegada]);  
+    },[actuacion.estadoDescripcion, actuacion.horaEnCamino, actuacion.horaDeLlegada, actuacion.comentariosTecnicos]);  
    
     // Efecto que asigna la hora de finalizacion de la actuación en todos los casos posibles una vez acabada la actuacion
     // Debo reiniciar los momentos de en camino y llegada para guardarlos vacios en la bbdd solo si no es EstadoSupervision
