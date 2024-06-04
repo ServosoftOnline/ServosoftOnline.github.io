@@ -56,10 +56,11 @@ const ContenedorTitulos = styled.div`
     @media(max-width: 48rem) {  /* 768px */
         
         margin-left: 0rem;
+        padding: 0.5rem;
         gap: 2.5rem; /* Asegura un espacio reducido en pantallas pequeñas */
         
-        h1 {
-            font-size: 1.5rem;
+        h2 {
+            font-size: 1.3rem;
         }
     }
 `;
@@ -90,7 +91,7 @@ const Titulo = styled.h2`
     }
 `;
 
-// Los párrafos son para incio y fin de jornada
+// Los párrafos son para inicio y fin de jornada
 const ParrafoVerde = styled.p`
 
     color: ${theme.verdeIcono};
@@ -101,7 +102,7 @@ const ParrafoVerde = styled.p`
 
     @media(max-width: 48rem) {  /* 768px */        
         font-size: 1rem; 
-        margin-top: 0rem; /* Añade un margen superior pequeño */
+        margin-top: 0rem; 
     }
 `;
 
@@ -114,11 +115,9 @@ const ParrafoRojo = styled.p`
 
     @media(max-width: 48rem) {  /* 768px */        
         font-size: 1rem; 
-        margin-top: 0.2rem; /* Añade un margen superior pequeño */
+        margin-top: 0.2rem;
     }
 `;
- 
-
  
 const TodosLosBotones = styled.div `
 

@@ -13,7 +13,7 @@ import { Route, Routes } from "react-router-dom";
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
 // Elementos
-import  {Header, ContenedorTitulos, Titulo, ContenedorHeader, TodosLosBotones,
+import  {Header, ContenedorHeader, ContenedorTitulos, Titulo, TodosLosBotones,
         ContenedorBotones, Links} from '../elementos/ElementosDeHeader';
 
 import Boton from "../elementos/Boton";
@@ -104,7 +104,7 @@ const Coordinador = () => {
               <a href="/coordinador/agenda">Agenda</a>
               <a href="/coordinador/supervision">Supervisión</a>
               <a href="/coordinador/instalados-finalizados">Finalizados</a>              
-              {rol == 'administrador' ? <a href="/administrador">Administración</a> : null}
+              {rol == 'administrador' ? <a href="/administrador/crear-usuario">Administración</a> : null}
 
             </Links>
 
@@ -125,7 +125,7 @@ const Coordinador = () => {
               <Boton $paraCoordinador to = "agenda">Agenda</Boton>
               <Boton $paraCoordinador to = "supervision">Supervisión</Boton>            
               <Boton $paraCoordinador to = "instalados-finalizados">Finalizados</Boton>
-              {rol == "administrador" ? <Boton $paraAdministrador to="/administrador">Administración</Boton> : null} 
+              {rol == "administrador" ? <Boton $paraAdministrador to="/administrador/crear-usuario">Administración</Boton> : null} 
               <BtnSalir />      
 
             </ContenedorBotones>

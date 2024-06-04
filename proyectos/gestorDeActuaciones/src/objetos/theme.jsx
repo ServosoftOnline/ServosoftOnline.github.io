@@ -16,6 +16,11 @@ const theme = {
     rojoIntenso: '#990000',
     naranja: '#FFA500',
 
+    // Dorados
+    OroWeb:	'#FFD700',
+    OroViejo1: '#CFB53B',
+    OroViejo2: '#BE8C29',
+
     // Iconos
     verdeIcono: '#26a269',
     amarilloIcono: '#e5a50a',

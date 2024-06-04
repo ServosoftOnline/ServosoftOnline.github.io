@@ -4,22 +4,18 @@
 
 // React y react router
 import React from "react";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+
+// Elementos
+import { ContenedorSubtitulo,Subtitulo } from './../elementos/ElementosDeCalendarioAusencias';
 
 // El Componente
 const CalendarioAusencias = () => {
 
   return (
-    <>      
-      <HelmetProvider>
-
-        {/* Helmet */}
-        <Helmet>
-          <title>Calendario de ausencias</title>
-        </Helmet>  
-
-      </HelmetProvider>
-      <p>Calendario de ausencias</p>
+    <>
+      <ContenedorSubtitulo>
+        <Subtitulo>Disponible en la versión premium</Subtitulo>                
+      </ContenedorSubtitulo>
     </>
   );
 }

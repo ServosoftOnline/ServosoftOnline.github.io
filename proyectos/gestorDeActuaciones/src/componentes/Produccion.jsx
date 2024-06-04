@@ -4,22 +4,20 @@
 
 // React y react router
 import React from "react";
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+
+// Elementos
+import { ContenedorSubtitulo,Subtitulo } from './../elementos/ElementosDeProduccion';
 
 // El Componente
 const Produccion = () => {
 
   return (
-    <>      
-      <HelmetProvider>
+    <>
 
-        {/* Helmet */}
-        <Helmet>
-          <title>Producción</title>
-        </Helmet>                   
+      <ContenedorSubtitulo>
+        <Subtitulo>Disponible en la versión premium</Subtitulo>                
+      </ContenedorSubtitulo>
 
-      </HelmetProvider>
-      <p>Modulo de produccion</p>
     </>
   );
 }

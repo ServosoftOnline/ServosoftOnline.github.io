@@ -57,7 +57,7 @@ const InicioSesion = () => {
         switch (rol[0]){
 
           case 'administrador':              
-              navigate('/administrador'); 
+              navigate('/administrador/crear-usuario'); 
               break;
 
           case 'coordinador':              
