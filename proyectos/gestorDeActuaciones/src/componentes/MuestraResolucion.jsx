@@ -33,7 +33,7 @@ const MuestraResolucion = () => {
 
   return (
     <div>
-      <h1>Resolución de la pantalla. prueba1</h1>
+      <h1>Resolución de la pantalla:</h1>
       <p>Anchura: {resolution.width}px</p>
       <p>Altura: {resolution.height}px</p>
     </div>

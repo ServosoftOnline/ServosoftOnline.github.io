@@ -54,7 +54,8 @@ const useObtenerActuacionesCitadasDeUnTecnico = (nombre) => {
 							// where('tecnico5', '==', `${nombre}`)
 						)					
 					),
-					orderBy('fechaCitacion', 'asc'));
+					orderBy('fechaCitacion', 'asc'),
+					orderBy('idHoraCitacion', 'asc'));
 
 
 				// Ejecuta la consulta. Si se produjera un error lo muestro en consola

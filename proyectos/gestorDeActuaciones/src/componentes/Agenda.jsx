@@ -17,7 +17,7 @@ const Agenda = () => {
   
   // Obtenido desde el hook y pasado a un array
   const [actuacionesAgendadas] = useObtenerActuacionesAgendadas();
-  const arrayActuacionesAgendadas = Object.values(actuacionesAgendadas);
+  const arrayActuacionesAgendadas = Object.values(actuacionesAgendadas);  
 
   return (
     <>  

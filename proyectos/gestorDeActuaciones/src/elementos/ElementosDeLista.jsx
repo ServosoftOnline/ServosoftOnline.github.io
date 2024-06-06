@@ -60,21 +60,53 @@ const ContenedorMostrarBarraEstadoTecnicos = styled.div`
     align-items: center;
     
     h4 {
+        font-size: 1.4rem;
         margin-right: 1rem;
     }
 
+    @media(max-width: 60rem){ /* 950px */            
+
+        h4 {            
+            font-size: 1.1rem;            
+        }
+        
+    }
+    
+    @media(max-width: 48rem) {  /* 768px */        
+
+        h4 {            
+            font-size: 0.65rem;            
+        }
+    }
+    
+`;
+
+const DecisionMostrarBarraEstadoTecnicos = styled.div`
+
+    display: flex;
+    align-items: center;
+
     label {
+    
+        font-size: 1.4rem;
         margin-right: 0.5rem;
+    }
+
+    @media(max-width: 60rem){ /* 950px */            
+
+        label {            
+            font-size: 1.1rem;            
+        }
+        
     }
 
     @media(max-width: 48rem) {  /* 768px */        
 
-        h4, label {            
-            font-size: 0.70rem;            
+        label {            
+            font-size: 0.65rem;            
         }
     }
 
-    
 `;
 
 const Fecha = styled.div`
@@ -87,7 +119,7 @@ const Fecha = styled.div`
     border-radius: 0.31rem; /* 5px */
     
     padding: 0.62rem 3.12rem; /* 10px 50px */    
-    margin-top: 0.5rem;
+    margin-top: 4rem;
     margin-bottom: 0.5rem;
     
  
@@ -95,7 +127,7 @@ const Fecha = styled.div`
         font-size: 1rem;
         margin: 0.4rem 0; /* 20px */
         padding: 0.3rem 3.12rem; /* 3.2px 49.92px */
-        margin-top: 2rem;
+        margin-top: 1rem;
         margin-bottom: 1rem;
     }
 
@@ -103,6 +135,28 @@ const Fecha = styled.div`
         font-size: 0.9rem;  
         display: block;        
     }
+`;
+
+const NombreDelTecnico = styled.div`
+
+    background: ${theme.mediumSmoke};        
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    font-weight: bolder;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.1rem;
+    margin-top: 1.5rem;  
+
+    @media(max-width: 60rem){ /* 950px */ 
+        font-size: 1rem;     
+        margin-top: 0.2rem;
+    }
+
+    @media(max-width: 48rem) {  /* 768px */  
+        font-size: 0.75rem;             
+    }
+
 `;
 
 const ElementoListaCabecera = styled.li`
@@ -323,7 +377,9 @@ export {
     ContenedorSubtitulo,
     Subtitulo,
     ContenedorMostrarBarraEstadoTecnicos,
+    DecisionMostrarBarraEstadoTecnicos,
     Fecha,
+    NombreDelTecnico,
     ElementoListaCabecera,
     ElementoLista,
     ListaDeCategorias,

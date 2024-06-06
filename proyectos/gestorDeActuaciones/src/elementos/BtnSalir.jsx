@@ -19,7 +19,7 @@ import IconoSalir from './../assets/log-out.svg?react';
 
 // firebase
 import { signOut } from "firebase/auth";
-import { auth } from './../firebase/firebaseConfig';
+import { auth } from '../firebase/firebaseConfig';
 
 // Objetos
 import theme from "../objetos/theme";
@@ -64,7 +64,7 @@ const Btn = styled.button`
 `;
  
 const Icono = styled(IconoSalir)`
-    width: 50%;
+    width: 70%;
     height: auto;
     fill: #fff;
 `;
@@ -75,6 +75,7 @@ const BtnSalir = () => {
 
     // Funcion asíncrona
     const cerrarSesion = async () => {
+        
         try {
 
             await signOut(auth);            

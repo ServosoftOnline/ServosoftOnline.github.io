@@ -36,8 +36,9 @@ const useObtenerActuacionesAgendadas = () => {
 				),			
 				
 				orderBy('fechaCitacion', 'asc'),
-				orderBy('codigoIncidencia', 'asc'),
-				limit(60)
+				orderBy('tecnico1', 'asc'),
+				orderBy('idHoraCitacion', 'asc')
+				
 			);
 
 			// Ejecuta la consulta. Si se produjera un error lo muestro en consola

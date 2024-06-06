@@ -32,7 +32,7 @@ import IconoCerrar from './../assets/cerrar.svg?react';
 import IconoMenu from './../assets/menuIcon.svg?react';
 
 // Componentes
-import BarraProductividad from "./../componentes/BarraProductividad";
+import BarraProductividad from "./BarraProductividad";
 
 // Firebase
 import iniciarJornada from "../firebase/iniciarJornada";
@@ -43,10 +43,10 @@ import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
 import useObtenerIdRolesDeUnUsuario from "../hooks/useObtenerIdRolesDeUnUsuario";
 
 // Contexto
-import {InicioJornadaContext} from './../contextos/InicioJornadaContext';
+import {InicioJornadaContext} from '../contextos/InicioJornadaContext';
 
 // Funciones importadas
-import anchoDePantalla from './../funciones/anchoDePantalla';
+import anchoDePantalla from '../funciones/anchoDePantalla';
 
 // Mi componente
 const Tecnico = () => {
@@ -154,14 +154,14 @@ const Tecnico = () => {
             <ContenedorBotones>
 
               {/* Botones que actuan por defecto como links */}              
-              <Boton $paraTecnico to = "agenda-tecnico">Mi agenda</Boton>
-              <Boton $paraTecnico to = "productividad-tecnico">Productividad</Boton> 
+              <Boton $paraTecnico $mediano to = "agenda-tecnico">Mi agenda</Boton>
+              <Boton $paraTecnico $mediano to = "productividad-tecnico">Productividad</Boton> 
 
               {/* Mostrará los botones para iniciar o finalizar jornada dependiendo si inició o no inició la jornada */}                        
               {inicioJornada ?
-                  <Boton onClick={() => LlamaAFinalizarJornada(idRoles)}>Finalizar jornada </Boton>
+                  <Boton $mediano onClick={() => LlamaAFinalizarJornada(idRoles)}>Finalizar jornada </Boton>
                 : 
-                  <Boton onClick={() => LlamaAIniciarJornada(idRoles)}>Iniciar jornada </Boton> 
+                  <Boton $mediano onClick={() => LlamaAIniciarJornada(idRoles)}>Iniciar jornada </Boton> 
               }
 
               {/* Boton para salir de la app */}

@@ -19,9 +19,10 @@ import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 
 // Elementos
-import  {Lista, ContenedorLista, ContenedorSubtitulo, Subtitulo, ContenedorMostrarBarraEstadoTecnicos, Fecha, ElementoListaCabecera,
-        ElementoLista, Incidencia, Cliente, Direccion, Poblacion, Estado, SpanHoraEnCamino, SpanHoraDeLlegada, Gestion,
-        ContenedorBotonesLista, BotonAccion} from '../elementos/ElementosDeLista';
+import  {Lista, ContenedorLista, ContenedorSubtitulo, Subtitulo, ContenedorMostrarBarraEstadoTecnicos, DecisionMostrarBarraEstadoTecnicos, Fecha,
+        NombreDelTecnico, ElementoListaCabecera, ElementoLista, Incidencia, Cliente, Direccion, Poblacion,
+        Estado, SpanHoraEnCamino, SpanHoraDeLlegada, Gestion, ContenedorBotonesLista,
+        BotonAccion} from '../elementos/ElementosDeLista';
 
 // SVG
 import IconoEditar from './../assets/editar.svg?react';
@@ -31,6 +32,7 @@ import IconoCliente from './../assets/cliente.svg?react';
 
 // Funciones
 import fechaCitacionEsIgual from '../funciones/fechaCitacionEsIgual';
+import tecnicoEsIgual from '../funciones/tecnicoEsIgual';
 import formatearFecha from '../funciones/formatearFecha';
 import formatearFechaEnHoraYSegundos from '../funciones/formatearFechaEnHoraYSegundos';
 import anchoDePantalla from './../funciones/anchoDePantalla';
@@ -51,6 +53,7 @@ import BarraEstadosTecnicos from "./BarraEstadosTecnicos";
 
 // Contextos
 import {muestraEstadosTecnicosContext} from './../contextos/muestraEstadosTecnicosContext';
+import {useRol} from './../contextos/RolContext';
 
 // Componente
 const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador, estadoDelTecnico}) => {  
@@ -64,6 +67,8 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
 
     // Obtengo desde el contexto
     const {mostrarBarraTecnicos, setMostrarBarraTecnicos} = useContext(muestraEstadosTecnicosContext); 
+    let {rol} = useRol(); 
+    console.log('rol: ' + rol);
     
     // Obtengo el ancho de la funcion anchoDePantalla y defino el ancho de los smartphone
     const {anchoActual, anchoMaximo} = anchoDePantalla();       
@@ -153,30 +158,36 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                         {laPideUnCoordinador &&
                         <> 
                             <form>
+                                
                                 <ContenedorMostrarBarraEstadoTecnicos>
 
                                     <h4>¿Deseas mostrar el estado de los técnicos?</h4>
-                                
-                                    <input 
+
+                                    <DecisionMostrarBarraEstadoTecnicos>
+                                        <input 
+                                            type="radio"
+                                            name="barraTecnicos"
+                                            id="si"
+                                            value = "true"
+                                            onChange={handleChange}
+                                            checked={mostrarBarraTecnicos === "true"}
+                                        />
+                                        <label htmlFor="si">Sí</label>
+
+                                    </DecisionMostrarBarraEstadoTecnicos>
+
+                                    <DecisionMostrarBarraEstadoTecnicos>
+                                        <input 
                                         type="radio"
                                         name="barraTecnicos"
-                                        id="si"
-                                        value = "true"
+                                        id="no"
+                                        value = "false"
                                         onChange={handleChange}
-                                        checked={mostrarBarraTecnicos === "true"}
-                                    />
-                                    <label htmlFor="si">Sí</label>
+                                        checked={mostrarBarraTecnicos === "false"}
+                                        />
+                                        <label htmlFor="no">No</label>
+                                    </DecisionMostrarBarraEstadoTecnicos>
 
-                                    <input 
-                                    type="radio"
-                                    name="barraTecnicos"
-                                    id="no"
-                                    value = "false"
-                                    onChange={handleChange}
-                                    checked={mostrarBarraTecnicos === "false"}
-                                    />
-                                    <label htmlFor="no">No</label>
-                                    
                                 </ContenedorMostrarBarraEstadoTecnicos>
                                 
                             </form>
@@ -195,26 +206,42 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                             // Englobo a los elementos en un div al que le pongo el key
                             <div key={actuacion.codigoIncidencia}>
 
-                                {/* Solo mostraré la fecha y la cabecera si la fecha si es diferente a la anterior */}
+                                {/* No repite fechas */}
                                 {!fechaCitacionEsIgual(array, index, actuacion) &&
                                 <>
 
                                     <Fecha>
                                         {formatearFecha(actuacion.fechaCitacion)}
                                     </Fecha>
-
-                                    {/* Reduzco el interfaz dependiendo del ancho del dispositivo con el que acceda */}
-                                    {/* Solo muestro la direccion si el ancho es superior a la cte anchoSmartphone*/}
-                                    <ElementoListaCabecera>
-                                        <Incidencia> { anchoActual < anchoMaximo ? 'Cod.I' : 'Incidencia'} </Incidencia>
-                                        <Cliente>Cliente</Cliente>
-                                        {anchoActual > anchoMaximo && <Direccion>Dirección</Direccion> }
-                                        <Poblacion>Población</Poblacion>
-                                        <Estado>Estado</Estado>
-                                        <Gestion>Gestión</Gestion>
-                                    </ElementoListaCabecera>
                                     
                                 </>
+                                }
+
+                                {/* No repite tecnicos */}
+                                {!tecnicoEsIgual(array, index, actuacion) &&
+                                    <>
+                                        {/* Solo muestro el nombre del tecnico si lo pide un coordinador o administrador 
+                                            Evita que el propio tecnico vea su nombre y gane en espacio*/}
+                                        {rol!='tecnico' &&
+                                            <NombreDelTecnico>
+                                                {actuacion.tecnico1}
+                                            </NombreDelTecnico>                                
+                                        }
+                                        
+
+                                        {/* Reduzco el interfaz dependiendo del ancho del dispositivo con el que acceda 
+                                        Solo muestro la direccion si el ancho es superior a la cte anchoSmartphone */}
+
+                                        <ElementoListaCabecera>
+                                            <Incidencia> { anchoActual < anchoMaximo ? 'Cod.I' : 'Incidencia'} </Incidencia>
+                                            <Cliente>Cliente</Cliente>
+                                            {anchoActual > anchoMaximo && <Direccion>Dirección</Direccion> }
+                                            <Poblacion>Población</Poblacion>
+                                            <Estado>Estado</Estado>
+                                            <Gestion>Gestión</Gestion>
+                                        </ElementoListaCabecera>
+
+                                    </>
                                 }
 
                                 <ElementoLista>
