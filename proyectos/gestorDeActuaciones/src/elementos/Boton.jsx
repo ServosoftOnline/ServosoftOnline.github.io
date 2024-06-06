@@ -14,15 +14,15 @@
         - Lo exporto
 
 */
+
 import styled from "styled-components";
 import {Link} from 'react-router-dom';
 import theme from "../objetos/theme";
 
-
-// Defino los estilos. Al elemento lo llamo Boton. Le aplico la funcion styled y le paso el componente Link creado por react router
+/*  Al elemento lo llamo Boton. Le aplico la funcion styled y le paso el componente Link proporcionado por react router */
 const Boton = styled(Link)`
 
-    // Colores para los botones: primario para los botones de los formularios, verde para administradores, azul para coordinador y rojo para tecnicos
+    // Fondos para los botones. primario es negro, para administradores verde, para coordinadores y tecnicos azules
     background: ${(props) =>
         props.$primario ? theme.colorPrimario :
         props.$paraAdministrador ? theme.verdeClaro :
@@ -30,49 +30,55 @@ const Boton = styled(Link)`
         props.$paraTecnico ? theme.azulClaro :
         '#000'};    
 
-    // Si tiene la propiedad conIcono, el icono será mas ancho
-    width: ${(props) => props.$conIcono ? '15.62rem' : 'auto'}; /* 250px */
     
-    // Si tiene la propiedad grande, el icono será mayor
-    // font-size:  ${(props) => props.$grande ? '14rem' : 'auto'}; /* 250px */
+    // Estilos especificos para iconos con la propiedad grande
+    height: ${(props) => props.$grande ? '4rem' : null};
+    width: ${(props) => props.$grande ? '11rem' : null};
+    font-size: ${(props) => props.$grande ? '1.3rem' : null};
 
-    // Descripción y ubicación del boton
-    margin-left: 0.4rem; /* 6.4px */
-    border: none;
-    border-radius: 0.625rem; /* 10px */
-    color: #fff;
-    font-family: 'Work Sans', sans-serif;
-    height: 2rem; /* 32px */    
-    padding: 0.4rem 0.4rem; /* 8px 8px */
-    font-size: 0.9rem; /* 12.8px */
-    font-weight: 500;
+    // Estilos especificos para iconos con la propiedad mediano
+    height: ${(props) => props.$mediano ? '2rem' : null};
+    width: ${(props) => props.$mediano ? '10rem' : null};
+    font-size: ${(props) => props.$mediano ? '1.3rem' : null};
+
+
+    // Estilos comunes a todos los botones    
+    justify-content: center;
+    align-items: center;    
     cursor: pointer;
-    text-decoration: none;
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
-    outline: none;
- 
-    // El icono será de tipo SVG. Si tiene la propiedad iconoGrande tendrá un alto del 100% y si no de 0.75 rem
-    svg {
-        height: ${(props) => props.$iconoGrande ? '100%' : '0.75rem;'};  /* 12px */
-        fill: white;
-    }
+    text-decoration: none; 
+    display: inline-flex;        
+    
+    border: none;
+    border-radius: 0.625rem;
+    
+    font-family: 'Work Sans', sans-serif;        
+    color: #fff;
+    font-weight: 500;
 
-    @media(max-width: 60rem){ /* 950px */       
-        font-size: 0.7rem;     /* 10.88px */
-        margin-left: 0.1rem;    /* 1.6px */
-        height: 1.5rem; 
-        text-align: center;
-    }
+    padding: 0.4rem 0.4rem;
+    margin-left: 0.4rem;
 
-    @media (max-width: 768px) {
-        font-size: 1rem;     /* 10.88px */
-        margin-right: 0.3rem;    /* 1.6px */
-        height: 2rem;        
-        padding: 0.6rem 0.4rem; /* 8px 8px */
-        
+    @media(max-width: 60rem){ /* 960px */    
+
+        // Ajuste de los iconos grandes en estas media queries
+        height: ${(props) => props.$grande ? '2.8rem' : null};
+        width: ${(props) => props.$grande ? '8.5rem' : null};
+        font-size: ${(props) => props.$grande ? '1rem' : null};
+
+        // Ajustes de los iconos medianos en estas media queries        
+        height: ${(props) => props.$mediano ? '2rem' : null};
+        width: ${(props) => props.$mediano ? '4.5rem' : null};
+        font-size: ${(props) => props.$mediano ? '0.61rem' : null};
+    
+        margin-left: 0.1rem;            
+        padding: 0rem;
+
+        // Para evitar el desborde de los botones                
+        word-break: break-all; /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+    
     }
+    
 `;
 
 export default Boton;

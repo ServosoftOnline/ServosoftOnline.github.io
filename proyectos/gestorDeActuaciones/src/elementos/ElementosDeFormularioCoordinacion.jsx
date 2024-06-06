@@ -29,7 +29,7 @@ const ContenedorEditarActuacion = styled.div `
         color: ${theme.rojoIntenso};
       }
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: 60rem){ /* 960px */
 
         input {
             font-size: 0.9rem;
@@ -68,7 +68,7 @@ const ContenedorSoloLectura = styled.div `
         width: auto;
     }
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: 60rem){ /* 960px */
 
         font-size: 0.8rem;
         padding-bottom: 0rem;
@@ -128,7 +128,7 @@ const Contenedor1 = styled.div `
         width: auto;
     }
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: 60rem){ /* 960px */
         font-size: 0.8rem;
     }
 
@@ -150,7 +150,7 @@ const Contenedor2 = styled.div `
     padding-right: 1rem;
     margin-bottom: 0.7rem;
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: 60rem){ /* 960px */
         font-size: 0.8rem;
     }
 
@@ -216,7 +216,7 @@ const Contenedor3 = styled.div `
         text-align: center;
     }
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: 60rem){ /* 960px */
 
         grid-template-columns: 2fr 1fr 3fr;
         font-size: 0.8rem;
@@ -273,7 +273,7 @@ const Contenedor4 = styled.div `
     padding-right: 1rem;
     margin-bottom: 1.5rem;
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: 60rem){ /* 960px */
 
         grid-template-columns: 2fr 1fr 3fr;
         font-size: 0.8rem;
@@ -356,7 +356,7 @@ const ContenedorDatePicker = styled.div `
     padding: 0 0.5rem;
     align-items: center;
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: 60rem){ /* 960px */ 
         
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
@@ -380,7 +380,7 @@ const Fecha = styled.div`
         padding-right: 0.5rem;        
     }
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: 60rem){ /* 960px */ 
         font-size: 0.9rem;
     }
     
@@ -392,7 +392,7 @@ const Hora = styled.div`
         padding-left: 0.5rem;
     }  
     
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: 60rem){ /* 960px */ 
         font-size: 0.9rem;
     }
     
@@ -409,7 +409,7 @@ const ContenedorSelectTecnicos = styled.div `
     position: relative;
     z-index: 1;
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: 60rem){ /* 960px */
         font-size: 0.9rem;
         gap: 0.5rem;     
     }
@@ -437,10 +437,15 @@ const ContenedorComentarios = styled.div `
     background: ${theme.mediumSmoke}; 
     width: auto;
     padding: 1rem;
+    margin-bottom: 4rem;
 
     // Borde
     border: 1px solid ${theme.darkerSmoke};
     border-radius: 10px;
+
+    @media(max-width: 60rem){ /* 960px */
+        margin-bottom: 3rem;
+    }
 
     @media(max-width: 48rem) {  /* 768px */        
         margin-top: 1.5rem;
@@ -466,7 +471,7 @@ const ComentariosCoordinacion = styled.div `
         vertical-align: top;
     }
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: 60rem){ /* 960px */
         font-size: 0.8rem;
 
         textarea {            
@@ -498,7 +503,7 @@ const ContenedorBoton = styled.div`
     justify-content: center;
     margin: 2rem 0;  /* 32px */
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: 60rem){ /* 960px */
         margin: 0.5rem 0;  /* 16px */
     }
 

@@ -443,7 +443,8 @@ const  FormularioEditarActuacionTecnico = () => {
 
                         <ContenedorBoton>
                             <Boton
-                                $primario                        
+                                $primario
+                                $grande
                                 as="button"
                                 type="submit"
                             >

@@ -246,7 +246,7 @@ const CrearUsuario = () => {
           </ContenedorInputs>
 
           <ContenedorBoton>
-            <Boton $primario as="button" type="submit">Crear usuario</Boton>
+            <Boton $primario $grande as="button" type="submit">Crear usuario</Boton>
           </ContenedorBoton>
           
         </Formulario>

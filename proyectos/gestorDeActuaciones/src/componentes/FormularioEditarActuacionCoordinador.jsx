@@ -652,7 +652,8 @@ const FormularioEditarActuacionCoordinador = () => {
 
                 <ContenedorBoton>
                     <Boton
-                        $primario                        
+                        $primario   
+                        $grande                     
                         as="button"
                         type="submit"
                         >Actualizar                            

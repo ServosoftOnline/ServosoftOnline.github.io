@@ -1,6 +1,9 @@
 /*
-    FUNCION QUE DEVUELVE EL ANCHO DE UNA PANTALLA
+    FUNCION QUE DEVUELVE EL ANCHO DE UNA PANTALLA:
+
       - Dependiendo de esta resolución modificaré el funcionamiento de la app cuando se encuentre en resoluciones bajas
+      - Obtendré la resolucion de la pantalla y establezco los pixeles maximos para aplicar o no la programación correspondiente
+        en el componente donde la aplique
 */
 
 import { useState, useEffect } from 'react';
@@ -33,10 +36,12 @@ const anchoDePantalla = () => {
 
   // Establezco los anchos actuales y el maximo que debe tener para aplicarle la programacion en pantallas moviles
   const anchoActual = resolution.width
+  // const anchoMaximoMovilVertical = 430;
   const anchoMaximo = 430;
+  const anchoMaximoMovilHorizontal = 860;
 
   // Devuelvo los anchos
-  return {anchoActual, anchoMaximo};
+  return {anchoActual, anchoMaximo, anchoMaximoMovilHorizontal};
 
 };
 

@@ -141,7 +141,8 @@ const InicioSesion = () => {
 
   // Si hay valicacion en cliente inicia sesion.
   const handleSubmit = (e) => {    
-    e.preventDefault();    
+    e.preventDefault();   
+
     if(validacionEnCliente()) {
       iniciaSesion();
     }

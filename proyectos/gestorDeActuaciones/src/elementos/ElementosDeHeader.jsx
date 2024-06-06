@@ -4,7 +4,7 @@ import styled from "styled-components";
 import theme from "../objetos/theme";
 
 const Header = styled.div`
-
+background: lightyellow;
     background: ${theme.grisClaro2};
     display: flex;
     justify-content: space-between;
@@ -13,8 +13,8 @@ const Header = styled.div`
     margin-bottom: 1rem;
     align-items: center;    
     
-    @media(max-width: 60rem){ /* 950px */
- 
+    @media(max-width: 60rem){ /* 960px */
+    
         margin-bottom: 0rem;
         padding-bottom: 0rem;
     }
@@ -23,31 +23,32 @@ const Header = styled.div`
 const ContenedorHeader = styled.div`
 
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%; 
     padding-left: 1rem;
     padding-right: 1rem;       
  
     // Coloco los elementos en forma de columna, los centro . Los div de dentro los pongo al final
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: 60rem){ /* 950px */        
         
-        flex-direction: column;
         align-items: center;
-        margin-bottom: 0.5rem;         
+        margin-bottom: 0.5rem;                 
+        padding-left: 0rem;
+        padding-right: 0rem;   
     }
 
     @media(max-width: 48rem) {  /* 768px */  
         
         margin-bottom: 0rem;         
-        padding-left: 0rem;
-        padding-right: 0rem;   
+        
     }
     
 `;
 
 const ContenedorTitulos = styled.div`
 
-    display: flex; 
+    display: flex;     
     align-items: center;         
     font-weight: bold;
     margin-left: 0.5rem;
@@ -107,6 +108,7 @@ const ParrafoVerde = styled.p`
 `;
 
 const ParrafoRojo = styled.p`
+
     color: ${theme.rojoIcono};
 
     @media(max-width: 60rem){ /* 950px */
@@ -122,10 +124,13 @@ const ParrafoRojo = styled.p`
 const TodosLosBotones = styled.div `
 
     display: flex;
-    align-items: center;  
+    align-items: center;
+    margin-bottom: 0.8rem;  
     
     @media(max-width: 60rem){ /* 950px */
+
         flex-direction: column; 
+        margin-bottom: 0rem;  
     }
 
     @media(max-width: 48rem) {  /* 768px */        
@@ -140,10 +145,6 @@ const ContenedorBotones = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0rem;  
-
-    @media(max-width: 60rem){ /* 950px */
-        gap: 0.3rem; 
-    }
 
     @media(max-width: 48rem) {  /* 768px */        
         margin-top: 0.5rem;
@@ -214,16 +215,22 @@ const ContenedorArchivoExcel = styled.div`
     witdh: auto
 
     h3 {
-    width: 30%;
+        width: 30%;
     }
 
     input {
-    font-size: 1.2rem;
-    margin-left: 1.8rem;
+        font-size: 1.2rem;
+        margin-left: 1.8rem;
     }
 
-    @media(max-width: 60rem){ /* 950px */
-        font-size: 1rem; /* 16px */
+    @media(max-width: 60rem){ /* 960px */
+        font-size: 1rem; /* 16px */        
+    }
+
+    @media (max-width: 768px) {   
+                
+        flex-direction: column;    
+        justify-content: flex-start;   
     }
 
 `;

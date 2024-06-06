@@ -342,7 +342,8 @@ const  FormularioEditarActuacionSupervision = () => {
                             <ContenedorBoton>
 
                                 <Boton
-                                    $primario                        
+                                    $primario
+                                    $grande                                    
                                     as="button"
                                     type="submit"
                                     >Actualizar                            

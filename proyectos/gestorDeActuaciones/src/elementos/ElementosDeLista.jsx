@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import theme from './../objetos/theme';
 
 const Lista = styled.ul`
-    
+
     list-style: none;
     padding: 0 2rem; /* 0 32px */    
     overflow-y: auto;
@@ -24,6 +24,7 @@ const Lista = styled.ul`
 `;
 
 const ContenedorLista = styled.div`
+
 
     
     
@@ -78,14 +79,16 @@ const ContenedorMostrarBarraEstadoTecnicos = styled.div`
 
 const Fecha = styled.div`
 
-    border-radius: 0.31rem; /* 5px */
+    display: inline-block;
     background: ${theme.negro};
+    color: #fff;
     font-size: 1.2rem;
     text-align: center;
-    color: #fff;
-    padding: 0.62rem 3.12rem; /* 10px 50px */
-    display: inline-block;
-    margin: 1.25rem 0; /* 20px */
+    border-radius: 0.31rem; /* 5px */
+    
+    padding: 0.62rem 3.12rem; /* 10px 50px */    
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     
  
     @media(max-width: 60rem){ /* 950px */            

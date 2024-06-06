@@ -158,4 +158,5 @@ const ResultadosImportacion = styled.div`
 
 
 
-export {ContenedorFiltros, Formulario, ContenedorInputs, Input, InputGrande, ContenedorBoton, SvgIniciarSesion, SvgCrearCuenta, ResultadosImportacion} ;
+export  {ContenedorFiltros, Formulario, ContenedorInputs, Input, InputGrande, ContenedorBoton, SvgIniciarSesion,
+        SvgCrearCuenta, ResultadosImportacion} ;

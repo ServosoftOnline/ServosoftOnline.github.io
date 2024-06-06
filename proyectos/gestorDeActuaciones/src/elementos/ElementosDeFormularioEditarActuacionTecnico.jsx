@@ -62,7 +62,7 @@ const ContenedorCliente = styled.div`
         display: flex;
         flex-direction: column;
 
-        // Permite que el texto del enlace no se desborder
+        // Permite que el texto del enlace no se desborde
         a {
             display: block; /* Asegura que el enlace ocupe toda la línea */
             max-width: 100%;

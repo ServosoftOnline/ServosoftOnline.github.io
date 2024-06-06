@@ -91,11 +91,11 @@ const Administrador = () => {
               {/* Los botones comentados estarán disponibles en la version premium */}
               <ContenedorBotones>              
 
-                <Boton $paraAdministrador to = "crear-usuario">Crear usuario</Boton>                     
+                <Boton $paraAdministrador $mediano to = "crear-usuario">Crear usuario</Boton>                     
                 {/* <Boton $paraAdministrador to = "produccion">Producción</Boton>      */}
                 {/* <Boton $paraAdministrador to = "calendario-ausencias">Ausencias</Boton>      */}
                 {/* <Boton $paraAdministrador to = "reporte-general">Reporte general</Boton>              */}
-                <Boton $paraCoordinador to = '/coordinador/sin-asignar'>Coordinación</Boton>
+                <Boton $paraCoordinador $mediano to = '/coordinador/sin-asignar'>Coordinación</Boton>
                 <BtnSalir />
 
               </ContenedorBotones>

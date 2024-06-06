@@ -4,7 +4,22 @@
     - Contiene las rutas para los coordinadores importadas de forma dinámica
     - Obtiene el nombre del usuario para mostrarlo en la cabecera
     - Obtiene el rol del usuario mediante un conexto para mostrar el enlace a administrador solo si es administrador
-    - Muestra los botones que actuan como link para desplazarse por las diferentes rutas    
+    - Muestra los botones que actuan como link para desplazarse por las diferentes rutas  
+
+    - El boton salir y el boton con forma de hamburguesa:
+
+      - Es de vital importancia los limites de las pantallas de movil en vertical y horizontal establecidos en la funcion anchoDePantalla
+
+      - Si la resolucion de la pantalla es mayor a la resolucion de una pantalla de movil en horizontal
+        - se mostrará el nombre del usuario y debajo todos los botones y despues el boton de salir
+
+      - Si la resolución de la pantalla se encuentra entre la resolucion horizontal y la vertical de un movil
+        - Se mostrarán el nombre del usuario el boton salir y debajo los botones. 
+
+      - Si la resolucion de la pantalla se encuentra por debajo de la resolucion vertical maxima:
+        - Se mostrara el boton hamburguesa, el nombre del usuario y el boton salir.
+        - Los botones desaparecerán y el boton hamburguesa lo sustituirá mostrando links en lugar de botones.
+
 */
 
 // React y react router
@@ -37,6 +52,9 @@ const Agenda = lazy(() => import('./Agenda'));
 const Supervision = lazy(() => import('./Supervision'));
 const InstaladosFinalizados = lazy(() => import('./InstaladosFinalizados'));
 
+// Componentes
+import MuestraResolucion from './MuestraResolucion';
+
 // Contexto
 import { RolContext } from "../contextos/RolContext";
 
@@ -50,7 +68,7 @@ import anchoDePantalla from './../funciones/anchoDePantalla';
 const Coordinador = () => {
 
   // Obtengo el ancho de pantalla actual y el ancho máximo para considerarlo una pantalla de un smartphone
-  const {anchoActual, anchoMaximo} = anchoDePantalla();  
+  const {anchoActual, anchoMaximo, anchoMaximoMovilHorizontal} = anchoDePantalla();  
 
   // LLamadas a los hooks
   const [nombre] = useObtenerNombreDeUnUsuario();
@@ -62,7 +80,7 @@ const Coordinador = () => {
   const [mostrarLinks, setMostrarLinks] = useState(false);
   
   return (
-    <>
+    <>     
 
       <HelmetProvider>
 
@@ -80,12 +98,20 @@ const Coordinador = () => {
 
           {/* Mostraré el contenedor de los titulos o los links en vertical en los smartphones */}
           {!mostrarLinks ?
-                     
+
+            // El iconoMenu que es la hamburguesa se muestra si el ancho de la pantalla es menor o igual que el anchoMaximoVerticalParaMoviles
+            // El titulo con el nombre del usuario se mostrará siempre
+
             <ContenedorTitulos>
 
               {anchoActual <= anchoMaximo && <IconoMenu onClick={() => setMostrarLinks(!mostrarLinks)}/>}
               <Titulo> {nombre} </Titulo> 
-              {anchoActual <= anchoMaximo && <BtnSalir /> }           
+              {rol == "administrador"  && anchoActual > anchoMaximo ?
+                  <Boton $paraAdministrador $mediano to="/administrador/crear-usuario">
+                    {anchoActual > anchoMaximoMovilHorizontal ? 'Administracion' : 'Admon'}
+                  </Boton>
+                : null}
+              {anchoActual <= anchoMaximoMovilHorizontal && <BtnSalir /> }           
 
             </ContenedorTitulos>
 
@@ -97,7 +123,7 @@ const Coordinador = () => {
               <a href="/coordinador/direccion">Dirección</a>
               <a href="/coordinador/sin-asignar">Sin coordinar</a>
               <a href="/coordinador/ilocalizable">Ilocalizable</a>
-              <a href="/coordinador/mantenimiento">Mantenimiento</a>
+              <a href="/coordinador/mantenimiento">{anchoActual > anchoMaximoMovilHorizontal ? 'Mantenimiento': 'Mto'}</a>
               <a href="/coordinador/falta-citas">Falta citas</a>
               <a href="/coordinador/incidencias">Incidencias</a>
               <a href="/coordinador/oym">O&m</a>
@@ -115,18 +141,17 @@ const Coordinador = () => {
 
             <ContenedorBotones>
 
-              <Boton $paraCoordinador to = "direccion">Dirección</Boton>
-              <Boton $paraCoordinador to = "sin-asignar">Sin coordinar</Boton>            
-              <Boton $paraCoordinador to = "ilocalizable">Ilocalizable</Boton>
-              <Boton $paraCoordinador to = "mantenimiento">Mantenimiento</Boton>
-              <Boton $paraCoordinador to = "falta-citas">Falta citas</Boton>
-              <Boton $paraCoordinador to = "incidencias">Incidencias</Boton>
-              <Boton $paraCoordinador to = "oym">O&m</Boton>
-              <Boton $paraCoordinador to = "agenda">Agenda</Boton>
-              <Boton $paraCoordinador to = "supervision">Supervisión</Boton>            
-              <Boton $paraCoordinador to = "instalados-finalizados">Finalizados</Boton>
-              {rol == "administrador" ? <Boton $paraAdministrador to="/administrador/crear-usuario">Administración</Boton> : null} 
-              <BtnSalir />      
+              <Boton $paraCoordinador $mediano to = "direccion">Dirección</Boton>
+              <Boton $paraCoordinador $mediano to = "sin-asignar">Sin coordinar</Boton>            
+              <Boton $paraCoordinador $mediano to = "ilocalizable">Ilocalizable</Boton>
+              <Boton $paraCoordinador $mediano to = "mantenimiento">{anchoActual < anchoMaximoMovilHorizontal ? 'Mto' : 'Mantenimiento'}</Boton>
+              <Boton $paraCoordinador $mediano to = "falta-citas">Falta citas</Boton>
+              <Boton $paraCoordinador $mediano to = "incidencias">Incidencias</Boton>
+              <Boton $paraCoordinador $mediano to = "oym">O&m</Boton>
+              <Boton $paraCoordinador $mediano to = "agenda">Agenda</Boton>
+              <Boton $paraCoordinador $mediano to = "supervision">Supervisión</Boton>            
+              <Boton $paraCoordinador $mediano to = "instalados-finalizados">Finalizados</Boton>                             
+              {anchoActual > anchoMaximoMovilHorizontal && <BtnSalir /> }     
 
             </ContenedorBotones>
             
@@ -157,6 +182,11 @@ const Coordinador = () => {
 
         </Routes>
       </Suspense>
+
+      {/* <MuestraResolucion />
+      {console.log('ancho actual:' + anchoActual)}
+      {console.log('ancho maximo:' + anchoMaximo)}
+      {console.log('ancho maximoMovilHorizontal:' + anchoMaximoMovilHorizontal)} */}
 
     </>
   );
