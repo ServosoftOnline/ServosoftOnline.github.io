@@ -183,10 +183,10 @@ const Coordinador = () => {
         </Routes>
       </Suspense>
 
-      {/* <MuestraResolucion />
+      <MuestraResolucion />
       {console.log('ancho actual:' + anchoActual)}
       {console.log('ancho maximo:' + anchoMaximo)}
-      {console.log('ancho maximoMovilHorizontal:' + anchoMaximoMovilHorizontal)} */}
+      {console.log('ancho maximoMovilHorizontal:' + anchoMaximoMovilHorizontal)}
 
     </>
   );

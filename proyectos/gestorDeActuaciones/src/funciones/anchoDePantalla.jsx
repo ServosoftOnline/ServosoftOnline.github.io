@@ -36,12 +36,12 @@ const anchoDePantalla = () => {
 
   // Establezco los anchos actuales y el maximo que debe tener para aplicarle la programacion en pantallas moviles
   const anchoActual = resolution.width
-  // const anchoMaximoMovilVertical = 430;
-  const anchoMaximo = 430;
+  const anchoMaximoMovilVertical = 430;
+  // const anchoMaximo = 430;
   const anchoMaximoMovilHorizontal = 860;
 
   // Devuelvo los anchos
-  return {anchoActual, anchoMaximo, anchoMaximoMovilHorizontal};
+  return {anchoActual, anchoMaximoMovilVertical, anchoMaximoMovilHorizontal};
 
 };
 

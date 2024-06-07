@@ -3,6 +3,9 @@
 const theme = {
     fondo: '#F9F9F9',
     
+    // blanco
+    blanco: '#FFFFFF',
+    
     // Botones
     colorPrimario: '#5B69E2',
     colorSecundario: '#000',

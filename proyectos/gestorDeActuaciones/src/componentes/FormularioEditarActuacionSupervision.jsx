@@ -13,10 +13,11 @@ import { deleteField } from "firebase/firestore";
 
 // Elementos
 import  {ContenedorSupervisarActuacion, ContenedorActuacion, TecnicosAcompañantes, SubContenedorSoloLectura,
-        ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico, Momentos, ContenedorFotografias, Fotografias,
-        ComentariosTecnicos, ContenedorComentariosTecnicos, DecisionDelSupervisor, Dificultad, ContenedorDificultad,
-        DificultadYPuntos, ConsideracionNivel4, CheckBox, ComentariosSupervision, ContenedorComentariosSupervision,
-        ContenedorEstadoYBoton, Estado, ContenedorBoton} from '../elementos/ElementosDeFormularioSupervision';
+        ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico, Momentos, EnCamino, EnCliente, FinActuacion,
+        ContenedorFotografias, Fotografias, ComentariosTecnicos, ContenedorComentariosTecnicos, DecisionDelSupervisor,
+        Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox, ComentariosSupervision,
+        ContenedorComentariosSupervision, ContenedorEstadoYBoton, Estado,
+        ContenedorBoton} from '../elementos/ElementosDeFormularioSupervision';
 
 // Componentes select
 import SelectEstadosSupervision from "./SelectEstadosSupervision";
@@ -26,6 +27,8 @@ import Boton from "../elementos/Boton";
 
 // Funciones
 import formatearFechaEnHoraYSegundos from "../funciones/formatearFechaEnHoraYSegundos";
+import anchoDePantalla from './../funciones/anchoDePantalla';
+
 
 // Funcion firebase
 import actualizaActuacionSupervisada from "../firebase/actualizaActuacionSupervisada";
@@ -48,8 +51,13 @@ const  FormularioEditarActuacionSupervision = () => {
     // Obtendo el idActuacion pasado por la barra de direccion
     const {idActuacion} = useParams();
 
+    // Obtengo la resolucion de la pantalla
+    const {anchoActual, anchoMaximoMovilVertical} = anchoDePantalla();
+    console.log(anchoActual);
+    console.log(anchoMaximoMovilVertical);
+
     // Contexto para mensajes en pantalla
-    const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje} = useContext(ContextoMensaje);
+    const {mensajeAMostrar, rdoValidacion , cambiarMensaje} = useContext(ContextoMensaje);
     
     // Estados        
     const [estado, asignarEstado] = useState();    
@@ -208,20 +216,35 @@ const  FormularioEditarActuacionSupervision = () => {
 
                 <Momentos>
 
-                    <div>
-                        <label htmlFor="momentoInicioCamino">Inicio camino: </label>
-                        {actuacion.horaEnCamino !== undefined ? formatearFechaEnHoraYSegundos(actuacion.horaEnCamino):null} 
-                    </div>
+                    <EnCamino>
 
-                    <div>
-                        <label htmlFor="momentoInicioActuacion">Inicio actuacion: </label>
-                        {actuacion.horaDeLlegada !== undefined ? formatearFechaEnHoraYSegundos(actuacion.horaDeLlegada):null}                         
-                    </div>
+                        <label htmlFor="momentoInicioCamino">
+                            {anchoActual<anchoMaximoMovilVertical ? 'Inició:' : 'Inició camino:' } 
+                        </label>
 
-                    <div>
-                        <label htmlFor="momentoFinActuacion">Fin actuacion: </label>                       
-                        {actuacion.horaFinalizacion !== undefined ? formatearFechaEnHoraYSegundos(actuacion.horaFinalizacion):null}                        
-                    </div>
+                        <p> {actuacion.horaEnCamino !== undefined && formatearFechaEnHoraYSegundos(actuacion.horaEnCamino)} </p>
+                        
+                    </EnCamino>
+
+                    <EnCliente>
+
+                        <label htmlFor="momentoInicioActuacion">
+                            {anchoActual<anchoMaximoMovilVertical ? 'LLegó:' : 'Inició actuación:' }
+                        </label>
+
+                        <p> {actuacion.horaDeLlegada !== undefined && formatearFechaEnHoraYSegundos(actuacion.horaDeLlegada)} </p>
+
+                    </EnCliente>
+
+                    <FinActuacion>
+
+                        <label htmlFor="momentoFinActuacion">
+                            {anchoActual<anchoMaximoMovilVertical ? 'Acabó:' : 'Fin actuacion:' } 
+                        </label>                       
+
+                        <p> {actuacion.horaFinalizacion !== undefined && formatearFechaEnHoraYSegundos(actuacion.horaFinalizacion)} </p>
+
+                    </FinActuacion>
 
                 </Momentos>                
                 
@@ -256,7 +279,7 @@ const  FormularioEditarActuacionSupervision = () => {
                             <DificultadYPuntos>
 
                                 <div>
-                                    <label htmlFor="dificultad">Dificultad actual: </label>
+                                    <label htmlFor="dificultad">Dificultad: </label>
                                     {consideraNivel4 === "Si" ? dificultadTemporal : actuacion.dificultad} 
                                 </div>
 
@@ -270,7 +293,7 @@ const  FormularioEditarActuacionSupervision = () => {
                             <ConsideracionNivel4>
 
                                 <div>
-                                    <h4>¿El técnico ha considerado la actuacion de nivel4?</h4>
+                                    <h4>¿Fué considerada la actuacion de nivel4?</h4>
                                 </div>
 
                                 <div>

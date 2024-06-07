@@ -14,7 +14,7 @@ const Select = styled.div`
     }
 
     @media (max-width: 768px) { 
-        width: 22rem;   
+        width: 21rem;   
         gap: 0rem;       
     }
 

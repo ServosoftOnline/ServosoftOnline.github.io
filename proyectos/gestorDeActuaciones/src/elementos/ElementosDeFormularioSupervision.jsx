@@ -21,8 +21,15 @@ const ContenedorSupervisarActuacion = styled.div `
         padding-left: 0.7rem;
     }  
 
-    @media(max-width: 60rem){ /* 950px */
-        font-size: 0.8rem;        
+    @media(max-width: 60rem){ /* 960px */
+        font-size: 0.8rem; 
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;        
+    }
+
+    @media(max-width: 48rem) {  /* 768px */         
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;   
     }
 `;
 
@@ -36,6 +43,10 @@ const ContenedorActuacion = styled.div`
     border: 2px solid ${theme.azulClaro};
     border-radius: 10px;
 
+    @media(max-width: 48rem) {  /* 768px */         
+        padding: 0.5rem;
+    }
+
 `;
 
 const TecnicosAcompañantes = styled.div`
@@ -43,17 +54,19 @@ const TecnicosAcompañantes = styled.div`
 `;
 
 const SubContenedorSoloLectura = styled.div `
-// background:lightyellow;
+
     
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    // margin-top: 0.5rem;
-    // margin-bottom: 0.5rem;
+    grid-template-columns: 1fr 1fr;    
     gap: 0.8rem;
 
     div {        
         border-bottom: 2px solid ${theme.grisClaro};
         padding-bottom: 0.5rem;
+    }
+
+    @media(max-width: 48rem) {  /* 768px */         
+        grid-template-columns: 1fr;    
     }
     
 `;
@@ -81,26 +94,58 @@ const ContenedorTrabajoDelTecnico = styled.div`
     padding: 1rem;
     border: 2px solid ${theme.azulClaro};
     border-radius: 10px;
+
+    @media(max-width: 48rem) {  /* 768px */         
+        padding: 0.5rem;
+    }
 `;
 
 
 const Momentos = styled.div `
 
-    background: white;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; 
+    background: ${theme.blanco};
+    display: flex;    
+    justify-content: space-between;;
     border: 1px solid ${theme.azulClaro};
     border-radius: 10px;
-    padding: 0.5rem; 
-    margin-bottom: 0.5rem;       
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    @media(max-width: 48rem) {  /* 768px */         
+        padding-top: 0.5rem;
+        font-size: 0.8rem;
+    }
     
+`;
+
+const EnCamino = styled.div`
+
+    display: flex;
+    align-items: center;    
+    gap: 0.2rem;
+
+`;
+
+const EnCliente = styled.div`
+
+    display: flex;
+    align-items: center;    
+    gap: 0.2rem;
+
+`;
+
+const FinActuacion = styled.div`
+
+    display: flex;
+    align-items: center;    
+    gap: 0.2rem;
+
 `;
 
 const ContenedorFotografias = styled.div`
 
-    background: white;
-    border: 1px solid ${theme.azulClaro};
-    // border-radius: 10px;
+    background: ${theme.blanco};
+    border: 1px solid ${theme.azulClaro};   
     margin-top: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -113,12 +158,13 @@ const Fotografias = styled.div `
 `;
 
 const ComentariosTecnicos = styled.div`
+
     display: grid;
     grid-template-columns: 1fr;
     padding-top: 1rem;    
 
     p {
-        background: white;
+        background: ${theme.blanco};
         border: 1px solid ${theme.azulClaro};
         border-radius: 10px;
         padding: 0.5rem;
@@ -130,25 +176,36 @@ const ContenedorComentariosTecnicos = styled.div`
     display: grid;
     grid-template-columns: 1fr;           
     padding-bottom: 1rem;
+    
 `;
 
 // ELEMENTOS PARA LA DECISION DEL SUPERVISOR
 
 const DecisionDelSupervisor = styled.div`
-   
+// display: none;
     background: ${theme.lightSmoke};    
     margin-bottom: 1.5rem;    
     padding: 1rem;
     border: 2px solid ${theme.azulClaro};
     border-radius: 10px;
 
+    @media(max-width: 48rem) {  /* 768px */         
+        padding: 0.5rem;
+    }
+
 `;
-const Dificultad = styled.div`        
-    margin-bottom: 1rem;    
+const Dificultad = styled.div`      
+    margin-bottom: 1rem; 
+    
+    @media(max-width: 48rem) {  /* 768px */         
+        margin-bottom: 0.5rem;
+    }
+
 `;
 
 const ContenedorDificultad = styled.div`
-    background: white;
+
+    background: ${theme.blanco};
     border: 1px solid ${theme.azulClaro};
     border-radius: 10px;
     margin-top: 0.5rem;    
@@ -157,13 +214,19 @@ const ContenedorDificultad = styled.div`
 `;
 
 const DificultadYPuntos = styled.div `
+
     display: grid;
     grid-template-columns: 1fr 1fr;    
     align-items: center;
     padding: 0.5rem; 
+
+    @media(max-width: 48rem) {  /* 768px */         
+        // grid-template-columns: 1fr;    
+    }
 `;
 
 const ConsideracionNivel4 = styled.div `
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -171,6 +234,10 @@ const ConsideracionNivel4 = styled.div `
 
     label {
         padding-right: 1.5rem;
+    }
+
+    @media(max-width: 48rem) {  /* 768px */         
+        grid-template-columns: 1fr;    
     }
 `;
 
@@ -182,16 +249,13 @@ background:lightpink;
 `;
 
 const ComentariosSupervision = styled.div`
-
+display: none;
     display: grid;
     grid-template-columns: 1fr;    
     padding-top: 1rem;    
-    
 
-    p {
-        border: 0.1rem solid black;
+    p { 
         padding: 0.5rem;
-        
     }    
 `;
 
@@ -204,17 +268,28 @@ const ContenedorComentariosSupervision = styled.div`
     
     textarea {
         font-size: 1.1rem;
-        width: 90rem;
-        height: 7rem;        
+        width: 116rem;
+        height: 9rem;     
+        padding: 0.3rem;   
         border: 1px solid ${theme.azulClaro};
+        border-radius: 10px;
         margin-top: 0.5rem;    
     }
 
-    @media(max-width: 60rem){ /* 950px */     
+    @media(max-width: 60rem){ /* 960px */   
+
         textarea {
             font-size: 0.9rem;
-            width: 46.5rem;
-            height: 5rem;
+            width: 43.5rem;
+            height: 7rem;
+        }
+    }
+
+    @media(max-width: 48rem) {  /* 768px */         
+
+        textarea {            
+            width: 20rem;
+            height: 14rem;
         }
     }
 `;
@@ -226,19 +301,30 @@ const ContenedorEstadoYBoton = styled.div`
     grid-template-columns: 1fr 1fr;    
     align-items: center;
     margin-bottom: 2rem;
+    margin-top: 2rem;
+
+    @media(max-width: 48rem) {  /* 768px */         
+        grid-template-columns: 1fr; 
+        gap: 2rem;   
+        margin-top: 0rem;
+    }
 `;
 
 const Estado = styled.div `
-// background:lightblue;
+
+    // display: flex;
+    // flex-direction: column;
+    
 `;
 
 const ContenedorBoton = styled.div`
     display: grid;
-    justify-content: center;        
+    justify-content: center;   
+         
 `;
 
 export  {ContenedorSupervisarActuacion, ContenedorActuacion, TecnicosAcompañantes, SubContenedorSoloLectura,
-        ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico, Momentos, ContenedorFotografias, Fotografias,
-        ComentariosTecnicos, ContenedorComentariosTecnicos, DecisionDelSupervisor, Dificultad, ContenedorDificultad,
-        DificultadYPuntos, ConsideracionNivel4, CheckBox, ComentariosSupervision, ContenedorComentariosSupervision,
-        ContenedorEstadoYBoton, Estado, ContenedorBoton}
+        ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico, Momentos, EnCamino, EnCliente, FinActuacion,
+        ContenedorFotografias, Fotografias, ComentariosTecnicos, ContenedorComentariosTecnicos, DecisionDelSupervisor,
+        Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox, ComentariosSupervision,
+        ContenedorComentariosSupervision, ContenedorEstadoYBoton, Estado, ContenedorBoton}
