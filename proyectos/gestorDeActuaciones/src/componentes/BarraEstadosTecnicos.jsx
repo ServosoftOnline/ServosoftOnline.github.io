@@ -38,7 +38,7 @@ const BarraEstadosTecnicos = () => {
     const nombresFinalizaronJornadaSeparados = tecnicosFinalizaronJornada.join(', ');
 
     // Obtengo la resolucion de la pantalla para ver si aplico diseño responsive para moviles
-    const {anchoActual, anchoMaximo} = anchoDePantalla();
+    const {anchoActual, anchoMaximoMovilVertical} = anchoDePantalla();
 
     return (
         
@@ -50,7 +50,7 @@ const BarraEstadosTecnicos = () => {
             <ParrafoDeLaBarra>Estados de los tecnicos: </ParrafoDeLaBarra>
 
             {/* Muestro la barra para dispositivos con mayor resolución que un movil */}            
-            {anchoActual > anchoMaximo &&
+            {anchoActual > anchoMaximoMovilVertical &&
                 <>
 
                     <Cabecera>            
@@ -72,7 +72,7 @@ const BarraEstadosTecnicos = () => {
             }
 
             {/* Muestro la barra para moviles */}
-            {anchoActual <= anchoMaximo &&
+            {anchoActual <= anchoMaximoMovilVertical &&
 
                 <ContenedorEstadosTecnicosEnMoviles>
                     <div>

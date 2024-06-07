@@ -68,7 +68,7 @@ import anchoDePantalla from './../funciones/anchoDePantalla';
 const Coordinador = () => {
 
   // Obtengo el ancho de pantalla actual y el ancho máximo para considerarlo una pantalla de un smartphone
-  const {anchoActual, anchoMaximo, anchoMaximoMovilHorizontal} = anchoDePantalla();  
+  const {anchoActual, anchoMaximoMovilVertical, anchoMaximoMovilHorizontal} = anchoDePantalla();  
 
   // LLamadas a los hooks
   const [nombre] = useObtenerNombreDeUnUsuario();
@@ -104,13 +104,16 @@ const Coordinador = () => {
 
             <ContenedorTitulos>
 
-              {anchoActual <= anchoMaximo && <IconoMenu onClick={() => setMostrarLinks(!mostrarLinks)}/>}
+              {anchoActual <= anchoMaximoMovilVertical && <IconoMenu onClick={() => setMostrarLinks(!mostrarLinks)}/>}
               <Titulo> {nombre} </Titulo> 
-              {rol == "administrador"  && anchoActual > anchoMaximo ?
+              {rol == "administrador"  && anchoActual > anchoMaximoMovilVertical ?
+
                   <Boton $paraAdministrador $mediano to="/administrador/crear-usuario">
                     {anchoActual > anchoMaximoMovilHorizontal ? 'Administracion' : 'Admon'}
                   </Boton>
-                : null}
+
+                  : null}
+
               {anchoActual <= anchoMaximoMovilHorizontal && <BtnSalir /> }           
 
             </ContenedorTitulos>
@@ -123,7 +126,7 @@ const Coordinador = () => {
               <a href="/coordinador/direccion">Dirección</a>
               <a href="/coordinador/sin-asignar">Sin coordinar</a>
               <a href="/coordinador/ilocalizable">Ilocalizable</a>
-              <a href="/coordinador/mantenimiento">{anchoActual > anchoMaximoMovilHorizontal ? 'Mantenimiento': 'Mto'}</a>
+              <a href="/coordinador/mantenimiento">Mantenimiento</a>
               <a href="/coordinador/falta-citas">Falta citas</a>
               <a href="/coordinador/incidencias">Incidencias</a>
               <a href="/coordinador/oym">O&m</a>
@@ -183,10 +186,10 @@ const Coordinador = () => {
         </Routes>
       </Suspense>
 
-      <MuestraResolucion />
+      {/* <MuestraResolucion />
       {console.log('ancho actual:' + anchoActual)}
-      {console.log('ancho maximo:' + anchoMaximo)}
-      {console.log('ancho maximoMovilHorizontal:' + anchoMaximoMovilHorizontal)}
+      {console.log('ancho maximo:' + anchoMaximoMovilVertical)}
+      {console.log('ancho maximoMovilHorizontal:' + anchoMaximoMovilHorizontal)} */}
 
     </>
   );

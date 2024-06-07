@@ -67,11 +67,12 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
 
     // Obtengo desde el contexto
     const {mostrarBarraTecnicos, setMostrarBarraTecnicos} = useContext(muestraEstadosTecnicosContext); 
-    let {rol} = useRol(); 
-    console.log('rol: ' + rol);
+
+    // Obtengo el rol del usuario
+    let {rol} = useRol();     
     
     // Obtengo el ancho de la funcion anchoDePantalla y defino el ancho de los smartphone
-    const {anchoActual, anchoMaximo} = anchoDePantalla();       
+    const {anchoActual, anchoMaximoMovilVertical} = anchoDePantalla();       
 
     // FUNCIONES:
     // Funciones para actualizar los estados de la actuacion y del tecnico a EnCamino
@@ -233,9 +234,9 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                         Solo muestro la direccion si el ancho es superior a la cte anchoSmartphone */}
 
                                         <ElementoListaCabecera>
-                                            <Incidencia> { anchoActual < anchoMaximo ? 'Cod.I' : 'Incidencia'} </Incidencia>
+                                            <Incidencia> { anchoActual < anchoMaximoMovilVertical ? 'Cod.I' : 'Incidencia'} </Incidencia>
                                             <Cliente>Cliente</Cliente>
-                                            {anchoActual > anchoMaximo && <Direccion>Dirección</Direccion> }
+                                            {anchoActual > anchoMaximoMovilVertical && <Direccion>Dirección</Direccion> }
                                             <Poblacion>Población</Poblacion>
                                             <Estado>Estado</Estado>
                                             <Gestion>Gestión</Gestion>
@@ -255,7 +256,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                     </Cliente>
 
                                     {/* Solo muestro la direccion si el ancho es superior a la cte anchoSmartphone */}
-                                    {anchoActual > anchoMaximo &&
+                                    {anchoActual > anchoMaximoMovilVertical &&
                                         <Direccion>
                                             {actuacion.direccion}
                                         </Direccion>
