@@ -59,7 +59,7 @@ const Tecnico = () => {
   const {inicioJornada, establecerInicioDeJornada} = useContext(InicioJornadaContext); 
 
   // Obtengo el ancho de pantalla actual y el ancho máximo para considerarlo una pantalla de un smartphone
-  const {anchoActual, anchoMaximo} = anchoDePantalla(); 
+  const {anchoActual, anchoMaximoMovilVertical} = anchoDePantalla(); 
 
   // Estados
   const [mostrarLinks, setMostrarLinks] = useState(false);
@@ -109,7 +109,7 @@ const Tecnico = () => {
 
             <ContenedorTitulos>
 
-              {anchoActual <= anchoMaximo && <IconoMenu onClick={() => setMostrarLinks(!mostrarLinks)}/>}
+              {anchoActual <= anchoMaximoMovilVertical && <IconoMenu onClick={() => setMostrarLinks(!mostrarLinks)}/>}
 
               <ContenedorTituloJornada>
                 <Titulo> {nombre} </Titulo>
@@ -120,7 +120,7 @@ const Tecnico = () => {
                 }
               </ContenedorTituloJornada>
               
-              {anchoActual <= anchoMaximo && <BtnSalir /> }                              
+              {anchoActual <= anchoMaximoMovilVertical && <BtnSalir /> }                              
 
             </ContenedorTitulos>
 

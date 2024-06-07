@@ -7,7 +7,11 @@ INSTALAR UNA APP CON REACT
 
     - NPM
       - npm install. Instala todas las dependencias
+      - npm uninstall libreria. Desinstala la libreria que le indiques
+      - npm audit. Hace auditorias
       - npm audit fix. Intenta reparar vulnerabilidades
+      - npm update. Actualiza las librerias de un proyecto.
+      - npm ls xlsx. Muestra todas las dependencias instaladas.
 
     - NODE.JS
       - node.js se instala desde: https://nodejs.org/en/download
@@ -357,32 +361,33 @@ INSTALAR UNA APP CON REACT
             - format(fecha, "dd 'de' MMMM 'de' yyyy", {locale: es})
               - Formatea una fecha en día de mes de año en español
     
-    - XLSX
-      - Permite importar un archivo excel
-      - Documentacion: https://www.npmjs.com/package/xlsx
-      - Importacion: npm install xlsx
+    - BIBLIOTECAS PARA IMPORTAR ARCHIVOS EXCEL: 
 
-    - XLSX-POPULATE
-      - Igual que XLSX pero valido solo en backend
-      - Documentacion: https://www.npmjs.com/package/@xlsx/xlsx-populate
-      - Video demostracion: https://www.youtube.com/watch?v=B6AuiFpICIc
-      - Instalacion: npm install xlsx-populate
-      - Importacion: import XlsxPopulate from 'xlsx-populate';
-      - Usos:
-          - XlsxPopulate.fromBlankAsync(). Para empezar un archivo en blanco
-          - XlsxPopulate.fromDataAsync(). Usar archivo con datos
-          - XlsxPopulate.fromFileAsync(). Para poder leer de un archivo   
-          - Se gestionan como promesas. Puedo usar .then o async/await   
+      - XLSX
+        - ESTA EN DESUSO!!!!!!!. LA SUSTITUÍ POR EXCELJS
+        - Permite importar un archivo excel
+        - Documentacion: https://www.npmjs.com/package/xlsx
+        - Importacion: npm install xlsx
 
-          - sheet son paginas, cell son celdas y value su contenido  
-      
-      - Para leer archivos xlsx desde visual studio code necesito instalar una extension. Ejemplo: excel viewver
+      - XLSX-POPULATE
+        - Igual que XLSX pero valido solo en backend
+        - Documentacion: https://www.npmjs.com/package/@xlsx/xlsx-populate
+        - Video demostracion: https://www.youtube.com/watch?v=B6AuiFpICIc
+        - Instalacion: npm install xlsx-populate
+        - Importacion: import XlsxPopulate from 'xlsx-populate';
+        - Usos:
+            - XlsxPopulate.fromBlankAsync(). Para empezar un archivo en blanco
+            - XlsxPopulate.fromDataAsync(). Usar archivo con datos
+            - XlsxPopulate.fromFileAsync(). Para poder leer de un archivo   
+            - Se gestionan como promesas. Puedo usar .then o async/await   
 
-      
-
-    
+            - sheet son paginas, cell son celdas y value su contenido  
         
+        - Para leer archivos xlsx desde visual studio code necesito instalar una extension. Ejemplo: excel viewver
 
- 
+      - EXCELJS
+        - Me lo sugirio CHATGPT. Funciona de maravilla. NO USAR XLSX
+        - npm install exceljs
+        
 
   - EN LA APP APRENDIENDO REACT DESCRIBO LOS FUNDAMENTOS DE REACT

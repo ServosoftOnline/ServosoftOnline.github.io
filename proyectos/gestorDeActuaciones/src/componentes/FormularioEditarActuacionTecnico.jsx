@@ -84,11 +84,12 @@ const  FormularioEditarActuacionTecnico = () => {
     
 
     // Efecto para obtener los datos que iré mostrando en el formulario
-    useEffect(() => {       
-        console.log(actuacion.estadoDescripcion);
-        console.log(actuacion.horaEnCamino);
-        console.log(actuacion.horaDeLlegada);
-        console.log(actuacion.comentariosTecnicos);
+    useEffect(() => {   
+
+        // console.log(actuacion.estadoDescripcion);
+        // console.log(actuacion.horaEnCamino);
+        // console.log(actuacion.horaDeLlegada);
+        // console.log(actuacion.comentariosTecnicos);
 
         eliminarMensaje();
         asignarEstadoDescripcion(actuacion.estadoDescripcion);
@@ -236,11 +237,13 @@ const  FormularioEditarActuacionTecnico = () => {
                         {actuacion.codigoIncidencia}
                     </div>
 
+                    {/* Nombre del cliente */}
                     <ContenedorCliente>
                         <label htmlFor="cliente">Cliente: </label>
                         {actuacion.nombre}
                     </ContenedorCliente>
 
+                    {/* Descripcion de la actuacion */}
                     <ContenedorDescripcion>
                         <label htmlFor="descripcion">Descripción: </label>
                         {actuacion.descripcion}

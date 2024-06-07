@@ -16,13 +16,13 @@ import { getUnixTime } from "date-fns";
 
 // La función
 const agregaActuacion = async (data) => {
-    console.log('Extraigo la data y la añado a la colección'); 
+
+    // Extraigo la data y la añado a la coleccion    
     data.forEach(async (registro) => {
 
         try {
 
-            // Creo la coleccion actuaciones
-            console.log(registro);
+            // Creo la coleccion actuaciones            
             await addDoc(collection(db, 'actuaciones'), {
 
                 // Obtenidos desde el excel

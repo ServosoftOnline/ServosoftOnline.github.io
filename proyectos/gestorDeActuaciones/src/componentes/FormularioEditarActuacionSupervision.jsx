@@ -8,15 +8,14 @@
 import React, { useContext, useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 
-// Firestore
-import { deleteField } from "firebase/firestore";
-
 // Elementos
-import  {ContenedorSupervisarActuacion, ContenedorActuacion, TecnicosAcompañantes, SubContenedorSoloLectura,
-        ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico, Momentos, EnCamino, EnCliente, FinActuacion,
-        ContenedorFotografias, Fotografias, ComentariosTecnicos, ContenedorComentariosTecnicos, DecisionDelSupervisor,
-        Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox, ComentariosSupervision,
-        ContenedorComentariosSupervision, ContenedorEstadoYBoton, Estado,
+import  {ContenedorSupervisarActuacion, ContenedorActuacion, ContenedorSoloLectura,
+        ContenedorCodigoIncidencia, ContenedorCliente, ContenedorDescripcion, ContenedorTipoDeActuacion,
+        ContenedorDireccion, ContenedorPoblacion, ContenedorZona, ContenedorTelefonos, ContenedorTipoDeTrabajo, ContenedorTecnicos,
+        LinkCoordenadas, LinkDorus, ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico, Momentos, EnCamino,
+        EnCliente, FinActuacion, ContenedorFotografias, Fotografias, ComentariosTecnicos, ContenedorComentariosTecnicos,
+        DecisionDelSupervisor, Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox,
+        ComentariosSupervision, ContenedorComentariosSupervision, ContenedorEstadoYBoton, Estado,
         ContenedorBoton} from '../elementos/ElementosDeFormularioSupervision';
 
 // Componentes select
@@ -161,43 +160,67 @@ const  FormularioEditarActuacionSupervision = () => {
 
             <ContenedorActuacion>
                 
-                <SubContenedorSoloLectura>
+                <ContenedorSoloLectura>
 
-                    {/* Codigo de incidencia, cliente y descripcion */}
-                    <div> <label htmlFor="codigoIncidencia">Código de incidencia: </label> {actuacion.codigoIncidencia} </div>
-                    <div> <label htmlFor="cliente">Cliente: </label> {actuacion.nombre} </div>
-                    <div> <label htmlFor="descripcion">Descripción: </label> {actuacion.descripcion} </div>
-                    <div> <label htmlFor="tipoActuacion">Tipo de actuación: </label> {actuacion.tipoActuacion} </div>  
+                    {/* Codigo de incidencia, cliente, descripcion y tipo de actuacion */}
+                    <ContenedorCodigoIncidencia>
+                        <label htmlFor="codigoIncidencia">Código de incidencia: </label> {actuacion.codigoIncidencia}
+                    </ContenedorCodigoIncidencia>
 
-                    {/* Dirección y población */}
-                    <div> <label htmlFor="direccion">Dirección: </label> {actuacion.direccion} </div>
-                    <div> <label htmlFor="poblacion">Población: </label> {actuacion.poblacion} </div>
-                    <div> <label htmlFor="zona">Zona: </label> {actuacion.zonaInstalacion} </div>
+                    <ContenedorCliente>
+                        <label htmlFor="cliente">Cliente: </label> {actuacion.nombre} 
+                    </ContenedorCliente>
 
-                    {/* Telefonos, tipo de actuacion, zona, momentos de en camino e inicio de actuacion y comentarios coordinacion */}                    
-                    <div> <label htmlFor="telefonos">Telefonos: </label> {actuacion.telefonos} </div>
-                    <div> <label htmlFor="tipoTrabajo">Tipo de trabajo: </label> {actuacion.tipoTrabajo} </div>
+                    <ContenedorDescripcion>
+                        <label htmlFor="descripcion">Descripción: </label> {actuacion.descripcion}
+                    </ContenedorDescripcion>
+
+                    <ContenedorTipoDeActuacion>
+                        <label htmlFor="tipoActuacion">Tipo de actuación: </label> {actuacion.tipoActuacion}
+                    </ContenedorTipoDeActuacion>  
+
+                    {/* Dirección, población y zona */}
+                    <ContenedorDireccion>
+                        <label htmlFor="direccion">Dirección: </label> {actuacion.direccion}
+                    </ContenedorDireccion>
+
+                    <ContenedorPoblacion>
+                        <label htmlFor="poblacion">Población: </label> {actuacion.poblacion}
+                    </ContenedorPoblacion>
+
+                    <ContenedorZona>
+                         <label htmlFor="zona">Zona: </label> {actuacion.zonaInstalacion}
+                    </ContenedorZona>
+
+                    {/* Telefonos, tipo de trabajo */}                    
+                    <ContenedorTelefonos>
+                        <label htmlFor="telefonos">Telefonos: </label> {actuacion.telefonos}
+                    </ContenedorTelefonos>
+
+                    <ContenedorTipoDeTrabajo>
+                        <label htmlFor="tipoTrabajo">Tipo de trabajo: </label> {actuacion.tipoTrabajo}
+                    </ContenedorTipoDeTrabajo>
 
                     {/* Tecnicos asignados separados por comas */}
-                    <TecnicosAcompañantes>
-                        <label htmlFor="tecnicosAcompañantes">Técnicos asignados: </label>
+                    <ContenedorTecnicos>
+                        <label htmlFor="tecnicosAcompañantes">Técnicos: </label>
                         {todosLosTecnicos.join(', ')}
-                    </TecnicosAcompañantes>
+                    </ContenedorTecnicos>
 
                     {/* Coordenadas de google maps */}
-                    <div> 
+                    <LinkCoordenadas> 
                         <label htmlFor="coordenadas">Coordenadas: </label> 
                         <a href="#" onClick={() => abrirGoogleMaps(actuacion.coordenadas)}>{actuacion.coordenadas}</a>
-                    </div>
+                    </LinkCoordenadas>
                 
                 
                     {/* link para dorus */}
-                    <div>
+                    <LinkDorus>
                         <label htmlFor="linkDorus">Link Dorus: </label>
                         <a href={actuacion.linkDorus} target="_blank">{actuacion.linkDorus}</a>                         
-                    </div>
+                    </LinkDorus>
 
-                </SubContenedorSoloLectura>
+                </ContenedorSoloLectura>
 
                 {/* Comentarios desde coordinacion */}
                 <ComentariosDesdeCoordinacion> 

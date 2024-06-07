@@ -49,12 +49,13 @@ const ContenedorActuacion = styled.div`
 
 `;
 
-const TecnicosAcompañantes = styled.div`
-    text-transform: capitalize;
-`;
+// const TecnicosAcompañantes = styled.div`
+//     text-transform: capitalize;
+// `;
 
-const SubContenedorSoloLectura = styled.div `
 
+// CONTENEDOR SOLO LECTURA
+const ContenedorSoloLectura = styled.div `
     
     display: grid;
     grid-template-columns: 1fr 1fr;    
@@ -69,6 +70,161 @@ const SubContenedorSoloLectura = styled.div `
         grid-template-columns: 1fr;    
     }
     
+`;
+
+const ContenedorCodigoIncidencia = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+
+    }
+`;
+
+const ContenedorCliente = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+
+        // Para que no desborde        
+        word-break: break-all;      /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+        max-width: 100%;            /* el elemento no se hará más ancho que su contenedor padre*/
+        overflow: hidden;           /* Si el contenido se desborda se hace invisible. */
+        text-overflow: ellipsis;    /* reemplaza el contenido desbordado con puntos suspensivos ("...").*/
+
+    }
+`;
+
+const ContenedorDescripcion = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+
+        // Para que no desborde        
+        word-break: break-all;      /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+        max-width: 100%;            /* el elemento no se hará más ancho que su contenedor padre*/
+        overflow: hidden;           /* Si el contenido se desborda se hace invisible. */
+        text-overflow: ellipsis;    /* reemplaza el contenido desbordado con puntos suspensivos ("...").*/
+
+    }
+`;
+
+const ContenedorTipoDeActuacion = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+
+    }
+`;
+
+const ContenedorDireccion = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+
+        // Para que no desborde        
+        word-break: break-all;      /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+        max-width: 100%;            /* el elemento no se hará más ancho que su contenedor padre*/
+        overflow: hidden;           /* Si el contenido se desborda se hace invisible. */
+        text-overflow: ellipsis;    /* reemplaza el contenido desbordado con puntos suspensivos ("...").*/
+
+    }
+`;
+
+
+const ContenedorPoblacion = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+    }
+`;
+
+const ContenedorZona = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+    }
+`;
+
+const ContenedorTelefonos = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+    }
+`;
+
+const ContenedorTipoDeTrabajo = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+    }
+`;
+
+const ContenedorTecnicos = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+        text-transform: capitalize;
+    }
+`;
+
+
+const LinkCoordenadas = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+
+        // Permite que el texto del enlace no se desborder
+        a {
+            display: block; /* Asegura que el enlace ocupe toda la línea */
+            max-width: 100%;
+            word-break: break-all; /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+    }
+`;
+
+
+const LinkDorus = styled.div`
+
+    @media(max-width: 60rem){ /* 950px */ 
+
+        display: flex;
+        flex-direction: column;
+
+        // Permite que el texto del enlace no se desborder
+        a {
+            display: block; /* Asegura que el enlace ocupe toda la línea */
+            max-width: 100%;
+            word-break: break-all; /* Permite que las palabras largas se dividan en varias líneas si es necesario */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+    }
 `;
 
 const ComentariosDesdeCoordinacion = styled.div `
@@ -111,8 +267,7 @@ const Momentos = styled.div `
     padding-left: 0.5rem;
     padding-right: 0.5rem;
 
-    @media(max-width: 48rem) {  /* 768px */         
-        padding-top: 0.5rem;
+    @media(max-width: 48rem) {  /* 768px */                 
         font-size: 0.8rem;
     }
     
@@ -323,8 +478,10 @@ const ContenedorBoton = styled.div`
          
 `;
 
-export  {ContenedorSupervisarActuacion, ContenedorActuacion, TecnicosAcompañantes, SubContenedorSoloLectura,
-        ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico, Momentos, EnCamino, EnCliente, FinActuacion,
-        ContenedorFotografias, Fotografias, ComentariosTecnicos, ContenedorComentariosTecnicos, DecisionDelSupervisor,
-        Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox, ComentariosSupervision,
-        ContenedorComentariosSupervision, ContenedorEstadoYBoton, Estado, ContenedorBoton}
+export  {ContenedorSupervisarActuacion, ContenedorActuacion, ContenedorSoloLectura,
+        ContenedorCodigoIncidencia, ContenedorCliente, ContenedorDescripcion, ContenedorTipoDeActuacion,
+        ContenedorDireccion, ContenedorPoblacion, ContenedorZona, ContenedorTelefonos, ContenedorTipoDeTrabajo, ContenedorTecnicos,
+        LinkCoordenadas, LinkDorus, ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico, Momentos, EnCamino,
+        EnCliente, FinActuacion, ContenedorFotografias, Fotografias, ComentariosTecnicos, ContenedorComentariosTecnicos,
+        DecisionDelSupervisor, Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox,
+        ComentariosSupervision, ContenedorComentariosSupervision, ContenedorEstadoYBoton, Estado, ContenedorBoton}

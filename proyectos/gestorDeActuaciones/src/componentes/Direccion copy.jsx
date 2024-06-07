@@ -1,10 +1,10 @@
 /*
   MODULO DIRECCION
 
-    - IMPORTANTE: EMPEZE A USAR EL PAQUETE XLSX PERO ESTABA EN DESUSO. LO CAMBIÉ POR EXCELJS  
+    - IMPORTANTE: ME COSTÓ MUCHÍSIMO TIEMPO FINALIZAR ESTE COMPONENTE. EL PAQUETE XLSX ESTÁ EN DESUSO. DEBO ENCONTRAR PAQUETE MAS ACTUALIZADA
+  
     - Permite seleccionar un archivo excel, mostrarlo en una tabla y añadirlo a la base de datos si valida bien.
-
-      - Uso el paquete exceljs para obtener un archivo excel y guardo el resultado en lo que llamo data
+      - Uso el paquete xlsx para obtener un archivo excel y guardo el resultado en lo que llamo data
       - Al cargarlo muestro en pantalla una tabla con el contenido del archivo importado
       - Se mostrará el boton de Añadir datos
 
@@ -27,11 +27,11 @@
     
 */
 
-// React
+// React y react router
 import React, { useContext, useEffect, useState } from "react";
 
-// Libreria exceljs
-import ExcelJS from 'exceljs';
+// libreria xlsx
+import * as XLSX from 'xlsx';
 
 // Componentes
 import Mensaje from "./Mensaje";
@@ -47,88 +47,51 @@ import useObtenerTodosLosCodigosDeIncidencias from "../hooks/useObtenerTodosLosC
 // Contextos
 import { ContextoMensaje } from "../contextos/contextoMensaje";
 
-// Funcion firebase
+// Funciones de firebase
 import agregaActuacion from "../firebase/agregaActuacion";
 
-// Mi componente
-const Direccion = () => {
 
+
+// El Componente
+const Direccion = () => {
+  
   // Estados
   const [data, setData] = useState([]);
 
-  // Obtengo todos los códigos de incidencias porque debo comprobar que no se encuentran ya en la base de datos
+  // LLamadas a los hooks  
   const [todosLosCodigosdeIncidenciaDeLaBBDD] = useObtenerTodosLosCodigosDeIncidencias();
 
-  // Importo del contexto los mensajes de erro que pueda mostrar en pantalla
+  // LLamadas a los contextos
   const { mensajeAMostrar, rdoValidacion, cambiarMensaje, reiniciarMensaje, eliminarMensaje } = useContext(ContextoMensaje);
 
-  // Efecto para que si existiera un mensaje de error anterior que venga de otro componente, lo borre
+  // Efecto para eliminar un mensaje si este existirera en el contecto
   useEffect(() => {
     eliminarMensaje();
   }, []);
 
-  // FUNCIONES LOCALES
-
-  // Valida la cabecera importada
-  // const validaCabecera = ([data]) => {
-
-  //   const cabeceraCorrecta = [
-  //     "Cod Incidencia",
-  //     "Nombre",
-  //     "Descripción"
-  //   ];
-    
-  //   const cabeceraObtenida = Object.keys(data);    
-
-  //   const esCorrecta = cabeceraCorrecta.every(propiedad =>
-  //     cabeceraObtenida.includes(propiedad)
-  //   );
-
-  //   return esCorrecta;
-  // }
-
+  // Funciones
   const validaCabecera = ([data]) => {
-    
+    // Objeto que contiene como debe ser la cabecera a insertar   
+    const cabeceraCorrecta = [
+      "Cod Incidencia",
+      "Nombre",
+      "Descripción"
+    ];
+
+    // Almaceno la cabecera obtenida en la cte
     const cabeceraObtenida = Object.keys(data);
-    console.log(cabeceraObtenida.length);
-    console.log(cabeceraObtenida);
 
+    // Comprobar si todas las propiedades de cabeceraObtenida están en cabeceraCorrecta
+    const esCorrecta = cabeceraCorrecta.every(propiedad =>
+      cabeceraObtenida.includes(propiedad)
+    );
 
-    // // Asegurarse de que el dataArray no esté vacío y contenga al menos un objeto
-    // if (!dataArray || dataArray.length === 0 || !dataArray[0]) {
-    //   return false;
-    // }
-  
-    // // Obtener el primer objeto del array
-    // const data = dataArray[0];
-  
-    // const cabeceraCorrecta = [
-    //   "Cod Incidencia",
-    //   "Nombre",
-    //   "Descripción"
-    // ];
-    
-    // // Asegurarse de que el objeto tiene propiedades
-    // const cabeceraObtenida = Object.keys(data);
-    
-    // // Comprobar si todas las propiedades de cabeceraCorrecta están en cabeceraObtenida
-    // const esCorrecta = cabeceraCorrecta.every(propiedad =>
-    //   cabeceraObtenida.includes(propiedad)
-    // );
-  
-    return false;
-    // return true;
-  };
-  
+    // EsCorrecta contendrá true o false
+    return esCorrecta;
+  }
 
-  
-  
-
-  // Valida si existiera alguna incidencia ya en la BBDD
   const validaIncidenciasDuplicadas = () => {
-
     const incidenciasDuplicadasEncontradas = [];
-
     data.forEach((incidencia) => {
       if (todosLosCodigosdeIncidenciaDeLaBBDD.includes(incidencia['Cod Incidencia']))
         incidenciasDuplicadasEncontradas.push(incidencia['Cod Incidencia']);
@@ -137,41 +100,38 @@ const Direccion = () => {
     return incidenciasDuplicadasEncontradas;
   }
 
-  // Funcion handleSubmit
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (validaCabecera(data)) {   
-
+    // Para agregar las incidencias la cabecera debe ser válida y que no exista ninguna incidencia duplicada
+    if (validaCabecera(data)) {
       const incidenciasDuplicadas = validaIncidenciasDuplicadas();
 
       if (incidenciasDuplicadas.length === 0) {
         cambiarMensaje('Agregando la informacion a la base de datos', 'correcta');
         agregaActuacion(data);
+
       } else {
         cambiarMensaje('Incidencias duplicadas: ' + incidenciasDuplicadas, 'incorrecta');
       }
 
     } else {
       cambiarMensaje('Archivo excel a importar incorrecto', 'incorrecta');
-
     }
 
     reiniciarMensaje();
-
   }
 
-  // Funcion que muestra en pantalla el archivo importado para comprobarlo antes de importar
   const mostrarArchivoImportado = () => {
     return (
-
       <table>
-
         <thead>
           <tr>
-            {Object.keys(data[0]).map((key) => (
-              <th key={key} className="cabecera">{key}</th>
-            ))}
+            {
+              Object.keys(data[0]).map((key) => (
+                <th key={key} className="cabecera">{key}</th>
+              ))
+            }
           </tr>
         </thead>
 
@@ -184,71 +144,53 @@ const Direccion = () => {
             </tr>
           ))}
         </tbody>
-
       </table>
     )
   }
 
-  // Funcion de la libreria ExcelJS para importar el archivo
-  const handleFileUpload = async (e) => {
-
-    console.log(e.target.files[0]);
-
+  // Obtengo el fichero y creo la data
+  const handleFileUpload = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
 
-    reader.onload = async (e) => {
+    reader.readAsArrayBuffer(file);
 
-      const buffer = e.target.result;
-      const workbook = new ExcelJS.Workbook();
-      await workbook.xlsx.load(buffer);
+    reader.onload = (e) => {
+      const data = new Uint8Array(e.target.result);
+      const workbook = XLSX.read(data, { type: 'array' });
+      const sheetName = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[sheetName];
 
-      const worksheet = workbook.worksheets[0];
-      const parseData = [];
-
-      worksheet.eachRow((row, rowNumber) => {
-        if (rowNumber === 1) {
-          parseData.push(row.values.slice(1)); // Salta el primer elemento, ya que es un índice
-        } else {
-          const rowData = {};
-          row.eachCell((cell, colNumber) => {
-            rowData[parseData[0][colNumber - 1]] = cell.value;
-          });
-          parseData.push(rowData);
-        }
-      });
-
-      parseData.shift();
+      // Añadir la opción defval para incluir celdas vacías como cadenas vacías
+      const parseData = XLSX.utils.sheet_to_json(sheet, { defval: '' });
       setData(parseData);
     };
-
-    reader.readAsArrayBuffer(file);
   };
 
   return (
     <>
       <ContenedorArchivoExcel>
-
         <h3>Archivo excel a importar: </h3>
         <input
           type="file"
           accept='.xlsx, .xls'
           onChange={handleFileUpload}
         />
-
       </ContenedorArchivoExcel>
 
+      {/* Formulario */}
       <Formulario onSubmit={handleSubmit}>
 
+        {/* Si hay datos muestro los resultados en una tabla */}
         <ResultadosImportacion>
           {data.length > 0 && mostrarArchivoImportado()}
         </ResultadosImportacion>
 
+        {/* Si hay datos muestro el botón de añadir datos */}
         <ContenedorBoton>
           {data.length > 0 ?
             <Boton
               $primario
-              $grande
               as="button"
             >Añadir datos
             </Boton>
@@ -257,6 +199,7 @@ const Direccion = () => {
           }
         </ContenedorBoton>
 
+        {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
         <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar} />
 
       </Formulario>

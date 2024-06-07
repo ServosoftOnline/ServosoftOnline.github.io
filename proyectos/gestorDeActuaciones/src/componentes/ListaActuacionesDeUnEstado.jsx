@@ -23,7 +23,7 @@ import anchoDePantalla from '../funciones/anchoDePantalla';
 const ListaActuacionesDeUnEstado = ({array, estaSupervisando}) => {
 
     // Obtengo el ancho de la pantalla del dispositivo actual y el ancho maximo al que se le aplica responsive para moviles
-    const {anchoActual, anchoMaximo} = anchoDePantalla();
+    const {anchoActual, anchoMaximoMovilVertical} = anchoDePantalla();
     
     return (
         <Lista>
@@ -54,9 +54,9 @@ const ListaActuacionesDeUnEstado = ({array, estaSupervisando}) => {
                             </Fecha>
 
                             <ElementoListaCabecera>
-                                <Incidencia>{ anchoActual < anchoMaximo ? 'Cod.I' : 'Incidencia'}</Incidencia>
+                                <Incidencia>{ anchoActual < anchoMaximoMovilVertical ? 'Cod.I' : 'Incidencia'}</Incidencia>
                                 <Cliente>Cliente</Cliente>
-                                {anchoActual > anchoMaximo && <Direccion>Dirección</Direccion> }
+                                {anchoActual > anchoMaximoMovilVertical && <Direccion>Dirección</Direccion> }
                                 <Poblacion>Población</Poblacion>
                                 <Estado>Estado</Estado>
                                 <Gestion>Gestión</Gestion>
@@ -76,7 +76,7 @@ const ListaActuacionesDeUnEstado = ({array, estaSupervisando}) => {
                         </Cliente>
 
                         {/* Solo muestro la direccion si el ancho de la pantalla actual fuera superior al ancho maximo para moviles */}
-                        {anchoActual > anchoMaximo &&
+                        {anchoActual > anchoMaximoMovilVertical &&
                             <Direccion>
                                 {actuacion.direccion ? actuacion.direccion : 'Pendiente de rellenar'}
                             </Direccion>
