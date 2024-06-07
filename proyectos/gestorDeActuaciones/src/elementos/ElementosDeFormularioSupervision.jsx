@@ -49,25 +49,27 @@ const ContenedorActuacion = styled.div`
 
 `;
 
-// const TecnicosAcompañantes = styled.div`
-//     text-transform: capitalize;
-// `;
-
-
 // CONTENEDOR SOLO LECTURA
 const ContenedorSoloLectura = styled.div `
     
     display: grid;
     grid-template-columns: 1fr 1fr;    
     gap: 0.8rem;
+    font-size: 1.1rem; 
 
     div {        
         border-bottom: 2px solid ${theme.grisClaro};
         padding-bottom: 0.5rem;
     }
 
+    @media(max-width: 60rem){ /* 950px */     
+        font-size: 1rem; 
+    }
+
     @media(max-width: 48rem) {  /* 768px */         
         grid-template-columns: 1fr;    
+        font-size: 0.9rem; 
+        
     }
     
 `;
@@ -239,6 +241,15 @@ const ComentariosDesdeCoordinacion = styled.div `
         border-radius: 10px;
         padding: 0.5rem;
     }
+
+    @media(max-width: 60rem){ /* 960px */         
+        font-size: 1rem; 
+    }
+
+    @media(max-width: 48rem) {  /* 768px */         
+        font-size: 0.9rem;
+    }
+    
 `;
 
 
@@ -251,9 +262,15 @@ const ContenedorTrabajoDelTecnico = styled.div`
     border: 2px solid ${theme.azulClaro};
     border-radius: 10px;
 
+    @media(max-width: 60rem){ /* 960px */         
+        font-size: 1rem; 
+    }
+
     @media(max-width: 48rem) {  /* 768px */         
         padding: 0.5rem;
+        font-size: 0.9rem;
     }
+
 `;
 
 
@@ -337,13 +354,17 @@ const ContenedorComentariosTecnicos = styled.div`
 // ELEMENTOS PARA LA DECISION DEL SUPERVISOR
 
 const DecisionDelSupervisor = styled.div`
-// display: none;
+
     background: ${theme.lightSmoke};    
     margin-bottom: 1.5rem;    
     padding: 1rem;
     border: 2px solid ${theme.azulClaro};
     border-radius: 10px;
 
+    @media(max-width: 60rem){ /* 960px */         
+        font-size: 1rem; 
+    }
+        
     @media(max-width: 48rem) {  /* 768px */         
         padding: 0.5rem;
     }
@@ -375,8 +396,8 @@ const DificultadYPuntos = styled.div `
     align-items: center;
     padding: 0.5rem; 
 
-    @media(max-width: 48rem) {  /* 768px */         
-        // grid-template-columns: 1fr;    
+    @media(max-width: 60rem){ /* 960px */         
+        grid-template-columns: 2fr 1fr; 
     }
 `;
 
@@ -391,8 +412,13 @@ const ConsideracionNivel4 = styled.div `
         padding-right: 1.5rem;
     }
 
+    @media(max-width: 60rem){ /* 960px */         
+        grid-template-columns: 2fr 1fr; 
+    }
+
     @media(max-width: 48rem) {  /* 768px */         
-        grid-template-columns: 1fr;    
+        grid-template-columns: 1fr;        
+        
     }
 `;
 
@@ -404,7 +430,7 @@ background:lightpink;
 `;
 
 const ComentariosSupervision = styled.div`
-display: none;
+
     display: grid;
     grid-template-columns: 1fr;    
     padding-top: 1rem;    
@@ -466,13 +492,12 @@ const ContenedorEstadoYBoton = styled.div`
 `;
 
 const Estado = styled.div `
-
-    // display: flex;
-    // flex-direction: column;
+   
     
 `;
 
 const ContenedorBoton = styled.div`
+
     display: grid;
     justify-content: center;   
          
