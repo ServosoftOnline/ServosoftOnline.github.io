@@ -23,7 +23,7 @@ const Supervision = () => {
   const arrayActuacionesEnSupervision = Object.values(actuacionesEnSupervision); 
 
   return (
-    <ListaActuacionesDeUnEstado array = {arrayActuacionesEnSupervision} estaSupervisando = {true}/>    
+    <ListaActuacionesDeUnEstado array = {arrayActuacionesEnSupervision} estaSupervisando = {true} modulo = {'supervison'}/>    
   );
 }
  

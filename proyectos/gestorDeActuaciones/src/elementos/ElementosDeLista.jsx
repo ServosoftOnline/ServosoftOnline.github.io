@@ -42,6 +42,7 @@ const Subtitulo = styled.h3`
     color: ${theme.grisClaro2};
     font-weight: 400;
     font-size: 3.5rem;
+    text-align: center;
 
     @media(max-width: 60rem){ /* 950px */            
         font-size: 2.3rem;

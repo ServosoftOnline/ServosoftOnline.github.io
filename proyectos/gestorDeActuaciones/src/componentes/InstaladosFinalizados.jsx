@@ -21,7 +21,7 @@ const InstaladosFinalizados = () => {
   const arrayActuacionesSupervisadas = Object.values(actuacionesSupervisadas); 
   
   return (
-    <ListaActuacionesDeUnEstado array = {arrayActuacionesSupervisadas} estaSupervisando = {true}/>    
+    <ListaActuacionesDeUnEstado array = {arrayActuacionesSupervisadas} estaSupervisando = {true} modulo = {'finalizados'}/>    
   );
 }
  

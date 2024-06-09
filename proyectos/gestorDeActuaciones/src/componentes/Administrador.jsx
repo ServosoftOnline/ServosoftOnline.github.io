@@ -44,7 +44,7 @@ const Administrador = () => {
   const [nombre] = useObtenerNombreDeUnUsuario();
 
   // Obtengo el ancho de pantalla actual y el ancho máximo para considerarlo una pantalla de un smartphone
-  const {anchoActual, anchoMaximo} = anchoDePantalla();  
+  const {anchoActual, anchoMaximoMovilVertical} = anchoDePantalla();  
   
   return (
     <>
@@ -64,9 +64,9 @@ const Administrador = () => {
 
               <ContenedorTitulos>
 
-                {anchoActual <= anchoMaximo && <IconoMenu onClick={() => setMostrarLinks(!mostrarLinks)}/>}
+                {anchoActual <= anchoMaximoMovilVertical && <IconoMenu onClick={() => setMostrarLinks(!mostrarLinks)}/>}
                 <Titulo> {nombre} </Titulo> 
-                {anchoActual <= anchoMaximo && <BtnSalir /> }           
+                {anchoActual <= anchoMaximoMovilVertical && <BtnSalir /> }           
 
               </ContenedorTitulos>
 

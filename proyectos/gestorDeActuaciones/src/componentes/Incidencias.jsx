@@ -21,7 +21,7 @@ const Incidencias = () => {
 
   return (
     <>      
-      <ListaActuacionesDeUnEstado array = {arrayActuacionesEnIncidencia}/>      
+      <ListaActuacionesDeUnEstado array = {arrayActuacionesEnIncidencia} modulo = {'incidencias'}/>      
     </>
   );
 }

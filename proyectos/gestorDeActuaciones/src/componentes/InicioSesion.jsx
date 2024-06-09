@@ -69,7 +69,15 @@ const InicioSesion = () => {
               break;
 
           default:
-              null;
+
+              /*
+                La primera vez que se acceda a esta aplicación solo habrá un usuario creado en authentification que seré yo.
+                Mi usuario deberá tener el correo oscarfernandezsantiago@gmail.com.
+                Solo entonces me redigirá al modulo de administrador/crear-usuario para crear al primer administrador del cliente.
+                Y este ya podrá crear a los usuarios de su empresa
+              */
+              
+              sesion.email == 'oscarfernandezsantiago@gmail.com' && navigate('/administrador/crear-usuario'); 
         }        
       }, 1000);
     } 
@@ -102,13 +110,14 @@ const InicioSesion = () => {
 
       // Iniciar sesion. Si hubiera sesion abierta navego a la ruta de su rol
       await signInWithEmailAndPassword(auth, email, password);
-      cambiarMensaje('Inicio de sesión correcto', 'correcta');
+      cambiarMensaje('Inicio de sesión correcto', 'correcta');      
       console.log('sesion abierta');
       
     } catch (error) {
 
       // VALIDACION EN SERVIDOR.
       console.log('error devuelto de firestore: ' + error.code);
+      
       switch(error.code){
         case 'auth/invalid-credential':
           cambiarMensaje('Correo no registrado o error en la contraseña', 'incorrecta');  

@@ -89,40 +89,24 @@ const Direccion = () => {
 
   const validaCabecera = ([data]) => {
     
+    // Almaceno la cabecera en la cte y defino la cabecera correcta
     const cabeceraObtenida = Object.keys(data);
-    console.log(cabeceraObtenida.length);
-    console.log(cabeceraObtenida);
+    const cabeceraCorrecta = [ "Cod Incidencia", "Nombre", "Descripción"];
 
+    // 1.- Que exista cabecera
+    if (cabeceraObtenida.length == 0) {
+      cambiarMensaje('El archivo excel a insertar no tiene cabecera', 'incorrecta');
+      return false;
+    }
 
-    // // Asegurarse de que el dataArray no esté vacío y contenga al menos un objeto
-    // if (!dataArray || dataArray.length === 0 || !dataArray[0]) {
-    //   return false;
-    // }
-  
-    // // Obtener el primer objeto del array
-    // const data = dataArray[0];
-  
-    // const cabeceraCorrecta = [
-    //   "Cod Incidencia",
-    //   "Nombre",
-    //   "Descripción"
-    // ];
+    // 2.- Que la cabecera sea la correcta    
+    const esCorrecta = cabeceraCorrecta.every(propiedad =>
+      cabeceraObtenida.includes(propiedad)
+    );    
+    !esCorrecta && cambiarMensaje('Cabecera incorrecta. Debe ser: ' + cabeceraCorrecta, 'incorrecta');
+    return esCorrecta ;
     
-    // // Asegurarse de que el objeto tiene propiedades
-    // const cabeceraObtenida = Object.keys(data);
-    
-    // // Comprobar si todas las propiedades de cabeceraCorrecta están en cabeceraObtenida
-    // const esCorrecta = cabeceraCorrecta.every(propiedad =>
-    //   cabeceraObtenida.includes(propiedad)
-    // );
-  
-    return false;
-    // return true;
   };
-  
-
-  
-  
 
   // Valida si existiera alguna incidencia ya en la BBDD
   const validaIncidenciasDuplicadas = () => {
@@ -153,7 +137,8 @@ const Direccion = () => {
       }
 
     } else {
-      cambiarMensaje('Archivo excel a importar incorrecto', 'incorrecta');
+      // cambiarMensaje('Archivo excel a importar incorrecto', 'incorrecta');
+      null;
 
     }
 

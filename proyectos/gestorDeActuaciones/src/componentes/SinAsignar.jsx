@@ -14,12 +14,12 @@ import useObtenerIncidenciasPtesDeAsignar from "../hooks/useObtenerIncidenciasPt
 const SinAsignar = () => {
 
     // LLamadas al hook y paso el objeto a un array para trabajar con los resultados
-    const [actuacionesSinAsignar] = useObtenerIncidenciasPtesDeAsignar();
+    const [actuacionesSinAsignar] = useObtenerIncidenciasPtesDeAsignar();   
     const arrayActuacionesSinAsignar = Object.values(actuacionesSinAsignar);    
 
     return (
       <>
-        <ListaActuacionesDeUnEstado array = {arrayActuacionesSinAsignar}/>
+        <ListaActuacionesDeUnEstado array = {arrayActuacionesSinAsignar} modulo = {'sinCoordinar'}/>
       </>
     );
 } 

@@ -21,7 +21,7 @@ const Oym = () => {
 
   return (
     <>      
-      <ListaActuacionesDeUnEstado array = {arrayActuacionesEnOym} />      
+      <ListaActuacionesDeUnEstado array = {arrayActuacionesEnOym} modulo = {'o&m'} />      
     </>
   );
 }

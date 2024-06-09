@@ -3,7 +3,7 @@
 */
 
 // React
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Elementos
@@ -20,10 +20,55 @@ import formatearFecha from '../funciones/formatearFecha';
 import anchoDePantalla from '../funciones/anchoDePantalla';
 
 // Componente
-const ListaActuacionesDeUnEstado = ({array, estaSupervisando}) => {
+const ListaActuacionesDeUnEstado = ({array, estaSupervisando, modulo}) => {
 
     // Obtengo el ancho de la pantalla del dispositivo actual y el ancho maximo al que se le aplica responsive para moviles
     const {anchoActual, anchoMaximoMovilVertical} = anchoDePantalla();
+
+    // Personalizo el mensaje a mostrar en el subtitulo dependiendo del modulo desde donde fue llamado    
+    const [mensajeAMostrar, setMensajeAMostrar]  = useState('');
+    useEffect(() => {               
+        
+        switch (modulo){
+
+            case 'sinCoordinar':                
+                setMensajeAMostrar('No hay actuaciones pendientes de coordinar');
+                break;
+
+            case 'ilocalizables':
+                setMensajeAMostrar('No hay actuaciones pendientes de localizar');
+                break;
+
+            case 'mantenimiento':
+                setMensajeAMostrar('No hay actuaciones en mantenimiento');                
+                break;
+
+            case 'faltaCitas':
+                setMensajeAMostrar('No hay actuaciones donde se faltó a citas');                
+                break;
+
+            case 'incidencias':
+                setMensajeAMostrar('No hay actuaciones con incidencias');
+                break;
+
+            case 'o&m':
+                setMensajeAMostrar('No hay actuaciones en estado O&M');                
+                break;
+
+            case 'supervison':
+                setMensajeAMostrar('No hay actuaciones pendientes de supervisar');                
+                break;
+
+            case 'finalizados':
+                setMensajeAMostrar('No hay actuaciones supervisadas');                
+                break;
+
+            default:
+                console.log('No entre fue llamada desde ningun módulo');
+        }
+
+    },[modulo]);
+    
     
     return (
         <Lista>
@@ -31,8 +76,8 @@ const ListaActuacionesDeUnEstado = ({array, estaSupervisando}) => {
             // Si no obtuve actuaciones muestro mensaje
             array.length === 0 ?
             
-                <ContenedorSubtitulo>
-                    <Subtitulo>No hay actuaciones en este estado</Subtitulo>                
+                <ContenedorSubtitulo>                    
+                    <Subtitulo>{mensajeAMostrar}</Subtitulo>                
                 </ContenedorSubtitulo>
             :
 

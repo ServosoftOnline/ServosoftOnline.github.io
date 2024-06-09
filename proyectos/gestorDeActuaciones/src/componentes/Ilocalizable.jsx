@@ -19,7 +19,7 @@ const Ilocalizable = () => {
 
   return (
     <>
-      <ListaActuacionesDeUnEstado array = {arrayActuacionesSinLocalizar} />
+      <ListaActuacionesDeUnEstado array = {arrayActuacionesSinLocalizar} modulo = {'ilocalizables'} />
     </>
   );
 }

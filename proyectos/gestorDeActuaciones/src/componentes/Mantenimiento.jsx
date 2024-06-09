@@ -20,7 +20,7 @@ const Mantenimiento = () => {
 
   return (
     <>
-      <ListaActuacionesDeUnEstado array = {arrayIncidenciasEnMantenimiento}  />
+      <ListaActuacionesDeUnEstado array = {arrayIncidenciasEnMantenimiento} modulo = {'mantenimiento'}  />
       
     </>
   );

@@ -23,7 +23,7 @@ const Agenda = () => {
     <>  
 
       {/* Llamo al componente listaActuacionesDeUnTecnico. Le paso el array con las actuaciones y que la solicita un coordinador */}
-      <ListaActuacionesDeUnTecnico array = {arrayActuacionesAgendadas} laPideUnCoordinador={true}/>
+      <ListaActuacionesDeUnTecnico array = {arrayActuacionesAgendadas} laPideUnCoordinador={true} />
       
     </>
   );

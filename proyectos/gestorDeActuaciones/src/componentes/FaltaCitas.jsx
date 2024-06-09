@@ -20,7 +20,7 @@ const FaltaCitas = () => {
 
   return (
     <>      
-      <ListaActuacionesDeUnEstado array = {arrayIncidenciasEnFaltaCitas}/>
+      <ListaActuacionesDeUnEstado array = {arrayIncidenciasEnFaltaCitas} modulo = {'faltaCitas'}/>
       
     </>
   );
