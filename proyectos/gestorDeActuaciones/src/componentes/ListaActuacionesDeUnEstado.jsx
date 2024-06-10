@@ -104,7 +104,7 @@ const ListaActuacionesDeUnEstado = ({array, estaSupervisando, modulo}) => {
                                 {anchoActual > anchoMaximoMovilVertical && <Direccion>Dirección</Direccion> }
                                 <Poblacion>Población</Poblacion>
                                 <Estado>Estado</Estado>
-                                <Gestion>Gestión</Gestion>
+                                <Gestion>{ anchoActual < anchoMaximoMovilVertical ? 'Ges' : 'Gestión'}</Gestion>
                             </ElementoListaCabecera>
                             
                         </>

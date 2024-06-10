@@ -70,8 +70,7 @@ const ContenedorSoloLectura = styled.div `
 
     @media(max-width: 60rem){ /* 960px */
 
-        font-size: 0.8rem;
-        padding-bottom: 0rem;
+        font-size: 0.8rem;        
     }
 
     @media(max-width: 48rem) {  /* 768px */         
@@ -81,8 +80,7 @@ const ContenedorSoloLectura = styled.div `
         border-radius: 10px;
         grid-template-columns: 1fr;
         gap: 1rem;
-        margin-top: 0.5rem;
-        
+        margin-top: 0.5rem;        
 
         div {            
             padding-left: 0.5rem;
@@ -134,6 +132,7 @@ const Contenedor1 = styled.div `
 
     @media(max-width: 48rem) {  /* 768px */             
         grid-template-columns: 1fr;
+        
     
     }
 `;
@@ -189,15 +188,7 @@ const ContenedorSelectZona = styled.div `
     position: relative;
     z-index: 8;
 
-    @media(max-width: 48rem) {  /* 768px */
-
-        h4 {
-            padding-right: 2.1rem;
-        }
-        div {
-            width: 16.5rem;;
-        }
-    }    
+    
 `;
 
 const Contenedor3 = styled.div `
@@ -246,6 +237,7 @@ const ContenedorSelectDificultad = styled.div `
     // Permite que al desplegar los select estos se pongan delante
     position: relative;
     z-index: 7;   
+    
 `;
 
 const ContenedorSelectTipoDeActuacion = styled.div `
@@ -254,12 +246,7 @@ const ContenedorSelectTipoDeActuacion = styled.div `
     position: relative;
     z-index: 6;
 
-    @media(max-width: 48rem) {  /* 768px */
     
-        div {
-            width: 16.5rem;;
-        }
-    }    
 `;
 
 const Contenedor4 = styled.div `
@@ -293,16 +280,7 @@ const ContenedorSelectTipoDeTrabajo = styled.div `
     position: relative;
     z-index: 5;
 
-    @media(max-width: 48rem) {  /* 768px */    
     
-        h4 {
-            padding-right: 1rem;
-        }
-        
-        div {
-            width: 16.5rem;;
-        }
-    }    
 `;
 
 const ContenedorSelectStb = styled.div `
@@ -311,16 +289,7 @@ const ContenedorSelectStb = styled.div `
     position: relative;
     z-index: 4;
 
-    @media(max-width: 48rem) {  /* 768px */        
-
-        h4 {
-            padding-right: 2.8rem;
-        }
     
-        div {
-            width: 16.5rem;;
-        }
-    }    
 `;
 
 const ContenedorSelectEstado = styled.div `
@@ -331,12 +300,6 @@ const ContenedorSelectEstado = styled.div `
 
     @media(max-width: 48rem) {  /* 768px */        
 
-        h4 {
-            padding-right: 1.3rem;
-        }
-        div {
-            width: 16.5rem;;
-        }
     }    
 `;
 
@@ -433,7 +396,7 @@ const TecnicosAsignados = styled.div`
 `;
 
 const ContenedorComentarios = styled.div `
-
+display: none;
     background: ${theme.mediumSmoke}; 
     width: auto;
     padding: 1rem;
@@ -455,8 +418,8 @@ const ContenedorComentarios = styled.div `
 `;
 
 const ComentariosCoordinacion = styled.div `
-
-    display: grid;
+display: none;
+    // display: grid;
     grid-template-columns: 1fr;
     width: auto;
     gap: 1rem;

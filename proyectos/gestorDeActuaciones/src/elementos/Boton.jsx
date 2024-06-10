@@ -68,7 +68,7 @@ const Boton = styled(Link)`
 
         // Ajustes de los iconos medianos en estas media queries        
         height: ${(props) => props.$mediano ? '2rem' : null};
-        width: ${(props) => props.$mediano ? '4.5rem' : null};
+        width: ${(props) => props.$mediano ? '4.2rem' : null};
         font-size: ${(props) => props.$mediano ? '0.61rem' : null};
     
         margin-left: 0.1rem;            

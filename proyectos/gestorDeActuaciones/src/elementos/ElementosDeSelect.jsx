@@ -13,7 +13,7 @@ const Select = styled.div`
         gap: 0.3rem;        
     }
 
-    @media (max-width: 768px) { 
+    @media(max-width: 48rem) {  /* 768px */ 
         width: 21rem;   
         gap: 0rem;       
     }
@@ -40,7 +40,7 @@ const ContenedorSelect = styled.div`
         background: ${theme.grisClaro2};
     }
     
-    @media (max-width: 768px) { 
+    @media(max-width: 48rem) {  /* 768px */ 
         margin-left: 0.4rem;          
         margin-right: 0.4rem;          
     }
@@ -70,7 +70,7 @@ const OpcionSeleccionada = styled.div`
         }        
     }
 
-    @media (max-width: 768px) { 
+    @media(max-width: 48rem) {  /* 768px */ 
         font-size: 0.9rem;        
     }
     
@@ -90,7 +90,7 @@ const Opciones = styled.div`
         top: 1.5rem; /* 90px */        
     }
 
-    @media (max-width: 768px) { 
+    @media(max-width: 48rem) {  /* 768px */ 
         font-size: 0.8rem;        
     }
 `;

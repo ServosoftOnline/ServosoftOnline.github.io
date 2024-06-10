@@ -164,6 +164,7 @@ const ElementoListaCabecera = styled.li`
 
     background: ${theme.grisClaro};    
     display: grid;
+    justify-content: space-around;
     grid-template-columns: 7rem 2fr 2fr 1fr 1fr 5rem; 
     font-weight: bolder;   
     gap: 0.5rem;
@@ -177,8 +178,9 @@ const ElementoListaCabecera = styled.li`
         
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
-        grid-template-columns: 2.5rem 7rem 4.3rem 4rem 4.2rem; 
+    // @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: 44rem) {  /* 715px */
+        grid-template-columns: 2.5rem 7rem 4.3rem 4rem 2.3rem; 
         font-size: 0.7rem;  
         gap: 0.1rem;      
     }
@@ -187,6 +189,7 @@ const ElementoListaCabecera = styled.li`
 const ElementoLista = styled.li`
 
     display: grid;
+    justify-content: space-around;
     grid-template-columns: 7rem 2fr 2fr 1fr 1fr 5rem;         
     align-items: center;     
     gap: 0.6rem;    
@@ -209,8 +212,9 @@ const ElementoLista = styled.li`
         padding: 0.3rem 0; /* 16px */                
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
-        grid-template-columns: 2.5rem 7rem 4.5rem 4rem 4rem;         
+    // @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: 44rem) {  /* 715px */
+        grid-template-columns: 2.5rem 7rem 4.5rem 4rem 2.3rem;         
         font-size: 0.6rem;   
         gap: 0.1rem;     
         padding: 0.2rem 0; /* 16px */                
@@ -269,15 +273,13 @@ const Gestion = styled.div`
 `;
 
 const ContenedorBotonesLista = styled.div`
-
+    display:flex;
     justify-content: center;
     padding-right: 0.2rem;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
 
-    @media(max-width: 60rem){ /* 950px */
-        justify-content: end;
-    }
+   
 
 `;
 
@@ -319,8 +321,7 @@ const BotonAccion = styled.button`
     }
 
     @media(max-width: 48rem) {  /* 768px */         
-        margin-left: 0.1rem; 
-        width: 1.9rem;
+        margin-left: 0.1rem;         
     }
 `;
 

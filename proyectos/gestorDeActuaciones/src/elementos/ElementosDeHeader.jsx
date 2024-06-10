@@ -4,7 +4,7 @@ import styled from "styled-components";
 import theme from "../objetos/theme";
 
 const Header = styled.div`
-background: lightyellow;
+
     background: ${theme.grisClaro2};
     display: flex;
     justify-content: space-between;
@@ -129,11 +129,11 @@ const TodosLosBotones = styled.div `
     
     @media(max-width: 60rem){ /* 950px */
 
-        flex-direction: column; 
-        margin-bottom: 0rem;  
+        flex-direction: column;         
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
+    // @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: 44rem) {  /* 715px */ 
         display: none;
     }
 

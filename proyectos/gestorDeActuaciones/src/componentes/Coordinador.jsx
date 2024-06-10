@@ -147,7 +147,7 @@ const Coordinador = () => {
               <Boton $paraCoordinador $mediano to = "direccion">Dirección</Boton>
               <Boton $paraCoordinador $mediano to = "sin-asignar">Sin coordinar</Boton>            
               <Boton $paraCoordinador $mediano to = "ilocalizable">Ilocalizable</Boton>
-              <Boton $paraCoordinador $mediano to = "mantenimiento">{anchoActual < anchoMaximoMovilHorizontal ? 'Mto' : 'Mantenimiento'}</Boton>
+              <Boton $paraCoordinador $mediano to = "mantenimiento">Mto</Boton>
               <Boton $paraCoordinador $mediano to = "falta-citas">Falta citas</Boton>
               <Boton $paraCoordinador $mediano to = "incidencias">Incidencias</Boton>
               <Boton $paraCoordinador $mediano to = "oym">O&m</Boton>
@@ -186,7 +186,7 @@ const Coordinador = () => {
         </Routes>
       </Suspense>
 
-      <MuestraResolucion />
+      {/* <MuestraResolucion /> */}
       {console.log('ancho actual:' + anchoActual)}
       {console.log('ancho maximo:' + anchoMaximoMovilVertical)}
       {console.log('ancho maximoMovilHorizontal:' + anchoMaximoMovilHorizontal)}
