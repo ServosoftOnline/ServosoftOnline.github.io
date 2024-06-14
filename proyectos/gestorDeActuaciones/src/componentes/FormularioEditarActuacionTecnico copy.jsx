@@ -94,7 +94,8 @@ const  FormularioEditarActuacionTecnico = () => {
         asignarMomentoInicioCamino(actuacion.horaEnCamino);
         asignarMomentoLlegadaACliente(actuacion.horaDeLlegada);
         actuacion.comentariosTecnicos !== undefined && asignarComentariosTecnicos(actuacion.comentariosTecnicos);
-        actuacion.estado === undefined && asignarEstado(actuacion.estado);        
+        actuacion.estado === undefined && asignarEstado(actuacion.estado);
+        console.log('estado: ' + estado);
 
     }, [actuacion.estadoDescripcion, actuacion.horaEnCamino, actuacion.horaDeLlegada, actuacion.comentariosTecnicos, actuacion.estado]);  
    
@@ -205,7 +206,8 @@ const  FormularioEditarActuacionTecnico = () => {
                 asignarComentariosTecnicos(e.target.value);
                 break;
 
-            default: null;                
+            default:
+                console.log('No entro en ninguno case');
         }
         
     };
@@ -438,18 +440,17 @@ const  FormularioEditarActuacionTecnico = () => {
                 {actuacion.estado !== 'EstadoSupervisado' && 
                     <ContenedorEstadoYBoton>
                         
-                        <Estado onClick={() => asignarActualizoAlgo(true)}>
+                        <Estado>
                             <SelectEstadosModuloTecnico
                                 asignarEstado={asignarEstado}
                                 estadoDescripcion={estadoDescripcion}
                                 asignarEstadoDescripcion={asignarEstadoDescripcion}
                             />
                         </Estado>
+
+                        <ContenedorBoton>
                             
-                        {actualizoAlgo &&
-
-                            <ContenedorBoton>
-
+                            {actualizoAlgo &&
                                 <Boton
                                     $primario
                                     $grande
@@ -457,34 +458,22 @@ const  FormularioEditarActuacionTecnico = () => {
                                     type="submit"
                                     >Actualizar
                                 </Boton>
-
-                                <Boton
-                                    onClick={() => navigate('/tecnico/agenda-tecnico')}
-                                    $paraAdministrador
-                                    $grande                                    
-                                    as="button"                                    
-                                    >Volver
-                                </Boton>
-
-                            </ContenedorBoton>
-
-                        }
+                            }
+                            
+                        </ContenedorBoton>
 
                     </ContenedorEstadoYBoton>
                     
-                } 
-
-                {!actualizoAlgo &&
-                    <ContenedorBoton>
-                        <Boton
-                            onClick={() => navigate('/tecnico/agenda-tecnico')}
-                            $paraAdministrador
-                            $grande                                    
-                            as="button"                                    
-                            >Volver
-                        </Boton> 
-                    </ContenedorBoton>                
                 }                
+                <ContenedorBoton>
+                    <Boton
+                        onClick={() => navigate(rutadevuelta)}
+                        $paraAdministrador
+                        $grande                                    
+                        as="button"                                    
+                        >Volver
+                    </Boton> 
+                </ContenedorBoton>
 
             </form>
 

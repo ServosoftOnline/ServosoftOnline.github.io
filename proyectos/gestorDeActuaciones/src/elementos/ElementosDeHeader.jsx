@@ -76,6 +76,10 @@ const ContenedorTituloJornada = styled.div`
         align-self: baseline;
         gap: 0.2rem; /* Reduce el espacio entre los elementos */
         flex-direction: column;  
+        
+        h2 {
+            text-align: center;
+        }
     }
 `;
 
@@ -152,7 +156,8 @@ const ContenedorBotones = styled.div`
 
 const Links = styled.div`
     
-    display: none;    
+    display: none;
+    
 
     @media(max-width: ${resolucion.movilVertical}){       
 

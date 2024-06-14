@@ -37,7 +37,7 @@ const SelectEstadosModuloPlaneado = ({asignarEstado, estadoDescripcion, asignarE
                     <Opciones>
                         {/* Recorro el objeto estados modulo planeado y muestro un estado en cada iteraccion */}
                         {estadosModuloPlaneado.map((estado) => {
-                            
+                            // console.log('key: ' + estado.id);
                             return <Opcion
                                 key= {estado.id}                                
                                 data-valor= {estado.estado}  

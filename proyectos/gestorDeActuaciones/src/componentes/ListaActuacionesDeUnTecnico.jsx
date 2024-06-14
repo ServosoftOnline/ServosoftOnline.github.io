@@ -336,9 +336,6 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                                 {/* si no pongo el indice 0, no va. NO QUITARLO */}
                                                 {/* El icono del coche solo se muestra si el estado del tecnico es citado,
                                                     la actuacion no ha sido supervisada y el estado de la actuacion es EstadoAgenda */}
-                                                {console.log('estadoDelTecnico[0]: ' + estadoDelTecnico)}
-                                                {console.log('actuacion.estado: ' + actuacion.estado)}
-                                                
 
                                                 {/* {(estadoDelTecnico[0] === 'Citado' && (actuacion.estado !== 'EstadoSupervisado')) && */}
                                                 {(estadoDelTecnico[0] === 'Citado' && (actuacion.estado === 'EstadoAgenda')) &&

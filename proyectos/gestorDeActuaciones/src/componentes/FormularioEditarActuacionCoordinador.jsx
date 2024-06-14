@@ -214,17 +214,14 @@ const FormularioEditarActuacionCoordinador = () => {
     // Le añado una promesa para evitar que redirija a la ruta de vuelta antes que se ejecute esta funcion
     const actualizaEstadoDeLosTecnicos = () => {
         
-        console.log('entro en la funcion actualizaEstadoDeLosTecnicos ');
         return new Promise((resolve, reject) => {
             
             console.log(estado);
-            if(estado === 'EstadoEnCamino' || estado === 'EstadoEnCliente'){
-                console.log('No cambiaré el estado a los tecnicos');
+            if(estado === 'EstadoEnCamino' || estado === 'EstadoEnCliente'){                
                 resolve('correcto');
     
-            } else {
-                console.log('Voy a revisar si hay tecnicos en camino en en cliente');
-                console.log(idRolesTecnicosEnCaminoOCliente);
+            } else {                
+                
                 if(idRolesTecnicosEnCaminoOCliente.length > 0){
 
                     idRolesTecnicosEnCaminoOCliente.forEach((idRol) => {
