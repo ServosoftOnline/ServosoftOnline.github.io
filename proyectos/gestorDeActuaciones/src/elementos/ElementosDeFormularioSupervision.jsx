@@ -4,10 +4,11 @@
 
 import styled from "styled-components";
 import theme from "../objetos/theme";
+import {resolucion} from "../objetos/resolucion";
 
 // TODO EL CONTENEDOR DEBAJO DE LA BARRA DE BOTONES
 const ContenedorSupervisarActuacion = styled.div `
-    
+
     display: grid;
     grid-template-columns: 1fr;
     padding-left: 0.5rem;
@@ -21,13 +22,13 @@ const ContenedorSupervisarActuacion = styled.div `
         padding-left: 0.7rem;
     }  
 
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         font-size: 0.8rem; 
         padding-left: 0.3rem;
         padding-right: 0.3rem;        
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){        
         padding-left: 0.2rem;
         padding-right: 0.2rem;   
     }
@@ -43,7 +44,7 @@ const ContenedorActuacion = styled.div`
     border: 2px solid ${theme.azulClaro};
     border-radius: 10px;
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){               
         padding: 0.5rem;
     }
 
@@ -62,11 +63,11 @@ const ContenedorSoloLectura = styled.div `
         padding-bottom: 0.5rem;
     }
 
-    @media(max-width: 60rem){ /* 950px */     
+    @media(max-width: ${resolucion.movilHorizontal}){     
         font-size: 1rem; 
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){               
         grid-template-columns: 1fr;    
         font-size: 0.9rem; 
         
@@ -76,7 +77,7 @@ const ContenedorSoloLectura = styled.div `
 
 const ContenedorCodigoIncidencia = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -86,7 +87,7 @@ const ContenedorCodigoIncidencia = styled.div`
 
 const ContenedorCliente = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -102,7 +103,7 @@ const ContenedorCliente = styled.div`
 
 const ContenedorDescripcion = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -118,7 +119,7 @@ const ContenedorDescripcion = styled.div`
 
 const ContenedorTipoDeActuacion = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -128,7 +129,7 @@ const ContenedorTipoDeActuacion = styled.div`
 
 const ContenedorDireccion = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -145,7 +146,7 @@ const ContenedorDireccion = styled.div`
 
 const ContenedorPoblacion = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -154,7 +155,7 @@ const ContenedorPoblacion = styled.div`
 
 const ContenedorZona = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -163,7 +164,7 @@ const ContenedorZona = styled.div`
 
 const ContenedorTelefonos = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -172,7 +173,7 @@ const ContenedorTelefonos = styled.div`
 
 const ContenedorTipoDeTrabajo = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -181,7 +182,7 @@ const ContenedorTipoDeTrabajo = styled.div`
 
 const ContenedorTecnicos = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -192,7 +193,7 @@ const ContenedorTecnicos = styled.div`
 
 const LinkCoordenadas = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -212,7 +213,7 @@ const LinkCoordenadas = styled.div`
 
 const LinkDorus = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         display: flex;
         flex-direction: column;
@@ -236,17 +237,17 @@ const ComentariosDesdeCoordinacion = styled.div `
     padding-top: 1rem;    
 
     p {
-        background: white;
+        background: ${theme.blanco};
         border: 1px solid ${theme.azulClaro};
         border-radius: 10px;
         padding: 0.5rem;
     }
 
-    @media(max-width: 60rem){ /* 960px */         
+    @media(max-width: ${resolucion.movilHorizontal}){       
         font-size: 1rem; 
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){               
         font-size: 0.9rem;
     }
     
@@ -262,11 +263,11 @@ const ContenedorTrabajoDelTecnico = styled.div`
     border: 2px solid ${theme.azulClaro};
     border-radius: 10px;
 
-    @media(max-width: 60rem){ /* 960px */         
+    @media(max-width: ${resolucion.movilHorizontal}){       
         font-size: 1rem; 
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){                
         padding: 0.5rem;
         font-size: 0.9rem;
     }
@@ -284,7 +285,7 @@ const Momentos = styled.div `
     padding-left: 0.5rem;
     padding-right: 0.5rem;
 
-    @media(max-width: 48rem) {  /* 768px */                 
+    @media(max-width: ${resolucion.movilVertical}){                       
         font-size: 0.8rem;
     }
     
@@ -361,11 +362,11 @@ const DecisionDelSupervisor = styled.div`
     border: 2px solid ${theme.azulClaro};
     border-radius: 10px;
 
-    @media(max-width: 60rem){ /* 960px */         
+    @media(max-width: ${resolucion.movilHorizontal}){        
         font-size: 1rem; 
     }
         
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){               
         padding: 0.5rem;
     }
 
@@ -373,7 +374,7 @@ const DecisionDelSupervisor = styled.div`
 const Dificultad = styled.div`      
     margin-bottom: 1rem; 
     
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){                
         margin-bottom: 0.5rem;
     }
 
@@ -396,7 +397,7 @@ const DificultadYPuntos = styled.div `
     align-items: center;
     padding: 0.5rem; 
 
-    @media(max-width: 60rem){ /* 960px */         
+    @media(max-width: ${resolucion.movilHorizontal}){         
         grid-template-columns: 2fr 1fr; 
     }
 `;
@@ -412,11 +413,11 @@ const ConsideracionNivel4 = styled.div `
         padding-right: 1.5rem;
     }
 
-    @media(max-width: 60rem){ /* 960px */         
+    @media(max-width: ${resolucion.movilHorizontal}){        
         grid-template-columns: 2fr 1fr; 
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){              
         grid-template-columns: 1fr;        
         
     }
@@ -448,8 +449,8 @@ const ContenedorComentariosSupervision = styled.div`
     
     
     textarea {
-        font-size: 1.1rem;
-        width: 116rem;
+        font-size: 1.1rem;        
+        width: auto;
         height: 9rem;     
         padding: 0.3rem;   
         border: 1px solid ${theme.azulClaro};
@@ -457,19 +458,17 @@ const ContenedorComentariosSupervision = styled.div`
         margin-top: 0.5rem;    
     }
 
-    @media(max-width: 60rem){ /* 960px */   
+    @media(max-width: ${resolucion.movilHorizontal}){  
 
         textarea {
-            font-size: 0.9rem;
-            width: 43.5rem;
+            font-size: 0.9rem;            
             height: 7rem;
         }
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){                
 
-        textarea {            
-            width: 20rem;
+        textarea {      
             height: 14rem;
         }
     }
@@ -484,7 +483,7 @@ const ContenedorEstadoYBoton = styled.div`
     margin-bottom: 2rem;
     margin-top: 2rem;
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){              
         grid-template-columns: 1fr; 
         gap: 2rem;   
         margin-top: 0rem;
@@ -498,10 +497,19 @@ const Estado = styled.div `
 
 const ContenedorBoton = styled.div`
 
-    display: grid;
-    justify-content: center;   
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+`;
+
+const ContenedorBotonVolver = styled.div`
+    
+    display:grid;
+    justify-content: center; 
          
 `;
+
+
 
 export  {ContenedorSupervisarActuacion, ContenedorActuacion, ContenedorSoloLectura,
         ContenedorCodigoIncidencia, ContenedorCliente, ContenedorDescripcion, ContenedorTipoDeActuacion,
@@ -509,4 +517,5 @@ export  {ContenedorSupervisarActuacion, ContenedorActuacion, ContenedorSoloLectu
         LinkCoordenadas, LinkDorus, ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico, Momentos, EnCamino,
         EnCliente, FinActuacion, ContenedorFotografias, Fotografias, ComentariosTecnicos, ContenedorComentariosTecnicos,
         DecisionDelSupervisor, Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox,
-        ComentariosSupervision, ContenedorComentariosSupervision, ContenedorEstadoYBoton, Estado, ContenedorBoton}
+        ComentariosSupervision, ContenedorComentariosSupervision, ContenedorEstadoYBoton, Estado, ContenedorBoton,
+        ContenedorBotonVolver}

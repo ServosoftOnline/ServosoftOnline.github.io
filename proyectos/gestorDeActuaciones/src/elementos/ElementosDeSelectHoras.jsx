@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import theme from '../objetos/theme';
+import {resolucion} from "../objetos/resolucion";
 
 const ContenedorSelect = styled.div`
 
@@ -14,13 +15,13 @@ const ContenedorSelect = styled.div`
     border-radius: 0.2rem;
     margin: 0.5rem;
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         font-size: 1rem;              
         margin: 0.7rem 0.3rem;;
     }
 
-    @media(max-width: 48rem) {  /* 768px */    
+    @media(max-width: ${resolucion.movilVertical}){    
 
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         font-size: 0.8rem; 
@@ -39,14 +40,14 @@ const Opcion = styled.div`
     
     &:hover {        
         color: ${theme.naranja};        
-        background: white;
+        background: ${theme.blanco};
     }
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         padding: 0.3rem;    
     }
 
-    @media(max-width: 48rem) {  /* 768px */ 
+    @media(max-width: ${resolucion.movilVertical}){  
         padding: 0.1rem 0.3rem;    
         
     }

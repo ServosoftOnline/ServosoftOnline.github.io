@@ -1,5 +1,11 @@
 /*
   COMPONENTE QUE MUESTRA LAS ACTUACIONES QUE ESTAN PENDIENTES DE COORDINAR
+
+    - Le pasaré al componente ListaActuacionesDeUnEstado:
+      - El array con las actuaciones obtenidas desde el hook
+      - Le indico que lo llamo desde el modulo 'Sin coordinar" para generar un subtitulo personalizado en ListaActuacionesDeUnEstado
+      - Le paso la ruta para cuando el usuario halla finalizado de coordinar la actuación seleccionada para que vuelva y empieze otra
+
 */
 
 // React
@@ -19,7 +25,11 @@ const SinAsignar = () => {
 
     return (
       <>
-        <ListaActuacionesDeUnEstado array = {arrayActuacionesSinAsignar} modulo = {'sinCoordinar'}/>
+        <ListaActuacionesDeUnEstado
+          array = {arrayActuacionesSinAsignar}
+          modulo = {'sinCoordinar'} 
+          rutadevuelta = {'/coordinador/sin-asignar'}
+        />
       </>
     );
 } 

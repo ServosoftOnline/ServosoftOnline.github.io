@@ -29,8 +29,7 @@ const useObtenerIncidenciasEnMantenimiento = () => {
 			const consulta = query(
 				collection(db, 'actuaciones'),			
 				where('estado', '==', 'EstadoMantenimiento'),
-				orderBy('fechaIncidencia', 'asc'),
-				limit(10)
+				orderBy('fechaIncidencia', 'asc')
 			);
 
 			// Ejecuta la consulta. Si se produjera un error lo muestro en consola

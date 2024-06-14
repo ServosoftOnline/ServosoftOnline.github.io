@@ -4,7 +4,7 @@
 
 // React
 import React, { useContext, useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 // Firestore
 import { deleteField } from "firebase/firestore";
@@ -50,6 +50,9 @@ const  FormularioEditarActuacionTecnico = () => {
     // Obtendo el idActuacion pasado por la barra de direccion
     const {idActuacion} = useParams();
 
+    // React router
+    const navigate = useNavigate();
+
     // Obtengo del contexto los mensajes que mostraré en pantalla
     const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje, eliminarMensaje} = useContext(ContextoMensaje);
     
@@ -62,15 +65,14 @@ const  FormularioEditarActuacionTecnico = () => {
     const [consideraNivel4, asignarConsideraNivel4] = useState("No");
     const [dificultadTemporal, asignarDificultadTemporal] = useState("Nivel 4");
     const [puntosTemporales, asignarPuntosTemporales] = useState(0);
-    const [comentariosTecnicos, asignarComentariosTecnicos] = useState("");
-    
+    const [comentariosTecnicos, asignarComentariosTecnicos] = useState("");   
+    const [actualizoAlgo, asignarActualizoAlgo] = useState(false); 
 
     // Informacion obtenida desde los hooks
     const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
     const [todosLosTecnicos] = useObtenerTecnicosAPartirDelIdActuacion(idActuacion);
     const [nombre] = useObtenerNombreDeUnUsuario(); 
     const [idRoles] = useObtenerIdRolesDeUnUsuario();
-
 
     // Obtengo los acompañantes filtrando a todos los tecnicos obtenidos por el hook eliminandole quien inico la sesion guardado en nombre
     let acompañantes = []; 
@@ -84,18 +86,13 @@ const  FormularioEditarActuacionTecnico = () => {
     
 
     // Efecto para obtener los datos que iré mostrando en el formulario
-    useEffect(() => {   
-
-        // console.log(actuacion.estadoDescripcion);
-        // console.log(actuacion.horaEnCamino);
-        // console.log(actuacion.horaDeLlegada);
-        // console.log(actuacion.comentariosTecnicos);
+    useEffect(() => {           
 
         eliminarMensaje();
         asignarEstadoDescripcion(actuacion.estadoDescripcion);
         asignarMomentoInicioCamino(actuacion.horaEnCamino);
         asignarMomentoLlegadaACliente(actuacion.horaDeLlegada);
-        asignarComentariosTecnicos(actuacion.comentariosTecnicos);
+        actuacion.comentariosTecnicos !== undefined && asignarComentariosTecnicos(actuacion.comentariosTecnicos);
 
     },[actuacion.estadoDescripcion, actuacion.horaEnCamino, actuacion.horaDeLlegada, actuacion.comentariosTecnicos]);  
    
@@ -152,7 +149,7 @@ const  FormularioEditarActuacionTecnico = () => {
     }
 
     const validacionCorrecta = () => {
-        
+                
         // Validacion 1: El estado no puede quedarse en camino o en cliente
         if (estado === undefined) {
             cambiarMensaje('El estado no puede quedarse en camino o en cliente. Debes cambiarlo','incorrecta');
@@ -173,6 +170,7 @@ const  FormularioEditarActuacionTecnico = () => {
     const LlamaAActualizarColeccionActuaciones = (idActuacion) => {   
         
         // Puede haber casos en que el tecnico no desplace o no llegue a cliente. En ese caso actualizo eliminando el contenido
+        
         actualizaColeccionActuaciones({  
             horaEnCamino: momentoInicioCamino !== undefined ? momentoInicioCamino : deleteField() ,
             horaDeLlegada: momentoLlegadaACliente !== undefined ? momentoLlegadaACliente: deleteField(),
@@ -192,7 +190,9 @@ const  FormularioEditarActuacionTecnico = () => {
         }) 
     }
 
+    // Actualizo los estados actualizoAlgo, consideraNivel4 y ComentariosTecnicos
     const handleChange = (e) => {
+        asignarActualizoAlgo(true);
 
         switch (e.target.name){
 
@@ -200,7 +200,7 @@ const  FormularioEditarActuacionTecnico = () => {
                 asignarConsideraNivel4(e.target.value);
                 break;
 
-            case 'comentariosTecnicos':                
+            case 'comentariosTecnicos':                            
                 asignarComentariosTecnicos(e.target.value);
                 break;
 
@@ -211,14 +211,16 @@ const  FormularioEditarActuacionTecnico = () => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();        
+        e.preventDefault(); 
 
         // Si la validacion es correcta llamo a la funcion que actualizará la coleccion actuaciones
         if (validacionCorrecta()) {
+            
             LlamaAActualizarColeccionActuaciones(idActuacion);           
             llamaAActualizaTecnicoACitado(idRoles);
             cambiarMensaje('Actualizacion correcta', 'correcta');
             reiniciarMensaje();
+            navigate('/tecnico/agenda-tecnico');
         }       
 
     }
@@ -445,14 +447,25 @@ const  FormularioEditarActuacionTecnico = () => {
                         </Estado>
 
                         <ContenedorBoton>
+                            
+                            {actualizoAlgo &&
+                                <Boton
+                                    $primario
+                                    $grande
+                                    as="button"
+                                    type="submit"
+                                    >Actualizar
+                                </Boton>
+                            }
+
                             <Boton
-                                $primario
-                                $grande
-                                as="button"
-                                type="submit"
-                            >
-                                Actualizar
-                            </Boton>
+                                onClick={() => navigate(rutadevuelta)}
+                                $paraAdministrador
+                                $grande                                    
+                                as="button"                                    
+                                >Volver
+                            </Boton> 
+                            
                         </ContenedorBoton>
 
                     </ContenedorEstadoYBoton>

@@ -7,6 +7,7 @@
 */
 
 import { useState, useEffect } from 'react';
+import { resolucionEnNumeros } from '../objetos/resolucion';
 
 const anchoDePantalla = () => {
   
@@ -36,9 +37,10 @@ const anchoDePantalla = () => {
 
   // Establezco los anchos actuales y el maximo que debe tener para aplicarle la programacion en pantallas moviles
   const anchoActual = resolution.width;
-  const anchoMaximoMovilVertical = 433;
-  // const anchoMaximo = 433;
-  const anchoMaximoMovilHorizontal = 810;
+  const anchoMaximoMovilVertical = resolucionEnNumeros.movilVertical;  
+  const anchoMaximoMovilHorizontal = resolucionEnNumeros.movilHorizontal;
+  // const anchoMaximoMovilVertical = 433;  
+  // const anchoMaximoMovilHorizontal = 810;  
 
   // Devuelvo los anchos
   return {anchoActual, anchoMaximoMovilVertical, anchoMaximoMovilHorizontal};

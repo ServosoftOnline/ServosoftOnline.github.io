@@ -1,9 +1,15 @@
 /*
   MUESTRA UNA LISTA CON LAS ACTUACIONES EN ESTADO DE SUPERVISION
   
-    - El coordinador que solicita la lista de actuacionesDeUnEstado le pasa el array con las actuaciones
-    - Al pasarle el valor true en estaSupervisando.
-      - Hará que el componente listaActuacionesDeUnEstado cambie el link donde apunte el icono de editar
+    - Obtengo las actuaciones que estan instaladas
+    - Importo el componente ListaActuacionesDeUnEstado
+      - Es un componente al que llamo con frecuencia y debo pasarles unas propieades para que se comporte de una forma u otra
+    
+    - Llamo al componente ListaActuacionesDeUnEstado y le paso lo siguiente:
+      - El array con las actuaciones
+      - Le indico que esta supervisando
+      - Que lo llamo desde el modulo supervisión que listaActuacionesDeUnEstado muestre un subtitulo personalizado
+      - La ruta de vuelta 
   
 */
 
@@ -23,7 +29,12 @@ const Supervision = () => {
   const arrayActuacionesEnSupervision = Object.values(actuacionesEnSupervision); 
 
   return (
-    <ListaActuacionesDeUnEstado array = {arrayActuacionesEnSupervision} estaSupervisando = {true} modulo = {'supervison'}/>    
+    <ListaActuacionesDeUnEstado
+      array = {arrayActuacionesEnSupervision}
+      estaSupervisando = {true}
+      modulo = {'supervison'}
+      rutadevuelta = {'/coordinador/supervision'} 
+    />    
   );
 }
  

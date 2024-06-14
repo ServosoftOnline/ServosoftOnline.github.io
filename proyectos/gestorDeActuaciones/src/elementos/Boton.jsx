@@ -1,5 +1,6 @@
 /*
     ELEMENTO QUE CONTIENE LOS ESTILOS PARA LOS BOTONES
+
         - Importo:
             - styled components
             - El componente Link permitirá que el botón al que le asigne este elemento pueda cambiar a otras paginas
@@ -18,6 +19,7 @@
 import styled from "styled-components";
 import {Link} from 'react-router-dom';
 import theme from "../objetos/theme";
+import {resolucion} from "../objetos/resolucion";
 
 /*  Al elemento lo llamo Boton. Le aplico la funcion styled y le paso el componente Link proporcionado por react router */
 const Boton = styled(Link)`
@@ -46,7 +48,8 @@ const Boton = styled(Link)`
     justify-content: center;
     align-items: center;    
     cursor: pointer;
-    text-decoration: none; 
+    text-decoration: none;  
+    word-break: break-all;   
     display: inline-flex;        
     
     border: none;
@@ -58,8 +61,8 @@ const Boton = styled(Link)`
 
     padding: 0.4rem 0.4rem;
     margin-left: 0.4rem;
-
-    @media(max-width: 60rem){ /* 960px */    
+    
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         // Ajuste de los iconos grandes en estas media queries
         height: ${(props) => props.$grande ? '2.8rem' : null};

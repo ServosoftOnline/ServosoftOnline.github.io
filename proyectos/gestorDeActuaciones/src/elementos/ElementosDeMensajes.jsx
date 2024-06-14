@@ -11,6 +11,7 @@
 
 import styled from "styled-components";
 import theme from "../objetos/theme";
+import {resolucion} from "../objetos/resolucion";
  
 const ContenedorMensajes = styled.div`
 
@@ -43,7 +44,7 @@ const ContenedorMensajes = styled.div`
         
     }
 
-    @media(max-width: 60rem){ /* 950px */        
+    @media(max-width: ${resolucion.movilHorizontal}){       
         padding: 1px;
     }
 `;

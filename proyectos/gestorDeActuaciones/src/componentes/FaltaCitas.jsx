@@ -20,8 +20,11 @@ const FaltaCitas = () => {
 
   return (
     <>      
-      <ListaActuacionesDeUnEstado array = {arrayIncidenciasEnFaltaCitas} modulo = {'faltaCitas'}/>
-      
+      <ListaActuacionesDeUnEstado
+        array = {arrayIncidenciasEnFaltaCitas}
+        modulo = {'faltaCitas'}
+        rutadevuelta = {'/coordinador/falta-citas'} 
+      />      
     </>
   );
 }

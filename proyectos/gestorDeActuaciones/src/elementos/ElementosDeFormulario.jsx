@@ -20,8 +20,14 @@
 */
 
 
+// React
 import styled from "styled-components";
+
+// Objetos
 import theme from "../objetos/theme";
+import { resolucion } from "../objetos/resolucion";
+
+// svg
 import imagenIniciarSesion from './../assets/registro.svg?react';
 import imagenCrearCuenta from './../assets/login.svg?react';
 
@@ -54,11 +60,11 @@ const Formulario = styled.form`
         }
     }
  
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         justify-content: start;           
     }
 
-    @media (max-width: 768px) {           
+    @media(max-width: ${resolucion.movilVertical}){ 
         padding: 0 0.5rem;   
     }
 
@@ -78,11 +84,11 @@ const Input = styled.input`
     border: none;
     border-bottom: 2px solid ${theme.grisClaro};     
  
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         font-size: 1.2rem; 
     }
 
-    @media (max-width: 768px) {           
+    @media(max-width: ${resolucion.movilVertical}){ 
         font-size: 1.1rem;       
     }
 `;
@@ -99,7 +105,7 @@ const ContenedorBoton = styled.div`
     margin: 2rem 0;  /* 32px */
     padding-top: 2rem;
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         margin: 0.5rem 0;  /* 16px */
     }
     
@@ -112,51 +118,20 @@ const SvgIniciarSesion = styled(imagenIniciarSesion)`
     margin-bottom : 2rem; /* 32px */
     margin-top : 2rem; /* 32px */
 
-    @media(max-width: 60rem){ /* 950px */
-        height: 16rem; /* 256px */        
+    @media(max-width: ${resolucion.movilHorizontal}){
+        height: 16rem; 
     }
 `;
 
 const SvgCrearCuenta = styled(imagenCrearCuenta)`
     width: 100%;
-    max.height: 6.25rem; /* 100px */
-    margin-bottom : 1.25rem; /* 20px */
+    max.height: 6.25rem;
+    margin-bottom : 1.25rem; 
 
-    @media(max-width: 60rem){ /* 950px */
-        height: 16rem; /* 256px */        
+    @media(max-width: ${resolucion.movilHorizontal}){ 
+        height: 16rem; 
     }
 `;
-
-// ELEMENTOS PARA EL COMPONENTE DIRECCION
-const ResultadosImportacion = styled.div`
-
-    display: flex;
-    justify-content: start;
-    
-    table {
-        border: 1px solid black;
-    }
-
-    .cabecera {
-        background: ${theme.negro};
-        border: 1px solid black;
-        text-align: left;
-        color: white;       
-        padding-right: 1.5rem;  
-    }
-
-    td {        
-        vertical-align: top;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;        
-        text-align: left;
-        padding-right: 1.5rem;  
-        border: 1px solid black;
-    }
-
-`;
-
-
 
 export  {ContenedorFiltros, Formulario, ContenedorInputs, Input, InputGrande, ContenedorBoton, SvgIniciarSesion,
-        SvgCrearCuenta, ResultadosImportacion} ;
+        SvgCrearCuenta} ;

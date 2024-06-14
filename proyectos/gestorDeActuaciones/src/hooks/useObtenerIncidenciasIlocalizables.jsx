@@ -10,7 +10,7 @@ import { useAuth } from '../contextos/AuthContext';
 
 // Firebase
 import { db } from '../firebase/firebaseConfig';
-import { collection, onSnapshot, query, where, orderBy, limit} from 'firebase/firestore';
+import { collection, onSnapshot, query, where, orderBy} from 'firebase/firestore';
 
 // Hook
 const useObtenerIncidenciasIlocalizables = () => {
@@ -29,8 +29,7 @@ const useObtenerIncidenciasIlocalizables = () => {
 			const consulta = query(
 				collection(db, 'actuaciones'),			
 				where('estado', '==', 'EstadoIlocalizable'),
-				orderBy('fechaIncidencia', 'asc'),
-				limit(10)
+				orderBy('fechaIncidencia', 'asc')
 			);
 
 			// Ejecuta la consulta. Si se produjera un error lo muestro en consola

@@ -10,7 +10,7 @@ import { useAuth } from '../contextos/AuthContext';
 
 // Firebase
 import { db } from '../firebase/firebaseConfig';
-import { collection, onSnapshot, query, where, orderBy, limit} from 'firebase/firestore';
+import { collection, onSnapshot, query, where, orderBy} from 'firebase/firestore';
 
 // Hook
 const useObtenerIncidenciasPtesDeAsignar = () => {
@@ -30,8 +30,7 @@ const useObtenerIncidenciasPtesDeAsignar = () => {
 				collection(db, 'actuaciones'),			
 				where('estado', '==', 'EstadoPteCoordinar'),
 				orderBy('fechaIncidencia', 'asc'),
-				orderBy('codigoIncidencia', 'asc'),
-				limit(60)
+				orderBy('codigoIncidencia', 'asc')
 			);
 
 			// Ejecuta la consulta. Si se produjera un error lo muestro en consola

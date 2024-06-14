@@ -21,7 +21,11 @@ const Incidencias = () => {
 
   return (
     <>      
-      <ListaActuacionesDeUnEstado array = {arrayActuacionesEnIncidencia} modulo = {'incidencias'}/>      
+      <ListaActuacionesDeUnEstado
+        array = {arrayActuacionesEnIncidencia}
+        modulo = {'incidencias'}
+        rutadevuelta = {'/coordinador/incidencias'} 
+      />      
     </>
   );
 }

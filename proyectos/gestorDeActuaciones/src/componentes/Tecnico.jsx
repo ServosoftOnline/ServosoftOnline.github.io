@@ -159,9 +159,9 @@ const Tecnico = () => {
 
               {/* Mostrará los botones para iniciar o finalizar jornada dependiendo si inició o no inició la jornada */}                        
               {inicioJornada ?
-                  <Boton $mediano onClick={() => LlamaAFinalizarJornada(idRoles)}>Fin de jornada </Boton>
+                  <Boton $mediano onClick={() => LlamaAFinalizarJornada(idRoles)}>Fin jornada </Boton>
                 : 
-                  <Boton $mediano onClick={() => LlamaAIniciarJornada(idRoles)}>Iniciar jornada </Boton> 
+                  <Boton $mediano onClick={() => LlamaAIniciarJornada(idRoles)}>Inicio jornada </Boton> 
               }
 
               {/* Boton para salir de la app */}

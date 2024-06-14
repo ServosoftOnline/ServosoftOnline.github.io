@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import theme from './../objetos/theme';
+import {resolucion} from "../objetos/resolucion";
 
 const Contenedor = styled.div`
     background: #fff;
@@ -18,12 +19,11 @@ const Contenedor = styled.div`
 
     margin: auto;
     display: flex;
-    flex-direction: column;
-    // justify-content: space-between;
+    flex-direction: column;    
     position: relative;
     z-index: 100;
  
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         height: 95vh;
         max-height: none;
     }

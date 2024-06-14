@@ -19,7 +19,11 @@ const Ilocalizable = () => {
 
   return (
     <>
-      <ListaActuacionesDeUnEstado array = {arrayActuacionesSinLocalizar} modulo = {'ilocalizables'} />
+      <ListaActuacionesDeUnEstado
+        array = {arrayActuacionesSinLocalizar}
+        modulo = {'ilocalizables'} 
+        rutadevuelta = {'/coordinador/ilocalizable'}        
+      />
     </>
   );
 }

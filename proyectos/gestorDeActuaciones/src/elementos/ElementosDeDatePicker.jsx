@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import theme from "./../objetos/theme";
+import {resolucion} from "../objetos/resolucion";
 
 const ContenedorInput = styled.div`
 
@@ -44,7 +45,7 @@ const ContenedorInput = styled.div`
         border-radius: 10px;
     }
  
-    @media (max-width: 60rem) /* 950px */ {        
+    @media(max-width: ${resolucion.movilHorizontal}){         
         
         & > * {
             width: 100%;

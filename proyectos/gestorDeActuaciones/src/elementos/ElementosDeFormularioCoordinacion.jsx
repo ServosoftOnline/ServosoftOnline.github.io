@@ -2,8 +2,12 @@
     ELEMENTOS QUE USARÉ EN EL FORMULARIO PARA EDITAR ACTUACIONES
 */
 
+// react
 import styled from "styled-components";
+
+// Objetos
 import theme from "../objetos/theme";
+import {resolucion} from "../objetos/resolucion";
 
 const ContenedorEditarActuacion = styled.div `
 
@@ -29,7 +33,7 @@ const ContenedorEditarActuacion = styled.div `
         color: ${theme.rojoIntenso};
       }
 
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         input {
             font-size: 0.9rem;
@@ -48,7 +52,7 @@ const ContenedorEditarActuacion = styled.div `
         }
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}) {
 
         padding-left: 0.1rem;
         padding-right: 0.1rem;
@@ -68,12 +72,12 @@ const ContenedorSoloLectura = styled.div `
         width: auto;
     }
 
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}){
 
         font-size: 0.8rem;        
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}) {
 
         background:${theme.smoke};
         border: 1px solid ${theme.darkerSmoke};
@@ -91,7 +95,7 @@ const ContenedorSoloLectura = styled.div `
 
 const Cliente = styled.div`
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}) {
         display: flex;
         flex-direction: column;
     }
@@ -100,7 +104,7 @@ const Cliente = styled.div`
 
 const Descripcion = styled.div`
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}) {
         display: flex;
         flex-direction: column;
     }
@@ -126,19 +130,17 @@ const Contenedor1 = styled.div `
         width: auto;
     }
 
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}){
         font-size: 0.8rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */             
+    @media(max-width: ${resolucion.movilVertical}) {   
         grid-template-columns: 1fr;
-        
     
     }
 `;
 
 const Contenedor2 = styled.div `
-// background:lightblue;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -149,11 +151,11 @@ const Contenedor2 = styled.div `
     padding-right: 1rem;
     margin-bottom: 0.7rem;
 
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}){
         font-size: 0.8rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}) {
         grid-template-columns: 1fr;  
         padding-top: 0rem;
         padding-bottom: 0rem;     
@@ -187,12 +189,10 @@ const ContenedorSelectZona = styled.div `
     // Permite que al desplegar los select estos se pongan delante
     position: relative;
     z-index: 8;
-
     
 `;
 
 const Contenedor3 = styled.div `
-// background:lightgrey;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -207,7 +207,7 @@ const Contenedor3 = styled.div `
         text-align: center;
     }
 
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}) {
 
         grid-template-columns: 2fr 1fr 3fr;
         font-size: 0.8rem;
@@ -218,7 +218,7 @@ const Contenedor3 = styled.div `
         }
     }
 
-    @media(max-width: 48rem) {  /* 768px */                 
+    @media(max-width: ${resolucion.movilVertical}) {       
 
         grid-template-columns: 1fr;  
         padding-top: 0rem;
@@ -250,7 +250,6 @@ const ContenedorSelectTipoDeActuacion = styled.div `
 `;
 
 const Contenedor4 = styled.div `
-// background:orange;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -260,13 +259,13 @@ const Contenedor4 = styled.div `
     padding-right: 1rem;
     margin-bottom: 1.5rem;
 
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}) {
 
         grid-template-columns: 2fr 1fr 3fr;
         font-size: 0.8rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */
+    @media(max-width: ${resolucion.movilVertical}) {
         
         grid-template-columns: 1fr;
         padding-top: 0rem;
@@ -288,8 +287,6 @@ const ContenedorSelectStb = styled.div `
     // Permite que al desplegar los select estos se pongan delante
     position: relative;
     z-index: 4;
-
-    
 `;
 
 const ContenedorSelectEstado = styled.div `
@@ -298,9 +295,6 @@ const ContenedorSelectEstado = styled.div `
     position: relative;
     z-index: 3;
 
-    @media(max-width: 48rem) {  /* 768px */        
-
-    }    
 `;
 
 const Citacion = styled.div `
@@ -319,7 +313,7 @@ const ContenedorDatePicker = styled.div `
     padding: 0 0.5rem;
     align-items: center;
 
-    @media(max-width: 60rem){ /* 960px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){
         
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
@@ -343,7 +337,7 @@ const Fecha = styled.div`
         padding-right: 0.5rem;        
     }
 
-    @media(max-width: 60rem){ /* 960px */ 
+    @media(max-width: ${resolucion.movilHorizontal}) {
         font-size: 0.9rem;
     }
     
@@ -355,7 +349,7 @@ const Hora = styled.div`
         padding-left: 0.5rem;
     }  
     
-    @media(max-width: 60rem){ /* 960px */ 
+    @media(max-width: ${resolucion.movilHorizontal}) {
         font-size: 0.9rem;
     }
     
@@ -372,12 +366,12 @@ const ContenedorSelectTecnicos = styled.div `
     position: relative;
     z-index: 1;
 
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}) {
         font-size: 0.9rem;
         gap: 0.5rem;     
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: ${resolucion.movilVertical}) {      
         flex-direction: column;
         padding-left: 0.5rem;
     }
@@ -386,6 +380,7 @@ const ContenedorSelectTecnicos = styled.div `
 `;
 
 const TecnicosAsignados = styled.div`
+
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -396,7 +391,7 @@ const TecnicosAsignados = styled.div`
 `;
 
 const ContenedorComentarios = styled.div `
-display: none;
+
     background: ${theme.mediumSmoke}; 
     width: auto;
     padding: 1rem;
@@ -406,11 +401,11 @@ display: none;
     border: 1px solid ${theme.darkerSmoke};
     border-radius: 10px;
 
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}) {
         margin-bottom: 3rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: ${resolucion.movilVertical}) {       
         margin-top: 1.5rem;
         margin-bottom: 2rem;
     }
@@ -418,8 +413,8 @@ display: none;
 `;
 
 const ComentariosCoordinacion = styled.div `
-display: none;
-    // display: grid;
+
+    display: grid;
     grid-template-columns: 1fr;
     width: auto;
     gap: 1rem;
@@ -434,7 +429,7 @@ display: none;
         vertical-align: top;
     }
 
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}) {
         font-size: 0.8rem;
 
         textarea {            
@@ -442,7 +437,7 @@ display: none;
         }
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
+   @media(max-width: ${resolucion.movilVertical}) {      
         flex-direction: column;
         padding-left: 0.5rem;        
     }
@@ -451,7 +446,7 @@ display: none;
 const ComentariosSupervision = styled.div `
     
     p {
-        background: white;
+        background: ${theme.blanco};
         border: 1px solid black;
         padding: 0.5rem;
         width: auto;
@@ -460,13 +455,12 @@ const ComentariosSupervision = styled.div `
 `;
 
 const ContenedorBoton = styled.div`
-//  background: crimson;
 
     display: flex;
     justify-content: center;
     margin: 2rem 0;  /* 32px */
 
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}) {
         margin: 0.5rem 0;  /* 16px */
     }
 

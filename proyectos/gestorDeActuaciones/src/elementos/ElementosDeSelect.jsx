@@ -1,6 +1,8 @@
 // DIFERENTES ELEMENTOS QUE USARÉ PARA DAR ESTILOS AL SELECT QUE USARÉ EN APP.JSX
+
 import styled from "styled-components";
 import theme from '../objetos/theme';
+import {resolucion} from "../objetos/resolucion";
 
 const Select = styled.div`
 
@@ -9,11 +11,11 @@ const Select = styled.div`
     gap: 1rem;      
     height: 2rem; 
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         gap: 0.3rem;        
     }
 
-    @media(max-width: 48rem) {  /* 768px */ 
+    @media(max-width: ${resolucion.movilVertical}){ 
         width: 21rem;   
         gap: 0rem;       
     }
@@ -40,7 +42,7 @@ const ContenedorSelect = styled.div`
         background: ${theme.grisClaro2};
     }
     
-    @media(max-width: 48rem) {  /* 768px */ 
+    @media(max-width: ${resolucion.movilVertical}){ 
         margin-left: 0.4rem;          
         margin-right: 0.4rem;          
     }
@@ -64,13 +66,13 @@ const OpcionSeleccionada = styled.div`
         height: 3rem; 
     }
     
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         svg {    
             height: 2rem; 
         }        
     }
 
-    @media(max-width: 48rem) {  /* 768px */ 
+    @media(max-width: ${resolucion.movilVertical}){ 
         font-size: 0.9rem;        
     }
     
@@ -86,11 +88,11 @@ const Opciones = styled.div`
     max-height: 18.75rem; /* 300px */
     overflow-y: auto;
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         top: 1.5rem; /* 90px */        
     }
 
-    @media(max-width: 48rem) {  /* 768px */ 
+    @media(max-width: ${resolucion.movilVertical}){ 
         font-size: 0.8rem;        
     }
 `;

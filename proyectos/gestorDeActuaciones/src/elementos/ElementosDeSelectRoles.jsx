@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import theme from '../objetos/theme';
+import {resolucion} from "../objetos/resolucion";
 
 const ContenedorRoles = styled.div`
 
@@ -14,7 +15,7 @@ const ContenedorRoles = styled.div`
     border: 2px solid ${theme.mediumSmoke};
     border-radius: 10px 10px 0 0;            
 
-    @media(max-width: 48rem) {  /* 768px */                 
+    @media(max-width: ${resolucion.movilVertical}){                 
         flex-direction: column;
     }
     
@@ -29,13 +30,13 @@ const Titulo = styled.h2 `
     margin-right: 1.5rem;
     color: ${theme.naranja};
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){  
         padding-left: 2rem;
         font-size: 0.9rem;
         margin-top: 1rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){         
         margin-right: 0rem;
         padding-left: 0rem;
 
@@ -57,7 +58,7 @@ const ContenedorSelect = styled.div`
     margin-bottom: 0.5rem;
     margin-right: 16rem;
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){  
 
         font-size: 1.1rem;                  
         margin-top: 0.8rem;
@@ -65,7 +66,7 @@ const ContenedorSelect = styled.div`
         height: 3.5rem;    
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){         
         
         font-size: 0.9rem;
         margin-top: 0rem;
@@ -86,15 +87,15 @@ const Opcion = styled.div`
     
     &:hover {        
         color: ${theme.naranja};        
-        background: white;
+        background: ${theme.blanco};
         height: 1.2rem; 
     }
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){  
         padding-right: 1.5rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}){          
         padding: 0.8rem;        
     }
     

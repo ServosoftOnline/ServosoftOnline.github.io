@@ -13,6 +13,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import {resolucion} from "../objetos/resolucion";
 
 // svg como componente
 import IconoSalir from './../assets/log-out.svg?react';
@@ -46,14 +47,14 @@ const Btn = styled.button`
     cursor: pointer;
  
     // Cuando el tamaño de la ventana sea inferior a 950 hago el boton mas pequeño
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         height: 2.4rem; 
         line-height: 2.5rem; /* 40px */
         margin-left: 0.1rem; 
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: ${resolucion.movilVertical}) {
 
         height: 2.4rem; 
         width: 2.4rem;

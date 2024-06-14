@@ -10,7 +10,7 @@ import { useAuth } from '../contextos/AuthContext';
 
 // Firebase
 import { db } from '../firebase/firebaseConfig';
-import { collection, onSnapshot, query, where, orderBy, limit, or} from 'firebase/firestore';
+import { collection, onSnapshot, query, where, orderBy, or} from 'firebase/firestore';
 
 // Hook
 const useObtenerActuacionesAgendadas = () => {

@@ -52,6 +52,7 @@ const  FormularioEditarActuacionSupervision = () => {
     // Obtengo la ruta de vuelta mediante location
     const location = useLocation();
     const {rutadevuelta} = location.state || {};
+    console.log('ruta de vuelta en el formulario: ' + rutadevuelta);
 
     // Creo la cte para la vuelta
     const navigate = useNavigate();
@@ -68,8 +69,7 @@ const  FormularioEditarActuacionSupervision = () => {
     const [consideraNivel4, asignarConsideraNivel4] = useState("No");
     const [dificultadTemporal, asignarDificultadTemporal] = useState("Nivel 4");
     const [puntosTemporales, asignarPuntosTemporales] = useState(0);
-    const [comentariosSupervision, asignarComentariosSupervision] = useState("");   
-    const [actualizoAlgo, asignarActualizoAlgo] = useState(false); 
+    const [comentariosSupervision, asignarComentariosSupervision] = useState("");    
 
     // Informacion obtenida desde los hooks
     const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
@@ -151,9 +151,6 @@ const  FormularioEditarActuacionSupervision = () => {
 
     const handleChange = (e) => {
 
-        // Actualizo los estados actualizoAlgo, ConsideraNivel4 y ComentariosSupervision
-        asignarActualizoAlgo(true);
-        
         switch (e.target.name){
 
             case 'nivel4':                
@@ -418,11 +415,11 @@ const  FormularioEditarActuacionSupervision = () => {
 
                     {/* El contenedor mostrará el estado y el boton de actualizar si la actuacion esta en estadoSupervisado
                         o motrará el boton de volver si no lo está */}
-                    {actuacion.estado !== 'EstadoSupervisado' &&
+                    {actuacion.estado !== 'EstadoSupervisado' ?
                         <>
                             <ContenedorEstadoYBoton>
 
-                                <Estado onClick={() => asignarActualizoAlgo(true)} >                    
+                                <Estado>                    
                                     <SelectEstadosSupervision
                                         asignarEstado={asignarEstado}
                                         estadoDescripcion = {estadoDescripcion}
@@ -431,34 +428,18 @@ const  FormularioEditarActuacionSupervision = () => {
                                 </Estado>
 
                                 <ContenedorBoton>
-
-                                    {actualizoAlgo &&
-                                        <>
-                                            <Boton
-                                                $primario
-                                                $grande                                    
-                                                as="button"
-                                                type="submit"
-                                                >Actualizar                            
-                                            </Boton>
-
-                                            <Boton
-                                                onClick={() => navigate(rutadevuelta)}
-                                                $paraAdministrador
-                                                $grande                                    
-                                                as="button"                                    
-                                                >Volver                            
-                                            </Boton>
-                                        </>
-                                    }
-                                    
+                                    <Boton
+                                        $primario
+                                        $grande                                    
+                                        as="button"
+                                        type="submit"
+                                        >Actualizar                            
+                                    </Boton>
                                 </ContenedorBoton> 
 
                             </ContenedorEstadoYBoton>
                         </>
-                    }
-
-                    {!actualizoAlgo &&
+                        :
                         <ContenedorBotonVolver>
                             <Boton
                                 onClick={() => navigate(rutadevuelta)}
@@ -469,7 +450,6 @@ const  FormularioEditarActuacionSupervision = () => {
                             </Boton>
                         </ContenedorBotonVolver> 
                     }
-                    
 
                 </form>
 

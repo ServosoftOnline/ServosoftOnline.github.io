@@ -56,7 +56,7 @@ import {muestraEstadosTecnicosContext} from './../contextos/muestraEstadosTecnic
 import {useRol} from './../contextos/RolContext';
 
 // Componente
-const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador, estadoDelTecnico}) => {  
+const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador, estadoDelTecnico, rutadevuelta}) => {  
     
     // Obtengo el id del rol del tecnico y su estado
     const [idRoles] = useObtenerIdRolesDeUnUsuario(); 
@@ -146,6 +146,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
             
             <Lista>
             {
+                
                 // Si no obtuve actuaciones muestro mensaje
                 array.length === 0 ?
                 
@@ -234,12 +235,20 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                         Solo muestro la direccion si el ancho es superior a la cte anchoSmartphone */}
 
                                         <ElementoListaCabecera>
-                                            <Incidencia> { anchoActual < anchoMaximoMovilVertical ? 'Cod.I' : 'Incidencia'} </Incidencia>
+
+                                            <Incidencia>
+                                                { anchoActual < anchoMaximoMovilVertical ? 'Cod.I' : 'Incidencia'}
+                                            </Incidencia>
+
                                             <Cliente>Cliente</Cliente>
                                             {anchoActual > anchoMaximoMovilVertical && <Direccion>Dirección</Direccion> }
                                             <Poblacion>Población</Poblacion>
                                             <Estado>Estado</Estado>
-                                            <Gestion>Gestión</Gestion>
+
+                                            <Gestion>
+                                                { anchoActual < anchoMaximoMovilVertical ? 'Gest.' : 'Gestión'}                                                
+                                            </Gestion>
+
                                         </ElementoListaCabecera>
 
                                     </>
@@ -285,7 +294,9 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                                 :
                                                     <>
                                                         <span>{actuacion.estadoDescripcion}</span>
-                                                        <span>{actuacion.descripcionHoraCitacion}</span>
+                                                        <span>
+                                                            {actuacion.estado === 'EstadoAgenda' && actuacion.descripcionHoraCitacion}
+                                                        </span>
                                                     </>
                                         }
                                         
@@ -295,17 +306,21 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                     <ContenedorBotonesLista>
                                         
                                         {/* Muestro botones de editar y borrar si se pide desde el modulo coordinador */}
-                                        {laPideUnCoordinador === true ? 
+                                        {laPideUnCoordinador === true  &&
                                             <>
-                                                <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>
+                                                <BotonAccion
+                                                    as={Link}
+                                                    state={{ rutadevuelta }}
+                                                    to = {`/coordinador/detalles/${actuacion.id}`}
+                                                >
                                                     <IconoEditar /> 
                                                 </BotonAccion>
 
                                                 <BotonAccion>
                                                     <IconoBorrar />
                                                 </BotonAccion>
-                                            </>
-                                            : null}       
+                                            </>                                            
+                                        }       
                                         
 
                                         {/* Muestro los botones de en camino, en cliente y editar si se pide desde el modulo tecnico.
@@ -319,8 +334,14 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                             <>  
                                                 
                                                 {/* si no pongo el indice 0, no va. NO QUITARLO */}
-                                                {/* El icono del coche solo se muestra si el estado del tecnico es citado y la actuacion no ha sido supervisada */}
-                                                {(estadoDelTecnico[0] === 'Citado' && actuacion.estado !== 'EstadoSupervisado') &&
+                                                {/* El icono del coche solo se muestra si el estado del tecnico es citado,
+                                                    la actuacion no ha sido supervisada y el estado de la actuacion es EstadoAgenda */}
+                                                {console.log('estadoDelTecnico[0]: ' + estadoDelTecnico)}
+                                                {console.log('actuacion.estado: ' + actuacion.estado)}
+                                                
+
+                                                {/* {(estadoDelTecnico[0] === 'Citado' && (actuacion.estado !== 'EstadoSupervisado')) && */}
+                                                {(estadoDelTecnico[0] === 'Citado' && (actuacion.estado === 'EstadoAgenda')) &&
                                                     <BotonAccion onClick={() => actuacionEnCamino(actuacion.id)}> 
                                                         <IconoCoche />
                                                     </BotonAccion>
@@ -333,7 +354,11 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                                     </BotonAccion>
                                                 }
                                                 
-                                                <BotonAccion as={Link} to={`/tecnico/editar-actuacion/${actuacion.id}`} >
+                                                <BotonAccion
+                                                    as={Link}
+                                                    state={{ rutadevuelta }} 
+                                                    to={`/tecnico/editar-actuacion/${actuacion.id}`} 
+                                                >
                                                     <IconoEditar /> 
                                                 </BotonAccion>
                                             </>

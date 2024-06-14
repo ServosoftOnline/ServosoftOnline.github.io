@@ -119,7 +119,7 @@ const Coordinador = () => {
             </ContenedorTitulos>
 
             :
-
+            
             <Links>
             
               <IconoCerrar onClick={() => setMostrarLinks(!mostrarLinks)}/>
@@ -187,9 +187,9 @@ const Coordinador = () => {
       </Suspense>
 
       {/* <MuestraResolucion /> */}
-      {console.log('ancho actual:' + anchoActual)}
+      {/* {console.log('ancho actual:' + anchoActual)}
       {console.log('ancho maximo:' + anchoMaximoMovilVertical)}
-      {console.log('ancho maximoMovilHorizontal:' + anchoMaximoMovilHorizontal)}
+      {console.log('ancho maximoMovilHorizontal:' + anchoMaximoMovilHorizontal)} */}
 
     </>
   );

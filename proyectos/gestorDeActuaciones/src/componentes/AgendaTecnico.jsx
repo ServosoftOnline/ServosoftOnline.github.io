@@ -25,7 +25,12 @@ const  AgendaTecnico= ({nombre}) => {
 
     return (
         <>            
-            <ListaActuacionesDeUnTecnico array = {arrayActuaciones} laPideUnTecnico= {true} estadoDelTecnico={estadoDelTecnico}/>    
+            <ListaActuacionesDeUnTecnico
+                array = {arrayActuaciones}
+                laPideUnTecnico= {true}
+                estadoDelTecnico={estadoDelTecnico}
+                rutadevuelta = {'/tecnico/agenda-tecnico'} 
+            />    
         </>
     );
 }

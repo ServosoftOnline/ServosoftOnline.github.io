@@ -6,7 +6,7 @@
 
 // React
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 // date-fns
 import { fromUnixTime, getUnixTime } from "date-fns";
@@ -36,9 +36,9 @@ import BarraEstadosTecnicos from "./BarraEstadosTecnicos";
 import Boton from "../elementos/Boton";
 import DatePicker from "./DatePicker";
 
-// Funcion firebase
+// Funciones firebase
 import editarActuacion from "../firebase/editarActuacion";
-import actualizaTecnicoACitado from './../firebase/actualizaTecnicoACitado';
+import actualizaTecnicoACitado from '../firebase/actualizaTecnicoACitado';
 
 // Componentes
 import Mensaje from "./Mensaje";
@@ -55,6 +55,13 @@ import useObtenerTecnicosAPartirDelIdActuacion from "../hooks/useObtenerTecnicos
 
 // Componente
 const FormularioEditarActuacionCoordinador = () => {
+
+    // Obtengo la ruta de vuelta mediante location
+    const location = useLocation();
+    const {rutadevuelta} = location.state || {};    
+
+    // Creo la cte para la navegacion de vuelta
+    const navigate = useNavigate();
 
     // Obtengo idActuacion a partir de la barra de direccion
     const {idActuacion} = useParams();        
@@ -92,8 +99,8 @@ const FormularioEditarActuacionCoordinador = () => {
 
     // Estados quinta fila    
     const [fechaCitacion, asignarFechaCitacion] = useState(new Date());
-    const [idHoraCitacion, setIdHoraCitacion] = useState('');
-    const [descripcionHoraCitacion, setDescripcionHoraCitacion] = useState('');
+    const [idHoraCitacion, asignarIdHoraCitacion] = useState('');
+    const [descripcionHoraCitacion, asignarDescripcionHoraCitacion] = useState('');
     const [tecnico1, asignarTecnico1] = useState('');
     const [tecnico2, asignarTecnico2] = useState('');
     const [tecnico3, asignarTecnico3] = useState('');
@@ -102,7 +109,9 @@ const FormularioEditarActuacionCoordinador = () => {
 
     // Estados sexta fila
     const [comentariosCoordinacion, asignarComentariosCoordinacion] = useState('');    
-    
+    const [actualizoAlgo, asignarActualizoAlgo] = useState(false);
+
+    // EFECTOS
 
     // Establezco los estados con la informacion de la actuacion obtenida. Sólo si no tienen un valor undefined
     //  Por ahora solo es necesario tener una depedencia
@@ -127,6 +136,10 @@ const FormularioEditarActuacionCoordinador = () => {
         actuacion.estadoDescripcion != undefined && asignarEstadoDescripcion(actuacion.estadoDescripcion);
         
         actuacion.fechaCitacion     != undefined && asignarFechaCitacion(fromUnixTime(actuacion.fechaCitacion));
+        actuacion.idHoraCitacion    != undefined && asignarIdHoraCitacion(actuacion.idHoraCitacion);
+        actuacion.descripcionHoraCitacion    != undefined && asignarDescripcionHoraCitacion(actuacion.descripcionHoraCitacion);
+        
+        // descripcionHoraCitacion
         actuacion.tecnico1          != undefined && asignarTecnico1(actuacion.tecnico1);
         actuacion.tecnico2          != undefined && asignarTecnico2(actuacion.tecnico2);
         actuacion.tecnico3          != undefined && asignarTecnico3(actuacion.tecnico3);
@@ -171,8 +184,6 @@ const FormularioEditarActuacionCoordinador = () => {
 
     },[idTipoDeTrabajo]);
 
-    // EFECTOS
-
     // Efecto que se ejecuta al principio para comprobar si el tecnico o tecnicos van en camino o estan en cliente
     useEffect(() => {        
         compruebaSiUnTecnicoVaEnCaminoOEstaEncliente();       
@@ -181,12 +192,13 @@ const FormularioEditarActuacionCoordinador = () => {
     /* Debo reiniciar la cita si se cambia a un estado que no sea citada. Si no lo hago y el coordinador cambiara de opinión
     seleccionando citada, asignandole una hora y despues cambia el estado a cualquier otro estado guardaría la hora de la cita */
     useEffect(() => {
-        estadoDescripcion != 'Citada' ? setIdHoraCitacion('') : null;
+        estadoDescripcion != 'Citada' ? asignarIdHoraCitacion('') : null;
 
     },[estadoDescripcion]);
-     
+
     
     // FUNCIONES DEL COMPONENTE
+
     // Funcion que detecta los nombres de los tecnicos que van en camino o estan en un cliente. Los muestra separado por comas y un espacio
     const compruebaSiUnTecnicoVaEnCaminoOEstaEncliente = () =>{        
 
@@ -199,71 +211,88 @@ const FormularioEditarActuacionCoordinador = () => {
     }
 
     // Funcion que modifica el estado de los tecnicos. Solo si el estado de la actuacion fuera EnCamino o EnCliente.
+    // Le añado una promesa para evitar que redirija a la ruta de vuelta antes que se ejecute esta funcion
     const actualizaEstadoDeLosTecnicos = () => {
         
-        if(estado === 'EstadoEnCamino' || estado === 'EstadoEnCliente'){
-            console.log('No cambiaré el estado a los tecnicos');
-
-        } else {
+        console.log('entro en la funcion actualizaEstadoDeLosTecnicos ');
+        return new Promise((resolve, reject) => {
             
-            if(idRolesTecnicosEnCaminoOCliente !== undefined){
+            console.log(estado);
+            if(estado === 'EstadoEnCamino' || estado === 'EstadoEnCliente'){
+                console.log('No cambiaré el estado a los tecnicos');
+                resolve('correcto');
+    
+            } else {
+                console.log('Voy a revisar si hay tecnicos en camino en en cliente');
+                console.log(idRolesTecnicosEnCaminoOCliente);
+                if(idRolesTecnicosEnCaminoOCliente.length > 0){
 
-                idRolesTecnicosEnCaminoOCliente.forEach((idRol) => {
-                    console.log('Cambio el estado a citado al tecnico: ' + idRol);
-                    actualizaTecnicoACitado(idRol)
+                    idRolesTecnicosEnCaminoOCliente.forEach((idRol) => {
+                        console.log('Cambio el estado a citado al tecnico: ' + idRol);
+                        actualizaTecnicoACitado(idRol)
 
-                    .then(() => {
-                        console.log('cambiado ' + idRol + ' correctamente');                                    
-            
-                    }).catch((error) => {
-                        cambiarMensaje('Error al cambiar el idRol: ' + idRol);                        
-                        console.log(error);
-                    })
-                });
+                        .then(() => {
+                            console.log('cambiado ' + idRol + ' correctamente');   
+                            resolve('correcto');
+                
+                        }).catch((error) => {
+                            cambiarMensaje('Error al cambiar el idRol: ' + idRol);                        
+                            console.log(error);
+                            reject('incorrecto');
+                        })
+                    });
+                } else {
+                    resolve('correcto');
+                }
             }
-                        
-        }           
-            
+        });      
     }
 
     // Funcion que llama a la funcion que insertará los datos en la base de datos. Lo hago para separar front y backend
     const llamaAEditarActuacion = () => {
         
-        editarActuacion({
-            linkDorus: linkDorus,
-            direccion: direccion,
-            poblacion: poblacion,
-            zonaInstalacion: zonasDeInstalacion,
-            coordenadas: coordenadas,
-            telefonos: telefonos,
-            tipoActuacion: tiposDeActuacion,
-            dificultad: dificultad,
-            puntos: puntos,
-            tipoTrabajo: tiposDeTrabajo,
-            idTipoTrabajo: idTipoDeTrabajo,
-            stb: stb,
-            estado: estado,
-            estadoDescripcion: estadoDescripcion,
-            fechaCitacion: getUnixTime(fechaCitacion),
-            idHoraCitacion: idHoraCitacion,
-            descripcionHoraCitacion: descripcionHoraCitacion,
-            tecnico1: tecnico1,
-            tecnico2: tecnico2,
-            tecnico3: tecnico3,
-            tecnico4: tecnico4,
-            tecnico5: tecnico5,
-            comentariosCoordinacion: comentariosCoordinacion,            
-            idActuacion: idActuacion
-        })
-        .then(() => {
-            cambiarMensaje('Actualización con éxito', 'correcta');            
-            reiniciarMensaje();                
+        return new Promise((resolve, reject) => {
 
-        }).catch((error) => {
-            cambiarMensaje('Error de la base de datos al actualizar la actuacion', 'incorrecta');
-            reiniciarMensaje();
-            console.log(error);
-        })
+            editarActuacion({
+                linkDorus: linkDorus,
+                direccion: direccion,
+                poblacion: poblacion,
+                zonaInstalacion: zonasDeInstalacion,
+                coordenadas: coordenadas,
+                telefonos: telefonos,
+                tipoActuacion: tiposDeActuacion,
+                dificultad: dificultad,
+                puntos: puntos,
+                tipoTrabajo: tiposDeTrabajo,
+                idTipoTrabajo: idTipoDeTrabajo,
+                stb: stb,
+                estado: estado,
+                estadoDescripcion: estadoDescripcion,
+                fechaCitacion: getUnixTime(fechaCitacion),
+                idHoraCitacion: idHoraCitacion,
+                descripcionHoraCitacion: descripcionHoraCitacion,
+                tecnico1: tecnico1,
+                tecnico2: tecnico2,
+                tecnico3: tecnico3,
+                tecnico4: tecnico4,
+                tecnico5: tecnico5,
+                comentariosCoordinacion: comentariosCoordinacion,            
+                idActuacion: idActuacion
+            })
+            .then(() => {
+                cambiarMensaje('Actualización con éxito', 'correcta');            
+                reiniciarMensaje();
+                resolve('correcto');
+    
+            }).catch((error) => {
+                cambiarMensaje('Error de la base de datos al actualizar la actuacion', 'incorrecta');
+                reiniciarMensaje();
+                console.log(error);
+                reject('incorrecto');
+            })
+
+        });
+        
     }
     
     // Funcion que valida el contenido del formulario antes de insertar
@@ -362,20 +391,32 @@ const FormularioEditarActuacionCoordinador = () => {
         return true;        
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         reiniciarMensaje();
 
         if(validacionCorrecta()) {  
             
-            llamaAEditarActuacion();
-            actualizaEstadoDeLosTecnicos();
+            try {
+
+                await llamaAEditarActuacion();
+                await actualizaEstadoDeLosTecnicos();                
+                navigate(rutadevuelta);
+
+            } catch (error) {
+                console.log('Error al llamar a llamaAEditarActuacion o actualizaEstadoDeLosTecnicos ');
+                console.log(error);
+
+            }
+            
         } 
     }
 
     const handleChange = (e) => {
 
-        // Actualizo los estados asociados a los inputs
+        // Actualizo el estado de actualizoAlgo y los estados asociados a los inputs
+        asignarActualizoAlgo(true);
+
         switch (e.target.name){
             case 'linkDorus':                
                 asignarLinkDorus(e.target.value);
@@ -480,11 +521,11 @@ const FormularioEditarActuacionCoordinador = () => {
                         />
                     </ContenedorTelefonos>
 
-                    <ContenedorSelectZona>
+                    <ContenedorSelectZona onClick={() => asignarActualizoAlgo(true)}>
 
                         <SelectZonasDeInstalacion
                             zonasDeInstalacion= {zonasDeInstalacion}
-                            asignarZonasDeInstalacion={asignarZonasDeInstalacion} 
+                            asignarZonasDeInstalacion={asignarZonasDeInstalacion}                             
                         />
 
                     </ContenedorSelectZona>
@@ -493,7 +534,7 @@ const FormularioEditarActuacionCoordinador = () => {
 
                 <Contenedor3>
 
-                    <ContenedorSelectDificultad>
+                    <ContenedorSelectDificultad onClick={() => asignarActualizoAlgo(true)}>
 
                         <SelectDificultades
                             dificultad = {dificultad}
@@ -515,7 +556,7 @@ const FormularioEditarActuacionCoordinador = () => {
                         />
                     </div>
 
-                    <ContenedorSelectTipoDeActuacion>
+                    <ContenedorSelectTipoDeActuacion onClick={() => asignarActualizoAlgo(true)}>
 
                         <SelectTiposDeActuacion
                             tiposDeActuacion = {tiposDeActuacion}
@@ -528,7 +569,7 @@ const FormularioEditarActuacionCoordinador = () => {
 
                 <Contenedor4>                    
 
-                    <ContenedorSelectTipoDeTrabajo>
+                    <ContenedorSelectTipoDeTrabajo onClick={() => asignarActualizoAlgo(true)}>
 
                         <SelectTiposDeTrabajo
                             tiposDeTrabajo = {tiposDeTrabajo}
@@ -538,7 +579,7 @@ const FormularioEditarActuacionCoordinador = () => {
 
                     </ContenedorSelectTipoDeTrabajo>
 
-                    <ContenedorSelectStb>
+                    <ContenedorSelectStb onClick={() => asignarActualizoAlgo(true)}>
 
                         <SelectStb
                             stb={stb}
@@ -547,7 +588,7 @@ const FormularioEditarActuacionCoordinador = () => {
 
                     </ContenedorSelectStb>
 
-                    <ContenedorSelectEstado>
+                    <ContenedorSelectEstado onClick={() => asignarActualizoAlgo(true)}>
                     
                         <SelectEstadosModuloPlaneado                      
                             asignarEstado={asignarEstado}
@@ -564,7 +605,7 @@ const FormularioEditarActuacionCoordinador = () => {
                 {estado === 'EstadoAgenda' &&
 
                     <>
-                        <Citacion>       
+                        <Citacion onClick={() => asignarActualizoAlgo(true)}>       
                                                                                                 
                             <ContenedorDatePicker>
                                 
@@ -596,13 +637,12 @@ const FormularioEditarActuacionCoordinador = () => {
                                 </ContenedorSelectTecnicos>
                             
                             </ContenedorDatePicker>                                                        
-                            {console.log('idHoraCitacion: ' + idHoraCitacion)}
-                            {console.log('descripcionHoraCitacion: ' + descripcionHoraCitacion)}
+                            
                             <Hora>
                                 <h4>Hora: {descripcionHoraCitacion} </h4>
                                 <SelectHoras
-                                    setIdHoraCitacion = {setIdHoraCitacion}
-                                    setDescripcionHoraCitacion = {setDescripcionHoraCitacion}
+                                    setIdHoraCitacion = {asignarIdHoraCitacion}
+                                    setDescripcionHoraCitacion = {asignarDescripcionHoraCitacion}
                                 />
                             </Hora>
     
@@ -612,12 +652,10 @@ const FormularioEditarActuacionCoordinador = () => {
                     
                 }                
 
-
                 {/* Si hay tecnicos asignados a esta actuacion los muestro */}
                 {todosLosTecnicos.length>0 &&
                     <TecnicosAsignados>
-                        <label htmlFor="tecnicosAsignados">Técnicos asignados a esta actuación:</label>
-                        {/* const nombresTecnicosCitadosSeparados = tecnicosCitados.join(', '); */}
+                        <label htmlFor="tecnicosAsignados">Técnicos asignados a esta actuación:</label>                        
                         <p>{todosLosTecnicos.join(', ')}</p>
                     </TecnicosAsignados>                    
                 }
@@ -649,15 +687,27 @@ const FormularioEditarActuacionCoordinador = () => {
                     }
 
                 </ContenedorComentarios>
-
+                 
+                {/* El boton de volver se muestra siempre, el de actualizar solo si se actualizó algo */}
                 <ContenedorBoton>
+
+                    {actualizoAlgo &&
+                        <Boton
+                            $primario   
+                            $grande                     
+                            as="button"
+                            type="submit"
+                            >Actualizar                            
+                        </Boton>
+                    } 
+                   
                     <Boton
-                        $primario   
-                        $grande                     
-                        as="button"
-                        type="submit"
-                        >Actualizar                            
-                    </Boton>
+                        onClick={() => navigate(rutadevuelta)}
+                        $paraAdministrador
+                        $grande                                    
+                        as="button"                                    
+                        >Volver
+                    </Boton>                   
 
                 </ContenedorBoton>
 

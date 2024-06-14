@@ -38,8 +38,7 @@ import * as XLSX from 'xlsx';
 import Mensaje from "./Mensaje";
 
 // Elementos
-import  {ContenedorDireccion, ContenedorArchivoExcel, Formulario, ResultadosImportacion,
-        ContenedorBoton } from './../elementos/ElementosDeDireccion'
+import {ContenedorDireccion, ContenedorArchivoExcel, Formulario, ResultadosImportacion, ContenedorBoton } from './../elementos/ElementosDeDireccion'
 import Boton from '../elementos/Boton';
 
 // Hooks
@@ -110,7 +109,7 @@ const Direccion = () => {
     return incidenciasDuplicadasEncontradas;
   }  
   
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();     
 
     // Para agregar las incidencias la cabecera debe ser válida y que no exista ninguna incidencia duplicada
@@ -118,17 +117,9 @@ const Direccion = () => {
       const incidenciasDuplicadas = validaIncidenciasDuplicadas();      
 
       if (incidenciasDuplicadas.length === 0) {
-
-        try {
-
-          await agregaActuacion(data);   
-          cambiarMensaje('Agregando la informacion a la base de datos', 'correcta'); 
-          navigate('/coordinador/sin-asignar');  
-
-        } catch(error) {
-          cambiarMensaje('Error al agregar la/s actuacion/es', 'incorrecta');
-        }
-        
+        cambiarMensaje('Agregando la informacion a la base de datos', 'correcta');             
+        agregaActuacion(data);   
+        navigate('/coordinador/sin-asignar');        
         
       } else {
         cambiarMensaje ('Incidencias duplicadas: ' + incidenciasDuplicadas, 'incorrecta');        
@@ -167,7 +158,7 @@ const Direccion = () => {
 
       <ContenedorArchivoExcel>
 
-        <h3>{anchoActual >= anchoMaximoMovilVertical ? 'Archivo excel:' : 'Archivo:'} </h3>
+        <h3>{anchoActual >= anchoMaximoMovilVertical ? 'Archivo excel a importar:' : 'Archivo:'} </h3>
         
         <input
           type="file"

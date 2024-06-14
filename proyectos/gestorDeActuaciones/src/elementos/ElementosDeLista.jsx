@@ -1,42 +1,39 @@
 /*
-    ARCHIVO QUE CONTIENE TODOS LOS ELEMENTOS QUE USARÉ PARA MOSTRAR LA LISTA DE GASTOS
-        - La usaré para mostrar la lista de gastos y los gastos por categoría
-        
+    ARCHIVO QUE CONTIENE TODOS LOS ELEMENTOS QUE USARÉ EN TODAS LAS LISTAS
+
 */
 
 import styled from 'styled-components';
 import theme from './../objetos/theme';
+import {resolucion} from "../objetos/resolucion";
 
 const Lista = styled.ul`
 
     list-style: none;
-    padding: 0 2rem; /* 0 32px */    
+    padding: 0 2rem; /* 0 32px */
     overflow-y: auto;
 
-    @media(max-width: 60rem){   /* 950px */            
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         padding: 0 0.3rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
-        padding: 0 0.2rem;        
+    @media(max-width: ${resolucion.movilVertical}){ 
+        padding: 0 0.2rem;
     }
-    
+
 `;
 
 const ContenedorLista = styled.div`
 
-
-    
-    
 `;
 
 const ContenedorSubtitulo = styled.div`
 
     display: flex;
-    justify-content: center;    
+    justify-content: center;
 
 `;
- 
+
 const Subtitulo = styled.h3`
 
     color: ${theme.grisClaro2};
@@ -44,42 +41,42 @@ const Subtitulo = styled.h3`
     font-size: 3.5rem;
     text-align: center;
 
-    @media(max-width: 60rem){ /* 950px */            
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         font-size: 2.3rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: ${resolucion.movilVertical}){ 
         font-size: 1.3rem;
     }
-    
-    
+
+
 `;
 
 const ContenedorMostrarBarraEstadoTecnicos = styled.div`
 
     display: flex;
     align-items: center;
-    
+
     h4 {
         font-size: 1.4rem;
         margin-right: 1rem;
     }
 
-    @media(max-width: 60rem){ /* 950px */            
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
-        h4 {            
-            font-size: 1.1rem;            
+        h4 {
+            font-size: 1.1rem;
         }
-        
-    }
-    
-    @media(max-width: 48rem) {  /* 768px */        
 
-        h4 {            
-            font-size: 0.65rem;            
+    }
+
+    @media(max-width: ${resolucion.movilVertical}){ 
+
+        h4 {
+            font-size: 0.65rem;
         }
     }
-    
+
 `;
 
 const DecisionMostrarBarraEstadoTecnicos = styled.div`
@@ -88,23 +85,23 @@ const DecisionMostrarBarraEstadoTecnicos = styled.div`
     align-items: center;
 
     label {
-    
+
         font-size: 1.4rem;
         margin-right: 0.5rem;
     }
 
-    @media(max-width: 60rem){ /* 950px */            
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
-        label {            
-            font-size: 1.1rem;            
+        label {
+            font-size: 1.1rem;
         }
-        
+
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: ${resolucion.movilVertical}){ 
 
-        label {            
-            font-size: 0.65rem;            
+        label {
+            font-size: 0.65rem;
         }
     }
 
@@ -118,13 +115,13 @@ const Fecha = styled.div`
     font-size: 1.2rem;
     text-align: center;
     border-radius: 0.31rem; /* 5px */
-    
-    padding: 0.62rem 3.12rem; /* 10px 50px */    
+
+    padding: 0.62rem 3.12rem; /* 10px 50px */
     margin-top: 4rem;
     margin-bottom: 0.5rem;
-    
- 
-    @media(max-width: 60rem){ /* 950px */            
+
+
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         font-size: 1rem;
         margin: 0.4rem 0; /* 20px */
         padding: 0.3rem 3.12rem; /* 3.2px 49.92px */
@@ -132,144 +129,150 @@ const Fecha = styled.div`
         margin-bottom: 1rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
-        font-size: 0.9rem;  
-        display: block;        
+    @media(max-width: ${resolucion.movilVertical}){ 
+        font-size: 0.9rem;
+        display: block;
     }
 `;
 
 const NombreDelTecnico = styled.div`
 
-    background: ${theme.mediumSmoke};        
+    background: ${theme.mediumSmoke};
     font-size: 1.4rem;
     text-transform: capitalize;
     font-weight: bolder;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     padding-left: 0.1rem;
-    margin-top: 1.5rem;  
+    margin-top: 1.5rem;
 
-    @media(max-width: 60rem){ /* 950px */ 
-        font-size: 1rem;     
+    @media(max-width: ${resolucion.movilHorizontal}){ 
+        font-size: 1rem;
         margin-top: 0.2rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */  
-        font-size: 0.75rem;             
+    @media(max-width: ${resolucion.movilVertical}){ 
+        font-size: 0.75rem;
     }
 
 `;
 
 const ElementoListaCabecera = styled.li`
 
-    background: ${theme.grisClaro};    
+    background: ${theme.grisClaro};
     display: grid;
     justify-content: space-around;
-    grid-template-columns: 7rem 2fr 2fr 1fr 1fr 5rem; 
-    font-weight: bolder;   
+    grid-template-columns: 7rem 2fr 2fr 1fr 1fr 5rem;
+    font-weight: bolder;
     gap: 0.5rem;
-    padding: 1rem 0; /* 20px */        
+    padding: 1rem 0; /* 20px */
     font-size: 1rem;
 
-    @media(max-width: 60rem){ /* 950px */ 
-        grid-template-columns: 4.5rem 1fr 1fr 1fr 5.5rem 5rem; 
-        font-size: 0.7rem;      
-        padding: 0.5rem 0; /* 20px */   
-        
+    @media(max-width: ${resolucion.movilHorizontal}){ 
+        grid-template-columns: 4.5rem 1fr 1fr 1fr 5.5rem 5rem;
+        font-size: 0.7rem;
+        padding: 0.5rem 0; /* 20px */
+
     }
 
-    // @media(max-width: 48rem) {  /* 768px */        
-    @media(max-width: 44rem) {  /* 715px */
-        grid-template-columns: 2.5rem 7rem 4.3rem 4rem 2.3rem; 
-        font-size: 0.7rem;  
-        gap: 0.1rem;      
+    @media(max-width: ${resolucion.movilVertical}){ 
+        grid-template-columns: 2.5rem 7rem 4.3rem 4rem 2.3rem;
+        font-size: 0.7rem;
+        gap: 0.1rem;
     }
 `;
- 
+
 const ElementoLista = styled.li`
 
     display: grid;
     justify-content: space-around;
-    grid-template-columns: 7rem 2fr 2fr 1fr 1fr 5rem;         
-    align-items: center;     
-    gap: 0.6rem;    
-    border-bottom: 2px solid #F2F2F2;     
-    font-size: 1rem;    
-    
+    grid-template-columns: 7rem 2fr 2fr 1fr 1fr 5rem;
+    align-items: center;
+    gap: 0.6rem;
+    border-bottom: 2px solid #F2F2F2;
+    font-size: 1rem;
+
     & > div {
         width: 100%;
-        display: flex;  
+        display: flex;
     }
- 
+
     &:hover button,
     &:hover a {
         opacity: 1;
     }
 
-    @media(max-width: 60rem){ /* 950px */ 
-        grid-template-columns: 4.5rem 1fr 1fr 1fr 5.5rem 5rem; 
+    @media(max-width: ${resolucion.movilHorizontal}){ 
+        grid-template-columns: 4.5rem 1fr 1fr 1fr 5.5rem 5rem;
         font-size: 0.7rem;
-        padding: 0.3rem 0; /* 16px */                
+        padding: 0.3rem 0; /* 16px */
     }
 
-    // @media(max-width: 48rem) {  /* 768px */         
-    @media(max-width: 44rem) {  /* 715px */
-        grid-template-columns: 2.5rem 7rem 4.5rem 4rem 2.3rem;         
-        font-size: 0.6rem;   
-        gap: 0.1rem;     
-        padding: 0.2rem 0; /* 16px */                
+    @media(max-width: ${resolucion.movilVertical}){ 
+        grid-template-columns: 2.5rem 7rem 4.5rem 4rem 2.3rem;
+        font-size: 0.6rem;
+        gap: 0.1rem;
+        padding: 0.2rem 0; /* 16px */
     }
 `;
- 
+
 const Incidencia = styled.div`
 // background: yellow;
     justify-content: left;
 `;
- 
+
 const Cliente = styled.div`
 // background: lightblue;
-    justify-content: left;    
-    text-transform: capitalize;    
+    justify-content: left;
+    text-transform: capitalize;
 `;
 
 const Direccion = styled.div`
 // background: lightgreen;
-    justify-content: left;    
+    justify-content: left;
     text-transform: capitalize;
 `;
 
 const Poblacion = styled.div`
     justify-content: left;
-    text-transform: lowercase capitalize;    
+    text-transform: capitalize;
 `;
 
 
 const Estado = styled.div`
 // background: lightyellow;
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    // justify-content: center;
+    text-align: left;
+    align-items: center;
     text-transform: capitalize;
-    gap: 0.4rem; 
+    gap: 0.4rem;
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
+
         flex-direction: column;
+        text-align: left;
     }
-    
+
+    @media(max-width: ${resolucion.movilVertical}){       
+        text-align: left;        
+        gap: 0rem;
+    }
+
 `;
 
 const SpanHoraEnCamino = styled.span`
     color: ${theme.amarilloIcono};
-    font-weight: bolder; 
+    font-weight: bolder;
 `;
 
 const SpanHoraDeLlegada = styled.span`
     color: ${theme.verdeIcono};
-    font-weight: bolder; 
+    font-weight: bolder;
 `;
- 
+
 const Gestion = styled.div`
-    text-align: center;       
+    text-align: center;
 `;
 
 const ContenedorBotonesLista = styled.div`
@@ -279,7 +282,7 @@ const ContenedorBotonesLista = styled.div`
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
 
-   
+
 
 `;
 
@@ -300,16 +303,16 @@ const BotonAccion = styled.button`
     align-items: center;
     justify-content: center;
     opacity: 0;
- 
+
     &:hover {
         background: ${theme.grisClaro2};
     }
- 
+
     svg {
         width: 1.125rem; /* 18px */
     }
- 
-    @media(max-width: 60rem){ /* 960px */
+
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         opacity: 1;
         width: 2rem;    /* 32px */
@@ -320,8 +323,8 @@ const BotonAccion = styled.button`
         }
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
-        margin-left: 0.1rem;         
+    @media(max-width: ${resolucion.movilVertical}){ 
+        margin-left: 0.1rem;
     }
 `;
 
@@ -336,12 +339,12 @@ const ListaDeCategorias = styled.ul`
     height: 100%;
     overflow-y: auto;
 `;
- 
+
 const ElementoListaCategorias = styled.li`
     padding: 1.25rem 0; /* 20px */
     border-bottom: 2px solid #F2F2F2;
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
 `;
 
 const ContenedorBotonCentral = styled.div`
@@ -349,7 +352,7 @@ const ContenedorBotonCentral = styled.div`
     justify-content: center;
     margin: 2.5rem; /* 40px */
 `;
- 
+
 const BotonCargarMas = styled.button`
     background: ${theme.grisClaro};
     border: none;
@@ -357,7 +360,7 @@ const BotonCargarMas = styled.button`
     color: #000;
     font-family: 'Work Sans', sans-serif;
     padding: 1rem 1.87rem; /* 20px 30px */
-    
+
     font-size: 1.25rem; /* 20px */
     font-weight: 500;
     cursor: pointer;
@@ -367,12 +370,12 @@ const BotonCargarMas = styled.button`
     align-items: center;
     outline: none;
     transition: .3s ease all;
- 
+
     &:hover {
         background: ${theme.grisClaro2};
     }
 `;
- 
+
 export {
     Lista,
     ContenedorLista,
@@ -397,5 +400,5 @@ export {
     ContenedorBotonesLista,
     BotonAccion,
     BotonCargarMas,
-    ContenedorBotonCentral    
+    ContenedorBotonCentral
 };

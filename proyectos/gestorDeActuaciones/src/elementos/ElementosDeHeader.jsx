@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import theme from "../objetos/theme";
+import {resolucion} from "../objetos/resolucion";
 
 const Header = styled.div`
 
@@ -13,7 +14,7 @@ const Header = styled.div`
     margin-bottom: 1rem;
     align-items: center;    
     
-    @media(max-width: 60rem){ /* 960px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
     
         margin-bottom: 0rem;
         padding-bottom: 0rem;
@@ -30,7 +31,7 @@ const ContenedorHeader = styled.div`
     padding-right: 1rem;       
  
     // Coloco los elementos en forma de columna, los centro . Los div de dentro los pongo al final
-    @media(max-width: 60rem){ /* 950px */        
+    @media(max-width: ${resolucion.movilHorizontal}){        
         
         align-items: center;
         margin-bottom: 0.5rem;                 
@@ -38,10 +39,8 @@ const ContenedorHeader = styled.div`
         padding-right: 0rem;   
     }
 
-    @media(max-width: 48rem) {  /* 768px */  
-        
-        margin-bottom: 0rem;         
-        
+    @media(max-width: ${resolucion.movilVertical}){         
+        margin-bottom: 0rem;                 
     }
     
 `;
@@ -54,7 +53,7 @@ const ContenedorTitulos = styled.div`
     margin-left: 0.5rem;
     gap: 1rem;
 
-    @media(max-width: 48rem) {  /* 768px */
+    @media(max-width: ${resolucion.movilVertical}){ 
         
         margin-left: 0rem;
         padding: 0.5rem;
@@ -72,7 +71,7 @@ const ContenedorTituloJornada = styled.div`
     align-items: center;
     gap: 1rem;
 
-    @media(max-width: 48rem) {  /* 768px */
+    @media(max-width: ${resolucion.movilVertical}){ 
 
         align-self: baseline;
         gap: 0.2rem; /* Reduce el espacio entre los elementos */
@@ -85,7 +84,7 @@ const Titulo = styled.h2`
     text-transform: capitalize;    
     margin-left: 1rem;            
 
-    @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: ${resolucion.movilVertical}){        
         font-size: 1.3rem; /* 32px */  
         margin: 0rem; 
         padding-top: 0.5rem;               
@@ -97,11 +96,11 @@ const ParrafoVerde = styled.p`
 
     color: ${theme.verdeIcono};
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         font-size: 1.5rem; /* 16px */          
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: ${resolucion.movilVertical}){       
         font-size: 1rem; 
         margin-top: 0rem; 
     }
@@ -111,11 +110,11 @@ const ParrafoRojo = styled.p`
 
     color: ${theme.rojoIcono};
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         font-size: 1.5rem; /* 16px */          
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: ${resolucion.movilVertical}){       
         font-size: 1rem; 
         margin-top: 0.2rem;
     }
@@ -127,13 +126,12 @@ const TodosLosBotones = styled.div `
     align-items: center;
     margin-bottom: 0.8rem;  
     
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
 
         flex-direction: column;         
     }
 
-    // @media(max-width: 48rem) {  /* 768px */        
-    @media(max-width: 44rem) {  /* 715px */ 
+    @media(max-width: ${resolucion.movilVertical}){ 
         display: none;
     }
 
@@ -146,21 +144,23 @@ const ContenedorBotones = styled.div`
     align-items: center;
     padding: 0rem;  
 
-    @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: ${resolucion.movilVertical}){      
         margin-top: 0.5rem;
     }
     
 `;
 
 const Links = styled.div`
+    
+    display: none;    
 
-    @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: ${resolucion.movilVertical}){       
 
         background: ${theme.azulBlanco};
         display: flex;
-        flex-direction: column;        
+        flex-direction: column;               
         width: 100%;
-        padding: 1rem;
+        padding: 1rem;        
 
         svg {
             margin-left: auto; /* Esto empuja el SVG a la derecha */
@@ -184,7 +184,7 @@ const Links = styled.div`
 
 const EnlaceIniciarJornada = styled.p`
 
-    @media(max-width: 48rem) {  /* 768px */   
+    @media(max-width: ${resolucion.movilVertical}){ 
 
         color: ${theme.verdeIcono};
         cursor: pointer;
@@ -196,7 +196,7 @@ const EnlaceIniciarJornada = styled.p`
 
 const EnlaceFinalizarJornada = styled.p`
 
-    @media(max-width: 48rem) {  /* 768px */   
+    @media(max-width: ${resolucion.movilVertical}){   
 
         color: ${theme.rojoIcono};
         cursor: pointer;
@@ -205,36 +205,6 @@ const EnlaceFinalizarJornada = styled.p`
         padding-top: 0.5rem;
     }
 `;
-
-const ContenedorArchivoExcel = styled.div`
- 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    witdh: auto
-
-    h3 {
-        width: 30%;
-    }
-
-    input {
-        font-size: 1.2rem;
-        margin-left: 1.8rem;
-    }
-
-    @media(max-width: 60rem){ /* 960px */
-        font-size: 1rem; /* 16px */        
-    }
-
-    @media (max-width: 768px) {   
-                
-        flex-direction: column;    
-        justify-content: flex-start;   
-    }
-
-`;
-
  
 export  {Header, ContenedorHeader, ContenedorTitulos, ContenedorTituloJornada, ParrafoVerde, ParrafoRojo, Titulo,
-        TodosLosBotones, ContenedorBotones, Links, EnlaceIniciarJornada, EnlaceFinalizarJornada, ContenedorArchivoExcel};
+        TodosLosBotones, ContenedorBotones, Links, EnlaceIniciarJornada, EnlaceFinalizarJornada};

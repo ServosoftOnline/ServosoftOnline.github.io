@@ -21,7 +21,11 @@ const Oym = () => {
 
   return (
     <>      
-      <ListaActuacionesDeUnEstado array = {arrayActuacionesEnOym} modulo = {'o&m'} />      
+      <ListaActuacionesDeUnEstado
+        array = {arrayActuacionesEnOym}
+        modulo = {'o&m'}
+        rutadevuelta = {'/coordinador/oym'} 
+      />      
     </>
   );
 }

@@ -20,8 +20,11 @@ const Mantenimiento = () => {
 
   return (
     <>
-      <ListaActuacionesDeUnEstado array = {arrayIncidenciasEnMantenimiento} modulo = {'mantenimiento'}  />
-      
+      <ListaActuacionesDeUnEstado
+        array = {arrayIncidenciasEnMantenimiento}
+        modulo = {'mantenimiento'}
+        rutadevuelta = {'/coordinador/mantenimiento'} 
+      />      
     </>
   );
 }

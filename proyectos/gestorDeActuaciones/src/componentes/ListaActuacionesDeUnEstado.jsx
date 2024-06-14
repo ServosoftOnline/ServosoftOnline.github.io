@@ -1,5 +1,10 @@
 /*
     MUESTRA LAS ACTUACIONES DE UN ESTADO CON EL BOTON DE EDITARLAS O BORRARLAS
+
+        - Obtengo como parametros el array con los elementos a mostrar
+        - Si el coordinador llamo al componente desde el componente supervision
+        - El modulo del que lo llamé para generar un subtitulo personalizado
+        - la ruta de vuelta que a su vez la pasaré cuando llame al formulario correspondiente
 */
 
 // React
@@ -7,8 +12,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Elementos
-import  {Lista, ContenedorSubtitulo, Subtitulo, Fecha, ElementoListaCabecera, ElementoLista, Incidencia, Cliente, Direccion, Poblacion,
-        Estado,Gestion,ContenedorBotonesLista,BotonAccion,} from '../elementos/ElementosDeLista';
+import  {Lista, ContenedorSubtitulo, Subtitulo, Fecha, ElementoListaCabecera, ElementoLista, Incidencia, Cliente,
+        Direccion, Poblacion, Estado, Gestion, ContenedorBotonesLista, BotonAccion,} from '../elementos/ElementosDeLista';
 
 // SVG
 import IconoEditar from './../assets/editar.svg?react';
@@ -20,7 +25,7 @@ import formatearFecha from '../funciones/formatearFecha';
 import anchoDePantalla from '../funciones/anchoDePantalla';
 
 // Componente
-const ListaActuacionesDeUnEstado = ({array, estaSupervisando, modulo}) => {
+const ListaActuacionesDeUnEstado = ({array, estaSupervisando, modulo, rutadevuelta}) => {
 
     // Obtengo el ancho de la pantalla del dispositivo actual y el ancho maximo al que se le aplica responsive para moviles
     const {anchoActual, anchoMaximoMovilVertical} = anchoDePantalla();
@@ -71,6 +76,7 @@ const ListaActuacionesDeUnEstado = ({array, estaSupervisando, modulo}) => {
     
     
     return (
+        
         <Lista>
             {
             // Si no obtuve actuaciones muestro mensaje
@@ -104,7 +110,7 @@ const ListaActuacionesDeUnEstado = ({array, estaSupervisando, modulo}) => {
                                 {anchoActual > anchoMaximoMovilVertical && <Direccion>Dirección</Direccion> }
                                 <Poblacion>Población</Poblacion>
                                 <Estado>Estado</Estado>
-                                <Gestion>{ anchoActual < anchoMaximoMovilVertical ? 'Ges' : 'Gestión'}</Gestion>
+                                <Gestion>{ anchoActual < anchoMaximoMovilVertical ? 'Gest.' : 'Gestión'}</Gestion>
                             </ElementoListaCabecera>
                             
                         </>
@@ -112,47 +118,47 @@ const ListaActuacionesDeUnEstado = ({array, estaSupervisando, modulo}) => {
 
                         <ElementoLista>
                     
-                        <Incidencia>                        
-                            {actuacion.codigoIncidencia}
-                        </Incidencia>
+                            <Incidencia>                        
+                                {actuacion.codigoIncidencia}
+                            </Incidencia>
 
-                        <Cliente>
-                            {actuacion.nombre}
-                        </Cliente>
+                            <Cliente>
+                                {actuacion.nombre}
+                            </Cliente>
 
-                        {/* Solo muestro la direccion si el ancho de la pantalla actual fuera superior al ancho maximo para moviles */}
-                        {anchoActual > anchoMaximoMovilVertical &&
-                            <Direccion>
-                                {actuacion.direccion ? actuacion.direccion : 'Pendiente de rellenar'}
-                            </Direccion>
-                        }
-
-                        <Poblacion>
-                            {actuacion.poblacion ? actuacion.poblacion : 'Pendiente de rellenar'}
-                        </Poblacion>
-
-                        <Estado>
-                            {actuacion.estadoDescripcion}
-                        </Estado>                    
-
-                        {/* Boton para editar la actuacion */}
-                        <ContenedorBotonesLista>
-                            
-                            {/* Si el componente fue llamado desde el modulo supervisor el link apuntara al formularioEditarActuacionSupervision */}
-                            {estaSupervisando ?                                
-                                <BotonAccion as={Link} to={`/coordinador/supervision/${actuacion.id}`}>                                                 
-                                    <IconoEditar /> 
-                                </BotonAccion>
-                                :                                
-                                <BotonAccion as={Link} to={`/coordinador/detalles/${actuacion.id}`}>                                                 
-                                    <IconoEditar /> 
-                                </BotonAccion>
+                            {/* Solo muestro la direccion si el ancho de la pantalla actual fuera superior al ancho maximo para moviles */}
+                            {anchoActual > anchoMaximoMovilVertical &&
+                                <Direccion>
+                                    {actuacion.direccion ? actuacion.direccion : 'Pendiente de rellenar'}
+                                </Direccion>
                             }
+
+                            <Poblacion>
+                                {actuacion.poblacion ? actuacion.poblacion : 'Pendiente de rellenar'}
+                            </Poblacion>
+
+                            <Estado>
+                                {actuacion.estadoDescripcion}
+                            </Estado>                    
+
+                            {/* Boton para editar la actuacion */}
+                            <ContenedorBotonesLista>
+                                
+                                {/* Si el componente fue llamado desde el modulo supervisor el link apuntara al formularioEditarActuacionSupervision */}
+                                {/* Les paso la ruta de vuelta mediante state */}
+                                {estaSupervisando ?                                
+                                    <BotonAccion as={Link} state={{ rutadevuelta }} to={`/coordinador/supervision/${actuacion.id}`}>                                                 
+                                        <IconoEditar /> 
+                                    </BotonAccion>
+                                    :                                
+                                    <BotonAccion as={Link} state={{ rutadevuelta }} to={`/coordinador/detalles/${actuacion.id}`}>                                                 
+                                        <IconoEditar /> 
+                                    </BotonAccion>
+                                }
                             
-                            
-                            <BotonAccion>
-                                <IconoBorrar />
-                            </BotonAccion>
+                                <BotonAccion>
+                                    <IconoBorrar />
+                                </BotonAccion>
 
                             </ContenedorBotonesLista>                  
                         </ElementoLista>

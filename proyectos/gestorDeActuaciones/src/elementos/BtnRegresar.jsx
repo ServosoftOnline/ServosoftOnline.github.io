@@ -22,6 +22,7 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import IconoFlecha from './../assets/flecha.svg?react';
+import {resolucion} from "../objetos/resolucion";
 
 // Estilos
 const Btn = styled.button`
@@ -46,7 +47,7 @@ const Btn = styled.button`
     cursor: pointer;
  
     // Cuando el tamaño de la ventana sea inferior a 950 hago el boton mas pequeño
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){ 
         width: 2.5rem; /* 40px */
         height: 2.rem; /* 40px */
         line-height: 2.5rem; /* 40px */

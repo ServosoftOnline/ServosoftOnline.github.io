@@ -6,6 +6,7 @@
 
 import styled from 'styled-components';
 import theme from '../objetos/theme';
+import {resolucion} from "../objetos/resolucion";
 
 const ContenedorSubtitulo = styled.div`
 
@@ -20,11 +21,11 @@ const Subtitulo = styled.h3`
     font-weight: 400;
     font-size: 3rem;
 
-    @media(max-width: 60rem){ /* 950px */            
+    @media(max-width: ${resolucion.movilHorizontal}){           
         font-size: 2.1rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: ${resolucion.movilVertical}){       
         margin-top: 2rem;
         font-size: 1.2rem;
     }

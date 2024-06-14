@@ -21,7 +21,12 @@ const InstaladosFinalizados = () => {
   const arrayActuacionesSupervisadas = Object.values(actuacionesSupervisadas); 
   
   return (
-    <ListaActuacionesDeUnEstado array = {arrayActuacionesSupervisadas} estaSupervisando = {true} modulo = {'finalizados'}/>    
+    <ListaActuacionesDeUnEstado
+      array = {arrayActuacionesSupervisadas}
+      estaSupervisando = {true}
+      modulo = {'finalizados'}
+      rutadevuelta = {'/coordinador/instalados-finalizados'}
+    />    
   );
 }
  

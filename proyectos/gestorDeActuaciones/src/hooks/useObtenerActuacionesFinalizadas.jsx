@@ -10,7 +10,7 @@ import { useAuth } from '../contextos/AuthContext';
 
 // Firebase
 import { db } from '../firebase/firebaseConfig';
-import { collection, onSnapshot, query, where, orderBy, limit} from 'firebase/firestore';
+import { collection, onSnapshot, query, where, orderBy} from 'firebase/firestore';
 
 // Hook
 const useObtenerActuacionesSupervisadas = () => {
@@ -29,8 +29,7 @@ const useObtenerActuacionesSupervisadas = () => {
 			const consulta = query(
 				collection(db, 'actuaciones'),			
 				where('estado', '==', 'EstadoSupervisado'),
-				orderBy('fechaIncidencia', 'asc'),
-				limit(60)
+				orderBy('fechaIncidencia', 'asc')
 			);
 
 			// Ejecuta la consulta. Si se produjera un error lo muestro en consola

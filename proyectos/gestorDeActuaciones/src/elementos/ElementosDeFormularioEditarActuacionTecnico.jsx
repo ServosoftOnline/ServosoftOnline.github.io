@@ -4,6 +4,7 @@
 
 import styled from "styled-components";
 import theme from "../objetos/theme";
+import {resolucion} from "../objetos/resolucion";
 
 const ContenedorEditarActuacion = styled.div `
 
@@ -16,11 +17,11 @@ const ContenedorEditarActuacion = styled.div `
         font-weight: bold;        
     }
 
-    @media(max-width: 60rem){ /* 950px */
+    @media(max-width: ${resolucion.movilHorizontal}){
         font-size: 0.8rem;        
     }
 
-    @media(max-width: 48rem) {  /* 768px */        
+    @media(max-width: ${resolucion.movilVertical}) { 
         font-size: 1rem;        
     }
 `;
@@ -40,7 +41,7 @@ const ContenedorSoloLectura = styled.div `
         padding-bottom: 0.5rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */         
+    @media(max-width: ${resolucion.movilVertical}) {       
         grid-template-columns: 1fr;       
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;  
@@ -57,7 +58,7 @@ const ContenedorSoloLectura = styled.div `
 
 const ContenedorCliente = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){
 
         display: flex;
         flex-direction: column;
@@ -76,7 +77,7 @@ const ContenedorCliente = styled.div`
 
 const ContenedorDescripcion = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){
 
         display: flex;
         flex-direction: column;
@@ -95,7 +96,7 @@ const ContenedorDescripcion = styled.div`
 
 const LinkDorus = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){
 
         display: flex;
         flex-direction: column;
@@ -113,7 +114,7 @@ const LinkDorus = styled.div`
 `;
 const ContenedorDireccion = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){
 
         display: flex;
         flex-direction: column;
@@ -132,7 +133,7 @@ const ContenedorDireccion = styled.div`
 
 const LinkCoordenadas = styled.div`
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){
 
         display: flex;
         flex-direction: column;
@@ -153,7 +154,7 @@ const ContenedorAcompañantes = styled.div`
 
     text-transform: capitalize;
 
-    @media(max-width: 60rem){ /* 950px */ 
+    @media(max-width: ${resolucion.movilHorizontal}){
 
         display: flex;
         flex-direction: column;
@@ -182,7 +183,7 @@ const ComentariosDesdeCoordinacion = styled.div `
         padding: 0.5rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */ 
+    @media(max-width: ${resolucion.movilVertical}) { 
         p {
             width: auto;           
         }
@@ -219,7 +220,7 @@ const ContenedorDificultad = styled.div`
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 
-    @media(max-width: 48rem) {  /* 768px */  
+    @media(max-width: ${resolucion.movilVertical}) {  
         width: auto;
     }
 `;
@@ -230,7 +231,7 @@ const DificultadYPuntos = styled.div `
     align-items: center;
     padding: 0.5rem;     
 
-    @media(max-width: 48rem) {  /* 768px */      
+    @media(max-width: ${resolucion.movilVertical}) {      
         grid-template-columns: 71% 29%;
         font-size: 0.9rem;
         padding: 0 0.5rem;
@@ -248,7 +249,8 @@ const ConsideracionNivel4 = styled.div `
         padding-right: 1.5rem;
     }
 
-    @media(max-width: 48rem) {  /* 768px */     
+    @media(max-width: ${resolucion.movilVertical}) { 
+
         grid-template-columns: 71% 29%;
         font-size: 0.9rem;        
         padding: 0 0.5rem;
@@ -282,7 +284,7 @@ const ContenedorFotografias = styled.div`
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 
-    @media(max-width: 48rem) {  /* 768px */      
+    @media(max-width: ${resolucion.movilVertical}) {    
         width: auto;
     }
 
@@ -313,14 +315,14 @@ const ContenedorComentariosTecnicos = styled.div`
         height: 7rem;        
     }
 
-    @media(max-width: 60rem){ /* 950px */     
+    @media(max-width: ${resolucion.movilHorizontal}){   
         textarea {
             font-size: 0.9rem;            
             height: 5rem;
         }
     }
 
-    @media(max-width: 48rem) {  /* 768px */      
+    @media(max-width: ${resolucion.movilVertical}) {    
         
         textarea {
             font-size: 1rem;
@@ -348,7 +350,7 @@ const ContenedorEstadoYBoton = styled.div`
     margin-bottom: 2rem;
     margin-top: 2rem;
 
-    @media(max-width: 48rem) {  /* 768px */ 
+    @media(max-width: ${resolucion.movilVertical}) { 
 
         display: flex;  
         flex-direction: column;
@@ -363,8 +365,9 @@ const Estado = styled.div `
 
 const ContenedorBoton = styled.div`
 
-    display: grid;
+    display: flex;
     justify-content: center;
+    gap: 1rem;
     
 `;
 
