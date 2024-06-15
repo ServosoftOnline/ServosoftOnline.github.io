@@ -124,8 +124,7 @@ const  FormularioEditarActuacionTecnico = () => {
                 asignarMomentoFinActuacion(getUnixTime(new Date()));
                 break;
                 
-            default:
-                console.log('No entro en ninguno case');
+            default: null;
         }
 
     },[estado]);

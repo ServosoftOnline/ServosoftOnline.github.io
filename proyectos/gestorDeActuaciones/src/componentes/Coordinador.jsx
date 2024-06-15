@@ -42,6 +42,7 @@ import IconoMenu from './../assets/menuIcon.svg?react';
 const SinAsignar = lazy(() => import('./SinAsignar'));
 const FormularioEditarActuacionCoordinador = lazy(() => import('./FormularioEditarActuacionCoordinador'));
 const FormularioEditarActuacionSupervision = lazy(() => import('./FormularioEditarActuacionSupervision'));
+const FormularioEditarActuacionSupervisadas = lazy(() => import('./FormularioEditarActuacionSupervisadas'));
 const Direccion = lazy(() => import ('./Direccion'));
 const Ilocalizable = lazy(() => import ('./Ilocalizable'));
 const Mantenimiento = lazy(() => import('./Mantenimiento'));
@@ -182,6 +183,7 @@ const Coordinador = () => {
           {/* Rutas dinamicas */}          
           <Route path="detalles/:idActuacion" element={<FormularioEditarActuacionCoordinador />}/>
           <Route path="supervision/:idActuacion" element={<FormularioEditarActuacionSupervision />}/>
+          <Route path="instalados-finalizados/:idActuacion" element={<FormularioEditarActuacionSupervisadas />}/>
 
         </Routes>
       </Suspense>

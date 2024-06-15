@@ -8,7 +8,8 @@
 import React from "react";
 
 // Hooks
-import useObtenerActuacionesSupervisadas from "../hooks/useObtenerActuacionesFinalizadas";
+// import useObtenerActuacionesSupervisadas from "../hooks/useObtenerActuacionesFinalizadas";
+import useObtenerActuacionesFinalizadas from './../hooks/useObtenerActuacionesFinalizadas';
 
 // Componentes
 import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
@@ -17,13 +18,14 @@ import ListaActuacionesDeUnEstado from "./ListaActuacionesDeUnEstado";
 const InstaladosFinalizados = () => {
 
   // Obtengo desde el hook
-  const [actuacionesSupervisadas] = useObtenerActuacionesSupervisadas();
+  // const [actuacionesSupervisadas] = useObtenerActuacionesSupervisadas();
+  const [actuacionesSupervisadas] = useObtenerActuacionesFinalizadas();
   const arrayActuacionesSupervisadas = Object.values(actuacionesSupervisadas); 
   
   return (
     <ListaActuacionesDeUnEstado
       array = {arrayActuacionesSupervisadas}
-      estaSupervisando = {true}
+      actuacionSupervisada = {true}
       modulo = {'finalizados'}
       rutadevuelta = {'/coordinador/instalados-finalizados'}
     />    

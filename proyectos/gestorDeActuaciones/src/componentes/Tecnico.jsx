@@ -181,7 +181,7 @@ const Tecnico = () => {
 
           {/* Rutas estáticas */}
           <Route path="agenda-tecnico" element={<AgendaTecnico nombre={nombre} />}/>
-          <Route path="productividad-tecnico" element={<ProductividadTecnico />}/>
+          <Route path="productividad-tecnico" element={<ProductividadTecnico nombre={nombre} />}/>
           
           {/* Rutas dinamicas */}          
           <Route path="editar-actuacion/:idActuacion" element={<FormularioEditarActuacionTecnico />}/>
@@ -189,7 +189,7 @@ const Tecnico = () => {
       </Suspense>
       
       {/* Barra de productividad */}
-      <BarraProductividad />
+      {/* <BarraProductividad /> */}
       
     </>     
             

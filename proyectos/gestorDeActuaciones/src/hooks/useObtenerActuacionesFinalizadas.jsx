@@ -27,9 +27,9 @@ const useObtenerActuacionesSupervisadas = () => {
 
 			// Consulta 
 			const consulta = query(
-				collection(db, 'actuaciones'),			
+				collection(db, 'actuacionesSupervisadas'),			
 				where('estado', '==', 'EstadoSupervisado'),
-				orderBy('fechaIncidencia', 'asc')
+				orderBy('fechaSupervision', 'asc')
 			);
 
 			// Ejecuta la consulta. Si se produjera un error lo muestro en consola

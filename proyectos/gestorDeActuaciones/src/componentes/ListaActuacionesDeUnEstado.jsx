@@ -25,7 +25,7 @@ import formatearFecha from '../funciones/formatearFecha';
 import anchoDePantalla from '../funciones/anchoDePantalla';
 
 // Componente
-const ListaActuacionesDeUnEstado = ({array, estaSupervisando, modulo, rutadevuelta}) => {
+const ListaActuacionesDeUnEstado = ({array, estaSupervisando, modulo, rutadevuelta, actuacionSupervisada}) => {
 
     // Obtengo el ancho de la pantalla del dispositivo actual y el ancho maximo al que se le aplica responsive para moviles
     const {anchoActual, anchoMaximoMovilVertical} = anchoDePantalla();
@@ -146,14 +146,47 @@ const ListaActuacionesDeUnEstado = ({array, estaSupervisando, modulo, rutadevuel
                                 
                                 {/* Si el componente fue llamado desde el modulo supervisor el link apuntara al formularioEditarActuacionSupervision */}
                                 {/* Les paso la ruta de vuelta mediante state */}
-                                {estaSupervisando ?                                
-                                    <BotonAccion as={Link} state={{ rutadevuelta }} to={`/coordinador/supervision/${actuacion.id}`}>                                                 
+                                {/* {estaSupervisando ?                                
+                                    <BotonAccion
+                                        as={Link}
+                                        state={{ rutadevuelta }}
+                                        to={`/coordinador/supervision/${actuacion.id}`}>           
+                                                                              
                                         <IconoEditar /> 
                                     </BotonAccion>
                                     :                                
                                     <BotonAccion as={Link} state={{ rutadevuelta }} to={`/coordinador/detalles/${actuacion.id}`}>                                                 
                                         <IconoEditar /> 
                                     </BotonAccion>
+                                } */}
+
+                                {estaSupervisando ?                                
+                                    
+                                    <BotonAccion
+                                        as={Link}
+                                        state={{ rutadevuelta }}
+                                        to={`/coordinador/supervision/${actuacion.id}`}>           
+                                                                              
+                                        <IconoEditar /> 
+                                    </BotonAccion>
+                                    :
+                                        actuacionSupervisada ?
+                                        <BotonAccion
+                                            as={Link}
+                                            state={{ rutadevuelta }}
+                                            to={`/coordinador/instalados-finalizados/${actuacion.id}`}>           
+                                                                                
+                                            <IconoEditar /> 
+                                        </BotonAccion>
+                                        : 
+
+                                        <BotonAccion
+                                            as={Link}
+                                            state={{ rutadevuelta }}
+                                            to={`/coordinador/detalles/${actuacion.id}`}>                                                 
+
+                                            <IconoEditar /> 
+                                        </BotonAccion>
                                 }
                             
                                 <BotonAccion>

@@ -110,8 +110,7 @@ const InicioSesion = () => {
 
       // Iniciar sesion. Si hubiera sesion abierta navego a la ruta de su rol
       await signInWithEmailAndPassword(auth, email, password);
-      cambiarMensaje('Inicio de sesión correcto', 'correcta');      
-      console.log('sesion abierta');
+      cambiarMensaje('Inicio de sesión correcto', 'correcta');            
       
     } catch (error) {
 
@@ -149,11 +148,12 @@ const InicioSesion = () => {
   }
 
   // Si hay valicacion en cliente inicia sesion.
-  const handleSubmit = (e) => {    
+  const handleSubmit = async (e) => {    
     e.preventDefault();   
 
     if(validacionEnCliente()) {
-      iniciaSesion();
+      await iniciaSesion();
+      console.log('sesion abierta');
     }
   }
     

@@ -4,7 +4,6 @@
 		- Hay que seguir unas reglas definidas en https://firebase.google.com/docs/firestore/query-data/queries?hl=es-419#or_queries
 		- el nombre que obtení del hook no pude ponerlo como nombre, lo tuve que poner asi: `${nombre}`
 */
-
 // React
 import {useState, useEffect} from 'react';
 
@@ -16,7 +15,7 @@ import {db} from '../firebase/firebaseConfig';
 import {collection, onSnapshot, query, where, or, and, orderBy} from 'firebase/firestore';
 
 // Mi Hook
-const useObtenerActuacionesCitadasDeUnTecnico = (nombre) => {	
+const useObtenerActuacionesSupervisadasDeUnTecnico = (nombre) => {	
 
 	// Estados
 	const {sesion} = useAuth();	
@@ -30,16 +29,10 @@ const useObtenerActuacionesCitadasDeUnTecnico = (nombre) => {
 			
 			const obtenerActuaciones = () => {	
 				
-				const consulta = query(collection(db, 'actuaciones'), and (
+				const consulta = query(collection(db, 'actuacionesSupervisadas'), and (
 
 						or(
-							where('estado', '==', 'EstadoAgenda'),
-							where('estado', '==', 'EstadoEnCamino'),
-							where('estado', '==', 'EstadoEnCliente'),
-							where('estado', '==', 'EstadoSupervision'),							
-							where('estado', '==', 'EstadoFaltaCitas'),
-							where('estado', '==', 'EstadoIncidencias'),
-							where('estado', '==', 'EstadoIlocalizable')
+							where('estado', '==', 'EstadoSupervisado'),
 						),
 						
 						or(
@@ -52,8 +45,8 @@ const useObtenerActuacionesCitadasDeUnTecnico = (nombre) => {
 							// where('tecnico5', '==', `${nombre}`)
 						)					
 					),
-					orderBy('fechaCitacion', 'asc'),
-					orderBy('idHoraCitacion', 'asc'));
+					
+					orderBy('fechaSupervision', 'asc'));
 
 
 				// Ejecuta la consulta. Si se produjera un error lo muestro en consola
@@ -76,4 +69,4 @@ const useObtenerActuacionesCitadasDeUnTecnico = (nombre) => {
 	return [actuaciones];
 }
  
-export default useObtenerActuacionesCitadasDeUnTecnico;
+export default useObtenerActuacionesSupervisadasDeUnTecnico;

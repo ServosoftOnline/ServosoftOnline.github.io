@@ -1,7 +1,5 @@
 /*
-    COMPONENTE QUE MUESTRA EL FORMULARIO PARA QUE QUIEN ESTÉ SUPERVISANDO PUEDA ENVIAR LA ACTUACION A FINALIZADOS.
-
-        - IMPORTANTE: NO CONFUNDIR CON EL FormularioEditarActuacionTecnico ES MUY PARECIDO.
+    
 */
 
 // React
@@ -14,37 +12,29 @@ import  {ContenedorSupervisarActuacion, ContenedorActuacion, ContenedorSoloLectu
         ContenedorDireccion, ContenedorPoblacion, ContenedorZona, ContenedorTelefonos, ContenedorTipoDeTrabajo,
         ContenedorTecnicos, LinkCoordenadas, LinkDorus, ComentariosDesdeCoordinacion, ContenedorTrabajoDelTecnico,
         Momentos, EnCamino, EnCliente, FinActuacion, ContenedorFotografias, Fotografias, ComentariosTecnicos,
-        DecisionDelSupervisor, Dificultad, ContenedorDificultad, DificultadYPuntos, ConsideracionNivel4, CheckBox,
-        ComentariosSupervision, ContenedorComentariosSupervision, ContenedorEstadoYBoton, Estado,
-        ContenedorBoton, ContenedorBotonVolver} from '../elementos/ElementosDeFormularioSupervision';
+        DecisionDelSupervisor, Dificultad, ContenedorDificultad, DificultadYPuntos,
+        ConsideracionNivel4, ComentariosSupervision, ContenedorComentariosSupervision,
+        ContenedorBotonVolver} from '../elementos/ElementosDeFormularioSupervision';
 
-// Componentes select
-import SelectEstadosSupervision from "./SelectEstadosSupervision";
 
 // Resto de los componentes
 import Boton from "../elementos/Boton";
 
 // Funciones
 import formatearFechaEnHoraYSegundos from "../funciones/formatearFechaEnHoraYSegundos";
-import anchoDePantalla from './../funciones/anchoDePantalla';
-
-// Funcion firebase
-import actualizaActuacionSupervisada from "../firebase/actualizaActuacionSupervisada";
-import actualizaActuacionAPteDeCoordinar from "../firebase/actualizaActuacionAPteDeCoordinar";
-
-// Componentes
-import Mensaje from "./Mensaje";
+import anchoDePantalla from '../funciones/anchoDePantalla';
 
 // Contextos
 import { ContextoMensaje } from "../contextos/contextoMensaje";
 
 // Hooks
-import useObtenerActuacionAPartirDeSuId from "../hooks/useObtenerActuacionAPartirDeSuId";
-import useObtenerTecnicosAPartirDelIdActuacion from "../hooks/useObtenerTecnicosAPartirDelIdActuacion";
-import useObtenerIdRolesDeUnUsuario from "../hooks/useObtenerIdRolesDeUnUsuario";
+import useObtenerActuacionSupervisadaAPartirDeSuId from "../hooks/useObtenerActuacionSupervisadaAPartirDeSuId";
+import useObtenerTecnicosAPartirDelIdActuacionSupervisada from "../hooks/useObtenerTecnicosAPartirDelIdActuacionSupervisada";
+
 
 // Mi componente
-const  FormularioEditarActuacionSupervision = () => {
+const  FormularioEditarActuacionSupervisadas = () => {
+
 
     // Obtendo el idActuacion pasado por la barra de direccion
     const {idActuacion} = useParams();
@@ -52,7 +42,6 @@ const  FormularioEditarActuacionSupervision = () => {
     // Obtengo la ruta de vuelta mediante location
     const location = useLocation();
     const {rutadevuelta} = location.state || {};
-    console.log('ruta de vuelta en el formulario: ' + rutadevuelta);
 
     // Creo la cte para la vuelta
     const navigate = useNavigate();
@@ -61,27 +50,22 @@ const  FormularioEditarActuacionSupervision = () => {
     const {anchoActual, anchoMaximoMovilVertical} = anchoDePantalla();
 
     // Contexto para mensajes en pantalla
-    const {mensajeAMostrar, rdoValidacion , cambiarMensaje, reiniciarMensaje, eliminarMensaje} = useContext(ContextoMensaje);
+    const {eliminarMensaje} = useContext(ContextoMensaje);
     
-    // Estados        
-    const [estado, asignarEstado] = useState();    
-    const [estadoDescripcion, asignarEstadoDescripcion] = useState();    
-    const [consideraNivel4, asignarConsideraNivel4] = useState("No");
-    const [dificultadTemporal, asignarDificultadTemporal] = useState("Nivel 4");
-    const [puntosTemporales, asignarPuntosTemporales] = useState(0);
-    const [comentariosSupervision, asignarComentariosSupervision] = useState("");    
+    // Estados
+    const [consideraNivel4, asignarConsideraNivel4] = useState("No");    
+    const [comentariosSupervision, asignarComentariosSupervision] = useState("");   
+    
 
     // Informacion obtenida desde los hooks
-    const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
-    const [todosLosTecnicos] = useObtenerTecnicosAPartirDelIdActuacion(idActuacion);       
+    const [actuacion] = useObtenerActuacionSupervisadaAPartirDeSuId(idActuacion);   
+    const [todosLosTecnicos] = useObtenerTecnicosAPartirDelIdActuacionSupervisada(idActuacion);       
 
     // Efecto para obtener los datos que iré mostrando en el formulario
-    useEffect(() => {        
-
-        actuacion.estadoDescripcion         !== undefined && asignarEstadoDescripcion(actuacion.estadoDescripcion);
-        actuacion.comentariosSupervision    !== undefined && asignarComentariosSupervision(actuacion.comentariosSupervision);       
-
-    },[actuacion.estadoDescripcion, actuacion.comentariosSupervision]);   
+    useEffect(() => {
+        actuacion.comentariosSupervision !== undefined &&
+        asignarComentariosSupervision(actuacion.comentariosSupervision);
+    },[actuacion.comentariosSupervision]);   
     
     // Efecto para borrar si hubiera algun mensaje almacenado en el contexto al iniciar
     useEffect(() => {
@@ -92,92 +76,13 @@ const  FormularioEditarActuacionSupervision = () => {
     const abrirGoogleMaps = (coordenadas) => {
         const url = `https://www.google.com/maps/search/?api=1&query=${coordenadas}`;
         window.open(url, '_blank'); 
-    }
-
-    // Llamo a la funcion de firebase por medio de una promesa para evitar que vuelva a la ruta de vuelta antes de ejecutarse
-    const llamaAActualizacionSupervisada = () => {
-
-        return new Promise((resolve, reject) => {
-
-            try {
-
-                actualizaActuacionSupervisada(idActuacion, comentariosSupervision);
-                cambiarMensaje('Cambiado estado de la actuacion a supervisada', 'advertencia');
-                resolve('correcto');
-
-            } catch(error) {
-
-                cambiarMensaje('Error al tratar de cambiar la actuacion a supervisada', 'incorrecta');
-                console.log(error);
-                reject('incorrecto');
-            }
-
-        });
-
-    }
-
-    // Uso una promesa por la misma razón que llamaaActualizacionSupervisada
-    const llamaAActuacionPendienteDeCoordinar = () => {
-
-        return new Promise((resolve, reject) => {
-
-            try {
-                actualizaActuacionAPteDeCoordinar(idActuacion, comentariosSupervision);
-                cambiarMensaje('Cambiado estado de la actuacion a pte de coordinar', 'advertencia');
-                
-                resolve('correcto');
-
-            }catch (error) {
-
-                console.log('Error al cambiar el estado de la actuación a pte de coordinar');
-                console.log(error);
-                reject('incorrecto');
-            }
-        });
-
-    }
-
-    // Validaciones
-    const validacionCorrecta = () => {
-        
-        // Valicacion1: No puede quedarse el estado en Instalado. Debe cambiarlo a finalizada o pte de coordinar  
-        if (estado === undefined) {
-            cambiarMensaje('Debes cambiar el estado a Actuacion finalizada o pendiente de coordinar','incorrecta');
-            return false;
-        } 
-              
-        return true;        
     }    
 
-    const handleChange = (e) => {
+    const handleSubmit = (e) => {
 
-        switch (e.target.name){
+        e.preventDefault();                 
+        navigate(rutadevuelta);     
 
-            case 'nivel4':                
-                asignarConsideraNivel4(e.target.value);
-                break;
-
-            case 'comentariosSupervision':                
-                asignarComentariosSupervision(e.target.value);
-                break;
-
-            default:
-                console.log('No entro en ninguno case');
-        }
-        
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault(); 
-        console.log('hago el handlesubmit')       ;
-
-        // Si la validacion es correcta llamo a la funcion que actualizará la coleccion actuaciones
-        if (validacionCorrecta()) {
-            console.log('estado: ' + estado);
-            estado === 'EstadoSupervisado' ? await llamaAActualizacionSupervisada() : await llamaAActuacionPendienteDeCoordinar();
-            reiniciarMensaje();
-            navigate(rutadevuelta);
-        }
     }
     
     return (        
@@ -259,7 +164,7 @@ const  FormularioEditarActuacionSupervision = () => {
                         {actuacion.comentariosCoordinacion !== "" ? 
                                 actuacion.comentariosCoordinacion
                             :
-                                "No hay comentarios" } 
+                                "El coordinador no dejó comentarios" } 
                     </p>
 
                 </ComentariosDesdeCoordinacion> 
@@ -325,14 +230,20 @@ const  FormularioEditarActuacionSupervision = () => {
                 <ComentariosTecnicos>
 
                     <label htmlFor="comentariosCoordinacion"> Comentarios técnicos: </label>
-                    <p>{actuacion.comentariosTecnicos !== "" ? actuacion.comentariosTecnicos : "No hay comentarios" } </p>
+                    <p>
+                        {actuacion.comentariosTecnicos !== "" ?
+                            actuacion.comentariosTecnicos
+                            :
+                            "El técnico no dejó comentarios" 
+                        }                        
+                    </p>
 
                 </ComentariosTecnicos> 
             </ContenedorTrabajoDelTecnico>
 
 
             {/* DECISION DEL SUPERVISOR    */}
-            <h3>Tu decisión:</h3>
+            <h3>Decisión del supervisor:</h3>
             <DecisionDelSupervisor>
             
                 <form onSubmit={handleSubmit}>
@@ -345,13 +256,11 @@ const  FormularioEditarActuacionSupervision = () => {
                             <DificultadYPuntos>
 
                                 <div>
-                                    <label htmlFor="dificultad">Dificultad: </label>
-                                    {consideraNivel4 === "Si" ? dificultadTemporal : actuacion.dificultad} 
+                                    <label htmlFor="dificultad">Dificultad: </label> {actuacion.dificultad}                                    
                                 </div>
 
                                 <div>
-                                    <label htmlFor="puntos">Puntos: </label>
-                                    {consideraNivel4==="Si" ? puntosTemporales : actuacion.puntos} 
+                                    <label htmlFor="puntos">Puntos: </label> {actuacion.puntos}                                    
                                 </div>
 
                             </DificultadYPuntos>
@@ -362,14 +271,15 @@ const  FormularioEditarActuacionSupervision = () => {
                                     <h4>¿Fué considerada la actuacion de nivel4?</h4>
                                 </div>
 
+                                {/* Los inputs están deshabilitados */}
                                 <div>
                                     <input 
                                         type="radio"
                                         name="nivel4"
                                         id="si"
-                                        value = "Si"
-                                        onChange={handleChange}
+                                        value = "Si"                                        
                                         checked={consideraNivel4==="Si"}
+                                        disabled={true}
                                     />
                                     <label htmlFor="si">Sí</label>
 
@@ -377,21 +287,14 @@ const  FormularioEditarActuacionSupervision = () => {
                                         type="radio"
                                         name="nivel4"
                                         id="no"
-                                        value = "No"
-                                        onChange={handleChange}
+                                        value = "No"                                       
                                         checked={consideraNivel4==="No"}
+                                        disabled={true}
                                     />
                                     <label htmlFor="no">No</label>
                                 </div>
 
                             </ConsideracionNivel4>                
-                            
-                            {consideraNivel4 === "Si" &&
-                                
-                                <CheckBox>
-                                    checkbox
-                                </CheckBox>
-                            }
 
                         </ContenedorDificultad>
 
@@ -405,56 +308,25 @@ const  FormularioEditarActuacionSupervision = () => {
                             
                             <textarea                            
                                 name="comentariosSupervision"                
-                                placeholder="Introduzca comentarios opcionales"
-                                value={comentariosSupervision}
-                                onChange={handleChange}                            
+                                placeholder={actuacion.comentariosSupervision === "" && 'El supervisor no dejó comentarios'}
+                                value={comentariosSupervision}                                
+                                disabled={true}                           
                             />
                         </ContenedorComentariosSupervision>
 
                     </ComentariosSupervision>               
 
-                    {/* El contenedor mostrará el estado y el boton de actualizar si la actuacion esta en estadoSupervisado
-                        o motrará el boton de volver si no lo está */}
-                    {actuacion.estado !== 'EstadoSupervisado' ?
-                        <>
-                            <ContenedorEstadoYBoton>
-
-                                <Estado>                    
-                                    <SelectEstadosSupervision
-                                        asignarEstado={asignarEstado}
-                                        estadoDescripcion = {estadoDescripcion}
-                                        asignarEstadoDescripcion = {asignarEstadoDescripcion}
-                                    />
-                                </Estado>
-
-                                <ContenedorBoton>
-                                    <Boton
-                                        $primario
-                                        $grande                                    
-                                        as="button"
-                                        type="submit"
-                                        >Actualizar                            
-                                    </Boton>
-                                </ContenedorBoton> 
-
-                            </ContenedorEstadoYBoton>
-                        </>
-                        :
-                        <ContenedorBotonVolver>
-                            <Boton
-                                onClick={() => navigate(rutadevuelta)}
-                                $paraAdministrador
-                                $grande                                    
-                                as="button"                                    
-                                >Volver                            
-                            </Boton>
-                        </ContenedorBotonVolver> 
-                    }
+                    <ContenedorBotonVolver>
+                        <Boton
+                            onClick={() => navigate(rutadevuelta)}
+                            $paraAdministrador
+                            $grande                                    
+                            as="button"                                    
+                            >Volver                            
+                        </Boton>
+                    </ContenedorBotonVolver> 
 
                 </form>
-
-                {/* Mensaje con el resultado de la validacion. Se mostrará en verde u rojo */}
-                <Mensaje $validacion={rdoValidacion} mensaje={mensajeAMostrar}/>
 
             </DecisionDelSupervisor>
 
@@ -462,4 +334,4 @@ const  FormularioEditarActuacionSupervision = () => {
     );
 }
  
-export default FormularioEditarActuacionSupervision;
+export default FormularioEditarActuacionSupervisadas;

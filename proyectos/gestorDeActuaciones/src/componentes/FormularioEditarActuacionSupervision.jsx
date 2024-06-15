@@ -29,8 +29,9 @@ import formatearFechaEnHoraYSegundos from "../funciones/formatearFechaEnHoraYSeg
 import anchoDePantalla from './../funciones/anchoDePantalla';
 
 // Funcion firebase
-import actualizaActuacionSupervisada from "../firebase/actualizaActuacionSupervisada";
+import pasaActuacionASupervisada from './../firebase/pasaActuacionASupervisada';
 import actualizaActuacionAPteDeCoordinar from "../firebase/actualizaActuacionAPteDeCoordinar";
+import eliminarActuacionYaSupervisada from "../firebase/eliminarActuacionYaSupervisada";
 
 // Componentes
 import Mensaje from "./Mensaje";
@@ -95,13 +96,13 @@ const  FormularioEditarActuacionSupervision = () => {
     }
 
     // Llamo a la funcion de firebase por medio de una promesa para evitar que vuelva a la ruta de vuelta antes de ejecutarse
-    const llamaAActualizacionSupervisada = () => {
+    const llamaAPasaAColeccionSupervisada = () => {
 
         return new Promise((resolve, reject) => {
 
             try {
 
-                actualizaActuacionSupervisada(idActuacion, comentariosSupervision);
+                pasaActuacionASupervisada(actuacion, comentariosSupervision);
                 cambiarMensaje('Cambiado estado de la actuacion a supervisada', 'advertencia');
                 resolve('correcto');
 
@@ -109,6 +110,27 @@ const  FormularioEditarActuacionSupervision = () => {
 
                 cambiarMensaje('Error al tratar de cambiar la actuacion a supervisada', 'incorrecta');
                 console.log(error);
+                reject('incorrecto');
+            }
+
+        });
+
+    }
+
+    // Borro la actuacion de la coleccion actuaciones una vez supervisada
+    const llamaABorraDeColeccionActuaciones = () => {
+        
+        return new Promise((resolve, reject) =>{
+
+            try {
+
+                eliminarActuacionYaSupervisada(idActuacion);
+                console.log('Eliminado actuacion ya supervisada');
+                resolve('correcto');
+
+            } catch (error) {
+
+                console.log('Error al borrar la actuacion ya supervisada');
                 reject('incorrecto');
             }
 
@@ -171,13 +193,19 @@ const  FormularioEditarActuacionSupervision = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); 
-        console.log('hago el handlesubmit')       ;
+        e.preventDefault();         
 
         // Si la validacion es correcta llamo a la funcion que actualizará la coleccion actuaciones
         if (validacionCorrecta()) {
-            console.log('estado: ' + estado);
-            estado === 'EstadoSupervisado' ? await llamaAActualizacionSupervisada() : await llamaAActuacionPendienteDeCoordinar();
+            
+            if(estado === 'EstadoSupervisado') {
+                await llamaAPasaAColeccionSupervisada();
+                await llamaABorraDeColeccionActuaciones();
+
+            } else {
+                await llamaAActuacionPendienteDeCoordinar();
+            }
+
             reiniciarMensaje();
             navigate(rutadevuelta);
         }
