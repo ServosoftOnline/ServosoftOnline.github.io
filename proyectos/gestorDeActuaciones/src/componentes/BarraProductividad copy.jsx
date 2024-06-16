@@ -1,5 +1,9 @@
+/*
+    COMPONENTE DE LA BARRA DONDE SE INDICA LA PRODUCTIVIDAD DIARIA, SEMANAL Y MENSUAL
+*/
+
 // React
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 
 // Elementos
 import { ContenedorBarraProductividad } from "../elementos/ElementosBarraProductividad";
@@ -27,32 +31,35 @@ const BarraProductividad = () => {
     const [puntosDelMes, setPuntosDelMes] = useState(0);
     const [puntosDelDia, setPuntosDelDia] = useState(0);
 
-    // Efecto para obtener los puntos del mes
-    useEffect(() => {
-        let acumuladoDelMes = 0;
-        arrayActuacionesDelMesDeUnUsuario.forEach((actuacion) => {
-            acumuladoDelMes += actuacion.puntos;
-        });
-        setPuntosDelMes(acumuladoDelMes);
-    }, [arrayActuacionesDelMesDeUnUsuario]);
+    // Obtengo los puntos del mes y del dia
+    let acumuladoDelMes = 0;
+    let acumuladoDelDia = 0;
 
-    // Efecto para obtener los puntos del día
     useEffect(() => {
-        let acumuladoDelDia = 0;
-        arrayActuacionesDelDiaDeUnTecnico.forEach((actuacion) => {
-            acumuladoDelDia += actuacion.puntos;
+
+        arrayActuacionesDelMesDeUnUsuario.forEach((actuacion) => {            
+            acumuladoDelMes = acumuladoDelMes + actuacion.puntos;
+            setPuntosDelMes(acumuladoDelMes);
         });
-        setPuntosDelDia(acumuladoDelDia);
-    }, [arrayActuacionesDelDiaDeUnTecnico]);
+
+        arrayActuacionesDelDiaDeUnTecnico.forEach((actuacion) => {            
+            acumuladoDelDia = acumuladoDelDia + actuacion.puntos;
+            setPuntosDelDia(acumuladoDelDia);
+        });
+
+    }, [acumuladoDelMes, acumuladoDelDia]);
+    
     
     return ( 
+
         <ContenedorBarraProductividad>                
-            <p><b>Productividad</b></p>
-            <p>diaria: {puntosDelDia} pts</p>
+            <p> <b>Productividad</b> </p>
+            <p>diaria: {puntosDelDia}pts</p>
             <p>semanal: 0 pts</p>
-            <p>mensual: {puntosDelMes} pts</p>
-        </ContenedorBarraProductividad>
-    );
+            <p>mensual:{puntosDelMes} pts</p>
+        </ContenedorBarraProductividad>        
+     );
+
 }
  
 export default BarraProductividad;

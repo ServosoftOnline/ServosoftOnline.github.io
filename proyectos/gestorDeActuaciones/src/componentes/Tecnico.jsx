@@ -191,7 +191,7 @@ const Tecnico = () => {
       </Suspense>
       
       {/* Barra de productividad */}
-      {/* <BarraProductividad /> */}
+      <BarraProductividad />
       
     </>     
             

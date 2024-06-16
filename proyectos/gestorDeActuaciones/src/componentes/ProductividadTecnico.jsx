@@ -7,18 +7,17 @@ import React from "react";
 
 // Componentes
 import ListaActuacionesDeUnTecnico from "./ListaActuacionesDeUnTecnico";
+import BarraProductividad from "./BarraProductividad";
 
 // Hooks
 import useObtenerActuacionesSupervisadasDeUnTecnico from "../hooks/useObtenerActuacionesSupervisadasDeUnTecnico";
 import useObtenerEstadoDeUnUsuario from '../hooks/useObtenerEstadoDeUnUsuario';
 
 const  ProductividadTecnico= ({nombre}) => {
-    // console.log(nombre);
+    
     const [actuaciones] = useObtenerActuacionesSupervisadasDeUnTecnico(nombre);  
-    const arrayActuaciones = Object.values(actuaciones);    
-    console.log(arrayActuaciones);
-    const [estadoDelTecnico] = useObtenerEstadoDeUnUsuario();  
-    // console.log(estadoDelTecnico);
+    const arrayActuaciones = Object.values(actuaciones);        
+    const [estadoDelTecnico] = useObtenerEstadoDeUnUsuario();      
 
     return ( 
         <>            
@@ -29,6 +28,8 @@ const  ProductividadTecnico= ({nombre}) => {
                 estadoDelTecnico={estadoDelTecnico}
                 rutadevuelta = {'/tecnico/productividad-tecnico'} 
             />    
+
+            {/* <BarraProductividad/> */}
         </>
     );
 }

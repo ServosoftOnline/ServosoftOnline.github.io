@@ -294,7 +294,7 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, quiereVerSuProduct
                                     {/* Evaluo lo que se muestra en relacion con el estado: en camino, en cliente, supervisada u otro */}
                                     
                                     <Estado>
-                                        {console.log(actuacion.estadoDescripcion)}
+                                        
                                         { actuacion.estadoDescripcion === "En camino" ?
                                                 <>
                                                     <SpanHoraEnCamino>{actuacion.estadoDescripcion}</SpanHoraEnCamino>

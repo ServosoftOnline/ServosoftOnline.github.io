@@ -22,6 +22,7 @@ const pasaActuacionASupervisada = async (actuacion, comentariosSupervision) => {
     actuacion.estadoDescripcion = 'Supervisada';
     actuacion.comentariosSupervision = comentariosSupervision;
     actuacion.fechaSupervision = fechaSupervison;    
+    actuacion.puntos = parseInt(actuacion.puntos);
     
     // Añado en la coleccion actuacionesSupervisadas
     try {       

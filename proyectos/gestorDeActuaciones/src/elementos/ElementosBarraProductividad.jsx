@@ -1,10 +1,10 @@
 // ELEMENTO QUE CONTIENE LOS ESTILOS DE LA BARRA CON EL TOTAL GASTADO EN EL MES
 
 import styled from "styled-components";
-import theme from './../objetos/theme'
+import theme from '../objetos/theme'
 import {resolucion} from "../objetos/resolucion";
 
-const BarraProductividad = styled.div`
+const ContenedorBarraProductividad = styled.div`
 
     background: ${theme.verdeIcono};
     font-size: 1rem; /* 16px */
@@ -26,4 +26,4 @@ const BarraProductividad = styled.div`
     }
 `;
 
-export default BarraProductividad;
+export {ContenedorBarraProductividad}
