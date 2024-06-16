@@ -26,7 +26,6 @@ import BtnSalir from '../elementos/BtnSalir';
 const AgendaTecnico = lazy(() => import('./AgendaTecnico'));
 const ProductividadTecnico = lazy(() => import('./ProductividadTecnico'));
 const FormularioEditarActuacionTecnico = lazy(() => import('./FormularioEditarActuacionTecnico'));
-const FormularioEditarActuacionSupervisadas = lazy(() => import('./FormularioEditarActuacionSupervisadas'));
 
 // SVG
 import IconoCerrar from './../assets/cerrar.svg?react';
@@ -186,7 +185,6 @@ const Tecnico = () => {
           
           {/* Rutas dinamicas */}          
           <Route path="editar-actuacion/:idActuacion" element={<FormularioEditarActuacionTecnico />}/>
-          <Route path="instalados-finalizados/:idActuacion" element={<FormularioEditarActuacionSupervisadas />}/>
         </Routes>
       </Suspense>
       

@@ -25,8 +25,9 @@ const  ProductividadTecnico= ({nombre}) => {
             <ListaActuacionesDeUnTecnico
                 array = {arrayActuaciones}
                 laPideUnTecnico= {true}
+                quiereVerSuProductividad = {true}
                 estadoDelTecnico={estadoDelTecnico}
-                rutadevuelta = {'/tecnico/agenda-tecnico'} 
+                rutadevuelta = {'/tecnico/productividad-tecnico'} 
             />    
         </>
     );

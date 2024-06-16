@@ -1,11 +1,24 @@
 /*
     MUESTRA LAS ACTUACIONES DE UN ESTADO CON DIFERENTES BOTONES
-    
-        - Este componente puede ser llamado desde los componentes coordinador o tecnico
-            - Si lo llama un coordinador mostrará los botones de editar y borrar
-            - Si lo llama un tecnico mostrará los botones de en camino, en cliente y editar
-            - Si lo llama un coordinador el botón de editar apuntará al formulario para que editen los coordinadores
-            - Si lo llama un tecnico el botón de editar apuntará al formulario para que editen el tecnico asociado
+    array, laPideUnTecnico, quiereVerSuProductividad, laPideUnCoordinador, estadoDelTecnico, rutadevuelta
+        - Este componente puede ser llamado desde los componentes coordinador o tecnico.
+
+            - Estan determinados por los siguientes parámetros que recibe:
+                - array contiene las actuaciones que debe mostrar
+
+                - si laPideUnCoordinador: 
+                    - mostrará los botones de editar y borrar
+                    - el botón de editar apuntará al formulario para que editen los coordinadores
+
+                - si laPideUnTecnico:
+                    - mostrará los botones de en camino, en cliente y editar
+                    - el botón de editar apuntará al formulario para que editen el tecnico asociado
+
+                - Si quiereVerSuProductividad que esta asociada al tecnico
+                    - El boton de editar apuntará al formulario de actuaciones supervisadas que comparte con el modulo corrdinador
+                    
+                - estadoDelTecnico determinará como se muestran los iconos de encamino y en cliente
+                - rutadevuelta. contiene la ruta del componente del que fue lamado para que al volver valla ahí
 
         - Los colores de los botones y su estado asociado serán naranjas, verdes o azules
         - Las descripciones de los estados serán naranjas o verdes correspondiendo a los colores de sus botones
@@ -56,7 +69,7 @@ import {muestraEstadosTecnicosContext} from './../contextos/muestraEstadosTecnic
 import {useRol} from './../contextos/RolContext';
 
 // Componente
-const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinador, estadoDelTecnico, rutadevuelta}) => {  
+const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, quiereVerSuProductividad, laPideUnCoordinador, estadoDelTecnico, rutadevuelta}) => {  
     
     // Obtengo el id del rol del tecnico y su estado
     const [idRoles] = useObtenerIdRolesDeUnUsuario(); 
@@ -351,13 +364,29 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, laPideUnCoordinado
                                                     </BotonAccion>
                                                 }
                                                 
-                                                <BotonAccion
-                                                    as={Link}
-                                                    state={{ rutadevuelta }} 
-                                                    to={`/tecnico/editar-actuacion/${actuacion.id}`} 
-                                                >
-                                                    <IconoEditar /> 
-                                                </BotonAccion>
+                                                {quiereVerSuProductividad ?
+
+                                                    <BotonAccion
+                                                        as={Link}
+                                                        state={{ rutadevuelta }} 
+                                                        to={`/tecnico/instalados-finalizados/${actuacion.id}`} >  
+                                                    
+                                                        <IconoEditar /> 
+                                                    </BotonAccion>
+                                                    : 
+                                                    <BotonAccion
+                                                        as={Link}
+                                                        state={{ rutadevuelta }} 
+                                                        to={`/tecnico/editar-actuacion/${actuacion.id}`} >
+                                                            
+                                                        <IconoEditar /> 
+                                                    </BotonAccion>
+                                                
+                                                }
+                                                
+
+                                                {/* Si se pide desde productividad tecnico: to={`/coordinador/instalados-finalizados/${actuacion.id}`}> 
+                                                que quiere ver su productividad */}
                                             </>
                                             
                                             : null
