@@ -16,6 +16,7 @@ import IconoDown from './../assets/down.svg?react';
 
 // El componente
 const SelectTecnicos = ({numeroTecnicos, tecnico, asignarTecnico, style }) => {  
+console.log(tecnico);
 
     // Array con los tecnicos obtenidos del hook
     const [todosLosTecnicos] = useObtenerTodosLosTecnicos();

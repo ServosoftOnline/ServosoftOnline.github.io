@@ -291,10 +291,8 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, quiereVerSuProduct
 
                                     {/* Muestro el estado siempre. Lo mostraré en colores solo cuando esté en camino o en cliente*/}
                                     {/* Mostraré la hora si estoy en camino o en cliente solo de colores */}
-                                    {/* Evaluo lo que se muestra en relacion con el estado: en camino, en cliente, supervisada u otro */}
-                                    
                                     <Estado>
-                                        {console.log(actuacion.estadoDescripcion)}
+
                                         { actuacion.estadoDescripcion === "En camino" ?
                                                 <>
                                                     <SpanHoraEnCamino>{actuacion.estadoDescripcion}</SpanHoraEnCamino>
@@ -305,14 +303,6 @@ const ListaActuacionesDeUnTecnico = ({array, laPideUnTecnico, quiereVerSuProduct
                                                 <>
                                                     <SpanHoraDeLlegada>{actuacion.estadoDescripcion}</SpanHoraDeLlegada>
                                                     <SpanHoraDeLlegada>{formatearFechaEnHoraYSegundos(actuacion.horaDeLlegada)}</SpanHoraDeLlegada>
-                                                </>
-
-                                                :
-
-                                                actuacion.estadoDescripcion === "Supervisada" ?
-                                                <>
-                                                    <span>{actuacion.estadoDescripcion}</span>
-                                                    <span>{actuacion.puntos} puntos</span>
                                                 </>
 
                                                 :
