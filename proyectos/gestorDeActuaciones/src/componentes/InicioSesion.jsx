@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom";
 
 // Componentes
 import Mensaje from './Mensaje';
+import MuestraResolucion from "./MuestraResolucion";
 
 // Elementos
 import {Formulario, ContenedorInputs, Input, ContenedorBoton, SvgIniciarSesion} from '../elementos/ElementosDeFormulario';
@@ -159,6 +160,7 @@ const InicioSesion = () => {
     
   return (
     <>
+      {/* <MuestraResolucion/> */}
       <HelmetProvider>
         
         {/* Helmet */}

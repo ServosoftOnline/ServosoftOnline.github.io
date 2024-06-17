@@ -65,8 +65,6 @@ import useObtenerNombreDeUnUsuario from "../hooks/useObtenerNombreDeUnUsuario";
 // Funciones
 import anchoDePantalla from './../funciones/anchoDePantalla';
 
-// Objetos
-import { resolucionEnNumeros } from "../objetos/resolucion";
 
 // El Componente
 const Coordinador = () => {
@@ -152,38 +150,17 @@ const Coordinador = () => {
           <TodosLosBotones>
 
             <ContenedorBotones>
-              {console.log('ancho actual: ' + anchoActual)}
-              {console.log('ancho reducir botones: ' + resolucionEnNumeros.AnchoReducenBotones)}
-              
-              {anchoActual<= resolucionEnNumeros.AnchoAmplianBotones && anchoActual>resolucionEnNumeros.AnchoReducenBotones ?
-                <>
-                  {console.log('botones grandes')}
-                  <Boton $paraCoordinador $grande to = "direccion">Dirección</Boton>
-                  <Boton $paraCoordinador $grande to = "sin-asignar">Sin coordinar</Boton>            
-                  <Boton $paraCoordinador $grande to = "ilocalizable">Ilocalizable</Boton>
-                  <Boton $paraCoordinador $grande to = "mantenimiento">Mto</Boton>
-                  <Boton $paraCoordinador $grande to = "falta-citas">Etapa citas</Boton>
-                  <Boton $paraCoordinador $grande to = "incidencias">Incidencias</Boton>
-                  <Boton $paraCoordinador $grande to = "oym">O&m</Boton>
-                  <Boton $paraCoordinador $grande to = "agenda">Agenda</Boton>
-                  <Boton $paraCoordinador $grande to = "supervision">Supervisión</Boton>            
-                  <Boton $paraCoordinador $grande to = "instalados-finalizados">Finalizados</Boton>                   
-                </>
-               :
-                <>
-                  {console.log('botones medianos')}
-                  <Boton $paraCoordinador $mediano to = "direccion">Dirección</Boton>
-                  <Boton $paraCoordinador $mediano to = "sin-asignar">Sin coordinar</Boton>            
-                  <Boton $paraCoordinador $mediano to = "ilocalizable">Ilocalizable</Boton>
-                  <Boton $paraCoordinador $mediano to = "mantenimiento">Mto</Boton>
-                  <Boton $paraCoordinador $mediano to = "falta-citas">Etapa citas</Boton>
-                  <Boton $paraCoordinador $mediano to = "incidencias">Incidencias</Boton>
-                  <Boton $paraCoordinador $mediano to = "oym">O&m</Boton>
-                  <Boton $paraCoordinador $mediano to = "agenda">Agenda</Boton>
-                  <Boton $paraCoordinador $mediano to = "supervision">Supervisión</Boton>            
-                  <Boton $paraCoordinador $mediano to = "instalados-finalizados">Finalizados</Boton>                                               
-                </>
-              }
+
+              <Boton $paraCoordinador $mediano to = "direccion">Dirección</Boton>
+              <Boton $paraCoordinador $mediano to = "sin-asignar">Sin coordinar</Boton>            
+              <Boton $paraCoordinador $mediano to = "ilocalizable">Ilocalizable</Boton>
+              <Boton $paraCoordinador $mediano to = "mantenimiento">Mto</Boton>
+              <Boton $paraCoordinador $mediano to = "falta-citas">Etapa citas</Boton>
+              <Boton $paraCoordinador $mediano to = "incidencias">Incidencias</Boton>
+              <Boton $paraCoordinador $mediano to = "oym">O&m</Boton>
+              <Boton $paraCoordinador $mediano to = "agenda">Agenda</Boton>
+              <Boton $paraCoordinador $mediano to = "supervision">Supervisión</Boton>            
+              <Boton $paraCoordinador $mediano to = "instalados-finalizados">Finalizados</Boton>                             
               {anchoActual > anchoMaximoMovilHorizontal && <BtnSalir /> }     
 
             </ContenedorBotones>

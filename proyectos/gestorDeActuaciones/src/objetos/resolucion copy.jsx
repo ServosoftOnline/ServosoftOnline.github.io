@@ -2,15 +2,13 @@
 
 
 const resolucion = {
-    movilHorizontal: '1550px',     
-    movilVertical: '420px'    
+    movilHorizontal: '785px', 
+    movilVertical: '420px'
 }
 
 const resolucionEnNumeros = {
-    movilHorizontal: 1550,
-    movilVertical: 420,
-    AnchoAmplianBotones: 1600,
-    AnchoReducenBotones: 960
+    movilHorizontal: 785,
+    movilVertical: 420
 }
 
 export {resolucion, resolucionEnNumeros};
