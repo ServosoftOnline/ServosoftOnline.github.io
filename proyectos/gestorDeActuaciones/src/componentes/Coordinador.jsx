@@ -128,7 +128,7 @@ const Coordinador = () => {
               <a href="/coordinador/sin-asignar">Sin coordinar</a>
               <a href="/coordinador/ilocalizable">Ilocalizable</a>
               <a href="/coordinador/mantenimiento">Mantenimiento</a>
-              <a href="/coordinador/falta-citas">Falta citas</a>
+              <a href="/coordinador/falta-citas">Etapa citas</a>
               <a href="/coordinador/incidencias">Incidencias</a>
               <a href="/coordinador/oym">O&m</a>
               <a href="/coordinador/agenda">Agenda</a>
@@ -149,7 +149,7 @@ const Coordinador = () => {
               <Boton $paraCoordinador $mediano to = "sin-asignar">Sin coordinar</Boton>            
               <Boton $paraCoordinador $mediano to = "ilocalizable">Ilocalizable</Boton>
               <Boton $paraCoordinador $mediano to = "mantenimiento">Mto</Boton>
-              <Boton $paraCoordinador $mediano to = "falta-citas">Falta citas</Boton>
+              <Boton $paraCoordinador $mediano to = "falta-citas">Etapa citas</Boton>
               <Boton $paraCoordinador $mediano to = "incidencias">Incidencias</Boton>
               <Boton $paraCoordinador $mediano to = "oym">O&m</Boton>
               <Boton $paraCoordinador $mediano to = "agenda">Agenda</Boton>

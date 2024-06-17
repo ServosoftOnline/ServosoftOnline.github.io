@@ -40,7 +40,7 @@ const theme = {
     darkSmoke: '#B3B3B3',
     darkerSmoke: '#999999',
 
-    // Azules
+    // Azules claros
     azulBlanco: '#F8F8FF',
     azulNieblaClara: '#F0F8FF',
     azulHielo: '#E0FFFF',
@@ -50,6 +50,9 @@ const theme = {
     azulPerlaPálido: '#E6FFFF',
     azulAlabastro: '#F4F8FF',
     azulEspuma: '#F1FCFF',
+
+    // Azules medios
+    azulBrillante: '#3e5f8a',
     
     // Grises
     grisOscuro: '#7F8C8D',

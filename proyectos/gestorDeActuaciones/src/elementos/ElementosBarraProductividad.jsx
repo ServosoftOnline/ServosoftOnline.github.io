@@ -6,23 +6,25 @@ import {resolucion} from "../objetos/resolucion";
 
 const ContenedorBarraProductividad = styled.div`
 
-    background: ${theme.verdeIcono};
+    background: ${theme.azulBrillante};
+    display: flex;
+    justify-content: space-between;
     font-size: 1rem; /* 16px */
     letter-spacing: 1px;
     font-weight: 500;
-    text-transform: uppercase;
-    padding: 0.62rem 2.25rem; /* 10px 40px */
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-transform: capitalize;
+    padding: 0.3rem 1.5rem;
+    color: ${theme.blanco};
  
-    @media(max-width: ${resolucion.movilHorizontal}{ 
-        font-size: 14px;
-    }
+    // @media(max-width: ${resolucion.movilHorizontal}{ 
+    //     font-size: 3rem;
+    // }
 
     @media(max-width: ${resolucion.movilVertical}) {
-        font-size: 0.6rem;        
+        // flex-direction: column;
+        font-size: 0.7rem;        
+        padding: 0.1rem 1rem;
+        letter-spacing: 0px;
     }
 `;
 

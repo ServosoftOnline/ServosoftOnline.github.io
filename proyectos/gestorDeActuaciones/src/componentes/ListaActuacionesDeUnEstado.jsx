@@ -49,7 +49,7 @@ const ListaActuacionesDeUnEstado = ({array, estaSupervisando, modulo, rutadevuel
                 break;
 
             case 'faltaCitas':
-                setMensajeAMostrar('No hay actuaciones donde se faltó a citas');                
+                setMensajeAMostrar('No hay actuaciones en etapa citas');                
                 break;
 
             case 'incidencias':

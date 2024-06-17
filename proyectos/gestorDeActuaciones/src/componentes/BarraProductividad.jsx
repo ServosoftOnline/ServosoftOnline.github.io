@@ -29,28 +29,32 @@ const BarraProductividad = () => {
 
     // Efecto para obtener los puntos del mes
     useEffect(() => {
+
         let acumuladoDelMes = 0;
         arrayActuacionesDelMesDeUnUsuario.forEach((actuacion) => {
             acumuladoDelMes += actuacion.puntos;
         });
+        
         setPuntosDelMes(acumuladoDelMes);
+
     }, [arrayActuacionesDelMesDeUnUsuario]);
 
     // Efecto para obtener los puntos del día
     useEffect(() => {
+
         let acumuladoDelDia = 0;
         arrayActuacionesDelDiaDeUnTecnico.forEach((actuacion) => {
             acumuladoDelDia += actuacion.puntos;
         });
+
         setPuntosDelDia(acumuladoDelDia);
     }, [arrayActuacionesDelDiaDeUnTecnico]);
     
     return ( 
         <ContenedorBarraProductividad>                
             <p><b>Productividad</b></p>
-            <p>diaria: {puntosDelDia} pts</p>
-            <p>semanal: 0 pts</p>
-            <p>mensual: {puntosDelMes} pts</p>
+            <p>diaria: {puntosDelDia} puntos</p>
+            <p>mensual: {puntosDelMes} puntos</p>
         </ContenedorBarraProductividad>
     );
 }
