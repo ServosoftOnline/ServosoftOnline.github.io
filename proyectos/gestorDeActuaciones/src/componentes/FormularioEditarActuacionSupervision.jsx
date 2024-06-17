@@ -345,13 +345,13 @@ const  FormularioEditarActuacionSupervision = () => {
 
                 </Momentos>                
                 
-                <Fotografias>
+                {/* <Fotografias>
 
                     <label htmlFor="Fotografias">Fotografías: </label>
                     <ContenedorFotografias>
                     </ContenedorFotografias>    
 
-                </Fotografias>
+                </Fotografias> */}
                 
                 <ComentariosTecnicos>
 

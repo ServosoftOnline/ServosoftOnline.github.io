@@ -400,12 +400,12 @@ const  FormularioEditarActuacionTecnico = () => {
                 </Dificultad>
                 
                 {/* Fotografias */}
-                <Fotografias>
+                {/* <Fotografias>
                     <label htmlFor="Fotografias">Fotografías: </label>
                     <ContenedorFotografias>
 
                     </ContenedorFotografias>                    
-                </Fotografias>
+                </Fotografias> */}
 
                 {/* Comentarios Tecnicos */}
                 <ComentariosTecnicos>
