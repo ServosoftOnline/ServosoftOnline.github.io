@@ -160,7 +160,7 @@ const InicioSesion = () => {
     
   return (
     <>
-      <MuestraResolucion/>
+      {/* <MuestraResolucion/> */}
       <HelmetProvider>
         
         {/* Helmet */}
