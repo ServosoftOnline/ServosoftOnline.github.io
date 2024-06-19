@@ -25,9 +25,6 @@ import SelectEstadosModuloTecnico from "./SelectEstadosModuloTecnico";
 // Resto de los componentes
 import Boton from "../elementos/Boton";
 
-// Objetos
-import trabajosNivel4 from "../objetos/trabajosNivel4";
-
 // Funciones
 import formatearFechaEnHoraYSegundos from "../funciones/formatearFechaEnHoraYSegundos";
 
@@ -70,23 +67,6 @@ const  FormularioEditarActuacionTecnico = () => {
     const [puntosTemporales, asignarPuntosTemporales] = useState(0);
     const [comentariosTecnicos, asignarComentariosTecnicos] = useState("");   
     const [actualizoAlgo, asignarActualizoAlgo] = useState(false); 
-
-    /* 
-                                SELECT
-                                Fusión por fibra = 0,1P
-                                Instalación de Caja de Distribución = 2P
-                                Levantamiento de CTO Antala=0,6p
-                                Instalación de Caja de Fusión (TOF 12) Caja de Distribución =1P
-                                Instalación de Caja de Empalme (torpedo 96) =1P
-                                Instalación de Cable interiores FO (50m)=1,2P
-                                Instalación de Cable canalizado (arqueta) FO (50m)=1,5p
-                                Instalación de Cable fachada/aereo FO (50m)=1,7P
-                                Instalación de Cable CR/SUC FO (50m)=2P
-                            
-                            */
-    // Estados para nivel 4
-    const [puntosNivel4, asignarPuntosNivel4] = useState(0);
-
 
     // Informacion obtenida desde los hooks
     const [actuacion] = useObtenerActuacionAPartirDeSuId(idActuacion);   
@@ -150,13 +130,6 @@ const  FormularioEditarActuacionTecnico = () => {
     },[estado]);
 
     // Funciones    
-
-    // Redonde a decimal limitado a un decimal
-    const redondearADecimal = (num) => {
-        const factor = Math.pow(10, 1);
-        return Math.round(num * factor) / factor;
-    };
-
     const abrirGoogleMaps = (coordenadas) => {
         const url = `https://www.google.com/maps/search/?api=1&query=${coordenadas}`;
         window.open(url, '_blank'); 
@@ -218,10 +191,9 @@ const  FormularioEditarActuacionTecnico = () => {
     }
 
     // Actualizo los estados actualizoAlgo, consideraNivel4 y ComentariosTecnicos
-    // La accion por defecto es asignar los puntos de nivel 4
     const handleChange = (e) => {
         asignarActualizoAlgo(true);
-        
+
         switch (e.target.name){
 
             case 'nivel4':                
@@ -232,18 +204,7 @@ const  FormularioEditarActuacionTecnico = () => {
                 asignarComentariosTecnicos(e.target.value);
                 break;
 
-            default: 
-
-                console.log(e.target.name);
-                console.log(e.target.value);
-                console.log(e.target.checked);
-                let puntosASumarOrestar = redondearADecimal(parseFloat(e.target.value));                
-                
-                e.target.checked === true ?
-                    asignarPuntosNivel4(prevPuntosNivel4 => prevPuntosNivel4 + puntosASumarOrestar)
-                    :
-                    asignarPuntosNivel4(prevPuntosNivel4 => prevPuntosNivel4 - puntosASumarOrestar)
-
+            default: null;                
         }
         
     };
@@ -429,30 +390,10 @@ const  FormularioEditarActuacionTecnico = () => {
                 
                         {/* Se mostrará el checkbox solo si el tecnico lo considera una actuacion de nivel4 */}
                         {consideraNivel4 === "Si" &&
-                        <>
-                            {trabajosNivel4.map((trabajo) => {
-                                return (
-                                    <CheckBox key = {trabajo.id}>
-
-                                        <input
-                                            type="checkbox" 
-                                            name = {trabajo.descripcion}
-                                            id = {trabajo.descripcion}                                            
-                                            value = {trabajo.puntos}
-                                            onChange= {handleChange}
-                                        />
-
-                                        <label
-                                            htmlFor= {trabajo.descripcion}>
-                                            {trabajo.descripcion}
-                                        </label>
-
-                                    </CheckBox>
-                                )
-                            })}  
-                            {console.log(redondearADecimal(puntosNivel4))}
                             
-                        </>
+                            <CheckBox>
+                                checkbox
+                            </CheckBox>
                         }
                     </ContenedorDificultad>
 
