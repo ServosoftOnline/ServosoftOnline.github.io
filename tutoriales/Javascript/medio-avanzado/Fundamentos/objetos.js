@@ -1,5 +1,6 @@
 /*
-    OBJETOS
+    OBJETOS:
+
     0 .- Las variables dentro de un objeto se les llama propiedades. A las funciones se les llama métodos
     1.- Mejora la comprensión del contenido de los array
     2.- Puedo introducir otros objetos, arrays, funciones
