@@ -12,7 +12,7 @@ export default {
             proyecto: 'L80',
             enlace: 'https://servosoftonline.github.io/L80/',
             imagenSrc: './img/trabajo1.jpg',
-            descripcion: 'Sitio web de un grupo musical desarrollado en HTML, CSS y JAVASCRIPT. Es responsive, está creado en una sola página, sin usar ningun CMS y contiene una galería de imágenes',
+            descripcion: 'Sitio web de un grupo musical desarrollado en HTML, CSS y JAVASCRIPT. Es responsive, está creado en una sola página y contiene una galería de imágenes',
         },
 
         {

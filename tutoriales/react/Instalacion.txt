@@ -370,7 +370,7 @@ INSTALAR UNA APP CON REACT
         - Importacion: npm install xlsx
 
       - XLSX-POPULATE
-        - Igual que XLSX pero valido solo en backend
+        - Igual que XLSX pero valido solo en backend. En mi proyecto de gestor de actuaciones no pude usarlo
         - Documentacion: https://www.npmjs.com/package/@xlsx/xlsx-populate
         - Video demostracion: https://www.youtube.com/watch?v=B6AuiFpICIc
         - Instalacion: npm install xlsx-populate
