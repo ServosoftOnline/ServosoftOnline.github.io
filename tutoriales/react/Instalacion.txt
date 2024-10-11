@@ -107,18 +107,18 @@ INSTALAR UNA APP CON REACT
             - styles contendrá todas las reglas. Puedo llamarlo styles, estilos o lo que quiera.
             - Para aplicar la regla rojo en App.jsx escribo classname={styles.regla}
 
-          - Tercera forma: Mediante un preprocesador            
-            - scss, sass, less, styl y stylus son ejemplos de preprocesador
-            - Documentacion en la web: https://vitejs.dev/guide/features.html 
+        - Tercera forma: Mediante un preprocesador            
+          - scss, sass, less, styl y stylus son ejemplos de preprocesador
+          - Documentacion en la web: https://vitejs.dev/guide/features.html 
 
-            - Usaré sass
-              - Ver ejemplo en primeraAPP_vite_pluginSVG sobre como añadir el color azul
-              - instalacion: npm i sass
-              - Creo un archivo llamado App.scss donde añado la regla css azul 
-              - Importo directamente el archivo igual que en la primera forma
-              - Aplico la regla escribiendo classname="regla"
-              
-          - Cuarta forma: Usando styled components como hasta ahora con create react app
+          - Usaré sass
+            - Ver ejemplo en primeraAPP_vite_pluginSVG sobre como añadir el color azul
+            - instalacion: npm i sass
+            - Creo un archivo llamado App.scss donde añado la regla css azul 
+            - Importo directamente el archivo igual que en la primera forma
+            - Aplico la regla escribiendo classname="regla"
+            
+        - Cuarta forma: Usando styled components como hasta ahora con create react app
             
         
   - INSTALACIONES OPCIONALES (LIBRERIAS)
@@ -209,7 +209,7 @@ INSTALAR UNA APP CON REACT
                     - Selecciono mi proyecto a subir
                     - Indico la carpeta donde se encuentra guardada. En este caso dist
                     - Configure as a single-page app. Indico No
-                    - Set up automatic builds and desploys with Github? Y
+                    - Set up automatic builds and desploys with Github? Y (Muestra los commits en github)
                     - Escribirá una pagina error 404 o sobreescribirá una si la hubiese
                     - A la pregunta File dist/index.html already exist. Overwrite. IMPORTANTE: RESPONDER No
 
@@ -223,8 +223,6 @@ INSTALAR UNA APP CON REACT
                     - Respondería a estas preguntas si prefiero no usar npm run build
                       - For which GitHub repository would you like to set up a GitHub workflow? respondí ServosoftOnline/ServosoftOnline.github.io
                       - Set up the workflow to run a build script before every deploy? respondí Si
-                      
-
 
                 - Me genera los archivos .firebaserc y firebase.json
 
@@ -263,7 +261,6 @@ INSTALAR UNA APP CON REACT
               - npm install --save @fortawesome/free-solid-svg-icons.
                 -  Instala iconos solidos.
               - npm install --save @fortawesome/react-fontawesome
-
 
     - UUID.
       - Paquete que permite generar ids únicos sin duplicados
@@ -388,6 +385,33 @@ INSTALAR UNA APP CON REACT
       - EXCELJS
         - Me lo sugirio CHATGPT. Funciona de maravilla. NO USAR XLSX
         - npm install exceljs
+   
+    -  FUNCIONES DE REACT
+
+      - REACT.MEMO  
+
+        - Esta relacionado con el hook useCallback
+        - Solo se usaría en funciones pesadas
+        - Cuando se produce un cambio de estado se vuelve a recargar todo el codigo. Si existen varios componentes se recargaran todos.
+
+        - react.memo soluciona esto y optimiza la aplicacion guardando componentes en memoria y solo lo cambiará si sus propiedades cambian.
+          - Para ello en lugar de exportar por defecto el componente añadimos React.memo y entre parentesis ponemos el nombre del componente:
+            - Ejemplo: Sustituyo export default Componente por export default React.memo(Componente);
+
+        - Cuando cambia un estado se vuelve a cargar todo el componente y las funciones que pueda tener este se crean de nuevo
+          - Esto ocasiona que se ejecuten de nuevo los componentes que dependen de esta función sin que sea necesario
+          - Aqui actuaría el hook useCallback guardando la función en memoria
+            - Al hook debo pasarle una función y un arreglo de dependencia como en los useEffect. Se ejecutará de nuevo si cambia su dependencia
+
+        - Ver ejemplo en Tutoriales/react/practicas/vite/reactMemo
+          - En el componente encabezado de este ejemplo usaré export default React.memo(encabezado)
+          - En el componente ppal App.jsx usaré el hook useCallback
+
         
+        
+
+
+
+
 
   - EN LA APP APRENDIENDO REACT DESCRIBO LOS FUNDAMENTOS DE REACT

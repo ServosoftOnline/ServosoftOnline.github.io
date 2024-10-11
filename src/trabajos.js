@@ -64,8 +64,18 @@ trabajos.forEach((trabajo, index) => {
 
     // Descripción
     const pDescripcion = document.createElement('p');
-    pDescripcion.textContent = trabajo.descripcion;
+
+    /* los saltos de línea \n\n en el texto se reemplazarán por etiquetas <br><br>,
+    lo que permitirá que se muestren como saltos de línea (punto y aparte). Tambien permite añadir negrita */
+    pDescripcion.innerHTML = trabajo.descripcion.replace(/\n\n/g, '<br><br>');
     divAlineadoIzda.appendChild(pDescripcion);
+
+    // Mostrar el manual
+    const aDescargaManual = document.createElement('a');
+    aDescargaManual.setAttribute('href', './src/manual/manual.pdf');
+    aDescargaManual.setAttribute('target', '_blank');
+    aDescargaManual.textContent = 'Manual de usuario';
+    divAlineadoIzda.appendChild(aDescargaManual);
 
     // Enlace Ir al sitio con el icono >>
     const aIrAlSitio = document.createElement('a');
