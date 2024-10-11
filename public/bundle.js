@@ -510,14 +510,14 @@ var dataCursos = {
     cursos: [
         {
             id: '1',
-            año: '2023',
+            año: '2024',
             curso: 'Javascript: El Curso Completo, Práctico y desde Cero',
             descripcion: 'Curso realizado en la plataforma online Udemy proporcionado por Carlos Arturo Esparza'
         },        
 
         {
             id: '2',
-            año: '2023',
+            año: '2024',
             curso: 'React y Firebase: El Curso Completo, Práctico y desde Cero',
             descripcion: 'Curso realizado en la plataforma online Udemy proporcionado por Carlos Arturo Esparza'
         },
