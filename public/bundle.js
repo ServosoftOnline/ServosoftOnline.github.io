@@ -455,12 +455,12 @@ var dataExperiencia = {
 const {experiencia} = dataExperiencia;
 
 // Obtengo la columna donde las añado
-const columnaDerecha$2 = document.querySelector('.columnaDerecha');
+const columnaDerecha$1 = document.querySelector('.columnaDerecha');
 
 // Creo el div con la clase experiencia
 const divExperiencia = document.createElement('div');
 divExperiencia.setAttribute('class', 'experiencia');
-columnaDerecha$2.appendChild(divExperiencia);
+columnaDerecha$1.appendChild(divExperiencia);
 
 // Creo la cabecera que contiene el icono y el texto Experiencia
 const cabExperiencia = document.createElement('div');
@@ -550,12 +550,12 @@ var dataCursos = {
 const {cursos} = dataCursos;
 
 // Obtengo la columna donde las añado
-const columnaDerecha$1 = document.querySelector('.columnaDerecha');
+const columnaDerecha = document.querySelector('.columnaDerecha');
 
 // Creo el div con la clase cursos
 const divCursos = document.createElement('div');
 divCursos.setAttribute('class', 'cursos');
-columnaDerecha$1.appendChild(divCursos);
+columnaDerecha.appendChild(divCursos);
 
 // Creo el div de la cabecera que contiene un icono y el texto Cursos
 const cabCursos = document.createElement('div');
@@ -646,7 +646,7 @@ var dataTrabajos = {
             proyecto: 'Gestor de actuaciones',
             enlace: 'https://gestordeactuaciones.web.app/',
             imagenSrc: './img/trabajo4.jpg',
-            descripcion: '<b>Aplicación finalizada que permite a cualquier empresa que ofrezca servicios técnicos poder gestionar sus actuaciones técnicas.</b>\n\nTiene perfiles para diferentes usuarios, administradores, coordinadores y técnicos. Suma los puntos de cada actuación de forma automática, es responsive, genera informes en libros excel, ... Tiene tantas funcionalidades que no me caben aquí.\n\n<hr>\n\n<b><u>Pueden probar esta aplicación con estos usuarios:</u></b>\n\n- <b>Usuario</b>: administrador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> coordinador1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico2@gmail.com - <b>contraseña:</b> 123456\n\n',
+            descripcion: '<b>Aplicación finalizada que permite a cualquier empresa que ofrezca servicios técnicos poder gestionar sus actuaciones técnicas.</b> Tiene perfiles para diferentes usuarios, administradores, coordinadores y técnicos. Suma los puntos de cada actuación de forma automática, es responsive, genera informes en libros excel, ... Tiene tantas funcionalidades que no me caben aquí.\n\n<b><u>Pueden probar esta aplicación con estos usuarios:</u></b>\n\n- <b>Usuario</b>: administrador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> coordinador1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico2@gmail.com - <b>contraseña:</b> 123456\n\n',
         }
     ]
 };
@@ -656,12 +656,7 @@ var dataTrabajos = {
 const {trabajos} = dataTrabajos;
 
 // Obtengo la columna donde las añado
-const columnaDerecha = document.querySelector('.columnaDerecha');
-
-// Creo el div con la clase trabajos
-const divTrabajos = document.createElement('div');
-divTrabajos.setAttribute('class', 'trabajos');
-columnaDerecha.appendChild(divTrabajos);
+const divTrabajos = document.querySelector('.trabajos');
 
 // Creo la cabecera con el icono y el texto Mis trabajos
 const cabTrabajos = document.createElement('div');

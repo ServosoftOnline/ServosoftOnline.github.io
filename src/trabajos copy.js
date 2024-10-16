@@ -5,7 +5,12 @@ import dataTrabajos from './data/dataTrabajos';
 const {trabajos} = dataTrabajos;
 
 // Obtengo la columna donde las añado
-const divTrabajos = document.querySelector('.trabajos');
+const columnaDerecha = document.querySelector('.columnaDerecha');
+
+// Creo el div con la clase trabajos
+const divTrabajos = document.createElement('div');
+divTrabajos.setAttribute('class', 'trabajos');
+columnaDerecha.appendChild(divTrabajos);
 
 // Creo la cabecera con el icono y el texto Mis trabajos
 const cabTrabajos = document.createElement('div');
