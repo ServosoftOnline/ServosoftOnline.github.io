@@ -70,12 +70,14 @@ trabajos.forEach((trabajo, index) => {
     pDescripcion.innerHTML = trabajo.descripcion.replace(/\n\n/g, '<br><br>');
     divAlineadoIzda.appendChild(pDescripcion);
 
+    /*
     // Mostrar el manual
     const aDescargaManual = document.createElement('a');
     aDescargaManual.setAttribute('href', './src/manual/manual.pdf');
     aDescargaManual.setAttribute('target', '_blank');
     aDescargaManual.textContent = 'Manual de usuario';
     divAlineadoIzda.appendChild(aDescargaManual);
+    */
 
     // Enlace Ir al sitio con el icono >>
     const aIrAlSitio = document.createElement('a');

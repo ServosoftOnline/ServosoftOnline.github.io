@@ -36,12 +36,8 @@ export default {
             proyecto: 'Gestor de actuaciones',
             enlace: 'https://gestordeactuaciones.web.app/',
             imagenSrc: './img/trabajo4.jpg',
-            descripcion: '<b>Aplicación finalizada que permite a cualquier empresa que ofrezca servicios técnicos poder gestionar sus actuaciones técnicas.</b>\n\nTiene perfiles para diferentes usuarios, administradores, coordinadores y técnicos. Suma los puntos de cada actuación de forma automática, es responsive, genera informes en libros excel, ... Tiene tantas funcionalidades que no me caben aquí. <b>Recomiendo descargar el manual</b> para verlas todas.\n\n<hr>\n\n<b><u>Pueden probar esta aplicación con estos usuarios:</u></b>\n\n- <b>Usuario</b>: administrador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> coordinador1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico2@gmail.com - <b>contraseña:</b> 123456\n\n',
+            descripcion: '<b>Aplicación finalizada que permite a cualquier empresa que ofrezca servicios técnicos poder gestionar sus actuaciones técnicas.</b>\n\nTiene perfiles para diferentes usuarios, administradores, coordinadores y técnicos. Suma los puntos de cada actuación de forma automática, es responsive, genera informes en libros excel, ... Tiene tantas funcionalidades que no me caben aquí.\n\n<hr>\n\n<b><u>Pueden probar esta aplicación con estos usuarios:</u></b>\n\n- <b>Usuario</b>: administrador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> coordinador1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico2@gmail.com - <b>contraseña:</b> 123456\n\n',
         }
     ]
 };
 
-// - Usuario: administrador@gmail.com - contraseña: 123456
-// - Usuario: coordinador1@gmail.com - contraseña: 123456
-// - Usuario: tecnico1@gmail.com - contraseña: 123456
-// - Usuario: tecnico2@gmail.com - contraseña: 123456  

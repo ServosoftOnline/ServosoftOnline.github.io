@@ -33,7 +33,7 @@
           - Su funcion asociada para cambiarlas cuando queden completadas
 
     
-    - LOCAL STORAGE:
+    - USO LA API DEL NAVEGADOR LOCAL STORAGE:
 
       - Es necesario importar la función useEffect
       - Permite almacenar en el navegador informacion como texto y que no se pierda cuando se actualize la pagina

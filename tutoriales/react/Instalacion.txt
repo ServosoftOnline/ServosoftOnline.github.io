@@ -407,6 +407,8 @@ INSTALAR UNA APP CON REACT
           - En el componente encabezado de este ejemplo usaré export default React.memo(encabezado)
           - En el componente ppal App.jsx usaré el hook useCallback
 
+        - Permitiría mejorar el rendimiento en el caso que se presente lentitud. Por ahora no voy a aplicarlo.
+
         
         
 
