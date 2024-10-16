@@ -25,7 +25,7 @@ cabCursos.appendChild(iCursos);
 
 // Texto Cursos
 const h2Cursos = document.createElement('h2');
-h2Cursos.textContent = 'Cursos';
+h2Cursos.textContent = 'Formación';
 cabCursos.appendChild(h2Cursos);
 
 // Recorro el array y voy añadiendo los cursos
