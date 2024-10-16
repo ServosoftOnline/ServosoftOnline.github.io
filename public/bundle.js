@@ -737,9 +737,9 @@ trabajos.forEach((trabajo, index) => {
     divAlineadoIzda.appendChild(aIrAlSitio);
 
     // Separador. El último elemento del array no mostrará el separador
-    if (index < trabajos.length - 1) {
-        const separador = document.createElement('hr');
-        divAlineadoIzda.appendChild(separador);
-    }
+    // if (index < trabajos.length - 1) {
+    //     const separador = document.createElement('hr');
+    //     divAlineadoIzda.appendChild(separador);
+    // }
 
 });
