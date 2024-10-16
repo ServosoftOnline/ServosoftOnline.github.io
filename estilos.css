@@ -52,7 +52,7 @@ ul {
 .columnas {
 
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 2fr 3fr;
     border: solid 1px #8a2be2;
     border-radius: 10px;
 }
@@ -149,35 +149,32 @@ ul {
     display: flex;
     flex-wrap: wrap;
     padding: 0px;
+    
 }
 
 .contacto li {
     flex: 1 0 50%; /* Flex: crecimiento, encogimiento, base */
     box-sizing: border-box;
-    padding: 6px;
-    padding-right: 0;
-    padding-left: 0;
+    padding: 4px;
 }
 
 /* Anchos de las columnas de contactos */
 .contacto li:nth-child(odd) {
-    flex-basis: 14%; /* La columna de la izquierda ocupa el 14% del contenedor */
+    flex-basis: 10%; /* La columna de la izquierda ocupa el 14% del contenedor */
 }
 
 .contacto li:nth-child(even) {
-    flex-basis: 86%; /* La columna de la derecha ocupa el 86% del contenedor */
+    flex-basis: 90%; /* La columna de la derecha ocupa el 86% del contenedor */
 }
 
 .contacto .iconoContacto {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    font-size: 1.25rem; /* 20px */
+    align-items: center; /* Centra verticalmente */    
 }
 
 .contacto .descripcionContacto {
-    padding-right: 0px;
-    font-size: 1.25rem; /* 20px */
+    padding-right: 0px;    
 }
 
 /* TITULACION */
@@ -341,11 +338,11 @@ ul {
 
     .contacto .iconoContacto,
     .contacto .descripcionContacto {
-        font-size: 0.85rem; /* 13.6px */
+        font-size: 0.85rem;
     }
 
     .lista-dos-a-dos {
-        font-size: 1.18rem; /* 19px */
+        font-size: 1.18rem; 
     }
 
     .experiencia .cabecera,
@@ -356,10 +353,6 @@ ul {
 
     .trabajos .contenido-centrado img {
         width: 94%;
-    }
-
-    .copyright {
-        font-size: 1.18rem; /* 19px */
     }
 }
 
@@ -380,7 +373,8 @@ ul {
 
     .contacto .iconoContacto,
     .contacto .descripcionContacto {
-        font-size: 0.77rem; /* 12.32px */
+        /* font-size: 0.77rem; */
+        font-size: 0.9rem;
     }
 
     .lista-dos-a-dos li {
