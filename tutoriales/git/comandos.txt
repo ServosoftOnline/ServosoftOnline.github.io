@@ -93,6 +93,26 @@
     - RESOLUCION DE UN PROBLEMA DE PERMISOS PARA USAR ROLLUP:
         - Lo resolví con este comando restaurando los permisos: chmod +x ./node_modules/.bin/rollup
 
+    - NO PUEDE EJECUTAR UN PROYECTO LOCAL. TUVE QUE ELIMINAR Y RESTAURAR TODAS LAS DEPENDENCIAS
+        - rm -rf node_modules package-lock.json (Elimina la carpeta node_modules y el archivo package-lock.json)
+        - npm install (Reinstala las depenncias)
+
+    - TENGO DOS PCS CON DIFERENTES PROYECTOS Y QUIERO QUE AMBOS PCs ESTEN ACTUALIZADOS CON RESPECTO AL REPOSITORIO REMOTO
+        - Accedo a mi repositorio remoto en git. En mi caso fue este: https://github.com/ServosoftOnline/gestorDeActuacionesOlinPruebas
+            - Accedo a Code y localizo el ultimo id del commits. En mi caso fue: Paso a trabajar a la terraza - e5a2203
+
+        - git log --oneline. Ejecuto este comando en cada pc- Me mustra los commits locales ordenados y con su id
+            - Si en ambos pcs el id coincide con el que aparece en el repositorio remota estan actualizados 
+        
+        - Pasos a seguir para que ambos pcs esten actualizados:
+            1.- En el pc mas actualizado me aseguro que el proyecto local este actualizado 
+                - Escribiendo git status para asegurarme que no queda nada pendiente de subir
+                - Si queda pendiente lo subo. Me asignará un id nuevo
+                - En el ordenador menos actualizado ejecuto git pusl origin main
+                - Y si fuera necesario elimino y restauro todas las dependiencias
+
+
+
         
 
 

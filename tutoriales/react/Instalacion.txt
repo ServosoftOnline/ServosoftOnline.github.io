@@ -13,6 +13,8 @@ INSTALAR UNA APP CON REACT
       - npm update. Actualiza las librerias de un proyecto.
       - npm ls xlsx. Muestra todas las dependencias instaladas.
 
+      
+
     - NODE.JS
       - node.js se instala desde: https://nodejs.org/en/download
         - Ver si tengo instalado node.js y que version: node -v
@@ -357,6 +359,19 @@ INSTALAR UNA APP CON REACT
               - Formatea una fecha en segundos en día de mes de año en español
             - format(fecha, "dd 'de' MMMM 'de' yyyy", {locale: es})
               - Formatea una fecha en día de mes de año en español
+
+    - LEAFLET
+
+      - Permite instalar mapas y añadir marcadores con ubicaciones definidas mediante una latitud y una longitud
+        - Instalacion: npm install leaflet react-leaflet
+
+      - Para evitar que se superpongan marcadores se usa leaflet.markercluster para crear un grupo con los marcadores cercanos
+        - Instalacion: npm install leaflet.markercluster
+      
+      - O tambien puedo usar leaflet-spiderfier que separa ambos marcadores
+        - Instalacion: npm install leaflet-spiderfier
+
+
     
     - BIBLIOTECAS PARA IMPORTAR ARCHIVOS EXCEL: 
 
