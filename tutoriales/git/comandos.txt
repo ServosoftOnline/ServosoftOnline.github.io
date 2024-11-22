@@ -94,7 +94,7 @@
         - Lo resolví con este comando restaurando los permisos: chmod +x ./node_modules/.bin/rollup
 
     - NO PUEDE EJECUTAR UN PROYECTO LOCAL. TUVE QUE ELIMINAR Y RESTAURAR TODAS LAS DEPENDENCIAS
-        - rm -rf node_modules package-lock.json (Elimina la carpeta node_modules y el archivo package-lock.json)
+        - rm -rf node_modules package-lock.json (Elimina la carpeta node_modules y el archivo package-lock.json. Solo funciona en gitbas)
         - npm install (Reinstala las depenncias)
 
     - TENGO DOS PCS CON DIFERENTES PROYECTOS Y QUIERO QUE AMBOS PCs ESTEN ACTUALIZADOS CON RESPECTO AL REPOSITORIO REMOTO
