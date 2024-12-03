@@ -96,16 +96,28 @@
     - NO PUEDE EJECUTAR UN PROYECTO LOCAL. TUVE QUE ELIMINAR Y RESTAURAR TODAS LAS DEPENDENCIAS
         - rm -rf node_modules package-lock.json (Elimina la carpeta node_modules y el archivo package-lock.json. Solo funciona en gitbas)
         - npm install (Reinstala las depenncias)
-
+    
+    - IGNORAR LA CARPETA NODE_MODULES EN ACTUALIZACIONES DEL REPOSITORIO:
+        - Esta carpeta se genera automaticamente npm install
+        - Permite que "El control del codigo fuente" de visualstudio no se llene de movimientos innecesarios
+        - Es necesario que en el proyecto exista el archivo .gitignore y que contenga la linea node_modules/
+        - Es necesario indicar qque la carpeta node_modules no sea rastreada por git
+            - Para ello ejecuto el comando: git rm -r --cached node_modules
+            - Añado los comentarios: git commit -m "Eliminar node_modules del control de versiones"
+            - Hago el push
+            
     - TENGO DOS PCS CON DIFERENTES PROYECTOS Y QUIERO QUE AMBOS PCs ESTEN ACTUALIZADOS CON RESPECTO AL REPOSITORIO REMOTO
         - Accedo a mi repositorio remoto en git. En mi caso fue este: https://github.com/ServosoftOnline/gestorDeActuacionesOlinPruebas
             - Accedo a Code y localizo el ultimo id del commits. En mi caso fue: Paso a trabajar a la terraza - e5a2203
 
         - git log --oneline. Ejecuto este comando en cada pc- Me mustra los commits locales ordenados y con su id
+            - Para salir del git log pulsar Q
             - Si en ambos pcs el id coincide con el que aparece en el repositorio remota estan actualizados 
         
         - Pasos a seguir para que ambos pcs esten actualizados:
-            1.- En el pc mas actualizado me aseguro que el proyecto local este actualizado 
+
+            1.- Debo haber ignorado la carpeta node_modules en actualizaciones del respositorio como indique anteriormente 
+            2.- En el pc mas actualizado me aseguro que el proyecto local este actualizado 
                 - Escribiendo git status para asegurarme que no queda nada pendiente de subir
                 - Si queda pendiente lo subo. Me asignará un id nuevo
                 - En el ordenador menos actualizado ejecuto git pusl origin main
