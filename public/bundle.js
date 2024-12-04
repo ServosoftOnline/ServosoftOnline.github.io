@@ -620,7 +620,7 @@ var dataTrabajos = {
         {
             id: '1',
             proyecto: 'L80',
-            enlace: 'https://servosoftonline.github.io/L80/',
+            enlace: 'https://servosoftonline.github.io/Proyectos/L80/',
             imagenSrc: './img/trabajo1.jpg',
             descripcion: '<b>Sitio web de un grupo musical desarrollado en HTML, CSS y JAVASCRIPT.</b> Es responsive, está creado en una sola página y contiene una galería de imágenes',
         },
