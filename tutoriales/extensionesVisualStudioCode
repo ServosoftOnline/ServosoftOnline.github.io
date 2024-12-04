@@ -1,0 +1,5 @@
+Open in browser
+    - Permite que con el boton derecho del raton salga la opcion de "Abrir en el navegador".
+    - La primera vez tuve que añadir en la configuracion de la extension cual era mi navegador por defecto
+        - Añadi la palabra firefox
+        

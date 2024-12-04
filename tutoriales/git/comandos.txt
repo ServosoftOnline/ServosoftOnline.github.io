@@ -51,6 +51,12 @@
         - git config  user.name "usuario". Establece el usuario local en el respositorio local en gitbush
         - git config  user.email "correo@correo.com". Establece el correo local en el respositorio local en gitbash
 
+    - PARA COMPROBAR EN QUE ESTADO SE ENCUENTRA MI RESPOSITORIO LOCAL:
+        - git log. Muestra todos las las actualizaciones de mi repositorio local.
+        - Muestra ordenados de forma cronológica los diferentes commits realizados
+        - Si ejecuto git log en los diferentes pcs que uso para trabajar podré observar cual se encuentra más actualizado.
+        - Para salir de git log unicamente hay que pulsar la tecla Q.
+
     - PARA ACTUALIZAR EL RESPOSITORIO REMOTO
         - git clone https://github.com/username/username.github.io. Clona un repositorio en local
         - git add --all. Prepara todas las modificaciones para subirlas
@@ -61,11 +67,21 @@
             - Si se producen conflictos, Git te mostrará un mensaje para resolverlos manualmente.
             - Deberás abrir y editar los archivos en conflicto, resolver los conflictos
             - y luego realizar un commit para confirmar los cambios de fusión.
+            - Lo uso en lugar de fetch origin si confiro que no habrá conflictos o cambios importantes
+            - Mientras que sea yo quien usa al menos dos ordenadores para trabajar, usaré git pull.
+        
+        - git fetch origin.
+            - Es similar a git pull con la diferencia que no fusiona de forma automatica con el respositorio local
+            - Debo inspeccionar los cambios mediante: git log HEAD..origin/main
+            - Y si decido fusionarlos uso: git merge origin/main
+            - Se usa si quiero revisar los cambios antes de aplicarlos
+
     
     - PARA MOVERTE
         - q. Cuando muestra alguna configuracion y quieres salir. 
         - cd. Entra en directorios
         - exit. Sale de git bash
+        - q sale de git log
    
     - PARA NODEJS
         - node -v. Muestra si esta nodejs instalado indicando su versión

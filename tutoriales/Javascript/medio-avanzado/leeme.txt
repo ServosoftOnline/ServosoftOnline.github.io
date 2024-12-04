@@ -39,3 +39,8 @@ Esta carpeta contiene:
                 - cargar el proyecto en visual studio code
                 - modificar el archivo carrito.js
                 - y ver como se modifica automáticamente el bundle
+    
+    - Proyectos
+        - Aprender javascript. 
+            - Contiene los proyectos realizados en el curso de victor robles
+            
