@@ -7,92 +7,92 @@ export default {
     capacidades: [
         {
             id: '1',
-            estrellas: "&#9733;&#9733;&#9733;&#9733;",
-            capacidad: 'Html',          
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Buenas Prácticas',
         },
 
         {
             id: '2',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Css',          
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Html',          
         },
 
         {
             id: '3',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Javascript (ES6)',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Css',          
         },
 
         {
             id: '4',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'React',
-        },
-
-        {
-            id: '5',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Vite',    
-        },
-
-        {
-            id: '6',
-            estrellas: '&#9733;&#9733;&#9733',
-            capacidad: 'Create react app',    
-        },
-
-        {
-            id: '7',
-            estrellas: '&#9733;&#9733;&#9733;',
-            capacidad: 'Webpack',    
-        },
-
-        {
-            id: '8',
-            estrellas: '&#9733;&#9733;',
-            capacidad: 'Babel',    
-        },
-
-        {
-            id: '9',
             estrellas: '&#9733;&#9733;',
             capacidad: 'Sass',    
         },
 
         {
-            id: '10',
+            id: '5',
             estrellas: '&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'Diseño responsive',        
         },
 
         {
+            id: '6',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Javascript (ES6)',
+        },
+
+        {
+            id: '7',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'React',
+        },
+
+        {
+            id: '8',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Vite',    
+        },
+
+        {
+            id: '9',
+            estrellas: '&#9733;&#9733;&#9733',
+            capacidad: 'Create react app',    
+        },
+
+        {
+            id: '10',
+            estrellas: '&#9733;&#9733;&#9733;',
+            capacidad: 'Webpack',    
+        },
+
+        {
             id: '11',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Firebase',        
+            estrellas: '&#9733;&#9733;',
+            capacidad: 'Babel',    
         },
 
         {
             id: '12',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Firebase',        
+        },
+
+        {
+            id: '13',
             estrellas: '&#9733;&#9733;',
             capacidad: 'PHP',        
         },
 
         {
-            id: '13',
+            id: '14',
             estrellas: '&#9733;&#9733;&#9733;',
             capacidad: 'Git',            
         },
 
         {
-            id: '14',
-            estrellas: '&#9733;&#9733;&#9733;',
-            capacidad: 'Github',            
-        },       
-
-        {
             id: '15',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Buenas Prácticas',
+            estrellas: '&#9733;&#9733;&#9733;&#9733',
+            capacidad: 'Github',            
         },
 
         {
