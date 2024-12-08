@@ -7,6 +7,15 @@
 
 export default {
     trabajos: [
+
+        {
+            id: '0',
+            proyecto: 'Este Curriculum - Portafolio',
+            enlace: 'https://servosoftonline.github.io',
+            imagenSrc: './img/trabajo0.jpg',
+            descripcion: '<b>La página web estática que ves en este momento ha sido creada por mí. Para ello usé HTML, CSS, Javascript y POO.</b> Cree tantos objetos como apartados diferentes tiene esta web (Datos de contacto, titulaciones, capacidades, experiencia laboral, formación, y trabajos).',
+        },
+
         {
             id: '1',
             proyecto: 'L80',

@@ -33,7 +33,7 @@ let usuario = {
     },
     coloresFavoritos: ['Verde', 'Azul', 'Violeta'],
     saludo: function(){
-        alert ('Hola');
+        alert ('Hola. Aprende a usar objetos literales con este script');
     }
 };
 

@@ -202,6 +202,7 @@ ul {
   .lista-dos-a-dos li {
     flex: 0 0 45%;
     box-sizing: border-box;
+    margin-bottom: 0.5rem;
   }
 
   /* Estilo para la columna de las estrellas. */

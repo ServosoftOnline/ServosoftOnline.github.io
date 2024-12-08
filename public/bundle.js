@@ -286,65 +286,71 @@ var data = {
         {
             id: '7',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'React',
+            capacidad: 'POO',
         },
 
         {
             id: '8',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Vite',    
+            capacidad: 'React',
         },
 
         {
             id: '9',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Vite',    
+        },
+
+        {
+            id: '10',
             estrellas: '&#9733;&#9733;&#9733',
             capacidad: 'Create react app',    
         },
 
         {
-            id: '10',
+            id: '11',
             estrellas: '&#9733;&#9733;&#9733;',
             capacidad: 'Webpack',    
         },
 
         {
-            id: '11',
+            id: '12',
             estrellas: '&#9733;&#9733;',
             capacidad: 'Babel',    
         },
 
         {
-            id: '12',
+            id: '13',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'Firebase',        
         },
 
         {
-            id: '13',
+            id: '14',
             estrellas: '&#9733;&#9733;',
             capacidad: 'PHP',        
         },
 
         {
-            id: '14',
+            id: '15',
             estrellas: '&#9733;&#9733;&#9733;',
             capacidad: 'Git',            
         },
 
         {
-            id: '15',
+            id: '16',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Github',            
         },
 
         {
-            id: '16',
+            id: '17',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Linux',
         },
 
         {
-            id: '17',
+            id: '18',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Windows',
         }
@@ -617,6 +623,15 @@ cursos.forEach((itemCurso) => {
 
 var dataTrabajos = {
     trabajos: [
+
+        {
+            id: '0',
+            proyecto: 'Este Curriculum - Portafolio',
+            enlace: 'https://servosoftonline.github.io',
+            imagenSrc: './img/trabajo0.jpg',
+            descripcion: '<b>La página web estática que ves en este momento ha sido creada por mí. Para ello usé HTML, CSS, Javascript y POO.</b> Cree tantos objetos como apartados diferentes tiene esta web (Datos de contacto, titulaciones, capacidades, experiencia laboral, formación, y trabajos).',
+        },
+
         {
             id: '1',
             proyecto: 'L80',
@@ -646,7 +661,7 @@ var dataTrabajos = {
             proyecto: 'Gestor de actuaciones',
             enlace: 'https://gestordeactuaciones.web.app/',
             imagenSrc: './img/trabajo4.jpg',
-            descripcion: '<b>Aplicación finalizada que permite a cualquier empresa que ofrezca servicios técnicos poder gestionar sus actuaciones técnicas.</b> Tiene perfiles para diferentes usuarios, administradores, coordinadores y técnicos. Suma los puntos de cada actuación de forma automática, es responsive, genera informes en libros excel, ...\n\n<b><u>Pueden probar esta aplicación con estos usuarios:</u></b>\n\n- <b>Usuario</b>: administrador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> coordinador1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico2@gmail.com - <b>contraseña:</b> 123456\n\n',
+            descripcion: '<b>Aplicación finalizada que permite a cualquier empresa que ofrezca servicios técnicos poder gestionar sus actuaciones técnicas.</b> Tiene perfiles para diferentes usuarios, administradores, coordinadores y técnicos. Suma los puntos de cada actuación de forma automática, es responsive, genera informes en libros excel, ...\n\n<b><u>Pueden probar esta aplicación con estos usuarios:</u></b>\n\n- <b>Usuario</b>: administrador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> coordinador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico2@gmail.com - <b>contraseña:</b> 123456\n\n',
         }
     ]
 };

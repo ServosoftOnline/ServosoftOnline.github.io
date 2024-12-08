@@ -44,65 +44,71 @@ export default {
         {
             id: '7',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'React',
+            capacidad: 'POO',
         },
 
         {
             id: '8',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Vite',    
+            capacidad: 'React',
         },
 
         {
             id: '9',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Vite',    
+        },
+
+        {
+            id: '10',
             estrellas: '&#9733;&#9733;&#9733',
             capacidad: 'Create react app',    
         },
 
         {
-            id: '10',
+            id: '11',
             estrellas: '&#9733;&#9733;&#9733;',
             capacidad: 'Webpack',    
         },
 
         {
-            id: '11',
+            id: '12',
             estrellas: '&#9733;&#9733;',
             capacidad: 'Babel',    
         },
 
         {
-            id: '12',
+            id: '13',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'Firebase',        
         },
 
         {
-            id: '13',
+            id: '14',
             estrellas: '&#9733;&#9733;',
             capacidad: 'PHP',        
         },
 
         {
-            id: '14',
+            id: '15',
             estrellas: '&#9733;&#9733;&#9733;',
             capacidad: 'Git',            
         },
 
         {
-            id: '15',
+            id: '16',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Github',            
         },
 
         {
-            id: '16',
+            id: '17',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Linux',
         },
 
         {
-            id: '17',
+            id: '18',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Windows',
         }
