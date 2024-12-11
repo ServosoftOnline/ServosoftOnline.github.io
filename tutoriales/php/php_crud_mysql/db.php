@@ -15,11 +15,11 @@
         /* Iniciamos sesion para poder usar variables globales */
         session_start();
 
-    /* si hay conexion mostrará mensaje. comprobé que habia conexion y lo comenté
+    // si hay conexion mostrará mensaje. comprobé que habia conexion y lo comenté
     if (isset($conn)){
         echo 'hay conexion';
         }
-    */
+    
 
 ?>
 

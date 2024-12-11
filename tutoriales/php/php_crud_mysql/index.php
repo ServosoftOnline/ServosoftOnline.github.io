@@ -3,9 +3,9 @@
 <!-- Para poner comentarios en php debo hacerlo /* comentario que ocupan mas de una linea */     -->
 <!-- Para comentarios en php de una sola linea uso // comentario -->
 
-<?php include("db.php") ?>
-<?php include("includes/header.php") ?>
-<?php include("includes/navigation.php") ?>        
+<?php include("./db.php") ?>
+<?php include("./includes/header.php") ?>
+<?php include("./includes/navigation.php") ?>        
         
 <!-- CONTENEDOR -->
 <div class="container" p-4>
