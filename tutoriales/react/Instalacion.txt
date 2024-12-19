@@ -133,7 +133,6 @@ INSTALAR UNA APP CON REACT
       - Su web: https://styled-components.com/
           - Ir a documentacion/basics/instalacion
           - Copiar en consola: npm install styled-components
-      - Lo importo escribiendo: import styled from 'styled-components';
 
     - FIREBASE
       - Su web: https://firebase.google.com

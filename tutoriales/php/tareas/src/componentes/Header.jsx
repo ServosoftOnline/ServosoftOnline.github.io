@@ -15,14 +15,14 @@
 
 import React from "react";
 
-const Header = ({ mostrarCompletadas, cambiarMostrarCompletadas }) => {
+const Header = ({ mostrarTodas, setMostrarTodas }) => {
   
   return (
     <header className="header">
       <h1 className="header__titulo">Lista de tareas</h1>
 
-      {mostrarCompletadas ?
-        <button className="header__boton" onClick={() => cambiarMostrarCompletadas(!mostrarCompletadas)} >
+      {mostrarTodas ?
+        <button className="header__boton" onClick={() => setMostrarTodas(!mostrarTodas)} >
             Ocultar completadas
             <i className="
                 fa-regular fa-eye-slash
@@ -30,7 +30,7 @@ const Header = ({ mostrarCompletadas, cambiarMostrarCompletadas }) => {
             </i>
         </button>
       :
-        <button className="header__boton" onClick={() => cambiarMostrarCompletadas(!mostrarCompletadas)} >
+        <button className="header__boton" onClick={() => setMostrarTodas(!mostrarTodas)} >
             Mostrarlas todas
             <i className="
                 fa-regular fa-eye

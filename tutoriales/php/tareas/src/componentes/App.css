@@ -1,6 +1,7 @@
 :root {
 	--verde: #80BE4E;
 	--azul: #007AEA;
+	--rojo: #990000;
 }
 
 .contenedor {
@@ -168,6 +169,16 @@
 .formulario-editar-tarea__btn {
 	border: none;
 	background: var(--verde);
+	cursor: pointer;
+	color: #fff;
+	padding: 0 10px;
+	font-family: 'Roboto', sans-serif;
+	border-radius: 3px;
+}
+
+.formulario-eliminar-tarea__btn {
+	border: none;
+	background: var(--rojo);
 	cursor: pointer;
 	color: #fff;
 	padding: 0 10px;

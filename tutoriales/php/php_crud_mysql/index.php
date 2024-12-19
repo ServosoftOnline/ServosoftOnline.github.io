@@ -9,12 +9,16 @@
         
 <!-- CONTENEDOR -->
 <div class="container" p-4>
+
     <!-- FILA -->
     <div class="row">
+
         <!-- COLUMNA CON UNA TARJETA QUE CONTENDRÁ EL FORMULARIO -->
         <div class="col-md-4">
+
             <!-- Valido los mensajes guardados en sesion y los muestro -->
             <?php if(isset($_SESSION['message'])) { ?>
+                
                 <!-- en la vble de sesiion message_type tengo el color del mensaje -->
                 <div class="alert alert-<?= $_SESSION['message_type'];?> alert-dismissible fade show" role="alert">
                 <?= $_SESSION['message'] ?>

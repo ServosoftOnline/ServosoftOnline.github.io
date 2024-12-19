@@ -9,11 +9,15 @@
 
 */
 
+// React
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './componentes/App';
 
+// Estilos
+import './index.css';
+
+// Importar componente ppal de la aplicación
+import App from './componentes/App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
