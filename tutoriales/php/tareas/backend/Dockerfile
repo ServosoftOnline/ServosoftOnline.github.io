@@ -1,5 +1,5 @@
 # Usar una imagen base de PHP con Apache
-FROM php:8.1-apache
+FROM php:8.2-apache
 
 # Copiar los archivos del backend al contenedor
 COPY . /var/www/html/
