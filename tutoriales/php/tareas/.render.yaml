@@ -1,0 +1,15 @@
+# Esto configura:
+
+#     Un servicio web llamado backend-php.
+#     Usa Docker como entorno.
+#     El comando de inicio ejecuta Apache con el comando apache2-foreground.
+#     El archivo Dockerfile se encuentra dentro de la carpeta backend
+
+
+services:
+  - type: web
+    name: backend-php
+    env: docker
+    buildCommand: ""
+    startCommand: apache2-foreground
+    dockerContextDir: ./backend
