@@ -7,7 +7,7 @@
 
 services:
   - type: web
-    name: tareas-backend
+    name: ServosoftOnline.github.io
     env: docker
     buildCommand: "" # No necesitas comandos de build
     startCommand: apache2-foreground # Arranca Apache
