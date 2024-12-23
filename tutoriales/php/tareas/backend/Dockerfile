@@ -1,8 +1,12 @@
-# Usa una imagen oficial de PHP con Apache
+# Usar una imagen base de PHP con Apache
 FROM php:8.1-apache
 
-# Copia los archivos PHP al servidor
+# Copiar los archivos del backend al contenedor
 COPY . /var/www/html/
 
-# Expone el puerto que usará el servidor
+# Establecer permisos para los archivos
+RUN chown -R www-data:www-data /var/www/html/ \
+    && chmod -R 755 /var/www/html/
+
+# Exponer el puerto 80 para Apache
 EXPOSE 80
