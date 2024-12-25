@@ -13,21 +13,7 @@
         - Es un componente independiente que no precisa de ninguna propiedad que le pase desde aquí
 
       - ListaTareas muestra las tareas que existen actualemente en la base de datos mysql
-        - Le paso el estado mostrarCompletadas para que las muestre u
-
-      <Header
-        mostrarCompletadas={mostrarCompletadas}
-        cambiarMostrarCompletadas={setMostrarCompletadas}
-      />
-
-      <FormularioTareas/>
-
-      <ListaTareas
-        mostrarCompletadas = {mostrarCompletadas}
-      />
-
- 
-
+        - Le paso el estado mostrarTodas para que las muestre u oculte
 */
 
 // React
