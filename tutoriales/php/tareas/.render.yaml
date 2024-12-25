@@ -2,6 +2,7 @@
 
 #     Un servicio web llamado tareas-backend
 #     Usa Docker como entorno.
+#     El comando buildCommand permite construir el front
 #     El comando de inicio ejecuta Apache con el comando apache2-foreground.
 #     El archivo Dockerfile se encuentra dentro de la carpeta backend
 
@@ -9,6 +10,6 @@ services:
   - type: web
     name: tareasPHP
     env: docker
-    buildCommand: "" # No necesitas comandos de build
-    startCommand: apache2-foreground # Arranca Apache
+    buildCommand: "npm install && npm run build" 
+    startCommand: apache2-foreground 
     dockerContextDir: ./tutoriales/php/tareas/backend
