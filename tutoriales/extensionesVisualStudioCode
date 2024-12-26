@@ -6,3 +6,11 @@ Open in browser
     - La primera vez tuve que añadir en la configuracion de la extension cual era mi navegador por defecto
         - Añadi la palabra firefox
         
+Copilot
+    -   Instalar la extension GitHub Copilot
+    -   Es necesario tener una cuenta en github
+    -   Mediante control + alt + I podemos acceder al chat y nos responderá a partir del codigo que tengamos abierto
+    -   Yo marque todas las funciones de copilot
+
+    -   Se habilitó un nuevo icono en la barra lateral izquierda de visual studio llamada "Cuentas" donde podemos 
+        conectarnos a copiltot

@@ -40,7 +40,8 @@
         $conn->close();
 
         // Redirigo hacia mi pc en el puerto que escucha vite. Habrá que cambiarlo en produccion      
-        header("Location: //localhost:5173/");
+        // header("Location: //localhost:5173/");
+        header("Location: /index.html");
 
         // Detengo la ejecución del script para asegurarme que no se ejecute nigun codigo adicional despues de la redireccion
         exit();
