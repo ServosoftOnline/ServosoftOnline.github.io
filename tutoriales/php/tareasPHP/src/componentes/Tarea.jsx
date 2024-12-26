@@ -29,8 +29,8 @@ const Tarea = ({tarea}) => {
     const toogleCompletada = async (id) => {
 
         try {
-
-            const response = await fetch('http://localhost/tareas/backend/toogleTarea.php', {
+            
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/toogleTarea.php`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded', // Formato para datos enviados por POST

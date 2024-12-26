@@ -15,7 +15,7 @@ const EditaTarea = ({tarea}) => {
   // Renderizo el formulario
   return (
 
-    <form action="http://localhost/tareas/backend/editarTarea.php" className="formulario-editar-tarea" method="POST">
+    <form action= {`${import.meta.env.VITE_API_URL}/editarTarea.php`} className="formulario-editar-tarea" method="POST">
 
       {/* Input oculto donde envio el id de la tarea */}
       <input

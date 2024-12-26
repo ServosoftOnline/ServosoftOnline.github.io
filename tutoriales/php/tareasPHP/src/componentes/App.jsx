@@ -24,7 +24,7 @@ import './App.css';
 
 // Componentes importados
 import Header from './Header';
-import FormularioTareas from './FormularioTareas';
+import AnadirTarea from './AnadirTarea';
 import ListaTareas from './ListaTareas';
 
 // Componente ppal
@@ -43,7 +43,7 @@ const App = () => {
         setMostrarTodas={setMostrarTodas}
       />
 
-      <FormularioTareas/>
+      <AnadirTarea/>
 
       <ListaTareas
         mostrarTodas = {mostrarTodas}        

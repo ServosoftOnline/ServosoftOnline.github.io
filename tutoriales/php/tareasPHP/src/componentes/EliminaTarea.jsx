@@ -8,7 +8,7 @@ const EliminaTarea = ({tarea}) => {
   // Renderizo el formulario
   return (
 
-    <form action="http://localhost/tareas/backend/eliminarTarea.php" className="formulario-editar-tarea" method="POST">
+    <form action={`${import.meta.env.VITE_API_URL}/eliminarTarea.php`} className="formulario-editar-tarea" method="POST">
 
       {/* Input oculto donde envio el id de la tarea */}
       <input

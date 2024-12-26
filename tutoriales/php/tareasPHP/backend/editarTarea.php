@@ -40,9 +40,9 @@
          // Cerrar la conexión
          $conn->close();
 
-        // Redirigir (modifica la URL según tu configuración)
-        // header("Location: //localhost:5173/");
-        header("Location: /index.html");
+        // Redirigir usando la variable de entorno
+        $redirectUrl = getenv('VITE_REDIRECT_URL') ?: 'http://localhost:5173/';
+        header("Location: " . $redirectUrl);              
 
         // Detengo la ejecución del script para asegurarme que no se ejecute nigun codigo adicional despues de la redireccion
         exit();

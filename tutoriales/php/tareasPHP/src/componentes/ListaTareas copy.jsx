@@ -20,7 +20,8 @@ const ListaTareas = ({mostrarTodas}) => {
 
     // Efecto que obtiene las tareas desde el backend y las almaceno en el estado tareas
     useEffect(() => {    
-        fetch('http://localhost/tareas/backend/obtenerTareas.php')
+        // fetch('http://localhost/tareasPHP/backend/obtenerTareas.php')
+        fetch('http://localhost/tareasPHP/backend/obtenerTareas.php')
         .then((response) => response.json())
         .then((data) => setTareas(data))
         .catch((error) => console.error('Error al obtener tareas:', error));

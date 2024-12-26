@@ -23,11 +23,11 @@ const FormularioTareas = () => {
         }
     };
     
-    
     // Renderizo el componente ppal y envio al backend el contenido del input
     return ( 
         
-        <form action ="http://localhost/tareas/backend/almacenarTarea.php" className="formulario-tareas" method="POST">
+        // Uso variables de entorno para almacenar parciamente la ruta de donde envio los datos del formulario
+        <form action={`${import.meta.env.VITE_API_URL}/almacenarTarea.php`} className="formulario-tareas" method="POST">
             <input 
                 type ="text" 
                 name="descripcion"

@@ -18,9 +18,16 @@
             - tareas_crud es el nombre de la base de datos que cree en myphpadmin
     */
 
-    $conn = new mysqli('localhost', 'root', '', 'tareas_crud');
+    // Configuración de la base de datos usando variables de entorno
+    $servername = getenv('VITE_DB_HOST') ?: 'localhost';
+    $username = getenv('VITE_DB_USER') ?: 'root';
+    $password = getenv('VITE_DB_PASSWORD') ?: '';
+    $dbname = getenv('VITE_DB_NAME') ?: 'tareas_crud';
 
-    // Verifica la conexión
+    // Crear conexión
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Verificar conexión
     if ($conn->connect_error) {
         die("Conexión fallida: " . $conn->connect_error);
     }
