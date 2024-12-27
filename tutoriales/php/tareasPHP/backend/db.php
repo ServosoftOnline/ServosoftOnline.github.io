@@ -19,10 +19,15 @@
     header('Content-Type: application/json');
 
     // Configuración de la base de datos usando variables de entorno
-    $servername = getenv('VITE_DB_HOST') ?: 'localhost';
-    $username = getenv('VITE_DB_USER') ?: 'root';
-    $password = getenv('VITE_DB_PASSWORD') ?: '';
-    $dbname = getenv('VITE_DB_NAME') ?: 'tareas_crud';
+    // $servername = getenv('VITE_DB_HOST') ?: 'localhost';
+    // $username = getenv('VITE_DB_USER') ?: 'root';
+    // $password = getenv('VITE_DB_PASSWORD') ?: '';
+    // $dbname = getenv('VITE_DB_NAME') ?: 'tareas_crud';
+
+    $servername = getenv('VITE_DB_HOST');
+    $username = getenv('VITE_DB_USER');
+    $password = getenv('VITE_DB_PASSWORD');
+    $dbname = getenv('VITE_DB_NAME');
 
     // Crear conexión
     $conn = new mysqli($servername, $username, $password, $dbname);
