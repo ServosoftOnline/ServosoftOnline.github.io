@@ -1,11 +1,5 @@
 <?php
     
-    // Habilitar CORS para aceptar solicitudes desde cualquier origen
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type, Authorization");
-    header('Content-Type: application/json');    
-
     /* 
         Establecezco la conexion con la base de datos mediante un objeto:
             - Esto me permitirá realizar consultas preparadas evitando ataques de inyeccion SQL            
@@ -17,6 +11,12 @@
             - root es el usuario por defecto que crea xampp
             - tareas_crud es el nombre de la base de datos que cree en myphpadmin
     */
+
+    // Habilitar CORS para aceptar solicitudes desde cualquier origen
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header('Content-Type: application/json');
 
     // Configuración de la base de datos usando variables de entorno
     $servername = getenv('VITE_DB_HOST') ?: 'localhost';

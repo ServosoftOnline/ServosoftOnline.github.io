@@ -1,6 +1,6 @@
 # ajuste para evitar que el servidor devuelva página HTML. Debe intepretarlo como lenguaje javascript y le indico que uso vite
 # Usar una imagen base de Node.js para construir el frontend
-FROM node:18 as build
+FROM node:20 as build
 
 # Establecer el directorio de trabajo
 WORKDIR /app

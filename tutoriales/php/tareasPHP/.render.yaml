@@ -10,9 +10,8 @@ services:
   - type: web
     name: tareasPHP
     env: docker
-    buildCommand: "npm install && npm run build" 
-    # startCommand: apache2-foreground 
-    startCommand: docker-compose up
-    dockerContextDir: ./tutoriales/php/tareasPHP/backend
     dockerfilePath: ./tutoriales/php/tareasPHP/backend/Dockerfile
+    dockerContextDir: .
+    buildCommand: "npm install && npm run build"
+    startCommand: docker-compose up
   
