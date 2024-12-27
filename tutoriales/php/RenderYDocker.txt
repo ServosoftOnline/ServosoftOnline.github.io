@@ -1,0 +1,27 @@
+Este archivo describe como paso las aplicaciones php a la fase desarrollo:
+
+    - He aplicado lo descrito al proyecto tareasPHP
+    - Opté por usar render. Pude acceder mediante la cuenta que tengo en github
+        - Cree un web service llamado tareasPHP
+        - En settings de tareasPHP configuro el web service y las variables de entorno
+        - Estas variables de entono me permite cambiar los valores de mis variables de entorno locales
+        - Las variables de entorno locales las tengo configurada en .env en el directorio raiz
+
+    - Render no tiene un environmet php, por lo que use docker
+    - Docker me permite subir un servidor apache y un servidor mysqli
+
+        - Para ello debo configurar los siguientes archivos:
+
+            - Dockerfile en la carpeta backend
+                - Contiene la configuracion del servicio apache que estará en render
+
+            - .render.yaml en el directorio raiz del proyecto
+                - Contiene la configuración del servicio apache junto con Dockerfile
+
+            - docker-compose.yml en el directorio raiz
+                - Contiene la configuracion del servicio mysql que estará en render
+
+    - Para realizar los deploy actualizo en github los cambios de la aplicacion
+      y hago otro deploy desde render
+
+      

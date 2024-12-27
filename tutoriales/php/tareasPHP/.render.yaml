@@ -13,4 +13,5 @@ services:
     buildCommand: "npm install && npm run build" 
     startCommand: apache2-foreground 
     dockerContextDir: ./tutoriales/php/tareasPHP/backend
+    dockerfilePath: ./tutoriales/php/tareasPHP/backend/Dockerfile
   
