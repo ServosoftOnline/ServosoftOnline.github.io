@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# El archivo donde tengo mis variables de entorno en produccion
+.env
+
