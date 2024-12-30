@@ -1,16 +1,24 @@
-# Defino mi servidor mysqli para que se suba a render mediante Docker
+
+# Este archivo define los servicios web y db que se ejecutarán en contenedores Docker.
 
 version: '3.8'
 
 services:
   web:
     build:
-      context: .
+
+      # Directorio de contexto para la construccion
+      context: ./tutoriales/php/tareasPHP
+      
+      # Ruta al archivo Dockerfile
       dockerfile: ./tutoriales/php/tareasPHP/backend/Dockerfile
+
     ports:
       - "80:80"
     depends_on:
       - db
+
+    # Variables de entorno para el servicio web
     environment:
       VITE_DB_HOST: db
       VITE_DB_USER: root

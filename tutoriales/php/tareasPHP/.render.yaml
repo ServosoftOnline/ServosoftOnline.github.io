@@ -7,11 +7,25 @@
 #     El archivo Dockerfile se encuentra dentro de la carpeta backend
 
 services:
+
+  # tipo de servicio
   - type: web
+
+    # Nombre del servicio
     name: tareasPHP
+
+    # Entorno de ejecucion
     env: docker
+
+    # Ruta del archivo Dockerfile
     dockerfilePath: ./tutoriales/php/tareasPHP/backend/Dockerfile
-    dockerContextDir: .
+
+    # Directorio de contexto para la construcción
+    dockerContextDir: ./tutoriales/php/tareasPHP
+
+    # Comando para construir el frontend
     buildCommand: "npm install && npm run build"
+
+    # Comando para iniciasr los servicios definidos en docker-compose.yml
     startCommand: docker-compose up
   
