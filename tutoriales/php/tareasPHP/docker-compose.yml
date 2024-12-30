@@ -9,9 +9,9 @@ services:
 
       # Directorio de contexto para la construccion
       context: ./tutoriales/php/tareasPHP
-      
+
       # Ruta al archivo Dockerfile
-      dockerfile: ./tutoriales/php/tareasPHP/backend/Dockerfile
+      dockerfile: ./backend/Dockerfile
 
     ports:
       - "80:80"
