@@ -88,13 +88,4 @@ PROCESO DE INSTALACION DE XAMPP EN LINUX (UBUNTU) Y EJECUCION EN LOCAL DE ESTE P
             #!/bin/bash
             pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY /opt/lampp/manager-linux-x64.run
 
-10.- Cambiar el password de acceso a la base de datos MySQL 
-
-    - Por defecto es un espacio en blanco
-    - Accedo a una terminal y me desplazo hasta el directorio /opt/lamp/bin
-    - Ejecuto el comando sudo mysql -u DocumentRoot
-    - Con esto accedo a la consola de mysql de xampp
-    - Este comando cambia el password a stratocaster ALTER USER 'root'@'localhost' IDENTIFIED BY 'stratocaster';
-    - con FLUSH PRIVILEGES; aplico los cambios
-    - con exit, salgo de la consola
 

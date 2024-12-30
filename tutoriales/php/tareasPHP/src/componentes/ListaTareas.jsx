@@ -18,6 +18,8 @@ const ListaTareas = ({mostrarTodas}) => {
     // Estado que almacenará las tareas de la base de datos
     const [tareas, setTareas] = useState([]);
 
+    // console.log(`${import.meta.env.VITE_API_URL}/obtenerTareas.php`);
+
     // Efecto que obtiene las tareas desde el backend y las almaceno en el estado tareas
     useEffect(() => {            
         fetch(`${import.meta.env.VITE_API_URL}/obtenerTareas.php`)

@@ -10,6 +10,8 @@
             
             - root es el usuario por defecto que crea xampp
             - tareas_crud es el nombre de la base de datos que cree en myphpadmin
+
+            Configuro que php pueda leer variables de entorno
     */
 
     // Habilitar CORS para aceptar solicitudes desde cualquier origen
@@ -17,7 +19,6 @@
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
     header('Content-Type: application/json');
-    
 
     // Configuración de la base de datos usando variables de entorno
     $servername = getenv('VITE_DB_HOST') ?: 'localhost';
@@ -25,10 +26,8 @@
     $password = getenv('VITE_DB_PASSWORD') ?: '';
     $dbname = getenv('VITE_DB_NAME') ?: 'tareas_crud';
 
-    // $servername = getenv('VITE_DB_HOST');
-    // $username = getenv('VITE_DB_USER');
-    // $password = getenv('VITE_DB_PASSWORD');
-    // $dbname = getenv('VITE_DB_NAME');
+    // Mostrar mensaje de depuración
+    // echo "Intentando conectar a la base de datos...\n";
 
     // Crear conexión
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -37,5 +36,8 @@
     if ($conn->connect_error) {
         die("Conexión fallida: " . $conn->connect_error);
     }
+
+    // Mostrar mensaje de éxito
+    // echo "Conexión exitosa a la base de datos.\n";
 
 ?>

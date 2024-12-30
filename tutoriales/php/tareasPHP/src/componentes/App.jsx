@@ -30,14 +30,15 @@ import ListaTareas from './ListaTareas';
 // Componente ppal
 const App = () => {
 
-  // Muestro en consola todas las variables de entorno
-  
+  /*
+  // Muestro en consola todas las variables de entorno  
   console.log(`VITE_API_URL: ${import.meta.env.VITE_API_URL}`);
   console.log(`VITE_REDIRECT_URL: ${import.meta.env.VITE_REDIRECT_URL}`);    
   console.log(`VITE_DB_HOST: ${import.meta.env.VITE_DB_HOST}`);    
   console.log(`VITE_DB_USER: ${import.meta.env.VITE_DB_USER}`);  
   console.log(`VITE_DB_PASSWORD: ${import.meta.env.VITE_DB_PASSWORD}`);      
   console.log(`VITE_DB_NAME: ${import.meta.env.VITE_DB_NAME}`);    
+  */
 
   // Estado que contiene el deseo de mostrar u ocultar las tareas completadas
   const [mostrarTodas, setMostrarTodas]= useState(true);
