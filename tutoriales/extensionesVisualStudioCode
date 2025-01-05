@@ -1,12 +1,15 @@
 Spanish language pack
+
     - El interfaz de visual studio code lo muestra en español
     
 Open in browser
+
     - Permite que con el boton derecho del raton salga la opcion de "Abrir en el navegador".
     - La primera vez tuve que añadir en la configuracion de la extension cual era mi navegador por defecto
         - Añadi la palabra firefox
         
 Copilot
+
     -   Instalar la extension GitHub Copilot
     -   Es necesario tener una cuenta en github
     -   Mediante control + alt + I podemos acceder al chat y nos responderá a partir del codigo que tengamos abierto
@@ -14,3 +17,21 @@ Copilot
 
     -   Se habilitó un nuevo icono en la barra lateral izquierda de visual studio llamada "Cuentas" donde podemos 
         conectarnos a copiltot
+
+settings.json
+
+    - No es una extension
+    - Es un archivo de configuracion de visual studio code
+    - Al configurarlo permite readaptar el entorno de trabajo a nuestras necesidades
+    - Por ejemplo las líneas que salen de la ventana del editor las reubica
+    - En el archivo settings.json añado la línea: "editor.wordWrap": "on"
+
+Prettier
+    - Corrije el formato del codigo
+    - Instalé la extension Prettier
+    - Corrije el formato del codigo al pulsar control + shift + I
+    
+
+Material icon Theme
+    - Sustituye los iconos de visual studio code por otros más detallados con colores diferentes
+

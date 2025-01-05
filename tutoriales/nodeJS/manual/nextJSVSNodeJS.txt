@@ -25,24 +25,36 @@ Aquí te explico qué es cada una y las principales diferencias:
         - Creación de sitios web y aplicaciones donde el rendimiento y el SEO son importantes.
         - Proyectos que combinan el frontend y backend de forma ligera (mediante API Routes).
 
-¿Qué es Node.js?
+¿Qué es Nodejs?
 
-    Entorno de ejecución de JavaScript:
-        - Node.js es un entorno que permite ejecutar JavaScript fuera del navegador, por ejemplo, en un servidor.
-
-    Backend: 
+    - Definición: Entorno de ejecucion de Javascript que permite ejecutar codigo de Javascript fuera del navegador:
+        
+        - Aplicaciones de servidor en el backend, moviles, escritorio, herramientas de consola y hardware
         - Es ideal para construir el backend de aplicaciones, como APIs REST, websockets, o servicios en tiempo real.
+        - Se presentó en 2009
 
-    Características clave:
+    - Utilidad:
+
+        - JavaScript ya trae por defecto interactividad con los navegadores.  Ej:document.body.innerHTML = "<h1>Hola mundo!</h1>
+        - Si queremos tener interactividad en otros entornos sería necesario usar nodejs, permitiendo hacer lo siguiente:
+
+            - Transforma a Javascript sea un lenguaje de proposito general y no solo para su uso en navegadores
+            - Crea servidores web habilitando el uso de de backend y sumarlas al frontend y usando solo Javascript
+            - Crear APIs.      
+            - Proporciona automatización de tareas de desarrollo (builds, etc.).
+
+    - Bibliotecas basadas en aplicaciones de Nodejs:
+        - React
+        - Angular
+        - espress
+
+    - Características clave:
 
         - Basado en el motor V8 de Google (el mismo que usa Chrome).
         - Arquitectura orientada a eventos y no bloqueante.
         - Amplia librería de módulos integrados (fs, http, etc.).
 
-    ¿Para qué se usa?
-        Crear servidores web y APIs.
-        Backend para aplicaciones full-stack.
-        Automatización de tareas de desarrollo (builds, etc.).
+    
 
 Diferencias clave entre Next.js y Node.js:
 

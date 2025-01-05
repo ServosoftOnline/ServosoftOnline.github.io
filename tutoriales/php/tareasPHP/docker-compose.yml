@@ -11,19 +11,12 @@ services:
       context: ./tutoriales/php/tareasPHP
 
       # Ruta al archivo Dockerfile
-      dockerfile: ./backend/Dockerfile
+      dockerfile: ./tutoriales/php/tareasPHP/backend/Dockerfile
 
     ports:
       - "80:80"
     depends_on:
       - db
-
-    # Variables de entorno para el servicio web
-    environment:
-      VITE_DB_HOST: db
-      VITE_DB_USER: root
-      VITE_DB_PASSWORD: stratocaster
-      VITE_DB_NAME: tareas_crud
 
   db:
     image: mysql:8.0

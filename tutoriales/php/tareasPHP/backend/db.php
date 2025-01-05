@@ -1,17 +1,17 @@
 <?php
     
     /* 
-        Establecezco la conexion con la base de datos mediante un objeto:
-            - Esto me permitirá realizar consultas preparadas evitando ataques de inyeccion SQL            
-            - Así podre usar prepare y bind_param en las consultas
+        Establezco la conexión con la base de datos mediante un objeto:
+            - Esto me permitirá realizar consultas preparadas evitando ataques de inyección SQL            
+            - Así podré usar prepare y bind_param en las consultas
 
-            - En localhost podremos poner la ip donde se encuentra la base de datos.
-                - Quizas deba cambiarlo cuando pase a produccion
+            - En localhost podremos poner la IP donde se encuentra la base de datos.
+                - Quizás deba cambiarlo cuando pase a producción
             
-            - root es el usuario por defecto que crea xampp
-            - tareas_crud es el nombre de la base de datos que cree en myphpadmin
+            - root es el usuario por defecto que crea XAMPP
+            - tareas_crud es el nombre de la base de datos que creé en phpMyAdmin
 
-            Configuro que php pueda leer variables de entorno
+            Configuro que PHP pueda leer variables de entorno
     */
 
     // Habilitar CORS para aceptar solicitudes desde cualquier origen
@@ -20,24 +20,36 @@
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
     header('Content-Type: application/json');
 
-    // Configuración de la base de datos usando variables de entorno
-    $servername = getenv('VITE_DB_HOST') ?: 'localhost';
-    $username = getenv('VITE_DB_USER') ?: 'root';
-    $password = getenv('VITE_DB_PASSWORD') ?: '';
-    $dbname = getenv('VITE_DB_NAME') ?: 'tareas_crud';
+    // Cargar las variables de entorno desde el archivo .env
+    require __DIR__ . '/../vendor/autoload.php';
 
-    // Mostrar mensaje de depuración
-    // echo "Intentando conectar a la base de datos...\n";
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+    $dotenv->load();
+
+    $servername = getenv('VITE_DB_HOST');
+    $username = getenv('VITE_DB_USER');
+    $password = getenv('VITE_DB_PASSWORD');
+    $dbname = getenv('VITE_DB_NAME');
+
+    // Verificar si las variables de entorno se cargaron correctamente
+    file_put_contents(__DIR__ . '/../error_log.txt', "DB Host: " . $servername . PHP_EOL, FILE_APPEND);
+    file_put_contents(__DIR__ . '/../error_log.txt', "DB User: " . $username . PHP_EOL, FILE_APPEND);
+    file_put_contents(__DIR__ . '/../error_log.txt', "DB Password: " . $password . PHP_EOL, FILE_APPEND);
+    file_put_contents(__DIR__ . '/../error_log.txt', "DB Name: " . $dbname . PHP_EOL, FILE_APPEND);
+
+    // Verificar si el archivo se está ejecutando
+    file_put_contents(__DIR__ . '/../error_log.txt', "El archivo db.php se está ejecutando" . PHP_EOL, FILE_APPEND);
 
     // Crear conexión
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Verificar conexión
     if ($conn->connect_error) {
+        file_put_contents(__DIR__ . '/../error_log.txt', "Conexión fallida: " . $conn->connect_error . PHP_EOL, FILE_APPEND);
         die("Conexión fallida: " . $conn->connect_error);
     }
 
-    // Mostrar mensaje de éxito
-    // echo "Conexión exitosa a la base de datos.\n";
+    // Si la conexión es exitosa
+    file_put_contents(__DIR__ . '/../error_log.txt', "Conexión exitosa" . PHP_EOL, FILE_APPEND);
 
 ?>

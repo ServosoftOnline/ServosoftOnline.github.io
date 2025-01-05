@@ -1,0 +1,75 @@
+2.- REPL
+
+    - Consola para ejecutar nodejs que permite introducir comandos e interactuar con el sistema operativo:
+
+        Comandos:
+        
+            - node -v. Mustra la version instalada
+            - node. Accede a la consola
+            - Ctrl + l. Limpia la consola
+            - Ctrl + d. Sale de la consola
+            - .exit. tambien sale de la consola
+            - Flecha hacia arriba o hacia abajo accede a comandos anteriores
+            - Operaciones matemáticas. Ej  2 + 2, mostraría 4
+            - console.log('Hola mundo')
+            - Objeto Math para ejecutar logica de matemáticas.
+                - Math.random() develve número aleatorio entre 0 y 1. Ej: Math.random()*10, devuelve un numero aleatorio entre 0 y 10
+
+            - Crear vbles
+                - let nombre = 'Oscar'. crea la vble
+                - nombre. muestra la vble
+            
+            - Crear ctes
+                - const apellido = 'Fernandez'
+                - apellido. Muestra el contenido de la constante
+
+            - Establecer bucles
+                - let x = 0
+                - do {
+                    x++;
+                    console.log(x);
+                    
+                    }
+                    while(x<3)
+
+                    Mostraria: 
+                    1
+                    2
+                    3
+
+            - Ejecutar funciones    
+                - setInterval(() => console.log('Hola'), 1000). Mostraría el string Hola cada segundo
+
+            - process.
+                - Muestra información relevante proporcionada por el sistema operativo:
+                    - version node
+                    - Plataforma donde corre. Ej: Linux
+                    - personada logada: USERNAME: 'oscar'
+
+            - os.userinfo()
+                - Muestra informacion sobre el usuario del sistema. username:'oscar'
+                - muestra directorio donde se encuentra todos los archivos homedir
+            
+            - process.cwd()
+                - Muestra el directorio de trabajo
+
+            - node -e "comando". Permite ejecutar comandos desde fuera de la consola REPL
+                - Desde fuera de REPL al ejecutar node -e "console.log(os.userInfo())" tambien mostraría informacion sobre el usuario
+
+            - .save. Permite guardar todos los comandos ejecutados en REPL en un archivos
+                - Ejemplo:
+                - Accedo a REPL
+
+                - Ejecuto los comandos:
+                    - const names = ['Oscar', 'Silvia', 'Jesus']
+                    - names
+                    - .save names
+
+                - Me crea en el directorio de trabajo un archivo llamado names.js que contiene:
+                    const names = ['Oscar', 'Silvia', 'Jesus']
+                    names
+
+            - .load. Permite cargar un archivo previamente guardado con .save
+                - Puedo acceder a REPL
+                - Escribir el comando .load names.js
+                - Se cargarán todos los comandos almacenados en names.js
