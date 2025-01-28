@@ -1,0 +1,23 @@
+NPX
+
+- Comando que se instala junto con nodejs
+
+- Es un ejecutador de paquetes:         
+    - Permite ejecutar paquetes sin instalarlos
+    - No instalará nada en la carpeta node_modules ni añadirá ejecutables en la carpeta .bin
+
+- Se les llaman CLI (Common Line Interface). Son programas o herramientas que funcionan desde consola   
+
+- Algunos ejemplos de modulos que puedo usar como CLI:
+
+    - cowsay:
+        - Permite mostrar en consola una vaca diciendo un texto que le indicamos como parámetro
+        - npx cowsay Hola mundo!!. Mostrará en consola un dibujo de una vaca diciendo Hola Mundo!!
+
+    - serve:
+        - Permite crear un servidor web estático que estará escuchando continuamente atento a cambios
+        - Creo una carpeta publica llamada public que contienga un archivo index.html
+        - Este archivo contendrá un simple hola mundo mediante las etiquetas <h1>
+        - Ejecuto el servidor mediante el comando: npx serve public
+        - Este me proporcionará una direccion para mi pc y para la red
+        - Si accedo a ella podrá ver mi web de hola mundo

@@ -1,0 +1,119 @@
+NPM
+
+- Existen modulos desarrollados por la comunidad. Estos pueden instalarse mediante npm.
+- La instruccion npm se instala junto con nodejs
+- Para ver si lo tenemos instalado escribimos en consola npm --version.
+- Se almacenan en la carpeta node_modules
+
+- Instalación de módulos:
+
+    - Lo localizo en el sitio npmjs.com
+    - Se instalan mediante el comando npm install nombre_del_modulo
+    - Puede usarse i en lugar de install
+
+    - Si le añado la bandera -D:
+        - Instalaría un modulo indicando que lo usaría solo en entorno de desarrollo.        
+        - Se añadiran en devDependencias del archivo package.json
+
+    - Si le añado la bandera -g:
+        - Instalaría el modulo de forma global
+        - Se almacenaría en la carpeta node_modules
+        - Los archivos ejecutables de almacenarían en la carpeta .bin
+        - Se ubicaría en un contexto global de todo el sistema
+        - Podrían usarse en todos mis proyectos
+        - No aparecería en el package.json
+        - Para desinstalarlo tendría que tambien añadirle la bandera -g
+            - Ej: npm nodemon remove -g
+
+    - Puedo instalar varios módulos solo separandolos con espacios en blanco
+        - Ej: npm i lodash dayjs bootstrap
+
+    - La instalación del primer módulo genera de forma automatica dos archivos y una carpeta:
+
+        - El archivo package.json.
+
+            - Contiene un objeto con las siguientes propiedades-valores:
+
+                - La propiedad dependencies contiene las depedencias usadas en produccion
+                - La propiedad devDependencies contiene las depedencias usadas en desarollo               
+
+                - La propiedad scripts permite crear comandos que a su vez contiene otro objeto:
+
+                    - Las propiedades son los nombres que doy a los comandos
+                    - Los valores son el comando en sí
+                    - Pueden existir mas de un comando
+                    - Para ejecutarlo desde consola escribo: npm run propiedad y me ejecuta el comando
+                    
+                        - Ej: npm run ejecutar
+                            - Vease el archivo package.json de la carpeta nodejs
+                            - Ejecutara node main.js
+                            - main.js contiene el mensaje en consola Hola mundo
+
+                            - Si la propiedad tuviera un nombre más comun, por ejemplo start, no necesitaría run
+                                - npm start funcionaría. No seria necesario ejecutar npm run start
+
+
+        - El archivo package-lock.json.
+
+            - Contiene informacion de los modulos de los cuales dependen los modulos instalados 
+            - No suele tocarse su configuracion
+
+        - La carpeta node_modules
+
+            - Contiene el codigo fuente de los módulos instalados y de los que depende divididos en carpetas
+            - Podrá ser eliminada para ahorrar espacio si no vamos a usar el proyecto.
+            - Su subcarpeta .bin
+
+            - Para recuperarla:
+                - Uso el comando npm install que obtendrá la informacion a instalar desde:
+                    - Las dependencias situadas en el archivo package.json
+                    - La información presente en package-lock.json
+
+- Como usarlos:
+
+    - Lo importo mediante el objeto global require('nombre_del_modulo')
+    - Creo una constante con el mismo nombre del módulo donde almaceno lo devuelto por require
+    - Ya puedo usar sus metodos mediante: nombre_del_modulo.metodo
+
+- La carpeta .bin
+
+    - Contiene los archivos ejecutables que podemos usar en el proyecto
+
+
+- Localización de los módulos:
+
+    - Cuando se hace un require los módulos se tratan de buscar  en la siguientes ubicaciones :
+        1.- En API de NodeJS
+        2.- En la carpeta node_modules
+        3.- En las carpeta donde se encuentren mis módulos personalizados. Ej: carpeta modules
+        4.- En los modulos almacenados en un contexto global
+
+    - Si no lo encuentra mostrará un mensaje indicando que ese modulo no está reconocido como interno o externo
+
+- Como eliminarlos:
+    - npm remove nombre_del_modulo. Tambien lo elimina de las dependencias
+
+- Ejemplos de algunos modulos desarrollados por la comunidad:
+
+    - Modulo de autentificacion
+    - Modulo para poder guardar archivos
+    - dayjs que permite trabajar con fechas.
+    - bootstrap que permite trabajar con clases ya establecidas de css
+    - lodash permite trabajar con algunos datos de javascript
+
+    - nodemon:
+        
+        - Es muy usual y se usa durante el desarollo de la aplicación.
+        - Lo instalo mediante la bandera -D. npm install nodemon -D
+
+        - Se suele crear un comando de ejecución en package.json.
+
+            - Lo creo así en package.json:
+                "scripts": {                    
+                    "dev": "nodemon src/main.js"
+                },
+
+            - Lo ejecuto desde consola así: npm run dev
+
+        - Permite reiniciar en cualquier momento el entorno de desarollo
+        - Vigila todos los archivos actualizando el código cada vez que halla un cambio

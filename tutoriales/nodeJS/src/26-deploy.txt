@@ -1,0 +1,8 @@
+DEPLOY:
+
+    - Instalar node en este pc facilita que podamos ejecutar aplicaciones node en este pc
+    - Si queremos desplegar el proyecto node debe estar instalado en el computador donde se despliegue
+        - No debo configuar un servidor desde cero 
+        - Podemos desplegarlos en servidores que ya estén configurados solo subiendo el código
+            - Ejemplos de servidores:
+                - Heroku. Pero está ya desfasado. Antes era muy usual pero ahora no tanto

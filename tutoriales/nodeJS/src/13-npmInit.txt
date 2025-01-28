@@ -1,0 +1,45 @@
+NPM INIT
+
+- Permite crear los archivos package.json y package-lock.json sin la necesidad de instalar ningún modulo
+- Se ejecuta mediante el comando npm init
+
+    - Pide rellenar la siguiente información para generar el archivo package.json:
+
+        - Entre parentesis indicará el valor por defecto
+        - package name: Nombre que deseo dar al proyecto
+
+        - version: version del proyecto siguiendo la norma semver
+            - Ej: version 1.0.0. 
+                - Si hacemos una modificación pequeña solo cambiaremos el último 0 y así con el resto
+                - Si el cambio implica que ya no es compatible con la versión anterior cambiamos el 1
+
+        - description. Descripción opcional del proyecto
+        - entry point: Archivo que se ejecutará inicialmente
+        - test command: Comando para hacer testing. No es obligatorio. Requiere un tema por si solo
+        - git respository: Repositorio de git donde se almacenará este proyecto
+        - keywords: Palabras claves para ser localizadas facilmente mediante npm
+        - author: Nombre del autor del proyecto
+        - license: Puede dejarse el nombre de la licencia que viene por defecto
+
+    - Este contenido se añadirá al archivo package.json pero será solo información.
+        - No es esencial para que el proyecto funcione
+        - Es esencial para darle información al tipo de sistema npm (ehhh)
+
+- Se puede usar añadiendo el flag -y
+    - npm init -y
+    - Añade la configuración por defecto a package.json que despues yo lo modifico
+    - Si vamos a trabajar con módulos, como hasta ahora suelo trabajar, debo añadir "type": "module"
+        - Esto me permitirá usar las instrucciones import y export en lugar de node.modules
+
+
+
+
+
+
+
+
+
+
+
+
+

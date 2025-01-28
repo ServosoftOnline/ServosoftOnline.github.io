@@ -1,0 +1,18 @@
+- CommonJs modules:
+
+- Son modulos proporcionados por nodeJs:
+
+    - Se les conoce como las API de NodeJS
+    - NodeJS tiene una API muy extensa
+    - Se requiere require para importarlos
+    - Se ubican en el interior de node
+
+- Se encuentran en el siguiente enlace: https://nodejs.org/api/modules.html. Algunos ejemplos:
+
+    - Modulo os: Permite interactuar con el sistema operativo
+    - Modulo path: Permite trabajar con rutas de archivos
+    - Modulo File system: Permite trabajar con archivos, crearlos, leerlos, etc 
+    - Modulo HTTP: Permite crear un servidor. Uno de los más usuales
+
+    
+    
