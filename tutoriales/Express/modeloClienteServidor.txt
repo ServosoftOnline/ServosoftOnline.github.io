@@ -1,0 +1,8 @@
+Bases del modelo cliente servidor:
+
+    1.- Existe un cliente ubicado en el front
+    2.- Existe un servidor ubicado en el backend
+    3.- Ambos se comunican mediante el protocolo http
+    4.- El cliente le hace peticiones (request) al servidor y el servidor le responde (response) datos o un error
+    5.- Desarrollaré el servidor mediante nodejs usando el framework express
+    6.- Por ahora, ire desarrollando el cliente mediante el framework React

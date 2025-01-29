@@ -139,6 +139,31 @@
                 - En el ordenador menos actualizado ejecuto git pusl origin main
                 - Y si fuera necesario elimino y restauro todas las dependiencias
 
+    - CREAR UN GITIGNORE
+
+        1.- Abre tu terminal en la raíz de tu proyecto mediante gitbush
+        2.- Ejecuta el siguiente comando para crear el archivo .gitignore: touch .gitignore
+        3.- Edita el archivo y añade las líneas recomendadas para proyectos de Node.js y React:
+
+            # Node.js
+            node_modules/
+            .env
+            .cache
+            .DS_Store
+            npm-debug.log*
+            yarn-debug.log*
+            yarn-error.log*
+
+            # Directorios de compilación
+            build/
+            dist/
+
+            # Dependencias de Vite (si usas Vite en tu proyecto React)
+            .vite/
+
+            # Firebase (si usas Firebase en tu proyecto)
+            firebase-debug.log
+
 
 
         
