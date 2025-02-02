@@ -1,8 +1,37 @@
-Bases del modelo cliente servidor:
+Bases del modelo cliente servidor y su relación con express:
 
     1.- Existe un cliente ubicado en el front
     2.- Existe un servidor ubicado en el backend
     3.- Ambos se comunican mediante el protocolo http
     4.- El cliente le hace peticiones (request) al servidor y el servidor le responde (response) datos o un error
-    5.- Desarrollaré el servidor mediante nodejs usando el framework express
-    6.- Por ahora, ire desarrollando el cliente mediante el framework React
+    5.- Desarrollaré un servidor web mediante el framework express envitando tener que usar código puro de javascript
+        - No usaré el Modulo HTTP de commonJs
+        - Me permitirá una mayor escalabilidad
+
+    6.- Métodos de comunicacion del protocolo HTTP
+        - El cliente cuando hace peticiones debe añadir un metodo
+        - Estos métodos se llaman también verbos o peticiones.
+        - Ejemplos de verbos más usuales:
+            
+            - get.
+                
+                - El cliente obtiene algo del servidor al entrar en una ruta determinada
+                - Se usa frecuentemente en el routing
+
+            - post
+                - El cliente le envia datos al servidor que quizas él guarde
+                - El servidor puede devolverle datos
+
+            - put
+                - El cliente trata de actualizar algo del servidor
+                - Enviamos un id que localiza el servidor y actualiza todos sus datos
+            
+            - delete
+                - El cliente trata de eliminar algo del servidor
+                - Le enviamos un id, lo busca y si lo encuentra elimina los datos
+
+            - patch
+                - Es igual que el verbo put pero solo actualiza un campo, no todo el registro
+
+
+
