@@ -1,15 +1,13 @@
 /*
-    Este script crea un servidor mediante el módulo http de commonJs y mediante express:
+    Este script crea un servidor mediante mediante express:
 
-        - Hacen lo mismo. Dejaré comentado la parte que lo hace mediante http
-            - Al usar express me ahorro los condicionales
-            
+        - Dejo comentado como se haría mediante el módulo http y fs de commonJs para ver las diferencias            
         - Al añadir un routing es más fácil en express que con el módulo http
-        
-        - Routing significa que respondo diferentes respuestas dependiendo de la url
-            - Permite extender la aplicacion respondiendo diferente contenido dependiendo de la ruta
-            
-            - Implica el uso de los siguientes métodos:
+
+        - Creo mis rutas, tambien llamado Routing, que es la forma de responder a diferentes urls:
+
+            - Usaré los métodos de comunicación HTTP descritos en el archivo modeloClienteServidor.txt
+            - Junto con los metodos sendFile, send y use de express:
 
                 - sendFile permite responder con archivos
                 - send y delimitando el texto entre comillas respondo un texto.
@@ -19,54 +17,66 @@
                     - El estado 200 indica que todo ha ido bien, no hubo error en el servidor.
                     - Nos permite manejar paginas que no existen
                     - Si quisiera que devuelva un estado 404 le añado el método status. Que dejo comentado
+            
+        - Para probarlas hay que seguir los pasos descritos en el archivo modeloClienteServidor.txt
 
-             
+    Así se habría creado el servidor web mediante el modulo http:
 
-*/
+        const http = require('http')
+        const fs = require('fs')
 
-/*
-// CREACION DE UN SERVIDOR WEB MEDIANTE HTTP
-// Importo los modulos http y fs de commonJs
-const http = require('http')
-const fs = require('fs')
+        const server = http.createServer((req, res) => {
+            const read = fs.createReadStream('./static/index.html')
+            read.pipe(res)
+        }
 
-// Creo el servidor donde solo por acceder lee el archivo index.html y lo devuelve
-const server = http.createServer((req, res) => {
-    const read = fs.createReadStream('./static/index.html')
-    read.pipe(res)
+        server.listen(3000)
+        console.log('Servidor escuchando en el puerto 3000')
+
 })
 
-// El servidor se encontrará escuchando en el puerto 3000 y mostrará el mensaje en consola
-server.listen(3000)
-console.log('Servidor escuchando en el puerto 3000')
 */
 
-
-// CREACION WEB MEDIANTE EXPRESS
+// CREACION DEL SERVIDOR WEB MEDIANTE EXPRESS
 // Importo express
 const express = require('express')
 
 // Llamo a la función express y almaceno el resultado en la app
 const app = express()
 
-// ROUTING
-// Las llamadas al raiz responderá con el archivo index.html. Mediante root: __dirname le indico la ruta completa
+// Creo mis rutas
 app.get('/', (req, res) => {
     res.sendFile('./static/index.html', {
         root: __dirname
     })
 })
 
-// Las llamadas a la ruta about responderá con el texto: Texto del about
-app.get('/about', (req, res) => {
-    res.send('Texto del about')
+app.get('/products', (req, res) => {
+    // Antes de devolver la respuesta haría operaciones con la base de datos: Validaciones, consultas, etc
+    res.send('Lista de productos')
 })
 
-// Llegado este momento, no ha encontrado ninguna ruta y no respondio nada. Indico que no encontré la pagina
+app.post('/products', (req, res) => {
+    res.send('Creando productos')
+})
+
+app.put('/products', (req, res) => {
+    res.send('Actualizando un producto')
+})
+
+app.delete('/products', (req, res) => {
+    res.send('Eliminando un producto')
+})
+
+app.patch('/products', (req, res) => {
+    res.send('Actualizando un dato de un producto')
+})
+
 app.use((req, res) => {
     res.send('Pagina no encontrada')
     //res.status(404).send('Pagina no encontrada')
 })
-// Indico que la aplicación esta escuchando el un puerto y lo muestro en consola
+
+// Indico el puerto donde escucha la aplicacción y lo muestro en consola
 app.listen(3000)
 console.log('Servidor escuchando en el puerto 3000')

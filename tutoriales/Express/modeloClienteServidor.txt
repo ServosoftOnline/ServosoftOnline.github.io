@@ -1,37 +1,58 @@
-Bases del modelo cliente servidor y su relación con express:
 
-    1.- Existe un cliente ubicado en el front
-    2.- Existe un servidor ubicado en el backend
-    3.- Ambos se comunican mediante el protocolo http
-    4.- El cliente le hace peticiones (request) al servidor y el servidor le responde (response) datos o un error
-    5.- Desarrollaré un servidor web mediante el framework express envitando tener que usar código puro de javascript
-        - No usaré el Modulo HTTP de commonJs
-        - Me permitirá una mayor escalabilidad
+BASES DEL MODELO CLIENTE - SERVIDOR Y COMO APLICARLO EN EXPRESS:
 
-    6.- Métodos de comunicacion del protocolo HTTP
-        - El cliente cuando hace peticiones debe añadir un metodo
-        - Estos métodos se llaman también verbos o peticiones.
-        - Ejemplos de verbos más usuales:
-            
-            - get.
-                
-                - El cliente obtiene algo del servidor al entrar en una ruta determinada
-                - Se usa frecuentemente en el routing
+1.- Existe un cliente ubicado en el front
+2.- Existe un servidor ubicado en el backend
+3.- Ambos se comunican mediante el protocolo http usando diferentes métodos, también llamados verbos o peticiones
+4.- El cliente le hace peticiones (request) al servidor y el servidor le responde (response) datos o un error
+5.- Para crear el servidor puedo usar el modulo http de commonJs o usar un framework
 
-            - post
-                - El cliente le envia datos al servidor que quizas él guarde
-                - El servidor puede devolverle datos
+6.- En este tutorial usaré el framework express para crear el servidor web 
+    - Será más facil porque escribiré menos código
+    - Permitirá tener una mayor escalabilidad
 
-            - put
-                - El cliente trata de actualizar algo del servidor
-                - Enviamos un id que localiza el servidor y actualiza todos sus datos
-            
-            - delete
-                - El cliente trata de eliminar algo del servidor
-                - Le enviamos un id, lo busca y si lo encuentra elimina los datos
+7.- Métodos de comunicacion del protocolo HTTP:    
+        
+    - get.
+        
+        - El cliente obtiene algo del servidor.
+        - Se usa frecuentemente en el routing al entrar en una ruta determinada.
+        - Es la peticion por defecto
 
-            - patch
-                - Es igual que el verbo put pero solo actualiza un campo, no todo el registro
+    - post
+        - El cliente le envia datos al servidor que quizas él guarde
+        - El servidor puede devolverle datos
 
+    - put
+        - El cliente trata de actualizar algo del servidor
+        - Enviamos un id que localiza el servidor y actualiza todos sus datos
+    
+    - delete
+        - El cliente trata de eliminar algo del servidor
+        - Le enviamos un id, lo busca y si lo encuentra elimina los datos
 
+    - patch
+        - Es igual que el verbo put pero solo actualiza un campo, no todo el registro
 
+    - Como probar estos métodos:
+
+        - El método get se prueba de una forma y el resto de otra
+        - Declaro mi routing en mi archivo index.js:
+
+            app.get('/', (req, res) => {
+                res.send('Página asociada a la raiz del proyecto cuando uso el método get')
+            })
+
+            app.get('/about', (req, res) => {
+                res.send('Página asociada al Acerca de del proyecto')
+            })
+
+            app.post('/', (req, res) => {
+                res.send('Página asociada a la raiz del proyecto cuando uso el método post')
+            })
+
+        - Para probar las rutas realizadas con get solo debo abrir el navegador, poner la ruta y ver el mensaje
+        - Para probar los métodos post, put, delete, patch y el resto que valla a usar es diferente:
+            - Si me encargo tambien del front hacer peticiones desde el código de front
+            - En caso contario debo simular estas peticiones mediante el uso de la extension thunder client de VS
+                - Desde el icono thunder cliente creado en la columna de la izquierda creo New request
