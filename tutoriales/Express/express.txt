@@ -1,7 +1,6 @@
-Express:
+EXPRESS:
 
     - Curso basado en el video de youtube: https://www.youtube.com/watch?v=JmJ1WUoUIK4
-
     - Framework más popular de nodeJs que posee las siguiente características:
 
         - Fué unos de los primeros en aparecer.
@@ -28,7 +27,21 @@ Express:
     - Otros frameworks:
         - happy
         - fast afy
-        - NextJs
+
+        - NestJs. Se considera el sucesor de express
+            - Ver las diferencias con express en el video: https://www.youtube.com/watch?v=EYCrmB_JvlI
+            - NestJs crea una estructura de carpetas que se suele seguir
+            - Express viene con una serie de paquetes definidos, que no estoy seguro que se usen, y nestJs no
+                - Con nestJs debemos elegir que paquetes utilizar y que debemos tenerlos actualizados
+            - nestJs esta más influenciada por Angular.
+            - nestJs usa typescript por defecto teniendo soporte nativo. Está más orientado a typescript
+            - nestJs tiene una curva de aprender más pronunciada
+            - express es mucho más popular y se usa más en las industrias. Es más robusto y tiene pocos cambios
+            - express se podría usar en proyectos más pequeños y nestJs en proyectos que necesiten mas estructuracion
+            - Si no van a escarlar demasiado es recomendable usar express
+            - Trabajar en equipo se mejora con nestJs
+            - Sería recomendable empezar con javascript y espress. Para despues trabajar con typescript y nestJs
+
         - Adonis
         - lockback
 
@@ -41,11 +54,91 @@ Express:
         - Instalar nodejs: npm i node o descargarlo desde ubuntu software
         - Instalar express: npm i express
 
-    
+    - METODOS DE COMUNICACION DEL PROTOCOLO HTTP:    
+        
+        - get.
+            
+            - El cliente obtiene algo del servidor.
+            - Se usa frecuentemente en el routing al entrar en una ruta determinada.
+            - Es la peticion por defecto
 
-    
+        - post
+            - El cliente le envia datos al servidor que quizas él guarde
+            - El servidor puede devolverle datos
 
+        - put
+            - El cliente trata de actualizar algo del servidor
+            - Enviamos un id que localiza el servidor y actualiza todos sus datos
+        
+        - delete
+            - El cliente trata de eliminar algo del servidor
+            - Le enviamos un id, lo busca y si lo encuentra elimina los datos
+
+        - patch
+            - Es igual que el verbo put pero solo actualiza un campo, no todo el registro
+
+        - Como probar estos métodos:
+
+            - El método get se prueba de una forma y el resto de otra
+            - Declaro mi routing en mi archivo index.js:
+
+                app.get('/', (req, res) => {
+                    res.send('Página asociada a la raiz del proyecto cuando uso el método get')
+                })
+
+                app.get('/about', (req, res) => {
+                    res.send('Página asociada al Acerca de del proyecto')
+                })
+
+                app.post('/', (req, res) => {
+                    res.send('Página asociada a la raiz del proyecto cuando uso el método post')
+                })
+
+            - Para probar las rutas realizadas con get solo debo abrir el navegador, poner la ruta y ver el mensaje
+            - Para probar los métodos post, put, delete, patch y el resto que valla a usar es diferente:
+                - Si me encargo tambien del front hacer peticiones desde el código de front
+                - En caso contario debo simular estas peticiones mediante el uso de la extension thunder client de VS
+                    - Desde el icono thunder cliente creado en la columna de la izquierda creo New request
+
+
+    - HTTP RESPONSE
+
+        - Son las respuestas que emite el servidor creado mediante express usando el protocolo http
+            - Puede responder: texto, archivos html, pdf, txt, vídeos, audios, o formatos json o xml, etc.
+            - Un ejemplo de responder un objeto json. Al entrar en una ruta /user devolver información del usuario
+                - la web https://jsonformatter.curiousconcept.com/ permite comprobar si un objeto json es válido
+
+        - Los servidores creados con express devuelven un estado indicando el resultado de la operacion. Ejemplos:
+            - Estado 404 significa que el servidor no encontró lo que intentaba hacer
+            - Estado 500 significa error interno del servidor
+            - Estado 200 indica que fue todo bien y el servidor responde con algo
+            - Estado 204 indica que fue todo bien pero el servidor no devuelve nada.            
+                - Devolvería solo el estado y ningun dato
+                - Para ello usaría le método sendStatus(Codigo de estado)
+                    
+    - REQUEST BODY
     
+        - Durante una peticion el cliente puede enviar distintos tipos de datos al servidor:
+
+            - Como textos, objetos jason, archivos o datos a partir de un formulario del front
+            - Estas peticiones se realizarían mediante el metodo post
+
+            - Estas peticiones las puedo considerar como un objeto llamado request con el siguiente contenido:
+                - endpoint. Sería la url que ha sido visitada
+                - body. Sería el dato enviado, generalmente un objeto json
+                - header. Contendría información adicional como el tipo de dato enviado
+
+            - Las respuestas de un servidor las obtenemos mediante un objeto llamado response con el mismo contenido
+                - El código del estado vendría dentro del header como información adicional
+
+        - Podemos usar un cliente rest para simular estos envios
+            - El cliente rest podría ser la extension thunder client de VS antes mencionado
+            - Simulando el envio por el método que sea, añadiendo el endpoint
+            - Podré seleccionar entre otras cosas Header o Body
+            - Al seleccionar body seleccionaré el tipo de dato que estoy simulando enviar y el contenido del dato
+
+
+
 
 
 
