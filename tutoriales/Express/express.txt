@@ -111,34 +111,71 @@ EXPRESS:
         - Los servidores creados con express devuelven un estado indicando el resultado de la operacion. Ejemplos:
             - Estado 404 significa que el servidor no encontró lo que intentaba hacer
             - Estado 500 significa error interno del servidor
-            - Estado 200 indica que fue todo bien y el servidor responde con algo
+
+            - Estado 200 indica que fue todo bien y el servidor responde con algo.
+                - A veces aparece este código de estado despues de actualizar y antes devolvía otro codigo de estado
+                - Esto significa que la segunda vez, cuando refresca, se almacenó ya el dato en la cache
+
             - Estado 204 indica que fue todo bien pero el servidor no devuelve nada.            
                 - Devolvería solo el estado y ningun dato
                 - Para ello usaría le método sendStatus(Codigo de estado)
+
+            - Estado 304 indica que se esta pidiendo un datos que no ha sido modificado
+            - Puedo enviar el código de estado que considero si uso el método sendStatus
+                - Ver como se hace en la ruta /isAlive mediante el metodo get en index.js
+
                     
     - REQUEST BODY
     
-        - Durante una peticion el cliente puede enviar distintos tipos de datos al servidor:
+        - Durante una peticion desde el cliente se pueden enviar distintos tipos de datos al servidor:
 
             - Como textos, objetos jason, archivos o datos a partir de un formulario del front
-            - Estas peticiones se realizarían mediante el metodo post
+            - Estas peticiones se realizarían mediante el metodo post ya que se van a enviar datos
+            - Mediante el método use le debo indicar el dato que recibirá el servidor:
+                - Si recibe un string => app.use(express.text())
+                - Si recibe un json => app.use(express.json()) 
+                - Si recibe datos de un formulario => app.use(express.urlencoded({extended: false}))
+                    - extended: false indica que no debe interpretar nada. Ningun dato recibido es complicado
+
 
             - Estas peticiones las puedo considerar como un objeto llamado request con el siguiente contenido:
                 - endpoint. Sería la url que ha sido visitada
-                - body. Sería el dato enviado, generalmente un objeto json
+                - body. Sería el dato enviado, generalmente un objeto json.
                 - header. Contendría información adicional como el tipo de dato enviado
 
-            - Las respuestas de un servidor las obtenemos mediante un objeto llamado response con el mismo contenido
-                - El código del estado vendría dentro del header como información adicional
+            - Las respuestas de un servidor las obtenemos mediante un objeto llamado response
+                - Este tendría la misma estructura que el objeto request anterior. (endpoint, body y header)
+                - Y el código del estado vendría dentro del header como información adicional
 
-        - Podemos usar un cliente rest para simular estos envios
+        - Podemos usar un cliente rest para simular estos envios desde el cliente añadiendo datos.
             - El cliente rest podría ser la extension thunder client de VS antes mencionado
             - Simulando el envio por el método que sea, añadiendo el endpoint
             - Podré seleccionar entre otras cosas Header o Body
             - Al seleccionar body seleccionaré el tipo de dato que estoy simulando enviar y el contenido del dato
+            - El header lo añadirá thunder client de forma automática. Desde el front tendré que enviarlas yo.
+            - Para simular el envio de datos mediante un formulario debo seleccionar body/form-encode
+
+    - REQUEST PARAMS
+        
+        - Permite realizar peticiones con rutas dinámicas.
+        - Se enviarán como un objeto con sus conjuntos propiedad-valor
+        - En la ruta añado : seguido del nombre de la propiedad y así declaro que es dinámica
+        - Usaré el metodo params desde el servidor para obtenerlos
+        - Desde el navegador pasaré el valor
+        - Me va a permitir envias IDs desde la barra del navegador y capturarlos desde el servidor
+        - Todo parámetro recibido es un string
+            - Si quiero cambiarle su tipo uso parseInt, parseFloat, etc
+
+    - QUERIES
+    
+        - Permite enviar consultas desde el front
+        - Usaría el caracter ?
+        - Usaré el metodo queri para obtenerlos
+        - Añado variables
+        - PUedo añadir mas valores añadiendo un &
+        - El servidor siempre lo recibe como un objeto igual que los parámetros
+        - PUedo acceder a las variables directamente 
 
 
-
-
-
+        
 

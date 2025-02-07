@@ -101,26 +101,97 @@ app.get('/isAlive', (req, res) => {
     res.sendStatus(204)
 })
 
-// FIN DE LAS RUTAS
-
 /*
-    INICIO DE LAS PRUEBAS REQUEST BODY. SIMULACION DE UNA PETICIONES POST
-    Para probarlo hay que seguir los pasos descritos en el archivo express.txt
-    Debo simular una peticion desde el front usando la extension thunder client: método post, endponint localhost:3000/user. En el body debo enviar un texto
+    INICIO DE LAS PRUEBAS REQUEST BODY. SIMULACION DE PETICIONES POST DESDE EL CLIENTE PASANDOLE DATOS AL SERVIDOR
+    Para probarlo hay que seguir los pasos descritos en el archivo express.txt y usarla extension thunder client:
+    Desde la extension indico el método post, la url se corresponderia con el endpoint. En el body indico el tipo de datos que envio y en el recuadro de abajo introduzco los datos que quiero enviar
 */
 
-// Esté código indica que recibiré texto, mostraŕe en consola el dato enviado y devuelvo un mensaje de usuario creado
-app.use(express.text)
-app.post('/user', (req, res) => {
+// PRUEBA 1: Recibo un texto, lo muestro en consola y devuelvo un texto "Usuario creado"
+app.use(express.text())
+app.post('/user', (req, res) => {    
     console.log(req.body)
     res.send('Usuario creado')
 })
+
+// PRUEBA 2: Recibo un json con los datos personales de un cliente. 
+app.use(express.json())
+app.post('/userInfo', (req, res) => {    
+    console.log(req.body)
+    res.send('Añadido datos personales a la BBDD')
+})
+
+// PRUEBA 3: Recibo información desde un formulario. 
+app.use(express.urlencoded({extended: false}))
+app.post('/formulario', (req, res) => {    
+    console.log(req.body)
+    res.send('Recibido los datos desde el formulario')
+})
+
+/*
+    INICIO DE LAS PRUEBAS REQUEST PARAMS.
+    Usando rutas dinámicas envio parametros desde el cliente que recibe el servidor. Véase en express.txt
+*/
+
+/* 
+    PRUEBA 1: Recibo un parametro que siempre es un string.
+    Muestro en consola el objeto completo con el parámetro recibido.
+    El valor que coincide con el parámetro lo maso a mayusculas
+    Muestro un mensaje en el navegador con el parámetro recibido y el tipo de dato que es
+    Para probarlo hay que introducir en el navegador la url http://localhost:3000/user/elIdQueQuieraEnviar
+*/
+
+app.get('/user/:id', (req, res) => {
+    console.log(req.params) 
+    console.log(`Lo paso a mayusculas: ${req.params.id.toUpperCase()}`)     
+    res.send(`Recibido el parametro: ${req.params.id} de tipo: ${typeof req.params.id}` )
+})
+
+/*
+    PRUEBA 2: Recibo dos parametros y devuelvo su suma. Pero extrallendo los parametros de req.params
+    La url seria por ejemplo http://localhost:3000/suma/1/4
+*/
+app.get('/suma/:num1/:num2', (req, res) => {
+    const {num1, num2} = req.params
+    res.send(`El resultado de su suma es: ${parseInt(num1) + parseInt(num2)}`)
+})
+
+/*
+    PRUEBA 3: Devuelve una imagen solo si el usuario es baranda
+    La url http://localhost:3000/imagen/baranda/photo devuelve una imagen.
+    La url http://localhost:3000/imagen/baranda/photo2 devuelve pagina no encontrada. se aplicaria el use
+    La url http://localhost:3000/imagen/baranda2/photo devolvería Usuario incorrecto
+    
+*/
+app.get('/imagen/:usuario/photo', (req, res) => {
+    const {usuario} = req.params
+    if(usuario === 'baranda'){
+        res.sendFile('./assets/logo.png', {
+            root: __dirname
+        })
+    } else {
+        res.send('Usuario incorrecto')
+    }
+
+}) 
+
+/*
+    PRUEBA 4: Enviamos el nombre y la edad de un usuario y devolvemos un mensaje con el nombre y la edad
+    El orden con el que extraigo los parámetros no importa. Extraigo primero la edad y despues el nombre
+*/
+app.get('/usuario/:nombre/edad/:edad', (req, res) => {
+    const {edad, nombre} = req.params
+    res.send(`Bienvenido ${nombre}, tienes ${edad} años`)
+})
+
 
 // Llegado esta momento ha recorrido todas las rutas y no ha encontrado ninguna, por lo que devuelvo un mensaje de error
 app.use((req, res) => {
     res.send('Pagina no encontrada')
     //res.status(404).send('Pagina no encontrada')
 })
+
+// FIN DE LAS RUTAS
 
 // Indico el puerto donde escucha la aplicacción y lo muestro en consola
 app.listen(3000)
