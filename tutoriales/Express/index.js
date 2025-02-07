@@ -184,6 +184,35 @@ app.get('/usuario/:nombre/edad/:edad', (req, res) => {
     res.send(`Bienvenido ${nombre}, tienes ${edad} años`)
 })
 
+/*
+    INICIO DE LAS PRUEBAS QUERY. Véase mas detalles en express.txt
+*/
+
+/* 
+    PRUEBA1: Enviar la edad y la fecha de cumpleaños.
+    - La url seria: http://localhost:3000/vble/?edad=50&cumpleanos=25 de abril de 1975. Los espacios serán remplazados por %
+    - Muestra por consola el objeto que contiene ambas variables y mostrarlas en el navegador
+*/
+app.get('/vble/', (req, res) => {    
+    console.log(req.query)
+    res.send(`Mi edad es: ${req.query.edad} años, nací el ${req.query.cumpleanos}`)    
+})
+
+/*
+    PRUEBA 2: Devuelve los libros de javascript solo si se le indica mediante una query
+    - Url: http://localhost:3000/search/?q=Libros%20de%20javascript devolvería la paginas de libros de javascript
+    - En caso contraria devolvería una página normal
+
+*/
+app.get('/search', (req, res) => {
+    if(req.query.q === 'Libros de javascript') res.send('Lista de libros de javascript')        
+    else res.send('Pagina normal')    
+})
+
+/*
+    PRUEBA 3: Combinar parámetros y queries
+
+*/
 
 // Llegado esta momento ha recorrido todas las rutas y no ha encontrado ninguna, por lo que devuelvo un mensaje de error
 app.use((req, res) => {

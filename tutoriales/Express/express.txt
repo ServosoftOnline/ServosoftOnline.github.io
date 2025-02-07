@@ -168,13 +168,13 @@ EXPRESS:
 
     - QUERIES
     
-        - Permite enviar consultas desde el front
-        - Usaría el caracter ?
-        - Usaré el metodo queri para obtenerlos
-        - Añado variables
-        - PUedo añadir mas valores añadiendo un &
-        - El servidor siempre lo recibe como un objeto igual que los parámetros
-        - PUedo acceder a las variables directamente 
+        - Permite declarar variables y enviarlas al backend anteponiendo el caracter ?vbleEnvidada=valorEnviado
+        - Desde el navegador escribimos una ruta como esta: http://localhost:3000/ruta/?x=20
+        - Desde el backend uso el metodo query y obtengo un objeto cuya propiedad es vbleEnviada y su valor es valorEnviado
+            - El valor enviado será un string al igual que en resquest params
+        
+        - Puedo añadir mas variables añadiendo un & por ejemplo ?vble1=valorVble1&vble2=valorVble2        
+        - Puedo acceder a las variables directamente 
 
 
         
