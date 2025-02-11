@@ -42,14 +42,14 @@ const express = require('express')
 // Llamo a la función express y almaceno el resultado en la app
 const app = express()
 
-// Funcion middleware que se ejecuta antes de llegar a las rutas. Muestra la ruta y el metodo utilizado
+// Funcion middleware que muestra la ruta y el metodo utilizado
 app.use((req, res, next) => {
-    console.log('Middleware ejecutado')
+    console.log('Informacion que llega al servidor')
     console.log(`Ruta accedida: ${req.url} con el método ${req.method}`)
     next()
 })
 
-// INICIO DE LAS RUTAS (O TAMBIEN LLAMADO ROUTING)
+// RUTAS DESPROTEGIDAS. PÚBLICAS PARA TODOS LOS USUARIOS
 // Al entrar en la ruta raiz devuelvo el archivo index.html situado dentro de la carpeta static
 app.get('/', (req, res) => {
     res.sendFile('./static/index.html', {
@@ -64,30 +64,10 @@ app.get('/products', (req, res) => {
     res.send('Lista de productos')
 })
 
-// Puedo entrar en la misma ruta anterior pero usando el método post me devolerá el texto 'Creando productos'
-app.post('/products', (req, res) => {
-    res.send('Creando productos')
-})
-
-// Igual para el método put
-app.put('/products', (req, res) => {
-    res.send('Actualizando un producto')
-})
-
-// Igual para el método delete
-app.delete('/products', (req, res) => {
-    res.send('Eliminando un producto')
-})
-
-// Igual para el método patch
-app.patch('/products', (req, res) => {
-    res.send('Actualizando un dato de un producto')
-})
-
 // Accedo a esta ruta tanto desde el navegador como desde thunder client
 app.all('/info', (req, res) => {
     res.send('Server info')
-}) 
+})
 
 // Al entrar en la ruta /miarchivo devuelvo una imagen con un logo
 app.get('/miarchivo', (req, res) => {
@@ -212,7 +192,7 @@ app.get('/vble/', (req, res) => {
 
 /*
     PRUEBA 2: Devuelve los libros de javascript solo si se le indica mediante una query
-    - Url: http://localhost:3000/search/?q=Libros%20de%20javascript devolvería la paginas de libros de javascript
+    - Url: http://localhost:3000/search?q=Libros%20de%20javascript devolvería la paginas de libros de javascript
     - En caso contraria devolvería una página normal
 
 */
@@ -225,20 +205,64 @@ app.get('/search', (req, res) => {
     PRUEBA 4: Enviar desde el cliente dos datos en una sola variable
     - La url: http://localhost:3000/combinado?user=jesus&user=oscar sería recibida por el servidor como un objeto
     - Su propiedad seria user y su valor seria un array formado por dos strings jesus y oscar
-
 */
-
-app.get('/combinado/', (req, res) => {
+app.get('/combinado', (req, res) => {
     console.log(req.query)
+    const queryKey = Object.keys(req.query)[0]
+    const queryValues = req.query[queryKey].join(' y ')
+    res.send(`El objeto recibido tiene la propiedad ${queryKey} y su valor es un array con el contenido ${queryValues}`)
 })
+
+// FIN RUTAS DESPROTEGIDAS O PUBLICAS
+
+// FUNCION MIDDLEWARE: COMPRUEBA SI EL USUARIO ESTÁ AUTORIZADO.
+// Solo si está autorizado podrá acceder a la ruta dashboard y a las siguientes
+// La ruta http://localhost:3000/dashboard?login=erbaranda@gmail.com sí dara acceso
+// Si el login de usuario es erbaranda@gmail.com llama a la funcion next y permite permitirá el acceso ya que llamará a la funcion next
+
+app.use((req, res, next) => {
+    console.log('Comprobando acceso ...')
+    if(req.query.login === 'erbaranda@gmail.com') {
+        console.log('Usuario autorizado')
+        next()
+    }
+    else res.send('Usuario no autorizado')
+})
+
+app.get('/dashboard', (req, res) => {
+    res.send('Dashboard page')
+})
+
+// RUTAS PROTEGIDAS. SOLO ACCEDEN USUARIOS REGISTRADOS QUE HAN PASADO EL ANTERIOR MIDDELWIRE
+
+// Esta sería la ruta para poder acceder a esta ruta protegida: http://localhost:3000/products?login=erbaranda@gmail.com
+// Desde thunder client o desde el frontend utilizando el método post
+app.post('/products', (req, res) => {
+    res.send('Creando productos')
+})
+
+// La ruta sería la misma pero usando el método put
+app.put('/products', (req, res) => {
+    res.send('Actualizando un producto')
+})
+
+// La ruta sería la misma pero usando el método delete
+app.delete('/products', (req, res) => {
+    res.send('Eliminando un producto')
+})
+
+// La ruta sería la misma pero usando el método patch
+app.patch('/products', (req, res) => {
+    res.send('Actualizando un dato de un producto')
+})
+
+// FIN DE LAS RUTAS PRIVADAS
 
 // Llegado esta momento ha recorrido todas las rutas y no ha encontrado ninguna, por lo que devuelvo un mensaje de error
 app.use((req, res) => {
     res.send('Pagina no encontrada')
     //res.status(404).send('Pagina no encontrada')
 })
-
-// FIN DE LAS RUTAS
 
 // Indico el puerto donde escucha la aplicacción y lo muestro en consola
 app.listen(3000)

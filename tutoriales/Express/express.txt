@@ -187,10 +187,11 @@ EXPRESS:
 
     - FUNCION MIDDLEWARE
 
-        - Función que se ejecuta antes de acceder a las rutas declaradas en el backend
-            - Registrando información que va llegando al servidor. Este concepto se llama logging
-            - Las funciones que registran los datos se les llama loggers
-            - Como por ejemplo la ruta y el metodo usado o más información que necesite
+        - Función que se ejecuta antes de acceder a las rutas declaradas en el backend:
+            - Suele usarse para registrar informacion que llega al servidor (logging y loggers)
+                - A esta accion se le llama logging
+                - A las funciones que registrar los datos se les llama loggers
+                - Esta informacion registrada suelen ser rutas, metodos, ...
 
         - Implica el uso del metodo use en cuyo interior ejecutamos una función que no es necesario llamarla
         - La declaro al principio del servidor de tal forma que todas las peticiones pasarán antes por ella        
@@ -199,11 +200,14 @@ EXPRESS:
             - Sirve para que una vez la funcion se ejecute continue leyendo las rutas
             - Solo tengo que llamar al parametro next()
 
+        - Puedo usar un middleware para proteger rutas:   
 
-
-
-
-
-
-        
-
+            - No tengo porque declarar todas los middlewares y despues las rutas.
+            - Puedo tener un middleware que obtenga información que llega al servidor
+            - Declarar las rutas de acceso publico para todos los usuarios
+            - Tener otro middleware que verifique si un usuario está registrado en la bbdd.
+                - Si el usuario está registrado llamo a la funcion next y continuo con las rutas privadas
+                    - Las rutas que sean privadas iran a continuacion de este segundo middleware
+                    - Protegiendo estas rutas y dejando solo acceso a ellas a los usuarios registrados
+                - Si no lo está el servidor devuelve una respuesta de usuario no registrado y no ejecuta la funcion next()
+            
