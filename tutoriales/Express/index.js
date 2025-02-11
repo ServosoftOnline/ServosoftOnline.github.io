@@ -42,6 +42,13 @@ const express = require('express')
 // Llamo a la función express y almaceno el resultado en la app
 const app = express()
 
+// Funcion middleware que se ejecuta antes de llegar a las rutas. Muestra la ruta y el metodo utilizado
+app.use((req, res, next) => {
+    console.log('Middleware ejecutado')
+    console.log(`Ruta accedida: ${req.url} con el método ${req.method}`)
+    next()
+})
+
 // INICIO DE LAS RUTAS (O TAMBIEN LLAMADO ROUTING)
 // Al entrar en la ruta raiz devuelvo el archivo index.html situado dentro de la carpeta static
 app.get('/', (req, res) => {
@@ -55,7 +62,6 @@ app.get('/products', (req, res) => {
 
     // Antes de devolver la respuesta haría operaciones con la base de datos: Validaciones, consultas, etc
     res.send('Lista de productos')
-
 })
 
 // Puedo entrar en la misma ruta anterior pero usando el método post me devolerá el texto 'Creando productos'
@@ -77,6 +83,11 @@ app.delete('/products', (req, res) => {
 app.patch('/products', (req, res) => {
     res.send('Actualizando un dato de un producto')
 })
+
+// Accedo a esta ruta tanto desde el navegador como desde thunder client
+app.all('/info', (req, res) => {
+    res.send('Server info')
+}) 
 
 // Al entrar en la ruta /miarchivo devuelvo una imagen con un logo
 app.get('/miarchivo', (req, res) => {
@@ -189,8 +200,9 @@ app.get('/usuario/:nombre/edad/:edad', (req, res) => {
 */
 
 /* 
-    PRUEBA1: Enviar la edad y la fecha de cumpleaños.
-    - La url seria: http://localhost:3000/vble/?edad=50&cumpleanos=25 de abril de 1975. Los espacios serán remplazados por %
+    PRUEBA1: Enviar la edad y la fecha de cumpleaños mediante query
+    - La url seria: http://localhost:3000/vble/?edad=50&cumpleanos=25 de abril de 1975.
+    - Los espacios serán remplazados por %
     - Muestra por consola el objeto que contiene ambas variables y mostrarlas en el navegador
 */
 app.get('/vble/', (req, res) => {    
@@ -210,9 +222,15 @@ app.get('/search', (req, res) => {
 })
 
 /*
-    PRUEBA 3: Combinar parámetros y queries
+    PRUEBA 4: Enviar desde el cliente dos datos en una sola variable
+    - La url: http://localhost:3000/combinado?user=jesus&user=oscar sería recibida por el servidor como un objeto
+    - Su propiedad seria user y su valor seria un array formado por dos strings jesus y oscar
 
 */
+
+app.get('/combinado/', (req, res) => {
+    console.log(req.query)
+})
 
 // Llegado esta momento ha recorrido todas las rutas y no ha encontrado ninguna, por lo que devuelvo un mensaje de error
 app.use((req, res) => {
