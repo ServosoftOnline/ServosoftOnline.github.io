@@ -71,15 +71,15 @@ var dataContacto = {
             id: '3',
             clase: 'fa-solid fa-house fa-beat',
             estilo: 'color: #06395c;',
-            dato: 'Calle biznaga, 10. Mijas (Málaga)'            
-        },
-
-        {
-            id: '4',
-            clase: 'fa-solid fa-user-group fa-beat',
-            estilo: 'color: #06395c;',
-            dato: 'Casado y con dos niños preciosos'            
+            dato: 'Mijas (Málaga)'            
         }
+
+        // {
+        //     id: '4',
+        //     clase: 'fa-solid fa-user-group fa-beat',
+        //     estilo: 'color: #06395c;',
+        //     dato: 'Casado y con dos niños preciosos'            
+        // }
     ]
 };
 
@@ -170,24 +170,24 @@ var dataTitulacion = {
     titulaciones: [
         {
             id: '1',
-            titulo: 'Técnico Superior en Administración de Sistemas Informáticos Monousuario y Multiusuario',
+            titulo: 'Técnico Superior en Administración de Sistemas Informáticos Monousuario y Multiusuario. Ciclo formativo superior',
             fecha: 'SEPTIEMBRE 1996 - JUNIO 1998',
             centro: 'Instituto Bezmiliana en el Rincón de la Victoria'
-        },
+        }
 
-        {
-            id: '2',
-            titulo: 'Bachillerato superior',
-            fecha: 'SEPTIEMBRE 1989 - JUNIO 1994',
-            centro: 'Instituto de educación secundaria Fuengirola Nº 1'
-        },
+        // {
+        //     id: '2',
+        //     titulo: 'Bachillerato superior',
+        //     fecha: 'SEPTIEMBRE 1989 - JUNIO 1994',
+        //     centro: 'Instituto de educación secundaria Fuengirola Nº 1'
+        // },
 
-        {
-            id: '3',
-            titulo: 'Educación General Básica',
-            fecha: 'SEPTIEMBRE 1980 - JUNIO 1989',
-            centro: 'Colegio público Andalucía'
-        },
+        // {
+        //     id: '3',
+        //     titulo: 'Educación General Básica',
+        //     fecha: 'SEPTIEMBRE 1980 - JUNIO 1989',
+        //     centro: 'Colegio público Andalucía'
+        // },
     ]
 };
 
@@ -322,35 +322,47 @@ var data = {
         {
             id: '13',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Firebase',        
+            capacidad: 'Firebase (SAAS)',        
         },
 
         {
             id: '14',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Node',        
+        },
+
+        {
+            id: '15',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Express',        
+        },
+
+        {
+            id: '16',
             estrellas: '&#9733;&#9733;',
             capacidad: 'PHP',        
         },
 
         {
-            id: '15',
-            estrellas: '&#9733;&#9733;&#9733;',
+            id: '17',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'Git',            
         },
 
         {
-            id: '16',
+            id: '18',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Github',            
         },
 
         {
-            id: '17',
+            id: '19',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Linux',
         },
 
         {
-            id: '18',
+            id: '20',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Windows',
         }
@@ -429,7 +441,7 @@ var dataExperiencia = {
         {
             id: '1',
             profesion: 'Técnico en telecomunicaciones',
-            fecha: 'SEPTIEMBRE 2009 - ACTUALIDAD',
+            fecha: 'SEPTIEMBRE 2009 - ENERO 2025',
             descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA son algunos de nuestros clientes. Instalo y resuelvo averías en diferentes tecnologías como XDSL, FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ...'          
         },
 
@@ -661,7 +673,7 @@ var dataTrabajos = {
             proyecto: 'Gestor de actuaciones',
             enlace: 'https://gestordeactuaciones.web.app/',
             imagenSrc: './img/trabajo4.jpg',
-            descripcion: '<b>Aplicación finalizada que permite a cualquier empresa que ofrezca servicios técnicos poder gestionar sus actuaciones técnicas.</b> Tiene perfiles para diferentes usuarios, administradores, coordinadores y técnicos. Suma los puntos de cada actuación de forma automática, es responsive, genera informes en libros excel, ...\n\n<b><u>Pueden probar esta aplicación con estos usuarios:</u></b>\n\n- <b>Usuario</b>: administrador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> coordinador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico2@gmail.com - <b>contraseña:</b> 123456\n\n',
+            descripcion: '<b>Aplicación completa y funcional que permite a cualquier empresa que ofrezca servicios técnicos poder gestionar sus actuaciones técnicas.</b> Tiene perfiles para diferentes usuarios, administradores, coordinadores y técnicos. Suma los puntos de cada actuación de forma automática, es responsive, genera informes en libros excel, ...\n\n<b><u>Pueden probar esta aplicación con estos usuarios:</u></b>\n\n- <b>Usuario</b>: administrador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> coordinador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico2@gmail.com - <b>contraseña:</b> 123456\n\n',
         }
     ]
 };

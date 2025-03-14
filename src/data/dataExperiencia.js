@@ -8,7 +8,7 @@ export default {
         {
             id: '1',
             profesion: 'Técnico en telecomunicaciones',
-            fecha: 'SEPTIEMBRE 2009 - ACTUALIDAD',
+            fecha: 'SEPTIEMBRE 2009 - ENERO 2025',
             descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA son algunos de nuestros clientes. Instalo y resuelvo averías en diferentes tecnologías como XDSL, FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ...'          
         },
 

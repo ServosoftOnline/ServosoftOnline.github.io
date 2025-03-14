@@ -80,35 +80,47 @@ export default {
         {
             id: '13',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Firebase',        
+            capacidad: 'Firebase (SAAS)',        
         },
 
         {
             id: '14',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Node',        
+        },
+
+        {
+            id: '15',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Express',        
+        },
+
+        {
+            id: '16',
             estrellas: '&#9733;&#9733;',
             capacidad: 'PHP',        
         },
 
         {
-            id: '15',
-            estrellas: '&#9733;&#9733;&#9733;',
+            id: '17',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'Git',            
         },
 
         {
-            id: '16',
+            id: '18',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Github',            
         },
 
         {
-            id: '17',
+            id: '19',
             estrellas: '&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Linux',
         },
 
         {
-            id: '18',
+            id: '20',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Windows',
         }

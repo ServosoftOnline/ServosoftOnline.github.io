@@ -24,14 +24,14 @@ export default {
             id: '3',
             clase: 'fa-solid fa-house fa-beat',
             estilo: 'color: #06395c;',
-            dato: 'Calle biznaga, 10. Mijas (Málaga)'            
-        },
-
-        {
-            id: '4',
-            clase: 'fa-solid fa-user-group fa-beat',
-            estilo: 'color: #06395c;',
-            dato: 'Casado y con dos niños preciosos'            
+            dato: 'Mijas (Málaga)'            
         }
+
+        // {
+        //     id: '4',
+        //     clase: 'fa-solid fa-user-group fa-beat',
+        //     estilo: 'color: #06395c;',
+        //     dato: 'Casado y con dos niños preciosos'            
+        // }
     ]
 };
