@@ -1,15 +1,28 @@
 <!--
+
     TRES FORMAS DE INSERTAR JAVASCRIPT EN UN DOCUMENTO HTML :
-        - Desde body
+
+        - Desde body sin añadir el atributo defer
+            - Es lo más usual en aplicaciones modernas y recomendado en la mayoria de los casos
+            - El navegador renderiza el html y luego ejecuta el script. No se añade el atributo defer
+            - Las variables globales o el esto de la configuración (settings) ya se ejecutarían en los frameworks
+
         - Desde head añadiendo el atributo defer
+            - Si el script fuera necesario renderizarlo antes de renderizar la pagina
+                - Ya sea porque tenga variables globales o que quiera configurar la pagina antes de mostrarla
+            - Es muy importante añadir el atributo defer porque si no bloquería la carga de la página
+
         - Desde un archivo externo añadiendo defer
+    
     Javascript:
         - Es sensible a mayúsculas y minúsculas
         - punto y coma al final
         - Respetar sintaxis camelCase
 -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,8 +37,10 @@
     <!-- TERCERA FORMA: Desde un archivo externo. Forma más usual -->
     <script defer src="./holaMundo.js"></script>
 </head>
+
 <body>
     <h1>Hola mundo!</h1>
+    
     <!-- PRIMERA FORMA: Insertar sentencias Javascript antes del final del body -->
     <script>
         // puede contener etiquetas

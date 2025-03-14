@@ -137,6 +137,7 @@ EXPRESS:
 
             - Como textos, objetos jason, archivos o datos a partir de un formulario del front
             - Estas peticiones se realizarían mediante el metodo post ya que se van a enviar datos
+            
             - Mediante el método use le debo indicar el dato que recibirá el servidor:
                 - Si recibe un string => app.use(express.text())
                 - Si recibe un json => app.use(express.json()) 
@@ -156,8 +157,7 @@ EXPRESS:
         - Podemos usar un cliente rest para simular estos envios desde el cliente añadiendo datos.
             - El cliente rest podría ser la extension thunder client de VS antes mencionado
             - Simulando el envio por el método que sea, añadiendo el endpoint
-            - Podré seleccionar entre otras cosas Header o Body
-            - Al seleccionar body seleccionaré el tipo de dato que estoy simulando enviar y el contenido del dato
+            - Selecciono Body y el tipo de dato que simulo enviar y su contenido
             - El header lo añadirá thunder client de forma automática. Desde el front tendré que enviarlas yo.
             - Para simular el envio de datos mediante un formulario debo seleccionar body/form-encode
 
@@ -187,6 +187,7 @@ EXPRESS:
 
     - FUNCION MIDDLEWARE
 
+        - Son funciones intermedias creadas por mí o importadas desde express que pueden ejecutarse en express
         - Función que se ejecuta antes de acceder a las rutas declaradas en el backend:
             - Suele usarse para registrar informacion que llega al servidor (logging y loggers)
                 - A esta accion se le llama logging
@@ -197,12 +198,21 @@ EXPRESS:
         - La declaro al principio del servidor de tal forma que todas las peticiones pasarán antes por ella        
 
         - Dispone de un parámetro extra ademas de request y response que se llama next, que es una funcion
-            - Sirve para que una vez la funcion se ejecute continue leyendo las rutas
-            - Solo tengo que llamar al parametro next()
+
+            - Sirve para que una vez se ejecute continue leyendo las rutas
+            - Es obligatorio su presencia en los middlewares           
+            
+            - Es una función muy importante para tener control en el routing. 
+                - La llamo cuando quiero que continue leyendo la siguiente ruta
+                - Si no la llamo enviaré una respuesta al cliente y acabará la lectura del routing
+
+            - Las funciones usadas en el routing que no son middlewares tambien pueden tener la funcion next()
+                - Avanzando así en el routing llegado a este punto
+                - No es frecuente
 
         - Puedo usar un middleware para proteger rutas:   
 
-            - No tengo porque declarar todas los middlewares y despues las rutas.
+            - No tengo porque declarar todas los middlewares y despues las rutas.            
             - Puedo tener un middleware que obtenga información que llega al servidor
             - Declarar las rutas de acceso publico para todos los usuarios
             - Tener otro middleware que verifique si un usuario está registrado en la bbdd.
@@ -210,4 +220,171 @@ EXPRESS:
                     - Las rutas que sean privadas iran a continuacion de este segundo middleware
                     - Protegiendo estas rutas y dejando solo acceso a ellas a los usuarios registrados
                 - Si no lo está el servidor devuelve una respuesta de usuario no registrado y no ejecuta la funcion next()
-            
+
+        - Existen paquetes que permiten añadir middleware externas desde express
+
+            - Se suelen conocer a traves de la comunidad
+
+            - Un ejemplo de middleware externo es morgan
+
+                - Permite ver por consola las peticiones que van llegando
+                - Evitar tener que crear un logger a mano.
+
+                - Instalacion:
+
+                    - Escribir en consola: npm i morgan
+                    - Requerirlo: const morgan = require('morgan')
+                    - Sustituyo mi logger creado a mano por: app.use(morgan())
+                        - Mostrará en consola las peticiones mediante mensajes que puedo modificar
+
+                        - Dentro de la funcion morgan puedo añadir un texto que modificará esos mensajes
+                            - morgan('tiny')
+
+                            - morgan('dev')
+                                - Muestra el metodo de la peticion
+                                - La url
+                                - El estado de la peticion
+                                - El tiempo de respuesta de la peticion
+                                - Y cuanto pesó la respuesta
+
+                            - morgan('short')
+
+            - Al enviar diferentes tipos de datos mediante REQUEST BODY tambien uso middlewares:
+
+                - app.use(express.text()). Cuando recibo texto
+                - app.use(express.json()). Cuando recibo un objeto json
+                - app.use(express.urlencoded({extended: false})). Cuando recibo datos desde un formulario
+                - Ver uso de estos ejemplos en index.js
+
+            - En las pruebas de index.js donde envio
+            - Existen diferentes middlewares de express para: 
+
+                - Subir imágenes
+                - Comprobar si el usuario tiene valor dentro de su peticion como cookies
+                - Validar datos
+                - .....
+
+    - SETTINGS
+
+        - Permite definir variables que estarán presentes durante todo el script y/o reconfigurar express
+            - Se definen antes de los middlewares
+            - Permite tener todas esas variables en el mismo lugar
+            - Un ejemplo de reconfiguracion de express sería 'case sensitive routing'
+                - No es usual.
+                - Fuerza a que las rutas se escriban exactamente como se definieron para ser válidas
+                - app.set('case sensitive routing', true)
+                    - hace que una ruta definida como /Ruta solo sea valida si la escribo así en el navegador
+                    - Si la dejo en false, que es el valor por defecto, /ruta sería válida
+
+            - Existen módulos que necesitan de estas configuraciones para funcionar
+
+        - Se definen al principio del script mediante el método set y se accede a ellas mediante el método get
+
+        - Ej: 
+            const express = require("express")
+            const app = express()
+            app.set('vble', valor)
+            app.get('vble')
+
+        - Ver ejemplo en index.js
+
+    - STATIC FILES
+
+        - Si quiero enviar mas de un archivo es mejor no usar el método sendFile. Sería muy tedioso.
+        - Es mejor crear una carpeta publica donde almacenar los archivos index.html, estilos.css, index.js, ...
+            - Y esos archivos pasarán a ser publicos            
+
+        - Para ello usaré el middleware static propio de express donde almacenaré los archivos mencionados
+
+            - Al declarar el middleware añadiré la ruta publica como prefijo y lo haré al final de las rutas publicas
+            - Si existieran dos archivos con el mismo nombre el prefijo me permitirá dirijirme a uno u otro
+            - En el proyecto existen dos archivos llamados note.txt, uno privado y otro público
+            - El archivo index.js situado en /tutoriales/express/conceptosBasicos hay un ejemplo del uso de este middleware
+
+        - Se pueden tener mas de una carpeta publica
+            - Los proyectos hechos en react tienen la carpeta dist como publica
+            - Y podemos añadir otra llamada upload donde tener los archivos que queramos compartir
+
+    - MODULO path
+
+        - Si quiero ordenar mejor todo mi código y dejarlo todo orgranizado en una carpeta src:        
+        - Uso el modulo path para concatenar mi directorio por defecto con cada una de las carpetas publicas
+        - Uso el objeto global __dirname que contiene la ruta absoluta desde mi unidad donde me encuentro
+        - Añadir el método join para unir mi directorio por defecto y la carpeta publica correspondiente
+        - Permitiría que si cambiamos la ubicacion de la carpeta src, la aplicación se mantenga
+        - Ver como se aplica en el archivo index.js
+
+    - EXPRESS ROUTER
+
+        - Concepto router:
+
+            - Permite tener varios archivos que contengan las rutas y no almacenarlas en uno solo
+            - Creo muchos archivos y los unimos todos en una aplicación y los almaceno en una carpeta (router)
+
+        - Módulo express router:
+
+            - Express tiene un módulo llamado router que se encarga de esta gestion
+            - Las rutas almacenadas en cada uno de los archivos seran exportadas
+            - index.js, el archivo que antes las tenia todas, las importará un index.js y las usará
+
+    - TEMPLATE ENGINE:
+
+        - Tecnología que se añade al backend que permite crear múltiples paginas que comparten interfaces o datos
+        - En español se podría traducir como "Un motor de plantillas"  
+        - Permite procesar archivos html en el backend y enviarlos al frontend. 
+
+        - Debo usarlo en caso de no usar react aplicando template engine de esta forma:
+            - Envio desde el frontend información mediante request body, request params o request query
+            - Recibe esto datos el servidor.
+            - Hace su consulta en la bbdd
+            - Obtiene datos que los envia mediante template engine y crea la pagina web de respuesta
+
+
+        - Las páginas se suelen almacenar estas en una carpeta llamada views
+            - Tienen la extension .ejs y la estructura basica de un html            
+
+        - Configuración en settings.
+            - Es necesario realizar una configuracion en settings del archivo server.js
+
+            - Es necesario indicar en settings la carpeta y la ubicación de las carpeta que contiene las views
+                - app.set('views'. path.join(__dirname, 'views'))
+                
+            - Debo indicar el motor de plantillas utilizado:
+                - En este caso usarems ejs y lo indico así: app.set('view engine', 'ejs')
+
+    - SI USO REACT, NO DEBO USAR TEMPLATE ENINGE:
+
+        - En lugar de que Express renderice HTML con EJS, lo que harás es:
+
+            1️⃣ React se encarga de la interfaz de usuario y se ejecuta en el navegador.
+            2️⃣ Express actúa como un servidor API y solo envía JSON, no HTML.
+            3️⃣ MongoDB almacena los datos y Express los consulta cuando React los necesita.
+
+        - El flujo típico sería algo así:
+
+            1️⃣ React hace una petición HTTP (fetch, axios, etc.) a Express.
+            2️⃣ Express recibe la petición, consulta MongoDB y devuelve los datos en formato JSON.
+            3️⃣ React recibe los datos y los muestra en la UI.
+
+    - EJS
+        - Uno de los modulos que permite implementar template engine que usare en esta app
+        - Su documentación se encuentra en este enlace: https://ejs.co/
+
+        - Permite leer datos, combinarlos con el html y despues enviarlos al frontend
+            - Usando para ello una sintaxis para interpretar datos o ejecutar logica de javascript
+                - Son etiquetas con caracteres extraños
+                    - <%= vble %>
+                - Usar condicionales
+                - Unir distintas porciones de html en una sola
+
+            - Y usando el método render, puedo renderizar las paginas
+    
+        - Puedo obtener datos de una bbdd, renderizar una pagina y enviar dichos datos
+            -Ej: res.render(pagina de la carpeta views, {Objeto con los datos})
+
+        - Lo instalo mediante: npm i ejs
+        - Lo importo mediante la linea: require('ejs') o import si uso ECS6
+
+        
+
+        
