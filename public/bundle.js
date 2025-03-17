@@ -442,7 +442,7 @@ var dataExperiencia = {
             id: '1',
             profesion: 'Técnico en telecomunicaciones',
             fecha: 'SEPTIEMBRE 2009 - ENERO 2025',
-            descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA son algunos de nuestros clientes. Instalo y resuelvo averías en diferentes tecnologías como XDSL, FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ...'          
+            descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA fueron algunos de los clientes a quienes daba soporte técnico. Instalaba y resuelvía averías en diferentes tecnologías FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ROUTERS 5G, ...'          
         },
 
         {
@@ -456,7 +456,7 @@ var dataExperiencia = {
             id: '3',
             profesion: 'Proyecto familiar',
             fecha: 'NOVIEMBRE 2007 - ENERO 2009',
-            descripcion: 'Responsable en un proyecto familiar relacionado con la hostelería. Tuve a mi cargo a 12 personas.'
+            descripcion: 'Responsable en un proyecto familiar. Tuve a mi cargo a 12 personas.'
         },
 
         {
