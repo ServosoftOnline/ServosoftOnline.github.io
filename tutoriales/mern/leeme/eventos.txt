@@ -1,0 +1,35 @@
+- EVENTOS
+
+    - Cuando suceda una acción que pase algo. 
+    - Todos los eventos de javascript pueden usarse en react
+        - https://developer.mozilla.org/en-US/docs/Web/Events
+
+        - Eventos más usuales:
+
+            - De ratón
+                - onClick. Se activa cuando hago un click simple
+                - onDoubleClick. Se activa cuando haga un doble click
+                - onMouseEnter. Se activa cuando paso encima con el raton
+                - onMouseLeave. Se activa cuando salgo del elemento al que le apliqué onMouseEnter
+
+            - De teclado
+                - onKeyDows
+                - onKeyUp
+
+            - De formulario
+                - onFocus. Se activa cuando entro en un campo de un formulario y doy click
+                - onBlur. Se activa despues de que se active el evento focus y salga del campo
+                - onChange. Se generan cambios cada vez que tecleo en el interior de un input
+
+            - Existen para dispositivos móviles
+
+    - Uso los eventos de raton y onFocus y onBlur en el componente Eventos.jsx en el proyecto 01-primeros pasos
+    - Uso el evento onChange en el componente HookUseState.jsx del proyecto 02-use-state
+    
+
+
+
+
+
+
+

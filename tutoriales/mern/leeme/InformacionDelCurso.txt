@@ -1,0 +1,13 @@
+Curso realizado por victor robles desde la plataforma UDEMY
+
+- Nombre del curso: Aprende React JS con Hooks desde cero y desarrolla aplicaciones web con el MERN Stack (Portafolio, Blog y Red Social).
+
+- Fecha de inicio: Lo empiezo hoy 17 de marzo de 2025
+
+- Se necesita tener instalado lo siguiente:
+    - La extension de visual studio ES7+React/Redux/React-native
+    - La extension del navegador firefox React Developer tools proporciona ayuda para ver el estado de la aplicacion
+        - Al inspeccionar la pagina aparecen las pestañas de components y profiler
+        
+    - Nodejs desde https://nodejs.org/es/. Recomendable instalar la version LTS. node -v para ver la version.
+    - npm. npm -v para ver la version. Se instala junto con nodejs

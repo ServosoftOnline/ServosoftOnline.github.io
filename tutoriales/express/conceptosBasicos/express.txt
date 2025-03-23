@@ -339,7 +339,6 @@ EXPRESS:
             - Hace su consulta en la bbdd
             - Obtiene datos que los envia mediante template engine y crea la pagina web de respuesta
 
-
         - Las páginas se suelen almacenar estas en una carpeta llamada views
             - Tienen la extension .ejs y la estructura basica de un html            
 
@@ -352,23 +351,10 @@ EXPRESS:
             - Debo indicar el motor de plantillas utilizado:
                 - En este caso usarems ejs y lo indico así: app.set('view engine', 'ejs')
 
-    - SI USO REACT, NO DEBO USAR TEMPLATE ENINGE:
-
-        - En lugar de que Express renderice HTML con EJS, lo que harás es:
-
-            1️⃣ React se encarga de la interfaz de usuario y se ejecuta en el navegador.
-            2️⃣ Express actúa como un servidor API y solo envía JSON, no HTML.
-            3️⃣ MongoDB almacena los datos y Express los consulta cuando React los necesita.
-
-        - El flujo típico sería algo así:
-
-            1️⃣ React hace una petición HTTP (fetch, axios, etc.) a Express.
-            2️⃣ Express recibe la petición, consulta MongoDB y devuelve los datos en formato JSON.
-            3️⃣ React recibe los datos y los muestra en la UI.
-
     - EJS
         - Uno de los modulos que permite implementar template engine que usare en esta app
         - Su documentación se encuentra en este enlace: https://ejs.co/
+        - Se puede descargar desde: https://www.npmjs.com/package/ejs
 
         - Permite leer datos, combinarlos con el html y despues enviarlos al frontend
             - Usando para ello una sintaxis para interpretar datos o ejecutar logica de javascript
@@ -385,6 +371,27 @@ EXPRESS:
         - Lo instalo mediante: npm i ejs
         - Lo importo mediante la linea: require('ejs') o import si uso ECS6
 
-        
+    - SI USO REACT, NO DEBO USAR TEMPLATE ENINGE:
+
+        - En lugar de que Express renderice HTML con EJS, lo que harás es:
+
+            1️⃣ React se encarga de la interfaz de usuario y se ejecuta en el navegador.
+            2️⃣ Express actúa como un servidor API y solo envía JSON, no HTML.
+            3️⃣ MongoDB almacena los datos y Express los consulta cuando React los necesita.
+
+        - El flujo típico sería algo así:
+
+            1️⃣ React hace una petición HTTP (fetch, axios, etc.) a Express.
+            2️⃣ Express recibe la petición, consulta MongoDB y devuelve los datos en formato JSON.
+            3️⃣ React recibe los datos y los muestra en la UI.
+
+
+
+    VOY POR EL VIDEO EN LA HORA 3 Y 16 MINUTOS. EL MOTOR DE PLANTILLAS ESTÁ ANTICUADO SI YA USO REACT.
+    QUIZAS NO CONTINUE APRENDIENDO DE ESTE VIDEO DEBIDO A SU FALTA DE USO.
+
+    RECOMENDACION CHATGPT:
+    Si tu meta con Express es construir APIs para consumir desde React, entonces olvídate de EJS y concéntrate en middleware, rutas, controladores, autenticación y bases de datos.    
+    👉 Mi consejo: cambia de video y busca uno más enfocado en Express como backend para una aplicación React. Te evitarás aprender cosas innecesarias.
 
         

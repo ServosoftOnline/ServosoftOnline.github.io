@@ -1,0 +1,93 @@
+Las carpetas creadas al iniciar este proyecto de vite son las siguientes:
+
+- node_modules contiene las diferentes liberías de react:
+    - No se suele modificar. Se irán almacenando los paquetes y dependencias
+    - Se puede borrar si no vamos a usar el proyecto durante un tiempo
+    - Despues se recuperaría con el comando npm install que instalará las dependencias del archivo package.json
+
+- public
+    - Al compilar la aplicación se almacenaría en esta carpeta lo que se subiría al servidor
+    - Se cargará la web
+
+
+- src
+    - Contiene los archivos de los que se comprondrá la aplicacion:
+
+        - App.css 
+            - Estilos que se importarán en App.jsx
+
+        - App.jsx
+            - Componente ppal de la aplicación.
+            - Al principio contendrá la pagina inicial creada por vite con los logos y el contador
+            - Despues se borrará y se empezará allí nuestra app
+
+        - index.css
+            - Estilos que se imporarán en main.jsx
+
+        - main.jsx
+            - Renderiza el componente ppal App.jsx
+
+- .gitignore
+    - Archivo que especifica que archivos y carpetas deben ser ignorados, no rastreados ni subidos al repositorio
+    - No se incluirián en los commits
+    
+
+- eslint.config.js
+    - Contiene la configuracion de eslint    
+    - Ayuda en el formateo y calidad del codigo
+    - Evita errores comunes en react. Ej: no importar react en cada archivo jsx
+    - Ignora directorios innecesarios como dist o node_modules
+    - Asegura buenas prácticas segun las reglas de ESLint
+    - No recomendable borrarlo
+
+- index.html
+    - Pagina web inicial que contiene la llamada al script main.jsx
+
+- package-lock.json
+
+    - Se asegura de las versiones exactas de las dependiencias
+    - Contiene un registro exacto de las versiones instadas de cada paquete con sus subdependencias
+    - Si varias personas instalan el proyecto con npm install, obtendrán las mismas versiones.
+    - Mejora el rendimiento: npm usa este archivo para instalar dependencias más rápido.
+
+- package.json
+
+    - Contiene la configuración principal de proyecto y gestiona las dependiencias
+        - Dependencias necesarias en produccion
+        - Dependencias solo para el desarrollo
+        - scripts que contiene los comandos personalizados que requiera
+
+    - Contiene las depedencias que se instalarían al ejecutar el comando npm install
+
+- README.md
+    - Documento en formato Markdown (.md) que sirve como guía o documentación principal de tu proyecto.
+    
+    - Se usa para:
+        - Explicar de qué trata el proyecto
+        - Puede contener instrucciones de instalación y uso
+        - Puede contener Información adicional
+            - Créditos, licencia, contribuciones, capturas de pantalla, etc.
+
+- vite.config.js
+
+    - Es la configuración principal de Vite en tu proyecto.
+    - Sirve para personalizar cómo se comporta Vite en el desarrollo y la compilación.
+
+    - Se usa para:
+        - Configurar alias de rutas. Evitando rutas largas al importar archivos.
+        - Definir plugins.
+            - Como @vitejs/plugin-react para React o vite-plugin-svgr para importar SVG como componentes.
+
+        - Modificar opciones del servidor de desarrollo
+            - Cambiar el puerto, activar proxy, HMR (Hot Module Replacement), etc.
+
+        - Ajustar la compilación para producción
+            - Minificación, optimización de dependencias, configuración de salida, etc.
+
+- Se suelen eliminar lo siguiente antes de empezar un proyecto:
+    - En App.jsx:
+        - Trasformo la funcion que lo contiene en una funcion de tipo flecha
+        - Elimino todo el contenido del return y dejo solo un hola mundo
+        - Elimino los importos de los logos y los archivos asociados
+        - Eliminar contenido de los estilos de index.css y app.css que no necesite
+        

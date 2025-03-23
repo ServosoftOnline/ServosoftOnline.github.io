@@ -82,8 +82,13 @@ INSTALAR UNA APP CON REACT
       - Sustituye a create react app
       - Instalar vite
           - 1.- npm create vite@latest
-          - 2.- Instalo las depedencias iniciales mediante npm install
+          - 2.- Entro en la carpeta creada e instalo las depedencias iniciales mediante npm install
           - 3.- Ejecuto npm run dev y compruebo que la instalacion inicial de vite funciona
+
+      - Crea una estructura de carpetas donde el archivo main.jsx engloba al componente ppal App.jsx
+        - App.jsx se encuentra en el interior de la etiqueta StrictMode
+        - StrictMode ayuda a detectar problemas potenciales en la aplicación durante el desarrollo.
+          - Es recomendable dejarla
        
       - Pasar una aplicacion de create react app a vite:
           - 1.- Sobrescribo la carpeta src de la nueva app con la carpeta src de la vieja app

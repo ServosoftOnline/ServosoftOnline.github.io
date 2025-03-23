@@ -1,0 +1,14 @@
+- HOOKS
+
+    - Funciones de React que permite trabajar con el estado de vida de los componentes    
+    - "Es una funcion que cuando pasa algo hace algo"
+
+    - Hooks más usuales:
+        - useState. Permite trabajar con los estados de react
+
+            - Tiene tres partes:
+                - la vble que guarda el dato
+                - la funcion que permite acceder a ese dato y modificarlo
+                - Su valor por defecto                
+
+        - useEffect.
