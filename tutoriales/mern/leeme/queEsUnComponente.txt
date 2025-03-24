@@ -1,6 +1,6 @@
 - Un componente:
 
-    - Es una parte de la aplicacion. Puede ser una clase, una función, ....
+    - Es una parte de la aplicacion. Puede ser una clase, una función, .... que renderizará algo en pantalla
     - los importo mediante import donde lo requiera y lo exporto al declararlo
 
     - Tienen la estructura de una función: 

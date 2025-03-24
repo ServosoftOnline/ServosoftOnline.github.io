@@ -33,4 +33,18 @@
   }
 }
 
+hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.añoActual{
+  display: flex;
+  justify-content: center;
+
+  p{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
 

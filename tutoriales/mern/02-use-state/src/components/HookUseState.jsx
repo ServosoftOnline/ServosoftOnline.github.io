@@ -1,5 +1,5 @@
 /* 
-  EJEMPLO DE USO DEL HOOK USESTATE: 
+  EJERCICIO 1 DE USO DEL HOOK USESTATE: 
     - Da la bienvenida al nombre por defecto almacenado en el estado nombre
     - Mediante un formulario se puede cambiar el nombre mediante el estado nuevo nombre
 */
@@ -24,7 +24,8 @@ export const HookUseState = () => {
   return (
     <div>
       <h2>Bienvenido {nombre}</h2>
-      
+      <h2>Ejercicio 1: Cambia el nombre a quien dar la bienvenida</h2>
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -34,6 +35,8 @@ export const HookUseState = () => {
         />
         <button type="submit">Cambiar nombre</button>
       </form>
+
+      <hr/>
 
     </div>
   );
