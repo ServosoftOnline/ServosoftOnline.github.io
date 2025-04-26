@@ -20,6 +20,7 @@
                 - onFocus. Se activa cuando entro en un campo de un formulario y doy click
                 - onBlur. Se activa despues de que se active el evento focus y salga del campo
                 - onChange. Se generan cambios cada vez que tecleo en el interior de un input
+                - onSubmit. Permite ejecutar una función cuando se le de click al boton de enviar
 
             - Existen para dispositivos móviles
 

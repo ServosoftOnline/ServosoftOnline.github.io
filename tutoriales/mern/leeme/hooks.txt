@@ -4,6 +4,7 @@
     - "Es una funcion que cuando pasa algo hace algo"
 
     - Hooks más usuales:
+
         - useState. Permite trabajar con los estados de react
 
             - Tiene tres partes:
@@ -11,4 +12,8 @@
                 - la funcion que permite acceder a ese dato y modificarlo
                 - Su valor por defecto                
 
-        - useEffect.
+        - useEffect. 
+            - Hooks que produce un efecto.
+            - Cada vez que se cargue un componente o este cambie de estado se lanzaría una funcion
+            
+

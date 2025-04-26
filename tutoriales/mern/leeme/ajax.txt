@@ -1,0 +1,12 @@
+AJAX es la técnica que permite a tu frontend en React comunicarse con tu backend en Node/Express para pedir o enviar datos (como usuarios, productos, ubicaciones, etc.), sin recargar la página y de forma asincrona
+
+- Se usa JSON para el intercambio de datos
+- Se hacen peticiones de forma nativa mediante javascript o usando librerias como axios
+- De forma nativa suele aplicarse dentro del hook useEffect
+
+    useEffect(() => {
+    fetch('http://localhost:5000/api/usuarios')
+        .then(res => res.json())
+        .then(data => setUsuarios(data));
+    }, []);
+

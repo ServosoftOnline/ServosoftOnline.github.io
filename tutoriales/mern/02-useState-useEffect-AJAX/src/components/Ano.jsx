@@ -31,15 +31,16 @@ export const Ano = () => {
     // Renderizo
     return (
         <>        
-            <h2>Ejercicio 2: Aumenta o disminuye años e introduce un año concreto</h2>
+            <h2>Ejercicio 2: Aumenta o disminuye años e introduce un año concreto (Hook useState)</h2>
 
-            <div className='añoActual'>
+            <div className='form_ejercicio2'>
+
+                {/* Botones aumentar y disminuir */}
                 <button onClick={aumentaAño}>+</button>
                 <p>Año actual: {year}</p>
                 <button onClick={disminuyeAño}>-</button>
-            </div>
-
-            <div>
+            
+                {/* Formulario para cambiar el año */}
                 <form onSubmit={handleSubmit}>
 
                     <input

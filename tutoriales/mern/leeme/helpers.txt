@@ -1,0 +1,7 @@
+HELPERS
+
+- Fichero donde tenemos funciones que sirven como utilidades que podemos reutilizar
+- Separamos parte de la lógica de la app que nos permite abstraernos y entenderlo como algo mas general.
+- Contiene partes de codigo que podemos utilizar en diferentes proyectos
+- Angular lo llama servicio
+
