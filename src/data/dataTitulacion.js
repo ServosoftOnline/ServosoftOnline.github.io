@@ -7,7 +7,7 @@ export default {
     titulaciones: [
         {
             id: '1',
-            titulo: 'Técnico Superior en Administración de Sistemas Informáticos Monousuario y Multiusuario. Ciclo formativo superior',
+            titulo: 'Técnico Superior en Administración de Sistemas Informáticos en red. Ciclo formativo superior',
             fecha: 'SEPTIEMBRE 1996 - JUNIO 1998',
             centro: 'Instituto Bezmiliana en el Rincón de la Victoria'
         }

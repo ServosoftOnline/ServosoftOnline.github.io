@@ -3,15 +3,22 @@
     
     - En esta aplicacion se usa lo siguiente:
 
-        - css grid layout
+        - css grid layout.
+            - Los estilos se encuentran todos en index.css
+
         - local storage
+            - Irá almacenando las peliculas aquí
+            - Iré actualizando está acción con mucha frecuencia y por eso lo almacené en un helper
+
         - React
+            - Mediante la actualiación del estado peliculas se irá refrescando el contenido ppal
 
     - Funcionalidad:
 
-        - Mostrará las peliculas en pantalla
-        - Un buscador
-        - Se podrá eliminar y editar peliculas    
+        - Mostrará las peliculas de forma reactiva y en tiempo real mediante un buscador
+            - El formulario de busqueda en lugar de usar handleSubmit usará handleChange
+            
+        - Se podrá crear, editar y eliminar peliculas que se almacenarán en local storage
 */
 
 import React, {useState, useEffect} from "react"

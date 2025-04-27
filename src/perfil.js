@@ -17,7 +17,7 @@ const contenidoPerfil = document.createElement('div');
 contenidoPerfil.setAttribute('class', 'contenido');
 contenidoPerfil.innerHTML = `
     <p>
-        <h4>Soy técnico superior en Administracion de Sistemas Informáticos Monousuario y Multiusuario.</h4>
+        <h4>Soy técnico superior en Administracion de Sistemas Informáticos en red. Ciclo formativo superior</h4>
         <p>Desde que me titulé en 1998 he trabajado siempre en el sector de la informática, telecomunicaciones
         y desarrollo de aplicaciones. </p>
     </p>
