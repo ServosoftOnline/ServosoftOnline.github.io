@@ -1,0 +1,33 @@
+FORMAS DE REDIRECCIONAR DE UNA PAGINA A OTRA:
+
+    
+    - El componente Link (Enlaces SPA):
+
+        - Es necesario importalo así: import {Link} from 'react-router-dom'
+        - El componente Link se usa para realizar ENLACES SPA:
+        - Son enlaces que no recargan la página
+        - Se realizan fuera de la barra de navegación hacia rutas de nuestro proyecto
+        - Lo aplico en el componente Error404
+
+        - Diferencias de uso con NavLink y href:
+            - El componente NavLink se usa en las barras de navegación.
+            - La etiqueta href se usarán para hacer enlaces hacia paginas de fuera de nuestro proyecto
+
+    - El componente Navigate
+
+        - Es necesario importalo así: import {Navigate} from 'react-router-dom'
+        - Es parecido al Link pero lo podrémos usar cuando lo necesitemos sin necesidad de hacer click en él.
+
+        - Podré ejecutarlo directamente en el componente Route
+            - En el path le pongo la ruta y en element le añado el componente Navigate y hacia donde Redirigir
+
+        - Puedo usarlo cuando haga click en un botón o en algun momento de la programación
+
+    - El hook useNavigate
+        - Permite poder redireccionar hacia una ruta pudiendo añadir parámetros
+        - Podemos hacer un formulario, que la funcion handleSubmit obtenga la informacion
+            - Y que redireccione a una ruta pasandole la información obtenida.
+        - Ver ejemplo de uso en el componente Personas del proyecto rutas.
+        
+
+    - El proyecto rutas es un ejemplo de como funciona. Donde aplico todo lo indicado.

@@ -1,0 +1,137 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 3em;
+  padding: 1em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* Clase para el usuario registrado */
+.usuario {
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center;     /* Centrado vertical */
+  border: 1px solid white;
+  border-radius: 10px;
+  gap: 1rem;
+  padding: 0.1rem;
+  font-size: 18px;
+  color:#20C997;
+  margin-bottom: 1rem;
+
+  button {
+    border: 1px solid white;
+    margin: 1rem;    
+  }
+  
+}
+
+/* Clase común para ambas navegaciones */
+.navegacion ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.navegacion li {
+  margin: 0;
+}
+
+.navegacion a {
+  text-decoration: none;
+  color: whitesmoke;
+  font-size: 18px;
+  transition: color 0.2s ease;
+}
+
+.navegacion a:hover {
+  color: #007bff;
+}
+
+.navegacion a.activado {
+  font-weight: bold;
+  color: #ffcc00;
+  font-size: 18px;
+}
+
+/* Solo para navegación del panel: margen superior */
+.navegacion.panel ul {
+  margin-top: 20px;
+}
+
+/* clase para las paginas */
+.pagina-web {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 1000px;
+  height: 30vh;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center;     /* Centrado vertical */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #333333; /* Texto en gris oscuro */
+  padding: 2rem;
+  text-align: center;
+}
+
+/* clases para el formulario de inicio */
+
+.input {
+  display: flex;  
+  align-items: center;  
+  gap: 1rem;
+  margin-top: 0.5rem;  
+}
+
+.input input {
+  background-color: #f0f0f0; /* Un gris claro */
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  color: #333; /* Texto gris oscuro */
+  border-radius: 4px;  
+}
+
+.boton {
+  margin-top: 1rem;  
+}
+
+.error {
+  margin-top: 0.5rem;
+  color: red;
+}
+
+
+

@@ -15,5 +15,9 @@
         - useEffect. 
             - Hooks que produce un efecto.
             - Cada vez que se cargue un componente o este cambie de estado se lanzaría una funcion
+
+        - useParams.
+            - Permite recibir parámetros enviados desde la barra del navegador
+            - Las rutas deben definir esos parametros desde el componente Route
             
 

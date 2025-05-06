@@ -1,0 +1,87 @@
+ROUTING
+
+    - Creacion de rutas mediante la libreria React Router Dom
+
+    - Es necesario instalar la libreria React Router Dom
+        - npm install react-router-dom
+
+    - Documentacion: https://reactrouter.com    
+    - Permite crear SPA. Single Page Aplications. Aplicaciones que se ejecuten en una sola pagina.    
+
+    - Las rutas se almacenarán como un componente dentro de la carpeta routers:
+
+        - Importo lo que necesitaré de react router dom
+            - import {Routes, Route, NavLink, Link, BrowserRouter} from 'react-router-dom'
+
+        - Importo los componentes que tendran las paginas que usaré en las rutas
+        - Creo cabecera que será compartida por todas las rutas
+
+        - Creo la barra de navegacion entre las diferentes rutas
+            - Uso la funcionalidad de NavLink en lugar de enlaces y href.
+            - Asi evito que la pagina se recarge y ya no será SPA
+            - Mediante className introduciendo un callback
+            - y usando isActive aplico clases que me permiten resaltar la opcion realizada
+
+        - Creo las rutas usando:
+
+            - La etiqueta BrowserRouter contendrá toda la configuracion de las rutas
+            - La etiqueta Routes la introduciré dentro de BrowserRouter
+
+            - Una etiqueta Route por cada una de las rutas
+                - Estará asociada a un componente indicado en element                        
+                - Contendrá un path con la URL del componente            
+
+                - La última ruta será la 404.
+                    - El path lo pongo con un * indicando que son las rutas no definidas
+                    - En element podre indicar un elemento o unas pocas etiquetas indicando el error 404
+
+            - Puedo aplicar una clase de estilos de forma dinámica mediante className
+                - Inserto un callback y mediante la funcion isActive poder aplicar la clase o no
+                    - retorno el nombre de la clase o un espacio en blanco
+
+    - Como pasar parámetros a traves de una URL:
+
+        - En el path del componente Route le añado : seguido del nombre del parámetro que quiero pasar
+            - Ej paso de un parametro: <Route path='/personas/:nombre' element={<Personas />} />
+            - Ej paso de dos parametros: <Route path='/personas/:nombre/:apellido' element={<Personas />} />
+
+        - Desde la barra del navegador pasaremos el parámetro anteponiendo la barra /
+            - Ej: localhost:5173/personas/oscar
+
+        - El componente que recibe el parámetro puede hacerlo mediante el hook useParams
+            - Desestructurando: const {nombre, apellido} = useParams();
+            - Sin desestructurar: const parametros = useParams();
+        
+        - Si quiero que los parámetros sean opcionales debo crear mas rutas:
+            - <Route path='/personas/:nombre/:apellido' element={<Personas />} />
+            - <Route path='/personas/:nombre' element={<Personas />} />
+            - <Route path='/personas' element={<Personas />} />
+
+            - Con estas rutas podré pasar de forma opcional nombre y apellido.
+                - Si no paso nada, las constantes que forman parte del useParams obtendrán undefined
+                - Puedo solventar esto añadiendo valores por defecto al realizar la desestructuracion
+                - O sabiendo que contienen undefined hacer código para controlar esa posibilidad
+
+        - En mi proyecto lo aplico de la siguiente forma:
+            - El componente RoutePpal que contiene las rutas en la ruta personas añado /:nombre/:apellido
+            - El componente Personas recibe los parámetros mediante el hook useParams
+
+    - El proyecto rutas es un ejemplo de como funciona. Donde aplico todo lo indicado.
+
+- Subrutas
+    - Lo aplico en el panel de control del proyecto rutas
+    - Cambio la etiqueta Route poniendo una etiqueta inicial y otra final
+        - El path de la ruta ppal la declaro así: path='/rutaPpal/*'
+        - En su interior voy definiendo las subrutas 
+        - Si añado index al componente Route le indico que esa sera la ruta por defecto que se cargue al inicio
+
+    - En el proyecto el componente ppal App.jsx carga el componente RouterPpal
+    - Y en panel se cargan las subrutas del panel mediante el componente Outlet de React router dom
+    
+
+
+
+
+
+- El componente ppal debe importar el componente que contiene las rutas
+    - Cargando el componente asociado a la ruta introducida en la barra del navegador
