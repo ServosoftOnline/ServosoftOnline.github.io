@@ -19,5 +19,82 @@
         - useParams.
             - Permite recibir parámetros enviados desde la barra del navegador
             - Las rutas deben definir esos parametros desde el componente Route
+
+    - Hooks importantes, menos usuales
+
+        - useRef
+
+            - Hace una referencia con un elemento del DOM que persistirá durante el ciclo de vida del componente
+            - Devuelve un objeto de referencia mutable que va a tener una propiedad current con un valor dentro.
+            - Este objeto contiene información que siempre estará actualizado
+                - A diferencia del hook useState:
+                    - No necesitará una función asociada al estado
+                    - No renderiza de nuevo el componente
+
+                - Información que siempre se encontrará actualizado a traves de la propiedad current.
+
+            - Ejemplos de uso:
+                - Permite obtener los datos de un formulario mediante el uso de referencias
+                - Añadir referencias a elementos del DOM y acceder a ellos de forma directa
+                 
+            - En el proyecto useRef aplico estos conocimientos
+
+        - useMemo y funcion react.memo()
+
+            - Ambos sirven para evitar que se renderizen componentes de forma innecesaria
+            - useMemo
+                - Devuelve un valor memorizado
+                - Solo se ejecuta cuando se actualiza una de sus dependencias igual que useEffect
+                - Sirve para operaciones que requieren mucha carga o esfuerzo
+                - Evitando así problemas de rendimiento. Es usual
+            
+            - El método react.memo funciona igual pero se aplica a componentes enteros
+            - Ver el proyecto useMemo donde por ahora solo aplico react.memo
+
+        - useCallback
+            - Esta relacionado con el useMemo y el método react.memo
+
+            - Permite memorizar Funciones
+                - Paso funciones como propiedad a un componente
+                - Evito que esta funcion se ejecute si no es necesario
+                - Precisa de una dependencia para tener control sobre ella
+
+                - Lo aplico:
+                    - Usando el hook useCallback en el componente que tiene la funcion a memorizar
+                    - Introduzco la funcion dentro del callback del useCallback
+                    - Le añado una dependencia
+                    - Paso la funcion que quiero memorizar como propiedad al componente deseado
+
+            - Ver ejemplo en el componente Gestion del proyecto useMemo
+
+        - useLayoutEffect
+            
+            - Diferencias con useEffect:
+            - useLayoutEffect se ejecuta de manera sincrona.
+                - Primero se ejecuta la funcion que tenga dentro del callback y despues renderiza el componente
+                - Se suele usar cuando necesito que finalize una acción antes de renderizar
+                    - Cuando sucede esto parpadea al renderizar
+
+            - useEffect se ejecuta de manera asincrona
+                - Primero se renderiza el componente y despues se ejecuta la funcion callback de su interior
+
+            - Es recomendable usar useEffect y si se aprecian errores al renderizar probar con useLayoutEffect
+            - Ver ejemplo de uso en el proyecto useLayoutEffect
+            
+
+
+
+            
+
+
+
+
+        
+
+
+
+
+                
+
             
 

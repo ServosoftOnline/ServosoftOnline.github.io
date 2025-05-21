@@ -33,3 +33,25 @@
   }
 }
 
+.formulario {
+  margin-bottom: 1rem;
+}
+
+.introduzcaDatos {
+  border: 1px solid white;
+  background:red;
+  font-weight: bolder;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+.bienvenido {
+  border: 1px solid white;
+  background: forestgreen;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+
