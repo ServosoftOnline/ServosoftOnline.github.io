@@ -79,7 +79,25 @@
                 - Primero se renderiza el componente y despues se ejecuta la funcion callback de su interior
 
             - Es recomendable usar useEffect y si se aprecian errores al renderizar probar con useLayoutEffect
-            - Ver ejemplo de uso en el proyecto useLayoutEffect
+            - Ver ejemplo de uso en el proyecto useLayoutEffect en el proyecto useLayoutEffect
+
+        - useReducer:
+
+            - Alternativa a useState
+            - Encapsula a todas las funciones que permiten modificar un estado
+                - Crear, eliminar, modificar o eliminar elementos
+                - Y realiza las acciones de forma síncrona
+
+            - Siempre devolverá un estado
+            - Creo una carpeta llamada reducers que almacena cada una de las funciones
+            - tiene dos parametros: el estado y la acción a disparar
+            - No uso un return. En su lugar uso un switch con diferentes casos
+                - La accion por defecto será devolver el estado
+            - Funcion dispatch
+
+            - Importo el reducer en el componente que lo va a usar
+
+            
             
 
 
