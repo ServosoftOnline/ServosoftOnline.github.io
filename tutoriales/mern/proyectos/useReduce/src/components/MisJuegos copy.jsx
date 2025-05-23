@@ -69,48 +69,12 @@ const MisJuegos = () => {
         }
 
         dispatch(action);
+
     }
-
-    // Edita los campos nombre y descripción mediante el evento onBlur
-    const editarCampo = (e, id, campo) => {
-        const valorNuevo = e.target.value;
-        const juegoOriginal = juegos.find(j => j.id === id);
-
-        const juegoEditado = {
-            ...juegoOriginal,
-            [campo]: valorNuevo
-        };
-
-        const action = {
-            type: 'editar',
-            payload: juegoEditado
-        };
-
-        dispatch(action);
-    };
-
 
     // Renderizo
     return (
         <div>
-
-            {/* Formulario para agregar un nuevo videojuego */}        
-            <form className='formulario-añadir' onSubmit={handleSubmit}>
-
-                <div className='campo'>
-                    <label htmlFor="nombre">Nombre del videojuego:</label>
-                    <input type="text" name="nombre" id="nombre" />
-                </div>
-
-                <div className='campo'>
-                    <label htmlFor="descripcion">Descripción:</label>
-                    <textarea name="descripcion" id="descripcion"></textarea>
-                </div>
-
-                <input type="submit" value="Agregar" />
-                
-            </form>
-
             {/* Lista ordenada de videojuegos */}
             <h2>Mis videojuegos ({juegos.length})</h2>        
             <ol>
@@ -119,21 +83,8 @@ const MisJuegos = () => {
                         <li
                             key={juego.id}>
                             <form onSubmit={(e) => editarJuego(e, juego.id)}>
-
-                                <input
-                                    type='text'
-                                    name='nombre'
-                                    defaultValue={juego.nombre}
-                                    onBlur={(e) => editarCampo(e, juego.id, 'nombre')}
-                                />
-
-                                <input
-                                    type='text'
-                                    name='descripcion'
-                                    defaultValue={juego.descripcion} 
-                                    onBlur={(e) => editarCampo(e, juego.id, 'descripcion')}
-                                />
-
+                                <input type='text' name='nombre' defaultValue={juego.nombre} />
+                                <input type='text' name='descripcion' defaultValue={juego.descripcion} />
                                 <input type='submit' value='Editar'/>
                                 <button onClick={() => eliminarJuego(juego.id)}>Eliminar</button>
                             </form>
@@ -142,7 +93,18 @@ const MisJuegos = () => {
                 }
             </ol>
 
-
+            {/* Formulario para agregar un nuevo videojuego */}        
+            <form className='formulario' onSubmit={handleSubmit}>
+                <div className='campo'>
+                    <label htmlFor="nombre">Nombre del videojuego:</label>
+                    <input type="text" name="nombre" id="nombre" />
+                </div>
+                <div className='campo'>
+                    <label htmlFor="descripcion">Descripción:</label>
+                    <textarea name="descripcion" id="descripcion"></textarea>
+                </div>
+                <input type="submit" value="Agregar" />
+            </form>
         </div>
     )
 }

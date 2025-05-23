@@ -84,35 +84,41 @@
         - useReducer:
 
             - Alternativa a useState
-            - Encapsula a todas las funciones que permiten modificar un estado
-                - Crear, eliminar, modificar o eliminar elementos
-                - Y realiza las acciones de forma síncrona
+            - Encapsula a todas las funciones sincronas que permiten modificar un estado
+                - Este estado contendrá un array de objetos
 
-            - Siempre devolverá un estado
-            - Creo una carpeta llamada reducers que almacena cada una de las funciones
-            - tiene dos parametros: el estado y la acción a disparar
-            - No uso un return. En su lugar uso un switch con diferentes casos
-                - La accion por defecto será devolver el estado
-            - Funcion dispatch
+            - Creo una carpeta reducers donde almaceno los reducers.
 
-            - Importo el reducer en el componente que lo va a usar
+            - Extructura de un reducer:
 
-            
-            
+                - No es necesario importar react
+                - Es una funcion exportada que tiene dos parámetros:
+                    - el estado que por defecto viene vacio
+                    - la acción a disparar o lanzar
+                    
+                - Uso un switch / case
+                - Elimino el break de los casos y en default devuelvo el estado.
+                - Para lanzar el reducer debo usar la funcion dispatch a la cual le paso un objeto con dos datos:
+                    - El tipo, que llamaré type, de acción a lanzar
+                    - Los datos, que llamare payload, que se corresponden con los datos con los que tratar
 
-
-
-            
-
-
-
-
-        
-
-
-
-
+                - En el caso que la acción a lanzar sea crear
+                    - devuelvo un array de objetos que tenga lo que ya tenia el estado más el nuevo payload
                 
+            - En el componente que voy a usarlo:
+                - Importo useReducer desde react
+                - Importo el reducer
 
-            
-
+                - Creo el estado mediante useReducer:
+                    - Contiene el nombre del estado, se enviará al reducer cuando ejecute dispatch.
+                    - La funcion dispatch que será la que se encargue de modificar el estado
+                    - Dentro de los parentesis de useReducer añado 3 parámetros:
+                        - El reducer importado
+                        - El valor inicial del estado
+                        - Una función inicializadora llamada init que debemos declarar fuera del componente
+                            - Procesa algun dato para asignarlo al estado:
+                                - Peticiones AJAX o sacar información de localstorage
+                
+                - Mediante un useEffect inicio en el localstorage o actualizo con respecto al estado
+                - Voy creando diferentes funciones dependiendo de la acción que quiera realizar
+                - En esas funciones creo el objeto con el type y el payload y ejecuto el dispatch
