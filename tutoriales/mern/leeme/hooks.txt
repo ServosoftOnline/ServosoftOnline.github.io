@@ -122,3 +122,12 @@
                 - Mediante un useEffect inicio en el localstorage o actualizo con respecto al estado
                 - Voy creando diferentes funciones dependiendo de la acción que quiera realizar
                 - En esas funciones creo el objeto con el type y el payload y ejecuto el dispatch
+
+        - useContext
+
+            - Ayuda en la resolución sobre como compartir información entre componentes
+            - Alternativa al paso de informacion entre componentes mediante las props
+            - Permite compartir información en el routing
+            
+
+

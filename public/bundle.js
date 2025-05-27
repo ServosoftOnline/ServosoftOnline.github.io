@@ -38,9 +38,8 @@ const contenidoPerfil = document.createElement('div');
 contenidoPerfil.setAttribute('class', 'contenido');
 contenidoPerfil.innerHTML = `
     <p>
-        <h4>Soy técnico superior en Administracion de Sistemas Informáticos Monousuario y Multiusuario.</h4>
-        <p>Desde que me titulé en 1998 he trabajado siempre en el sector de la informática, telecomunicaciones
-        y desarrollo de aplicaciones. </p>
+        <h4>Soy técnico superior en Administracion de Sistemas Informáticos en red (ASIR).</h4>
+        <p>Tengo amplia expereriencia en los sectores de telecomunicaciones, desarrollo de aplicaciones, sistemas de seguridad e informática. </p>
     </p>
 `;
 perfil.appendChild(contenidoPerfil);
@@ -170,8 +169,8 @@ var dataTitulacion = {
     titulaciones: [
         {
             id: '1',
-            titulo: 'Técnico Superior en Administración de Sistemas Informáticos Monousuario y Multiusuario. Ciclo formativo superior',
-            fecha: 'SEPTIEMBRE 1996 - JUNIO 1998',
+            titulo: 'Técnico Superior en Administración de Sistemas Informáticos en red. Ciclo formativo superior',
+            fecha: '',
             centro: 'Instituto Bezmiliana en el Rincón de la Victoria'
         }
 
@@ -447,9 +446,9 @@ var dataExperiencia = {
 
         {
             id: '2',
-            profesion: 'Desarrollador de aplicaciones',
+            profesion: 'Desarrollador de aplicaciones webs',
             fecha: 'ENERO 2017 - JULIO 2021',
-            descripcion: 'Me establecí como trabajador autonomo para ofrecer mis conocimientos y experiencia. Realizaba de forma simultánea el desarrollo de sitios y aplicaciones WEBs y servicios de telecomunicaciones.'
+            descripcion: 'Me establecí como trabajador autonomo para ofrecer mis conocimientos y experiencia. Realizaba de forma simultánea el desarrollo de aplicaciones WEBs y servicios de telecomunicaciones.'
         },       
 
         {
@@ -461,9 +460,16 @@ var dataExperiencia = {
 
         {
             id: '4',
+            profesion: 'Técnico de sistemas de seguridad',
+            fecha: 'AGOSTO 2004 - SEPTIEMBRE 2006',
+            descripcion: 'Trabajé en dos empresas de mi localidad llamadas Sistemas de seguridad 8x8 y Tecnyges y en un empresa de ambito nacional llamada Securitas Direct, donde realizaba funciones de servicio técnico en instalacion y mantenimiento de sistemas de alarma y videovigilancia.'
+        },
+
+        {
+            id: '5',
             profesion: 'Técnico infórmatico',
-            fecha: 'JULIO 1999 - SEPTIEMBRE 2006',
-            descripcion: 'Diversos trabajos relacionados con la reparación de ordenadores, montaje de redes locales e instalación y reparacion de sistemas de seguridad. En mi último trabajo, como informático, fuí responsable del mantenimiento de 12 oficinas repartidas por todo el territorio español.'
+            fecha: 'JULIO 1999 - AGOSTO 2004',
+            descripcion: 'Diversos trabajos relacionados con la instalación y reparación de ordenadores y montaje de redes informáticas. En mi último trabajo fuí responsable del mantenimiento de la VPN de 12 oficinas repartidas por todo el territorio español.'
         }
     ]
 };
