@@ -9,7 +9,7 @@ export default {
             id: '1',
             profesion: 'Técnico en telecomunicaciones',
             fecha: 'SEPTIEMBRE 2009 - ENERO 2025',
-            descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA fueron algunos de los clientes a quienes daba soporte técnico. Instalaba y resuelvía averías en diferentes tecnologías FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ROUTERS 5G, ...'          
+            descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA fueron algunos de los clientes a quienes daba soporte. Instalando circuitos y resolviendo averías en diferentes tecnologías FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ROUTERS 5G, ...'          
         },
 
         {

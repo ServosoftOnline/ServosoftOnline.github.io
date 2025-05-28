@@ -38,8 +38,8 @@ const contenidoPerfil = document.createElement('div');
 contenidoPerfil.setAttribute('class', 'contenido');
 contenidoPerfil.innerHTML = `
     <p>
-        <h4>Soy técnico superior en Administracion de Sistemas Informáticos en red (ASIR).</h4>
-        <p>Tengo amplia expereriencia en los sectores de telecomunicaciones, desarrollo de aplicaciones, sistemas de seguridad e informática. </p>
+        <h4>Soy técnico superior en Administración de Sistemas Informáticos en red (ASIR).</h4>
+        <p>Tengo amplia experiencia en los sectores de telecomunicaciones, desarrollo de aplicaciones, sistemas de seguridad e informática. </p>
     </p>
 `;
 perfil.appendChild(contenidoPerfil);
@@ -441,7 +441,7 @@ var dataExperiencia = {
             id: '1',
             profesion: 'Técnico en telecomunicaciones',
             fecha: 'SEPTIEMBRE 2009 - ENERO 2025',
-            descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA fueron algunos de los clientes a quienes daba soporte técnico. Instalaba y resuelvía averías en diferentes tecnologías FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ROUTERS 5G, ...'          
+            descripcion: 'Soporte telefónico y presencial a clientes corporate de Vodafone. REPSOL, ENDESA, AENA, BANCO DE ESPAÑA fueron algunos de los clientes a quienes daba soporte. Instalando circuitos y resolviendo averías en diferentes tecnologías FIBRA OPTICA, RADIO ENLACES, CENTRALITAS DE TELEFONOS, ROUTERS 5G, ...'          
         },
 
         {
@@ -481,10 +481,26 @@ const {experiencia} = dataExperiencia;
 // Obtengo la columna donde las añado
 const columnaDerecha$1 = document.querySelector('.columnaDerecha');
 
+// Creo el div con la clase enlaceAlCurriculum
+const divEnlaceAlCurriculum = document.createElement('div');
+divEnlaceAlCurriculum.setAttribute('class', 'enlaceAlCurriculum');
+columnaDerecha$1.appendChild(divEnlaceAlCurriculum);
+
+// Creo el enlace al currículum
+const enlaceCurriculum = document.createElement('a');
+enlaceCurriculum.setAttribute('href', './public/cv.pdf'); // Ruta al archivo
+enlaceCurriculum.setAttribute('download', 'CV_OscarFernandezSantiago.pdf'); // Cambia el nombre si quieres
+enlaceCurriculum.textContent = 'Descargar Currículum';
+enlaceCurriculum.setAttribute('class', 'boton-cv'); // Clase CSS para estilos
+divEnlaceAlCurriculum.appendChild(enlaceCurriculum);
+
+// Añades el enlace dentro del divEnlaceAlCurriculum antes del divExperiencia
+divEnlaceAlCurriculum.appendChild(enlaceCurriculum);
+
 // Creo el div con la clase experiencia
 const divExperiencia = document.createElement('div');
 divExperiencia.setAttribute('class', 'experiencia');
-columnaDerecha$1.appendChild(divExperiencia);
+divEnlaceAlCurriculum.appendChild(divExperiencia);
 
 // Creo la cabecera que contiene el icono y el texto Experiencia
 const cabExperiencia = document.createElement('div');

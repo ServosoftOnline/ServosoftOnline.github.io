@@ -221,6 +221,26 @@ ul {
     border-bottom-right-radius: 10px;
 }
 
+.boton-cv {
+  display: inline-block;
+  margin: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #400080;
+  background-color: transparent;
+  border: 2px solid #400080;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.boton-cv:hover {
+  background-color: #400080;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+
 .experiencia,
 .cursos,
 .trabajos {

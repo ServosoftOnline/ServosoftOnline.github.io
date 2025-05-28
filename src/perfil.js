@@ -17,8 +17,8 @@ const contenidoPerfil = document.createElement('div');
 contenidoPerfil.setAttribute('class', 'contenido');
 contenidoPerfil.innerHTML = `
     <p>
-        <h4>Soy técnico superior en Administracion de Sistemas Informáticos en red (ASIR).</h4>
-        <p>Tengo amplia expereriencia en los sectores de telecomunicaciones, desarrollo de aplicaciones, sistemas de seguridad e informática. </p>
+        <h4>Soy técnico superior en Administración de Sistemas Informáticos en red (ASIR).</h4>
+        <p>Tengo amplia experiencia en los sectores de telecomunicaciones, desarrollo de aplicaciones, sistemas de seguridad e informática. </p>
     </p>
 `;
 perfil.appendChild(contenidoPerfil);
