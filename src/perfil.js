@@ -6,8 +6,17 @@ const columnaIzquierda = document.querySelector('.columnaIzquierda');
 const perfil = document.createElement('div');
 perfil.classList.add('perfil');
 perfil.innerHTML = `
-    <h1>Óscar Fernández Santiago</h1>
-    <h2>Desarrollador de aplicaciones Fullstack</h2>
+    <h1>Óscar Fernández Santiago</h1> 
+
+    <div class="enlaceAlCurriculum">
+        <a 
+            href="./public/cv.pdf" 
+            download="CV_OscarFernandezSantiago.pdf" 
+            class="boton-cv">
+            Descargar Currículum
+        </a>
+    </div>
+  
     <h3>Perfil profesional</h3>    
 `;
 columnaIzquierda.appendChild(perfil);

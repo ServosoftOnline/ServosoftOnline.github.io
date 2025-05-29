@@ -7,26 +7,10 @@ const {experiencia} = dataExperiencia;
 // Obtengo la columna donde las añado
 const columnaDerecha = document.querySelector('.columnaDerecha');
 
-// Creo el div con la clase enlaceAlCurriculum
-const divEnlaceAlCurriculum = document.createElement('div')
-divEnlaceAlCurriculum.setAttribute('class', 'enlaceAlCurriculum');
-columnaDerecha.appendChild(divEnlaceAlCurriculum);
-
-// Creo el enlace al currículum
-const enlaceCurriculum = document.createElement('a');
-enlaceCurriculum.setAttribute('href', './public/cv.pdf'); // Ruta al archivo
-enlaceCurriculum.setAttribute('download', 'CV_OscarFernandezSantiago.pdf'); // Cambia el nombre si quieres
-enlaceCurriculum.textContent = 'Descargar Currículum';
-enlaceCurriculum.setAttribute('class', 'boton-cv'); // Clase CSS para estilos
-divEnlaceAlCurriculum.appendChild(enlaceCurriculum);
-
-// Añades el enlace dentro del divEnlaceAlCurriculum antes del divExperiencia
-divEnlaceAlCurriculum.appendChild(enlaceCurriculum);
-
 // Creo el div con la clase experiencia
 const divExperiencia = document.createElement('div')
 divExperiencia.setAttribute('class', 'experiencia');
-divEnlaceAlCurriculum.appendChild(divExperiencia);
+columnaDerecha.appendChild(divExperiencia);
 
 // Creo la cabecera que contiene el icono y el texto Experiencia
 const cabExperiencia = document.createElement('div');

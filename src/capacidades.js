@@ -1,5 +1,4 @@
 // AÑADE LAS CAPACIDADES DE FORMA DINÁMICA
-
 // importo el objeto titulaciones y creo un array con el contenido
 import data from './data/dataCapacidades';
 
