@@ -34,6 +34,13 @@ export default {
         },
 
         {
+            id: '4',
+            año: '2004',
+            curso: 'Administrativo comercial',
+            descripcion: 'Ubicación profesional y orientación al mercado de trabajo, técnicas administrativas de oficina, básicas de comunicación y archivo, administrativas de aprovisionamientos, de administración comercial,  de relación comercial, mecanografía, ofimática, bases de datos, aplicaciones informáticas de gestión comercial, economía social y creación de empresas de economía social.'
+        },
+
+        {
             id: '5',
             año: '1994',
             curso: 'Programador de ordenadores',
