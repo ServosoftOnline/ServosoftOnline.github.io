@@ -1,10 +1,28 @@
-import React from 'react'
+import React from 'react';
+import { useContext } from 'react';
+import { InformacionCompartida } from '../context/InformacionCompartida';
+import { UsuarioContext } from '../context/usuarioContext';
 
+// Componente
 export const AcercaDe = () => {
+
+  // Obtengo desde los contextos la información compartida y el usuario
+  const informacionCompartida = useContext(InformacionCompartida);  
+  const {usuario} = useContext(UsuarioContext);
+
+  // Renderizo
   return (
     <div className='pagina-web'>
       <h2>Acerca de ...</h2>
-      <p>Página que mostraría información de la empresa</p>
+
+      {/* Mostará si accede un usuario registrado o sin registrar */}
+      {usuario ?
+        <p>Accede al inicio el usuario registrado: {usuario}</p>
+      :
+        <p>Accede al inicio un usuario no registrado</p>       
+      }      
+      
+      <strong>Empresa obtenida desde el contexto: {informacionCompartida.descripcion}</strong>
     </div>
   )
 }

@@ -1,12 +1,23 @@
-import viteLogo from '/vite.svg'
+// Componente ppal de la app
+
 import './App.css'
 import { AppRouter } from './routing/AppRouter'
 
-const App = () => {  
+// Importo el proveedor del contexto de la información compartida y del estado con el usuario
+import { InformacionCompartidaProvider } from './context/InformacionCompartida';
+import { UsuarioProvider } from './context/usuarioContext';
 
+const App = () => {
+
+  // Encapsulo a mi routing con los proveedores de contexto
   return (
-    <>           
-      <AppRouter/>
+    <>
+      <UsuarioProvider>
+      <InformacionCompartidaProvider>          
+        <AppRouter/>
+      </InformacionCompartidaProvider>
+      </UsuarioProvider>
+      
     </>
   )
 }

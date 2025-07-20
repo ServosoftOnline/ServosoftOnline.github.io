@@ -127,7 +127,9 @@
 
             - Ayuda en la resolución sobre como compartir información entre componentes
             - Alternativa al paso de informacion entre componentes mediante las props
-            - Permite compartir información en el routing
-            
+            - Permite tratar información en el routing compartiendo la información entre componentes
+            - Tambien permite añadir al contexto estados
+            - Ver aplicación de este contexto en el proyecto useContext
+
 
 
