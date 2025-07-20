@@ -125,11 +125,12 @@
 
         - useContext
 
-            - Ayuda en la resolución sobre como compartir información entre componentes
-            - Alternativa al paso de informacion entre componentes mediante las props
+            - Ayuda en la resolución sobre como compartir información entre componentes           
             - Permite tratar información en el routing compartiendo la información entre componentes
             - Tambien permite añadir al contexto estados
-            - Ver aplicación de este contexto en el proyecto useContext
+            - Ver aplicación de este hook en el proyecto useContext
+
+        - 
 
 
 
