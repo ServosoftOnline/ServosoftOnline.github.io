@@ -130,7 +130,15 @@
             - Tambien permite añadir al contexto estados
             - Ver aplicación de este hook en el proyecto useContext
 
-        - 
+        - useId
+            - Crea un identificador único que sirve para el cliente y el servidor
+            - Ver su aplicación en el proyecto mas-Hooks
 
+    - Hooks personalizados:
+    
+        - Permite crear funcionalidades reutilizables en un proyecto.
+            - Equivaldrían a las funciones en otros lenguajes de programación
 
-
+        - Suelen guardarse en una carpeta propia.
+            - Yo los guardaré en Hooks dentro del proyecto mas-Hooks
+            - Su nombre empieza por use

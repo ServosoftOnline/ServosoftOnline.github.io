@@ -66,3 +66,100 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.proyecto {
+  display: flex;
+}
+
+.botones {
+  display: flex;
+  justify-content: center; 
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* Centra horizontalmente los hijos */
+  justify-content: center; /* (opcional) centrado vertical si lo necesitas dentro de un contenedor más alto */
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #1a1a1a;
+}
+
+.formulario div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.formulario label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.formulario input,
+.formulario textarea {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.descripcion {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  max-width: 600px; /* más ancho si hay disposición horizontal */
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #1a1a1a;
+}
+
+.formulario div {
+  display: flex;
+  flex-direction: row;      /* Ahora en fila */
+  align-items: center;      /* Centrado vertical */
+  justify-content: flex-start;
+  gap: 1rem;                /* Espacio entre label e input */
+  width: 100%;
+}
+
+.formulario label {
+  width: 160px;             /* Ancho fijo para alinear verticalmente */
+  font-weight: bold;
+  text-align: right;        /* Alineación del texto del label */
+}
+
+.formulario input,
+.formulario textarea {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: none;
+  flex: 1;                  /* El input ocupa el resto del espacio */
+  box-sizing: border-box;
+}
+
+.descripcion {
+  align-items: flex-start;  /* textarea puede necesitar más espacio */
+}
