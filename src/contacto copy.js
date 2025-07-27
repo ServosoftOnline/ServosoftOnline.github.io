@@ -25,6 +25,7 @@ divContacto.appendChild(divContenido);
 
 // Creo la lista que contendrá los datos de contacto
 const ulDatosDeContacto = document.createElement('ul');
+// ulDatosDeContacto.setAttribute('class', 'lista-dos-a-dos');
 divContenido.appendChild(ulDatosDeContacto);
 
 // Recorro el array y voy mostrando los elementos de dos en dos
@@ -46,26 +47,9 @@ datosDeContacto.forEach((itemDato) => {
     liDescripcion.setAttribute('class', 'descripcionContacto');
     ulDatosDeContacto.appendChild(liDescripcion);
 
-    /*
     // Descripción
     const pDescripcion = document.createElement('p');
     pDescripcion.textContent = itemDato.dato;
     liDescripcion.appendChild(pDescripcion);
-    */
-
-    // Descripción. Creará un enlace si el esEnlace es true en el objeto datos de contacto
-    if (itemDato.esEnlace) {
-        const aEnlace = document.createElement('a');
-        aEnlace.href = itemDato.dato;
-        aEnlace.textContent = 'Mi perfil de LinkedIn';
-        aEnlace.target = '_blank'; // abre en nueva pestaña
-        aEnlace.style.color = '#06395c'; // mismo tono azul
-        aEnlace.style.textDecoration = 'none'; // opcional, sin subrayado
-        liDescripcion.appendChild(aEnlace);
-    } else {
-        const pDescripcion = document.createElement('p');
-        pDescripcion.textContent = itemDato.dato;
-        liDescripcion.appendChild(pDescripcion);
-    }
     
 });

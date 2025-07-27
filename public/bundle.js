@@ -55,8 +55,7 @@ perfil.appendChild(contenidoPerfil);
 
 /*
     OBJETO DATOS DE CONTACTO
-    - Contiene toda la información de mis datos de contacto que agregaré de forma dinamica
-
+    - Contiene toda la información de mis datos de contacto que agregaré de forma dinámica
 */
 
 var dataContacto = {
@@ -65,29 +64,33 @@ var dataContacto = {
             id: '1',
             clase: 'fa-solid fa-phone fa-beat',
             estilo: 'color: #06395c;',
-            dato: '620890221'            
+            dato: '620890221',
+            esEnlace: false
         },
 
         {
             id: '2',
             clase: 'fa-solid fa-envelope fa-beat',
             estilo: 'color: #06395c;',
-            dato: 'oscarfernandezsantiago@gmail.com'            
+            dato: 'oscarfernandezsantiago@gmail.com',
+            esEnlace: false
         },
 
         {
             id: '3',
             clase: 'fa-solid fa-house fa-beat',
             estilo: 'color: #06395c;',
-            dato: 'Mijas (Málaga)'            
-        }
+            dato: 'Mijas (Málaga)',
+            esEnlace: false
+        },
 
-        // {
-        //     id: '4',
-        //     clase: 'fa-solid fa-user-group fa-beat',
-        //     estilo: 'color: #06395c;',
-        //     dato: 'Casado y con dos niños preciosos'            
-        // }
+        {
+            id: '4',
+            clase: 'fa-brands fa-linkedin fa-beat',
+            estilo: 'color: #06395c;', // color oficial LinkedIn
+            dato: 'www.linkedin.com/in/oscar-fernandez-santiago-92b64364',
+            esEnlace: true
+        }
     ]
 };
 
@@ -115,7 +118,6 @@ divContacto.appendChild(divContenido$1);
 
 // Creo la lista que contendrá los datos de contacto
 const ulDatosDeContacto = document.createElement('ul');
-// ulDatosDeContacto.setAttribute('class', 'lista-dos-a-dos');
 divContenido$1.appendChild(ulDatosDeContacto);
 
 // Recorro el array y voy mostrando los elementos de dos en dos
@@ -137,37 +139,29 @@ datosDeContacto.forEach((itemDato) => {
     liDescripcion.setAttribute('class', 'descripcionContacto');
     ulDatosDeContacto.appendChild(liDescripcion);
 
+    /*
     // Descripción
     const pDescripcion = document.createElement('p');
     pDescripcion.textContent = itemDato.dato;
     liDescripcion.appendChild(pDescripcion);
+    */
 
-
+    // Descripción. Creará un enlace si el esEnlace es true en el objeto datos de contacto
+    if (itemDato.esEnlace) {
+        const aEnlace = document.createElement('a');
+        aEnlace.href = itemDato.dato;
+        aEnlace.textContent = 'Mi perfil de LinkedIn';
+        aEnlace.target = '_blank'; // abre en nueva pestaña
+        aEnlace.style.color = '#06395c'; // mismo tono azul
+        aEnlace.style.textDecoration = 'none'; // opcional, sin subrayado
+        liDescripcion.appendChild(aEnlace);
+    } else {
+        const pDescripcion = document.createElement('p');
+        pDescripcion.textContent = itemDato.dato;
+        liDescripcion.appendChild(pDescripcion);
+    }
     
 });
-
-/* 
-// Recorro el array, creo los elementos de la lista, los iconos y los parrafos con los datos
-datosDeContacto.forEach((itemDato) => {
-    
-    // Elemento
-    const liDatosDeContacto = document.createElement('li');
-    ulDatosDeContacto.appendChild(liDatosDeContacto);
-
-    // Icono
-    const iDatosDeContacto = document.createElement('i');
-    iDatosDeContacto.setAttribute('class', `${itemDato.clase}`);
-    iDatosDeContacto.setAttribute('style', `${itemDato.estilo}`);
-    liDatosDeContacto.appendChild(iDatosDeContacto);
-
-    // Párrafo
-    const pDatosDeContacto = document.createElement('p');
-    pDatosDeContacto.textContent = itemDato.dato;
-    liDatosDeContacto.appendChild(pDatosDeContacto);
-
-});
-
-*/
 
 /*
     OBJETO TITULACIONES
@@ -478,7 +472,7 @@ var dataExperiencia = {
             id: '5',
             profesion: 'Técnico informático y redes – Varias empresas del sector tecnológico',
             fecha: 'JULIO 1999 - AGOSTO 2004',
-            descripcion: 'Realicé tareas de instalación, configuración y reparación de hardware y software, así como montaje de redes locales y asistencia técnica a usuarios. En mi último puesto, gestioné la VPN que conectaba 12 oficinas a nivel nacional. Adquirí experiencia en soporte técnico, mantenimiento preventivo y resolución de incidencias.'
+            descripcion: 'Durante un período continuado de cinco años trabajé en distintas empresas del sector tecnológico —Microsur Informática, EIB Computers, Canon (Sistemas de Oficina Marbella) e Inmobiliaria Olaru— desempeñando funciones similares en soporte informático y redes. Mis tareas incluyeron instalación, configuración y reparación de equipos (hardware y software), montaje de redes locales y solución de incidencias. También presté asistencia técnica a usuarios y realicé mantenimiento preventivo. En mi último puesto, fui responsable del mantenimiento y supervisión de una VPN que conectaba 12 oficinas distribuidas por toda España.'
         }
     ]
 };

@@ -37,7 +37,7 @@ export default {
             id: '5',
             profesion: 'Técnico informático y redes – Varias empresas del sector tecnológico',
             fecha: 'JULIO 1999 - AGOSTO 2004',
-            descripcion: 'Realicé tareas de instalación, configuración y reparación de hardware y software, así como montaje de redes locales y asistencia técnica a usuarios. En mi último puesto, gestioné la VPN que conectaba 12 oficinas a nivel nacional. Adquirí experiencia en soporte técnico, mantenimiento preventivo y resolución de incidencias.'
+            descripcion: 'Durante un período continuado de cinco años trabajé en distintas empresas del sector tecnológico —Microsur Informática, EIB Computers, Canon (Sistemas de Oficina Marbella) e Inmobiliaria Olaru— desempeñando funciones similares en soporte informático y redes. Mis tareas incluyeron instalación, configuración y reparación de equipos (hardware y software), montaje de redes locales y solución de incidencias. También presté asistencia técnica a usuarios y realicé mantenimiento preventivo. En mi último puesto, fui responsable del mantenimiento y supervisión de una VPN que conectaba 12 oficinas distribuidas por toda España.'
         }
     ]
 };
