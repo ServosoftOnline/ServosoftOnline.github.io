@@ -87,8 +87,8 @@ var dataContacto = {
         {
             id: '4',
             clase: 'fa-brands fa-linkedin fa-beat',
-            estilo: 'color: #06395c;', // color oficial LinkedIn
-            dato: 'www.linkedin.com/in/oscar-fernandez-santiago-92b64364',
+            estilo: 'color: #06395c;',
+            dato: 'https://www.linkedin.com/in/oscar-fernandez-santiago-92b64364',
             esEnlace: true
         }
     ]
