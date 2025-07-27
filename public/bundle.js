@@ -462,23 +462,23 @@ var dataExperiencia = {
 
         {
             id: '3',
-            profesion: 'Proyecto familiar',
+            profesion: 'Responsable de organización y personal en negocio familiar ',
             fecha: 'NOVIEMBRE 2007 - ENERO 2009',
-            descripcion: 'Responsable en un proyecto familiar. Tuve a mi cargo a 12 personas.'
+            descripcion: 'Lideré la gestión del equipo humano, organizando turnos semanales, elaborando planes de trabajo y realizando procesos de selección para nuevos empleados. Coordiné hasta 12 personas, promoviendo un entorno colaborativo y eficiente. Esta experiencia me permitió desarrollar habilidades en liderazgo, planificación y resolución de problemas.'
         },
 
         {
             id: '4',
-            profesion: 'Técnico de sistemas de seguridad',
+            profesion: 'Técnico de instalación y mantenimiento – Sistemas de seguridad',
             fecha: 'AGOSTO 2004 - SEPTIEMBRE 2006',
-            descripcion: 'Trabajé en dos empresas de mi localidad llamadas Sistemas de seguridad 8x8 y Tecnyges y en un empresa de ambito nacional llamada Securitas Direct, donde realizaba funciones de servicio técnico en instalacion y mantenimiento de sistemas de alarma y videovigilancia.'
+            descripcion: 'Trabajé en empresas como Sistemas 8x8 y Securitas Direct, realizando instalaciones, configuraciones y mantenimiento de alarmas y videovigilancia (cámaras IP, DVR/NVR, sensores). Atendía a clientes, resolvía incidencias y documentaba las intervenciones. Desarrollé competencias técnicas y de atención al cliente aplicables a soporte remoto u oficina.'
         },
 
         {
             id: '5',
-            profesion: 'Técnico infórmatico',
+            profesion: 'Técnico informático y redes – Varias empresas del sector tecnológico',
             fecha: 'JULIO 1999 - AGOSTO 2004',
-            descripcion: 'Diversos trabajos relacionados con la instalación y reparación de ordenadores y montaje de redes informáticas. En mi último trabajo fuí responsable del mantenimiento de la VPN de 12 oficinas repartidas por todo el territorio español.'
+            descripcion: 'Realicé tareas de instalación, configuración y reparación de hardware y software, así como montaje de redes locales y asistencia técnica a usuarios. En mi último puesto, gestioné la VPN que conectaba 12 oficinas a nivel nacional. Adquirí experiencia en soporte técnico, mantenimiento preventivo y resolución de incidencias.'
         }
     ]
 };

@@ -142,3 +142,7 @@
         - Suelen guardarse en una carpeta propia.
             - Yo los guardaré en Hooks dentro del proyecto mas-Hooks
             - Su nombre empieza por use
+            - El proyecto mas-hooks contiene tres ejemplos de hooks personalizados
+                - useAjax, hace peticiones ajax
+                - useCaracteres, modifica los caracteres de una cadena
+                - useForm, obtiene toda la información de un formulario
