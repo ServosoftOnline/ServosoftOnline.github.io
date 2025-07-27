@@ -139,21 +139,16 @@ datosDeContacto.forEach((itemDato) => {
     liDescripcion.setAttribute('class', 'descripcionContacto');
     ulDatosDeContacto.appendChild(liDescripcion);
 
-    /*
-    // Descripción
-    const pDescripcion = document.createElement('p');
-    pDescripcion.textContent = itemDato.dato;
-    liDescripcion.appendChild(pDescripcion);
-    */
-
     // Descripción. Creará un enlace si el esEnlace es true en el objeto datos de contacto
     if (itemDato.esEnlace) {
         const aEnlace = document.createElement('a');
+        aEnlace.classList.add('enlaceContacto');
+
         aEnlace.href = itemDato.dato;
         aEnlace.textContent = 'Mi perfil de LinkedIn';
-        aEnlace.target = '_blank'; // abre en nueva pestaña
-        aEnlace.style.color = '#06395c'; // mismo tono azul
-        aEnlace.style.textDecoration = 'none'; // opcional, sin subrayado
+        aEnlace.target = '_blank';
+        // aEnlace.style.color = '#06395c'; // mismo tono azul
+        // aEnlace.style.textDecoration = 'none'; // opcional, sin subrayado
         liDescripcion.appendChild(aEnlace);
     } else {
         const pDescripcion = document.createElement('p');

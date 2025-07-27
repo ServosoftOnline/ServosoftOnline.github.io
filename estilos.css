@@ -196,6 +196,28 @@ ul {
     padding-right: 0px;    
 }
 
+.contacto .enlaceContacto {
+  color: #06395c;
+  text-decoration: none;
+  position: relative;
+}
+
+.contacto .enlaceContacto::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #06395c;
+  transition: width 0.3s ease;
+}
+
+.contacto .enlaceContacto:hover::after {
+  width: 100%;
+}
+
+
 /* TITULACION */
 .titulacion  ul {
     padding-bottom: 35px;
