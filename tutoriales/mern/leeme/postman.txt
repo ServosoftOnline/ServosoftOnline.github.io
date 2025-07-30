@@ -1,0 +1,5 @@
+Definicion: Programa cliente REST permite hacer peticiones a redes y testear lo que una api nos va a devolver
+Se instala desde la web: www.postman.com
+Por ahora usaré thunder cliente que ya usé en mi curso de express
+Para cualquier referencia leer desde la carpeta leer del tutorial de express
+En el caso que cambie de idea en el minuto 04:56 del capitulo 169 del curso indica como instalarlo en windows

@@ -1,0 +1,166 @@
+FECHA: 27 de julio de 2025
+USUARIO: Oscar Fernández Santiago
+
+Definición MONGODB:
+    Es una base de datos noSQl que se diferencia en las bbdd SQL en lo siguiente:
+
+        - No relacional. No necesita tablas que tengan relaciones e índices        
+
+        - Están Orientadas a documentos (JSON, BSON)            
+            - Tenemos colecciones con documentos que son objetos JSON
+                - Una colección sería un array de objetos BSON
+                - La propiedad del objeto se correspondería al campo o columna de la bbdd SQL
+                - El valor del objeto se correspondería al registro (al dato en sí)
+                - El documento se correspondería con la fila en una bbdd SQL
+
+
+            - Que mongoDB los llama objetos BSON (Objeto JSON binario)
+            - Se usa javascript para acceder a los objetos BSON y trabajar con los datos
+
+        - Sencillas
+        - Más veloces que las SQL al tratar directamente sobre objetos
+
+        - Con esquema libre.
+            - No hay filas y columnas con datos como en sql. Abrá colecciones de documentos
+        
+Instalacion y mantenimiento de MONGODB en UBUNTU 24.04.LTS (NOBLE)
+
+    1. INFORMACIÓN DEL SISTEMA
+        - Sistema operativo: Ubuntu 24.04.2 LTS (Codename: noble)
+        - MongoDB instalado: Versión 7.0.22
+
+    2. INSTALACIÓN DE MONGODB PASO A PASO
+
+        a) Importar la clave GPG oficial de MongoDB:
+
+            curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
+            sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+            --dearmor
+
+        b) Añadir el repositorio oficial de MongoDB para Ubuntu 22.04 (jammy) 
+        (Debido a que aún no está disponible para Ubuntu 24.04 noble):
+
+            echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | \
+            sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list > /dev/null
+
+        c) Actualizar la lista de paquetes disponibles:
+
+            sudo apt update
+
+            -- Nota: Durante la actualización, aceptar cualquier cambio en otros repositorios (por ejemplo, el PPA de PHP) con "s" para continuar.
+
+        d) Instalar MongoDB y sus herramientas:
+
+            sudo apt install -y mongodb-org
+
+        e) Iniciar el servicio MongoDB y habilitarlo para que arranque al inicio:
+
+            sudo systemctl start mongod
+            sudo systemctl enable mongod
+
+        f) Verificar que el servicio está activo:
+
+            sudo systemctl status mongod    
+
+    3. USO BÁSICO
+
+        - Para abrir el shell interactivo de MongoDB. Consola de comandos para trabajar con mongodb:
+
+            mongosh
+
+        - Para salir de la vista del status en terminal (si se abre el paginador `less`):
+
+            Presionar la tecla **q**
+
+        - Para detener o reiniciar MongoDB:
+
+            sudo systemctl stop mongod
+            sudo systemctl restart mongod
+
+        - Ejemplos de algunos comandos
+            - help muestra ayuda de los comandos a realizar
+            - db.version(). Muestra la vesion de mongodb
+            - show dbs. Muestra las bbdd existentes
+            - use bbdd. Usa una bbdd de las bbdd existentes o crear una nueva si no existiese
+            - exit. Para salir
+
+            - Ejemplo de crear una bbdd, colecciones y documentos:
+
+                insertOne() → para insertar un documento.
+                insertMany() → para varios documentos.
+                updateOne() → para actualizar.
+
+                - Crear una bbdd llamada videojuegos, una coleccion llamada ps4 y un documento:            
+                    use videojuegos
+                
+                - Creo la coleccion ps4 dentro de videojuegos e inserto un documento
+                    db.ps4.insertOne({ titulo: "The last of us", genero: "Aventuras", anio: 2017 })
+
+                - Añado otro titulo a la coleccion ps4
+                    db.ps4.insertOne({ titulo: "Dark souls 3", genero: "Souls like", anio: 2015 })
+
+                - Mostrar el contenido de la coleccion ps4. Mostrará un array de objetos con 2 documentos
+                    db.ps4.find()   
+                                
+                - Mostar las colecciones de la bdd videojuegos
+                    use videojuegos
+                    show collecctions
+
+                - Mostrará solo el documento de dark souls 3
+                    db.ps4.find({anio:2015})
+
+                - Borrará solo el documento de dark souls 3                    
+                    db.ps4.deleteMany({anio:2015})
+
+    4. ACTUALIZACIONES FUTURAS
+
+        - Las actualizaciones de MongoDB se gestionan junto con el sistema a través de:
+
+            sudo apt update
+            sudo apt upgrade
+
+        - Si se lanza una nueva versión mayor de MongoDB, hay que modificar el archivo de repositorios en: /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+        cambiando la versión y posiblemente el codename, según la documentación oficial.
+    
+
+    5. USO CON VISUAL STUDIO CODE
+
+    - Puedes abrir la terminal integrada de VSCode y ejecutar comandos MongoDB normalmente.
+    - Para verificar la versión instalada en la terminal (VSCode o sistema):
+        mongod --version
+        mongosh --version
+
+    - Desde código Node.js u otro lenguaje, conecta usando:
+
+        mongodb://localhost:27017
+        mongodb://127.0.0.1:27017 (probar este)
+
+    6.- INTERFAZ VISUAL: compass
+
+        - Comprobar mi version de ubuntu: lsb_release -a
+        - Bajar desde https://www.mongodb.com/try/download/compass la última versión para mi ubuntu
+
+        - En descargas abrir un terminal y ejecutar: sudo dpkg -i mongodb-compass_*.deb
+            - Cambiando el asterisco por la version descargada
+
+        - Corrijo posibles dependencias que falten mediante: sudo apt --fix-broken install
+        - Ejecuto mongodb-compass desde la consola de visual STUDIO o desde el icono de los programas
+        - Creo mi conexión usando la dirección que proporciona al escribir mongosh en la terminal.
+
+    7. REFERENCIAS
+
+        - Documentación oficial MongoDB Ubuntu: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+        - Documentación oficial systemd (gestión de servicios): https://www.freedesktop.org/software/systemd/man/systemctl.html
+
+    8.- Almacenamiento de elementos importantes de mongoDB:
+
+        Elemento	                Ruta en Ubuntu
+        Datos (bases de datos)	    /var/lib/mongodb
+        Archivo de configuración	/etc/mongod.conf
+        Logs                    	/var/log/mongodb/mongod.log
+        Binarios (mongod, mongosh)	/usr/bin/mongod, /usr/bin/mongosh
+
+    9.- Soluciones a posibles errores de mongoDB y Mongoose
+        - Ver video 168 del curso de mern de victor robles
+        

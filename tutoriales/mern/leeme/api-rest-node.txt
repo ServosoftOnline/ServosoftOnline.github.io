@@ -1,0 +1,34 @@
+Texto que indica como crear el primer proyecto apirestfull llamado: api-rest-node
+
+Programas necesarios:
+
+    - nodejs.
+        - Ver como se instala segun el tutorial de nodejs
+        - node -v. Me mostrará si está instalado y que version
+
+    - mongoDb
+
+        - Ver como se instala segun el archivo mongoDB.txt de este mismo tutorial
+        - mongod --version. Mostrará si esta instalado y que version
+
+    - mongoDB compass
+
+        - Tambien aparéce en el archivo mongoDB.txt como instalarlo
+        - Para ver si está instalado ver la aplicacion mongoDb Compass aparece entre mis programas
+
+    - postman o la extension thunder client de VSCode
+
+        - Por ahora usaré thunder client aunque en el curso propone postman
+        - Si cambio de idea el archivo postman.txt de este tutorial muestra indicaciones
+
+        - Para probar cualquiera de los dos puede hacerse una petición a requres.in 
+            - https://reqres.in/api/users/
+            - Añado la cabecera: x-api-key: reqres-free-v1
+            - Metodo get
+
+Crear el proyecto con node:
+
+    1.- Crear la carpeta
+    2.- Accedo  a la carpeta e inicio el proyecto mediante el comando npm init
+        - En el tutorial de nodeJS el archivo npmInit.txt muestra como hacerlo
+

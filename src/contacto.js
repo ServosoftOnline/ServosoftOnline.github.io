@@ -50,12 +50,9 @@ datosDeContacto.forEach((itemDato) => {
     if (itemDato.esEnlace) {
         const aEnlace = document.createElement('a');
         aEnlace.classList.add('enlaceContacto');
-
         aEnlace.href = itemDato.dato;
         aEnlace.textContent = 'Mi perfil de LinkedIn';
         aEnlace.target = '_blank';
-        // aEnlace.style.color = '#06395c'; // mismo tono azul
-        // aEnlace.style.textDecoration = 'none'; // opcional, sin subrayado
         liDescripcion.appendChild(aEnlace);
     } else {
         const pDescripcion = document.createElement('p');
