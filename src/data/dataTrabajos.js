@@ -46,6 +46,15 @@ export default {
             enlace: 'https://gestordeactuaciones.web.app/',
             imagenSrc: './img/trabajo4.jpg',
             descripcion: '<b>Aplicación completa y funcional que permite a cualquier empresa que ofrezca servicios técnicos poder gestionar las visitas de sus técnicos.</b> Tiene perfiles para diferentes usuarios, administradores, coordinadores y técnicos. Suma los puntos de cada actuación de forma automática, es responsive, genera informes en libros excel, ...\n\n<b><u>Pueden probar esta aplicación con estos usuarios:</u></b>\n\n- <b>Usuario</b>: administrador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> coordinador@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico1@gmail.com - <b>contraseña:</b> 123456\n\n- <b>Usuario:</b> tecnico2@gmail.com - <b>contraseña:</b> 123456\n\n',
+        },
+
+        {
+            id: '5',
+            proyecto: 'Blog Gastronómico',
+            enlace: 'https://recetas-online.vercel.app/',
+            imagenSrc: './img/trabajo5.jpg',
+            descripcion: "He desarrollado un blog de recetas de cocina con funcionalidades <b>CRUD (Crear, Leer, Actualizar, Eliminar)</b>. La aplicación permite a los usuarios <b>gestionar recetas</b> completas con <b>subida de imágenes a través de Cloudinary</b>, optimizando la experiencia visual con un diseño <b>completamente responsive</b>.\n\nEl proyecto está construido como una aplicación <b>MERN</b> (MongoDB, Express, React, Node.js) y demuestra habilidades clave en el <b>despliegue full-stack</b> y la integración con servicios de terceros.\n\nActualmente, el proyecto se encuentra en desarrollo. La próxima fase incluirá la implementación de <b>autenticación de usuarios con JWT</b>, lo que permitirá a los usuarios registrarse y gestionar sus propias recetas de forma segura."
+
         }
     ]
 };
