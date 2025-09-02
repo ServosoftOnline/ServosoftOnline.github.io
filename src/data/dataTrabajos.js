@@ -53,7 +53,7 @@ export default {
             proyecto: 'Blog Gastronómico',
             enlace: 'https://recetas-online.vercel.app/',
             imagenSrc: './img/trabajo5.jpg',
-            descripcion: "He desarrollado un blog de recetas de cocina con funcionalidades <b>CRUD (Crear, Leer, Actualizar, Eliminar)</b>. La aplicación permite a los usuarios <b>gestionar recetas</b> completas con <b>subida de imágenes a través de Cloudinary</b>, optimizando la experiencia visual con un diseño <b>completamente responsive</b>.\n\nEl proyecto está construido como una aplicación <b>MERN</b> (MongoDB, Express, React, Node.js) y demuestra habilidades clave en el <b>despliegue full-stack</b> y la integración con servicios de terceros.\n\nActualmente, el proyecto se encuentra en desarrollo. La próxima fase incluirá la implementación de <b>autenticación de usuarios con JWT</b>, lo que permitirá a los usuarios registrarse y gestionar sus propias recetas de forma segura."
+            descripcion: "He desarrollado un blog de recetas de cocina con funcionalidades <b>CRUD (Crear, Leer, Actualizar, Eliminar)</b>. \n\nLa aplicación permite a los usuarios <b>gestionar recetas</b> completas con <b>subida de imágenes a través de Cloudinary</b>, optimizando la experiencia visual con un diseño <b>completamente responsive</b>.\n\nEl proyecto está construido como una aplicación <b>MERN</b> (MongoDB, Express, React, Node.js) y demuestra habilidades clave en el <b>despliegue full-stack</b> y la integración con servicios de terceros.\n\nActualmente, el proyecto se encuentra en desarrollo. La próxima fase incluirá la implementación de <b>autenticación de usuarios con JWT</b>, lo que permitirá a los usuarios registrarse y gestionar sus propias recetas de forma segura."
 
         }
     ]
