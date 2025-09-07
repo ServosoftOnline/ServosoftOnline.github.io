@@ -86,7 +86,7 @@ ul {
 /* aplico a la fotografía un borde sombreado elíptico  y un hover */
 .fotografia img {
     object-fit: cover;
-    max-width: 45%;    
+    max-width: 100%;
 }
 
 .fotografia .sombreada {
