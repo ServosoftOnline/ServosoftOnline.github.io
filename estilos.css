@@ -448,14 +448,16 @@ ul {
     .contacto .iconoContacto,
     .contacto .descripcionContacto {
         /* font-size: 0.77rem; */
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
-    .lista-dos-a-dos li {
+    .lista-dos-a-dos li,
+    .lista-dos-a-dos-habilidades {
         font-size: 1.06rem; /* 17px */
     }
 
-    .lista-dos-a-dos li:nth-child(odd) {
+    .lista-dos-a-dos li:nth-child(odd),
+    .lista-dos-a-dos-habilidades li:nth-child(odd) {
         flex: 0 0 40%;
     }
 
@@ -496,14 +498,13 @@ ul {
         border-bottom-left-radius: 0px;
     }
 
-    
-
     .contacto .iconoContacto,
     .contacto .descripcionContacto {
         font-size: 1.10rem; /* 17.6px */
     }
 
-    .lista-dos-a-dos li {
+    .lista-dos-a-dos li,
+    .lista-dos-a-dos-habilidades li {
         font-size: 22px; /* 17px */
     }
 
@@ -560,7 +561,8 @@ ul {
         font-size: 0.9rem; /* 17.6px */
     }
 
-    .lista-dos-a-dos li {
+    .lista-dos-a-dos li,
+    .lista-dos-a-dos-habilidades li {
         font-size: 1.25rem;  /* 20px */
     }
 
