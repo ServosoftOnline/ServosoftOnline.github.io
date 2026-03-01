@@ -112,13 +112,13 @@ cabContacto.textContent = 'Contacto';
 divContacto.appendChild(cabContacto);
 
 // Creo el div con la clase contenido
-const divContenido$1 = document.createElement('div');
-divContenido$1.setAttribute('class', 'contenido');
-divContacto.appendChild(divContenido$1);
+const divContenido$2 = document.createElement('div');
+divContenido$2.setAttribute('class', 'contenido');
+divContacto.appendChild(divContenido$2);
 
 // Creo la lista que contendrá los datos de contacto
 const ulDatosDeContacto = document.createElement('ul');
-divContenido$1.appendChild(ulDatosDeContacto);
+divContenido$2.appendChild(ulDatosDeContacto);
 
 // Recorro el array y voy mostrando los elementos de dos en dos
 datosDeContacto.forEach((itemDato) => {    
@@ -156,184 +156,113 @@ datosDeContacto.forEach((itemDato) => {
 });
 
 /*
-    OBJETO TITULACIONES
-    - Contiene toda la información de mis titulos que agregaré de forma dinamica
-*/
-
-var dataTitulacion = {
-    titulaciones: [
-        {
-            id: '1',
-            titulo: 'Técnico Superior en Administración de Sistemas Informáticos en red. Ciclo formativo superior',
-            fecha: '',
-            centro: 'Instituto Bezmiliana en el Rincón de la Victoria'
-        }
-
-        // {
-        //     id: '2',
-        //     titulo: 'Bachillerato superior',
-        //     fecha: 'SEPTIEMBRE 1989 - JUNIO 1994',
-        //     centro: 'Instituto de educación secundaria Fuengirola Nº 1'
-        // },
-
-        // {
-        //     id: '3',
-        //     titulo: 'Educación General Básica',
-        //     fecha: 'SEPTIEMBRE 1980 - JUNIO 1989',
-        //     centro: 'Colegio público Andalucía'
-        // },
-    ]
-};
-
-// AÑADE LAS TITULACIONES DE FORMA DINÁMICA
-
-const {titulaciones} = dataTitulacion;
-// console.log(titulaciones);
-
-// Obtengo la columna donde las añado
-const columnaIzquierda$2 = document.querySelector('.columnaIzquierda');
-
-// Creo el div con la clase titulacion
-const titulacion = document.createElement('div');
-titulacion.setAttribute('class', 'titulacion');
-columnaIzquierda$2.appendChild(titulacion);
-
-// Creo la cabecera titulacion
-const cabeceraTitulacion = document.createElement('h3');
-cabeceraTitulacion.textContent = 'Titulación';
-titulacion.appendChild(cabeceraTitulacion);
-
-// Creo el div con la clase contenido
-const contenidoTitulacion = document.createElement('div');
-contenidoTitulacion.setAttribute('class', 'contenido');
-titulacion.appendChild(contenidoTitulacion);
-
-// Recorro las titulaciones y creo una lista en cada pasada con la información
-titulaciones.forEach((titulo) => {
-
-    // creo la lista
-    const lista = document.createElement('ul');
-    contenidoTitulacion.appendChild(lista);
-
-    // añado el titulo en negrita
-    const nombreTitulacion = document.createElement('li');
-    const titulacionNegrita = document.createElement('h4');
-    titulacionNegrita.textContent = titulo.titulo;
-    nombreTitulacion.appendChild(titulacionNegrita);
-    lista.appendChild(nombreTitulacion);
-
-    // Añado la fecha
-    const fecha = document.createElement('li');
-    fecha.textContent = titulo.fecha;
-    lista.appendChild(fecha);
-
-    // Añado el centro
-    const centro = document.createElement('li');
-    centro.textContent = titulo.centro;
-    lista.appendChild(centro);
-
-});
-
-/*
     OBJETO CAPACIDADES
     - Contiene toda la información de mis capacidades que agregaré de forma dinamica
 */
 
-var data = {
+var data$1 = {
     capacidades: [
-        {
-            id: '1',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Buenas Prácticas',
-        },
 
         {
-            id: '2',
+            id: '0',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Full - Stack',
+        },        
+
+        {
+            id: '1',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'Html',          
         },
 
         {
-            id: '3',
+            id: '2',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'Css',          
         },
 
         {
+            id: '3',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Javascript (ES6)',
+        }, 
+
+        {
             id: '4',
-            estrellas: '&#9733;&#9733;',
-            capacidad: 'Sass',    
-        },
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Diseño responsive',        
+        },                
 
         {
             id: '5',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Diseño responsive',        
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'MongoDb',
         },
 
         {
             id: '6',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Javascript (ES6)',
+            capacidad: 'Express',        
         },
 
         {
             id: '7',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'POO',
+            capacidad: 'React',
         },
 
         {
             id: '8',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'React',
+            capacidad: 'Node',        
         },
 
         {
             id: '9',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Vite',    
+            capacidad: 'JWT',        
         },
 
         {
             id: '10',
-            estrellas: '&#9733;&#9733;&#9733',
-            capacidad: 'Create react app',    
+            estrellas: '&#9733;&#9733;&#9733;',
+            capacidad: 'CMS',
         },
+
 
         {
             id: '11',
-            estrellas: '&#9733;&#9733;&#9733;',
-            capacidad: 'Webpack',    
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Buenas Prácticas',
         },
 
         {
             id: '12',
-            estrellas: '&#9733;&#9733;',
-            capacidad: 'Babel',    
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'POO',
         },
 
         {
             id: '13',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Firebase (SAAS)',        
+            capacidad: 'Vite',    
         },
 
         {
             id: '14',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Node',        
-        },
+            estrellas: '&#9733;&#9733;&#9733',
+            capacidad: 'Create react app',    
+        },        
 
         {
             id: '15',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Express',        
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Firebase (SAAS)',        
         },
 
         {
             id: '16',
-            estrellas: '&#9733;&#9733;',
+            estrellas: '&#9733;&#9733;&#9733;',
             capacidad: 'PHP',        
         },
 
@@ -359,7 +288,20 @@ var data = {
             id: '20',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Windows',
+        },
+
+        {
+            id: '21',
+            estrellas: '&#9733;&#9733;&#9733',
+            capacidad: 'macOS',
+        },
+
+        {
+            id: '22',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
+            capacidad: 'Paquete Microsoft Office',
         }
+
 
     ]
 };
@@ -368,30 +310,30 @@ var data = {
 // importo el objeto titulaciones y creo un array con el contenido
 
 // Obtengo la columna izquierda
-const columnaIzquierda$1 = document.querySelector('.columnaIzquierda');
+const columnaIzquierda$2 = document.querySelector('.columnaIzquierda');
 
 // Creo el div con la clase capacidades
 const divCapacidades = document.createElement('div');
 divCapacidades.setAttribute('class', 'capacidades');
-columnaIzquierda$1.appendChild(divCapacidades);
+columnaIzquierda$2.appendChild(divCapacidades);
 
 // Creo la cabecera contenidos
-const cabeceraContenidos = document.createElement('h3');
-cabeceraContenidos.textContent = 'Capacidades';
-divCapacidades.appendChild(cabeceraContenidos);
+const cabeceraContenidos$1 = document.createElement('h3');
+cabeceraContenidos$1.textContent = 'Capacidades';
+divCapacidades.appendChild(cabeceraContenidos$1);
 
 // Creo el div con la clase contenido
-const divContenido = document.createElement('div');
-divContenido. setAttribute('class', 'contenido');
-divCapacidades.appendChild(divContenido);
+const divContenido$1 = document.createElement('div');
+divContenido$1. setAttribute('class', 'contenido');
+divCapacidades.appendChild(divContenido$1);
 
 // Creo la lista de las capacidades
 const listaCapacidades = document.createElement('ul');
 listaCapacidades.setAttribute('class', 'lista-dos-a-dos');
-divContenido.appendChild(listaCapacidades);
+divContenido$1.appendChild(listaCapacidades);
 
 // Elementos de la lista
-data.capacidades.forEach((itemCapacidad) => {
+data$1.capacidades.forEach((itemCapacidad) => {
     
     const estrellas = document.createElement('li');
     estrellas.innerHTML = itemCapacidad.estrellas;
@@ -400,6 +342,91 @@ data.capacidades.forEach((itemCapacidad) => {
     const capacidad = document.createElement('li');
     capacidad.innerHTML = itemCapacidad.capacidad;
     listaCapacidades.appendChild(capacidad);
+});
+
+/*
+    OBJETO HABILIDADES (Soft Skills & Soporte)
+    - Habilidades interpersonales y experiencia en soporte técnico.
+*/
+
+var data = {
+    habilidades: [
+
+        {
+            id: '0',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            habilidad: 'Trabajo en equipo',
+        },
+        {
+            id: '1',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            habilidad: 'Soporte Técnico (Remoto/Presencial)',
+        },
+        {
+            id: '2',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            habilidad: 'Diagnóstico de Incidencias',
+        },
+        {
+            id: '3',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            habilidad: 'Atención al Cliente Corporate',
+        },
+        {
+            id: '4',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            habilidad: 'Gestión de APIs y Postman',
+        },
+        {
+            id: '5',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;',
+            habilidad: 'Comunicación Técnica (Inglés/Español)',
+        },
+        {
+            id: '6',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            habilidad: 'Liderazgo y Gestión de Equipos',
+        }
+    ]
+};
+
+// AÑADE LAS HABILIDADES DE FORMA DINÁMICA
+
+console.log(data);
+
+// Obtengo la columna izquierda
+const columnaIzquierda$1 = document.querySelector('.columnaIzquierda');
+
+// Creo el div con la clase capacidades
+const divHabilidades = document.createElement('div');
+divHabilidades.setAttribute('class', 'habilidades');
+columnaIzquierda$1.appendChild(divHabilidades);
+
+// Creo la cabecera contenidos
+const cabeceraContenidos = document.createElement('h3');
+cabeceraContenidos.textContent = 'Habilidades';
+divHabilidades.appendChild(cabeceraContenidos);
+
+// Creo el div con la clase contenido
+const divContenido = document.createElement('div');
+divContenido. setAttribute('class', 'contenido');
+divHabilidades.appendChild(divContenido);
+
+// Creo la lista de las habilidades
+const listaHabilidades = document.createElement('ul');
+listaHabilidades.setAttribute('class', 'lista-dos-a-dos-habilidades');
+divContenido.appendChild(listaHabilidades);
+
+// Elementos de la lista
+data.habilidades.forEach((itemHabilidad) => {
+    
+    const estrellas = document.createElement('li');
+    estrellas.innerHTML = itemHabilidad.estrellas;
+    listaHabilidades.appendChild(estrellas);
+
+    const habilidad = document.createElement('li');
+    habilidad.innerHTML = itemHabilidad.habilidad;
+    listaHabilidades.appendChild(habilidad);
 });
 
 // MUESTRO DE FORMA DINÁMICA EL APARTADO DE IDIOMAS
@@ -432,6 +459,14 @@ parrafoIdiomas.insertAdjacentElement('afterbegin', textoEnNegrita);
 
 var dataExperiencia = {
     experiencia: [
+
+        {
+            id: '0',
+            profesion: 'Gestor telefónico del 061',
+            fecha: 'DICIEMBRE 2025 - ACTUALIDAD',
+            descripcion: 'Gestión y clasificación de demandas asistenciales en el 061 Málaga mediante protocolos de triaje (GTT). Responsable de la activación de planes de acción, coordinación de recursos por radio y registro estadístico de operaciones en entornos de alta criticidad.'          
+        },
+
         {
             id: '1',
             profesion: 'Técnico en telecomunicaciones',
@@ -529,41 +564,47 @@ var dataCursos = {
     cursos: [
         {
             id: '1',
+            año: '2025',
+            curso: 'Máster en MERN Stack',
+            descripcion: 'Especialización integral en el desarrollo de aplicaciones web Full-Stack. Dominio de React (Hooks, Context API, Router) para el frontend y el ecosistema Node.js, Express y MongoDB para el backend. Desarrollo práctico de proyectos complejos, incluyendo una red social funcional con autenticación JWT, gestión de estados y APIs RESTful.'
+        },        
+        {
+            id: '2',
             año: '2024',
             curso: 'Javascript: El Curso Completo, Práctico y desde Cero',
             descripcion: 'Curso realizado en la plataforma online Udemy proporcionado por Carlos Arturo Esparza'
         },        
 
         {
-            id: '2',
+            id: '3',
             año: '2024',
             curso: 'React y Firebase: El Curso Completo, Práctico y desde Cero',
             descripcion: 'Curso realizado en la plataforma online Udemy proporcionado por Carlos Arturo Esparza'
         },
 
         {
-            id: '3',
+            id: '4',
             año: '2016',
             curso: 'HTML, CSS Y JAVASCRIPT',
             descripcion: 'Curso presencial proporcionado por FOREM-A. Formación y Empleo de Andalucía'
         },
 
         {
-            id: '4',
+            id: '5',
             año: '2011',
             curso: 'Analista programador',
             descripcion: 'Curso de Java SE y PostgreSQL realizado de forma presencial en INGENIA situado en el Parque Tecnológico de Andalucía'
         },
 
         {
-            id: '4',
+            id: '6',
             año: '2004',
             curso: 'Administrativo comercial',
-            descripcion: 'Ubicación profesional y orientación al mercado de trabajo, técnicas administrativas de oficina, básicas de comunicación y archivo, administrativas de aprovisionamientos, de administración comercial,  de relación comercial, mecanografía, ofimática, bases de datos, aplicaciones informáticas de gestión comercial, economía social y creación de empresas de economía social.'
+            descripcion: 'Ubicación profesional y orientación al mercado de trabajo, técnicas administrativas de oficina, básicas de comunicación y archivo, administrativas de aprovisionamientos, de administración comercial,  de relación comercial, mecanografía, ofimática, bases de datos, aplicaciones informáticas de gestión comercial, economía social y creación de empresas de economía social. Me ayudó a afianzar mis conocimientos del paquete office al completo'
         },
 
         {
-            id: '5',
+            id: '7',
             año: '1994',
             curso: 'Programador de ordenadores',
             descripcion: 'Curso de programación en varios lenguajes de la época (BASIC, DBASE, COBOL, CLIPPER Y C) proporcionado por FILEKOM. Era muy jóven, no tenia mas de 20 años, y aprendí lenguajes de programación que aunque varios no se usan actualmente, me ayudó a entender la programación actual'

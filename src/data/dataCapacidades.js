@@ -5,99 +5,107 @@
 
 export default {
     capacidades: [
-        {
-            id: '1',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Buenas Prácticas',
-        },
 
         {
-            id: '2',
+            id: '0',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Full - Stack',
+        },        
+
+        {
+            id: '1',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'Html',          
         },
 
         {
-            id: '3',
+            id: '2',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             capacidad: 'Css',          
         },
 
         {
+            id: '3',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Javascript (ES6)',
+        }, 
+
+        {
             id: '4',
-            estrellas: '&#9733;&#9733;',
-            capacidad: 'Sass',    
-        },
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Diseño responsive',        
+        },                
 
         {
             id: '5',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Diseño responsive',        
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'MongoDb',
         },
 
         {
             id: '6',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Javascript (ES6)',
+            capacidad: 'Express',        
         },
 
         {
             id: '7',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'POO',
+            capacidad: 'React',
         },
 
         {
             id: '8',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'React',
+            capacidad: 'Node',        
         },
 
         {
             id: '9',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Vite',    
+            capacidad: 'JWT',        
         },
 
         {
             id: '10',
-            estrellas: '&#9733;&#9733;&#9733',
-            capacidad: 'Create react app',    
+            estrellas: '&#9733;&#9733;&#9733;',
+            capacidad: 'CMS',
         },
+
 
         {
             id: '11',
-            estrellas: '&#9733;&#9733;&#9733;',
-            capacidad: 'Webpack',    
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Buenas Prácticas',
         },
 
         {
             id: '12',
-            estrellas: '&#9733;&#9733;',
-            capacidad: 'Babel',    
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'POO',
         },
 
         {
             id: '13',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Firebase (SAAS)',        
+            capacidad: 'Vite',    
         },
 
         {
             id: '14',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Node',        
-        },
+            estrellas: '&#9733;&#9733;&#9733',
+            capacidad: 'Create react app',    
+        },        
 
         {
             id: '15',
-            estrellas: '&#9733;&#9733;&#9733;&#9733;',
-            capacidad: 'Express',        
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            capacidad: 'Firebase (SAAS)',        
         },
 
         {
             id: '16',
-            estrellas: '&#9733;&#9733;',
+            estrellas: '&#9733;&#9733;&#9733;',
             capacidad: 'PHP',        
         },
 
@@ -123,7 +131,20 @@ export default {
             id: '20',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
             capacidad: 'Windows',
+        },
+
+        {
+            id: '21',
+            estrellas: '&#9733;&#9733;&#9733',
+            capacidad: 'macOS',
+        },
+
+        {
+            id: '22',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733',
+            capacidad: 'Paquete Microsoft Office',
         }
+
 
     ]
 };

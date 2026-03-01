@@ -1,10 +1,10 @@
 // Columna de la izquierda
-
 import './fotografia';
 import './perfil';
 import './contacto';
-import './titulacion';
+// import './titulacion';
 import './capacidades';
+import './habilidades';
 import './idiomas';
 
 // Columna de la derecha
