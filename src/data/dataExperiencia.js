@@ -10,7 +10,7 @@ export default {
             id: '0',
             profesion: 'Gestor telefónico del 061',
             fecha: 'DICIEMBRE 2025 - ACTUALIDAD',
-            descripcion: 'Gestión y clasificación de demandas asistenciales en el 061 Málaga mediante protocolos de triaje (GTT). Responsable de la activación de planes de acción, coordinación de recursos por radio y registro estadístico de operaciones en entornos de alta criticidad.'          
+            descripcion: 'Desempeño de funciones como personal de la bolsa de trabajo, realizando la gestión y clasificación de demandas asistenciales en el 061 Málaga mediante protocolos de triaje (GTT). Responsable de la activación de planes de acción y coordinación de recursos sanitarios de forma eficiente.'          
         },
 
         {
