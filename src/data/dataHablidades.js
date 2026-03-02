@@ -40,6 +40,11 @@ export default {
             id: '6',
             estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
             habilidad: 'Liderazgo y Gestión de Equipos',
+        },
+        {
+            id: '7',
+            estrellas: '&#9733;&#9733;&#9733;&#9733;&#9733;',
+            habilidad: 'Experiencia haciendo guardias',
         }
     ]
 };
